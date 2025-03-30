@@ -17,7 +17,7 @@ https://www.openai.fm/
 
 3. ии
 
-https://rork.app - сохдание приложений
+https://rork.app - создание приложений
 
 
 4. обучение

@@ -7,6 +7,7 @@ https://uiverse.io/elements - кнопки, дизайн
 https://icons.getbootstrap.com/ - иконки кнопок
 https://ui.shadcn.com/docs/installation - кнопки, дизайн
 https://vecto3d.xyz/ - анимации 
+https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster - гайд по html и css
 
 
 2. озвучка 
@@ -21,8 +22,9 @@ https://rork.app - создание приложений
 https://cloud.google.com/blog/products/application-development/firebase-studio-lets-you-build-full-stack-ai-apps-with-gemini - создание приложений (от гугла, три бесплатных генерации)
 https://huggingface.co/spaces/enzostvs/deepsite - ии для создания сайтов
 https://wordpress.com/ai-website-builder/ - ии для создания сайтов (чуть хуже "deepsite")
-https://www.napkins.dev/ - что-то похожее на "deepsite", только в меньших масштабах и бех возможности общаться с ии напрямую (только скринами)
+https://www.napkins.dev/ - что-то похожее на "deepsite", только в меньших масштабах и без возможности общаться с ии напрямую (только скринами)
 https://venice.ai/ - ии с ответами на ЛЮБОЙ вопрос
+https://www.freepik.com/pikaso/ai-image-generator - создание картинок
 
 
 4. обучение

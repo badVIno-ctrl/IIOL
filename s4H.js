@@ -2,18 +2,18 @@
     const CONFIG = {
         MESSAGES: [
             "🚨 ВНИМАНИЕ! АДМИНЫ ЭТОГО ЧАТА - МОШЕННИКИ! 🚨 {LINK}",
-            "ЗДЕСЬ ОБМАН НА! НЕ ВЕДИТЕСЬ НА ИХ СХЕМЫ! {LINK}",
+            "ЗДЕСЬ ОБМАН! НЕ ВЕДИТЕСЬ НА ИХ СХЕМЫ! {LINK}",
             "ЭТОТ ЧАТ БУДЕТ ЗАБЛОКИРОВАН ЗА МОШЕННИЧЕСТВО! {LINK}",
-            "ВСЕ ДОКАЗАТЕЛЬСТВА ЗДЕСЬ: {LINK} - НЕ ОТПРАВЛЯЙТЕ ИМ ДЕНЬГИ!",
-            "🚫 SCAM ALERT! THIS CHAT WILL BE REPORTED TO TELECOM REGULATORS! {LINK}"
+            "ВСЕ ДОКАЗАТЕЛЬСТВА ЗДЕСЬ: {LINK}",
+            "🚫 SCAM ALERT! THIS CHAT WILL BE REPORTED! {LINK}"
         ],
-        LINK: "https://t.me/biosQper",
-        SUM: "50,000", 
-        BOMB_COUNT: 1000, // Сумма сообщ
-        DELAY: 50, // задержк
-        TARGET_ADMINS: true, 
+        LINK: "https://t.me/biosQper", 
+        SUM: "50,000",
+        BOMB_COUNT: 1000,
+        DELAY: 50,
+        TARGET_ADMINS: true,
         USE_EMOJIS: true,
-        USE_CAPS: true 
+        USE_CAPS: true
     };
 
     function generateMessage() {
@@ -22,9 +22,18 @@
         msg = msg.replace(/{LINK}/g, CONFIG.LINK)
                  .replace(/{SUM}/g, CONFIG.SUM);
         
-        if (CONFIG.USE_CAPS) msg = msg.toUpperCase();
-        if (CONFIG.USE_EMOJIS) msg = addEmojis(msg);
+        if (CONFIG.USE_CAPS) {
+            const linkPos = msg.indexOf(CONFIG.LINK);
+            if (linkPos !== -1) {
+                const beforeLink = msg.substring(0, linkPos).toUpperCase();
+                const afterLink = msg.substring(linkPos + CONFIG.LINK.length).toUpperCase();
+                msg = beforeLink + CONFIG.LINK + afterLink;
+            } else {
+                msg = msg.toUpperCase();
+            }
+        }
         
+        if (CONFIG.USE_EMOJIS) msg = addEmojis(msg);
         return msg;
     }
 
@@ -37,16 +46,24 @@
 
     const sendMethods = {
         fastSend() {
-            const input = document.querySelector('[contenteditable="true"]');
+            const input = document.querySelector('[contenteditable="true"][data-role="input"]') || 
+                          document.querySelector('[contenteditable="true"]');
             if (!input) return false;
             
             input.focus();
             input.innerHTML = '';
             document.execCommand('insertText', false, generateMessage());
             
-            const sendBtn = document.querySelector('button[aria-label="Send"]') || 
-                           document.querySelector('button[aria-label="Отправить"]');
-            sendBtn ? sendBtn.click() : simulateEnter();
+            const sendBtn = document.querySelector('button[aria-label="Send"], button[aria-label="Отправить"], .btn-send') || 
+                           document.querySelector('.composer-btn-send') ||
+                           document.querySelector('button:not([aria-label]):not([class])');
+            
+            if (sendBtn) {
+                sendBtn.click();
+                return true;
+            }
+            
+            this.simulateEnter();
             return true;
         },
         
@@ -55,13 +72,14 @@
                 key: 'Enter',
                 code: 'Enter',
                 keyCode: 13,
-                bubbles: true
+                bubbles: true,
+                cancelable: true
             });
             document.activeElement.dispatchEvent(event);
         },
         
         targetAdmins() {
-            const admins = Array.from(document.querySelectorAll('.user-title, .chat-user'));
+            const admins = Array.from(document.querySelectorAll('.user-title, .chat-user, .user-name'));
             admins.forEach(admin => {
                 if (admin.textContent.match(/admin|админ|owner|владелец/i)) {
                     admin.click();
@@ -75,13 +93,13 @@
     };
 
     async function nuclearBomb() {
-        console.log(' ЗАПУСК...');
+        console.log('ЗАПУСК...');
         
         let sent = 0;
         const bombInterval = setInterval(() => {
             if (sent >= CONFIG.BOMB_COUNT) {
                 clearInterval(bombInterval);
-                console.log(' ОТПРАВЛЕНО %d СООБЩЕНИЙ!', sent);
+                console.log('ОТПРАВЛЕНО %d СООБЩЕНИЙ!', sent);
                 return;
             }
             
@@ -97,7 +115,7 @@
 
     function extraPain() {
         const reportAll = setInterval(() => {
-            const menuButtons = document.querySelectorAll('.btn-icon, .chat-actions');
+            const menuButtons = document.querySelectorAll('.btn-icon, .chat-actions, .menu-button');
             if (menuButtons.length) {
                 menuButtons.forEach(btn => {
                     btn.click();
@@ -113,7 +131,7 @@
         }, 5000);
 
         document.body.addEventListener('click', (e) => {
-            if (e.target.closest('.chat-user, .user-title')) {
+            if (e.target.closest('.chat-user, .user-title, .user-name')) {
                 setTimeout(sendMethods.fastSend, 300);
             }
         });

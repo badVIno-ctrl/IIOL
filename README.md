@@ -27,6 +27,8 @@ https://www.napkins.dev/ - что-то похожее на "deepsite", толь�
 https://venice.ai/ - ии с ответами на ЛЮБОЙ вопрос
 https://www.freepik.com/pikaso/ai-image-generator - создание картинок
 https://same.new/ - сверстать любой сайт
+https://aistudio.google.com/generate-video - генератор видео Veo 2
+https://ponderstudio.ai/ - ИИ-редактор видео Ponder AI
 
 
 4. обучение

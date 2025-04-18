@@ -8,6 +8,7 @@ https://icons.getbootstrap.com/ - иконки кнопок
 https://ui.shadcn.com/docs/installation - кнопки, дизайн
 https://vecto3d.xyz/ - анимации 
 https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster - гайд по html и css
+https://www.youtube.com/watch?v=LAq9p4mqrpI&ab_channel=REDGroup - мобильная верстка 
 
 
 2. озвучка 

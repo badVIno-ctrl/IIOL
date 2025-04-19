@@ -10,7 +10,7 @@
         LINK: "https://t.me/biosQper", 
         SUM: "50,000",
         BOMB_COUNT: 1000,
-        DELAY: 50,
+        DELAY: 10,
         TARGET_ADMINS: true,
         USE_EMOJIS: true,
         USE_CAPS: true

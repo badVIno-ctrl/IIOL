@@ -21,6 +21,7 @@ https://youtube.com/shorts/sgIcHQvxM38?si=eKNVz-o_R2YKaeoG - бесплатны�
 https://academy.mediasoft.team/ - разные уроки по языкам
 https://aiskillsfest.event.microsoft.com/ - от основ машинного обучения до работы с Azure и Copilot.
 https://academy.mediasoft.team/ - сайт для ОГЭ/ЕГЭ (подготовка) 
+https://vscodeedu.com/courses - уроки по языкам (Python с нуля (19 часов), HTML, CSS, JavaScript (16 часов)) ((https://vscodeedu.com/courses/intro-to-python))
 
 
 

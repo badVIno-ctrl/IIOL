@@ -11,10 +11,7 @@ https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster - гай�
 https://www.youtube.com/watch?v=LAq9p4mqrpI&ab_channel=REDGroup - мобильная верстка 
 
 
-2. озвучка 
 
-https://www.minimax.io/audio
-https://www.openai.fm/
 
 
 3. ии

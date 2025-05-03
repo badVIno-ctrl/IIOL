@@ -11,25 +11,7 @@ https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster - гай�
 https://www.youtube.com/watch?v=LAq9p4mqrpI&ab_channel=REDGroup - мобильная верстка 
 
 
-
-
-
-3. ии
-
-https://rork.app - создание приложений
-https://cloud.google.com/blog/products/application-development/firebase-studio-lets-you-build-full-stack-ai-apps-with-gemini - создание приложений (от гугла, три бесплатных генерации)
-https://huggingface.co/spaces/enzostvs/deepsite - ии для создания сайтов
-https://wordpress.com/ai-website-builder/ - ии для создания сайтов (чуть хуже "deepsite")
-https://www.napkins.dev/ - что-то похожее на "deepsite", только в меньших масштабах и без возможности общаться с ии напрямую (только скринами)
-https://venice.ai/ - ии с ответами на ЛЮБОЙ вопрос
-https://www.freepik.com/pikaso/ai-image-generator - создание картинок
-https://same.new/ - сверстать любой сайт
-https://aistudio.google.com/generate-video - генератор видео Veo 2
-https://ponderstudio.ai/ - ИИ-редактор видео Ponder AI
-https://auphonic.com/ - удаление шума в звуке
-
-
-4. обучение
+2. обучение
 
 https://youtube.com/shorts/eBk-gZ8ht5c?si=8e8ZQIbcPp366RY1 - командная строка
 https://youtube.com/shorts/sgIcHQvxM38?si=eKNVz-o_R2YKaeoG - бесплатный учебник с языками

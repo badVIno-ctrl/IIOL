@@ -14,6 +14,8 @@ https://ui.shadcn.com/docs/installation - кнопки, дизайн
 
 https://vecto3d.xyz/ - анимации 
 
+https://www.reactbits.dev/ - Огромная библиотека стильных анимаций для сайтов — ReactBits. Можно забирать для своих веб-приложений прямо с кодом.
+
 https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster - гайд по html и css
 
 https://www.youtube.com/watch?v=LAq9p4mqrpI&ab_channel=REDGroup - мобильная верстка 

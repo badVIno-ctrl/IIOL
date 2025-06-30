@@ -52,8 +52,7 @@ https://browser.lol/ - браузер в браузере - разблокиро
 
 https://youtubego.org/ - скачать видео с ютуба
 
-
-
+https://apps.apple.com/ge/app/project-indigo/id6742591546 - Adobe выпустили бесплатное приложение Project Indigo для профессиональной съемки на iPhone.
 
 
 

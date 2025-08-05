@@ -47,6 +47,7 @@ https://tnumber.tbank.ru/app/topics сайт для ОГЭ/ЕГЭ - от Т-ба
 3. важные инструменты
 
 
+https://contentcore.xyz/ - дизайн, лого
 
 https://browser.lol/ - браузер в браузере - разблокировка любого сервиса без VPN
 

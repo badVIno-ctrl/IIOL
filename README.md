@@ -44,6 +44,7 @@ https://tnumber.tbank.ru/app/topics сайт для ОГЭ/ЕГЭ - от Т-ба
 
 
 
+
 3. важные инструменты
 
 
@@ -57,7 +58,16 @@ https://apps.apple.com/ge/app/project-indigo/id6742591546 - Adobe выпусти
 
 
 
+4. трейдинг:
+https://ozon.ru/t/L4bqsIM
+https://ozon.ru/t/qyZUFHk
+https://ozon.ru/t/zDxH1JJ
+https://ozon.ru/t/Ev6WKKv
+https://ozon.ru/t/cBjNRj8
+Время деньги (Генри форд)
 
+5. книги (важно)
+- первые 20 часов (Джош Кауфман)
 
 
 

@@ -7,7 +7,7 @@
 Bash
 pip install requests
 
-- Вот минимальный и понятный код для получения прогноза:
+- код для получения прогноза:
 
 Python
 import requests
@@ -22,3 +22,5 @@ except Exception:
     print("Упс! Что-то пошло не так. Попробуйте позже.")
 
 - Просто вводите нужный город, и получите подробный прогноз с температурой, осадками 
+
+2. бесплатные API - https://github.com/public-api-lists/public-api-lists

@@ -24,3 +24,21 @@ except Exception:
 - Просто вводите нужный город, и получите подробный прогноз с температурой, осадками 
 
 2. бесплатные API - https://github.com/public-api-lists/public-api-lists
+
+3. Создаём QR-коды с помощью Python всего за несколько строк кода (Любой может сгенерировать свой QR-код для ссылки, текста или даже Wi-Fi данных.)
+
+Bash
+pip install qrcode pillow
+
+- код:
+import qrcode
+from PIL import Image
+
+data = input("Введите данные для QR: ")
+qr = qrcode.QRCode(version=3, box_size=8, border=4)
+qr.add_data(data)
+qr.make(fit=True)
+
+image = qr.make_image(fill="black", back_color="aqua")
+image.save("qr_code.png")
+Image.open("qr_code.png")

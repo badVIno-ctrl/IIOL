@@ -65,6 +65,9 @@ https://ozon.ru/t/zDxH1JJ
 https://ozon.ru/t/Ev6WKKv
 https://ozon.ru/t/cBjNRj8
 Время деньги (Генри форд)
+https://t.me/antarcticwallet/442?single
+
+
 
 5. книги (важно)
 - первые 20 часов (Джош Кауфман)

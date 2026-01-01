@@ -72,6 +72,8 @@ https://www.youtube.com/watch?v=msfIXonsfCY - про деп
 https://www.youtube.com/watch?v=xL7HAuZMbjA - s.m. 
 https://www.perplexity.ai/search/naidi-mne-video-gde-realno-kac-HcytqqhPTlmfHb6FUCFl9g - т с 0
 https://www.perplexity.ai/search/ia-podpisan-na-kanal-odnogo-tr-..D3i_oIS3mYN.4mYGgBjQ - т с 0 (эрик) 
+https://www.xynth.finance/ - Превращаем ИИ в личного менеджера по инвестициям — Xynth прошерстит весь интернет, чтобы выдать понятный и точный анализ любой компании или рынка.
+
 
 
 6. книги (важно)

@@ -66,7 +66,7 @@ https://ozon.ru/t/Ev6WKKv
 https://ozon.ru/t/cBjNRj8
 Время деньги (Генри форд)
 https://t.me/antarcticwallet/442?single
-
+https://x.com/gregisenberg/status/2005317303370486015 - ии стартап
 
 
 5. книги (важно)
@@ -78,3 +78,4 @@ https://t.me/antarcticwallet/442?single
 
 
 7. https://github.com/alexta69/metube - удобный загрузчик видео с YouTube 
+

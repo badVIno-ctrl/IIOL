@@ -67,9 +67,14 @@ https://ozon.ru/t/cBjNRj8
 Время деньги (Генри форд)
 https://t.me/antarcticwallet/442?single
 https://x.com/gregisenberg/status/2005317303370486015 - ии стартап
+https://www.youtube.com/watch?v=1qqkcJLj3MQ - т с 0
+https://www.youtube.com/watch?v=msfIXonsfCY - про деп
+https://www.youtube.com/watch?v=xL7HAuZMbjA - s.m. 
+https://www.perplexity.ai/search/naidi-mne-video-gde-realno-kac-HcytqqhPTlmfHb6FUCFl9g - т с 0
+https://www.perplexity.ai/search/ia-podpisan-na-kanal-odnogo-tr-..D3i_oIS3mYN.4mYGgBjQ - т с 0 (эрик) 
 
 
-5. книги (важно)
+6. книги (важно)
 - первые 20 часов (Джош Кауфман)
 
 

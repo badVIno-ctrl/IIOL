@@ -75,3 +75,6 @@ https://t.me/antarcticwallet/442?single
 
 
 6. сайт для выбора фильмов - https://nothing-to-watch.port80.ch/
+
+
+7. https://github.com/alexta69/metube - удобный загрузчик видео с YouTube 

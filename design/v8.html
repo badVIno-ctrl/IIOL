@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased scroll-smooth">
+  <head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Nexura - High-Impact Creatives</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link
+rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=DotGothic16&amp;display=swap"
+/>
+<link
+rel="stylesheet"
+href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&amp;display=swap"
+/>
+<style>
+.font-dot { font-family: 'DotGothic16', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.kanban-scroll::-webkit-scrollbar { height: 6px; width: 6px; }
+.kanban-scroll::-webkit-scrollbar-track { background: transparent; }
+.kanban-scroll::-webkit-scrollbar-thumb { background-color: rgba(255,255,255,0.1); border-radius: 10px; }
+.grid-bg { background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+</style>
+<style>
+.reveal{opacity:0;transform:translateY(20px);filter:blur(8px);transition:opacity .8s ease-out,transform .8s ease-out,filter .8s ease-out}.reveal.in-view{opacity:1;transform:translateY(0);filter:blur(0)}.reveal-left{opacity:0;transform:translateX(-30px);filter:blur(8px);transition:opacity .8s ease-out,transform .8s ease-out,filter .8s ease-out}.reveal-left.in-view{opacity:1;transform:translateX(0);filter:blur(0)}.reveal-right{opacity:0;transform:translateX(30px);filter:blur(8px);transition:opacity .8s ease-out,transform .8s ease-out,filter .8s ease-out}.reveal-right.in-view{opacity:1;transform:translateX(0);filter:blur(0)}.reveal-fade{opacity:0;filter:blur(8px);transition:opacity .8s ease-out,filter .8s ease-out}.reveal-fade.in-view{opacity:1;filter:blur(0)}
+</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+  <body
+    class="bg-[#0B0F19] text-white font-mono overflow-x-hidden min-h-screen selection:bg-blue-500/30"
+  >
+    <!-- Background -->
+    <div class="absolute inset-x-0 top-0 z-[-1] bg-[#0B0F19] h-screen">
+      <div
+        class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40 mix-blend-screen"
+        style="overflow:hidden; isolation:isolate"
+      >
+        <video
+          src="https://wypspaektjjiccarxrgy.supabase.co/storage/v1/object/public/generated-page-media/302e86e0-80d8-4ba5-82e8-004220675655/2026-05-19/1779181978164-de4c8727-3137-4d53-9127-2b0edc9e8318.mp4"
+          poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a99ea2b7-ad5e-4188-bc7b-afa6b40c71ac_3840w.jpg"
+          data-neuform-generated-video="true"
+          data-neuform-video-preset="loop-in-view"
+          muted=""
+          playsinline=""
+          preload="metadata"
+          loop=""
+          data-neuform-generated-video-bg="true"
+          autoplay=""
+          style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0;max-width:none"
+        ></video>
+      </div>
+      <div
+        class="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[800px] rounded-full bg-blue-500/10 blur-[120px]"
+      ></div>
+      <div
+        class="absolute top-1/3 right-0 w-[500px] h-[500px] rounded-full bg-purple-500/10 blur-[120px]"
+      ></div>
+    </div>
+
+    <!-- Nav -->
+    <header
+      class="w-full flex justify-between items-center px-6 md:px-10 py-6 z-50 relative reveal-fade"
+    >
+      <div class="flex items-center gap-2.5 text-white font-medium text-base">
+        <div class="bg-white text-[#0B0F19] rounded-lg p-1">
+          <iconify-icon icon="solar:ghost-smile-bold" width="20"></iconify-icon>
+        </div>
+        <span class="tracking-tight font-mono">Nexura</span>
+      </div>
+      <nav
+        class="hidden md:flex items-center gap-8 text-xs text-gray-400 font-medium"
+      >
+        <a href="#" class="hover:text-white transition-colors">Services</a>
+        <a href="#" class="hover:text-white transition-colors">Pricing</a>
+        <a href="#" class="hover:text-white transition-colors">Projects</a>
+        <a href="#" class="hover:text-white transition-colors">About</a>
+      </nav>
+      <div class="flex items-center gap-6">
+        <a
+          href="#"
+          class="text-xs text-gray-300 hover:text-white transition-colors hidden sm:block"
+        >
+          See reviews
+        </a>
+        <button
+          class="px-5 py-2 rounded-full bg-white/10 border border-white/5 text-white text-xs font-medium hover:bg-white/20 transition-all backdrop-blur-md"
+        >
+          Book a call
+        </button>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <main
+      class="relative z-10 pt-16 md:pt-24 pb-12 px-4 flex flex-col items-center text-center reveal"
+      data-delay="200"
+    >
+      <div
+        class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-md mb-8 reveal"
+      >
+        <span
+          class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
+        ></span>
+        <span class="text-xs text-gray-300">
+          Now accepting Q1 2025 partners
+        </span>
+      </div>
+      <h1
+        class="text-5xl md:text-6xl lg:text-7xl tracking-tight text-white mb-6 max-w-4xl mx-auto leading-[1.1] font-dot reveal"
+        data-delay="100"
+      >
+        High-performance ad creatives that drive growth
+      </h1>
+      <p
+        class="text-sm md:text-base text-gray-400 max-w-2xl mx-auto mb-10 leading-relaxed"
+      >
+        Experience an agency-grade creative partnership focused on producing
+        high-converting static ads and UGC that help ecom brands scale faster.
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-3 items-center reveal"
+        data-delay="300"
+      >
+        <button
+          class="px-6 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-gray-200 transition-all shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+        >
+          Book a call →
+        </button>
+        <button
+          class="px-6 py-3 rounded-full bg-white/5 border border-white/10 text-white text-xs font-medium hover:bg-white/10 transition-all backdrop-blur-md"
+        >
+          View our work
+        </button>
+      </div>
+
+      <!-- Stats inline -->
+      <div class="grid grid-cols-3 gap-6 md:gap-16 mt-16 max-w-2xl">
+        <div class="text-center reveal">
+          <div class="text-3xl md:text-4xl text-white font-dot tracking-tight">
+            3.2x
+          </div>
+          <div class="text-xs text-gray-500 mt-1">Avg ROAS lift</div>
+        </div>
+        <div
+          class="text-center border-x border-white/5 reveal"
+          data-delay="100"
+        >
+          <div class="text-3xl md:text-4xl text-white font-dot tracking-tight">
+            250+
+          </div>
+          <div class="text-xs text-gray-500 mt-1">Brands scaled</div>
+        </div>
+        <div class="text-center reveal" data-delay="200">
+          <div class="text-3xl md:text-4xl text-white font-dot tracking-tight">
+            48h
+          </div>
+          <div class="text-xs text-gray-500 mt-1">Turnaround</div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Dashboard Mockup -->
+    <section
+      class="relative w-full max-w-[1024px] mx-auto mt-12 px-4 sm:px-6 z-20 pb-24"
+    >
+      <div
+        class="rounded-3xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent shadow-[0_30px_100px_-20px_rgba(0,0,0,1)] reveal"
+      >
+        <div
+          class="bg-[#1C1F26] rounded-3xl overflow-hidden flex flex-col h-[500px] md:h-[580px] ring-1 ring-white/5"
+        >
+          <div
+            class="flex items-center justify-between px-6 py-4 border-b border-white/5 bg-[#22252D]"
+          >
+            <div class="flex items-center gap-8">
+              <div
+                class="flex items-center gap-2 text-white font-medium text-xs"
+              >
+                <iconify-icon
+                  icon="solar:ghost-smile-bold"
+                  width="18"
+                ></iconify-icon>
+                <span>Nexura</span>
+              </div>
+              <div
+                class="hidden sm:flex items-center gap-1 bg-black/20 rounded-full p-1 border border-white/5"
+              >
+                <button
+                  class="px-4 py-1 rounded-full bg-white/10 text-white text-xs font-semibold"
+                >
+                  Tasks
+                </button>
+                <button
+                  class="px-4 py-1 rounded-full text-gray-400 text-xs font-medium"
+                >
+                  Shared
+                </button>
+                <button
+                  class="px-4 py-1 rounded-full text-gray-400 text-xs font-medium"
+                >
+                  Templates
+                </button>
+              </div>
+            </div>
+            <div
+              class="w-7 h-7 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 ring-2 ring-[#22252D]"
+            ></div>
+          </div>
+          <div
+            class="flex flex-col h-full overflow-hidden bg-gradient-to-b from-[#1C1F26] to-[#14161C]"
+          >
+            <div class="px-6 md:px-8 pt-6 pb-4">
+              <div class="flex items-center gap-3 text-white mb-4">
+                <h2 class="text-2xl tracking-tight font-dot">Tasks</h2>
+                <span
+                  class="px-2 py-0.5 rounded-md border border-white/10 bg-white/5 text-xs text-gray-300"
+                >
+                  8
+                </span>
+              </div>
+              <div class="flex items-center justify-between gap-4">
+                <div class="flex items-center gap-6 text-xs font-medium">
+                  <button class="text-white border-b-2 border-white pb-1">
+                    Board
+                  </button>
+                  <button class="text-gray-500 pb-1">List</button>
+                </div>
+                <button
+                  class="bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-xs font-medium transition-colors"
+                >
+                  + New task
+                </button>
+              </div>
+            </div>
+            <div
+              class="flex-1 overflow-x-auto overflow-y-hidden px-6 md:px-8 pb-8 flex gap-6 kanban-scroll"
+            >
+              <!-- Col 1 -->
+              <div class="w-[280px] flex-shrink-0 flex flex-col">
+                <div
+                  class="flex items-center justify-between text-gray-300 text-xs font-medium px-1 mb-4"
+                >
+                  <div class="flex items-center gap-2">
+                    <iconify-icon
+                      icon="solar:sun-2-linear"
+                      width="14"
+                    ></iconify-icon>
+                    <span>Active</span>
+                  </div>
+                  <iconify-icon
+                    icon="solar:menu-dots-bold"
+                    width="14"
+                    class="text-gray-500"
+                  ></iconify-icon>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <div
+                    class="bg-[#262A34] p-4 rounded-xl border border-white/5 hover:border-white/20 transition-all"
+                  >
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                      <h3 class="text-white text-xs font-dot">
+                        Q4 Holiday Campaign Assets
+                      </h3>
+                      <div
+                        class="w-5 h-5 shrink-0 rounded-md bg-yellow-500/10 text-yellow-500 flex items-center justify-center"
+                      >
+                        <iconify-icon
+                          icon="solar:star-bold"
+                          width="10"
+                        ></iconify-icon>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-2 text-xs text-gray-400 mb-3"
+                    >
+                      <div
+                        class="w-5 h-5 rounded-full bg-blue-500/20 text-blue-400 flex items-center justify-center font-semibold text-xs"
+                      >
+                        H
+                      </div>
+                      <span>Oct 12</span>
+                    </div>
+                    <div
+                      class="flex items-center justify-between pt-3 border-t border-white/5"
+                    >
+                      <span
+                        class="px-2 py-1 rounded-md bg-blue-500/10 text-blue-400 text-xs border border-blue-500/20"
+                      >
+                        Launch
+                      </span>
+                      <div
+                        class="flex items-center gap-1 text-gray-500 text-xs"
+                      >
+                        <iconify-icon
+                          icon="solar:chat-line-linear"
+                          width="12"
+                        ></iconify-icon>
+                        1
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-[#262A34] p-4 rounded-xl border border-white/5"
+                  >
+                    <h3 class="text-white text-xs font-dot mb-3">
+                      Email Banner Fall Promo
+                    </h3>
+                    <div
+                      class="flex items-center gap-2 text-xs text-gray-400 mb-3"
+                    >
+                      <div
+                        class="w-5 h-5 rounded-full bg-purple-500/20 text-purple-400 flex items-center justify-center font-semibold text-xs"
+                      >
+                        K
+                      </div>
+                      <span>Oct 14</span>
+                    </div>
+                    <div
+                      class="flex items-center justify-between pt-3 border-t border-white/5"
+                    >
+                      <span
+                        class="px-2 py-1 rounded-md bg-purple-500/10 text-purple-400 text-xs border border-purple-500/20"
+                      >
+                        Marketing
+                      </span>
+                      <div
+                        class="flex items-center gap-1 text-gray-500 text-xs"
+                      >
+                        <iconify-icon
+                          icon="solar:chat-line-linear"
+                          width="12"
+                        ></iconify-icon>
+                        3
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Col 2 -->
+              <div class="w-[280px] flex-shrink-0 flex flex-col">
+                <div
+                  class="flex items-center justify-between text-gray-300 text-xs font-medium px-1 mb-4"
+                >
+                  <div class="flex items-center gap-2">
+                    <iconify-icon
+                      icon="solar:clock-circle-linear"
+                      width="14"
+                    ></iconify-icon>
+                    <span>In Progress</span>
+                  </div>
+                  <iconify-icon
+                    icon="solar:menu-dots-bold"
+                    width="14"
+                    class="text-gray-500"
+                  ></iconify-icon>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <div
+                    class="bg-[#262A34] p-4 rounded-xl border border-white/10 ring-1 ring-blue-500/30 relative overflow-hidden"
+                  >
+                    <div
+                      class="absolute top-0 left-0 w-1 h-full bg-blue-500"
+                    ></div>
+                    <h3 class="text-white text-xs font-dot mb-3 pl-2">
+                      UGC Video Editing Batch 1
+                    </h3>
+                    <div
+                      class="flex items-center gap-2 text-xs text-gray-400 mb-3 pl-2"
+                    >
+                      <div
+                        class="w-5 h-5 rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-semibold text-xs"
+                      >
+                        M
+                      </div>
+                      <span>Oct 15</span>
+                    </div>
+                    <div
+                      class="flex items-center justify-between pt-3 border-t border-white/5 pl-2"
+                    >
+                      <span
+                        class="px-2 py-1 rounded-md bg-emerald-500/10 text-emerald-400 text-xs border border-emerald-500/20"
+                      >
+                        Video
+                      </span>
+                      <div
+                        class="flex items-center gap-1 text-gray-500 text-xs"
+                      >
+                        <iconify-icon
+                          icon="solar:chat-line-linear"
+                          width="12"
+                        ></iconify-icon>
+                        8
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-[#262A34] p-4 rounded-xl border border-white/5"
+                  >
+                    <div class="flex justify-between items-start gap-2 mb-3">
+                      <h3 class="text-white text-xs font-dot">
+                        Social Media Carousel
+                      </h3>
+                      <div
+                        class="w-5 h-5 shrink-0 rounded-md bg-white/5 text-gray-300 flex items-center justify-center"
+                      >
+                        <iconify-icon
+                          icon="solar:gallery-linear"
+                          width="12"
+                        ></iconify-icon>
+                      </div>
+                    </div>
+                    <div
+                      class="flex items-center gap-2 text-xs text-gray-400 mb-3"
+                    >
+                      <div
+                        class="w-5 h-5 rounded-full bg-orange-500/20 text-orange-400 flex items-center justify-center font-semibold text-xs"
+                      >
+                        A
+                      </div>
+                      <span>Oct 18</span>
+                    </div>
+                    <div class="pt-3 border-t border-white/5">
+                      <span
+                        class="px-2 py-1 rounded-md bg-orange-500/10 text-orange-400 text-xs border border-orange-500/20"
+                      >
+                        Design
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Col 3 -->
+              <div class="w-[280px] flex-shrink-0 flex flex-col">
+                <div
+                  class="flex items-center justify-between text-gray-400 text-xs font-medium px-1 mb-4"
+                >
+                  <div class="flex items-center gap-2">
+                    <iconify-icon
+                      icon="solar:check-circle-linear"
+                      width="14"
+                    ></iconify-icon>
+                    <span>Done</span>
+                  </div>
+                  <iconify-icon
+                    icon="solar:menu-dots-bold"
+                    width="14"
+                    class="text-gray-600"
+                  ></iconify-icon>
+                </div>
+                <div class="flex flex-col gap-3">
+                  <div
+                    class="bg-[#262A34]/50 p-4 rounded-xl border border-white/5 opacity-60"
+                  >
+                    <h3
+                      class="text-gray-400 text-xs line-through decoration-gray-600 font-dot mb-3"
+                    >
+                      Rebranding Pitch Deck
+                    </h3>
+                    <div
+                      class="flex items-center gap-2 text-xs text-gray-500 mb-3"
+                    >
+                      <div
+                        class="w-5 h-5 rounded-full bg-gray-500/20 flex items-center justify-center text-xs"
+                      >
+                        T
+                      </div>
+                      <span>Oct 05</span>
+                    </div>
+                    <div
+                      class="flex items-center justify-between pt-3 border-t border-white/5"
+                    >
+                      <span
+                        class="px-2 py-1 rounded-md bg-gray-500/10 text-gray-400 text-xs border border-gray-500/20"
+                      >
+                        Strategy
+                      </span>
+                      <div
+                        class="flex items-center gap-1 text-gray-600 text-xs"
+                      >
+                        <iconify-icon
+                          icon="solar:chat-line-linear"
+                          width="12"
+                        ></iconify-icon>
+                        12
+                      </div>
+                    </div>
+                  </div>
+                  <div
+                    class="bg-[#262A34]/50 p-4 rounded-xl border border-white/5 opacity-50"
+                  >
+                    <h3
+                      class="text-gray-500 text-xs line-through font-dot mb-3"
+                    >
+                      Website UI Update
+                    </h3>
+                    <div class="flex items-center gap-2 text-xs text-gray-600">
+                      <div
+                        class="w-5 h-5 rounded-full bg-gray-600/20 flex items-center justify-center text-xs"
+                      >
+                        T
+                      </div>
+                      <span>Sep 28</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs text-blue-400 mb-3 tracking-widest uppercase">
+          // Features
+        </div>
+        <h2 class="text-4xl md:text-5xl font-dot tracking-tight mb-4">
+          Built for ecom brands
+          <br />
+          that move fast
+        </h2>
+        <p class="text-sm text-gray-400 max-w-xl mx-auto">
+          Every capability designed around one mission: getting more profitable
+          creatives in front of your audience.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div
+          class="rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+        >
+          <div class="bg-[#1C1F26] rounded-2xl p-6 h-full">
+            <div
+              class="w-10 h-10 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-4"
+            >
+              <iconify-icon
+                icon="solar:gallery-wide-linear"
+                width="20"
+              ></iconify-icon>
+            </div>
+            <h3 class="text-base font-dot mb-2 tracking-tight">
+              Static Ad Production
+            </h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              Conversion-tested static creatives across every placement — Meta,
+              TikTok, display.
+            </p>
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+              <span class="w-1 h-1 rounded-full bg-blue-400"></span>
+              40+ variations per cycle
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+          data-delay="100"
+        >
+          <div class="bg-[#1C1F26] rounded-2xl p-6 h-full">
+            <div
+              class="w-10 h-10 rounded-xl bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-4"
+            >
+              <iconify-icon
+                icon="solar:videocamera-record-linear"
+                width="20"
+              ></iconify-icon>
+            </div>
+            <h3 class="text-base font-dot mb-2 tracking-tight">
+              UGC Video Library
+            </h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              A vetted creator network producing native-feeling videos that
+              don't look like ads.
+            </p>
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+              <span class="w-1 h-1 rounded-full bg-purple-400"></span>
+              500+ vetted creators
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+          data-delay="200"
+        >
+          <div class="bg-[#1C1F26] rounded-2xl p-6 h-full">
+            <div
+              class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 mb-4"
+            >
+              <iconify-icon
+                icon="solar:chart-square-linear"
+                width="20"
+              ></iconify-icon>
+            </div>
+            <h3 class="text-base font-dot mb-2 tracking-tight">
+              Performance Analytics
+            </h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              Track every concept's CPA, hook-rate, and ROAS in one synced
+              dashboard.
+            </p>
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+              <span class="w-1 h-1 rounded-full bg-emerald-400"></span>
+              Real-time reporting
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+        >
+          <div class="bg-[#1C1F26] rounded-2xl p-6 h-full">
+            <div
+              class="w-10 h-10 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400 mb-4"
+            >
+              <iconify-icon icon="solar:bolt-linear" width="20"></iconify-icon>
+            </div>
+            <h3 class="text-base font-dot mb-2 tracking-tight">
+              48-Hour Turnaround
+            </h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              Submit a brief by EOD and receive first concepts within two
+              business days.
+            </p>
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+              <span class="w-1 h-1 rounded-full bg-orange-400"></span>
+              Async-first workflow
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+          data-delay="100"
+        >
+          <div class="bg-[#1C1F26] rounded-2xl p-6 h-full">
+            <div
+              class="w-10 h-10 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-4"
+            >
+              <iconify-icon
+                icon="solar:magic-stick-3-linear"
+                width="20"
+              ></iconify-icon>
+            </div>
+            <h3 class="text-base font-dot mb-2 tracking-tight">
+              Brand Strategy
+            </h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              Senior strategists shape positioning before a single frame gets
+              designed.
+            </p>
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+              <span class="w-1 h-1 rounded-full bg-pink-400"></span>
+              Dedicated strategist
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+          data-delay="200"
+        >
+          <div class="bg-[#1C1F26] rounded-2xl p-6 h-full">
+            <div
+              class="w-10 h-10 rounded-xl bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400 mb-4"
+            >
+              <iconify-icon
+                icon="solar:refresh-circle-linear"
+                width="20"
+              ></iconify-icon>
+            </div>
+            <h3 class="text-base font-dot mb-2 tracking-tight">
+              Unlimited Revisions
+            </h3>
+            <p class="text-xs text-gray-400 leading-relaxed mb-4">
+              No revision caps. We iterate until the creative converts at your
+              target.
+            </p>
+            <div class="text-xs text-gray-500 flex items-center gap-2">
+              <span class="w-1 h-1 rounded-full bg-cyan-400"></span>
+              No surprise fees
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs text-blue-400 mb-3 tracking-widest uppercase">
+          // Proof
+        </div>
+        <h2 class="text-4xl md:text-5xl font-dot tracking-tight mb-4">
+          Brands love the output
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div
+          class="bg-[#262A34] rounded-2xl border border-white/5 p-6 reveal-left"
+        >
+          <div class="flex gap-1 mb-4 text-yellow-400">
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+          </div>
+          <p class="text-sm text-gray-200 leading-relaxed mb-6 font-dot">
+            "Doubled our ROAS in 60 days. The team feels like an extension of
+            our in-house brand."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div
+              class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-400 to-cyan-400"
+            ></div>
+            <div>
+              <div class="text-xs text-white">Maya Chen</div>
+              <div class="text-xs text-gray-500">Growth Lead, Vellora</div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-[#262A34] rounded-2xl border border-white/5 p-6 ring-1 ring-blue-500/20 reveal"
+          data-delay="150"
+        >
+          <div class="flex gap-1 mb-4 text-yellow-400">
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+          </div>
+          <p class="text-sm text-gray-200 leading-relaxed mb-6 font-dot">
+            "We finally have a creative engine that keeps up with our paid
+            spend. Nexura ships faster than any in-house team I've worked with."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div
+              class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-400 to-pink-400"
+            ></div>
+            <div>
+              <div class="text-xs text-white">Jordan Rivera</div>
+              <div class="text-xs text-gray-500">CMO, Northbeam Co.</div>
+            </div>
+          </div>
+        </div>
+        <div
+          class="bg-[#262A34] rounded-2xl border border-white/5 p-6 reveal-right"
+        >
+          <div class="flex gap-1 mb-4 text-yellow-400">
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+            <iconify-icon icon="solar:star-bold" width="14"></iconify-icon>
+          </div>
+          <p class="text-sm text-gray-200 leading-relaxed mb-6 font-dot">
+            "The UGC pipeline alone paid for the retainer in week three. Real
+            creators, real results."
+          </p>
+          <div class="flex items-center gap-3 pt-4 border-t border-white/5">
+            <div
+              class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-400 to-teal-400"
+            ></div>
+            <div>
+              <div class="text-xs text-white">Priya Sharma</div>
+              <div class="text-xs text-gray-500">Founder, Lumen Skin</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- JOURNEY -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs text-blue-400 mb-3 tracking-widest uppercase">
+          // Process
+        </div>
+        <h2 class="text-4xl md:text-5xl font-dot tracking-tight mb-4">
+          From brief to scroll-stopper
+        </h2>
+        <p class="text-sm text-gray-400 max-w-xl mx-auto">
+          A four-step path that keeps your creative pipeline always full.
+        </p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-4 relative">
+        <div
+          class="hidden md:block absolute top-12 left-12 right-12 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"
+        ></div>
+        <div class="relative reveal">
+          <div
+            class="w-12 h-12 rounded-2xl bg-[#1C1F26] border border-white/10 flex items-center justify-center text-blue-400 mb-4 relative z-10"
+          >
+            <span class="text-xs">01</span>
+          </div>
+          <h3 class="font-dot text-base mb-2 tracking-tight">Discovery Call</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            We learn your brand, audience, current creatives, and growth
+            blockers.
+          </p>
+        </div>
+        <div class="relative reveal" data-delay="100">
+          <div
+            class="w-12 h-12 rounded-2xl bg-[#1C1F26] border border-white/10 flex items-center justify-center text-purple-400 mb-4 relative z-10"
+          >
+            <span class="text-xs">02</span>
+          </div>
+          <h3 class="font-dot text-base mb-2 tracking-tight">
+            Strategy Sprint
+          </h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Concepts, hooks, and angles mapped to where your funnel needs lift.
+          </p>
+        </div>
+        <div class="relative reveal" data-delay="200">
+          <div
+            class="w-12 h-12 rounded-2xl bg-[#1C1F26] border border-white/10 flex items-center justify-center text-emerald-400 mb-4 relative z-10"
+          >
+            <span class="text-xs">03</span>
+          </div>
+          <h3 class="font-dot text-base mb-2 tracking-tight">Production</h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Designers and creators ship batches every 48 hours, fully reviewed.
+          </p>
+        </div>
+        <div class="relative reveal" data-delay="300">
+          <div
+            class="w-12 h-12 rounded-2xl bg-[#1C1F26] border border-white/10 flex items-center justify-center text-orange-400 mb-4 relative z-10"
+          >
+            <span class="text-xs">04</span>
+          </div>
+          <h3 class="font-dot text-base mb-2 tracking-tight">
+            Iterate &amp; Scale
+          </h3>
+          <p class="text-xs text-gray-400 leading-relaxed">
+            Winners get scaled, losers get cut. The pipeline never stops moving.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- STORY -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+      <div
+        class="rounded-3xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal"
+      >
+        <div
+          class="bg-[#1C1F26] rounded-3xl p-8 md:p-16 grid md:grid-cols-2 gap-12 items-center"
+        >
+          <div>
+            <div class="text-xs text-blue-400 mb-3 tracking-widest uppercase">
+              // Our Story
+            </div>
+            <h2
+              class="text-3xl md:text-4xl font-dot tracking-tight mb-6 leading-tight"
+            >
+              We started Nexura because creative was the bottleneck — not media
+              buying.
+            </h2>
+            <p class="text-sm text-gray-400 leading-relaxed mb-4">
+              After scaling six ecom brands past eight figures, we kept hitting
+              the same wall: media budgets ready to deploy, no creative to feed
+              them.
+            </p>
+            <p class="text-sm text-gray-400 leading-relaxed mb-6">
+              So we built the engine we wished existed. A focused team of
+              strategists, designers, and creators who understand performance —
+              not just aesthetics.
+            </p>
+            <div class="flex items-center gap-4">
+              <div class="flex -space-x-2">
+                <div
+                  class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-400 to-purple-500 ring-2 ring-[#1C1F26]"
+                ></div>
+                <div
+                  class="w-8 h-8 rounded-full bg-gradient-to-br from-emerald-400 to-cyan-500 ring-2 ring-[#1C1F26]"
+                ></div>
+                <div
+                  class="w-8 h-8 rounded-full bg-gradient-to-br from-orange-400 to-pink-500 ring-2 ring-[#1C1F26]"
+                ></div>
+              </div>
+              <div class="text-xs text-gray-400">— Founders, Nexura Studio</div>
+            </div>
+          </div>
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-[#262A34] rounded-2xl p-5 border border-white/5">
+              <div class="text-3xl font-dot text-white tracking-tight">
+                2021
+              </div>
+              <div class="text-xs text-gray-500 mt-1">Founded in NYC</div>
+            </div>
+            <div
+              class="bg-[#262A34] rounded-2xl p-5 border border-white/5 mt-6"
+            >
+              <div class="text-3xl font-dot text-white tracking-tight">14</div>
+              <div class="text-xs text-gray-500 mt-1">Team members</div>
+            </div>
+            <div class="bg-[#262A34] rounded-2xl p-5 border border-white/5">
+              <div class="text-3xl font-dot text-white tracking-tight">
+                $84M
+              </div>
+              <div class="text-xs text-gray-500 mt-1">
+                Client ad spend managed
+              </div>
+            </div>
+            <div
+              class="bg-[#262A34] rounded-2xl p-5 border border-white/5 mt-6"
+            >
+              <div class="text-3xl font-dot text-white tracking-tight">9</div>
+              <div class="text-xs text-gray-500 mt-1">Industry awards</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIST -->
+    <section class="relative z-10 max-w-5xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs text-blue-400 mb-3 tracking-widest uppercase">
+          // What's Included
+        </div>
+        <h2 class="text-4xl md:text-5xl font-dot tracking-tight mb-4">
+          Everything in one retainer
+        </h2>
+      </div>
+      <div
+        class="rounded-2xl border border-white/5 bg-[#1C1F26] divide-y divide-white/5 reveal"
+      >
+        <div
+          class="grid grid-cols-12 px-6 py-4 text-xs text-gray-500 uppercase tracking-widest"
+        >
+          <div class="col-span-6">Inclusion</div>
+          <div class="col-span-3 hidden md:block">Volume</div>
+          <div class="col-span-3 text-right">Included</div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 md:col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400"
+            >
+              <iconify-icon
+                icon="solar:gallery-linear"
+                width="14"
+              ></iconify-icon>
+            </div>
+            <span class="text-xs text-white">Static ad concepts</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            40 / month
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400"
+            >
+              <iconify-icon
+                icon="solar:videocamera-record-linear"
+                width="14"
+              ></iconify-icon>
+            </div>
+            <span class="text-xs text-white">UGC video assets</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            15 / month
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400"
+            >
+              <iconify-icon
+                icon="solar:user-rounded-linear"
+                width="14"
+              ></iconify-icon>
+            </div>
+            <span class="text-xs text-white">Dedicated strategist</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            Full-time
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center text-orange-400"
+            >
+              <iconify-icon
+                icon="solar:refresh-linear"
+                width="14"
+              ></iconify-icon>
+            </div>
+            <span class="text-xs text-white">Unlimited revisions</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            No cap
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400"
+            >
+              <iconify-icon icon="solar:chart-linear" width="14"></iconify-icon>
+            </div>
+            <span class="text-xs text-white">Performance dashboard</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            Real-time
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400"
+            >
+              <iconify-icon
+                icon="solar:chat-round-call-linear"
+                width="14"
+              ></iconify-icon>
+            </div>
+            <span class="text-xs text-white">Weekly strategy calls</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            60 min
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+        <div
+          class="grid grid-cols-12 px-6 py-5 items-center hover:bg-white/[0.02] transition-colors"
+        >
+          <div class="col-span-6 flex items-center gap-3">
+            <div
+              class="w-7 h-7 rounded-lg bg-yellow-500/10 border border-yellow-500/20 flex items-center justify-center text-yellow-400"
+            >
+              <iconify-icon icon="solar:bolt-linear" width="14"></iconify-icon>
+            </div>
+            <span class="text-xs text-white">48-hour turnaround</span>
+          </div>
+          <div class="col-span-3 hidden md:block text-xs text-gray-400">
+            Guaranteed
+          </div>
+          <div class="col-span-6 md:col-span-3 text-right">
+            <iconify-icon
+              icon="solar:check-circle-bold"
+              width="18"
+              class="text-emerald-400"
+            ></iconify-icon>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENTO -->
+    <section class="relative z-10 max-w-6xl mx-auto px-6 py-24">
+      <div class="text-center mb-16 reveal">
+        <div class="text-xs text-blue-400 mb-3 tracking-widest uppercase">
+          // At a Glance
+        </div>
+        <h2 class="text-4xl md:text-5xl font-dot tracking-tight mb-4">
+          The Nexura advantage
+        </h2>
+      </div>
+      <div class="grid grid-cols-12 gap-4">
+        <!-- Big stat -->
+        <div
+          class="col-span-12 md:col-span-6 rounded-2xl p-[1px] bg-gradient-to-b from-white/20 via-white/5 to-transparent reveal-left"
+        >
+          <div
+            class="bg-[#1C1F26] rounded-2xl p-8 h-full relative overflow-hidden"
+          >
+            <div
+              class="absolute -top-20 -right-20 w-64 h-64 rounded-full bg-blue-500/10 blur-3xl"
+            ></div>
+            <div class="relative">
+              <div class="text-xs text-gray-500 mb-3">Average ROAS lift</div>
+              <div
+                class="text-6xl md:text-7xl font-dot tracking-tight text-white mb-2"
+              >
+                3.2x
+              </div>
+              <p class="text-xs text-gray-400 max-w-xs">
+                Across all retainer clients in the first 90 days of partnership.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Two small -->
+        <div
+          class="col-span-6 md:col-span-3 rounded-2xl bg-[#262A34] border border-white/5 p-6 reveal"
+          data-delay="100"
+        >
+          <iconify-icon
+            icon="solar:globus-linear"
+            width="20"
+            class="text-purple-400 mb-3"
+          ></iconify-icon>
+          <div class="text-3xl font-dot tracking-tight">12</div>
+          <div class="text-xs text-gray-500 mt-1">Countries shipped to</div>
+        </div>
+        <div
+          class="col-span-6 md:col-span-3 rounded-2xl bg-[#262A34] border border-white/5 p-6 reveal"
+          data-delay="200"
+        >
+          <iconify-icon
+            icon="solar:users-group-rounded-linear"
+            width="20"
+            class="text-emerald-400 mb-3"
+          ></iconify-icon>
+          <div class="text-3xl font-dot tracking-tight">500+</div>
+          <div class="text-xs text-gray-500 mt-1">Vetted creators</div>
+        </div>
+        <!-- Wide media -->
+        <div
+          class="col-span-12 md:col-span-4 rounded-2xl bg-gradient-to-br from-purple-500/20 via-[#1C1F26] to-[#1C1F26] border border-white/5 p-6 flex flex-col justify-between min-h-[200px] reveal"
+        >
+          <iconify-icon
+            icon="solar:cup-star-linear"
+            width="24"
+            class="text-purple-300"
+          ></iconify-icon>
+          <div>
+            <div class="text-base font-dot tracking-tight">
+              Award-winning team
+            </div>
+            <div class="text-xs text-gray-400 mt-1">
+              9 industry awards in 2024 alone.
+            </div>
+          </div>
+        </div>
+        <div
+          class="col-span-12 md:col-span-4 rounded-2xl bg-[#262A34] border border-white/5 p-6 flex flex-col justify-between min-h-[200px] reveal"
+          data-delay="100"
+        >
+          <div>
+            <div class="flex items-baseline gap-1 mb-1">
+              <div class="text-4xl font-dot tracking-tight">98</div>
+              <div class="text-xl text-gray-500 font-dot">%</div>
+            </div>
+            <div class="text-xs text-gray-500">Retention rate</div>
+          </div>
+          <p class="text-xs text-gray-400">
+            Brands stay because the creative keeps performing.
+          </p>
+        </div>
+        <div
+          class="col-span-12 md:col-span-4 rounded-2xl bg-gradient-to-br from-blue-500/20 via-[#1C1F26] to-[#1C1F26] border border-white/5 p-6 flex flex-col justify-between min-h-[200px] reveal"
+          data-delay="200"
+        >
+          <iconify-icon
+            icon="solar:rocket-linear"
+            width="24"
+            class="text-blue-300"
+          ></iconify-icon>
+          <div>
+            <div class="text-base font-dot tracking-tight">Ship faster</div>
+            <div class="text-xs text-gray-400 mt-1">
+              48h turnaround, every batch.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      class="relative z-10 max-w-4xl mx-auto px-6 py-24 text-center reveal"
+    >
+      <h2 class="text-4xl md:text-5xl font-dot tracking-tight mb-4">
+        Ready to scale your creative?
+      </h2>
+      <p class="text-sm text-gray-400 mb-8 max-w-lg mx-auto">
+        Book a discovery call and we'll show you exactly how we'd attack your
+        funnel.
+      </p>
+      <button
+        class="px-7 py-3 rounded-full bg-white text-black font-semibold text-xs hover:bg-gray-200 transition-all shadow-[0_0_30px_rgba(255,255,255,0.2)]"
+      >
+        Book a call →
+      </button>
+    </section>
+
+    <!-- FOOTER -->
+    <footer
+      class="relative z-10 border-t border-white/5 bg-[#0B0F19] reveal-fade"
+    >
+      <div class="max-w-6xl mx-auto px-6 py-16">
+        <div class="grid md:grid-cols-5 gap-10 mb-12">
+          <div class="md:col-span-2">
+            <div
+              class="flex items-center gap-2.5 text-white font-medium text-base mb-4"
+            >
+              <div class="bg-white text-[#0B0F19] rounded-lg p-1">
+                <iconify-icon
+                  icon="solar:ghost-smile-bold"
+                  width="20"
+                ></iconify-icon>
+              </div>
+              <span class="tracking-tight">Nexura</span>
+            </div>
+            <p class="text-xs text-gray-500 max-w-xs leading-relaxed mb-6">
+              High-performance ad creatives for ecom brands that refuse to slow
+              down.
+            </p>
+            <div class="flex items-center gap-2">
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+              >
+                <iconify-icon
+                  icon="solar:letter-linear"
+                  width="14"
+                ></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+              >
+                <iconify-icon
+                  icon="solar:link-linear"
+                  width="14"
+                ></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-all"
+              >
+                <iconify-icon
+                  icon="solar:camera-linear"
+                  width="14"
+                ></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <div>
+            <div
+              class="text-xs text-white font-semibold mb-4 tracking-widest uppercase"
+            >
+              Product
+            </div>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Services
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Pricing
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Case studies
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Process
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="text-xs text-white font-semibold mb-4 tracking-widest uppercase"
+            >
+              Company
+            </div>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">About</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Press</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <div
+              class="text-xs text-white font-semibold mb-4 tracking-widest uppercase"
+            >
+              Resources
+            </div>
+            <ul class="space-y-3 text-xs text-gray-400">
+              <li>
+                <a href="#" class="hover:text-white transition-colors">Blog</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Guides
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Newsletter
+                </a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-white transition-colors">
+                  Privacy
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
+        >
+          <div class="text-xs text-gray-500">
+            © 2025 Nexura Studio. All rights reserved.
+          </div>
+          <div class="flex items-center gap-2 text-xs text-gray-500">
+            <span
+              class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"
+            ></span>
+            <span>All systems operational</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      (function(){function init(){var els=document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.reveal-fade');var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){var d=e.target.getAttribute('data-delay')||0;setTimeout(function(){e.target.classList.add('in-view');},parseInt(d));io.unobserve(e.target);}});},{threshold:0.12});els.forEach(function(el){io.observe(el);});}if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}})();
+    </script>
+  </body>
+</html>

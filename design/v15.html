@@ -1,0 +1,1055 @@
+<html lang="en"><head><script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>simple.ai | Agentic AI Marketing & Consulting</title>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@200;300;400&amp;family=JetBrains+Mono:wght@200;300;400&amp;display=swap" rel="stylesheet">
+<!-- Tailwind & Icons -->
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+serif: ['Cormorant Garamond', 'serif'],
+mono: ['JetBrains Mono', 'monospace'],
+},
+colors: {
+paper: '#0A0A0A',
+ink: '#FAFAFA',
+sepia: '#D97706',
+stone: '#292524',
+rust: '#EA580C'
+},
+animation: {
+'fade-in': 'fadeIn 1.2s ease-out forwards',
+},
+keyframes: {
+fadeIn: {
+'0%': { opacity: '0', transform: 'translateY(10px)' },
+'100%': { opacity: '1', transform: 'translateY(0)' },
+}
+}
+}
+}
+}
+</script>
+<style>
+body {
+margin: 0;
+background-color: #0A0A0A;
+color: #FAFAFA;
+}
+/* Custom Range Slider */
+input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
+input[type=range]::-webkit-slider-thumb {
+-webkit-appearance: none; height: 12px; width: 12px;
+background: #FAFAFA; border: 1px solid #0A0A0A;
+cursor: pointer; margin-top: -5px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.5);
+transition: transform 0.2s ease;
+}
+input[type=range]::-webkit-slider-thumb:hover { transform: scale(1.2); }
+input[type=range]::-webkit-slider-runnable-track {
+width: 100%; height: 1px; cursor: pointer; background: #333333;
+}
+input[type=range]:focus { outline: none; }
+/* Glass Panel with Dark "Vellum" feel */
+.vellum-glass {
+background: rgba(10, 10, 10, 0.6);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+box-shadow:
+0 4px 6px -1px rgba(0, 0, 0, 0.5),
+0 20px 40px -4px rgba(0, 0, 0, 0.5);
+}
+::selection { background: #333333; color: #FAFAFA; }
+/* Da Vinci Grid Overlay - Dark Mode */
+.grid-overlay {
+background-size: 40px 40px;
+background-image:
+linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+}
+</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+
+  <body class="antialiased font-sans bg-paper overflow-x-hidden relative">
+    <!-- Fixed Backgrounds -->
+    <div class="fixed inset-0 pointer-events-none grid-overlay z-0">
+      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-paper/50 to-paper"></div>
+    </div>
+    <div id="canvas-container" class="fixed inset-0 z-0 pointer-events-none opacity-80"></div>
+
+    <!-- GLOBAL NAVIGATION -->
+    <nav class="fixed top-0 w-full z-50 vellum-glass border-b transition-all duration-300 border-neutral-800/50">
+      <div class="max-w-screen-2xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+        <!-- Left: Logo -->
+        <a href="#" class="flex items-center gap-3 group">
+          <div class="w-8 h-8 border flex items-center justify-center rounded-sm bg-paper relative overflow-hidden group-hover:bg-neutral-900 transition-colors border-neutral-200">
+            <div class="absolute w-full h-px rotate-45 bg-neutral-200"></div>
+            <div class="absolute w-full h-px -rotate-45 bg-neutral-200"></div>
+          </div>
+          <span class="font-serif text-xl tracking-tight text-ink font-medium">
+            simple.ai
+          </span>
+        </a>
+
+        <!-- Center: Links -->
+        <div class="hidden md:flex items-center gap-10">
+          <div class="relative group h-20 flex items-center">
+            <button class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest flex items-center gap-1 text-neutral-400">
+              Capabilities
+              <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xs"></iconify-icon>
+            </button>
+            <!-- Dropdown -->
+            <div class="absolute top-full left-1/2 -translate-x-1/2 w-56 vellum-glass rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 py-2">
+              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
+                Strategy
+              </a>
+              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
+                Acquisition
+              </a>
+              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
+                Automation
+              </a>
+              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
+                Retention
+              </a>
+              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
+                Analytics
+              </a>
+            </div>
+          </div>
+          <a href="#" class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest text-neutral-400">
+            Case Studies
+          </a>
+          <a href="#" class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest text-neutral-400">
+            About Us
+          </a>
+        </div>
+
+        <!-- Right: CTA -->
+        <button class="font-serif italic text-lg px-6 py-1 border transition-colors text-ink rounded-full hidden md:block border-neutral-800 hover:border-neutral-200">
+          Book a Consultation
+        </button>
+      </div>
+    </nav>
+
+    <!-- MAIN SCROLLING CONTENT -->
+    <main class="relative z-10 flex flex-col w-full">
+      <!-- SECTION 1 — HERO -->
+      <section class="relative w-full min-h-screen flex items-center pt-20 px-6 md:px-12 max-w-screen-2xl mx-auto">
+        <div class="relative z-10 w-full max-w-4xl animate-fade-in opacity-0" style="animation-delay: 0.2s;">
+          <div class="flex items-center gap-3 mb-6">
+            <div class="h-px w-12 bg-rust"></div>
+            <span class="font-mono text-xs text-rust uppercase tracking-widest">
+              AGENTIC AI — MARKETING & CONSULTING
+            </span>
+          </div>
+
+          <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-ink leading-none tracking-tight mix-blend-screen">
+            Agentic AI for
+            <br>
+            <span class="italic font-light text-neutral-400">
+              Autonomous Growth
+            </span>
+          </h1>
+
+          <p class="mt-8 max-w-md font-sans text-sm md:text-base font-light leading-relaxed text-neutral-400">
+            simple.ai orchestrates and personalizes every customer touchpoint —
+            from first impression to brand loyalty — through a single intelligent
+            layer that scales your marketing autonomously.
+          </p>
+
+          <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-6 pointer-events-auto">
+            <button class="group inline-flex w-fit items-center gap-3 bg-ink text-paper pl-6 pr-5 py-4 rounded-sm transition-all duration-500 shadow-xl hover:bg-neutral-300 shadow-black/50">
+              <span class="font-mono text-xs tracking-widest uppercase">
+                DISCOVER OUR APPROACH
+              </span>
+              <iconify-icon icon="solar:arrow-right-linear" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </button>
+            <div class="hidden sm:block h-px w-12 bg-neutral-700"></div>
+            <span class="font-serif italic text-lg tracking-tight text-neutral-400">
+              PILOT LIVE — GLOBAL BRANDS
+            </span>
+          </div>
+
+          <div class="mt-20 flex flex-col gap-1 opacity-50">
+            <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+              SECTOR: MARKETING TECH
+            </span>
+            <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+              PLATFORM: SIMPLE.AI
+            </span>
+          </div>
+        </div>
+
+        <!-- Technical Panel (Tablet) -->
+        <div class="pointer-events-auto absolute bottom-12 right-6 md:right-12 w-[300px] vellum-glass rounded-sm animate-fade-in opacity-0 hidden lg:block" style="animation-delay: 0.5s;">
+          <div class="border-b px-5 py-4 flex justify-between items-center border-neutral-800/60 bg-neutral-900/40">
+            <span class="font-serif italic text-xl text-ink tracking-tight">
+              Growth Intelligence Engine
+            </span>
+          </div>
+          <div class="p-6 space-y-8">
+            <div class="space-y-3">
+              <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-400">
+                <span>CONVERSION</span>
+                <span id="val-distortion">0.9</span>
+              </div>
+              <input type="range" id="input-distortion" min="0" max="2.0" step="0.1" value="0.9">
+            </div>
+            <div class="space-y-3">
+              <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-400">
+                <span>ENGAGEMENT</span>
+                <span id="val-detail">0.8</span>
+              </div>
+              <input type="range" id="input-detail" min="0.1" max="2.0" step="0.1" value="0.8">
+            </div>
+            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-800/50">
+              <div class="space-y-2">
+                <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-500">
+                  <span>ACQUISITION</span>
+                </div>
+                <div class="h-1 w-full rounded-full overflow-hidden bg-neutral-800">
+                  <div class="h-full bg-ink w-[85%]"></div>
+                </div>
+              </div>
+              <div class="space-y-2">
+                <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-500">
+                  <span>RETENTION</span>
+                </div>
+                <div class="h-1 w-full rounded-full overflow-hidden bg-neutral-800">
+                  <div class="h-full bg-ink w-[92%]"></div>
+                </div>
+              </div>
+            </div>
+            <div class="pt-2 flex items-center justify-between">
+              <span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
+                AI LAYER
+              </span>
+              <div class="flex items-center gap-2">
+                <span class="font-mono text-xs tracking-widest text-green-500/80">
+                  LIVE
+                </span>
+                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)] animate-pulse"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 2 — SOCIAL PROOF -->
+      <section class="w-full py-24 px-6 md:px-12 max-w-screen-2xl mx-auto border-t relative z-20 bg-paper/80 backdrop-blur-sm border-neutral-800/40">
+        <!-- Part A: Logos -->
+        <div class="flex flex-col items-center text-center mb-24">
+          <span class="font-mono text-xs uppercase tracking-widest mb-10 text-neutral-500">
+            TRUSTED BY INDUSTRY LEADERS
+          </span>
+          <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale">
+            <span class="font-serif text-2xl font-medium tracking-tight">
+              Google
+            </span>
+            <span class="font-sans text-xl font-medium tracking-tight">
+              Meta
+            </span>
+            <span class="font-serif italic text-2xl tracking-tight">
+              Salesforce
+            </span>
+            <span class="font-mono text-lg tracking-tight">ORACLE</span>
+          </div>
+          <div class="mt-12 inline-flex items-center gap-3 border px-5 py-2 rounded-full border-neutral-700 bg-neutral-900/50">
+            <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              AS FEATURED IN —
+            </span>
+            <span class="font-serif italic text-lg tracking-tight text-ink">
+              The Wall Street Journal
+            </span>
+          </div>
+        </div>
+
+        <!-- Part B: Testimonials -->
+        <div class="mb-8">
+          <span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
+            WHAT CLIENTS ARE SAYING
+          </span>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <!-- Card 1 -->
+          <div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
+            <iconify-icon icon="solar:quote-left-linear" class="text-3xl text-rust/40 mb-4"></iconify-icon>
+            <p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
+              "The future of marketing intelligence is already here."
+            </p>
+            <div class="border-t pt-4 border-neutral-800/50">
+              <span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
+                Chief Marketing Officer
+              </span>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
+            <iconify-icon icon="solar:quote-left-linear" class="text-3xl text-rust/40 mb-4"></iconify-icon>
+            <p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
+              "ROAS increased by 300% in week one. Truly autonomous."
+            </p>
+            <div class="border-t pt-4 border-neutral-800/50">
+              <span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
+                VP of Growth
+              </span>
+              <span class="block font-mono text-xs uppercase tracking-widest mt-1 text-neutral-500">
+                Global Retail Brand
+              </span>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
+            <iconify-icon icon="solar:quote-left-linear" class="text-3xl text-rust/40 mb-4"></iconify-icon>
+            <p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
+              "Finally, an agency partner that genuinely understands our data."
+            </p>
+            <div class="border-t pt-4 border-neutral-800/50">
+              <span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
+                Director of E-Commerce
+              </span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 3 — THE DISRUPTION -->
+      <section class="w-full relative py-32 border-y bg-paper border-neutral-800/50">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
+          <div class="mb-16 text-center">
+            <span class="font-mono text-xs uppercase tracking-widest border px-4 py-1.5 rounded-full text-neutral-400 border-neutral-800 bg-neutral-900">
+              THE SHIFT
+            </span>
+          </div>
+
+          <div class="flex flex-col md:flex-row relative">
+            <!-- Center Divider -->
+            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px flex-col items-center justify-center bg-neutral-800">
+              <div class="w-8 h-8 rounded-full border bg-paper flex items-center justify-center text-xs font-mono text-neutral-500 border-neutral-800">
+                VS
+              </div>
+            </div>
+
+            <!-- Left: Current State -->
+            <div class="w-full md:w-1/2 md:pr-20 pb-16 md:pb-0 opacity-50 grayscale hover:opacity-80 transition-opacity">
+              <h3 class="font-serif italic text-4xl tracking-tight mb-12 text-neutral-400">
+                "Today's Reality"
+              </h3>
+              <div class="grid grid-cols-2 gap-8 mb-10 text-neutral-300">
+                <div class="flex items-center gap-4">
+                  <iconify-icon icon="solar:database-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase">
+                    Siloed Data
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <iconify-icon icon="solar:mouse-circle-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase">
+                    Manual Bidding
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <iconify-icon icon="solar:document-text-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase">
+                    Generic Copy
+                  </span>
+                </div>
+                <div class="flex items-center gap-4">
+                  <iconify-icon icon="solar:chart-square-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase">
+                    Gut Decisions
+                  </span>
+                </div>
+              </div>
+              <p class="font-sans font-light leading-relaxed max-w-sm text-neutral-400">
+                Fragmented systems. Manual optimization. Zero personalization.
+                Customers leave without a trace.
+              </p>
+            </div>
+
+            <!-- Right: Future State -->
+            <div class="w-full md:w-1/2 md:pl-20 pt-16 md:pt-0 border-t md:border-t-0 relative border-neutral-800">
+              <h3 class="font-serif italic text-4xl text-ink tracking-tight mb-12">
+                "The simple.ai Layer"
+              </h3>
+              <div class="grid grid-cols-2 gap-8 mb-10 text-ink">
+                <div class="flex items-center gap-4 text-rust">
+                  <iconify-icon icon="solar:server-square-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Unified CRM
+                  </span>
+                </div>
+                <div class="flex items-center gap-4 text-rust">
+                  <iconify-icon icon="solar:bolt-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Agentic Bidding
+                  </span>
+                </div>
+                <div class="flex items-center gap-4 text-rust">
+                  <iconify-icon icon="solar:pen-new-square-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Dynamic Creative
+                  </span>
+                </div>
+                <div class="flex items-center gap-4 text-rust">
+                  <iconify-icon icon="solar:graph-up-linear" class="text-2xl"></iconify-icon>
+                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Predictive Analytics
+                  </span>
+                </div>
+              </div>
+              <p class="font-sans font-light text-ink leading-relaxed max-w-sm">
+                One intelligent platform. Unified data. Every touchpoint
+                personalized. Every interaction measured.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 4 — DIFFERENTIATORS -->
+      <section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto relative z-10 bg-paper/90 backdrop-blur-md">
+        <span class="block font-mono text-xs uppercase tracking-widest mb-8 text-neutral-500">
+          WHY SIMPLE.AI
+        </span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+          <h2 class="font-serif text-5xl md:text-7xl text-ink leading-none tracking-tight">
+            One Layer.
+            <br>
+            <span class="italic text-neutral-400">Everything Connected.</span>
+          </h2>
+          <div class="flex items-center">
+            <p class="font-sans font-light text-lg leading-relaxed max-w-lg text-neutral-400">
+              simple.ai doesn't replace your existing marketing stack. It sits
+              above your CRM and Ad platforms as an intelligent orchestration layer —
+              unifying fragmented customer data, automating campaigns in real time,
+              and delivering hyper-personalized experiences without a single
+              rip-and-replace.
+            </p>
+          </div>
+        </div>
+
+        <!-- Technical Flow Diagram -->
+        <div class="w-full border rounded-sm p-8 mb-20 flex flex-col md:flex-row justify-between items-center gap-8 text-center vellum-glass border-neutral-800/60 bg-neutral-900/40">
+          <div class="w-full md:w-1/3 p-6 border bg-paper shadow-sm border-neutral-800">
+            <span class="block font-mono text-xs uppercase tracking-widest mb-2 text-neutral-400">
+              EXISTING SYSTEMS
+            </span>
+            <span class="font-serif italic text-2xl tracking-tight text-ink">
+              CRM &amp; Ad Platforms
+            </span>
+          </div>
+          <div class="flex flex-col items-center text-rust">
+            <span class="font-mono text-xs uppercase tracking-widest mb-2 opacity-60">
+              INTEGRATES
+            </span>
+            <iconify-icon icon="solar:arrow-right-linear" class="text-3xl rotate-90 md:rotate-0"></iconify-icon>
+          </div>
+          <div class="w-full md:w-1/3 p-8 bg-ink text-paper shadow-xl rounded-sm transform scale-105">
+            <span class="block font-mono text-xs text-paper/60 uppercase tracking-widest mb-2">
+              INTELLIGENCE
+            </span>
+            <span class="font-serif italic text-3xl tracking-tight">
+              simple.ai Layer
+            </span>
+          </div>
+          <div class="flex flex-col items-center text-rust">
+            <span class="font-mono text-xs uppercase tracking-widest mb-2 opacity-60">
+              DELIVERS
+            </span>
+            <iconify-icon icon="solar:arrow-right-linear" class="text-3xl rotate-90 md:rotate-0"></iconify-icon>
+          </div>
+          <div class="w-full md:w-1/3 p-6 border bg-paper shadow-sm border-neutral-800">
+            <span class="block font-mono text-xs uppercase tracking-widest mb-2 text-neutral-400">
+              EXPERIENCE
+            </span>
+            <span class="font-serif italic text-2xl tracking-tight text-ink">
+              Customer Journey
+            </span>
+          </div>
+        </div>
+
+        <!-- Differentiator Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
+            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
+              <span class="font-mono text-xs text-neutral-500">01</span>
+              <span class="font-mono text-xs text-ink uppercase tracking-widest">
+                SEAMLESS INTEGRATION
+              </span>
+            </div>
+            <p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
+              Integrates flawlessly with existing CRMs &amp; ad networks. Zero
+              platform migration required.
+            </p>
+          </div>
+          <div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
+            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
+              <span class="font-mono text-xs text-neutral-500">02</span>
+              <span class="font-mono text-xs text-ink uppercase tracking-widest">
+                AGENTIC CAMPAIGNS
+              </span>
+            </div>
+            <p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
+              Autonomous decision-making that optimizes each user's
+              individual journey in real time.
+            </p>
+          </div>
+          <div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
+            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
+              <span class="font-mono text-xs text-neutral-500">03</span>
+              <span class="font-mono text-xs text-ink uppercase tracking-widest">
+                HOLISTIC STRATEGY
+              </span>
+            </div>
+            <p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
+              One unified approach controls Strategy, Acquisition,
+              Retention, and Analytics reporting.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 5 — THE ECOSYSTEM -->
+      <section class="w-full py-32 border-y bg-paper/50 relative overflow-hidden border-neutral-800/50">
+        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10 text-center mb-20">
+          <span class="font-mono text-xs uppercase tracking-widest mb-6 block text-neutral-500">
+            THE PLATFORM
+          </span>
+          <h2 class="font-serif text-5xl md:text-6xl text-ink leading-none tracking-tight">
+            Five Pillars.
+            <br>
+            <span class="italic text-neutral-400">One Seamless Strategy.</span>
+          </h2>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+          <!-- Ecosystem Grid Layout -->
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+            <!-- Center Decorative Element (Fake Canvas Node) -->
+            <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border rounded-full items-center justify-center bg-paper/80 backdrop-blur-md shadow-2xl z-0 border-neutral-800">
+              <div class="w-48 h-48 border rounded-full flex flex-col items-center justify-center relative border-neutral-800/50 bg-neutral-900">
+                <div class="absolute inset-0 rounded-full border border-rust/30 animate-ping" style="animation-duration: 4s;"></div>
+                <span class="font-serif text-2xl tracking-tight text-ink relative z-10">
+                  simple.ai
+                </span>
+                <span class="font-mono text-xs tracking-widest mt-2 relative z-10 text-neutral-500">
+                  CORE
+                </span>
+              </div>
+            </div>
+
+            <!-- Card 1 -->
+            <div class="vellum-glass p-8 relative z-10 md:col-start-1 md:row-start-1 transform hover:-translate-y-1 transition-transform">
+              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+                <span class="font-mono text-xs text-ink">01</span>
+              </div>
+              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                STRATEGY
+              </h4>
+              <p class="font-sans font-light text-sm text-neutral-400">
+                Data-driven roadmaps. Integrated market research.
+                Predictive audience modeling built in from step one.
+              </p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="vellum-glass p-8 relative z-10 md:col-start-3 md:row-start-1 transform hover:-translate-y-1 transition-transform">
+              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+                <span class="font-mono text-xs text-ink">02</span>
+              </div>
+              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                ACQUISITION
+              </h4>
+              <p class="font-sans font-light text-sm text-neutral-400">
+                Agentic ad buying. Fully automated campaign deployment.
+                Zero manual bidding adjustments required.
+              </p>
+            </div>
+
+            <!-- Empty Space for Center Node on Desktop -->
+            <div class="hidden md:block col-start-2 row-start-2"></div>
+
+            <!-- Card 3 -->
+            <div class="vellum-glass p-8 relative z-10 md:col-start-1 md:row-start-2 md:mt-12 transform hover:-translate-y-1 transition-transform">
+              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+                <span class="font-mono text-xs text-ink">03</span>
+              </div>
+              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                AUTOMATION
+              </h4>
+              <p class="font-sans font-light text-sm text-neutral-400">
+                End-to-end campaign automation. Multi-channel workflow control.
+                AI-driven creative and copy generation.
+              </p>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="vellum-glass p-8 relative z-10 md:col-start-3 md:row-start-2 md:mt-12 transform hover:-translate-y-1 transition-transform">
+              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+                <span class="font-mono text-xs text-ink">04</span>
+              </div>
+              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                RETENTION
+              </h4>
+              <p class="font-sans font-light text-sm text-neutral-400">
+                Nurture leads with hyper-personalized logic. Instant churn
+                prediction and seamless re-engagement routing.
+              </p>
+            </div>
+
+            <!-- Card 5 (Centered Bottom) -->
+            <div class="vellum-glass p-8 relative z-10 md:col-start-2 md:row-start-3 md:mt-8 transform hover:-translate-y-1 transition-transform">
+              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+                <span class="font-mono text-xs text-ink">05</span>
+              </div>
+              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                ANALYTICS
+              </h4>
+              <p class="font-sans font-light text-sm text-neutral-400">
+                Real-time dashboarding. Multi-touch attribution models.
+                Automated KPI tracking and ROI reporting.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 6 — INDUSTRY VALIDATION -->
+      <section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto bg-paper">
+        <span class="block font-mono text-xs uppercase tracking-widest mb-16 text-neutral-500">
+          INDUSTRY VALIDATION
+        </span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+          <!-- Left: WSJ -->
+          <div class="flex flex-col border p-10 md:p-16 relative border-neutral-800 bg-neutral-900/50">
+            <div class="absolute top-0 left-0 w-full h-1 bg-neutral-200"></div>
+            <iconify-icon icon="solar:newspaper-linear" class="text-4xl mb-8 text-neutral-600"></iconify-icon>
+            <h3 class="font-serif italic text-5xl md:text-6xl text-ink tracking-tight leading-none mb-8">
+              "Agency of the Future"
+            </h3>
+            <span class="font-mono text-xs uppercase tracking-widest mb-10 block text-neutral-400">
+              — The Wall Street Journal
+            </span>
+            <p class="font-sans font-light text-lg leading-relaxed mt-auto border-t pt-8 text-neutral-400 border-neutral-800">
+              simple.ai was featured by the WSJ as a landmark example of
+              AI-driven consulting — the first platform to fully automate the
+              growth journey end-to-end.
+            </p>
+          </div>
+
+          <!-- Right: Pilot Results -->
+          <div class="flex flex-col justify-center">
+            <div class="inline-flex items-center gap-3 mb-12 border px-4 py-1.5 rounded-full w-fit border-neutral-800 bg-neutral-900/30">
+              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.4)]"></div>
+              <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">
+                LIVE PILOT — GLOBAL BRANDS
+              </span>
+            </div>
+
+            <div class="space-y-12">
+              <div class="flex flex-col border-b pb-8 border-neutral-800">
+                <span class="font-serif text-6xl text-ink tracking-tight mb-2">
+                  3x
+                </span>
+                <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+                  Average ROAS increase within 30 days
+                </span>
+              </div>
+              <div class="flex flex-col border-b pb-8 border-neutral-800">
+                <span class="font-serif text-6xl text-ink tracking-tight mb-2">
+                  $10M+
+                </span>
+                <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+                  Ad spend managed autonomously
+                </span>
+              </div>
+              <div class="flex flex-col">
+                <span class="font-serif text-6xl text-ink tracking-tight mb-2">
+                  1
+                </span>
+                <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+                  Partner to orchestrate your growth
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 7 — CUSTOMER TESTIMONIALS (Videos) -->
+      <section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-t bg-paper/80 backdrop-blur-sm border-neutral-800/50">
+        <div class="mb-16">
+          <span class="block font-mono text-xs uppercase tracking-widest mb-6 text-neutral-500">
+            CLIENT STORIES
+          </span>
+          <h2 class="font-serif text-5xl md:text-6xl text-ink leading-none tracking-tight">
+            The Age of
+            <br>
+            <span class="italic text-neutral-400">Hyper-Personalisation</span>
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Video Card 1 -->
+          <div class="group cursor-pointer">
+            <div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
+              <div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
+              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Data Analytics" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700">
+              <div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
+                <iconify-icon icon="solar:play-linear" class="text-2xl text-ink translate-x-0.5"></iconify-icon>
+              </div>
+            </div>
+            <span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
+              "The CMO's Secret"
+            </span>
+            <span class="block font-sans font-light text-sm text-neutral-400">
+              Automated their entire ad workflow
+            </span>
+          </div>
+
+          <!-- Video Card 2 -->
+          <div class="group cursor-pointer">
+            <div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
+              <div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
+              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Agency Workspace" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700">
+              <div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
+                <iconify-icon icon="solar:play-linear" class="text-2xl text-ink translate-x-0.5"></iconify-icon>
+              </div>
+            </div>
+            <span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
+              "Next-Gen Agency"
+            </span>
+            <span class="block font-sans font-light text-sm text-neutral-400">
+              WSJ Featured Story
+            </span>
+          </div>
+
+          <!-- Video Card 3 -->
+          <div class="group cursor-pointer">
+            <div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
+              <div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
+              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Charts on Computer" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700">
+              <div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
+                <iconify-icon icon="solar:play-linear" class="text-2xl text-ink translate-x-0.5"></iconify-icon>
+              </div>
+            </div>
+            <span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
+              "From Click to Customer"
+            </span>
+            <span class="block font-sans font-light text-sm text-neutral-400">
+              End-to-End Walkthrough
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECTION 8 — CTA -->
+      <section class="w-full min-h-[60vh] flex flex-col items-center justify-center text-center py-32 px-6 border-t relative bg-paper z-20 border-neutral-800">
+        <div class="absolute inset-0 pointer-events-none grid-overlay opacity-50 z-0"></div>
+
+        <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+          <div class="w-12 h-12 border flex items-center justify-center rounded-sm relative overflow-hidden mb-10 border-neutral-200 bg-neutral-900">
+            <div class="absolute w-full h-px rotate-45 bg-neutral-200"></div>
+            <div class="absolute w-full h-px -rotate-45 bg-neutral-200"></div>
+          </div>
+
+          <h2 class="font-serif text-5xl md:text-7xl text-ink leading-none tracking-tight mb-8">
+            Ready to Orchestrate
+            <br>
+            <span class="italic text-neutral-400">Every Campaign?</span>
+          </h2>
+
+          <p class="font-sans font-light text-lg mb-12 max-w-lg text-neutral-400">
+            Join the brands already delivering the future. Schedule a
+            personalized consultation and see simple.ai live.
+          </p>
+
+          <div class="flex flex-col sm:flex-row items-center gap-6">
+            <button class="group flex items-center justify-center gap-3 bg-ink text-paper px-8 py-4 rounded-sm transition-all duration-500 w-full sm:w-auto shadow-xl hover:bg-neutral-300 shadow-black/50">
+              <span class="font-mono text-xs tracking-widest uppercase">
+                BOOK A CONSULTATION
+              </span>
+              <iconify-icon icon="solar:arrow-right-linear" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
+            </button>
+            <a href="#" class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest border-b border-transparent hover:border-ink pb-1 text-neutral-400">
+              Explore Our Capabilities
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer Detail -->
+        <div class="absolute bottom-8 w-full text-center opacity-60">
+          <span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
+            SIMPLE.AI — AGENTIC MARKETING INTELLIGENCE
+          </span>
+        </div>
+      </section>
+    </main>
+
+    <!-- Shaders -->
+    <script type="x-shader/x-vertex" id="vertexShader">
+      uniform float uTime;
+      uniform float uDistortion;
+      uniform float uSize;
+      uniform float uDetail;
+      uniform vec2 uMouse;
+
+      varying float vAlpha;
+      varying vec3 vPos;
+      varying float vNoise;
+
+      vec3 mod289(vec3 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec4 mod289(vec4 x) { return x - floor(x * (1.0 / 289.0)) * 289.0; }
+      vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x); }
+      vec4 taylorInvSqrt(vec4 r) { return 1.79284291400159 - 0.85373472095314 * r; }
+
+      float snoise(vec3 v) {
+          const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;
+          const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);
+          vec3 i  = floor(v + dot(v, C.yyy) );
+          vec3 x0 = v - i + dot(i, C.xxx) ;
+          vec3 g = step(x0.yzx, x0.xyz);
+          vec3 l = 1.0 - g;
+          vec3 i1 = min( g.xyz, l.zxy );
+          vec3 i2 = max( g.xyz, l.zxy );
+          vec3 x1 = x0 - i1 + 1.0 * C.xxx;
+          vec3 x2 = x0 - i2 + 2.0 * C.xxx;
+          vec3 x3 = x0 - 1.0 + 3.0 * C.xxx;
+          i = mod289(i);
+          vec4 p = permute( permute( permute( i.z + vec4(0.0, i1.z, i2.z, 1.0 )) + i.y + vec4(0.0, i1.y, i2.y, 1.0 )) + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));
+          float n_ = 1.0/7.0;
+          vec3  ns = n_ * D.wyz - D.xzx;
+          vec4 j = p - 49.0 * floor(p * ns.z *ns.z);
+          vec4 x_ = floor(j * ns.z);
+          vec4 y_ = floor(j - 7.0 * x_ );
+          vec4 x = x_ *ns.x + ns.yyyy;
+          vec4 y = y_ *ns.x + ns.yyyy;
+          vec4 h = 1.0 - abs(x) - abs(y);
+          vec4 b0 = vec4( x.xy, y.xy );
+          vec4 b1 = vec4( x.zw, y.zw );
+          vec4 s0 = floor(b0)*2.0 + 1.0;
+          vec4 s1 = floor(b1)*2.0 + 1.0;
+          vec4 sh = -step(h, vec4(0.0));
+          vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;
+          vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;
+          vec3 p0 = vec3(a0.xy,h.x);
+          vec3 p1 = vec3(a0.zw,h.y);
+          vec3 p2 = vec3(a1.xy,h.z);
+          vec3 p3 = vec3(a1.zw,h.w);
+          vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));
+          p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+          vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+          m = m * m;
+          return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3) ) );
+      }
+
+      void main() {
+          vec3 pos = position;
+          float noiseFreq = uDetail;
+          float noiseAmp = uDistortion;
+          float noise = snoise(vec3(pos.x * noiseFreq + uTime * 0.1, pos.y * noiseFreq, pos.z * noiseFreq));
+
+          vNoise = noise;
+          vec3 newPos = pos + (normalize(pos) * noise * noiseAmp);
+
+          float dist = distance(uMouse * 10.0, newPos.xy);
+          float interaction = smoothstep(5.0, 0.0, dist);
+          newPos += normalize(pos) * interaction * 0.5;
+
+          vec4 mvPosition = modelViewMatrix * vec4(newPos, 1.0);
+          gl_Position = projectionMatrix * mvPosition;
+
+          gl_PointSize = uSize * (24.0 / -mvPosition.z) * (1.0 + noise * 0.5);
+          vAlpha = 1.0;
+          vPos = newPos;
+      }
+    </script>
+
+    <script type="x-shader/x-fragment" id="fragmentShader">
+      uniform vec3 uColor;
+      uniform float uOpacity;
+      varying float vNoise;
+      varying vec3 vPos;
+
+      void main() {
+          vec2 center = gl_PointCoord - vec2(0.5);
+          float dist = length(center);
+          if (dist > 0.5) discard;
+
+          float alpha = smoothstep(0.5, 0.2, dist) * uOpacity;
+          // Slightly tighter color bounds for dark mode visibility
+          vec3 darkColor = uColor * 0.3;
+          vec3 lightColor = uColor;
+          vec3 finalColor = mix(darkColor, lightColor, vNoise * 0.5 + 0.5);
+
+          gl_FragColor = vec4(finalColor, alpha);
+      }
+    </script>
+
+    <script>
+      const container = document.getElementById('canvas-container');
+      const scene = new THREE.Scene();
+      scene.fog = new THREE.FogExp2(0x0A0A0A, 0.035);
+
+      const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0, 18);
+
+      const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const systemsGroup = new THREE.Group();
+      systemsGroup.position.set(4.0, 2.0, -2.0);
+      scene.add(systemsGroup);
+
+      const geometry = new THREE.IcosahedronGeometry(5.0, 30);
+
+      const uniforms = {
+          uTime: { value: 0 },
+          uDistortion: { value: 0.9 },
+          uSize: { value: 2.4 },
+          uDetail: { value: 0.8 },
+          uColor: { value: new THREE.Color('#FAFAFA') },
+          uOpacity: { value: 0.8 },
+          uMouse: { value: new THREE.Vector2(0, 0) }
+      };
+
+      const material = new THREE.ShaderMaterial({
+          vertexShader: document.getElementById('vertexShader').textContent,
+          fragmentShader: document.getElementById('fragmentShader').textContent,
+          uniforms: uniforms,
+          transparent: true,
+          depthWrite: false,
+          blending: THREE.NormalBlending
+      });
+
+      const particles = new THREE.Points(geometry, material);
+      systemsGroup.add(particles);
+
+      const lineGroup = new THREE.Group();
+      systemsGroup.add(lineGroup);
+
+      function createThinOrbit(radius, rotation) {
+          const curve = new THREE.EllipseCurve(0, 0, radius, radius, 0, 2 * Math.PI, false, 0);
+          const points = curve.getPoints(128);
+          const geo = new THREE.BufferGeometry().setFromPoints(points);
+          const mat = new THREE.LineBasicMaterial({ color: 0xEA580C, transparent: true, opacity: 0.15 });
+          const orbit = new THREE.Line(geo, mat);
+          orbit.rotation.x = rotation.x;
+          orbit.rotation.y = rotation.y;
+          lineGroup.add(orbit);
+          return orbit;
+      }
+
+      const orbits = [
+          createThinOrbit(6.0, {x: Math.PI/2, y: 0}),
+          createThinOrbit(5.8, {x: Math.PI/3, y: Math.PI/6}),
+          createThinOrbit(6.5, {x: Math.PI/1.8, y: Math.PI/4})
+      ];
+
+      let time = 0;
+      let speed = 0.1;
+      let mouseX = 0, mouseY = 0;
+
+      document.addEventListener('mousemove', (e) => {
+          mouseX = (e.clientX / window.innerWidth) * 2 - 1;
+          mouseY = -(e.clientY / window.innerHeight) * 2 + 1;
+          uniforms.uMouse.value.x += (mouseX - uniforms.uMouse.value.x) * 0.05;
+          uniforms.uMouse.value.y += (mouseY - uniforms.uMouse.value.y) * 0.05;
+      });
+
+      window.addEventListener('resize', () => {
+          camera.aspect = window.innerWidth / window.innerHeight;
+          camera.updateProjectionMatrix();
+          renderer.setSize(window.innerWidth, window.innerHeight);
+          adjustLayout();
+      });
+
+      function adjustLayout() {
+          if(window.innerWidth < 1024) {
+              systemsGroup.position.set(0, 3.0, -6);
+              systemsGroup.scale.set(0.8, 0.8, 0.8);
+          } else {
+              systemsGroup.position.set(6.0, 0, 0);
+              systemsGroup.scale.set(1, 1, 1);
+          }
+      }
+      adjustLayout();
+
+      window.addEventListener('scroll', () => {
+          const scrollY = window.scrollY;
+          systemsGroup.position.y = (window.innerWidth < 1024 ? 3.0 : 0) + (scrollY * 0.002);
+      });
+
+      function animate() {
+          requestAnimationFrame(animate);
+          time += 0.01 + (speed * 0.05);
+
+          systemsGroup.rotation.y = time * 0.05;
+          systemsGroup.rotation.z = Math.sin(time * 0.1) * 0.05;
+
+          lineGroup.rotation.x = Math.sin(time * 0.05) * 0.2;
+          orbits.forEach((orbit, i) => {
+              orbit.rotation.z += 0.002 * (i + 1);
+          });
+
+          camera.position.x += (mouseX * 0.5 - camera.position.x) * 0.05;
+          camera.position.y += (mouseY * 0.5 - camera.position.y) * 0.05;
+          camera.lookAt(0,0,0);
+
+          uniforms.uTime.value = time;
+          renderer.render(scene, camera);
+      }
+      animate();
+
+      // UI Bindings if tablet exists
+      const distInput = document.getElementById('input-distortion');
+      if(distInput) {
+          distInput.addEventListener('input', (e) => {
+              uniforms.uDistortion.value = parseFloat(e.target.value);
+              document.getElementById('val-distortion').textContent = e.target.value;
+          });
+          document.getElementById('input-detail').addEventListener('input', (e) => {
+              const val = parseFloat(e.target.value);
+              uniforms.uDetail.value = val;
+              document.getElementById('val-detail').textContent = val;
+          });
+      }
+
+      // Sticky Nav Logic
+      const nav = document.querySelector('nav');
+      window.addEventListener('scroll', () => {
+          if (window.scrollY > 50) {
+              nav.classList.add('py-2');
+          } else {
+              nav.classList.remove('py-2');
+          }
+      });
+    </script>
+  
+</body></html>

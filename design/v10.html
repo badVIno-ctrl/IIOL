@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Novi — Social Automation Platform</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet"><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+
+  <body class="bg-[#050505] text-white antialiased selection:bg-[#00e5ff] selection:text-black min-h-screen overflow-x-hidden" style="font-family:'Inter',sans-serif;font-weight:300;background-image:radial-gradient(circle at 50% 0%,rgba(0,229,255,0.09),transparent 36rem),linear-gradient(135deg,rgba(255,255,255,0.035) 1px,transparent 1px);background-size:auto,3rem 3rem;">
+    <div class="fixed inset-0 pointer-events-none z-0" style="background-image:radial-gradient(circle at 12% 20%,rgba(0,229,255,0.08),transparent 24rem),radial-gradient(circle at 88% 70%,rgba(0,229,255,0.045),transparent 26rem);"></div>
+
+    <div class="relative z-10 w-full px-3 py-3 md:px-6 md:py-6">
+      <div class="mx-auto max-w-7xl border border-white/10 bg-[#0a0a0a] relative overflow-hidden shadow-2xl shadow-black/60 border-b-0">
+        <span class="absolute left-0 top-0 h-6 w-6 border-l border-t border-[#00e5ff]/40"></span>
+        <span class="absolute right-0 top-0 h-6 w-6 border-r border-t border-[#00e5ff]/40"></span>
+        <span class="absolute bottom-0 left-0 h-6 w-6 border-l border-b border-[#00e5ff]/40"></span>
+        <span class="absolute bottom-0 right-0 h-6 w-6 border-r border-b border-[#00e5ff]/40"></span>
+        <header class="relative z-50 w-full bg-transparent">
+          <div class="relative mx-auto flex w-full max-w-7xl items-center justify-between px-5 py-4 md:px-10">
+            <a href="#top" class="font-mono text-lg uppercase tracking-[0.55em] text-white">
+              NOVI
+            </a>
+            <nav class="hidden items-center gap-10 md:flex">
+              <a href="#features" class="font-mono text-xs text-white/80 transition-colors duration-300 hover:text-[#00e5ff]">
+                How It Works
+              </a>
+              <a href="#about" class="font-mono text-xs text-white/80 transition-colors duration-300 hover:text-[#00e5ff]">
+                Channels
+              </a>
+              <a href="#pricing" class="font-mono text-xs text-white/80 transition-colors duration-300 hover:text-[#00e5ff]">
+                Automation
+              </a>
+              <a href="#contact" class="font-mono text-xs text-white/80 transition-colors duration-300 hover:text-[#00e5ff]">
+                Analytics
+              </a>
+            </nav>
+            <a href="#contact" class="hidden border border-[#00e5ff]/50 px-8 py-3 font-mono text-[10px] uppercase tracking-widest text-[#00e5ff] transition-all duration-300 hover:bg-[#00e5ff]/10 sm:inline-flex">
+              Social Automation Platform
+            </a>
+          </div>
+        </header>
+      </div>
+      <div class="mx-auto max-w-7xl border border-white/10 bg-[#0a0a0a] overflow-hidden shadow-2xl shadow-black/60">
+        <main id="top" class="">
+          <section class="relative overflow-hidden border-b border-white/10 bg-[#02060b] min-h-[760px]">
+            <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779296002747-748f252a-dd7c-4cc1-b6c1-9d8281422697.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/065396b6-8665-4517-a9fd-d4450f2dfb04_1600w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Digital Social Media Integration Concept" class="absolute inset-0 h-full w-full object-cover" style="-webkit-mask-image: linear-gradient(to bottom, black 65%, transparent 100%); mask-image: linear-gradient(to bottom, black 65%, transparent 100%);"></video>
+            <div class="absolute inset-0 bg-gradient-to-r from-black/10 via-black/5 to-black/45"></div>
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_52%,rgba(0,229,255,0.08),transparent_28rem)]"></div>
+            <span class="absolute bottom-0 left-0 h-4 w-4 border-b border-l border-[#00e5ff]/70"></span>
+            <span class="absolute bottom-0 right-0 h-4 w-4 border-b border-r border-[#00e5ff]/70"></span>
+            <span class="absolute bottom-0 left-8 flex gap-1">
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+            </span>
+            <span class="absolute bottom-0 right-8 flex gap-1">
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+              <span class="h-0.5 w-0.5 rounded-full bg-[#00e5ff]"></span>
+            </span>
+            <div class="relative z-10 flex flex-col justify-end px-6 pb-10 md:px-10 lg:px-12 lg:pb-16 pt-12 min-h-[760px]">
+              <div class="flex w-full flex-col gap-10 lg:flex-row lg:items-end lg:justify-between">
+                <div class="max-w-[36rem]">
+                  <p class="font-mono text-xs uppercase tracking-[0.22em] text-white">
+                    Smart workflows × social growth
+                  </p>
+                  <h1 class="mt-5 text-5xl leading-[1.08] tracking-tight text-white md:text-6xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:200;">
+                    Turn Social Conversations Into
+                    <span class="text-white">Automated Growth</span>
+                  </h1>
+                </div>
+
+                <div class="max-w-[22rem] shrink-0">
+                  <p class="text-sm leading-relaxed text-white/80">
+                    Schedule content, automate replies, unify messages, and turn
+                    every social touchpoint into a scalable growth engine.
+                  </p>
+                  <div class="mt-6 flex flex-wrap gap-4">
+                    <a href="#pricing" class="group inline-flex items-center justify-center gap-5 bg-[#00e5ff] px-7 py-3 font-mono text-xs text-black transition-all duration-300 hover:bg-white hover:shadow-[0_0_24px_rgba(0,229,255,0.35)]">
+                      Start Free
+                      <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform duration-300 group-hover:translate-x-1" stroke-width="1.5"></iconify-icon>
+                    </a>
+                    <a href="#features" class="inline-flex items-center justify-center border border-[#00e5ff]/35 bg-black/20 px-7 py-3 font-mono text-xs text-white transition-all duration-300 hover:bg-[#00e5ff]/10 hover:text-[#00e5ff]">
+                      See Demo
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="grid grid-cols-2 border-b border-white/10 bg-[#080808] md:grid-cols-4">
+            <div class="group border-b border-r border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] md:border-b-0">
+              <p class="font-mono text-xs uppercase tracking-widest text-white/35">
+                Automations run
+              </p>
+              <p class="mt-4 text-3xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                18M+
+              </p>
+            </div>
+            <div class="group border-b border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] md:border-b-0 md:border-r">
+              <p class="font-mono text-xs uppercase tracking-widest text-white/35">
+                Avg. hours saved
+              </p>
+              <p class="mt-4 text-3xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                26/wk
+              </p>
+            </div>
+            <div class="group border-r border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025]">
+              <p class="font-mono text-xs uppercase tracking-widest text-white/35">
+                Brand safeguards
+              </p>
+              <p class="mt-4 text-3xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                99.9%
+              </p>
+            </div>
+            <div class="group p-6 transition-all duration-300 hover:bg-white/[0.025]">
+              <p class="font-mono text-xs uppercase tracking-widest text-white/35">
+                Channels linked
+              </p>
+              <p class="mt-4 text-3xl tracking-tight text-[#00e5ff]" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                42+
+              </p>
+            </div>
+          </section>
+
+          <section id="features" class="relative border-b border-white/10 bg-[#0a0a0a]">
+            <span class="absolute left-0 top-0 h-6 w-6 border-l border-t border-[#00e5ff]/40"></span>
+            <span class="absolute right-0 top-0 h-6 w-6 border-r border-t border-[#00e5ff]/40"></span>
+
+            <div class="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[0.8fr_1.2fr]">
+              <div class="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r lg:p-14">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // Features
+                </p>
+                <h2 class="reveal mt-5 max-w-md text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display: inline-block;">Governed&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">automation&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">for&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">every&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">social&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">motion.&nbsp;</span>
+                  </span>
+                </h2>
+              </div>
+              <div class="p-6 md:p-10 lg:p-14">
+                <p class="max-w-2xl text-sm leading-relaxed text-white/50">
+                  Novi connects planning, generation, approvals, publishing,
+                  listening, and response logic into one precise operating
+                  layer. Build flows once, then let them adapt to campaign
+                  momentum.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3">
+              <article class="interactive group border-b border-white/10 p-6 transition-all duration-500 hover:bg-white/[0.025] md:border-b-0 md:border-r md:p-10">
+                <div class="mb-8 flex items-start justify-between">
+                  <span class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    01
+                  </span>
+                  <span class="flex h-11 w-11 items-center justify-center border border-white/10 bg-black/40 text-white transition-all duration-300 group-hover:border-[#00e5ff]/50 group-hover:text-[#00e5ff] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.14)]">
+                    <iconify-icon icon="solar:magic-stick-3-linear" class="text-2xl" stroke-width="1.5"></iconify-icon>
+                  </span>
+                </div>
+                <h3 class="text-xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Campaign Autopilot
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-white/45">
+                  Convert a launch brief into channel-specific calendars, copy
+                  variants, posting windows, and follow-up sequences.
+                </p>
+              </article>
+
+              <article class="interactive group border-b border-white/10 p-6 transition-all duration-500 hover:bg-white/[0.025] md:border-b-0 md:border-r md:p-10">
+                <div class="mb-8 flex items-start justify-between">
+                  <span class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    02
+                  </span>
+                  <span class="flex h-11 w-11 items-center justify-center border border-white/10 bg-black/40 text-white transition-all duration-300 group-hover:border-[#00e5ff]/50 group-hover:text-[#00e5ff] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.14)]">
+                    <iconify-icon icon="solar:shield-check-linear" class="text-2xl" stroke-width="1.5"></iconify-icon>
+                  </span>
+                </div>
+                <h3 class="text-xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Brand Guardrails
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-white/45">
+                  Apply tone, claim, compliance, and escalation rules before
+                  posts or replies reach your audience.
+                </p>
+              </article>
+
+              <article class="interactive group p-6 transition-all duration-500 hover:bg-white/[0.025] md:p-10">
+                <div class="mb-8 flex items-start justify-between">
+                  <span class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    03
+                  </span>
+                  <span class="flex h-11 w-11 items-center justify-center border border-white/10 bg-black/40 text-white transition-all duration-300 group-hover:border-[#00e5ff]/50 group-hover:text-[#00e5ff] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.14)]">
+                    <iconify-icon icon="solar:radar-2-linear" class="text-2xl" stroke-width="1.5"></iconify-icon>
+                  </span>
+                </div>
+                <h3 class="text-xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Signal Listening
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-white/45">
+                  Detect competitor movement, trending comments, creator
+                  mentions, and purchase-intent signals in real time.
+                </p>
+              </article>
+            </div>
+
+            <div class="grid grid-cols-1 border-t border-white/10 lg:grid-cols-2">
+              <div class="relative min-h-[24rem] overflow-hidden border-b border-white/10 lg:border-b-0 lg:border-r">
+                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779464315059-b1434dc5-68ee-4762-8e89-1c7df7fe629e.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/70798318-fa28-4f71-9aea-5c7ce59580dd_3840w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Social team operating Novi workflows" class="h-full w-full object-cover opacity-55 transition-all duration-700 hover:scale-105 hover:opacity-70"></video>
+                <div class="absolute inset-0" style="background-image:linear-gradient(180deg,transparent,rgba(5,5,5,0.88));"></div>
+                <div class="absolute bottom-6 left-6 right-6 border border-white/10 bg-black/50 p-4 backdrop-blur-md">
+                  <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    Live workflow
+                  </p>
+                  <p class="mt-2 text-sm text-white/65">
+                    When demo requests spike, Novi shifts content priority,
+                    activates reply templates, and alerts sales.
+                  </p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2">
+                <div class="group border-b border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] sm:border-r">
+                  <iconify-icon icon="solar:calendar-mark-linear" class="text-2xl text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                  <h4 class="mt-8 font-mono text-xs uppercase tracking-widest text-white">
+                    Adaptive scheduling
+                  </h4>
+                  <p class="mt-3 text-sm leading-relaxed text-white/45">
+                    Posts move automatically when audience heatmaps change.
+                  </p>
+                </div>
+                <div class="group border-b border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025]">
+                  <iconify-icon icon="solar:users-group-rounded-linear" class="text-2xl text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                  <h4 class="mt-8 font-mono text-xs uppercase tracking-widest text-white">
+                    Creator routing
+                  </h4>
+                  <p class="mt-3 text-sm leading-relaxed text-white/45">
+                    Assign tasks to internal teams, ambassadors, or creators.
+                  </p>
+                </div>
+                <div class="group border-b border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] sm:border-b-0 sm:border-r">
+                  <iconify-icon icon="solar:chart-2-linear" class="text-2xl text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                  <h4 class="mt-8 font-mono text-xs uppercase tracking-widest text-white">
+                    Attribution loop
+                  </h4>
+                  <p class="mt-3 text-sm leading-relaxed text-white/45">
+                    Connect social actions to pipeline and conversion events.
+                  </p>
+                </div>
+                <div class="group p-6 transition-all duration-300 hover:bg-white/[0.025]">
+                  <iconify-icon icon="solar:inbox-line-linear" class="text-2xl text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                  <h4 class="mt-8 font-mono text-xs uppercase tracking-widest text-white">
+                    Unified inbox
+                  </h4>
+                  <p class="mt-3 text-sm leading-relaxed text-white/45">
+                    Prioritize comments, DMs, mentions, and approvals in one
+                    queue.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="channels" class="relative border-b border-white/10 bg-[#0a0a0a]">
+            <div class="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[0.8fr_1.2fr]">
+              <div class="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r lg:p-14">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // Channels &amp; Integrations
+                </p>
+                <h2 class="reveal mt-5 max-w-md text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">Connect&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">every&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">touchpoint.&nbsp;</span>
+                  </span>
+                </h2>
+              </div>
+              <div class="p-6 md:p-10 lg:p-14 flex flex-col justify-center">
+                <p class="max-w-2xl text-sm leading-relaxed text-white/50">
+                  Sync with the platforms your audience already uses. Novi
+                  supports direct integrations with all major social networks,
+                  CRMs, and data warehouses.
+                </p>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-4">
+              <div class="group border-b border-r border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] md:border-b-0 flex flex-col items-center justify-center min-h-[160px]">
+                <iconify-icon icon="ri:twitter-x-line" class="text-4xl text-white/60 group-hover:text-[#00e5ff] transition-colors duration-300"></iconify-icon>
+                <p class="mt-4 font-mono text-xs uppercase tracking-widest text-white/40 group-hover:text-white transition-colors duration-300">
+                  X (Twitter)
+                </p>
+              </div>
+              <div class="group border-b border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] md:border-b-0 md:border-r flex flex-col items-center justify-center min-h-[160px]">
+                <iconify-icon icon="ri:linkedin-fill" class="text-4xl text-white/60 group-hover:text-[#00e5ff] transition-colors duration-300"></iconify-icon>
+                <p class="mt-4 font-mono text-xs uppercase tracking-widest text-white/40 group-hover:text-white transition-colors duration-300">
+                  LinkedIn
+                </p>
+              </div>
+              <div class="group border-r border-white/10 p-6 transition-all duration-300 hover:bg-white/[0.025] flex flex-col items-center justify-center min-h-[160px]">
+                <iconify-icon icon="ri:instagram-line" class="text-4xl text-white/60 group-hover:text-[#00e5ff] transition-colors duration-300"></iconify-icon>
+                <p class="mt-4 font-mono text-xs uppercase tracking-widest text-white/40 group-hover:text-white transition-colors duration-300">
+                  Instagram
+                </p>
+              </div>
+              <div class="group p-6 transition-all duration-300 hover:bg-white/[0.025] flex flex-col items-center justify-center min-h-[160px]">
+                <iconify-icon icon="ri:threads-line" class="text-4xl text-white/60 group-hover:text-[#00e5ff] transition-colors duration-300"></iconify-icon>
+                <p class="mt-4 font-mono text-xs uppercase tracking-widest text-white/40 group-hover:text-white transition-colors duration-300">
+                  Threads
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="how-it-works" class="relative border-b border-white/10 bg-[#080808]">
+            <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(135deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:3rem 3rem;"></div>
+            <div class="relative grid grid-cols-1 border-b border-white/10 lg:grid-cols-[1.2fr_0.8fr]">
+              <div class="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r lg:p-14">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // How It Works
+                </p>
+                <h2 class="reveal mt-5 max-w-md text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">Three&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">steps&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">to&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">scale.&nbsp;</span>
+                  </span>
+                </h2>
+              </div>
+              <div class="p-6 md:p-10 lg:p-14 flex flex-col justify-center">
+                <p class="max-w-2xl text-sm leading-relaxed text-white/50">
+                  Our platform integrates deeply with your existing workflows to
+                  ensure seamless execution from day one, allowing you to focus
+                  on strategy.
+                </p>
+              </div>
+            </div>
+
+            <div class="relative grid grid-cols-1 md:grid-cols-3">
+              <div class="interactive group border-b border-white/10 p-6 transition-all duration-500 hover:bg-white/[0.025] md:border-b-0 md:border-r md:p-10">
+                <div class="mb-8 flex items-start justify-between">
+                  <span class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    01
+                  </span>
+                  <span class="flex h-11 w-11 items-center justify-center border border-white/10 bg-black/40 text-white transition-all duration-300 group-hover:border-[#00e5ff]/50 group-hover:text-[#00e5ff] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.14)]">
+                    <iconify-icon icon="solar:link-circle-linear" class="text-2xl" stroke-width="1.5"></iconify-icon>
+                  </span>
+                </div>
+                <h3 class="text-xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Connect Accounts
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-white/45">
+                  Securely link your social profiles and define user roles. Our
+                  platform automatically imports historical data to establish
+                  baselines.
+                </p>
+              </div>
+
+              <div class="interactive group border-b border-white/10 p-6 transition-all duration-500 hover:bg-white/[0.025] md:border-b-0 md:border-r md:p-10">
+                <div class="mb-8 flex items-start justify-between">
+                  <span class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    02
+                  </span>
+                  <span class="flex h-11 w-11 items-center justify-center border border-white/10 bg-black/40 text-white transition-all duration-300 group-hover:border-[#00e5ff]/50 group-hover:text-[#00e5ff] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.14)]">
+                    <iconify-icon icon="solar:flow-node-linear" class="text-2xl" stroke-width="1.5"></iconify-icon>
+                  </span>
+                </div>
+                <h3 class="text-xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Build Workflows
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-white/45">
+                  Use our visual builder to create custom logic for publishing,
+                  approvals, and dynamic responses based on audience signals.
+                </p>
+              </div>
+
+              <div class="interactive group p-6 transition-all duration-500 hover:bg-white/[0.025] md:p-10">
+                <div class="mb-8 flex items-start justify-between">
+                  <span class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    03
+                  </span>
+                  <span class="flex h-11 w-11 items-center justify-center border border-white/10 bg-black/40 text-white transition-all duration-300 group-hover:border-[#00e5ff]/50 group-hover:text-[#00e5ff] group-hover:shadow-[0_0_20px_rgba(0,229,255,0.14)]">
+                    <iconify-icon icon="solar:rocket-linear" class="text-2xl" stroke-width="1.5"></iconify-icon>
+                  </span>
+                </div>
+                <h3 class="text-xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Launch &amp; Monitor
+                </h3>
+                <p class="mt-4 text-sm leading-relaxed text-white/45">
+                  Activate your automations and watch as Novi handles execution.
+                  Monitor performance and adjust guardrails in real-time.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="about" class="relative border-b border-white/10 bg-[#080808]">
+            <div class="absolute inset-0 pointer-events-none" style="background-image:linear-gradient(135deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:3rem 3rem;"></div>
+            <div class="relative grid grid-cols-1 lg:grid-cols-[1.05fr_0.95fr]">
+              <div class="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r lg:p-14">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // About Novi
+                </p>
+                <h2 class="reveal mt-5 text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display: inline-block;">Built&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">for&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">teams&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">where&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">social&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">is&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">an&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">operating&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">system.&nbsp;</span>
+                  </span>
+                </h2>
+                <p class="mt-7 max-w-xl text-sm leading-relaxed text-white/50">
+                  Novi was created by growth operators, automation engineers,
+                  and brand strategists who believe social execution should be
+                  fast without becoming careless. Our mission is to help
+                  ambitious teams scale conversation with control.
+                </p>
+
+                <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+                  <div class="border border-white/10 bg-black/25 p-4">
+                    <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                      01
+                    </p>
+                    <p class="mt-5 text-sm text-white/65">
+                      Operator-led product rituals
+                    </p>
+                  </div>
+                  <div class="border border-white/10 bg-black/25 p-4">
+                    <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                      02
+                    </p>
+                    <p class="mt-5 text-sm text-white/65">
+                      Compliance-first automation
+                    </p>
+                  </div>
+                  <div class="border border-white/10 bg-black/25 p-4">
+                    <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                      03
+                    </p>
+                    <p class="mt-5 text-sm text-white/65">
+                      Human approval where it matters
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="p-6 md:p-10 lg:p-14">
+                <div class="grid grid-cols-2 gap-3">
+                  <div class="group overflow-hidden border border-white/10 bg-black/30">
+                    <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779465883374-69200c36-1ef1-4273-b00b-0e0e668dad02.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6330f6d8-4cc0-4d1b-8085-f315c615b202_800w.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Novi team member" class="h-56 w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-90"></video>
+                    <div class="border-t border-white/10 p-4">
+                      <p class="font-mono text-xs uppercase tracking-widest text-white">
+                        Mara
+                      </p>
+                      <p class="mt-1 font-mono text-xs uppercase tracking-widest text-white/35">
+                        Growth Systems
+                      </p>
+                    </div>
+                  </div>
+                  <div class="group mt-10 overflow-hidden border border-white/10 bg-black/30">
+                    <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779465966664-badb485f-fcf9-431d-93f3-f4c704fa1ca6.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8f869148-195a-4100-981c-34c0ee95afe0_800w.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Novi engineer" class="h-56 w-full object-cover opacity-70 transition-all duration-700 group-hover:scale-105 group-hover:opacity-90"></video>
+                    <div class="border-t border-white/10 p-4">
+                      <p class="font-mono text-xs uppercase tracking-widest text-white">
+                        Ilan
+                      </p>
+                      <p class="mt-1 font-mono text-xs uppercase tracking-widest text-white/35">
+                        Automation Core
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="gallery" class="relative border-b border-white/10 bg-[#0a0a0a]">
+            <div class="grid grid-cols-1 border-b border-white/10 lg:grid-cols-[0.8fr_1.2fr]">
+              <div class="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r lg:p-14">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // Campaign Gallery
+                </p>
+                <h2 class="reveal mt-5 max-w-md text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display: inline-block;">
+                      Visualizing&nbsp;
+                    </span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">success.&nbsp;</span>
+                  </span>
+                </h2>
+              </div>
+              <div class="p-6 md:p-10 lg:p-14 flex flex-col justify-center">
+                <p class="max-w-2xl text-sm leading-relaxed text-white/50">
+                  A look at the stunning campaigns powered by our social
+                  automation platform. From high-growth influencer launches to
+                  precise B2B retargeting, see how Novi shapes brand narratives.
+                </p>
+              </div>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+              <div class="group relative aspect-square border-b border-white/10 sm:border-r lg:border-b-0 overflow-hidden bg-[#050505]">
+                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779465666711-fcee2db4-3f75-4812-a35c-ae89f182e48c.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f9b36f1d-1e26-4453-9c74-2a4b6f65a3e9_800w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Social Media Management and Analytics Dashboard Concept" class="h-full w-full object-cover opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"></video>
+                <div class="absolute bottom-6 left-6 border border-white/10 bg-black/60 p-3 backdrop-blur-md opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    Apparel Launch
+                  </p>
+                </div>
+              </div>
+              <div class="group relative aspect-square border-b border-white/10 lg:border-r lg:border-b-0 overflow-hidden bg-[#050505]">
+                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779466076215-5fcfe4d9-aa70-4c5a-b8c9-a91abefb1f66.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bbed24b-9bed-4c14-8f3b-8cc0c7289fc5_800w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Neon Digital Automation Flow Diagram" class="h-full w-full object-cover opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"></video>
+                <div class="absolute bottom-6 left-6 border border-white/10 bg-black/60 p-3 backdrop-blur-md opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    B2B Outreach
+                  </p>
+                </div>
+              </div>
+              <div class="group relative aspect-square border-b border-white/10 sm:border-b-0 sm:border-r overflow-hidden bg-[#050505]">
+                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779466138459-048cd9ad-f5a6-4cc1-95ed-ef7f04e1f495.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c4d8d2df-f741-4048-93e5-e8e0fa132b0e_800w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Digital Social Media Growth Analytics Dashboard" class="h-full w-full object-cover opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"></video>
+                <div class="absolute bottom-6 left-6 border border-white/10 bg-black/60 p-3 backdrop-blur-md opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    Brand Awareness
+                  </p>
+                </div>
+              </div>
+              <div class="group relative aspect-square overflow-hidden bg-[#050505]">
+                <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/5bd6211c-bd4c-467c-b442-4312cac4712c/1779465790880-9599dccd-9859-4b11-b5cb-97e6cda4d724.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e0b5ba32-a84f-43b6-99b5-fc5086ee3aa0_800w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Futuristic Social Media Analytics Dashboard" class="h-full w-full object-cover opacity-60 transition-all duration-700 group-hover:scale-105 group-hover:opacity-100"></video>
+                <div class="absolute bottom-6 left-6 border border-white/10 bg-black/60 p-3 backdrop-blur-md opacity-0 transition-opacity duration-500 group-hover:opacity-100">
+                  <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                    Event Promo
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="relative border-b border-white/10 bg-[#060606] p-6 md:p-10 lg:p-16">
+            <span class="absolute left-0 top-0 h-6 w-6 border-l border-t border-[#00e5ff]/40"></span>
+            <span class="absolute right-0 bottom-0 h-6 w-6 border-b border-r border-[#00e5ff]/40"></span>
+
+            <div class="mx-auto max-w-4xl text-center">
+              <iconify-icon icon="solar:quote-left-linear" class="mx-auto mb-8 text-5xl text-white/20" stroke-width="1.5"></iconify-icon>
+              <h2 class="reveal text-3xl uppercase leading-tight tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display: inline-block;">Novi&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">gave&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">us&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">the&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">operating&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">cadence&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">of&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">a&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">20-person&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">social&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">team&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">without&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">losing&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">the&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">judgment&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">of&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">our&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">brand&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">leads.&nbsp;</span>
+                </span>
+              </h2>
+              <div class="mt-10 flex items-center justify-center gap-4">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3012bbbf-121f-4308-810b-4e024631baa5_320w.webp" alt="Customer avatar" class="h-12 w-12 rounded-full border border-white/15 object-cover">
+                <div class="text-left">
+                  <p class="font-mono text-xs uppercase tracking-widest text-white">
+                    Avery Chen
+                  </p>
+                  <p class="mt-1 font-mono text-xs uppercase tracking-widest text-white/35">
+                    VP Marketing, Orbitlane
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-14 grid grid-cols-1 gap-3 md:grid-cols-3">
+              <div class="border border-white/10 bg-white/[0.02] p-5">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  Proof 01
+                </p>
+                <p class="mt-5 text-2xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  3.7x
+                </p>
+                <p class="mt-2 text-sm text-white/45">
+                  More qualified replies from product launches.
+                </p>
+              </div>
+              <div class="border border-white/10 bg-white/[0.02] p-5">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  Proof 02
+                </p>
+                <p class="mt-5 text-2xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  68%
+                </p>
+                <p class="mt-2 text-sm text-white/45">
+                  Reduction in manual scheduling work.
+                </p>
+              </div>
+              <div class="border border-white/10 bg-white/[0.02] p-5">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  Proof 03
+                </p>
+                <p class="mt-5 text-2xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  12 min
+                </p>
+                <p class="mt-2 text-sm text-white/45">
+                  Median response time for priority mentions.
+                </p>
+              </div>
+            </div>
+          </section>
+
+          <section id="pricing" class="relative border-b border-white/10 bg-[#0a0a0a]">
+            <div class="flex flex-col justify-between gap-6 border-b border-white/10 p-6 md:flex-row md:items-end md:p-10 lg:p-14">
+              <div>
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // Pricing
+                </p>
+                <h2 class="reveal mt-5 text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display: inline-block;">Scale&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">when&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">your&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">social&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">system&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">does.&nbsp;</span>
+                  </span>
+                </h2>
+              </div>
+
+              <div class="flex w-fit items-center gap-3 border border-white/10 bg-white/[0.02] px-4 py-3">
+                <span class="font-mono text-xs uppercase tracking-widest text-white/45">
+                  Monthly
+                </span>
+                <button id="billingToggle" aria-label="Toggle annual pricing" class="relative h-5 w-10 rounded-full border border-white/10 bg-[#00e5ff] transition-all duration-300">
+                  <span id="billingKnob" class="absolute right-0.5 top-0.5 h-4 w-4 rounded-full bg-black transition-all duration-300"></span>
+                </button>
+                <span class="font-mono text-xs uppercase tracking-widest text-white">
+                  Annual
+                  <span class="text-[#00e5ff]">-20%</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3">
+              <div class="interactive group border-b border-white/10 p-6 transition-all duration-500 hover:bg-white/[0.02] md:p-10 lg:border-b-0 lg:border-r">
+                <p class="font-mono text-xs uppercase tracking-widest text-white/40">
+                  Starter
+                </p>
+                <h3 class="mt-3 text-2xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Launch
+                </h3>
+                <div class="my-8 border-y border-white/10 py-6">
+                  <span class="price text-5xl tracking-tight text-white" data-month="$49" data-year="$39" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                    $39
+                  </span>
+                  <span class="font-mono text-xs uppercase tracking-widest text-white/35">
+                    /mo
+                  </span>
+                </div>
+                <ul class="space-y-4 text-sm text-white/60">
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    3 social channels
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    12 active workflows
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    Basic approval queue
+                  </li>
+                </ul>
+                <a href="#contact" class="mt-10 inline-flex w-full items-center justify-center border border-white/10 px-5 py-3.5 font-mono text-xs uppercase tracking-widest text-white transition-all duration-300 hover:border-[#00e5ff]/50 hover:bg-[#00e5ff]/5 hover:text-[#00e5ff]">
+                  Start Launch
+                </a>
+              </div>
+
+              <div class="interactive group relative border-b border-white/10 bg-[#00e5ff]/[0.025] p-6 transition-all duration-500 hover:bg-[#00e5ff]/[0.04] md:p-10 lg:border-b-0 lg:border-r">
+                <div class="absolute right-6 top-6 bg-[#00e5ff]/10 px-2 py-1 font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  Recommended
+                </div>
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  Growth
+                </p>
+                <h3 class="mt-3 text-2xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Scale
+                </h3>
+                <div class="my-8 border-y border-white/10 py-6">
+                  <span class="price text-5xl tracking-tight text-white" data-month="$149" data-year="$119" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                    $119
+                  </span>
+                  <span class="font-mono text-xs uppercase tracking-widest text-white/35">
+                    /mo
+                  </span>
+                </div>
+                <ul class="space-y-4 text-sm text-white/75">
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    12 social channels
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    Unlimited workflows
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    AI reply triage
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    Brand guardrails
+                  </li>
+                </ul>
+                <a href="#contact" class="mt-10 inline-flex w-full items-center justify-center gap-2 bg-[#00e5ff] px-5 py-3.5 font-mono text-xs uppercase tracking-widest text-black transition-all duration-300 hover:bg-white hover:shadow-[0_0_24px_rgba(0,229,255,0.3)]">
+                  Start Scale
+                  <iconify-icon icon="solar:arrow-right-linear" class="text-base" stroke-width="1.5"></iconify-icon>
+                </a>
+              </div>
+
+              <div class="interactive group p-6 transition-all duration-500 hover:bg-white/[0.02] md:p-10">
+                <p class="font-mono text-xs uppercase tracking-widest text-white/40">
+                  Enterprise
+                </p>
+                <h3 class="mt-3 text-2xl uppercase tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  Control
+                </h3>
+                <div class="my-8 border-y border-white/10 py-6">
+                  <span class="text-5xl tracking-tight text-white" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                    Custom
+                  </span>
+                </div>
+                <ul class="space-y-4 text-sm text-white/60">
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    SSO and permissions
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    Dedicated strategy support
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    Custom compliance rules
+                  </li>
+                  <li class="flex gap-3">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    Data warehouse sync
+                  </li>
+                </ul>
+                <a href="#contact" class="mt-10 inline-flex w-full items-center justify-center border border-white/10 px-5 py-3.5 font-mono text-xs uppercase tracking-widest text-white transition-all duration-300 hover:border-[#00e5ff]/50 hover:bg-[#00e5ff]/5 hover:text-[#00e5ff]">
+                  Talk to Sales
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <section id="contact" class="relative border-b border-white/10 bg-[#080808]">
+            <span class="absolute left-0 top-0 h-6 w-6 border-l border-t border-[#00e5ff]/40"></span>
+            <span class="absolute right-0 top-0 h-6 w-6 border-r border-t border-[#00e5ff]/40"></span>
+
+            <div class="grid grid-cols-1 lg:grid-cols-[0.9fr_1.1fr]">
+              <div class="border-b border-white/10 p-6 md:p-10 lg:border-b-0 lg:border-r lg:p-14">
+                <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                  // Contact
+                </p>
+                <h2 class="reveal mt-5 text-4xl uppercase leading-none tracking-tight text-white md:text-5xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display: inline-block;">Map&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">your&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">first&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">automation&nbsp;</span>
+                  </span>
+                  <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                    <span style="display:inline-block;">path.&nbsp;</span>
+                  </span>
+                </h2>
+                <p class="mt-7 max-w-md text-sm leading-relaxed text-white/50">
+                  Share your current social workflow. Novi will return a
+                  recommended automation blueprint, priority guardrails, and
+                  launch timeline.
+                </p>
+
+                <div class="mt-10 space-y-3">
+                  <div class="flex items-center gap-3 border border-white/10 bg-black/25 p-4">
+                    <iconify-icon icon="solar:letter-linear" class="text-xl text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    <span class="font-mono text-xs uppercase tracking-widest text-white/55">
+                      hello@novi.systems
+                    </span>
+                  </div>
+                  <div class="flex items-center gap-3 border border-white/10 bg-black/25 p-4">
+                    <iconify-icon icon="solar:clock-circle-linear" class="text-xl text-[#00e5ff]" stroke-width="1.5"></iconify-icon>
+                    <span class="font-mono text-xs uppercase tracking-widest text-white/55">
+                      Response under 1 business day
+                    </span>
+                  </div>
+                </div>
+              </div>
+
+              <form class="p-6 md:p-10 lg:p-14">
+                <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+                  <label class="group block">
+                    <span class="font-mono text-xs uppercase tracking-widest text-white/40 transition-colors duration-300 group-focus-within:text-[#00e5ff]">
+                      Name
+                    </span>
+                    <input type="text" placeholder="Ari Lane" class="mt-2 w-full border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-[#00e5ff]/60 focus:bg-[#00e5ff]/5">
+                  </label>
+                  <label class="group block">
+                    <span class="font-mono text-xs uppercase tracking-widest text-white/40 transition-colors duration-300 group-focus-within:text-[#00e5ff]">
+                      Work email
+                    </span>
+                    <input type="email" placeholder="ari@company.com" class="mt-2 w-full border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-[#00e5ff]/60 focus:bg-[#00e5ff]/5">
+                  </label>
+                </div>
+
+                <label class="group mt-4 block">
+                  <span class="font-mono text-xs uppercase tracking-widest text-white/40 transition-colors duration-300 group-focus-within:text-[#00e5ff]">
+                    Company stage
+                  </span>
+                  <select class="mt-2 w-full appearance-none border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none transition-all duration-300 focus:border-[#00e5ff]/60 focus:bg-[#00e5ff]/5">
+                    <option>Startup</option>
+                    <option>Scaleup</option>
+                    <option>Enterprise</option>
+                    <option>Agency</option>
+                  </select>
+                </label>
+
+                <label class="group mt-4 block">
+                  <span class="font-mono text-xs uppercase tracking-widest text-white/40 transition-colors duration-300 group-focus-within:text-[#00e5ff]">
+                    What should Novi automate?
+                  </span>
+                  <textarea rows="6" placeholder="Scheduling, replies, campaign launches, creator coordination..." class="mt-2 w-full resize-none border border-white/10 bg-black/30 px-4 py-3 text-sm text-white outline-none transition-all duration-300 placeholder:text-white/20 focus:border-[#00e5ff]/60 focus:bg-[#00e5ff]/5"></textarea>
+                </label>
+
+                <button type="button" class="interactive group mt-5 inline-flex w-full items-center justify-center gap-2 bg-[#00e5ff] px-6 py-3.5 font-mono text-xs uppercase tracking-widest text-black transition-all duration-300 hover:bg-white hover:shadow-[0_0_24px_rgba(0,229,255,0.3)]">
+                  Submit Inquiry
+                  <iconify-icon icon="solar:arrow-right-linear" class="text-base transition-transform duration-300 group-hover:translate-x-1" stroke-width="1.5"></iconify-icon>
+                </button>
+              </form>
+            </div>
+          </section>
+        </main>
+
+        <footer class="bg-[#050505]">
+          <div class="relative border-b border-white/10 p-8 text-center md:p-14 lg:p-20">
+            <div class="absolute inset-0 pointer-events-none" style="background-image:radial-gradient(circle at 50% 100%,rgba(0,229,255,0.11),transparent 28rem);"></div>
+            <div class="relative">
+              <p class="font-mono text-xs uppercase tracking-widest text-[#00e5ff]">
+                // Novi is ready
+              </p>
+              <h2 class="reveal mx-auto mt-5 max-w-3xl text-4xl uppercase leading-none tracking-tight text-white md:text-6xl" style="font-family:'Bricolage Grotesque',sans-serif;font-weight:300;">
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display: inline-block;">Launch&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">the&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">social&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">automation&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">layer&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">your&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">team&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">can&nbsp;</span>
+                </span>
+                <span style="display:inline-block;overflow:hidden;vertical-align:top;">
+                  <span style="display:inline-block;">trust.&nbsp;</span>
+                </span>
+              </h2>
+              <div class="mt-10 flex flex-col justify-center gap-3 sm:flex-row">
+                <a href="#pricing" class="inline-flex items-center justify-center bg-white px-7 py-3.5 font-mono text-xs uppercase tracking-widest text-black transition-all duration-300 hover:bg-[#00e5ff] hover:shadow-[0_0_24px_rgba(0,229,255,0.28)]">
+                  Choose Plan
+                </a>
+                <a href="#contact" class="inline-flex items-center justify-center border border-white/10 px-7 py-3.5 font-mono text-xs uppercase tracking-widest text-white transition-all duration-300 hover:border-[#00e5ff]/50 hover:bg-[#00e5ff]/5 hover:text-[#00e5ff]">
+                  Book Demo
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 border-b border-white/10 md:grid-cols-[1.1fr_0.9fr_0.9fr_0.9fr]">
+            <div class="border-b border-white/10 p-6 md:border-b-0 md:border-r md:p-8">
+              <div class="flex items-center gap-3">
+                <span class="flex h-8 w-8 items-center justify-center rounded border border-white/10 bg-black/40 text-[#00e5ff]">
+                  <iconify-icon icon="solar:stars-linear" class="text-lg" stroke-width="1.5"></iconify-icon>
+                </span>
+                <span class="font-mono text-xs uppercase tracking-tighter text-white">
+                  NOVI
+                </span>
+              </div>
+              <p class="mt-5 max-w-xs text-sm leading-relaxed text-white/40">
+                Social automation infrastructure for teams that need speed,
+                judgment, and measurable growth.
+              </p>
+            </div>
+
+            <div class="border-b border-white/10 p-6 md:border-b-0 md:border-r md:p-8">
+              <p class="font-mono text-xs uppercase tracking-widest text-white">
+                Product
+              </p>
+              <div class="mt-5 flex flex-col gap-3">
+                <a href="#features" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  Features
+                </a>
+                <a href="#pricing" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  Pricing
+                </a>
+                <a href="#about" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  About
+                </a>
+              </div>
+            </div>
+
+            <div class="border-b border-white/10 p-6 md:border-b-0 md:border-r md:p-8">
+              <p class="font-mono text-xs uppercase tracking-widest text-white">
+                Channels
+              </p>
+              <div class="mt-5 flex flex-col gap-3">
+                <a href="#" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  X
+                </a>
+                <a href="#" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  LinkedIn
+                </a>
+                <a href="#" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  Threads
+                </a>
+              </div>
+            </div>
+
+            <div class="p-6 md:p-8">
+              <p class="font-mono text-xs uppercase tracking-widest text-white">
+                Company
+              </p>
+              <div class="mt-5 flex flex-col gap-3">
+                <a href="#contact" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  Contact
+                </a>
+                <a href="#" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  Security
+                </a>
+                <a href="#" class="font-mono text-xs uppercase tracking-widest text-white/35 transition-colors duration-300 hover:text-[#00e5ff]">
+                  Status
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col items-center justify-between gap-4 px-6 py-5 md:flex-row md:px-8">
+            <p class="text-xs text-white/30">
+              © 2026 Novi Systems. All rights reserved.
+            </p>
+            <div class="flex gap-5">
+              <a href="#" class="text-xs text-white/30 transition-colors duration-300 hover:text-white/60">
+                Privacy
+              </a>
+              <a href="#" class="text-xs text-white/30 transition-colors duration-300 hover:text-white/60">
+                Terms
+              </a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function () {
+        if (window.Lenis) {
+          const lenis = new Lenis({
+            duration: 1.15,
+            smoothWheel: true,
+            wheelMultiplier: 0.85,
+            touchMultiplier: 1.2
+          });
+
+          function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
+
+          requestAnimationFrame(raf);
+
+          document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+            anchor.addEventListener('click', function (event) {
+              const target = document.querySelector(anchor.getAttribute('href'));
+              if (target) {
+                event.preventDefault();
+                lenis.scrollTo(target, { offset: -72 });
+              }
+            });
+          });
+        }
+
+        if (window.gsap && window.ScrollTrigger) {
+          gsap.registerPlugin(ScrollTrigger);
+
+          document.querySelectorAll('.reveal').forEach(function (element) {
+            const words = element.textContent.trim().split(/\s+/);
+            element.innerHTML = words.map(function (word) {
+              return '<span style="display:inline-block;overflow:hidden;vertical-align:top;"><span style="display:inline-block;transform:translateY(110%);">' + word + '&nbsp;</span></span>';
+            }).join('');
+
+            gsap.to(element.querySelectorAll('span span'), {
+              y: 0,
+              duration: 1,
+              ease: 'power4.out',
+              stagger: 0.045,
+              scrollTrigger: {
+                trigger: element,
+                start: 'top 82%',
+                once: true
+              }
+            });
+          });
+
+          gsap.fromTo('.interactive', {
+            y: 18,
+            opacity: 0
+          }, {
+            y: 0,
+            opacity: 1,
+            duration: 0.8,
+            ease: 'power3.out',
+            stagger: 0.06,
+            scrollTrigger: {
+              trigger: 'body',
+              start: 'top 70%',
+              once: true
+            }
+          });
+        }
+
+        document.querySelectorAll('.interactive, a, button, input, textarea, select').forEach(function (item) {
+          item.addEventListener('mouseenter', function () {
+            item.style.transform = item.tagName === 'INPUT' || item.tagName === 'TEXTAREA' || item.tagName === 'SELECT' ? 'translateY(0)' : 'translateY(-2px)';
+          });
+          item.addEventListener('mouseleave', function () {
+            item.style.transform = 'translateY(0)';
+          });
+        });
+
+        const toggle = document.getElementById('billingToggle');
+        const knob = document.getElementById('billingKnob');
+        let annual = true;
+
+        if (toggle && knob) {
+          toggle.addEventListener('click', function () {
+            annual = !annual;
+            toggle.classList.toggle('bg-[#00e5ff]', annual);
+            toggle.classList.toggle('bg-white/10', !annual);
+            knob.style.right = annual ? '0.125rem' : '1.375rem';
+            knob.style.background = annual ? '#000000' : '#ffffff';
+
+            document.querySelectorAll('.price').forEach(function (price) {
+              price.textContent = annual ? price.dataset.year : price.dataset.month;
+            });
+          });
+        }
+      });
+    </script>
+
+    
+  
+<script data-aura-video-controller="true">
+(function () {
+  function playVideo(video) {
+    var promise = video.play();
+    if (promise && typeof promise.catch === "function") {
+      promise.catch(function () {});
+    }
+  }
+
+  function setupVideo(video) {
+    if (video.__auraVideoReady === true) return;
+    video.__auraVideoReady = true;
+    video.removeAttribute("data-aura-video-ready");
+    video.removeAttribute("data-aura-video-played");
+    video.muted = true;
+    video.playsInline = true;
+
+    var preset = video.dataset.auraVideoPreset || "loop-in-view";
+    if (preset === "hover") {
+      video.addEventListener("mouseenter", function () {
+        playVideo(video);
+      });
+      video.addEventListener("mouseleave", function () {
+        video.pause();
+        video.currentTime = 0;
+      });
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      playVideo(video);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          if (preset === "play-once" && video.__auraVideoPlayed === true) {
+            return;
+          }
+          playVideo(video);
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    if (preset === "play-once") {
+      video.addEventListener("ended", function () {
+        video.__auraVideoPlayed = true;
+      }, { once: true });
+    }
+
+    observer.observe(video);
+  }
+
+  function setupVideos() {
+    document
+      .querySelectorAll("video[data-aura-video-preset]")
+      .forEach(setupVideo);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupVideos);
+  } else {
+    setupVideos();
+  }
+})();</script></body></html>

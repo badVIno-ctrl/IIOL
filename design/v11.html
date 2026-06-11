@@ -1,0 +1,2108 @@
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Suzuki Bangladesh — This Is Who You Are</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@300;400;600;700;900&amp;family=Barlow:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+--red:#E2231A;
+--blue:#1A3278;
+--dark:#080808;
+--surface:#111111;
+--surface2:#1A1A1A;
+--surface3:#222222;
+--chrome:#C0C0C0;
+--gold:#D4A017;
+--white:#FFFFFF;
+--muted:#A0A0A0;
+--dim:#555555;
+}
+html{scroll-behavior:smooth}
+body{
+background:var(--dark);
+color:var(--white);
+font-family:'Barlow',sans-serif;
+overflow-x:hidden;
+cursor:none;
+}
+/* CUSTOM CURSOR */
+.cursor{
+position:fixed;width:12px;height:12px;
+background:var(--white);border-radius:50%;
+pointer-events:none;z-index:9999;
+transform:translate(-50%,-50%);
+transition:width .2s,height .2s,background .2s;
+mix-blend-mode:difference;
+}
+.cursor.expand{width:40px;height:40px;background:rgba(226,35,26,.4);}
+/* SCROLLBAR */
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--dark)}
+::-webkit-scrollbar-thumb{background:var(--red)}
+/* NAV */
+nav{
+position:fixed;top:0;left:0;right:0;z-index:1000;
+padding:20px 60px;
+display:flex;align-items:center;justify-content:space-between;
+transition:background .3s,backdrop-filter .3s,padding .3s;
+}
+nav.scrolled{
+background:rgba(8,8,8,.92);
+backdrop-filter:blur(20px);
+padding:14px 60px;
+border-bottom:1px solid rgba(226,35,26,.15);
+}
+.nav-logo{
+display:flex;align-items:center;gap:12px;
+text-decoration:none;
+}
+.logo-s{
+width:36px;height:36px;
+background:var(--red);
+clip-path:polygon(30% 0%,70% 0%,100% 30%,70% 50%,100% 70%,70% 100%,30% 100%,0% 70%,30% 50%,0% 30%);
+}
+.logo-text{
+font-family:'Bebas Neue',sans-serif;
+font-size:28px;letter-spacing:.12em;
+color:var(--white);
+}
+.nav-links{display:flex;gap:36px;list-style:none;}
+.nav-links a{
+color:rgba(255,255,255,.75);
+text-decoration:none;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:600;font-size:14px;letter-spacing:.1em;
+text-transform:uppercase;
+transition:color .2s;
+position:relative;
+}
+.nav-links a::after{
+content:'';position:absolute;bottom:-4px;left:0;
+width:0;height:1px;background:var(--red);
+transition:width .2s;
+}
+.nav-links a:hover{color:var(--white);}
+.nav-links a:hover::after{width:100%;}
+.nav-cta{
+background:var(--red);color:var(--white);
+padding:10px 24px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:13px;letter-spacing:.15em;
+text-transform:uppercase;text-decoration:none;
+border:none;cursor:pointer;
+transition:background .2s,transform .15s;
+}
+.nav-cta:hover{background:#c91e16;transform:scale(1.02);}
+/* ======================== HERO ======================== */
+#hero{
+position:relative;height:100vh;min-height:700px;
+display:flex;align-items:center;
+overflow:hidden;
+}
+.hero-bg{
+position:absolute;inset:0;
+background:
+linear-gradient(135deg,rgba(8,8,8,.95) 0%,rgba(8,8,8,.6) 50%,rgba(8,8,8,.85) 100%),
+url('https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1920&q=80') center/cover no-repeat;
+transform:scale(1.05);
+animation:heroZoom 20s ease-in-out infinite alternate;
+}
+@keyframes heroZoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
+.hero-overlay{
+position:absolute;inset:0;
+background:linear-gradient(to right,rgba(8,8,8,.9) 40%,transparent 100%);
+}
+.hero-content{
+position:relative;z-index:2;
+max-width:1440px;margin:0 auto;padding:0 60px;
+padding-top:80px;
+}
+.hero-label{
+display:inline-block;
+font-family:'Barlow Condensed',sans-serif;
+font-size:11px;font-weight:700;letter-spacing:.35em;
+color:var(--red);text-transform:uppercase;
+margin-bottom:24px;
+opacity:0;animation:fadeUp .6s .3s forwards;
+}
+.hero-h1{
+font-family:'Bebas Neue',sans-serif;
+font-size:clamp(64px,8vw,112px);
+line-height:.95;letter-spacing:.02em;
+margin-bottom:24px;
+}
+.hero-h1 .line1{
+display:block;color:var(--white);
+opacity:0;animation:fadeUp .7s .5s forwards;
+}
+.hero-h1 .line2{
+display:block;color:var(--red);
+opacity:0;animation:fadeUp .7s .8s forwards;
+}
+.hero-sub{
+font-family:'Barlow Condensed',sans-serif;
+font-size:18px;font-weight:300;letter-spacing:.12em;
+color:rgba(255,255,255,.6);text-transform:uppercase;
+margin-bottom:48px;
+opacity:0;animation:fadeUp .6s 1.1s forwards;
+}
+.hero-ctas{
+display:flex;gap:20px;align-items:center;
+opacity:0;animation:fadeUp .6s 1.3s forwards;
+}
+.btn-primary{
+background:var(--red);color:var(--white);
+padding:16px 36px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:14px;letter-spacing:.15em;
+text-transform:uppercase;text-decoration:none;
+border:2px solid var(--red);
+transition:all .2s;display:inline-block;
+cursor:pointer;
+}
+.btn-primary:hover{background:transparent;color:var(--red);}
+.btn-ghost{
+color:var(--white);padding:16px 36px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:14px;letter-spacing:.15em;
+text-transform:uppercase;text-decoration:none;
+border:2px solid rgba(255,255,255,.4);
+transition:all .2s;display:inline-flex;align-items:center;gap:10px;
+}
+.btn-ghost:hover{border-color:var(--red);color:var(--red);}
+.play-icon{
+width:20px;height:20px;
+border:1.5px solid currentColor;border-radius:50%;
+display:flex;align-items:center;justify-content:center;
+flex-shrink:0;
+}
+.play-icon::after{
+content:'';border-style:solid;
+border-width:5px 0 5px 9px;
+border-color:transparent transparent transparent currentColor;
+margin-left:2px;
+}
+/* Ticker */
+.hero-ticker{
+position:absolute;bottom:0;left:0;right:0;
+height:44px;
+background:rgba(226,35,26,.08);
+border-top:1px solid rgba(226,35,26,.2);
+overflow:hidden;display:flex;align-items:center;
+}
+.ticker-track{
+display:flex;gap:0;
+animation:ticker 30s linear infinite;
+white-space:nowrap;
+}
+.ticker-item{
+font-family:'Barlow Condensed',sans-serif;
+font-size:11px;font-weight:600;letter-spacing:.25em;
+color:rgba(255,255,255,.45);text-transform:uppercase;
+padding:0 32px;
+}
+.ticker-dot{color:var(--red);margin-right:32px;}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* Scroll indicator */
+.scroll-hint{
+position:absolute;bottom:56px;right:60px;
+display:flex;flex-direction:column;align-items:center;gap:8px;
+opacity:.5;
+}
+.scroll-hint span{
+font-family:'Barlow Condensed',sans-serif;
+font-size:10px;letter-spacing:.25em;color:var(--white);
+text-transform:uppercase;writing-mode:vertical-rl;
+}
+.scroll-line{
+width:1px;height:50px;background:var(--white);
+transform-origin:top;
+animation:scrollPulse 2s ease-in-out infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.5)}50%{opacity:1;transform:scaleY(1)}}
+/* Hero stats */
+.hero-stats{
+position:absolute;bottom:60px;left:60px;
+display:flex;gap:48px;
+opacity:0;animation:fadeUp .6s 1.5s forwards;
+}
+.hero-stat{}
+.hero-stat-num{
+font-family:'Bebas Neue',sans-serif;
+font-size:36px;color:var(--white);letter-spacing:.05em;
+line-height:1;
+}
+.hero-stat-num span{color:var(--red);}
+.hero-stat-label{
+font-family:'Barlow Condensed',sans-serif;
+font-size:10px;letter-spacing:.2em;
+color:var(--muted);text-transform:uppercase;
+margin-top:4px;
+}
+/* ======================== SHARED ======================== */
+.section-label{
+font-family:'Barlow Condensed',sans-serif;
+font-size:11px;font-weight:700;letter-spacing:.35em;
+color:var(--red);text-transform:uppercase;
+margin-bottom:20px;
+display:flex;align-items:center;gap:16px;
+}
+.section-label::before{
+content:'';display:block;
+width:32px;height:1px;background:var(--red);
+}
+.section-h2{
+font-family:'Bebas Neue',sans-serif;
+font-size:clamp(42px,5vw,72px);
+line-height:.95;letter-spacing:.02em;
+margin-bottom:24px;
+}
+.red{color:var(--red);}
+.container{max-width:1440px;margin:0 auto;padding:0 60px;}
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1);}
+.reveal.visible{opacity:1;transform:translateY(0);}
+/* ======================== SECTION 2 — DIFFERENCE ======================== */
+#difference{
+padding:120px 0;
+background:var(--dark);
+position:relative;overflow:hidden;
+}
+#difference::before{
+content:'SUZUKI';
+position:absolute;right:-40px;top:50%;transform:translateY(-50%);
+font-family:'Bebas Neue',sans-serif;font-size:280px;
+color:rgba(255,255,255,.025);letter-spacing:.05em;
+pointer-events:none;white-space:nowrap;
+}
+.diff-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;
+max-width:1440px;margin:0 auto;padding:0 60px;
+}
+.diff-left{position:sticky;top:120px;}
+.diff-rider{
+width:100%;aspect-ratio:3/4;
+background:
+linear-gradient(to top,rgba(8,8,8,.8) 0%,transparent 60%),
+url('https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=900&q=80') center/cover;
+position:relative;
+}
+.diff-rider::after{
+content:'';position:absolute;left:0;top:0;bottom:0;width:4px;
+background:linear-gradient(to bottom,transparent,var(--red),transparent);
+}
+.diff-right{display:flex;flex-direction:column;gap:4px;padding-top:60px;}
+.pillar-card{
+padding:32px;
+border-top:1px solid var(--surface3);
+position:relative;
+transition:all .3s;
+cursor:default;
+}
+.pillar-card::before{
+content:'';position:absolute;top:0;left:0;
+width:0;height:2px;background:var(--red);
+transition:width .4s ease;
+box-shadow:0 0 12px rgba(226,35,26,.5);
+}
+.pillar-card:hover::before{width:100%;}
+.pillar-card:hover{background:rgba(226,35,26,.03);transform:translateX(8px);}
+.pillar-num{
+font-family:'Bebas Neue',sans-serif;font-size:11px;
+letter-spacing:.25em;color:var(--dim);margin-bottom:16px;
+}
+.pillar-title{
+font-family:'Bebas Neue',sans-serif;font-size:28px;
+letter-spacing:.05em;color:var(--white);margin-bottom:8px;
+}
+.pillar-sub{
+font-family:'Barlow Condensed',sans-serif;
+font-size:11px;font-weight:600;letter-spacing:.2em;
+color:var(--red);text-transform:uppercase;margin-bottom:12px;
+}
+.pillar-body{
+font-size:14px;line-height:1.7;color:var(--muted);
+}
+/* ======================== SECTION 3 — BIKES ======================== */
+#bikes{
+padding:120px 0;
+background:linear-gradient(180deg,var(--dark) 0%,#0D0D0D 100%);
+position:relative;
+}
+#bikes::before{
+content:'';position:absolute;inset:0;
+background-image:
+linear-gradient(rgba(226,35,26,.03) 1px,transparent 1px),
+linear-gradient(90deg,rgba(226,35,26,.03) 1px,transparent 1px);
+background-size:60px 60px;
+pointer-events:none;
+}
+.filter-tabs{
+display:flex;gap:8px;margin-bottom:60px;flex-wrap:wrap;
+}
+.tab{
+padding:10px 24px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:12px;letter-spacing:.15em;text-transform:uppercase;
+background:transparent;color:var(--muted);
+border:1px solid var(--surface3);
+cursor:pointer;transition:all .2s;
+}
+.tab.active,.tab:hover{background:var(--red);color:var(--white);border-color:var(--red);}
+.hero-bike-card{
+display:grid;grid-template-columns:1.2fr 1fr;
+background:var(--surface);
+margin-bottom:4px;
+overflow:hidden;
+min-height:500px;
+}
+.hero-bike-img{
+position:relative;overflow:hidden;
+}
+.hero-bike-img img{
+width:100%;height:100%;object-fit:cover;
+transition:transform .6s ease;
+}
+.hero-bike-card:hover .hero-bike-img img{transform:scale(1.04);}
+.badge{
+position:absolute;top:24px;left:24px;
+background:var(--red);color:var(--white);
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+padding:6px 16px;
+}
+.hero-bike-info{
+padding:60px 48px;
+display:flex;flex-direction:column;justify-content:center;
+position:relative;
+}
+.hero-bike-info::before{
+content:'';position:absolute;top:0;left:0;bottom:0;width:2px;
+background:linear-gradient(to bottom,transparent,var(--red),transparent);
+}
+.bike-model{
+font-family:'Bebas Neue',sans-serif;font-size:72px;
+letter-spacing:.02em;color:var(--white);line-height:.9;
+margin-bottom:8px;
+}
+.bike-tagline{
+font-style:italic;font-size:17px;color:var(--muted);margin-bottom:24px;
+}
+.spec-pills{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:32px;}
+.spec-pill{
+padding:6px 14px;border:1px solid rgba(226,35,26,.4);
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:11px;letter-spacing:.15em;
+color:rgba(255,255,255,.7);text-transform:uppercase;
+}
+.bike-price-label{font-size:12px;color:var(--dim);letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
+.bike-price{
+font-family:'Bebas Neue',sans-serif;font-size:52px;
+color:var(--white);letter-spacing:.02em;line-height:1;margin-bottom:32px;
+}
+.color-dots{display:flex;gap:10px;margin-bottom:32px;align-items:center;}
+.color-dot{
+width:18px;height:18px;border-radius:50%;
+border:2px solid transparent;cursor:pointer;transition:transform .2s;
+}
+.color-dot:hover,.color-dot.active{transform:scale(1.3);border-color:var(--white);}
+.bike-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:4px;
+}
+.bike-card{
+background:var(--surface);
+overflow:hidden;position:relative;
+cursor:pointer;
+}
+.bike-card-img{
+width:100%;aspect-ratio:4/3;
+overflow:hidden;position:relative;
+}
+.bike-card-img img{
+width:100%;height:100%;object-fit:cover;
+transition:opacity .4s,transform .5s;
+}
+.bike-card-img .rider-img{
+position:absolute;inset:0;
+width:100%;height:100%;object-fit:cover;
+opacity:0;transition:opacity .4s;
+}
+.bike-card:hover .bike-card-img img{opacity:0;}
+.bike-card:hover .rider-img{opacity:1;}
+.bike-card:hover .bike-card-img img{transform:scale(1.05);}
+.bike-card-body{padding:24px;}
+.bike-card-name{
+font-family:'Bebas Neue',sans-serif;font-size:26px;
+letter-spacing:.05em;color:var(--white);margin-bottom:4px;
+}
+.bike-card-price{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:600;font-size:15px;color:var(--red);margin-bottom:16px;
+}
+.bike-card-link{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:12px;letter-spacing:.15em;
+color:var(--muted);text-decoration:none;text-transform:uppercase;
+display:flex;align-items:center;gap:8px;
+transition:color .2s;
+}
+.bike-card-link::after{content:'→';transition:transform .2s;}
+.bike-card:hover .bike-card-link{color:var(--red);}
+.bike-card:hover .bike-card-link::after{transform:translateX(4px);}
+/* ======================== SECTION 4 — TECH ======================== */
+#technology{
+padding:120px 0;
+background:#0A0A0A;
+position:relative;overflow:hidden;
+}
+.tech-bg{
+position:absolute;inset:0;
+background:url('https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=1920&q=60') center/cover;
+opacity:.06;filter:grayscale(1);
+}
+.tech-scan{
+position:absolute;top:0;left:0;right:0;height:2px;
+background:linear-gradient(to right,transparent,var(--red),transparent);
+animation:scan 4s linear infinite;opacity:.4;
+}
+@keyframes scan{from{top:0}to{top:100%}}
+.tech-cards{
+display:grid;grid-template-columns:repeat(5,1fr);gap:2px;
+margin-top:80px;position:relative;z-index:1;
+}
+.tech-card{
+padding:36px 28px;
+background:rgba(255,255,255,.03);
+backdrop-filter:blur(20px);
+border:1px solid rgba(255,255,255,.06);
+position:relative;overflow:hidden;
+cursor:pointer;transition:all .3s;
+}
+.tech-card::after{
+content:'';position:absolute;bottom:0;left:0;
+width:0;height:2px;background:var(--red);
+transition:width .5s ease;
+}
+.tech-card:hover::after,.tech-card.active::after{width:100%;}
+.tech-card:hover,.tech-card.active{
+background:rgba(226,35,26,.06);
+border-color:rgba(226,35,26,.2);
+}
+.tech-acronym{
+font-family:'Bebas Neue',sans-serif;font-size:52px;
+color:var(--red);letter-spacing:.05em;line-height:1;margin-bottom:12px;
+}
+.tech-name{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:13px;letter-spacing:.1em;
+color:var(--white);text-transform:uppercase;margin-bottom:12px;
+}
+.tech-desc{font-size:13px;line-height:1.6;color:var(--muted);}
+.tech-num{
+position:absolute;top:16px;right:16px;
+font-family:'Bebas Neue',sans-serif;font-size:11px;
+color:var(--dim);letter-spacing:.15em;
+}
+/* ======================== SECTION 5 — ENGINE ======================== */
+#engine{
+padding:140px 0;
+background:var(--dark);
+position:relative;overflow:hidden;
+}
+.engine-grid{
+display:grid;grid-template-columns:1fr 1fr;
+gap:100px;align-items:center;
+}
+.engine-visual{
+position:relative;
+}
+.engine-img-wrap{
+position:relative;
+aspect-ratio:1;overflow:hidden;
+}
+.engine-img-wrap::before{
+content:'';position:absolute;inset:0;z-index:1;
+background:radial-gradient(circle at center,transparent 40%,var(--dark) 100%);
+}
+.engine-img-wrap img{
+width:100%;height:100%;object-fit:cover;
+filter:grayscale(.4) contrast(1.2);
+animation:enginePulse 4s ease-in-out infinite;
+}
+@keyframes enginePulse{0%,100%{filter:grayscale(.4) contrast(1.2) brightness(1)}50%{filter:grayscale(.2) contrast(1.3) brightness(1.1)}}
+.engine-ring{
+position:absolute;inset:-20px;
+border:1px solid rgba(226,35,26,.15);border-radius:50%;
+animation:ringRotate 20s linear infinite;
+}
+.engine-ring::before{
+content:'';position:absolute;top:50%;left:-4px;
+width:8px;height:8px;background:var(--red);border-radius:50%;
+transform:translateY(-50%);
+box-shadow:0 0 12px var(--red);
+}
+@keyframes ringRotate{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+.engine-stats-grid{
+display:grid;grid-template-columns:1fr 1fr;gap:2px;
+position:absolute;bottom:-20px;right:-20px;width:200px;
+}
+.e-stat{
+background:rgba(8,8,8,.9);
+border:1px solid var(--surface3);
+padding:16px;text-align:center;
+}
+.e-stat-val{
+font-family:'Bebas Neue',sans-serif;font-size:28px;
+color:var(--white);line-height:1;
+}
+.e-stat-key{
+font-family:'Barlow Condensed',sans-serif;
+font-size:9px;letter-spacing:.15em;color:var(--muted);
+text-transform:uppercase;margin-top:2px;
+}
+.engine-right{}
+.engine-desc{
+font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:40px;
+}
+.engine-features{display:flex;flex-direction:column;gap:0;}
+.engine-feature{
+display:flex;align-items:center;gap:20px;
+padding:20px 0;border-bottom:1px solid var(--surface3);
+}
+.ef-icon{
+width:40px;height:40px;border:1px solid rgba(226,35,26,.3);
+display:flex;align-items:center;justify-content:center;flex-shrink:0;
+font-family:'Bebas Neue',sans-serif;font-size:14px;color:var(--red);
+letter-spacing:.05em;
+}
+.ef-title{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:15px;letter-spacing:.08em;
+color:var(--white);text-transform:uppercase;
+}
+.ef-val{font-size:13px;color:var(--muted);margin-top:2px;}
+/* ======================== SECTION 6 — MotoGP ======================== */
+#motogp{
+padding:140px 0;
+background:linear-gradient(180deg,#050A1A 0%,#030508 100%);
+position:relative;overflow:hidden;
+}
+.motogp-bg{
+position:absolute;inset:0;
+background:url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1920&q=60') center/cover;
+opacity:.08;filter:grayscale(1);
+}
+.particles{
+position:absolute;inset:0;overflow:hidden;pointer-events:none;
+}
+.particle{
+position:absolute;width:2px;height:2px;
+background:var(--gold);border-radius:50%;opacity:.3;
+animation:float linear infinite;
+}
+@keyframes float{from{transform:translateY(100vh) translateX(0)}to{transform:translateY(-100px) translateX(20px)}}
+.motogp-head{text-align:center;margin-bottom:80px;position:relative;z-index:1;}
+.motogp-head .section-h2{font-size:clamp(52px,7vw,96px);}
+.motogp-head .section-h2 .line2{
+color:var(--red);
+display:block;
+}
+.gold-rule{
+width:100%;max-width:400px;height:1px;
+background:linear-gradient(to right,transparent,var(--gold),transparent);
+margin:20px auto;
+}
+.timeline{
+position:relative;margin-bottom:80px;
+padding:0 60px;
+}
+.timeline-line{
+position:absolute;top:20px;left:60px;right:60px;height:1px;
+background:linear-gradient(to right,transparent,var(--red),transparent);
+}
+.timeline-nodes{
+display:flex;justify-content:space-between;position:relative;
+}
+.t-node{
+display:flex;flex-direction:column;align-items:center;
+cursor:pointer;
+}
+.t-dot{
+width:16px;height:16px;border-radius:50%;
+background:var(--dark);border:2px solid var(--dim);
+position:relative;z-index:1;margin-bottom:20px;
+transition:all .3s;
+}
+.t-node.active .t-dot,.t-node:hover .t-dot{
+background:var(--red);border-color:var(--red);
+box-shadow:0 0 0 6px rgba(226,35,26,.2);
+}
+.t-year{
+font-family:'Bebas Neue',sans-serif;font-size:22px;
+color:var(--dim);letter-spacing:.08em;transition:color .3s;
+}
+.t-node.active .t-year,.t-node:hover .t-year{color:var(--red);}
+.t-event{
+font-family:'Barlow Condensed',sans-serif;
+font-size:11px;letter-spacing:.1em;color:rgba(255,255,255,.4);
+text-align:center;max-width:100px;margin-top:8px;
+transition:color .3s;
+}
+.t-node.active .t-event,.t-node:hover .t-event{color:var(--white);}
+.timeline-detail{
+margin-top:40px;
+background:rgba(255,255,255,.03);
+border:1px solid rgba(226,35,26,.1);
+padding:40px;display:none;
+}
+.timeline-detail.active{display:block;animation:fadeIn .4s ease;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.td-year{
+font-family:'Bebas Neue',sans-serif;font-size:80px;
+color:rgba(226,35,26,.15);line-height:1;margin-bottom:-20px;
+}
+.td-title{
+font-family:'Bebas Neue',sans-serif;font-size:36px;
+color:var(--white);letter-spacing:.05em;margin-bottom:12px;
+}
+.td-body{font-size:15px;line-height:1.7;color:var(--muted);}
+.motogp-stats{
+display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+position:relative;z-index:1;
+}
+.mg-stat{
+background:rgba(255,255,255,.03);
+border:1px solid rgba(255,255,255,.06);
+padding:48px 32px;text-align:center;
+}
+.mg-stat-val{
+font-family:'Bebas Neue',sans-serif;font-size:72px;
+color:var(--white);letter-spacing:.02em;line-height:1;
+margin-bottom:8px;
+}
+.mg-stat-val .red{font-size:48px;}
+.mg-stat-label{
+font-family:'Barlow Condensed',sans-serif;
+font-size:13px;letter-spacing:.2em;color:var(--muted);
+text-transform:uppercase;
+}
+/* ======================== SECTION 7 — DEALS ======================== */
+#deals{
+padding:120px 0;
+background:var(--dark);
+position:relative;overflow:hidden;
+}
+#deals::before{
+content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);
+width:800px;height:600px;
+background:radial-gradient(circle,rgba(226,35,26,.07) 0%,transparent 70%);
+pointer-events:none;
+}
+.deals-grid{
+display:grid;grid-template-columns:repeat(3,1fr);gap:2px;
+margin-top:60px;
+}
+.deal-card{
+background:var(--surface);
+position:relative;overflow:hidden;
+}
+.deal-banner{
+background:var(--red);
+padding:10px 24px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:10px;letter-spacing:.3em;
+color:var(--white);text-transform:uppercase;text-align:center;
+}
+.deal-img-wrap{
+padding:40px;
+display:flex;justify-content:center;align-items:center;
+position:relative;
+aspect-ratio:4/3;overflow:hidden;
+background:linear-gradient(135deg,#0F0F0F,#1A1A1A);
+}
+.deal-img-wrap::after{
+content:'';position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+width:80%;height:40px;
+background:radial-gradient(ellipse,rgba(226,35,26,.2) 0%,transparent 70%);
+}
+.deal-img-wrap img{
+max-width:100%;max-height:100%;object-fit:contain;
+filter:drop-shadow(0 20px 40px rgba(0,0,0,.8));
+transition:transform .4s ease;
+}
+.deal-card:hover .deal-img-wrap img{transform:scale(1.06) translateY(-4px);}
+.deal-body{padding:28px;}
+.deal-name{
+font-family:'Bebas Neue',sans-serif;font-size:32px;
+letter-spacing:.05em;color:var(--white);margin-bottom:8px;
+}
+.deal-was{
+font-size:14px;color:var(--dim);text-decoration:line-through;
+font-family:'Barlow Condensed',sans-serif;letter-spacing:.05em;
+}
+.deal-price{
+font-family:'Bebas Neue',sans-serif;font-size:44px;
+color:var(--white);letter-spacing:.02em;line-height:1;margin-bottom:8px;
+}
+.deal-save{
+display:inline-block;
+background:rgba(76,175,80,.15);color:#4CAF50;
+border:1px solid rgba(76,175,80,.3);
+padding:4px 12px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:11px;letter-spacing:.15em;
+text-transform:uppercase;margin-bottom:20px;
+}
+.deal-avail{
+font-family:'Barlow Condensed',sans-serif;
+font-size:12px;color:var(--muted);letter-spacing:.1em;margin-bottom:20px;
+}
+.blink-dot{
+display:inline-block;width:6px;height:6px;
+background:var(--red);border-radius:50%;margin-right:6px;
+animation:blink 1.5s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.deal-btn{
+display:block;text-align:center;
+background:var(--red);color:var(--white);padding:14px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:13px;letter-spacing:.15em;
+text-transform:uppercase;text-decoration:none;
+transition:background .2s;
+}
+.deal-btn:hover{background:#c91e16;}
+/* ======================== SECTION 8 — SAFETY ======================== */
+#safety{
+padding:120px 0;
+background:#0A0A0A;
+}
+.safety-grid{
+display:grid;grid-template-columns:.85fr 1.15fr;gap:80px;align-items:center;
+}
+.safety-img{
+position:relative;
+}
+.safety-img-inner{
+aspect-ratio:2/3;overflow:hidden;position:relative;
+}
+.safety-img-inner img{
+width:100%;height:100%;object-fit:cover;
+filter:contrast(1.1);
+}
+.safety-img-inner::after{
+content:'';position:absolute;inset:0;
+background:linear-gradient(to top,rgba(8,8,8,.7) 0%,transparent 50%,rgba(8,8,8,.2) 100%);
+}
+.safety-tag{
+position:absolute;bottom:30px;left:30px;
+font-family:'Bebas Neue',sans-serif;font-size:13px;
+letter-spacing:.3em;color:var(--white);
+border-left:3px solid var(--red);padding-left:16px;z-index:1;
+}
+.safety-pillars{margin-top:40px;}
+.safety-pillar{
+display:grid;grid-template-columns:48px 1fr 20px;
+align-items:start;gap:20px;
+padding:24px 0;
+border-bottom:1px solid var(--surface3);
+transition:transform .2s;cursor:default;
+}
+.safety-pillar:hover{transform:translateX(8px);}
+.sp-icon{
+width:48px;height:48px;
+display:flex;align-items:center;justify-content:center;
+border:1px solid rgba(226,35,26,.25);
+font-family:'Bebas Neue',sans-serif;font-size:10px;
+color:var(--red);letter-spacing:.08em;text-align:center;
+padding:4px;flex-shrink:0;
+}
+.sp-title{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:16px;letter-spacing:.08em;
+color:var(--white);text-transform:uppercase;margin-bottom:6px;
+}
+.sp-desc{font-size:14px;line-height:1.6;color:var(--muted);}
+.sp-arrow{color:var(--red);font-size:16px;align-self:center;}
+.safety-bottom{
+margin-top:60px;padding:32px;
+border:1px solid rgba(226,35,26,.15);
+border-left:3px solid var(--red);
+background:rgba(226,35,26,.04);
+text-align:center;
+}
+.safety-bottom p{
+font-family:'Bebas Neue',sans-serif;font-size:28px;
+letter-spacing:.06em;color:var(--white);
+}
+/* ======================== SECTION 9 — STORIES ======================== */
+#stories{
+padding:120px 0;
+background:var(--dark);
+}
+.stories-head{margin-bottom:60px;}
+.story-main{
+display:grid;grid-template-columns:1.1fr 1fr;gap:4px;
+margin-bottom:4px;
+}
+.story-img{
+aspect-ratio:4/3;overflow:hidden;position:relative;
+}
+.story-img img{
+width:100%;height:100%;object-fit:cover;
+filter:grayscale(1) contrast(1.1);
+transition:transform .6s ease;
+}
+.story-main:hover .story-img img{transform:scale(1.03);}
+.story-body{
+background:var(--surface);
+padding:60px 48px;
+display:flex;flex-direction:column;justify-content:center;
+position:relative;
+}
+.story-loc{
+display:inline-flex;align-items:center;gap:8px;
+background:rgba(226,35,26,.1);
+padding:6px 16px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:10px;letter-spacing:.2em;
+color:var(--red);text-transform:uppercase;
+margin-bottom:24px;width:fit-content;
+}
+.story-name{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:18px;letter-spacing:.08em;
+color:var(--white);text-transform:uppercase;margin-bottom:4px;
+}
+.story-bike{
+font-family:'Barlow Condensed',sans-serif;
+font-size:12px;letter-spacing:.15em;color:var(--red);
+text-transform:uppercase;margin-bottom:24px;
+}
+.story-quote{
+position:relative;padding-left:24px;
+}
+.story-quote::before{
+content:'"';
+position:absolute;left:-10px;top:-20px;
+font-family:'Bebas Neue',sans-serif;font-size:80px;
+color:rgba(226,35,26,.25);line-height:1;
+}
+.story-quote p{
+font-size:16px;line-height:1.75;color:var(--muted);
+font-style:italic;
+}
+.stories-grid{display:grid;grid-template-columns:1fr 1fr;gap:4px;}
+.story-small{
+background:var(--surface);
+padding:40px;position:relative;overflow:hidden;
+}
+.story-small::before{
+content:'';position:absolute;top:0;left:0;
+width:3px;height:100%;background:var(--surface3);
+transition:background .3s;
+}
+.story-small:hover::before{background:var(--red);}
+.story-cta-wrap{
+display:flex;justify-content:center;margin-top:60px;
+gap:20px;align-items:center;
+}
+/* ======================== SECTION 10 — SERVICE ======================== */
+#service{
+padding:120px 0;
+background:linear-gradient(135deg,#08101E 0%,#0A0A0A 60%);
+}
+.service-grid{
+display:grid;grid-template-columns:1fr 1.2fr;gap:80px;align-items:start;
+}
+.service-img{position:relative;}
+.service-img img{
+width:100%;aspect-ratio:2/3;object-fit:cover;
+filter:contrast(1.1) brightness(.9);
+}
+.service-img::before{
+content:'SUZUKI\ASERVICE';
+white-space:pre;
+position:absolute;bottom:30px;left:30px;z-index:1;
+font-family:'Bebas Neue',sans-serif;font-size:13px;
+letter-spacing:.3em;color:var(--white);
+border-left:3px solid var(--red);padding-left:16px;
+line-height:1.8;
+}
+.accordion{}
+.acc-item{
+border-bottom:1px solid var(--surface3);
+}
+.acc-toggle{
+width:100%;display:flex;align-items:center;justify-content:space-between;
+padding:24px 0;background:none;border:none;
+cursor:pointer;text-align:left;
+}
+.acc-title{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:17px;letter-spacing:.1em;
+color:var(--white);text-transform:uppercase;
+}
+.acc-icon{
+width:28px;height:28px;border:1px solid var(--surface3);
+display:flex;align-items:center;justify-content:center;
+color:var(--muted);font-size:18px;flex-shrink:0;
+transition:all .3s;
+}
+.acc-item.open .acc-icon{background:var(--red);border-color:var(--red);color:var(--white);transform:rotate(45deg);}
+.acc-body{
+max-height:0;overflow:hidden;
+transition:max-height .4s ease;
+}
+.acc-item.open .acc-body{max-height:200px;}
+.acc-body p{
+padding-bottom:24px;
+font-size:14px;line-height:1.7;color:var(--muted);
+}
+.service-badges{
+display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-bottom:40px;
+}
+.svc-badge{
+background:rgba(255,255,255,.03);
+border:1px solid var(--surface3);
+padding:20px;display:flex;align-items:center;gap:12px;
+}
+.svc-check{
+width:20px;height:20px;background:rgba(76,175,80,.15);
+border:1px solid rgba(76,175,80,.3);
+display:flex;align-items:center;justify-content:center;
+color:#4CAF50;font-size:11px;flex-shrink:0;
+}
+.svc-badge-label{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:12px;letter-spacing:.1em;
+color:rgba(255,255,255,.7);text-transform:uppercase;
+}
+.service-ctas{display:flex;flex-direction:column;gap:12px;}
+/* ======================== SECTION 11 — NEWS ======================== */
+#news{
+padding:120px 0;
+background:#0A0A0A;
+}
+.news-featured{
+display:grid;grid-template-columns:1.4fr 1fr;gap:4px;
+margin-bottom:4px;
+}
+.news-feat-img{
+aspect-ratio:16/9;overflow:hidden;position:relative;
+}
+.news-feat-img img{
+width:100%;height:100%;object-fit:cover;
+transition:transform .6s;
+}
+.news-featured:hover .news-feat-img img{transform:scale(1.03);}
+.news-feat-img::after{
+content:'';position:absolute;inset:0;
+background:linear-gradient(to right,rgba(8,8,8,.7) 0%,transparent 60%);
+}
+.news-feat-body{
+background:var(--surface);padding:48px;
+display:flex;flex-direction:column;justify-content:center;
+}
+.news-cat{
+display:inline-block;
+background:var(--red);color:var(--white);
+padding:4px 12px;
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+margin-bottom:20px;
+}
+.news-date{
+font-family:'Barlow Condensed',sans-serif;
+font-size:12px;letter-spacing:.15em;color:var(--muted);
+text-transform:uppercase;margin-bottom:12px;
+}
+.news-title{
+font-family:'Bebas Neue',sans-serif;font-size:36px;
+letter-spacing:.03em;color:var(--white);line-height:1.05;
+margin-bottom:16px;
+}
+.news-excerpt{font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:24px;}
+.news-link{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:12px;letter-spacing:.15em;
+color:var(--red);text-decoration:none;text-transform:uppercase;
+display:flex;align-items:center;gap:8px;
+transition:gap .2s;
+}
+.news-link:hover{gap:14px;}
+.news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;}
+.news-card{background:var(--surface);overflow:hidden;}
+.news-card-img{
+aspect-ratio:16/9;overflow:hidden;
+}
+.news-card-img img{
+width:100%;height:100%;object-fit:cover;
+transition:transform .5s;
+}
+.news-card:hover .news-card-img img{transform:scale(1.06);}
+.news-card-body{padding:28px;}
+/* ======================== SECTION 12 — CTA ======================== */
+#final-cta{
+height:100vh;position:relative;
+display:flex;align-items:center;justify-content:center;
+overflow:hidden;
+}
+.cta-bg{
+position:absolute;inset:0;
+background:
+radial-gradient(ellipse at center bottom,rgba(226,35,26,.12) 0%,transparent 60%),
+url('https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=1920&q=80') center/cover;
+}
+.cta-bg::after{
+content:'';position:absolute;inset:0;
+background:rgba(8,8,8,.7);
+}
+.cta-vignette{
+position:absolute;inset:0;
+background:radial-gradient(ellipse at center,transparent 30%,rgba(8,8,8,.8) 100%);
+z-index:1;
+}
+.cta-content{
+position:relative;z-index:2;
+text-align:center;
+max-width:900px;padding:0 40px;
+}
+.cta-h{
+font-family:'Bebas Neue',sans-serif;
+font-size:clamp(56px,8vw,112px);
+letter-spacing:.03em;line-height:.95;
+margin-bottom:24px;
+}
+.cta-sub{
+font-size:20px;color:rgba(255,255,255,.65);
+font-weight:300;margin-bottom:48px;line-height:1.6;
+}
+.cta-btns{
+display:flex;flex-direction:column;align-items:center;gap:16px;
+}
+.cta-btns .btn-primary{font-size:15px;padding:18px 48px;}
+.cta-hotline{
+font-family:'Barlow Condensed',sans-serif;
+font-size:18px;letter-spacing:.1em;color:rgba(255,255,255,.5);
+margin-top:12px;
+}
+.cta-hotline a{color:var(--white);text-decoration:none;}
+/* ======================== FOOTER ======================== */
+footer{
+background:#050505;
+border-top:1px solid var(--surface3);
+padding:60px 0 40px;
+}
+.footer-main{
+display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+gap:60px;margin-bottom:60px;
+}
+.footer-brand .nav-logo{margin-bottom:20px;}
+.footer-tagline{
+font-size:14px;line-height:1.7;color:var(--muted);margin-bottom:24px;
+}
+.footer-hotline{
+font-family:'Bebas Neue',sans-serif;font-size:22px;
+letter-spacing:.1em;color:var(--white);
+}
+.footer-hotline span{color:var(--red);}
+.footer-col h4{
+font-family:'Barlow Condensed',sans-serif;
+font-weight:700;font-size:12px;letter-spacing:.2em;
+color:var(--dim);text-transform:uppercase;margin-bottom:20px;
+}
+.footer-col ul{list-style:none;}
+.footer-col li{margin-bottom:10px;}
+.footer-col a{
+font-size:14px;color:var(--muted);text-decoration:none;
+transition:color .2s;letter-spacing:.02em;
+}
+.footer-col a:hover{color:var(--red);}
+.footer-bottom{
+display:flex;justify-content:space-between;align-items:center;
+padding-top:32px;border-top:1px solid var(--surface3);
+}
+.footer-copy{font-size:12px;color:var(--dim);letter-spacing:.05em;}
+.social-row{display:flex;gap:12px;}
+.soc-btn{
+width:36px;height:36px;border:1px solid var(--surface3);
+display:flex;align-items:center;justify-content:center;
+color:var(--muted);text-decoration:none;font-size:13px;
+transition:all .2s;
+}
+.soc-btn:hover{border-color:var(--red);color:var(--red);}
+.rancon-badge{
+font-family:'Barlow Condensed',sans-serif;
+font-size:11px;letter-spacing:.15em;color:var(--dim);
+text-transform:uppercase;
+}
+/* ======================== UTILS ======================== */
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.text-red{color:var(--red);}
+.mt-80{margin-top:80px;}
+.section-sub{
+font-size:16px;line-height:1.75;color:var(--muted);
+max-width:600px;margin-bottom:60px;
+}
+.d-flex-between{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;}
+</style>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+<body>
+
+<!-- CURSOR -->
+<div class="cursor" id="cursor"></div>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#" class="nav-logo">
+    <div class="logo-s"></div>
+    <span class="logo-text">SUZUKI</span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#bikes">Bikes</a></li>
+    <li><a href="#service">Service</a></li>
+    <li><a href="#deals">Offers</a></li>
+    <li><a href="#motogp">MotoGP</a></li>
+    <li><a href="#">Dealer Locator</a></li>
+    <li><a href="#news">News</a></li>
+  </ul>
+  <a href="#final-cta" class="nav-cta">Explore Bikes</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="section-label hero-label">SUZUKI GIXXER 250 — MotoGP EDITION · 2026</div>
+    <h1 class="hero-h1">
+      <span class="line1">THIS ISN'T JUST A BIKE.</span>
+      <span class="line2">THIS IS WHO YOU ARE.</span>
+    </h1>
+    <p class="hero-sub">250cc · Fuel Injected · Oil Cooled · MotoGP-Inspired</p>
+    <div class="hero-ctas">
+      <a href="#bikes" class="btn-primary">Explore Gixxer 250 →</a>
+      <a href="#engine" class="btn-ghost">
+        <span class="play-icon"></span>
+        Watch the Film
+      </a>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div class="hero-stat">
+      <div class="hero-stat-num">250<span>cc</span></div>
+      <div class="hero-stat-label">Engine Displacement</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">ABS</div>
+      <div class="hero-stat-label">Dual-Channel</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">104<span>yrs</span></div>
+      <div class="hero-stat-label">Japanese Engineering</div>
+    </div>
+    <div class="hero-stat">
+      <div class="hero-stat-num">FI</div>
+      <div class="hero-stat-label">Fuel Injection</div>
+    </div>
+  </div>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+  <div class="hero-ticker">
+    <div class="ticker-track" id="tickerTrack">
+      <span class="ticker-item">250CC</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">FUEL INJECTION</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">DUAL-CHANNEL ABS</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">SUZUKI OIL COOLING SYSTEM</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">6-SPEED GEARBOX</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">MotoGP DNA</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">JOAN MIR — 2020 WORLD CHAMPION</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">RANCON AUTHORIZED · HOTLINE 16638</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">250CC</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">FUEL INJECTION</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">DUAL-CHANNEL ABS</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">SUZUKI OIL COOLING SYSTEM</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">6-SPEED GEARBOX</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">MotoGP DNA</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">JOAN MIR — 2020 WORLD CHAMPION</span><span class="ticker-dot">●</span>
+      <span class="ticker-item">RANCON AUTHORIZED · HOTLINE 16638</span><span class="ticker-dot">●</span>
+    </div>
+  </div>
+</section>
+
+<!-- DIFFERENCE -->
+<section id="difference">
+  <div class="diff-grid">
+    <div class="diff-left reveal">
+      <div class="section-label">THE SUZUKI DIFFERENCE</div>
+      <h2 class="section-h2">Not Every Bike Has <span class="red">104 Years</span> Behind It.</h2>
+      <p class="section-sub">On 15th March 1920, Michio Suzuki founded a company in Hamamatsu, Japan. One hundred and four years later, that same obsession with precision powers every Suzuki on Bangladesh's roads.</p>
+      <div class="diff-rider"></div>
+    </div>
+    <div class="diff-right">
+      <div class="pillar-card reveal">
+        <div class="pillar-num">01 / 04</div>
+        <div class="pillar-title">MotoGP Racing DNA</div>
+        <div class="pillar-sub">Proven at 300km/h. Engineered for your roads.</div>
+        <p class="pillar-body">In 2020, Joan Mir and Team Suzuki Ecstar claimed the MotoGP World Championship. Every aerodynamic insight, every fuel mapping advancement, every millisecond of chassis refinement from that campaign lives inside the Gixxer 250 you ride today.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-num">02 / 04</div>
+        <div class="pillar-title">Japanese Precision Engineering</div>
+        <div class="pillar-sub">Hamamatsu-born. Bangladesh-proven.</div>
+        <p class="pillar-body">Suzuki's engineers treat zero-defect as a minimum standard, not a goal. The Gixxer 250's SOCS oil cooling system, precision-mapped FI, and diamond-frame geometry are all products of this uncompromising philosophy.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-num">03 / 04</div>
+        <div class="pillar-title">Technology That Sets the Standard</div>
+        <div class="pillar-sub">Dual-Channel ABS. FI. SOCS. Standard.</div>
+        <p class="pillar-body">While others treat these as premium upgrades, Suzuki includes dual-channel ABS, fuel injection, and the Suzuki Oil Cooling System as standard. Because serious riders shouldn't pay extra for what every bike should have.</p>
+      </div>
+      <div class="pillar-card reveal">
+        <div class="pillar-num">04 / 04</div>
+        <div class="pillar-title">Rancon Motor Bikes — Bangladesh's Partner</div>
+        <div class="pillar-sub">Local commitment. Global standards.</div>
+        <p class="pillar-body">Distributed exclusively by Rancon Motor Bikes Ltd., Suzuki Bangladesh's network of authorized dealers, FI-certified service centers, and genuine parts availability ensures your Suzuki ownership experience matches the machine itself.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BIKES -->
+<section id="bikes">
+  <div class="container">
+    <div class="d-flex-between">
+      <div class="reveal">
+        <div class="section-label">THE SUZUKI RANGE</div>
+        <h2 class="section-h2">Every Rider Has a Machine.<br><span class="red">Find Yours.</span></h2>
+      </div>
+      <a href="#" class="btn-ghost reveal" style="height:fit-content">View All Bikes →</a>
+    </div>
+    <div class="filter-tabs reveal">
+      <button class="tab active" onclick="filterTab(this,'all')">All Bikes</button>
+      <button class="tab" onclick="filterTab(this,'sports')">Sports</button>
+      <button class="tab" onclick="filterTab(this,'performance')">Performance Sports</button>
+      <button class="tab" onclick="filterTab(this,'commuter')">Commuter</button>
+      <button class="tab" onclick="filterTab(this,'scooter')">Scooter</button>
+    </div>
+
+    <!-- Hero Bike Card -->
+    <div class="hero-bike-card reveal">
+      <div class="hero-bike-img">
+        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=900&amp;q=80" alt="Rider on Gixxer 250">
+        <div class="badge">NEW LAUNCH · MotoGP EDITION</div>
+      </div>
+      <div class="hero-bike-info">
+        <div class="bike-model">GIXXER 250</div>
+        <p class="bike-tagline">The naked truth about performance.</p>
+        <div class="spec-pills">
+          <span class="spec-pill">250cc</span>
+          <span class="spec-pill">SOCS</span>
+          <span class="spec-pill">FI</span>
+          <span class="spec-pill">Dual ABS</span>
+          <span class="spec-pill">6-Speed</span>
+          <span class="spec-pill">LED</span>
+        </div>
+        <div class="bike-price-label">Starting from</div>
+        <div class="bike-price">BDT 379,950</div>
+        <div class="color-dots">
+          <div class="color-dot active" style="background:#1a1a1a;border-color:#555" title="Matt Black"></div>
+          <div class="color-dot" style="background:#1A3278" title="Matt Blue"></div>
+          <div class="color-dot" style="background:#E2231A" title="MotoGP Edition"></div>
+          <div class="color-dot" style="background:#C8FF00" title="Nitro Neon"></div>
+        </div>
+        <a href="#" class="btn-primary">Explore the Gixxer 250 →</a>
+      </div>
+    </div>
+
+    <!-- Bike Grid -->
+    <div class="bike-grid mt-80">
+      <div class="bike-card reveal">
+        <div class="bike-card-img">
+          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&amp;q=80" alt="Gixxer SF 250">
+          <img class="rider-img" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80" alt="Rider on Gixxer SF 250">
+        </div>
+        <div class="bike-card-body">
+          <div class="bike-card-name">GIXXER SF 250</div>
+          <div class="bike-card-price">From BDT 429,950 · 5 Colors</div>
+          <a href="#" class="bike-card-link">Explore Bike</a>
+        </div>
+      </div>
+      <div class="bike-card reveal">
+        <div class="bike-card-img">
+          <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&amp;q=80" alt="GSX-R150">
+          <img class="rider-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Rider on GSX-R150">
+        </div>
+        <div class="bike-card-body">
+          <div class="bike-card-name">GSX-R150</div>
+          <div class="bike-card-price">From BDT 524,950 · 2 Colors</div>
+          <a href="#" class="bike-card-link">Explore Bike</a>
+        </div>
+      </div>
+      <div class="bike-card reveal">
+        <div class="bike-card-img">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&amp;q=80" alt="Gixxer SF">
+          <img class="rider-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&amp;q=80" alt="Rider">
+        </div>
+        <div class="bike-card-body">
+          <div class="bike-card-name">GIXXER SF</div>
+          <div class="bike-card-price">From BDT 329,950 · 3 Colors</div>
+          <a href="#" class="bike-card-link">Explore Bike</a>
+        </div>
+      </div>
+      <div class="bike-card reveal">
+        <div class="bike-card-img">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Gixxer">
+          <img class="rider-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" alt="Rider">
+        </div>
+        <div class="bike-card-body">
+          <div class="bike-card-name">GIXXER</div>
+          <div class="bike-card-price">From BDT 229,950 · 3 Colors</div>
+          <a href="#" class="bike-card-link">Explore Bike</a>
+        </div>
+      </div>
+      <div class="bike-card reveal">
+        <div class="bike-card-img">
+          <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80" alt="GSX 125">
+          <img class="rider-img" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&amp;q=80" alt="Rider">
+        </div>
+        <div class="bike-card-body">
+          <div class="bike-card-name">GSX 125</div>
+          <div class="bike-card-price">From BDT 141,950 · 3 Colors</div>
+          <a href="#" class="bike-card-link">Explore Bike</a>
+        </div>
+      </div>
+      <div class="bike-card reveal">
+        <div class="bike-card-img">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Hayate EP">
+          <img class="rider-img" src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&amp;q=80" alt="Rider">
+        </div>
+        <div class="bike-card-body">
+          <div class="bike-card-name">HAYATE EP</div>
+          <div class="bike-card-price">From BDT 118,000 · 4 Colors</div>
+          <a href="#" class="bike-card-link">Explore Bike</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECHNOLOGY -->
+<section id="technology">
+  <div class="tech-bg"></div>
+  <div class="tech-scan"></div>
+  <div class="container">
+    <div class="reveal" style="text-align:center">
+      <div class="section-label" style="justify-content:center">SUZUKI TECHNOLOGY</div>
+      <h2 class="section-h2" style="font-size:clamp(48px,6vw,88px)">The Science Behind<br><span class="red">Every Second.</span></h2>
+      <p class="section-sub" style="margin:0 auto 0">Every system on a Suzuki exists for one reason — to make you a better, faster, safer rider.</p>
+    </div>
+    <div class="tech-cards">
+      <div class="tech-card active reveal" onclick="setTech(this)">
+        <span class="tech-num">01</span>
+        <div class="tech-acronym">FI</div>
+        <div class="tech-name">Fuel Injection</div>
+        <p class="tech-desc">Delivers the precise air-fuel mix at every RPM. Instant throttle response. Cold starts to open highway — always on demand.</p>
+      </div>
+      <div class="tech-card reveal" onclick="setTech(this)">
+        <span class="tech-num">02</span>
+        <div class="tech-acronym">SOCS</div>
+        <div class="tech-name">Suzuki Oil Cooling System</div>
+        <p class="tech-desc">Superior thermal management under sustained high performance. Lighter than liquid cooling. More effective than air cooling.</p>
+      </div>
+      <div class="tech-card reveal" onclick="setTech(this)">
+        <span class="tech-num">03</span>
+        <div class="tech-acronym">ABS</div>
+        <div class="tech-name">Dual-Channel ABS</div>
+        <p class="tech-desc">Independent front and rear wheel braking management. Prevents lock-up. Keeps you in control when it matters most.</p>
+      </div>
+      <div class="tech-card reveal" onclick="setTech(this)">
+        <span class="tech-num">04</span>
+        <div class="tech-acronym">6-SPD</div>
+        <div class="tech-name">6-Speed Gearbox</div>
+        <p class="tech-desc">The right ratio for every situation — city traffic, open highway, or pushing hard through a corner. Smooth. Precise. Zero slop.</p>
+      </div>
+      <div class="tech-card reveal" onclick="setTech(this)">
+        <span class="tech-num">05</span>
+        <div class="tech-acronym">LED</div>
+        <div class="tech-name">Full LED + Digital Cluster</div>
+        <p class="tech-desc">Complete LED headlamp and tail lamp system. Fully digital instrument cluster. See everything. Be seen by everyone.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ENGINE -->
+<section id="engine">
+  <div class="container">
+    <div class="engine-grid">
+      <div class="engine-visual reveal">
+        <div class="engine-img-wrap">
+          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&amp;q=80" alt="Suzuki Engine">
+          <div class="engine-ring"></div>
+        </div>
+        <div class="engine-stats-grid">
+          <div class="e-stat"><div class="e-stat-val">250</div><div class="e-stat-key">CC</div></div>
+          <div class="e-stat"><div class="e-stat-val">FI</div><div class="e-stat-key">Injected</div></div>
+          <div class="e-stat"><div class="e-stat-val">SOCS</div><div class="e-stat-key">Oil Cooled</div></div>
+          <div class="e-stat"><div class="e-stat-val">6</div><div class="e-stat-key">Speed</div></div>
+        </div>
+      </div>
+      <div class="engine-right reveal">
+        <div class="section-label">THE HEART OF A SUZUKI</div>
+        <h2 class="section-h2">250cc.<br><span class="red">Zero</span> Compromise.</h2>
+        <p class="engine-desc">The Gixxer 250's SOCS engine performs at the same level on lap one of your morning commute as it does on kilometre 200 of a weekend run. This engine doesn't just produce power. It produces confidence.</p>
+        <div class="engine-features">
+          <div class="engine-feature">
+            <div class="ef-icon">FI</div>
+            <div><div class="ef-title">Fuel Injection System</div><div class="ef-val">Optimal power delivery and fuel efficiency at every RPM</div></div>
+          </div>
+          <div class="engine-feature">
+            <div class="ef-icon">SOCS</div>
+            <div><div class="ef-title">Oil Cooling System</div><div class="ef-val">Consistent performance even under high stress conditions</div></div>
+          </div>
+          <div class="engine-feature">
+            <div class="ef-icon">ABS</div>
+            <div><div class="ef-title">Dual-Channel ABS</div><div class="ef-val">Safety and stability under all road conditions</div></div>
+          </div>
+          <div class="engine-feature">
+            <div class="ef-icon">LED</div>
+            <div><div class="ef-title">Full LED System</div><div class="ef-val">LED headlamps, tail lamps &amp; digital instrument cluster</div></div>
+          </div>
+        </div>
+        <a href="#" class="btn-primary" style="margin-top:40px">Full Specifications →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MotoGP -->
+<section id="motogp">
+  <div class="motogp-bg"></div>
+  <div class="particles" id="particles"></div>
+  <div class="container">
+    <div class="motogp-head reveal">
+      <div class="section-label" style="justify-content:center">MotoGP LEGACY</div>
+      <h2 class="section-h2">
+        Champions
+        <span class="line2" style="display:block">Built This Bike.</span>
+      </h2>
+      <div class="gold-rule"></div>
+      <p class="section-sub" style="margin:0 auto;text-align:center">Since 1920, Suzuki has engineered machines that win at the world's highest level. Every championship lesson shapes the bike in front of you.</p>
+    </div>
+    <div class="timeline reveal">
+      <div class="timeline-line"></div>
+      <div class="timeline-nodes">
+        <div class="t-node" onclick="setTimeline(this,0)">
+          <div class="t-dot"></div>
+          <div class="t-year">1920</div>
+          <div class="t-event">Suzuki Founded</div>
+        </div>
+        <div class="t-node" onclick="setTimeline(this,1)">
+          <div class="t-dot"></div>
+          <div class="t-year">1976</div>
+          <div class="t-event">500cc World Title</div>
+        </div>
+        <div class="t-node active" onclick="setTimeline(this,2)">
+          <div class="t-dot"></div>
+          <div class="t-year">2018</div>
+          <div class="t-event">Alex Rins Podium</div>
+        </div>
+        <div class="t-node" onclick="setTimeline(this,3)">
+          <div class="t-dot"></div>
+          <div class="t-year">2020</div>
+          <div class="t-event">World Champion</div>
+        </div>
+        <div class="t-node" onclick="setTimeline(this,4)">
+          <div class="t-dot"></div>
+          <div class="t-year">2020</div>
+          <div class="t-event">100th Anniversary</div>
+        </div>
+        <div class="t-node" onclick="setTimeline(this,5)">
+          <div class="t-dot"></div>
+          <div class="t-year">2024</div>
+          <div class="t-event">Gixxer 250 BD</div>
+        </div>
+      </div>
+      <div id="timelineDetails">
+        <div class="timeline-detail" data-index="0">
+          <div class="td-year">1920</div>
+          <div class="td-title">The Origin of Everything</div>
+          <p class="td-body">On 15th March 1920, Michio Suzuki founded the Suzuki Loom Manufacturing Co. in Hamamatsu, Japan. The founder's philosophy — "focusing on customers" — has driven every product and every engineering decision since that day.</p>
+        </div>
+        <div class="timeline-detail" data-index="1">
+          <div class="td-year">1976</div>
+          <div class="td-title">Barry Sheene — World Champion</div>
+          <p class="td-body">Barry Sheene claimed the 500cc World Championship riding a Suzuki RG500. It was the beginning of Suzuki's Grand Prix dominance — and the engineering lessons from that championship run echo in every Suzuki produced today.</p>
+        </div>
+        <div class="timeline-detail active" data-index="2">
+          <div class="td-year">2018</div>
+          <div class="td-title">Alex Rins — Japanese GP Podium</div>
+          <p class="td-body">At Twin Ring Motegi, before 55,000 passionate fans, Alex Rins fought his way to 3rd place for Team Suzuki Ecstar. "We did a great race," Rins said after. "It's fun to fight with the other riders." That fighting spirit defines every Suzuki.</p>
+        </div>
+        <div class="timeline-detail" data-index="3">
+          <div class="td-year">2020</div>
+          <div class="td-title">Joan Mir — MotoGP World Champion</div>
+          <p class="td-body">Joan Mir and Team Suzuki Ecstar claimed the 2020 MotoGP World Championship — the pinnacle of motorcycle racing. The aerodynamic and engineering principles that won that title are directly coded into the DNA of the Gixxer 250.</p>
+        </div>
+        <div class="timeline-detail" data-index="4">
+          <div class="td-year">2020</div>
+          <div class="td-title">Suzuki Celebrates 100 Years</div>
+          <p class="td-body">A century of engineering excellence. Suzuki Motor Corporation celebrated its 100th anniversary — reaffirming its commitment to customers and innovation. To mark the occasion in Bangladesh, a limited-edition 100th Anniversary Gixxer SF was released.</p>
+        </div>
+        <div class="timeline-detail" data-index="5">
+          <div class="td-year">2024</div>
+          <div class="td-title">Gixxer 250 Arrives in Bangladesh</div>
+          <p class="td-body">On December 1st, 2024, at Aloki, Tejgaon, Dhaka — Suzuki Bangladesh officially unveiled the Gixxer 250 and Gixxer SF 250. With brand ambassador Siam Ahmed present, Bangladesh's most powerful 250cc sports bikes entered the market.</p>
+        </div>
+      </div>
+    </div>
+    <div class="motogp-stats reveal">
+      <div class="mg-stat">
+        <div class="mg-stat-val">104</div>
+        <div class="mg-stat-label">Years of Engineering Excellence</div>
+      </div>
+      <div class="mg-stat">
+        <div class="mg-stat-val"><span class="red">2020</span></div>
+        <div class="mg-stat-label">MotoGP World Championship — Joan Mir</div>
+      </div>
+      <div class="mg-stat">
+        <div class="mg-stat-val">50<span class="red">+</span></div>
+        <div class="mg-stat-label">Years of Grand Prix Racing</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEALS -->
+<section id="deals">
+  <div class="container">
+    <div class="d-flex-between reveal">
+      <div>
+        <div class="section-label">LIMITED TIME OFFERS</div>
+        <h2 class="section-h2">The Ride You Want.<br><span class="red">At a Price That Respects You.</span></h2>
+      </div>
+    </div>
+    <div class="deals-grid">
+      <div class="deal-card reveal">
+        <div class="deal-banner">Special Price — Limited Stock</div>
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&amp;q=80" alt="Gixxer">
+        </div>
+        <div class="deal-body">
+          <div class="deal-name">GIXXER</div>
+          <div class="deal-was">MRP BDT 237,950</div>
+          <div class="deal-price">BDT 229,950</div>
+          <div class="deal-save">SAVE BDT 8,000</div>
+          <div class="deal-avail"><span class="blink-dot"></span>3 Colors Available</div>
+          <a href="#" class="deal-btn">Claim This Deal →</a>
+        </div>
+      </div>
+      <div class="deal-card reveal">
+        <div class="deal-banner">Special Price — 7 Colors</div>
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=500&amp;q=80" alt="Gixxer Monotone">
+        </div>
+        <div class="deal-body">
+          <div class="deal-name">GIXXER MONOTONE</div>
+          <div class="deal-was">MRP BDT 205,950</div>
+          <div class="deal-price">BDT 199,950</div>
+          <div class="deal-save">SAVE BDT 6,000</div>
+          <div class="deal-avail"><span class="blink-dot"></span>7 Colors Available</div>
+          <a href="#" class="deal-btn">Claim This Deal →</a>
+        </div>
+      </div>
+      <div class="deal-card reveal">
+        <div class="deal-banner">Special Price — Classic Series</div>
+        <div class="deal-img-wrap">
+          <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500&amp;q=80" alt="Gixxer Classic Matt">
+        </div>
+        <div class="deal-body">
+          <div class="deal-name">GIXXER CLASSIC MATT</div>
+          <div class="deal-was">MRP BDT 208,950</div>
+          <div class="deal-price">BDT 202,950</div>
+          <div class="deal-save">SAVE BDT 6,000</div>
+          <div class="deal-avail"><span class="blink-dot"></span>2 Colors · Limited Availability</div>
+          <a href="#" class="deal-btn">Claim This Deal →</a>
+        </div>
+      </div>
+    </div>
+    <p style="text-align:center;font-size:12px;color:var(--dim);margin-top:24px;letter-spacing:.05em">All prices are MRP. Final pricing confirmed at authorized Suzuki dealers. Offer valid while stocks last. EMI available via partner banks — visit <a href="https://dhp.suzuki.com.bd" style="color:var(--red)">dhp.suzuki.com.bd</a></p>
+  </div>
+</section>
+
+<!-- SAFETY -->
+<section id="safety">
+  <div class="container">
+    <div class="safety-grid">
+      <div class="safety-img reveal">
+        <div class="safety-img-inner">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" alt="Rider in safety gear">
+          <div class="safety-tag">RIDE WITH CONFIDENCE</div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="section-label">RIDER SAFETY</div>
+        <h2 class="section-h2">Fast Enough to Thrill.<br><span class="red">Safe Enough</span> to Trust.</h2>
+        <p class="section-sub">At Suzuki, safety isn't an afterthought. Every feature is engineered — because the most exciting rides are the ones you come home from.</p>
+        <div class="safety-pillars">
+          <div class="safety-pillar">
+            <div class="sp-icon">ABS</div>
+            <div><div class="sp-title">Dual-Channel ABS — Standard</div><div class="sp-desc">Not optional. Not an upgrade. Every Gixxer 250 ships with dual-channel ABS — preventing wheel lock-up in emergency braking so you stop where you intend to.</div></div>
+            <div class="sp-arrow">→</div>
+          </div>
+          <div class="safety-pillar">
+            <div class="sp-icon">LED</div>
+            <div><div class="sp-title">Full LED Lighting System</div><div class="sp-desc">See more. Be seen more. Complete LED headlamp and tail lamp coverage — maximum visibility at dawn, dusk, rain, and deep night.</div></div>
+            <div class="sp-arrow">→</div>
+          </div>
+          <div class="safety-pillar">
+            <div class="sp-icon">FI</div>
+            <div><div class="sp-title">FI-Certified Service Centers</div><div class="sp-desc">Every Rancon authorized service center is equipped with FI cleaners and trained technicians. A well-maintained Suzuki is a safe Suzuki.</div></div>
+            <div class="sp-arrow">→</div>
+          </div>
+          <div class="safety-pillar">
+            <div class="sp-icon">ERG</div>
+            <div><div class="sp-title">Ergonomic Design</div><div class="sp-desc">Lightweight chassis designed for agility and stability. A balanced bike gives you control in traffic and confidence on open roads.</div></div>
+            <div class="sp-arrow">→</div>
+          </div>
+        </div>
+        <div class="safety-bottom">
+          <p>WEAR YOUR HELMET. WEAR YOUR GEAR. RIDE A SUZUKI.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STORIES -->
+<section id="stories">
+  <div class="container">
+    <div class="stories-head reveal">
+      <div class="section-label">RIDERS LIKE YOU</div>
+      <h2 class="section-h2">The Road Means Something<br>Different to Every Rider. <span class="red">Here's What It Means to Ours.</span></h2>
+    </div>
+    <div class="story-main reveal">
+      <div class="story-img">
+        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=900&amp;q=80" alt="Rider Rafiq">
+      </div>
+      <div class="story-body">
+        <div class="story-loc">📍 Dhaka</div>
+        <div class="story-name">Rafiq Ahmed, 34</div>
+        <div class="story-bike">GIXXER 250 · Matt Blue</div>
+        <div class="story-quote">
+          <p>"I've been riding for 11 years across four different bikes. When the Gixxer 250 launched on December 1st, 2024, I was in the crowd at Aloki. I test-rode it the next morning. I bought it the day after. Eleven years in — this is the first bike that feels like it was built specifically for me."</p>
+        </div>
+      </div>
+    </div>
+    <div class="stories-grid">
+      <div class="story-small reveal">
+        <div class="story-loc">📍 Chittagong</div>
+        <div class="story-name">Tanvir Hossain, 29</div>
+        <div class="story-bike">GIXXER SF 250 · Nitro Neon Edition</div>
+        <div class="story-quote" style="margin-top:16px">
+          <p style="font-size:15px;line-height:1.75;color:var(--muted);font-style:italic">"Every Friday after Jummah, I point the SF 250 toward Cox's Bazar and just go. No plan. No itinerary. The SOCS engine doesn't care how far you push it. That's what I bought it for — that's freedom."</p>
+        </div>
+      </div>
+      <div class="story-small reveal">
+        <div class="story-loc">📍 Sylhet</div>
+        <div class="story-name">Nusrat Jahan, 27</div>
+        <div class="story-bike">GSX 125 → Gixxer 250</div>
+        <div class="story-quote" style="margin-top:16px">
+          <p style="font-size:15px;line-height:1.75;color:var(--muted);font-style:italic">"Started on the GSX 125. Two years later I walked into the showroom for the Gixxer 250. The upgrade wasn't just in the engine. It was in how I felt about myself as a rider. Suzuki grew with me."</p>
+        </div>
+      </div>
+    </div>
+    <div class="story-cta-wrap reveal">
+      <a href="#" class="btn-ghost">Share Your Suzuki Story →</a>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICE -->
+<section id="service">
+  <div class="container">
+    <div class="service-grid">
+      <div class="service-img reveal">
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&amp;q=80" alt="Suzuki Service">
+      </div>
+      <div class="reveal">
+        <div class="section-label">SUZUKI SERVICE</div>
+        <h2 class="section-h2">Your Ride Doesn't Stop.<br><span class="red">Neither Do We.</span></h2>
+        <p class="section-sub">Rancon Motor Bikes Ltd. has built Bangladesh's most capable motorcycle service network to ensure your Suzuki performs like new — every kilometre, every year.</p>
+        <div class="service-badges">
+          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">FI Certified Centers</div></div>
+          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Genuine Suzuki Parts</div></div>
+          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Ecstar Engine Oil</div></div>
+          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Trained Technicians</div></div>
+        </div>
+        <div class="accordion">
+          <div class="acc-item open">
+            <button class="acc-toggle" onclick="toggleAcc(this)">
+              <span class="acc-title">FI-Certified Service Centers</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-body"><p>Every authorized Suzuki service center is equipped with dedicated FI cleaners and staffed by Suzuki-trained technicians. Whether your bike has 500km or 50,000km — it gets the same standard of care.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-toggle" onclick="toggleAcc(this)">
+              <span class="acc-title">Suzuki Genuine Parts</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-body"><p>Don't compromise your machine. Suzuki Bangladesh stocks and distributes genuine Suzuki components through every authorized dealer — priced fairly and available nationally.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-toggle" onclick="toggleAcc(this)">
+              <span class="acc-title">Ecstar Engine Oil</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-body"><p>Suzuki's own engine oil formula — developed alongside the MotoGP program for superior thermal protection and engine longevity. Available at every authorized Suzuki dealer.</p></div>
+          </div>
+          <div class="acc-item">
+            <button class="acc-toggle" onclick="toggleAcc(this)">
+              <span class="acc-title">Service Packages</span>
+              <span class="acc-icon">+</span>
+            </button>
+            <div class="acc-body"><p>Structured, transparent service packages designed to protect your investment and give you predictable costs. No surprise bills. No guesswork.</p></div>
+          </div>
+        </div>
+        <div class="service-ctas" style="margin-top:40px">
+          <a href="https://suzuki.com.bd/services" class="btn-primary">Choose Your Service Package →</a>
+          <a href="https://suzuki.com.bd/dealer" class="btn-ghost">Find Nearest Dealer →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWS -->
+<section id="news">
+  <div class="container">
+    <div class="d-flex-between reveal">
+      <div>
+        <div class="section-label">FROM THE SUZUKI WORLD</div>
+        <h2 class="section-h2">Stay in the <span class="red">Fast Lane.</span></h2>
+      </div>
+      <a href="https://suzuki.com.bd/news" class="btn-ghost" style="height:fit-content">View All News →</a>
+    </div>
+    <div class="news-featured reveal">
+      <div class="news-feat-img">
+        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1200&amp;q=80" alt="Gixxer 250 Launch">
+      </div>
+      <div class="news-feat-body">
+        <span class="news-cat">Latest · Launch</span>
+        <div class="news-date">December 2, 2024</div>
+        <div class="news-title">Suzuki Bangladesh Unveils MotoGP-Inspired Gixxer 250 &amp; Gixxer SF 250</div>
+        <p class="news-excerpt">Bangladesh's fastest 250cc bikes officially launched at Aloki, Tejgaon, Dhaka — with brand ambassador Siam Ahmed and top Rancon leadership present. The Gixxer 250 Series sets a new standard in performance and design.</p>
+        <a href="https://suzuki.com.bd/news/suzuki-bangladesh-unveils-motogp-inspired-fastest-250cc-bikes-the-suzuki-gixxer-250-and-gixxer-sf-250-qx80cbtw" class="news-link">Read More →</a>
+      </div>
+    </div>
+    <div class="news-grid">
+      <div class="news-card reveal">
+        <div class="news-card-img">
+          <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80" alt="Joan Mir">
+        </div>
+        <div class="news-card-body">
+          <span class="news-cat">MotoGP</span>
+          <div class="news-date" style="margin-top:12px">November 18, 2020</div>
+          <div class="news-title" style="font-size:22px;margin-bottom:12px">Joan Mir Becomes 2020 MotoGP World Champion</div>
+          <a href="https://suzuki.com.bd/news/joan-mir-becomes-2020-motogp-world-champion-23j0110e4h" class="news-link">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-card-img">
+          <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&amp;q=80" alt="Face of Suzuki">
+        </div>
+        <div class="news-card-body">
+          <span class="news-cat">Brand</span>
+          <div class="news-date" style="margin-top:12px">March 1, 2024</div>
+          <div class="news-title" style="font-size:22px;margin-bottom:12px">Siam Ahmed — The Face of Suzuki Bangladesh</div>
+          <a href="https://suzuki.com.bd/news/introducing-the-face-of-suzuki-fhkdb3g4h" class="news-link">Read More →</a>
+        </div>
+      </div>
+      <div class="news-card reveal">
+        <div class="news-card-img">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Suzuki Gixxer Fi Disc">
+        </div>
+        <div class="news-card-body">
+          <span class="news-cat">Launch</span>
+          <div class="news-date" style="margin-top:12px">March 30, 2024</div>
+          <div class="news-title" style="font-size:22px;margin-bottom:12px">New Suzuki Gixxer Fi Disc Series Launched in Bangladesh</div>
+          <a href="https://suzuki.com.bd/news/suzuki-bangladesh-has-launched-new-suzuki-gixxer-fi-disc-series-fggdi15em" class="news-link">Read More →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section id="final-cta">
+  <div class="cta-bg"></div>
+  <div class="cta-vignette"></div>
+  <div class="cta-content reveal">
+    <div class="section-label" style="justify-content:center">YOUR NEXT RIDE</div>
+    <h2 class="cta-h">Your Next Ride<br><span class="red">Is Waiting.</span></h2>
+    <p class="cta-sub">Don't just read about it.<br>Sit on it. Feel it. Own it.</p>
+    <div class="cta-btns">
+      <a href="https://suzuki.com.bd/test-ride" class="btn-primary" style="font-size:15px;padding:18px 48px">Book a Free Test Ride →</a>
+      <a href="https://suzuki.com.bd/dealer" class="btn-ghost">Find a Dealer Near You →</a>
+      <div class="cta-hotline">📞 Hotline: <a href="tel:16638">16638</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <a href="#" class="nav-logo" style="margin-bottom:20px;display:flex">
+          <div class="logo-s"></div>
+          <span class="logo-text">SUZUKI</span>
+        </a>
+        <p class="footer-tagline">Founded in Japan, 1920. Proven in MotoGP. Distributed exclusively by Rancon Motor Bikes Ltd. — available at your nearest authorized dealer across Bangladesh.</p>
+        <div class="footer-hotline">HOTLINE: <span>16638</span></div>
+      </div>
+      <div class="footer-col">
+        <h4>Suzuki</h4>
+        <ul>
+          <li><a href="https://suzuki.com.bd/about">About</a></li>
+          <li><a href="https://suzuki.com.bd/bikes">All Bikes</a></li>
+          <li><a href="https://suzuki.com.bd/services">Services</a></li>
+          <li><a href="https://suzuki.com.bd/dealer">Dealer Locator</a></li>
+          <li><a href="https://suzuki.com.bd/offers">Offers</a></li>
+          <li><a href="https://suzuki.com.bd/contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="https://suzuki.com.bd/accessories">Accessories</a></li>
+          <li><a href="https://suzuki.com.bd/engine-oil">Ecstar Engine Oil</a></li>
+          <li><a href="https://suzuki.com.bd/genuine-parts">Genuine Parts</a></li>
+          <li><a href="https://dhp.suzuki.com.bd">Finance / EMI</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Policy</h4>
+        <ul>
+          <li><a href="https://suzuki.com.bd/warranty-policy">Warranty Policy</a></li>
+          <li><a href="https://suzuki.com.bd/service-policy">Service Policy</a></li>
+          <li><a href="https://suzuki.com.bd/privacy-policy">Privacy Policy</a></li>
+          <li><a href="https://suzuki.com.bd/terms-condition">Terms &amp; Conditions</a></li>
+          <li><a href="https://suzuki.com.bd/sales-and-refunds">Sales &amp; Refunds</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="footer-copy">© 2023–2026 RANCON MOTOR BIKES LTD. · suzuki.com.bd</div>
+      <div class="social-row">
+        <a href="#" class="soc-btn" title="Facebook">f</a>
+        <a href="#" class="soc-btn" title="Instagram">in</a>
+        <a href="#" class="soc-btn" title="YouTube">▶</a>
+        <a href="#" class="soc-btn" title="TikTok">tt</a>
+      </div>
+      <div class="rancon-badge">Distributed by Rancon Motor Bikes Ltd.</div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// CURSOR
+const cursor = document.getElementById('cursor');
+document.addEventListener('mousemove', e => {
+  cursor.style.left = e.clientX + 'px';
+  cursor.style.top = e.clientY + 'px';
+});
+document.querySelectorAll('a,button,.bike-card,.deal-card,.tech-card').forEach(el => {
+  el.addEventListener('mouseenter', () => cursor.classList.add('expand'));
+  el.addEventListener('mouseleave', () => cursor.classList.remove('expand'));
+});
+
+// NAV SCROLL
+window.addEventListener('scroll', () => {
+  document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// REVEAL ON SCROLL
+const observer = new IntersectionObserver(entries => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), e.target.dataset.delay || 0);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.dataset.delay = (i % 4) * 100;
+  observer.observe(el);
+});
+
+// COUNTER ANIMATION
+function animateCount(el, target, duration = 1500) {
+  let start = 0;
+  const step = target / (duration / 16);
+  const timer = setInterval(() => {
+    start = Math.min(start + step, target);
+    el.textContent = Math.floor(start);
+    if (start >= target) clearInterval(timer);
+  }, 16);
+}
+
+// ACCORDION
+function toggleAcc(btn) {
+  const item = btn.closest('.acc-item');
+  const isOpen = item.classList.contains('open');
+  document.querySelectorAll('.acc-item').forEach(i => i.classList.remove('open'));
+  if (!isOpen) item.classList.add('open');
+}
+
+// FILTER TABS
+function filterTab(el, cat) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  el.classList.add('active');
+}
+
+// TIMELINE
+const timelineData = [0, 1, 2, 3, 4, 5];
+function setTimeline(node, index) {
+  document.querySelectorAll('.t-node').forEach(n => n.classList.remove('active'));
+  node.classList.add('active');
+  document.querySelectorAll('.timeline-detail').forEach(d => {
+    d.classList.remove('active');
+    if (parseInt(d.dataset.index) === index) d.classList.add('active');
+  });
+}
+
+// TECH CARDS
+function setTech(card) {
+  document.querySelectorAll('.tech-card').forEach(c => c.classList.remove('active'));
+  card.classList.add('active');
+}
+
+// PARTICLES
+const particleContainer = document.getElementById('particles');
+for (let i = 0; i < 20; i++) {
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.cssText = `
+    left: ${Math.random() * 100}%;
+    animation-duration: ${8 + Math.random() * 12}s;
+    animation-delay: ${-Math.random() * 10}s;
+    opacity: ${0.1 + Math.random() * 0.3};
+    width: ${1 + Math.random() * 2}px;
+    height: ${1 + Math.random() * 2}px;
+  `;
+  particleContainer.appendChild(p);
+}
+
+// COLOR DOTS
+document.querySelectorAll('.color-dot').forEach(dot => {
+  dot.addEventListener('click', function() {
+    this.closest('.color-dots').querySelectorAll('.color-dot').forEach(d => d.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+</script>
+
+</body></html>

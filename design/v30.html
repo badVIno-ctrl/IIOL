@@ -1,0 +1,1800 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Signalis — Real-Time Infrastructure Observability</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@200;300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+/* ─────────────────────────────────────────
+DESIGN TOKENS
+───────────────────────────────────────── */
+:root {
+--bg: #09090F;
+--bg-2: #0D0D1A;
+--primary: #6366F1;
+--primary-dim: rgba(99,102,241,.18);
+--primary-glow: rgba(99,102,241,.35);
+--accent: #A5B4FC;
+--peak: #E8E3FF;
+--text: #F8F7FF;
+--muted: rgba(248,247,255,.55);
+--dim: rgba(248,247,255,.22);
+--glass-bg: rgba(255,255,255,.04);
+--glass-bg-2: rgba(255,255,255,.07);
+--glass-border: rgba(255,255,255,.08);
+--glass-border-hi: rgba(99,102,241,.45);
+--r: 16px;
+--r-lg: 24px;
+--r-xl: 32px;
+}
+/* ─────────────────────────────────────────
+RESET + BASE
+───────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none;background:none}
+ul{list-style:none}
+/* cursor: default system */
+/* ─────────────────────────────────────────
+FULL-PAGE GRAIN TEXTURE
+───────────────────────────────────────── */
+body::after{
+content:'';
+position:fixed;inset:0;
+z-index:9997;
+pointer-events:none;
+background-image:var(--noise-url);
+background-size:128px 128px;
+opacity:0.10;
+mix-blend-mode:overlay;
+}
+/* ─────────────────────────────────────────
+SVG NOISE FILTER
+───────────────────────────────────────── */
+.noise-filter{display:none}
+/* ─────────────────────────────────────────
+UTILITY CLASSES
+───────────────────────────────────────── */
+.text-gradient{background:linear-gradient(135deg,var(--peak) 0%,var(--accent) 45%,var(--primary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.text-gradient-h{background:linear-gradient(90deg,var(--peak) 0%,var(--accent) 60%,var(--primary) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.glass{background:var(--glass-bg);backdrop-filter:blur(24px) saturate(160%);-webkit-backdrop-filter:blur(24px) saturate(160%);border:1px solid var(--glass-border)}
+/* Gradient border via pseudo */
+.g-border{position:relative;isolation:isolate}
+.g-border::before{content:'';position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg,rgba(99,102,241,.6) 0%,transparent 40%,rgba(165,180,252,.35) 100%);z-index:-1;opacity:0;transition:opacity .3s}
+.g-border:hover::before{opacity:1}
+.g-border-always::before{opacity:1}
+/* Alpha mask bottom */
+.mask-bottom{-webkit-mask-image:linear-gradient(to bottom,black 60%,transparent 100%);mask-image:linear-gradient(to bottom,black 60%,transparent 100%)}
+.mask-top{-webkit-mask-image:linear-gradient(to top,black 60%,transparent 100%);mask-image:linear-gradient(to top,black 60%,transparent 100%)}
+.mask-sides{-webkit-mask-image:linear-gradient(to right,transparent 0%,black 15%,black 85%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 15%,black 85%,transparent 100%)}
+/* Section container */
+.container{max-width:1280px;margin:0 auto;padding:0 32px}
+.container-sm{max-width:960px;margin:0 auto;padding:0 32px}
+/* Noise glass effect — uses SVG filter */
+.noise-glass{position:relative}
+.noise-glass::after{content:'';position:absolute;inset:0;border-radius:inherit;background-image:var(--noise-url);background-size:128px 128px;pointer-events:none;z-index:1;opacity:.4;mix-blend-mode:screen}
+/* Animated gradient border (conic) */
+@property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
+.spin-border{position:relative}
+.spin-border::before{content:'';position:absolute;inset:-2px;border-radius:inherit;background:conic-gradient(from var(--angle),transparent 0%,rgba(99,102,241,.8) 15%,rgba(165,180,252,.4) 30%,transparent 45%,transparent 100%);animation:spin-angle 4s linear infinite;z-index:-1}
+@keyframes spin-angle{to{--angle:360deg}}
+/* Glow dot */
+.glow-dot{width:8px;height:8px;background:var(--primary);border-radius:50%;box-shadow:0 0 0 3px rgba(99,102,241,.2),0 0 12px rgba(99,102,241,.6);animation:pulse-dot 2s ease-in-out infinite}
+@keyframes pulse-dot{0%,100%{box-shadow:0 0 0 3px rgba(99,102,241,.2),0 0 12px rgba(99,102,241,.6)}50%{box-shadow:0 0 0 6px rgba(99,102,241,.1),0 0 24px rgba(99,102,241,.8)}}
+/* ─────────────────────────────────────────
+SCROLL REVEAL (Aura.build compatible)
+- Only use opacity + transform (aura overrides these)
+- Never clip-path, stroke-dashoffset, mask
+- Stagger children get .reveal-child marker
+───────────────────────────────────────── */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:none}
+.reveal-scale{opacity:0;transform:scale(.92);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.reveal-scale.visible{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-48px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-left.visible{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(48px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal-right.visible{opacity:1;transform:none}
+/* Stagger groups — parent observed, children animate in sequence */
+.stagger-up>*{opacity:0;transform:translateY(32px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.stagger-up.visible>*{opacity:1;transform:none}
+.stagger-up.visible>*:nth-child(1){transition-delay:.05s}
+.stagger-up.visible>*:nth-child(2){transition-delay:.1s}
+.stagger-up.visible>*:nth-child(3){transition-delay:.15s}
+.stagger-up.visible>*:nth-child(4){transition-delay:.2s}
+.stagger-up.visible>*:nth-child(5){transition-delay:.25s}
+.stagger-up.visible>*:nth-child(6){transition-delay:.3s}
+.stagger-up.visible>*:nth-child(7){transition-delay:.35s}
+.stagger-scale>*{opacity:0;transform:scale(.85) translateY(24px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.stagger-scale.visible>*{opacity:1;transform:none}
+.stagger-scale.visible>*:nth-child(1){transition-delay:.06s}
+.stagger-scale.visible>*:nth-child(2){transition-delay:.12s}
+.stagger-scale.visible>*:nth-child(3){transition-delay:.18s}
+.stagger-scale.visible>*:nth-child(4){transition-delay:.24s}
+.stagger-scale.visible>*:nth-child(5){transition-delay:.3s}
+.stagger-scale.visible>*:nth-child(6){transition-delay:.36s}
+.stagger-scale.visible>*:nth-child(7){transition-delay:.42s}
+.stagger-left>*{opacity:0;transform:translateX(-32px);transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .6s cubic-bezier(.16,1,.3,1)}
+.stagger-left.visible>*{opacity:1;transform:none}
+.stagger-left.visible>*:nth-child(1){transition-delay:.08s}
+.stagger-left.visible>*:nth-child(2){transition-delay:.16s}
+.stagger-left.visible>*:nth-child(3){transition-delay:.2s}
+.stagger-left.visible>*:nth-child(4){transition-delay:.24s}
+/* Individual delays for manual sequencing */
+[data-delay="1"]{transition-delay:.1s}
+[data-delay="2"]{transition-delay:.18s}
+[data-delay="3"]{transition-delay:.26s}
+[data-delay="4"]{transition-delay:.34s}
+[data-delay="5"]{transition-delay:.42s}
+[data-delay="6"]{transition-delay:.5s}
+/* ─────────────────────────────────────────
+NAVBAR
+───────────────────────────────────────── */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:padding .3s,background .3s,backdrop-filter .3s}
+.nav.scrolled{padding:12px 0;background:rgba(9,9,15,.7);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);border-bottom:1px solid var(--glass-border)}
+.nav__inner{display:flex;align-items:center;justify-content:space-between;gap:40px}
+.nav__logo{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:500;font-size:20px;letter-spacing:-.02em}
+/* logo icon removed */
+.nav__links{display:flex;align-items:center;gap:32px}
+.nav__link{font-size:14px;font-weight:500;color:var(--muted);transition:color .2s;position:relative}
+.nav__link::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:1px;background:linear-gradient(90deg,var(--primary),var(--accent));transition:width .3s}
+.nav__link:hover{color:var(--text)}
+.nav__link:hover::after{width:100%}
+.nav__cta{display:flex;align-items:center;gap:12px;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;border-radius:10px;font-size:14px;font-weight:400;letter-spacing:.01em;transition:all .2s;cursor:pointer;white-space:nowrap}
+.btn-ghost{color:var(--muted);border:1px solid var(--glass-border)}
+.btn-ghost:hover{color:var(--text);border-color:rgba(99,102,241,.4);background:var(--primary-dim)}
+.btn-primary{background:linear-gradient(135deg,var(--primary),#4F46E5);color:#fff;box-shadow:0 0 24px rgba(99,102,241,.35)}
+.btn-primary:hover{box-shadow:0 0 36px rgba(99,102,241,.55);transform:translateY(-1px)}
+.btn-lg{padding:14px 32px;font-size:16px;border-radius:12px}
+.btn-icon{width:18px;height:18px;flex-shrink:0}
+/* ─────────────────────────────────────────
+HERO
+───────────────────────────────────────── */
+.hero{position:relative;height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;padding:72px 32px 24px}
+.hero__bg{position:absolute;inset:0;z-index:0}
+.hero__overlay{position:absolute;inset:0;z-index:1;background:
+radial-gradient(ellipse 80% 50% at 30% 40%,rgba(99,102,241,.12) 0%,transparent 60%),
+radial-gradient(ellipse 60% 40% at 70% 60%,rgba(139,92,246,.10) 0%,transparent 50%),
+radial-gradient(ellipse 50% 35% at 50% 30%,rgba(165,180,252,.08) 0%,transparent 55%),
+linear-gradient(to bottom,rgba(9,9,15,.32) 0%,rgba(9,9,15,.18) 35%,rgba(9,9,15,.35) 65%,rgba(9,9,15,.88) 100%),
+radial-gradient(ellipse 100% 80% at 50% 50%,transparent 0%,rgba(9,9,15,.35) 70%,rgba(9,9,15,.85) 100%)}
+.hero__content{position:relative;z-index:2;text-align:center;max-width:960px;margin:0 auto}
+.hero__badge{display:inline-flex;align-items:center;gap:8px;padding:5px 12px 5px 8px;border-radius:100px;background:var(--primary-dim);border:1px solid rgba(99,102,241,.3);font-size:12px;font-weight:500;color:var(--accent);margin-bottom:20px;animation:badge-glow 3s ease-in-out infinite;letter-spacing:-.01em}
+@keyframes badge-glow{0%,100%{box-shadow:0 0 16px rgba(99,102,241,.15)}50%{box-shadow:0 0 28px rgba(99,102,241,.35)}}
+.hero__badge-new{background:linear-gradient(90deg,var(--primary),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.08em}
+.hero__title{font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(40px,5.5vw,72px);line-height:1.06;letter-spacing:-.04em;margin-bottom:18px;text-shadow:0 4px 32px rgba(0,0,0,.85)}
+.hero__title em{font-style:normal;font-weight:400;color:#fff;text-shadow:0 0 80px rgba(99,102,241,.9),0 0 32px rgba(165,180,252,.6),0 4px 40px rgba(0,0,0,.95)}
+.hero__sub{font-size:clamp(15px,1.6vw,17px);color:rgba(248,247,255,.75);line-height:1.6;max-width:480px;margin:0 auto 28px;font-weight:400;letter-spacing:-.01em;text-shadow:0 2px 20px rgba(0,0,0,.8)}
+.hero__actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:28px}
+/* ─── PRIMARY: Electric Frosted Glass ─── */
+.btn-hero-primary{
+position:relative;
+padding:15px 32px;min-width:200px;height:52px;justify-content:center;
+font-size:15px;font-weight:400;
+background:rgba(99,102,241,.18);
+backdrop-filter:blur(24px) saturate(180%);
+-webkit-backdrop-filter:blur(24px) saturate(180%);
+border-radius:100px;color:#fff;
+border:1px solid rgba(165,180,252,.45);
+box-shadow:0 0 32px rgba(99,102,241,.35),0 0 80px rgba(99,102,241,.12),inset 0 1px 0 rgba(255,255,255,.18);
+letter-spacing:-.02em;
+transition:all .35s cubic-bezier(.16,1,.3,1);
+overflow:hidden;isolation:isolate;
+display:inline-flex;align-items:center;gap:10px;
+animation:hero-btn-breathe 4s ease-in-out infinite;
+}
+@keyframes hero-btn-breathe{
+0%,100%{box-shadow:0 0 32px rgba(99,102,241,.35),0 0 80px rgba(99,102,241,.12),inset 0 1px 0 rgba(255,255,255,.18)}
+50%{box-shadow:0 0 48px rgba(99,102,241,.55),0 0 120px rgba(99,102,241,.22),0 0 200px rgba(99,102,241,.08),inset 0 1px 0 rgba(255,255,255,.18)}
+}
+/* Spinning gradient border */
+.btn-hero-primary::before{
+content:'';position:absolute;inset:-1px;border-radius:inherit;
+background:conic-gradient(from var(--angle),transparent 0%,rgba(165,180,252,.9) 18%,rgba(99,102,241,.6) 35%,transparent 52%,transparent 100%);
+animation:spin-angle 3.5s linear infinite;
+z-index:-1;
+}
+/* Shimmer sweep */
+.btn-hero-primary::after{
+content:'';position:absolute;
+top:0;left:-80%;width:50%;height:100%;
+background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.22) 50%,transparent 100%);
+transform:skewX(-15deg);
+animation:btn-shimmer 4.5s ease-in-out infinite 0.8s;
+pointer-events:none;
+}
+@keyframes btn-shimmer{
+0%,100%{left:-80%;opacity:0}
+8%{opacity:1}
+45%{left:140%;opacity:0}
+}
+.btn-hero-primary:hover{
+background:rgba(99,102,241,.35);
+border-color:rgba(165,180,252,.7);
+box-shadow:0 0 60px rgba(99,102,241,.6),0 0 120px rgba(99,102,241,.3),inset 0 1px 0 rgba(255,255,255,.25);
+transform:translateY(-2px);
+animation:none;
+}
+.btn-hero-primary:active{transform:translateY(0)}
+/* ─── GHOST: Kinetic Arrow Link ─── */
+.btn-hero-ghost{
+position:relative;
+padding:15px 32px;min-width:200px;height:52px;justify-content:center;
+font-size:15px;font-weight:400;
+color:rgba(248,247,255,.7);
+letter-spacing:-.02em;
+transition:all .25s cubic-bezier(.16,1,.3,1);
+display:inline-flex;align-items:center;gap:10px;
+border:1px solid rgba(255,255,255,.16);
+background:rgba(255,255,255,.04);
+backdrop-filter:blur(12px);
+border-radius:100px;
+overflow:hidden;
+}
+.btn-hero-ghost:hover{color:rgba(248,247,255,.95);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.07)}
+.btn-hero-ghost svg{transition:transform .3s cubic-bezier(.16,1,.3,1);flex-shrink:0}
+.btn-hero-ghost:hover svg{transform:translateX(3px)}
+/* Floating stats */
+.hero__stats{position:relative;z-index:4;display:flex;gap:1px;margin-top:20px;border-radius:var(--r-lg);overflow:hidden;border:1px solid var(--glass-border)}
+.hero__stat{flex:1;padding:10px 18px;background:rgba(255,255,255,.03);backdrop-filter:blur(32px);text-align:center;position:relative}
+.hero__stat::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:1px;background:var(--glass-border)}
+.hero__stat:first-child::before{display:none}
+.hero__stat-value{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:800;letter-spacing:-.03em;background:linear-gradient(135deg,var(--peak),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero__stat-label{font-size:11px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;font-family:'Space Mono',monospace;white-space:nowrap}
+/* bottom gradient fade */
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:380px;background:linear-gradient(to top,var(--bg) 0%,rgba(9,9,15,.85) 40%,transparent 100%);z-index:3;pointer-events:none}
+/* ─────────────────────────────────────────
+LOGO STRIP
+───────────────────────────────────────── */
+.logos{padding:32px 0;border-top:1px solid var(--glass-border);border-bottom:1px solid var(--glass-border);overflow:hidden;position:relative}
+.logos::before,.logos::after{content:'';position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none}
+.logos::before{left:0;background:linear-gradient(to right,var(--bg),transparent)}
+.logos::after{right:0;background:linear-gradient(to left,var(--bg),transparent)}
+.logos__label{text-align:center;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin-bottom:18px;font-family:'Space Mono',monospace}
+.logos__track{display:flex;gap:64px;align-items:center;animation:ticker 28s linear infinite;width:max-content}
+.logos__track:hover{animation-play-state:paused}
+.logos__item{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;color:rgba(255,255,255,.18);letter-spacing:.02em;white-space:nowrap;transition:color .3s}
+.logos__item:hover{color:rgba(255,255,255,.5)}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* ─────────────────────────────────────────
+SECTION HEADERS
+───────────────────────────────────────── */
+.section-tag{display:inline-flex;align-items:center;gap:8px;padding:4px 14px;border-radius:100px;border:1px solid rgba(99,102,241,.3);background:var(--primary-dim);font-size:12px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.08em;font-family:'Space Mono',monospace;margin-bottom:20px}
+.section-tag-dot{width:6px;height:6px;border-radius:50%;background:var(--primary);flex-shrink:0}
+.section-title{font-family:'Bricolage Grotesque',sans-serif;font-weight:300;font-size:clamp(22px,2.2vw,32px);line-height:1.12;letter-spacing:-.03em;margin-bottom:10px}
+.section-sub{font-size:15px;color:var(--muted);line-height:1.6;max-width:500px;letter-spacing:-.01em}
+/* Section spacing — natural height, generous padding */
+/* ─────────────────────────────────────────
+FEATURES
+───────────────────────────────────────── */
+.features{padding:80px 0;position:relative}
+.features::before{content:'';position:absolute;inset:0;background-image:var(--noise-url);background-size:200px 200px;pointer-events:none;z-index:0;opacity:.09}
+.features::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 50% at 50% 50%,rgba(99,102,241,.04) 0%,transparent 70%);pointer-events:none;z-index:0}
+.features__header{text-align:center;margin-bottom:40px}
+.features__header .section-sub{margin:0 auto}
+.features__grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+.feature-card{border-radius:var(--r-xl);background:linear-gradient(145deg,rgba(99,102,241,.06) 0%,rgba(15,15,30,.6) 40%,rgba(165,180,252,.04) 100%);border:1px solid var(--glass-border);padding:28px;position:relative;overflow:hidden;transition:transform .3s cubic-bezier(.16,1,.3,1),border-color .3s,box-shadow .3s;isolation:isolate;backdrop-filter:blur(12px)}
+.feature-card:hover{transform:translateY(-4px);border-color:rgba(99,102,241,.35);box-shadow:0 24px 80px rgba(9,9,15,.6),0 0 48px rgba(99,102,241,.1)}
+/* No card grain — section background has grain instead */
+/* Gradient border top line */
+.feature-card::after{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.6),rgba(165,180,252,.4),transparent);opacity:0;transition:opacity .3s}
+.feature-card:hover::after{opacity:1}
+/* Bento placement: Row1=wide+tall | Row2=reg+reg+tall | Row3=full */
+.feature-card--wide{grid-column:span 2}
+.feature-card--tall{grid-row:span 2;display:flex;flex-direction:column}
+.feature-card--tall .feature-card__visual{flex:1}
+.feature-card--full{grid-column:1 / -1;display:grid !important;grid-template-columns:1fr 1.5fr;gap:32px;align-items:center}
+.feature-card__icon{width:48px;height:48px;border-radius:12px;background:var(--primary-dim);border:1px solid rgba(99,102,241,.2);display:grid;place-items:center;margin-bottom:20px;position:relative;z-index:1}
+.feature-card__icon svg{width:22px;height:22px;color:var(--accent)}
+.feature-card__title{font-family:'Bricolage Grotesque',sans-serif;font-size:20px;font-weight:400;letter-spacing:-.02em;margin-bottom:10px;position:relative;z-index:1}
+.feature-card__body{font-size:15px;color:var(--muted);line-height:1.7;position:relative;z-index:1}
+/* Feature card visual art */
+.feature-card__visual{margin-top:24px;border-radius:12px;overflow:hidden;position:relative;z-index:1}
+.feature-card--wide .feature-card__body{max-width:480px}
+/* Terminal block */
+.terminal{background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.06);border-radius:12px;padding:20px;font-family:'Space Mono',monospace;font-size:13px;overflow:hidden}
+.terminal__bar{display:flex;gap:6px;margin-bottom:16px}
+.terminal__dot{width:10px;height:10px;border-radius:50%}
+.terminal__dot--red{background:#FF5F57}
+.terminal__dot--yellow{background:#FEBC2E}
+.terminal__dot--green{background:#28C840}
+.terminal__line{display:flex;align-items:flex-start;gap:8px;margin-bottom:6px;opacity:0;animation:type-in .4s forwards}
+.terminal__prompt{color:rgba(99,102,241,.8)}
+.terminal__cmd{color:var(--peak)}
+.terminal__out{color:rgba(40,200,100,.7);padding-left:16px;font-size:12px}
+.terminal__line:nth-child(2){animation-delay:.4s}
+.terminal__line:nth-child(3){animation-delay:.8s}
+.terminal__line:nth-child(4){animation-delay:1.2s}
+.terminal__line:nth-child(5){animation-delay:1.6s}
+.terminal__line:nth-child(6){animation-delay:2s}
+@keyframes type-in{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+/* Waveform visual */
+.waveform{display:flex;align-items:center;gap:3px;height:48px;padding:8px 0}
+.waveform__bar{flex:1;background:linear-gradient(to top,rgba(99,102,241,.3),rgba(165,180,252,.6));border-radius:4px;animation:wave 1.4s ease-in-out infinite;transform-origin:bottom}
+@keyframes wave{0%,100%{transform:scaleY(1)}50%{transform:scaleY(0.3)}}
+.waveform__bar:nth-child(even){animation-delay:.2s}
+.waveform__bar:nth-child(3n){animation-delay:.4s}
+.waveform__bar:nth-child(5n){animation-delay:.6s}
+/* Grid lines visual */
+.grid-visual{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;height:120px}
+.grid-visual__cell{border-radius:6px;background:var(--primary-dim);border:1px solid rgba(99,102,241,.12);transition:background .3s}
+.grid-visual__cell.active{background:rgba(99,102,241,.3);border-color:rgba(99,102,241,.5);box-shadow:0 0 16px rgba(99,102,241,.2)}
+/* ─────────────────────────────────────────
+PLATFORM SECTION
+───────────────────────────────────────── */
+.platform{padding:80px 0;position:relative;background:linear-gradient(180deg,rgba(9,9,15,0) 0%,rgba(15,12,30,.3) 30%,rgba(15,12,30,.3) 70%,rgba(9,9,15,0) 100%)}
+/* No section grain — dashboard card has grain instead */
+.platform__grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+.platform__steps{margin-top:40px;display:flex;flex-direction:column;gap:0}
+.platform__step{display:flex;gap:18px;padding:22px 0;border-bottom:1px solid var(--glass-border);position:relative;cursor:default;transition:all .25s}
+.platform__step:last-child{border-bottom:none}
+.platform__step:hover .platform__step-num{background:var(--primary);color:#fff}
+.platform__step:hover .platform__step-title{color:var(--accent)}
+.platform__step-num{width:32px;height:32px;border-radius:8px;border:1px solid var(--glass-border);background:var(--glass-bg);display:grid;place-items:center;font-family:'Space Mono',monospace;font-size:12px;font-weight:700;color:var(--dim);flex-shrink:0;margin-top:2px;transition:all .25s}
+.platform__step-title{font-family:'Bricolage Grotesque',sans-serif;font-size:17px;font-weight:400;letter-spacing:-.02em;margin-bottom:6px}
+.platform__step-body{font-size:14px;color:var(--muted);line-height:1.7}
+/* Dashboard mockup */
+.dashboard{border-radius:var(--r-xl);overflow:hidden;border:1px solid var(--glass-border);background:rgba(0,0,0,.4);backdrop-filter:blur(40px);position:relative;transform:perspective(1200px) rotateY(-4deg) rotateX(2deg);transition:transform .5s cubic-bezier(.16,1,.3,1);box-shadow:32px 32px 80px rgba(0,0,0,.5),-1px -1px 0 rgba(255,255,255,.06)}
+.dashboard::after{content:'';position:absolute;inset:0;border-radius:inherit;background-image:var(--noise-url);background-size:96px 96px;pointer-events:none;opacity:.10;z-index:1}
+.dashboard:hover{transform:perspective(1200px) rotateY(0deg) rotateX(0deg)}
+.dashboard::before{content:'';position:absolute;inset:-1px;border-radius:inherit;background:linear-gradient(135deg,rgba(99,102,241,.4) 0%,transparent 40%,rgba(165,180,252,.2) 100%);z-index:-1}
+.dash__topbar{padding:14px 20px;border-bottom:1px solid var(--glass-border);display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.02)}
+.dash__dot{width:8px;height:8px;border-radius:50%}
+.dash__metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--glass-border)}
+.dash__metric{background:rgba(0,0,0,.3);padding:16px 20px}
+.dash__metric-val{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:800;letter-spacing:-.03em}
+.dash__metric-label{font-size:11px;color:var(--dim);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.dash__chart{padding:20px}
+.dash__chart-bars{display:flex;align-items:flex-end;gap:4px;height:80px}
+.dash__bar{flex:1;border-radius:4px 4px 0 0;animation:bar-grow .8s cubic-bezier(.16,1,.3,1) forwards;transform-origin:bottom}
+@keyframes bar-grow{from{transform:scaleY(0)}to{transform:scaleY(1)}}
+.dash__bar:nth-child(odd){background:linear-gradient(to top,rgba(99,102,241,.5),rgba(99,102,241,.2))}
+.dash__bar:nth-child(even){background:linear-gradient(to top,rgba(165,180,252,.3),rgba(165,180,252,.1))}
+.dash__alerts{padding:0 20px 20px;display:flex;flex-direction:column;gap:8px}
+.dash__alert{display:flex;align-items:center;gap:10px;padding:10px 14px;border-radius:8px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);font-size:13px}
+.dash__alert-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.dash__alert-text{color:var(--muted)}
+.dash__alert-time{margin-left:auto;font-family:'Space Mono',monospace;font-size:11px;color:var(--dim)}
+/* ─────────────────────────────────────────
+METRICS / NUMBERS
+───────────────────────────────────────── */
+.metrics{padding:80px 0;position:relative;overflow:hidden}
+.metrics::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 50%,rgba(99,102,241,.05) 0%,transparent 70%)}
+.metrics__grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--glass-border);border:1px solid var(--glass-border);border-radius:var(--r-xl);overflow:hidden}
+.metric{padding:28px 28px;background:linear-gradient(150deg,rgba(99,102,241,.04) 0%,rgba(10,10,20,.5) 50%,rgba(165,180,252,.03) 100%);backdrop-filter:blur(24px);position:relative;overflow:hidden}
+.metric::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.5),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+.metric:hover::after{transform:scaleX(1)}
+.metric__value{font-family:'Bricolage Grotesque',sans-serif;font-size:36px;font-weight:300;letter-spacing:-.04em;line-height:1;background:linear-gradient(135deg,var(--peak),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.metric__suffix{font-size:32px;opacity:.7}
+.metric__label{font-size:14px;color:var(--muted);margin-top:8px;letter-spacing:.01em}
+.metric__sub{font-size:12px;color:var(--dim);margin-top:4px;font-family:'Space Mono',monospace}
+/* ─────────────────────────────────────────
+PRICING
+───────────────────────────────────────── */
+.pricing{padding:80px 0;position:relative;background:linear-gradient(180deg,rgba(9,9,15,0) 0%,rgba(12,12,25,.25) 30%,rgba(12,12,25,.25) 70%,rgba(9,9,15,0) 100%)}
+/* No section grain — pricing cards have grain instead */
+.pricing::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 30%,rgba(99,102,241,.05) 0%,transparent 70%);pointer-events:none;z-index:0}
+.pricing__header{text-align:center;margin-bottom:36px}
+.pricing__header .section-sub{margin:0 auto}
+.pricing__toggle{display:flex;align-items:center;gap:12px;margin-top:16px;justify-content:center;font-size:14px;color:var(--muted)}
+.pricing__toggle-switch{width:44px;height:24px;border-radius:100px;background:var(--glass-bg);border:1px solid var(--glass-border);position:relative;cursor:pointer;transition:background .2s}
+.pricing__toggle-switch.active{background:var(--primary-dim);border-color:rgba(99,102,241,.4)}
+.pricing__toggle-thumb{width:18px;height:18px;border-radius:50%;background:var(--muted);position:absolute;top:2px;left:2px;transition:all .2s}
+.pricing__toggle-switch.active .pricing__toggle-thumb{left:22px;background:var(--accent)}
+.pricing__save{display:inline-flex;padding:2px 8px;border-radius:100px;background:rgba(99,102,241,.2);color:var(--accent);font-size:11px;font-weight:600;letter-spacing:.04em}
+.pricing__cards{display:grid;grid-template-columns:1fr 1.1fr 1fr;gap:20px;align-items:start}
+.pricing-card{border-radius:var(--r-xl);padding:32px;position:relative;overflow:hidden;transition:transform .3s}
+.pricing-card:hover{transform:translateY(-4px)}
+.pricing-card--free{background:linear-gradient(160deg,rgba(99,102,241,.05) 0%,rgba(15,15,30,.5) 50%,rgba(165,180,252,.03) 100%);border:1px solid var(--glass-border);backdrop-filter:blur(12px)}
+.pricing-card--pro{background:linear-gradient(160deg,rgba(99,102,241,.12) 0%,rgba(30,20,60,.6) 40%,rgba(165,180,252,.08) 100%);margin:-20px 0;border:1px solid rgba(99,102,241,.25);backdrop-filter:blur(16px)}
+.pricing-card--ent{background:linear-gradient(160deg,rgba(165,180,252,.04) 0%,rgba(15,15,30,.5) 50%,rgba(99,102,241,.05) 100%);border:1px solid var(--glass-border);backdrop-filter:blur(12px)}
+/* Grain texture on pricing */
+.pricing-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background-image:var(--noise-url);background-size:128px 128px;pointer-events:none;opacity:.12}
+/* Pro card — static highlight border, no shimmer */
+.pricing-card__badge{display:inline-flex;padding:4px 12px;border-radius:100px;background:linear-gradient(135deg,var(--primary),var(--accent));font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#fff;margin-bottom:20px}
+.pricing-card__name{font-family:'Bricolage Grotesque',sans-serif;font-size:18px;font-weight:400;letter-spacing:-.02em;margin-bottom:6px}
+.pricing-card__desc{font-size:14px;color:var(--muted);line-height:1.6;margin-bottom:28px;min-height:44px}
+.pricing-card__price{display:flex;align-items:baseline;gap:6px;margin-bottom:28px}
+.pricing-card__amount{font-family:'Bricolage Grotesque',sans-serif;font-size:40px;font-weight:200;letter-spacing:-.04em;line-height:1}
+.pricing-card--pro .pricing-card__amount{background:linear-gradient(135deg,var(--peak),var(--accent));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.pricing-card__period{font-size:14px;color:var(--muted)}
+.pricing-card__divider{height:1px;background:var(--glass-border);margin:0 0 24px}
+.pricing-card__features{display:flex;flex-direction:column;gap:12px;margin-bottom:32px}
+.pricing-card__feature{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:var(--muted)}
+.pricing-card__check{width:18px;height:18px;flex-shrink:0;margin-top:1px}
+.pricing-card__check--ok{color:var(--accent)}
+.pricing-card__check--no{color:var(--dim)}
+.btn-plan{width:100%;padding:14px;border-radius:12px;font-size:15px;font-weight:400;text-align:center;transition:all .25s;cursor:pointer}
+.btn-plan-ghost{background:var(--glass-bg);border:1px solid var(--glass-border);color:var(--text)}
+.btn-plan-ghost:hover{border-color:rgba(99,102,241,.4);background:var(--primary-dim)}
+.btn-plan-primary{background:linear-gradient(135deg,var(--primary),#4338CA);color:#fff;box-shadow:0 8px 24px rgba(99,102,241,.4)}
+.btn-plan-primary:hover{box-shadow:0 12px 32px rgba(99,102,241,.6);transform:translateY(-1px)}
+/* ─────────────────────────────────────────
+TESTIMONIALS
+───────────────────────────────────────── */
+.testimonials{padding:80px 0;overflow:hidden;position:relative}
+/* testimonials grain removed — alpha mask visible */
+.testimonials__header{text-align:center;margin-bottom:32px}
+.testimonials__track{display:flex;gap:20px;animation:slide-t 35s linear infinite;width:max-content}
+.testimonials__track:hover{animation-play-state:paused}
+@keyframes slide-t{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.testimonial-card{width:340px;flex-shrink:0;border-radius:var(--r-lg);background:linear-gradient(145deg,rgba(99,102,241,.05) 0%,rgba(15,15,30,.5) 50%,rgba(165,180,252,.03) 100%);border:1px solid var(--glass-border);padding:28px;position:relative;overflow:hidden;transition:border-color .3s;backdrop-filter:blur(12px);display:flex;flex-direction:column}
+.testimonial-card:hover{border-color:rgba(99,102,241,.3)}
+/* No card grain — section background has grain instead */
+.testimonial-card__quote{font-size:24px;line-height:1;color:rgba(99,102,241,.4);font-family:'Bricolage Grotesque',sans-serif;font-weight:800;margin-bottom:8px;position:relative;z-index:1}
+.testimonial-card__text{font-size:15px;color:var(--muted);line-height:1.7;margin-bottom:24px;position:relative;z-index:1;flex:1}
+.testimonial-card__author{display:flex;align-items:center;gap:12px;position:relative;z-index:1;margin-top:auto}
+.testimonial-card__avatar{width:38px;height:38px;border-radius:50%;border:1px solid rgba(99,102,241,.2);flex-shrink:0;object-fit:cover}
+.testimonial-card__name{font-size:14px;font-weight:600}
+.testimonial-card__role{font-size:12px;color:var(--dim)}
+/* ─────────────────────────────────────────
+FINAL CTA
+───────────────────────────────────────── */
+.cta-section{padding:80px 0;position:relative;overflow:hidden;background:linear-gradient(180deg,rgba(9,9,15,0) 0%,rgba(20,15,40,.2) 40%,rgba(20,15,40,.2) 60%,rgba(9,9,15,0) 100%)}
+.cta-section::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 60%,rgba(99,102,241,.08) 0%,transparent 70%)}
+.cta-panel{border-radius:var(--r-xl);background:linear-gradient(145deg,rgba(99,102,241,.08) 0%,rgba(15,15,30,.6) 40%,rgba(165,180,252,.06) 100%);border:1px solid rgba(99,102,241,.2);backdrop-filter:blur(40px);padding:56px 56px;text-align:center;position:relative;overflow:hidden}
+.cta-panel::before{content:'';position:absolute;inset:0;border-radius:inherit;background-image:var(--noise-url);background-size:96px 96px;pointer-events:none;opacity:.12}
+.cta-panel::after{content:'';position:absolute;top:0;left:20%;right:20%;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.7),rgba(165,180,252,.5),transparent)}
+.cta-panel__title{font-family:'Bricolage Grotesque',sans-serif;font-size:clamp(22px,2.8vw,36px);font-weight:300;letter-spacing:-.03em;line-height:1.12;margin-bottom:12px;position:relative;z-index:1}
+.cta-panel__sub{font-size:15px;color:var(--muted);line-height:1.6;max-width:420px;margin:0 auto 28px;position:relative;z-index:1}
+.cta-panel__actions{display:flex;align-items:center;justify-content:center;gap:16px;position:relative;z-index:1}
+.cta-panel__note{font-size:13px;color:var(--dim);margin-top:16px;position:relative;z-index:1;font-family:'Space Mono',monospace}
+/* ─────────────────────────────────────────
+FOOTER
+───────────────────────────────────────── */
+.footer{padding:48px 0 28px;border-top:1px solid var(--glass-border);position:relative}
+.footer::before{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.4),rgba(165,180,252,.3),transparent)}
+.footer__grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:40px}
+.footer__brand{display:flex;flex-direction:column;gap:16px}
+.footer__logo{display:flex;align-items:center;gap:10px;font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:18px}
+/* footer logo icon removed */
+.footer__tagline{font-size:14px;color:var(--muted);line-height:1.6;max-width:260px}
+.footer__socials{display:flex;gap:12px;margin-top:4px}
+.footer__social{width:36px;height:36px;border-radius:8px;background:var(--glass-bg);border:1px solid var(--glass-border);display:grid;place-items:center;transition:all .2s;color:var(--dim)}
+.footer__social:hover{border-color:rgba(99,102,241,.4);color:var(--accent);background:var(--primary-dim)}
+.footer__col-title{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--dim);margin-bottom:16px;font-family:'Space Mono',monospace}
+.footer__links{display:flex;flex-direction:column;gap:10px}
+.footer__link{font-size:14px;color:var(--muted);transition:color .2s}
+.footer__link:hover{color:var(--text)}
+.footer__bottom{padding-top:32px;border-top:1px solid var(--glass-border);display:flex;align-items:center;justify-content:space-between;gap:16px}
+.footer__copy{font-size:13px;color:var(--dim);font-family:'Space Mono',monospace}
+.footer__status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+/* ─────────────────────────────────────────
+REFRACTION / SPECIAL FX
+───────────────────────────────────────── */
+/* Glass refraction shimmer on hover */
+.refract{position:relative;overflow:hidden}
+.refract::after{content:'';position:absolute;top:-100%;left:-100%;width:60%;height:200%;background:linear-gradient(105deg,transparent 20%,rgba(255,255,255,.04) 50%,transparent 80%);transform:skewX(-25deg);transition:left .6s ease,top .6s ease;pointer-events:none}
+.refract:hover::after{left:150%;top:150%}
+/* Floating orbs in background */
+.orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;animation:orb-float 8s ease-in-out infinite}
+.orb--1{width:600px;height:400px;background:rgba(99,102,241,.06);top:-200px;right:-200px;animation-delay:0s}
+.orb--2{width:400px;height:600px;background:rgba(165,180,252,.04);bottom:-200px;left:-100px;animation-delay:-4s}
+@keyframes orb-float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-30px)}}
+/* Animated line separator */
+.section-sep{height:1px;background:linear-gradient(90deg,transparent 5%,rgba(99,102,241,.25) 30%,rgba(165,180,252,.15) 50%,rgba(99,102,241,.25) 70%,transparent 95%);margin:0 auto;max-width:960px;position:relative;overflow:visible}
+.section-sep::before{content:'';position:absolute;left:15%;right:15%;top:-60px;bottom:-60px;background:radial-gradient(ellipse 100% 100% at 50% 50%,rgba(99,102,241,.05) 0%,transparent 70%);pointer-events:none}
+.section-sep::after{content:'';display:block;width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.8),transparent);position:absolute;top:0;animation:line-travel 3s ease-in-out infinite}
+@keyframes line-travel{0%{left:10%;transform:translateX(-50%);opacity:0}20%{opacity:1}80%{opacity:1}100%{left:90%;transform:translateX(-50%);opacity:0}}
+/* ─────────────────────────────────────────
+CARD MOUSE GLOW
+───────────────────────────────────────── */
+.feature-card__glow,.pricing-card__glow,.testimonial-card__glow{position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .4s;z-index:0}
+.feature-card:hover .feature-card__glow,.pricing-card:hover .pricing-card__glow,.testimonial-card:hover .testimonial-card__glow{opacity:1}
+/* ─────────────────────────────────────────
+FEATURE CARD STATUS BADGES
+───────────────────────────────────────── */
+.feature-status{position:absolute;top:20px;right:20px;display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:100px;background:rgba(40,200,100,.1);border:1px solid rgba(40,200,100,.2);font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,100,.8);z-index:2}
+.feature-status__dot{width:5px;height:5px;border-radius:50%;background:rgba(40,200,100,.9);animation:pulse-dot 2s ease-in-out infinite}
+.feature-status--warn{background:rgba(254,188,46,.08);border-color:rgba(254,188,46,.2);color:rgba(254,188,46,.8)}
+.feature-status--warn .feature-status__dot{background:rgba(254,188,46,.9)}
+.feature-status--info{background:rgba(99,102,241,.08);border-color:rgba(99,102,241,.2);color:rgba(165,180,252,.8)}
+.feature-status--info .feature-status__dot{background:rgba(99,102,241,.9)}
+/* ─────────────────────────────────────────
+TRACE DIAGRAM
+───────────────────────────────────────── */
+.trace-diagram{display:flex;flex-direction:column;gap:6px}
+.trace-row{display:flex;align-items:center;gap:8px;height:28px}
+.trace-label{font-size:11px;font-family:'Space Mono',monospace;color:var(--dim);width:80px;flex-shrink:0;text-align:right}
+.trace-bar-wrap{flex:1;height:12px;background:rgba(255,255,255,.03);border-radius:6px;position:relative;overflow:hidden}
+.trace-bar{height:100%;border-radius:6px;position:absolute;top:0;transform:scaleX(0);transform-origin:left;animation:trace-grow .8s cubic-bezier(.16,1,.3,1) forwards}
+.trace-bar--api{background:linear-gradient(90deg,rgba(99,102,241,.6),rgba(99,102,241,.3));left:0;width:100%}
+.trace-bar--auth{background:linear-gradient(90deg,rgba(165,180,252,.5),rgba(165,180,252,.2));left:5%;width:40%}
+.trace-bar--db{background:linear-gradient(90deg,rgba(40,200,100,.5),rgba(40,200,100,.2));left:15%;width:55%}
+.trace-bar--cache{background:linear-gradient(90deg,rgba(254,188,46,.5),rgba(254,188,46,.2));left:25%;width:20%}
+.trace-bar--render{background:linear-gradient(90deg,rgba(232,227,255,.4),rgba(232,227,255,.15));left:70%;width:30%}
+.trace-row:nth-child(1) .trace-bar{animation-delay:.1s}
+.trace-row:nth-child(2) .trace-bar{animation-delay:.3s}
+.trace-row:nth-child(3) .trace-bar{animation-delay:.5s}
+.trace-row:nth-child(4) .trace-bar{animation-delay:.6s}
+.trace-row:nth-child(5) .trace-bar{animation-delay:.7s}
+@keyframes trace-grow{to{transform:scaleX(1)}}
+.trace-time{font-size:10px;font-family:'Space Mono',monospace;color:var(--dim);width:40px;flex-shrink:0}
+/* ─────────────────────────────────────────
+FORECAST CHART (SVG)
+───────────────────────────────────────── */
+.forecast-chart{position:relative;width:100%;height:100px;overflow:hidden}
+.forecast-chart svg{width:100%;height:100%}
+.forecast-line{stroke:var(--accent);stroke-width:2;fill:none;stroke-dasharray:400;stroke-dashoffset:400;animation:draw-line 2s cubic-bezier(.16,1,.3,1) forwards}
+.forecast-area{fill:url(#forecastGrad);opacity:0;animation:fade-in .8s .6s forwards}
+.forecast-pred{stroke:var(--accent);stroke-width:1.5;fill:none;stroke-dasharray:6 4;opacity:0;animation:fade-in .5s 1.2s forwards}
+.forecast-zone{fill:rgba(99,102,241,.08);opacity:0;animation:fade-in .5s 1.4s forwards}
+.forecast-alert{fill:rgba(254,188,46,.9);opacity:0;animation:pulse-appear 1s 1.6s forwards}
+@keyframes draw-line{to{stroke-dashoffset:0}}
+@keyframes fade-in{to{opacity:1}}
+@keyframes pulse-appear{0%{opacity:0;r:0}50%{opacity:1;r:6}100%{opacity:1;r:4}}
+/* ─────────────────────────────────────────
+PLATFORM STEP ENHANCEMENTS
+───────────────────────────────────────── */
+.platform__steps{position:relative}
+.platform__steps::before{content:'';position:absolute;left:15px;top:0;bottom:0;width:2px;background:linear-gradient(to bottom,transparent,rgba(99,102,241,.2) 10%,rgba(99,102,241,.2) 90%,transparent);z-index:0}
+.platform__step{position:relative;z-index:1}
+.platform__step::before{content:'';position:absolute;left:15px;top:0;width:2px;height:0;background:linear-gradient(to bottom,var(--primary),var(--accent));transition:height .5s cubic-bezier(.16,1,.3,1);z-index:0}
+.platform__step:hover::before{height:100%}
+.platform__step-badge{display:inline-flex;padding:2px 8px;border-radius:100px;font-size:10px;font-family:'Space Mono',monospace;color:var(--dim);border:1px solid var(--glass-border);margin-top:6px;opacity:0;transform:translateY(4px);transition:all .3s .1s}
+.platform__step:hover .platform__step-badge{opacity:1;transform:none;border-color:rgba(99,102,241,.3);color:var(--accent)}
+/* ─────────────────────────────────────────
+METRIC SPARKLINES
+───────────────────────────────────────── */
+.metric__sparkline{margin-top:12px;height:32px;display:flex;align-items:flex-end;gap:2px}
+.metric__spark-bar{flex:1;border-radius:2px;background:rgba(99,102,241,.25);transform:scaleY(0);transform-origin:bottom;animation:spark-grow .6s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes spark-grow{to{transform:scaleY(1)}}
+.metric__trend{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-family:'Space Mono',monospace;margin-top:6px}
+.metric__trend--up{color:rgba(40,200,100,.8)}
+.metric__trend--up svg{color:rgba(40,200,100,.8)}
+.metric__trend--down{color:rgba(254,95,87,.8)}
+/* ─────────────────────────────────────────
+PRICING ENHANCEMENTS
+───────────────────────────────────────── */
+.pricing-card__topbar{height:2px;background:linear-gradient(90deg,transparent,rgba(99,102,241,.5),transparent);margin:-24px -24px 20px;border-radius:var(--r-xl) var(--r-xl) 0 0}
+.pricing-card--pro .pricing-card__topbar{background:linear-gradient(90deg,transparent,rgba(165,180,252,.8),rgba(99,102,241,.6),transparent);height:3px}
+/* popular-ring shimmer removed — conflicts with grain texture */
+/* ─────────────────────────────────────────
+TESTIMONIAL STARS
+───────────────────────────────────────── */
+.testimonial-stars{display:flex;gap:2px;margin-bottom:12px;position:relative;z-index:1}
+.testimonial-star{color:rgba(254,188,46,.8);font-size:14px}
+/* ─────────────────────────────────────────
+FLOATING PARTICLES
+───────────────────────────────────────── */
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(99,102,241,.4);animation:float-particle linear infinite}
+@keyframes float-particle{0%{transform:translateY(0) translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateY(-100vh) translateX(40px);opacity:0}}
+/* ─────────────────────────────────────────
+SECTION DECORATIVE DOTS
+───────────────────────────────────────── */
+.deco-grid{position:absolute;opacity:.06;pointer-events:none;z-index:0}
+.deco-grid--dots{background-image:radial-gradient(rgba(99,102,241,.5) 1px,transparent 1px);background-size:24px 24px}
+/* ─────────────────────────────────────────
+CTA FLOATING RINGS
+───────────────────────────────────────── */
+.cta-ring{position:absolute;border-radius:50%;border:1px solid rgba(99,102,241,.15);pointer-events:none;animation:ring-pulse 4s ease-in-out infinite}
+.cta-ring--1{width:300px;height:300px;top:-100px;right:-100px;animation-delay:0s}
+.cta-ring--2{width:200px;height:200px;bottom:-60px;left:-60px;animation-delay:-2s}
+.cta-ring--3{width:150px;height:150px;top:50%;left:50%;transform:translate(-50%,-50%);animation-delay:-1s}
+@keyframes ring-pulse{0%,100%{opacity:.3;transform:scale(1)}50%{opacity:.08;transform:scale(1.15)}}
+.cta-ring--3{animation-name:ring-pulse-center}
+@keyframes ring-pulse-center{0%,100%{opacity:.2;transform:translate(-50%,-50%) scale(1)}50%{opacity:.05;transform:translate(-50%,-50%) scale(1.2)}}
+/* ─────────────────────────────────────────
+MOBILE NAV HAMBURGER
+───────────────────────────────────────── */
+.nav__toggle{display:none;flex-direction:column;gap:5px;padding:8px;background:none;border:none;cursor:pointer;z-index:102}
+.nav__toggle span{display:block;width:20px;height:2px;background:var(--text);border-radius:2px;transition:all .3s}
+.nav--open .nav__toggle span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav--open .nav__toggle span:nth-child(2){opacity:0}
+.nav--open .nav__toggle span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* ─────────────────────────────────────────
+RESPONSIVE
+───────────────────────────────────────── */
+@media(max-width:1024px){
+.nav__links{gap:20px}
+.nav__link{font-size:13px}
+.nav__cta .btn{padding:8px 16px;font-size:13px}
+.features__grid{grid-template-columns:1fr 1fr}
+.feature-card--wide{grid-column:span 2}
+.feature-card--tall{grid-row:span 1;grid-column:span 2}
+.feature-card--full{grid-column:1 / -1}
+.platform__grid{grid-template-columns:1fr;gap:56px}
+.dashboard{transform:none}
+.pricing__cards{grid-template-columns:1fr;gap:16px;max-width:480px;margin:0 auto}
+.pricing-card--pro{margin:0}
+.metrics__grid{grid-template-columns:1fr 1fr}
+.footer__grid{grid-template-columns:1fr 1fr;gap:40px}
+}
+@media(max-width:768px){
+.features__grid{grid-template-rows:auto}
+/* Mobile nav */
+.nav__toggle{display:flex}
+.nav__inner{flex-wrap:wrap}
+.nav__logo{order:0}
+.nav__toggle{order:1;margin-left:auto}
+.nav__links{order:2;display:none;flex-direction:column;width:100%;gap:0;padding-top:20px}
+.nav__link{padding:14px 0;border-bottom:1px solid var(--glass-border);font-size:16px;text-align:center}
+.nav__cta{order:3;display:none;flex-direction:column;width:100%;gap:12px;padding-top:16px;padding-bottom:8px}
+.nav__cta .btn{width:100%;justify-content:center}
+.nav--open .nav__links,.nav--open .nav__cta{display:flex}
+.nav--open{background:rgba(9,9,15,.95);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px)}
+/* Hero */
+.hero{height:auto;min-height:100vh;min-height:100svh;padding:100px 24px 48px}
+.hero__title{font-size:clamp(32px,7vw,48px)}
+.hero__stats{flex-direction:column;border-radius:var(--r-lg)}
+.hero__stat::before{display:none}
+.hero__stat{padding:12px 16px;text-align:left;display:flex;align-items:center;gap:12px}
+.hero__stat-value{font-size:18px}
+/* Features */
+.features{padding:48px 0}
+.features__grid{grid-template-columns:1fr}
+.feature-card--wide,.feature-card--full,.feature-card--tall{grid-column:span 1}
+.feature-card--tall{grid-row:span 1}
+.feature-card--full{grid-template-columns:1fr !important}
+/* Platform */
+.platform{padding:48px 0}
+/* Metrics */
+.metrics__grid{grid-template-columns:1fr 1fr}
+/* Pricing */
+.pricing{padding:48px 0}
+.pricing__cards{max-width:100%}
+/* CTA */
+.cta-panel{padding:40px 24px}
+.cta-panel__actions{flex-direction:column;width:100%}
+.cta-panel__actions .btn{width:100%;justify-content:center}
+/* Footer */
+.footer__grid{grid-template-columns:1fr 1fr}
+.footer__brand{grid-column:1 / -1}
+.footer__bottom{flex-direction:column;gap:12px;text-align:center}
+/* Containers */
+.container,.container-sm{padding:0 20px}
+/* Testimonial cards */
+.testimonial-card{width:280px}
+/* Section titles */
+.section-title{font-size:clamp(20px,5vw,28px)}
+}
+@media(max-width:480px){
+.hero{padding:88px 16px 40px}
+.metrics__grid{grid-template-columns:1fr}
+.hero__actions{flex-direction:column;width:100%}
+.btn-hero-primary,.btn-hero-ghost{width:100%;justify-content:center}
+.footer__grid{grid-template-columns:1fr}
+.container,.container-sm{padding:0 16px}
+.testimonial-card{width:260px}
+.feature-card{padding:22px}
+.pricing-card{padding:24px}
+.cta-panel{padding:32px 16px}
+.logos__track{gap:40px}
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+<body>
+
+<!-- SVG Noise filter definition (hidden) -->
+<svg class="noise-filter" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="glass-noise">
+      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
+      <feColorMatrix type="saturate" values="0"/>
+      <feBlend in="SourceGraphic" mode="overlay" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+  </defs>
+</svg>
+
+<!-- ═══════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════ -->
+<nav class="nav" id="nav">
+  <div class="container">
+    <div class="nav__inner">
+      <a href="#" class="nav__logo">
+        Signalis
+      </a>
+      <ul class="nav__links">
+        <li><a href="#features" class="nav__link">Features</a></li>
+        <li><a href="#platform" class="nav__link">Platform</a></li>
+        <li><a href="#pricing" class="nav__link">Pricing</a></li>
+        <li><a href="#" class="nav__link">Docs</a></li>
+        <li><a href="#" class="nav__link">Blog</a></li>
+      </ul>
+      <div class="nav__cta">
+        <button class="btn btn-ghost">Sign in</button>
+        <button class="btn btn-primary">
+          Start Free
+          <svg class="btn-icon" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+      <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <!-- Unicorn Studio Background -->
+  <div class="hero__bg">
+    <div
+      data-us-project="lFqI94GW0JcxJNk1NH4n"
+      data-us-scale="1"
+      data-us-dpi="1.5"
+      data-us-fps="60"
+      data-us-lazyload="true"
+      data-us-production="true"
+      style="position:absolute;top:0;left:0;width:100%;height:100%;"
+    ></div>
+  </div>
+  <div class="hero__overlay"></div>
+
+  <!-- Floating orbs -->
+  <div class="orb orb--1"></div>
+  <div class="orb orb--2"></div>
+
+  <div class="hero__content reveal">
+    <div class="hero__badge">
+      <div class="glow-dot"></div>
+      <span class="hero__badge-new">New</span>
+      Real-time anomaly detection with AI &rarr;
+    </div>
+    <h1 class="hero__title">
+      Find the signal through<br>
+      the <em>noise</em> — before it's too late
+    </h1>
+    <p class="hero__sub">
+      Full-stack observability that thinks ahead. Spot failures before they cascade — and act in milliseconds.
+    </p>
+    <div class="hero__actions">
+      <button class="btn-hero-primary">
+        Start for free
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button class="btn-hero-ghost">
+        Watch demo
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Stats strip -->
+  <div class="hero__stats reveal" data-delay="4">
+    <div class="hero__stat">
+      <div class="hero__stat-value" data-count="99.99">0</div>
+      <div class="hero__stat-label">Uptime SLA</div>
+    </div>
+    <div class="hero__stat">
+      <div class="hero__stat-value"><span data-count="4">0</span>ms</div>
+      <div class="hero__stat-label">P99 Latency</div>
+    </div>
+    <div class="hero__stat">
+      <div class="hero__stat-value"><span data-count="850">0</span>B+</div>
+      <div class="hero__stat-label">Events / day</div>
+    </div>
+    <div class="hero__stat">
+      <div class="hero__stat-value"><span data-count="12">0</span>K+</div>
+      <div class="hero__stat-label">Engineers trust us</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     LOGO STRIP
+════════════════════════════════════════ -->
+<div class="logos">
+  <div class="logos__label">Trusted by engineering teams at</div>
+  <div style="overflow:hidden">
+    <div class="logos__track" id="logoTrack">
+      <span class="logos__item">Vercel</span>
+      <span class="logos__item">Stripe</span>
+      <span class="logos__item">Linear</span>
+      <span class="logos__item">Notion</span>
+      <span class="logos__item">Figma</span>
+      <span class="logos__item">Planetscale</span>
+      <span class="logos__item">Supabase</span>
+      <span class="logos__item">Railway</span>
+      <span class="logos__item">Fly.io</span>
+      <span class="logos__item">Turso</span>
+      <span class="logos__item">Neon</span>
+      <span class="logos__item">Render</span>
+      <!-- duplicate for infinite -->
+      <span class="logos__item">Vercel</span>
+      <span class="logos__item">Stripe</span>
+      <span class="logos__item">Linear</span>
+      <span class="logos__item">Notion</span>
+      <span class="logos__item">Figma</span>
+      <span class="logos__item">Planetscale</span>
+      <span class="logos__item">Supabase</span>
+      <span class="logos__item">Railway</span>
+      <span class="logos__item">Fly.io</span>
+      <span class="logos__item">Turso</span>
+      <span class="logos__item">Neon</span>
+      <span class="logos__item">Render</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     FEATURES
+════════════════════════════════════════ -->
+<section class="features" id="features">
+  <div class="particles" id="featureParticles"></div>
+  <div class="deco-grid deco-grid--dots" style="width:200px;height:200px;top:40px;right:40px;border-radius:16px"></div>
+  <div class="deco-grid deco-grid--dots" style="width:140px;height:140px;bottom:60px;left:20px;border-radius:12px"></div>
+  <div class="container">
+    <div class="features__header">
+      <div class="reveal">
+        <div class="section-tag"><span class="section-tag-dot"></span>Capabilities</div>
+      </div>
+      <h2 class="section-title text-gradient-h reveal" data-delay="1">
+        Everything your stack<br>tries to tell you
+      </h2>
+      <p class="section-sub reveal" data-delay="2">
+        One unified view of metrics, logs, traces, and events — correlated automatically so you never miss the signal in the noise.
+      </p>
+    </div>
+
+    <div class="features__grid stagger-scale">
+      <!-- Wide card: Real-time streams -->
+      <div class="feature-card feature-card--wide reveal-child">
+        <div class="feature-status"><span class="feature-status__dot"></span>847K evt/s</div>
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <div class="feature-card__title">Real-Time Signal Streaming</div>
+        <div class="feature-card__body">Ingest millions of events per second from any source — Kafka, Kinesis, HTTP, or our native SDKs. Zero-copy ingestion with sub-millisecond acknowledgement.</div>
+        <div class="feature-card__visual">
+          <div class="waveform" id="waveform">
+            <!-- JS generated -->
+          </div>
+          <div class="terminal" style="margin-top:16px">
+            <div class="terminal__bar">
+              <div class="terminal__dot terminal__dot--red"></div>
+              <div class="terminal__dot terminal__dot--yellow"></div>
+              <div class="terminal__dot terminal__dot--green"></div>
+            </div>
+            <div class="terminal__line"><span class="terminal__prompt">$</span><span class="terminal__cmd"> signalis ingest --stream production</span></div>
+            <div class="terminal__line terminal__out">✓ Connected to stream [production] · 847K events/s</div>
+            <div class="terminal__line terminal__out">✓ Anomaly model loaded · p99 latency: 2.1ms</div>
+            <div class="terminal__line terminal__out">⚡ Alert: CPU spike detected in api-gateway [3σ]</div>
+            <div class="terminal__line terminal__out">→ Root cause: upstream db connection pool exhausted</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Anomaly AI (tall — spans 2 rows) -->
+      <div class="feature-card feature-card--tall reveal-child">
+        <div class="feature-status feature-status--warn"><span class="feature-status__dot"></span>3 anomalies</div>
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        </div>
+        <div class="feature-card__title">AI Anomaly Detection</div>
+        <div class="feature-card__body">Adaptive ML models learn your baseline. Detect multi-variate anomalies across 1,000s of metrics with near-zero false positives.</div>
+        <div class="feature-card__visual" style="margin-top:20px;min-height:0">
+          <div class="grid-visual" id="gridVisual" style="height:100%"></div>
+        </div>
+        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FF5F57;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">error-rate · payment-svc</span></div>
+            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(255,95,87,.7)">4.8σ</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FEBC2E;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">cpu-usage · api-gateway</span></div>
+            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">3.2σ</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FEBC2E;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">mem-alloc · worker-pool</span></div>
+            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">2.7σ</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#28C840;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">latency · db-replica</span></div>
+            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,64,.7)">resolved</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#28C840;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">throughput · ingest-pipe</span></div>
+            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,64,.7)">resolved</span>
+          </div>
+        </div>
+        <!-- Model confidence bar -->
+        <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
+          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+            <span style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace">Model confidence</span>
+            <span style="font-size:11px;color:var(--accent);font-family:'Space Mono',monospace">97.3%</span>
+          </div>
+          <div style="height:4px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden">
+            <div style="width:97.3%;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--accent))"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Distributed Tracing -->
+      <div class="feature-card reveal-child">
+        <div class="feature-status feature-status--info"><span class="feature-status__dot"></span>5 spans</div>
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M6 9v3m0 0c0 3.314 2.686 6 6 6m-6-6h12m0 0V9m0 3c0 3.314-2.686 6-6 6"/></svg>
+        </div>
+        <div class="feature-card__title">Distributed Tracing</div>
+        <div class="feature-card__body">End-to-end trace visualization across microservices. Pinpoint latency bottlenecks with flame graphs and critical path analysis.</div>
+        <div class="feature-card__visual" style="margin-top:20px">
+          <div class="trace-diagram" id="traceDiagram">
+            <div class="trace-row"><span class="trace-label">api-gw</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--api"></div></div><span class="trace-time">142ms</span></div>
+            <div class="trace-row"><span class="trace-label">auth</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--auth"></div></div><span class="trace-time">23ms</span></div>
+            <div class="trace-row"><span class="trace-label">db-read</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--db"></div></div><span class="trace-time">67ms</span></div>
+            <div class="trace-row"><span class="trace-label">cache</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--cache"></div></div><span class="trace-time">4ms</span></div>
+            <div class="trace-row"><span class="trace-label">render</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--render"></div></div><span class="trace-time">38ms</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card: Predictive Alerts -->
+      <div class="feature-card reveal-child">
+        <div class="feature-status feature-status--warn"><span class="feature-status__dot"></span>Alert in ~18m</div>
+        <div class="feature-card__icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+        </div>
+        <div class="feature-card__title">Predictive Alerting</div>
+        <div class="feature-card__body">Get notified before thresholds breach. Forecasting models predict issues 15–30 minutes ahead using historical signal patterns.</div>
+        <div class="feature-card__visual" style="margin-top:20px">
+          <div class="forecast-chart">
+            <svg viewBox="0 0 300 100" preserveAspectRatio="none">
+              <defs>
+                <linearGradient id="forecastGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="rgba(99,102,241,.25)"/>
+                  <stop offset="100%" stop-color="rgba(99,102,241,0)"/>
+                </linearGradient>
+              </defs>
+              <!-- Threshold line -->
+              <line x1="0" y1="25" x2="300" y2="25" stroke="rgba(254,95,87,.2)" stroke-width="1" stroke-dasharray="4 4"/>
+              <text x="4" y="22" fill="rgba(254,95,87,.4)" font-size="8" font-family="Space Mono, monospace">THRESHOLD</text>
+              <!-- Historical area -->
+              <path class="forecast-area" d="M0,80 L30,75 60,70 90,65 120,55 150,50 180,42 180,100 0,100Z"/>
+              <!-- Historical line -->
+              <polyline class="forecast-line" points="0,80 30,75 60,70 90,65 120,55 150,50 180,42"/>
+              <!-- Prediction zone -->
+              <path class="forecast-zone" d="M180,42 L210,35 240,28 270,22 300,18 300,55 270,42 240,48 210,44 180,42Z"/>
+              <!-- Prediction line -->
+              <polyline class="forecast-pred" points="180,42 210,35 240,28 270,22 300,18"/>
+              <!-- Alert point -->
+              <circle class="forecast-alert" cx="258" cy="25" r="0"/>
+            </svg>
+          </div>
+          <div style="display:flex;justify-content:space-between;margin-top:6px">
+            <span style="font-size:10px;font-family:'Space Mono',monospace;color:var(--dim)">-30m</span>
+            <span style="font-size:10px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">breach ~18m</span>
+            <span style="font-size:10px;font-family:'Space Mono',monospace;color:var(--dim)">+30m</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Full-width card: Integrations -->
+      <div class="feature-card feature-card--full reveal-child">
+        <div>
+          <div class="feature-card__icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/></svg>
+          </div>
+          <div class="feature-card__title">240+ Native Integrations</div>
+          <div class="feature-card__body">Connect in minutes with Kubernetes, Prometheus, Grafana, PagerDuty, Slack, AWS, GCP, and every tool in your stack. No vendor lock-in.</div>
+        </div>
+        <div class="feature-card__visual" style="display:flex;gap:8px;flex-wrap:wrap">
+          <!-- Integration badges -->
+          <script>
+            var integrations = ['Kubernetes','Prometheus','Kafka','AWS','GCP','Datadog','Grafana','PagerDuty','Slack','GitHub','Terraform','Helm'];
+          </script>
+          <!-- rendered by JS -->
+          <div id="intBadges"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ═══════════════════════════════════════
+     PLATFORM SECTION
+════════════════════════════════════════ -->
+<section class="platform" id="platform">
+  <div class="container">
+    <div class="platform__grid">
+      <div>
+        <div class="reveal">
+          <div class="section-tag"><span class="section-tag-dot"></span>How it works</div>
+        </div>
+        <h2 class="section-title reveal" data-delay="1">
+          From signal to<br><span class="text-gradient">resolution in seconds</span>
+        </h2>
+        <p class="section-sub reveal" data-delay="2">
+          Signalis collapses the gap between detection and action. Our engine correlates, ranks, and routes every alert to the right team automatically.
+        </p>
+        <div class="platform__steps stagger-left">
+          <div class="platform__step reveal-child">
+            <div class="platform__step-num">01</div>
+            <div>
+              <div class="platform__step-title">Ingest everything</div>
+              <div class="platform__step-body">Send metrics, logs, and traces via our SDKs, OpenTelemetry, or any open standard. No agents required.</div>
+              <div class="platform__step-badge">OpenTelemetry native</div>
+            </div>
+          </div>
+          <div class="platform__step reveal-child">
+            <div class="platform__step-num">02</div>
+            <div>
+              <div class="platform__step-title">Correlate automatically</div>
+              <div class="platform__step-body">Our engine maps signals to services, deploys, and commits — surfacing root cause instantly.</div>
+              <div class="platform__step-badge">ML-powered</div>
+            </div>
+          </div>
+          <div class="platform__step reveal-child">
+            <div class="platform__step-num">03</div>
+            <div>
+              <div class="platform__step-title">Alert intelligently</div>
+              <div class="platform__step-body">AI-deduped alerts routed to the right on-call engineer with full context — no noise, no alert fatigue.</div>
+              <div class="platform__step-badge">Zero false positives</div>
+            </div>
+          </div>
+          <div class="platform__step reveal-child">
+            <div class="platform__step-num">04</div>
+            <div>
+              <div class="platform__step-title">Resolve & learn</div>
+              <div class="platform__step-body">Incident timelines auto-generate postmortems. Your system gets smarter with every resolution.</div>
+              <div class="platform__step-badge">Auto-postmortem</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dashboard mockup -->
+      <div class="reveal-right" data-delay="2">
+        <div class="dashboard spin-border">
+          <div class="dash__topbar">
+            <div class="dash__dot" style="background:#FF5F57"></div>
+            <div class="dash__dot" style="background:#FEBC2E"></div>
+            <div class="dash__dot" style="background:#28C840"></div>
+            <span style="margin-left:8px;font-family:'Space Mono',monospace;font-size:12px;color:var(--dim)">signalis · production</span>
+            <div class="glow-dot" style="margin-left:auto"></div>
+            <span style="font-size:12px;color:var(--accent);font-family:'Space Mono',monospace;margin-left:6px">LIVE</span>
+          </div>
+          <div class="dash__metrics">
+            <div class="dash__metric">
+              <div class="dash__metric-val text-gradient" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800">2.1ms</div>
+              <div class="dash__metric-label">P99 Latency</div>
+            </div>
+            <div class="dash__metric">
+              <div class="dash__metric-val" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:rgba(40,200,100,.9)">99.98%</div>
+              <div class="dash__metric-label">Uptime</div>
+            </div>
+            <div class="dash__metric">
+              <div class="dash__metric-val" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--accent)">0</div>
+              <div class="dash__metric-label">Open P1s</div>
+            </div>
+          </div>
+          <div class="dash__chart">
+            <div style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Request rate · 24h</div>
+            <div class="dash__chart-bars" id="dashBars"></div>
+          </div>
+          <div class="dash__alerts">
+            <div style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Recent signals</div>
+            <div class="dash__alert">
+              <div class="dash__alert-dot" style="background:rgba(40,200,100,.9)"></div>
+              <span class="dash__alert-text">api-gateway · latency normalized</span>
+              <span class="dash__alert-time">2m ago</span>
+            </div>
+            <div class="dash__alert">
+              <div class="dash__alert-dot" style="background:#FEBC2E"></div>
+              <span class="dash__alert-text">db-replica · connection pool at 82%</span>
+              <span class="dash__alert-time">8m ago</span>
+            </div>
+            <div class="dash__alert">
+              <div class="dash__alert-dot" style="background:rgba(99,102,241,.9)"></div>
+              <span class="dash__alert-text">worker-queue · throughput +340%</span>
+              <span class="dash__alert-time">14m ago</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ═══════════════════════════════════════
+     METRICS
+════════════════════════════════════════ -->
+<section class="metrics" id="metrics">
+  <div class="container">
+    <div class="metrics__grid stagger-up">
+      <div class="metric reveal-child">
+        <div class="metric__value"><span class="counter" data-target="850">0</span>B<span class="metric__suffix">+</span></div>
+        <div class="metric__label">Events processed daily</div>
+        <div class="metric__sub">across all customer workloads</div>
+        <div class="metric__sparkline" id="spark1"></div>
+        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>+12% MoM</div>
+      </div>
+      <div class="metric reveal-child">
+        <div class="metric__value"><span class="counter" data-target="2">0</span>ms</div>
+        <div class="metric__label">Median detection time</div>
+        <div class="metric__sub">from event to alert</div>
+        <div class="metric__sparkline" id="spark2"></div>
+        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3L5 7L9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>-34% faster</div>
+      </div>
+      <div class="metric reveal-child">
+        <div class="metric__value"><span class="counter" data-target="99">0</span>.<span style="-webkit-text-fill-color:var(--accent)">99</span>%</div>
+        <div class="metric__label">Platform availability</div>
+        <div class="metric__sub">12-month rolling average</div>
+        <div class="metric__sparkline" id="spark3"></div>
+        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>99.99% last 30d</div>
+      </div>
+      <div class="metric reveal-child">
+        <div class="metric__value"><span class="counter" data-target="12">0</span>K+</div>
+        <div class="metric__label">Engineers on platform</div>
+        <div class="metric__sub">at 2,400+ companies</div>
+        <div class="metric__sparkline" id="spark4"></div>
+        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>+280 this week</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ═══════════════════════════════════════
+     PRICING
+════════════════════════════════════════ -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="pricing__header">
+      <div class="reveal">
+        <div class="section-tag"><span class="section-tag-dot"></span>Pricing</div>
+      </div>
+      <h2 class="section-title reveal" data-delay="1">
+        Transparent, <span class="text-gradient">usage-based</span> pricing
+      </h2>
+      <p class="section-sub reveal" data-delay="2">
+        No surprises. Pay for what you use. Scale from startup to enterprise on the same platform.
+      </p>
+      <div class="pricing__toggle reveal" data-delay="3">
+        <span>Monthly</span>
+        <div class="pricing__toggle-switch" id="billingToggle">
+          <div class="pricing__toggle-thumb"></div>
+        </div>
+        <span>Annual <span class="pricing__save">Save 20%</span></span>
+      </div>
+    </div>
+
+    <div class="pricing__cards stagger-scale">
+      <!-- Free -->
+      <div class="pricing-card pricing-card--free reveal-child">
+        <div class="pricing-card__topbar"></div>
+        <div class="pricing-card__name">Starter</div>
+        <div class="pricing-card__desc">For indie engineers and small projects just getting started.</div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__amount">$0</span>
+          <span class="pricing-card__period">/ month</span>
+        </div>
+        <div class="pricing-card__divider"></div>
+        <div class="pricing-card__features">
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            10B events / month
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            3 services
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            7-day data retention
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--no" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M6 12l6-6M12 12L6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span style="color:var(--dim)">AI anomaly detection</span>
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--no" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M6 12l6-6M12 12L6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            <span style="color:var(--dim)">SLA guarantees</span>
+          </div>
+        </div>
+        <button class="btn-plan btn-plan-ghost">Get started free</button>
+      </div>
+
+      <!-- Pro (featured) -->
+      <div class="pricing-card pricing-card--pro reveal-child">
+        <div class="pricing-card__topbar"></div>
+        <div class="pricing-card__badge">Most Popular</div>
+        <div class="pricing-card__name">Pro</div>
+        <div class="pricing-card__desc">For growing teams who need AI-powered observability at scale.</div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__amount" id="proPrice">$89</span>
+          <span class="pricing-card__period">/ seat / mo</span>
+        </div>
+        <div class="pricing-card__divider"></div>
+        <div class="pricing-card__features">
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Unlimited events
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Unlimited services
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            90-day retention
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            AI anomaly detection
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Predictive alerts
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            99.99% SLA
+          </div>
+        </div>
+        <button class="btn-plan btn-plan-primary">Start Pro trial</button>
+      </div>
+
+      <!-- Enterprise -->
+      <div class="pricing-card pricing-card--ent reveal-child">
+        <div class="pricing-card__topbar"></div>
+        <div class="pricing-card__name">Enterprise</div>
+        <div class="pricing-card__desc">Custom infrastructure, dedicated support, and compliance.</div>
+        <div class="pricing-card__price">
+          <span class="pricing-card__amount" style="font-size:36px">Custom</span>
+        </div>
+        <div class="pricing-card__divider"></div>
+        <div class="pricing-card__features">
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Everything in Pro
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Dedicated infra
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            SOC2 / HIPAA
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            24/7 dedicated support
+          </div>
+          <div class="pricing-card__feature">
+            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Custom SLA
+          </div>
+        </div>
+        <button class="btn-plan btn-plan-ghost">Talk to sales</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ═══════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════ -->
+<section class="testimonials">
+  <div class="testimonials__header container">
+    <div class="reveal">
+      <div class="section-tag"><span class="section-tag-dot"></span>What teams say</div>
+    </div>
+    <h2 class="section-title reveal" data-delay="1">
+      Trusted by <span class="text-gradient">on-call engineers</span><br>at 2,400+ companies
+    </h2>
+  </div>
+  <div style="overflow:hidden;position:relative;padding:20px 0">
+    <div style="position:absolute;top:0;bottom:0;left:0;width:120px;background:linear-gradient(to right,var(--bg),transparent);z-index:2;pointer-events:none"></div>
+    <div style="position:absolute;top:0;bottom:0;right:0;width:120px;background:linear-gradient(to left,var(--bg),transparent);z-index:2;pointer-events:none"></div>
+    <div class="testimonials__track" id="testimonialTrack">
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">Signalis cut our MTTR from 45 minutes to under 3. The AI root-cause analysis is genuinely magic — it spots patterns we'd never connect manually.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Sarah L.">
+          <div><div class="testimonial-card__name">Sarah L.</div><div class="testimonial-card__role">Staff SRE · Stripe</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">We migrated from Datadog in a weekend. Same coverage, 60% less cost, and the UX is miles ahead. Our on-call rotation actually enjoys using it now.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Marcus R.">
+          <div><div class="testimonial-card__name">Marcus R.</div><div class="testimonial-card__role">Platform Eng · Linear</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">The predictive alerts gave us a 20-minute heads-up before our biggest outage of the year. We fixed it silently. Customers never noticed.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Anika K.">
+          <div><div class="testimonial-card__name">Anika K.</div><div class="testimonial-card__role">VP Eng · Notion</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">I've evaluated every observability tool. Signalis is the first one that feels like it was built by engineers who actually do on-call. The signal-to-noise ratio is unmatched.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&h=96&fit=crop&crop=faces&auto=format" alt="James P.">
+          <div><div class="testimonial-card__name">James P.</div><div class="testimonial-card__role">Founding Eng · Vercel</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">OpenTelemetry support is first-class. We send data from 200+ microservices and the correlation engine just works. No config, no fiddling.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Tariq N.">
+          <div><div class="testimonial-card__name">Tariq N.</div><div class="testimonial-card__role">Infrastructure Lead · Railway</div></div>
+        </div>
+      </div>
+      <!-- Duplicate for loop -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">Signalis cut our MTTR from 45 minutes to under 3. The AI root-cause analysis is genuinely magic — it spots patterns we'd never connect manually.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Sarah L.">
+          <div><div class="testimonial-card__name">Sarah L.</div><div class="testimonial-card__role">Staff SRE · Stripe</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">We migrated from Datadog in a weekend. Same coverage, 60% less cost, and the UX is miles ahead. Our on-call rotation actually enjoys using it now.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Marcus R.">
+          <div><div class="testimonial-card__name">Marcus R.</div><div class="testimonial-card__role">Platform Eng · Linear</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">The predictive alerts gave us a 20-minute heads-up before our biggest outage of the year. We fixed it silently. Customers never noticed.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Anika K.">
+          <div><div class="testimonial-card__name">Anika K.</div><div class="testimonial-card__role">VP Eng · Notion</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">I've evaluated every observability tool. Signalis is the first one that feels like it was built by engineers who actually do on-call. The signal-to-noise ratio is unmatched.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&h=96&fit=crop&crop=faces&auto=format" alt="James P.">
+          <div><div class="testimonial-card__name">James P.</div><div class="testimonial-card__role">Founding Eng · Vercel</div></div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
+        <div class="testimonial-card__text">OpenTelemetry support is first-class. We send data from 200+ microservices and the correlation engine just works. No config, no fiddling.</div>
+        <div class="testimonial-card__author">
+          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Tariq N.">
+          <div><div class="testimonial-card__name">Tariq N.</div><div class="testimonial-card__role">Infrastructure Lead · Railway</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-sep"></div>
+
+<!-- ═══════════════════════════════════════
+     CTA
+════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container-sm">
+    <div class="cta-panel noise-glass reveal-scale">
+      <div class="cta-ring cta-ring--1"></div>
+      <div class="cta-ring cta-ring--2"></div>
+      <div class="cta-ring cta-ring--3"></div>
+      <div class="particles" id="ctaParticles"></div>
+      <h2 class="cta-panel__title">
+        Your infrastructure is talking.<br>
+        <span class="text-gradient">Start listening.</span>
+      </h2>
+      <p class="cta-panel__sub">Start free in minutes. No credit card. No agent install. Just clarity.</p>
+      <div class="cta-panel__actions">
+        <button class="btn btn-primary btn-lg">
+          Start for free
+          <svg class="btn-icon" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <button class="btn btn-ghost btn-lg">Book a demo</button>
+      </div>
+      <div class="cta-panel__note">Free 14-day Pro trial included · No credit card required</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__grid stagger-up">
+      <div class="footer__brand reveal-child">
+        <div class="footer__logo">
+          Signalis
+        </div>
+        <div class="footer__tagline">Full-stack observability for the teams who keep the internet running.</div>
+        <div class="footer__socials">
+          <a href="#" class="footer__social">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.857L1.204 2.25h6.717l4.258 5.626L18.244 2.25z"/></svg>
+          </a>
+          <a href="#" class="footer__social">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
+          </a>
+          <a href="#" class="footer__social">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="reveal-child">
+        <div class="footer__col-title">Product</div>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">Features</a></li>
+          <li><a href="#" class="footer__link">Integrations</a></li>
+          <li><a href="#" class="footer__link">Changelog</a></li>
+          <li><a href="#" class="footer__link">Roadmap</a></li>
+          <li><a href="#" class="footer__link">Status</a></li>
+        </ul>
+      </div>
+      <div class="reveal-child">
+        <div class="footer__col-title">Company</div>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">About</a></li>
+          <li><a href="#" class="footer__link">Blog</a></li>
+          <li><a href="#" class="footer__link">Careers</a></li>
+          <li><a href="#" class="footer__link">Press</a></li>
+          <li><a href="#" class="footer__link">Contact</a></li>
+        </ul>
+      </div>
+      <div class="reveal-child">
+        <div class="footer__col-title">Developers</div>
+        <ul class="footer__links">
+          <li><a href="#" class="footer__link">Documentation</a></li>
+          <li><a href="#" class="footer__link">API Reference</a></li>
+          <li><a href="#" class="footer__link">SDKs</a></li>
+          <li><a href="#" class="footer__link">Community</a></li>
+          <li><a href="#" class="footer__link">GitHub</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer__bottom reveal">
+      <div class="footer__copy">© <span id="footerYear"></span> Signalis, Inc. All rights reserved.</div>
+      <div class="footer__status">
+        <div class="glow-dot" style="width:6px;height:6px"></div>
+        All systems operational
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════
+     UNICORN STUDIO SDK
+════════════════════════════════════════ -->
+<script>
+!function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.0/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();
+</script>
+
+<script>
+// ─────────────────────────────────────────
+// DYNAMIC YEAR
+// ─────────────────────────────────────────
+(function(){
+  var y = document.getElementById('footerYear');
+  if(y) y.textContent = new Date().getFullYear();
+})();
+
+// ─────────────────────────────────────────
+// NAV SCROLL STATE + MOBILE TOGGLE
+// ─────────────────────────────────────────
+(function(){
+  var nav = document.getElementById('nav');
+  var toggle = document.getElementById('navToggle');
+  var links = document.querySelector('.nav__links');
+  var cta = document.querySelector('.nav__cta');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  },{passive:true});
+  if(toggle){
+    toggle.addEventListener('click',function(){
+      var open = nav.classList.toggle('nav--open');
+      toggle.setAttribute('aria-expanded', open);
+    });
+    // Close menu on link click
+    if(links) links.addEventListener('click',function(e){
+      if(e.target.classList.contains('nav__link')){
+        nav.classList.remove('nav--open');
+        toggle.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+})();
+
+// ─────────────────────────────────────────
+// NOISE/GRAIN TEXTURE GENERATOR
+// ─────────────────────────────────────────
+(function(){
+  var size = 128;
+  var c = document.createElement('canvas');
+  c.width = size; c.height = size;
+  var ctx = c.getContext('2d');
+  var img = ctx.createImageData(size, size);
+  for (var i = 0; i < img.data.length; i += 4) {
+    var v = Math.random() * 255 | 0;
+    img.data[i] = v;
+    img.data[i+1] = v;
+    img.data[i+2] = v;
+    img.data[i+3] = 120;
+  }
+  ctx.putImageData(img, 0, 0);
+  document.documentElement.style.setProperty('--noise-url', 'url(' + c.toDataURL('image/png') + ')');
+})();
+
+// ─────────────────────────────────────────
+// SCROLL REVEAL — IntersectionObserver (Aura.build compatible)
+// Observes: .reveal, .reveal-scale, .reveal-left, .reveal-right, .stagger-*
+// Adds .visible class on viewport entry (once)
+// Stagger children need .reveal-child marker (aura catches [class*="reveal"])
+// ─────────────────────────────────────────
+(function(){
+  var sel = '.reveal,.reveal-scale,.reveal-left,.reveal-right,.stagger-up,.stagger-scale,.stagger-left';
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.classList.add('visible');
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.12,rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll(sel).forEach(function(el){io.observe(el)});
+})();
+
+// ─────────────────────────────────────────
+// WAVEFORM BARS
+// ─────────────────────────────────────────
+(function(){
+  var wf = document.getElementById('waveform');
+  if(!wf) return;
+  var heights = [30,60,85,45,70,55,90,40,65,50,80,35,75,60,45,85,30,70,55,95,40,65,50,80];
+  heights.forEach(function(h,i){
+    var b = document.createElement('div');
+    b.className = 'waveform__bar';
+    b.style.height = h+'%';
+    b.style.animationDelay = (i*0.08)+'s';
+    wf.appendChild(b);
+  });
+})();
+
+// ─────────────────────────────────────────
+// GRID VISUAL — animated cells
+// ─────────────────────────────────────────
+(function(){
+  var gv = document.getElementById('gridVisual');
+  if(!gv) return;
+  for(var i=0;i<36;i++){
+    var c=document.createElement('div');
+    c.className='grid-visual__cell';
+    gv.appendChild(c);
+  }
+  function randomActivate(){
+    var cells = gv.querySelectorAll('.grid-visual__cell');
+    cells.forEach(function(c){ c.classList.remove('active'); });
+    var count = Math.floor(Math.random()*8)+3;
+    for(var i=0;i<count;i++){
+      var idx = Math.floor(Math.random()*cells.length);
+      cells[idx].classList.add('active');
+    }
+  }
+  randomActivate();
+  setInterval(randomActivate, 900);
+})();
+
+// ─────────────────────────────────────────
+// INTEGRATION BADGES
+// ─────────────────────────────────────────
+(function(){
+  var container = document.getElementById('intBadges');
+  if(!container) return;
+  var items = ['Kubernetes','Prometheus','Kafka','AWS CloudWatch','GCP Logging','Datadog','Grafana','PagerDuty','Slack','GitHub Actions','Terraform','Helm','OpenTelemetry','Jaeger','Zipkin','InfluxDB'];
+  container.style.cssText = 'display:flex;gap:8px;flex-wrap:wrap';
+  items.forEach(function(name){
+    var b = document.createElement('span');
+    b.textContent = name;
+    b.style.cssText = 'padding:4px 12px;border-radius:100px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.04);font-size:13px;color:rgba(248,247,255,.55);transition:all .2s;cursor:default';
+    b.addEventListener('mouseenter',function(){this.style.borderColor='rgba(99,102,241,.4)';this.style.color='rgba(248,247,255,.9)';this.style.background='rgba(99,102,241,.1)'});
+    b.addEventListener('mouseleave',function(){this.style.borderColor='rgba(255,255,255,.08)';this.style.color='rgba(248,247,255,.55)';this.style.background='rgba(255,255,255,.04)'});
+    container.appendChild(b);
+  });
+})();
+
+// ─────────────────────────────────────────
+// DASHBOARD CHART BARS
+// ─────────────────────────────────────────
+(function(){
+  var db = document.getElementById('dashBars');
+  if(!db) return;
+  var heights = [45,62,78,55,82,70,90,65,75,50,88,60,72,45,85,68,92,55,78,65,80,70,88,60];
+  heights.forEach(function(h,i){
+    var b=document.createElement('div');
+    b.className='dash__bar';
+    b.style.height=h+'%';
+    b.style.animationDelay=(i*0.04)+'s';
+    db.appendChild(b);
+  });
+})();
+
+// ─────────────────────────────────────────
+// COUNTER ANIMATION
+// ─────────────────────────────────────────
+(function(){
+  function animateCounter(el, target, duration){
+    var start = 0, startTime = null;
+    var isFloat = String(target).includes('.');
+    function step(ts){
+      if(!startTime) startTime = ts;
+      var progress = Math.min((ts-startTime)/duration, 1);
+      var ease = 1-Math.pow(1-progress,3);
+      var val = start + (target-start)*ease;
+      el.textContent = isFloat ? val.toFixed(2) : Math.floor(val);
+      if(progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var el = e.target;
+        var target = parseFloat(el.getAttribute('data-target') || el.getAttribute('data-count'));
+        animateCounter(el, target, 1800);
+        io.unobserve(el);
+      }
+    });
+  },{threshold:0.5});
+  document.querySelectorAll('.counter,[data-count]').forEach(function(el){io.observe(el)});
+})();
+
+// ─────────────────────────────────────────
+// PRICING TOGGLE
+// ─────────────────────────────────────────
+(function(){
+  var toggle = document.getElementById('billingToggle');
+  var proPrice = document.getElementById('proPrice');
+  if(!toggle||!proPrice) return;
+  var annual = false;
+  toggle.addEventListener('click',function(){
+    annual = !annual;
+    toggle.classList.toggle('active',annual);
+    proPrice.textContent = annual ? '$71' : '$89';
+  });
+})();
+
+// ─────────────────────────────────────────
+// 3D CARD TILT
+// ─────────────────────────────────────────
+(function(){
+  document.querySelectorAll('.feature-card,.pricing-card,.testimonial-card').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var rect = card.getBoundingClientRect();
+      var x = (e.clientX - rect.left) / rect.width - 0.5;
+      var y = (e.clientY - rect.top) / rect.height - 0.5;
+      card.style.transform = 'perspective(800px) rotateX('+(-y*6)+'deg) rotateY('+(x*6)+'deg) translateZ(4px)';
+    });
+    card.addEventListener('mouseleave',function(){
+      card.style.transform = '';
+    });
+  });
+})();
+
+// ─────────────────────────────────────────
+// CARD MOUSE GLOW (radial gradient follows cursor)
+// ─────────────────────────────────────────
+(function(){
+  var selectors = [
+    {sel:'.feature-card', cls:'feature-card__glow'},
+    {sel:'.pricing-card', cls:'pricing-card__glow'},
+    {sel:'.testimonial-card', cls:'testimonial-card__glow'}
+  ];
+  selectors.forEach(function(s){
+    document.querySelectorAll(s.sel).forEach(function(card){
+      var glow = document.createElement('div');
+      glow.className = s.cls;
+      card.insertBefore(glow, card.firstChild);
+      card.addEventListener('mousemove', function(e){
+        var r = card.getBoundingClientRect();
+        var x = e.clientX - r.left;
+        var y = e.clientY - r.top;
+        glow.style.background = 'radial-gradient(500px circle at '+x+'px '+y+'px, rgba(99,102,241,.1), transparent 40%)';
+      });
+    });
+  });
+})();
+
+// ─────────────────────────────────────────
+// METRIC SPARKLINES
+// ─────────────────────────────────────────
+(function(){
+  var sparkData = {
+    spark1: [30,45,60,55,70,65,80,75,90,85,95,88,92],
+    spark2: [80,75,65,70,55,60,45,50,35,40,30,28,25],
+    spark3: [90,92,91,93,95,94,96,95,97,96,98,97,99],
+    spark4: [20,28,35,42,50,48,58,65,72,70,80,85,95]
+  };
+  Object.keys(sparkData).forEach(function(id){
+    var el = document.getElementById(id);
+    if(!el) return;
+    var data = sparkData[id];
+    var max = Math.max.apply(null, data);
+    data.forEach(function(v, i){
+      var bar = document.createElement('div');
+      bar.className = 'metric__spark-bar';
+      bar.style.height = (v/max*100)+'%';
+      bar.style.animationDelay = (i*0.06)+'s';
+      if(i === data.length-1) bar.style.background = 'linear-gradient(to top,rgba(99,102,241,.5),rgba(165,180,252,.7))';
+      el.appendChild(bar);
+    });
+  });
+})();
+
+// ─────────────────────────────────────────
+// FLOATING PARTICLES
+// ─────────────────────────────────────────
+(function(){
+  function createParticles(containerId, count){
+    var el = document.getElementById(containerId);
+    if(!el) return;
+    for(var i=0;i<count;i++){
+      var p = document.createElement('div');
+      p.className = 'particle';
+      p.style.left = (Math.random()*100)+'%';
+      p.style.top = (60+Math.random()*40)+'%';
+      p.style.width = (1+Math.random()*2)+'px';
+      p.style.height = p.style.width;
+      p.style.animationDuration = (6+Math.random()*10)+'s';
+      p.style.animationDelay = (Math.random()*8)+'s';
+      if(Math.random()>.6) p.style.background = 'rgba(165,180,252,.3)';
+      el.appendChild(p);
+    }
+  }
+  createParticles('featureParticles', 20);
+  createParticles('ctaParticles', 15);
+})();
+
+// ─────────────────────────────────────────
+// MAGNETIC BUTTONS
+// ─────────────────────────────────────────
+(function(){
+  document.querySelectorAll('.btn-primary,.btn-hero-primary,.btn-plan-primary').forEach(function(btn){
+    btn.addEventListener('mousemove',function(e){
+      var rect = btn.getBoundingClientRect();
+      var x = (e.clientX - rect.left - rect.width/2) * 0.25;
+      var y = (e.clientY - rect.top - rect.height/2) * 0.25;
+      btn.style.transform = 'translate('+x+'px,'+y+'px)';
+    });
+    btn.addEventListener('mouseleave',function(){
+      btn.style.transform = '';
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

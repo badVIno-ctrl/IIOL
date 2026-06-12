@@ -1,0 +1,600 @@
+<html lang="es" class="scroll-smooth"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sonic - Generación de Stems con IA</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+<style>
+body {
+background-color: #030712;
+color: #e5e7eb;
+}
+.glass-panel {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.08);
+}
+.glass-nav {
+background: rgba(3, 7, 18, 0.7);
+backdrop-filter: blur(12px);
+border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+.text-gradient {
+background: linear-gradient(to right, #fff, #9ca3af);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+/* Custom toggle switch */
+.toggle-checkbox:checked {
+right: 0;
+border-color: #6366f1;
+}
+.toggle-checkbox:checked + .toggle-label {
+background-color: #6366f1;
+}
+</style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style><link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><link id="all-fonts-link-font-google-sans-flex" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-google-sans-flex">.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }</style><link id="all-fonts-link-font-oswald" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-oswald">.font-oswald { font-family: 'Oswald', sans-serif !important; }</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-dm-sans">.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }</style><link id="all-fonts-link-font-cormorant" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-cormorant">.font-cormorant { font-family: 'Cormorant Garamond', serif !important; }</style></head>
+<body class="antialiased selection:bg-indigo-500/30 selection:text-indigo-200">
+
+<!-- Background (component) added by Aura -->
+<div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="; mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div class="w-full h-full">
+  <div class="w-full h-full relative">
+    <div class="aura-background-component top-0 w-full absolute h-full">
+      <div data-us-project="bKN5upvoulAmWvInmHza" class="absolute w-full h-full left-0 top-0"></div>
+      <script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+    </div>
+  </div>
+</div></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+            <a href="#" class="flex items-center gap-2 group">
+                <div class="w-6 h-6 rounded bg-gradient-to-tr to-stone-500 flex items-center justify-center from-white">
+                    <iconify-icon icon="solar:music-note-linear" class="text-black" width="14"></iconify-icon>
+                </div>
+                <span class="text-sm font-semibold tracking-tight group-hover:opacity-80 transition-opacity text-white">SONIC</span>
+            </a>
+            
+            <div class="hidden md:flex items-center gap-8">
+                <a href="#features" class="text-sm transition-colors text-stone-400 hover:text-white">Motor IA</a>
+                <a href="#testimonials" class="text-sm transition-colors text-stone-400 hover:text-white">Showcase</a>
+                <a href="#pricing" class="text-sm transition-colors text-stone-400 hover:text-white">Precios</a>
+                <a href="#" class="text-sm transition-colors text-stone-400 hover:text-white">Blog</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="#" class="hidden md:block text-sm transition-colors text-stone-300 hover:text-white">Iniciar sesión</a>
+                <a href="#" class="text-xs font-medium px-4 py-2 rounded-full transition-colors bg-white text-black hover:bg-stone-200">Crear cuenta</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="md:pt-48 md:pb-32 overflow-hidden pt-32 pb-20 relative" id="hero">
+        <!-- Background Effects -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[500px] bg-orange-500/10 rounded-[100%] blur-[100px] pointer-events-none"></div>
+        <div class="absolute top-20 right-0 w-[500px] h-[500px] bg-red-500/5 rounded-[100%] blur-[120px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border text-xs mb-8 transition-colors cursor-pointer bg-white/5 border-white/10 text-orange-300 hover:bg-white/10">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-orange-400"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-orange-500"></span>
+                </span>
+                Nuevo modelo Generativo v3.0 disponible
+                <iconify-icon icon="lucide:arrow-right" width="12" stroke-width="1.5"></iconify-icon>
+            </div>
+
+            <h1 class="md:text-7xl lg:text-8xl leading-[1.1] text-5xl font-medium text-white tracking-tight max-w-4xl mr-auto mb-6 ml-auto">Genera stems <br class=""> <span class="text-stone-500">con lenguaje natural.</span></h1>
+            
+            <p class="md:text-xl leading-relaxed text-lg font-light text-stone-400 max-w-2xl mr-auto mb-10 ml-auto">Describe el sonido que necesitas y se generará un sample único, listo para usar.
+Original y libre de regalías.</p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mb-20">
+                <button class="h-10 px-6 rounded-full text-sm font-medium transition-colors flex items-center gap-2 group bg-white text-black hover:bg-stone-200">
+                    Generar Sample Gratis
+                    <iconify-icon icon="lucide:sparkles" width="16" class="group-hover:translate-x-0.5 transition-transform" stroke-width="1.5"></iconify-icon>
+                </button>
+                <button class="h-10 px-6 rounded-full border text-sm font-medium transition-colors flex items-center gap-2 bg-white/5 border-white/10 text-white hover:bg-white/10">
+                    <iconify-icon icon="lucide:play-circle" width="16" stroke-width="1.5"></iconify-icon>
+                    Escuchar Demos
+                </button>
+            </div>
+
+            <!-- Hero Visual -->
+            <div class="relative max-w-5xl mx-auto">
+                <div class="absolute -inset-1 bg-gradient-to-r from-orange-500 rounded-xl blur opacity-20 to-red-600"></div>
+                <div class="relative rounded-xl border bg-[#0A0A0A] overflow-hidden shadow-2xl border-white/10">
+                    <div class="flex gap-2 w-full border-white/5 border-b pt-3 pr-4 pb-3 pl-4 gap-x-2 gap-y-2 items-center">
+    <div class="flex gap-1.5">
+        <div class="w-3 h-3 rounded-full bg-[#FF5F57] border border-[#E0443E]/30"></div>
+        <div class="w-3 h-3 rounded-full bg-[#FEBC2E] border border-[#D89E24]/30"></div>
+        <div class="w-3 h-3 rounded-full bg-[#28C840] border border-[#1AAB29]/30"></div>
+    </div>
+    <div class="flex-1 flex items-center justify-center text-xs font-medium text-stone-400 gap-2 pr-12">
+        <iconify-icon icon="lucide:music-2" width="12" class="opacity-60"></iconify-icon>
+        <span>Sonic Studio</span>
+        <span class="text-stone-600">/</span>
+        <span class="text-stone-500">Single Stem Generator</span>
+    </div>
+</div>
+                    <div class="p-0 md:p-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- Left Panel (Prompt) -->
+                        <div class="hidden md:block col-span-1 space-y-4">
+                            <div class="text-xs font-semibold text-stone-500 uppercase tracking-wider mb-2">Prompt de IA</div>
+                            <div class="p-3 rounded-lg border bg-white/5 border-white/5">
+                                <p class="text-xs text-stone-300 leading-relaxed font-mono">
+                                    "Genera un <span class="text-orange-300">bajo para House Tumbado</span> a 132bpm. Estilo tololoche percusivo con sub-graves profundos y ritmo sincopado."
+                                </p>
+                            </div>
+                            <div class="space-y-2 mt-4">
+                                <div class="h-1 w-full rounded bg-gradient-to-r from-orange-500/50 to-transparent"></div>
+                                <div class="flex justify-between text-[10px] text-stone-500 font-mono">
+                                    <span>Renderizando audio...</span>
+                                    <span class="">100%</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Main Content (Tracks) -->
+                        <div class="col-span-2 overflow-hidden bg-white/5 border-white/5 border rounded-lg pt-6 pr-6 pb-6 pl-6 relative">
+    <div class="absolute top-0 right-0 w-64 h-64 bg-indigo-500/10 blur-[80px] pointer-events-none"></div>
+    
+    <!-- Session Header -->
+    <div class="flex justify-between items-center mb-8 relative z-10">
+        <div>
+            <div class="text-xs font-medium mb-1.5 text-stone-400 uppercase tracking-wider flex items-center gap-2">
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+                Stem Generado
+            </div>
+            <div class="text-xl font-medium text-white flex items-center gap-3">
+                Bajo_Tumbado_Gen_01.wav
+                <div class="h-4 w-px bg-white/10 mx-1"></div>
+                <div class="flex items-center gap-1.5 text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded text-stone-300 font-mono">
+                    <iconify-icon icon="lucide:timer" width="10"></iconify-icon>
+                    132 BPM
+                </div>
+                <div class="flex items-center gap-1.5 text-[10px] bg-white/5 border border-white/10 px-2 py-1 rounded text-stone-300 font-mono">
+                    <iconify-icon icon="lucide:music-4" width="10"></iconify-icon>
+                    F# MINOR
+                </div>
+            </div>
+        </div>
+        <div class="flex gap-2">
+            <button class="h-9 px-4 rounded-lg bg-white text-black text-xs font-medium hover:bg-stone-200 transition-colors flex items-center gap-2">
+                <iconify-icon icon="lucide:download" width="14"></iconify-icon>
+                Descargar WAV
+            </button>
+        </div>
+    </div>
+    
+    <!-- Tracks / Stems Visual -->
+    <div class="space-y-3 relative z-10 h-32 flex flex-col justify-center">
+        
+        <!-- Stem: Tololoche (Bass) - Highlighted -->
+        <div class="group flex items-center gap-4 bg-stone-900/60 border border-indigo-500/30 rounded-lg p-3 hover:border-indigo-500/50 hover:bg-stone-900/80 transition-all duration-300 shadow-[0_0_20px_rgba(99,102,241,0.05)]">
+            <!-- Info -->
+            <div class="w-40 flex-shrink-0 flex items-center gap-3">
+                <div class="w-10 h-10 rounded bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400">
+                    <iconify-icon icon="lucide:music-4" width="18"></iconify-icon>
+                </div>
+                <div>
+                    <div class="text-white text-sm font-medium">Bajo</div>
+                    <div class="text-xs text-stone-500">Tololoche / Acoustic</div>
+                </div>
+            </div>
+            
+            <!-- Waveform Visualization (Thicker/Sustained look) -->
+            <div class="flex-1 h-12 flex items-center gap-[2px] opacity-90 group-hover:opacity-100 transition-opacity">
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-5"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-4"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-2"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-3"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-7"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-8"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-8"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-7"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-2"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-3"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-3"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-7"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-7"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-4"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-2"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-5"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-6"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-4"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-2"></div>
+                <div class="w-1.5 bg-indigo-500 rounded-sm h-1"></div>
+            </div>
+
+            <!-- Controls -->
+            <div class="w-28 flex items-center justify-end gap-3 border-l border-white/5 pl-3">
+                
+                <div class="w-1.5 h-8 bg-stone-800 rounded-full overflow-hidden relative border border-white/5">
+                    <div class="absolute bottom-0 w-full h-[75%] bg-indigo-500 rounded-full"></div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    
+    <!-- Playback Footer -->
+    <div class="mt-6 pt-4 border-t border-white/5 flex items-center justify-between relative z-10">
+         <div class="flex items-center gap-3">
+            <button class="w-8 h-8 rounded-full bg-white text-black flex items-center justify-center hover:scale-105 transition-transform hover:bg-stone-200">
+                <iconify-icon icon="lucide:play" width="14" class="ml-0.5" height="14" style="color: rgb(0, 0, 0);"></iconify-icon>
+            </button>
+            <div class="flex flex-col">
+                <span class="text-xs text-white font-medium">Previsualización</span>
+                <span class="text-[10px] text-stone-400 font-mono">00:00 / 00:08</span>
+            </div>
+         </div>
+         
+         <div class="flex items-center gap-3">
+             <iconify-icon icon="lucide:volume-2" width="14" class="text-stone-500"></iconify-icon>
+             <div class="w-24 h-1 bg-stone-800 rounded-full overflow-hidden cursor-pointer group">
+                 <div class="w-[75%] h-full bg-stone-500 group-hover:bg-white transition-colors rounded-full"></div>
+             </div>
+         </div>
+    </div>
+</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Brands -->
+            <div class="mt-20 pt-10 border-t border-white/5">
+                <p class="text-xs text-stone-500 mb-6 uppercase tracking-widest font-medium">Productores usando Sonic en</p>
+                <div class="flex flex-wrap justify-center gap-x-12 gap-y-8 grayscale opacity-40">
+                    <!-- Simple Text Logos for compliance -->
+                    <span class="text-lg font-bold tracking-tight">ABLETON</span>
+                    <span class="text-lg font-bold tracking-tight font-serif">FL Studio</span>
+                    <span class="text-lg font-bold tracking-tight italic">Logic Pro</span>
+                    <span class="text-lg font-bold tracking-tight font-mono">Bitwig</span>
+                    <span class="text-lg font-bold tracking-tight">Native Instruments</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feature Section -->
+    <section id="features" class="py-24 relative">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-16">
+                <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 text-white">Inspiración Ilimitada.</h2>
+                <p class="max-w-xl text-lg font-light text-stone-400">Olvídate de buscar samples durante horas. Crea exactamente lo que tienes en mente al instante.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Feature 1 -->
+                <div class="glass-panel p-8 rounded-xl group hover:bg-white/[0.06] transition-colors">
+                    <div class="w-10 h-10 rounded-lg border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 bg-white/5 border-white/10 text-white">
+                        <iconify-icon icon="lucide:wand-2" width="20" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-white">Text-to-Audio</h3>
+                    <p class="text-sm leading-relaxed text-stone-400">Convierte tus ideas en audio. Simplemente describe el género, instrumento y vibra, y nuestra IA lo generará.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="glass-panel p-8 rounded-xl group hover:bg-white/[0.06] transition-colors">
+                    <div class="w-10 h-10 rounded-lg border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 bg-white/5 border-white/10 text-white">
+                        <iconify-icon icon="lucide:refresh-cw" width="20" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-white">Variaciones Infinitas</h3>
+                    <p class="text-sm leading-relaxed text-stone-400">¿No te convence el resultado? Genera variaciones infinitas del mismo prompt hasta encontrar el sonido perfecto.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="glass-panel p-8 rounded-xl group hover:bg-white/[0.06] transition-colors">
+                    <div class="w-10 h-10 rounded-lg border flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 bg-white/5 border-white/10 text-white">
+                        <iconify-icon icon="lucide:badge-check" width="20" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-white">Libre de Regalías</h3>
+                    <p class="text-sm leading-relaxed text-stone-400">Cada stem generado es completamente único. Úsalos en tus lanzamientos comerciales sin preocuparte por el copyright.</p>
+                </div>
+                
+                <!-- Large Feature -->
+                <div class="md:col-span-2 glass-panel p-8 rounded-xl relative overflow-hidden group">
+                    <div class="relative z-10">
+                        <div class="w-10 h-10 rounded-lg border flex items-center justify-center mb-6 bg-white/5 border-white/10 text-white">
+                            <iconify-icon icon="lucide:layers" width="20" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-lg font-medium mb-2 text-white">Multitrack Stems</h3>
+                        <p class="text-sm max-w-sm leading-relaxed text-stone-400">No solo loops planos. Sonic genera stems separados (kick, snare, hi-hats, bajo, melodía) para que tengas control total en la mezcla.</p>
+                    </div>
+                    <!-- Decorative Graphic -->
+                    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1/3 h-full opacity-50 group-hover:opacity-80 transition-opacity">
+                        <div class="absolute inset-y-4 right-4 w-full border rounded-l-xl backdrop-blur-sm p-4 border-white/10 bg-stone-900/50">
+                            <div class="space-y-3">
+                                <div class="flex items-center gap-3 p-2 rounded transition-colors cursor-default hover:bg-white/5">
+                                    <iconify-icon icon="lucide:music" class="text-white" width="16"></iconify-icon>
+                                    <div class="h-2 w-16 rounded bg-white/20"></div>
+                                </div>
+                                <div class="flex items-center gap-3 p-2 rounded transition-colors cursor-default hover:bg-white/5">
+                                    <iconify-icon icon="lucide:mic" class="text-white" width="16"></iconify-icon>
+                                    <div class="h-2 w-20 rounded bg-white/20"></div>
+                                </div>
+                                <div class="flex items-center gap-3 p-2 rounded transition-colors cursor-default hover:bg-white/5">
+                                    <iconify-icon icon="lucide:headphones" class="text-white" width="16"></iconify-icon>
+                                    <div class="h-2 w-12 rounded bg-white/20"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="glass-panel p-8 rounded-xl group hover:bg-white/[0.06] transition-colors md:col-span-1">
+                    <div class="w-10 h-10 rounded-lg border flex items-center justify-center mb-6 bg-white/5 border-white/10 text-white">
+                        <iconify-icon icon="lucide:file-audio" width="20" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-white">Exportación MIDI</h3>
+                    <p class="text-sm leading-relaxed text-stone-400">¿Te gusta la melodía pero quieres usar tu propio sinte? Descarga el archivo MIDI de cualquier generación.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section id="testimonials" class="py-24 border-t bg-white/[0.005] border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-center mb-16 text-white">Amado por creadores.</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Review 1 -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="mb-4 text-orange-400">
+                            <iconify-icon icon="lucide:quote" width="20" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <p class="text-sm leading-relaxed mb-6 text-stone-300">"La cura definitiva para el bloqueo creativo. Cuando no sé por dónde empezar, le pido a Sonic una progresión de acordes y fluyo desde ahí."</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br border from-stone-700 to-stone-900 border-white/10"></div>
+                        <div>
+                            <div class="text-xs font-medium text-white">Carlos Méndez</div>
+                            <div class="text-[10px] text-stone-500 uppercase tracking-wide">Productor Musical</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="mb-4 text-orange-400">
+                            <iconify-icon icon="lucide:quote" width="20" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <p class="text-sm leading-relaxed mb-6 text-stone-300">"Poder generar una textura vocal específica para un track sin tener que buscar en librerías genéricas ha sido increíble."</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br border from-stone-700 to-stone-900 border-white/10"></div>
+                        <div>
+                            <div class="text-xs font-medium text-white">Laura García</div>
+                            <div class="text-[10px] text-stone-500 uppercase tracking-wide">DJ &amp; Beatmaker</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="glass-panel p-6 rounded-xl flex flex-col justify-between">
+                    <div>
+                        <div class="mb-4 text-orange-400">
+                            <iconify-icon icon="lucide:quote" width="20" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <p class="text-sm leading-relaxed mb-6 text-stone-300">"Lo mejor es que los samples son míos. He lanzado tres canciones con baterías generadas por Sonic y suenan súper profesionales."</p>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <div class="w-8 h-8 rounded-full bg-gradient-to-br border from-stone-700 to-stone-900 border-white/10"></div>
+                        <div>
+                            <div class="text-xs font-medium text-white">Javier Torres</div>
+                            <div class="text-[10px] text-stone-500 uppercase tracking-wide">Sound Designer</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 relative overflow-hidden">
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full blur-[100px] pointer-events-none bg-orange-900/10"></div>
+
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-4 text-white">Planes flexibles.</h2>
+                <p class="text-lg font-light mb-8 text-stone-400">Créditos mensuales para generar tu próximo hit.</p>
+                
+                <!-- Custom Toggle -->
+                <div class="flex items-center justify-center gap-3">
+                    <span class="text-sm text-stone-300">Mensual</span>
+                    <label for="toggle" class="flex items-center cursor-pointer relative">
+                        <input type="checkbox" id="toggle" class="sr-only toggle-checkbox">
+                        <div class="w-11 h-6 rounded-full border toggle-label transition-colors bg-stone-800 border-stone-700"></div>
+                        <div class="absolute left-1 top-1 w-4 h-4 rounded-full transition-all duration-300 transform bg-white" style="box-shadow: 0 2px 4px rgba(0,0,0,0.2);"></div>
+                    </label>
+                    <span class="text-sm text-stone-300">Anual <span class="text-xs ml-1 text-orange-400">-20%</span></span>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+                <!-- Free Tier -->
+                <div class="glass-panel p-8 rounded-2xl flex flex-col">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-medium text-white">Bedroom</h3>
+                        <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-3xl font-medium text-white">$0</span>
+                            <span class="text-sm text-stone-500">/mes</span>
+                        </div>
+                        <p class="text-xs mt-2 text-stone-400">Para probar la tecnología.</p>
+                    </div>
+                    <div class="my-6 border-t border-white/5"></div>
+                    <ul class="space-y-3 flex-1">
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="text-stone-500 mt-0.5" width="16"></iconify-icon>
+                            <span>15 generaciones al mes</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="text-stone-500 mt-0.5" width="16"></iconify-icon>
+                            <span>Stems en MP3</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="text-stone-500 mt-0.5" width="16"></iconify-icon>
+                            <span>Licencia uso personal</span>
+                        </li>
+                    </ul>
+                    <button class="mt-8 w-full py-2 rounded-lg border text-sm font-medium transition-colors bg-white/5 border-white/10 text-white hover:bg-white/10">Comenzar</button>
+                </div>
+
+                <!-- Pro Tier (Highlighted) -->
+                <div class="p-8 rounded-2xl flex flex-col bg-white/[0.03] border border-orange-500/30 relative">
+                    <div class="absolute inset-0 bg-gradient-to-b from-orange-500/5 to-transparent rounded-2xl pointer-events-none"></div>
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-orange-500 text-[10px] uppercase font-bold tracking-widest px-3 py-1 rounded-full shadow-[0_0_15px_rgba(99,102,241,0.5)] text-white">Popular</div>
+                    
+                    <div class="mb-4 relative z-10">
+                        <h3 class="text-lg font-medium text-white">Studio</h3>
+                        <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-3xl font-medium text-white">$19</span>
+                            <span class="text-sm text-stone-500">/mes</span>
+                        </div>
+                        <p class="text-xs mt-2 text-stone-400">Para lanzar música.</p>
+                    </div>
+                    <div class="my-6 border-t relative z-10 border-white/5"></div>
+                    <ul class="space-y-3 flex-1 relative z-10">
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="mt-0.5 text-orange-400" width="16"></iconify-icon>
+                            <span>200 generaciones al mes</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="mt-0.5 text-orange-400" width="16"></iconify-icon>
+                            <span>Stems en WAV Alta Calidad</span>
+                        </li>
+                         <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="mt-0.5 text-orange-400" width="16"></iconify-icon>
+                            <span>Descarga de MIDI</span>
+                        </li>
+                        
+                         
+                    </ul>
+                    <button class="mt-8 w-full py-2 rounded-lg text-sm font-medium transition-colors relative z-10 shadow-[0_0_20px_rgba(255,255,255,0.1)] bg-white text-black hover:bg-stone-200">Prueba Gratuita</button>
+                </div>
+
+                <!-- Enterprise Tier -->
+                <div class="glass-panel p-8 rounded-2xl flex flex-col">
+                    <div class="mb-4">
+                        <h3 class="text-lg font-medium text-white">Label</h3>
+                        <div class="mt-2 flex items-baseline gap-1">
+                            <span class="text-3xl font-medium text-white">Personal</span>
+                        </div>
+                        <p class="text-xs mt-2 text-stone-400">Para equipos y sellos.</p>
+                    </div>
+                    <div class="my-6 border-t border-white/5"></div>
+                    <ul class="space-y-3 flex-1">
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="text-stone-500 mt-0.5" width="16"></iconify-icon>
+                            <span>Generaciones ilimitadas</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="text-stone-500 mt-0.5" width="16"></iconify-icon>
+                            <span>Entrenamiento de modelos propios</span>
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-stone-300">
+                            <iconify-icon icon="lucide:check" class="text-stone-500 mt-0.5" width="16"></iconify-icon>
+                            <span>API Access</span>
+                        </li>
+                        
+                    </ul>
+                    <button class="mt-8 w-full py-2 rounded-lg border text-sm font-medium transition-colors bg-white/5 border-white/10 text-white hover:bg-white/10">Contactar Ventas</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="footer" class="border-t bg-[#050505] pt-16 pb-8 border-white/5">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-8 mb-16">
+                <div class="col-span-2 lg:col-span-2">
+                    <a href="#" class="flex items-center gap-2 mb-4">
+                        <div class="w-5 h-5 rounded flex items-center justify-center bg-white/10">
+                             <iconify-icon icon="solar:music-note-linear" class="text-white" width="12"></iconify-icon>
+                        </div>
+                        <span class="text-sm font-semibold tracking-tight text-white">SONIC</span>
+                    </a>
+                    <p class="text-sm text-stone-500 mb-6 max-w-xs">
+                        Potenciando la creatividad musical con inteligencia artificial generativa. Crea lo imposible.
+                    </p>
+                    <div class="flex gap-4">
+                        <a href="#" class="text-stone-500 transition-colors hover:text-white">
+                            <iconify-icon icon="lucide:twitter" width="18"></iconify-icon>
+                        </a>
+                        <a href="#" class="text-stone-500 transition-colors hover:text-white">
+                            <iconify-icon icon="lucide:instagram" width="18"></iconify-icon>
+                        </a>
+                        <a href="#" class="text-stone-500 transition-colors hover:text-white">
+                            <iconify-icon icon="lucide:youtube" width="18"></iconify-icon>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-white">Producto</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Generador IA</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Showcase</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Precios</a></li>
+                        
+                        
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-white">Compañía</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Manifiesto</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Blog</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Carreras</a></li>
+                        
+                        
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-white">Soporte</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Discord</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Documentación</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Estado</a></li>
+                        
+                    </ul>
+                </div>
+
+                 <div>
+                    <h4 class="text-xs font-semibold uppercase tracking-wider mb-4 text-white">Legal</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Privacidad</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Términos</a></li>
+                        <li><a href="#" class="text-sm text-stone-500 transition-colors hover:text-white">Licencias</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 border-white/5">
+                <p class="text-xs text-stone-600">© 2023 Sonic Inc. Todos los derechos reservados.</p>
+                <div class="flex items-center gap-2">
+                    <div class="w-2 h-2 rounded-full bg-emerald-500"></div>
+                    <span class="text-xs text-stone-500">Sistemas operacionales</span>
+                </div>
+            </div></div></footer></body></html>

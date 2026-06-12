@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PitchwithAI - Autonomous Sales Orchestration</title>
+<style>
+@keyframes animationIn {
+0% {
+opacity: 0;
+transform: translateY(30px);
+filter: blur(8px);
+}
+100% {
+opacity: 1;
+transform: translateY(0);
+filter: blur(0px);
+}
+}
+/* New animations for dashboard motion */
+@keyframes flowDash {
+to {
+stroke-dashoffset: -24;
+}
+}
+.animate-flow {
+animation: flowDash 1s linear infinite;
+}
+@keyframes flowDashSlow {
+to {
+stroke-dashoffset: -24;
+}
+}
+.animate-flow-slow {
+animation: flowDashSlow 1.5s linear infinite;
+}
+/* Energy drop animation */
+@keyframes drop {
+0% { top: -50px; opacity: 0; }
+10% { opacity: 1; }
+80% { top: 100%; opacity: 1; }
+100% { top: 100%; opacity: 0; }
+}
+.drop-animation {
+animation: drop 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+</style>
+<script>
+(function () {
+const style = document.createElement("style");
+style.textContent = `
+.animate-on-scroll { animation-play-state: paused !important; }
+.animate-on-scroll.animate { animation-play-state: running !important; }
+`;
+document.head.appendChild(style);
+const once = true;
+if (!window.__inViewIO) {
+window.__inViewIO = new IntersectionObserver((entries) => {
+entries.forEach((entry) => {
+if (entry.isIntersecting) {
+entry.target.classList.add("animate");
+if (once) window.__inViewIO.unobserve(entry.target);
+}
+});
+}, { threshold: 0.2, rootMargin: "0px 0px -10% 0px" });
+}
+window.initInViewAnimations = function (selector = ".animate-on-scroll") {
+document.querySelectorAll(selector).forEach((el) => {
+window.__inViewIO.observe(el);
+});
+};
+document.addEventListener("DOMContentLoaded", () => initInViewAnimations());
+})();
+</script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Agbalumo&family=Manrope:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet"><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+<body class="antialiased selection:bg-blue-500 selection:text-white relative bg-[#050505] text-white overflow-x-hidden scroll-smooth" style="font-family: 'Manrope', sans-serif;">
+
+<!-- Background (component) added by Aura -->
+<div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="; mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><div data-us-project="1bY8o6HVTI1oxJxuCJEG" class="absolute w-full h-full left-0 top-0 -z-10"></div>
+<script type="text/javascript">
+  !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.33/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+</script></div>
+
+    <!-- Background Noise Texture -->
+    <div class="fixed inset-0 z-50 opacity-40 mix-blend-overlay" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 400 400\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.9\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\' opacity=\'0.05\'/%3E%3C/svg%3E'); pointer-events: none;"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-40 flex justify-center py-6 [animation:animationIn_0.8s_ease-out_0s_both]">
+        <div class="bg-white/[0.03] backdrop-blur-[12px] border border-white/[0.08] rounded-full px-6 py-3 flex items-center justify-between w-[90%] max-w-5xl shadow-2xl">
+            <div class="flex items-center gap-2">
+                <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                    <span style="font-family: 'Agbalumo', system-ui;" class="text-2xl tracking-tight text-white pb-1">P</span>
+                </div>
+                <span class="font-semibold text-lg tracking-tight hidden sm:block text-white">PitchwithAI</span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-8 text-sm font-medium text-neutral-200">
+                <a href="#features" class="hover:text-white transition-colors duration-300">Capabilities</a>
+                <a href="#how-it-works" class="hover:text-white transition-colors duration-300">Workflow</a>
+                <a href="#pricing" class="hover:text-white transition-colors duration-300">Pricing</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <button class="text-sm font-medium text-neutral-200 hover:text-white transition-colors">Login</button>
+                <button class="bg-white text-black text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-neutral-200 transition-colors shadow-lg shadow-white/10">
+                    Start Campaign
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="min-h-screen flex flex-col overflow-hidden pt-32 pr-6 pb-20 pl-6 relative items-center justify-center">
+
+        <div class="max-w-4xl mx-auto text-center z-10 transition-all duration-1000 transform translate-y-0 opacity-100">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-blue-300 mb-8 shadow-[0_0_10px_rgba(37,99,235,0.15)] [animation:animationIn_0.8s_ease-out_0.1s_both]">
+                <span class="relative flex h-2 w-2">
+                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-500 opacity-75"></span>
+                  <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-600 shadow-[0_0_8px_#2563eb]"></span>
+                </span>
+                AI Sales Agent v2.0 is live
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl lg:text-8xl font-medium tracking-tight mb-8 leading-[0.95] bg-gradient-to-br from-white to-neutral-200 bg-clip-text text-transparent [animation:animationIn_0.8s_ease-out_0.2s_both]" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                Sales on <br>
+                <span class="text-white/60 italic font-serif tracking-tight">Autopilot.</span>
+            </h1>
+            
+            <p class="text-lg md:text-xl text-neutral-200 font-normal max-w-xl mx-auto mb-10 leading-relaxed [animation:animationIn_0.8s_ease-out_0.3s_both]">
+                Stop manually prospecting. PitchwithAI autonomously finds leads, writes hyper-personalized outreach, and books meetings while you sleep.
+            </p>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 [animation:animationIn_0.8s_ease-out_0.4s_both]">
+                <button class="group relative px-8 py-4 bg-white text-black rounded-full font-semibold text-sm transition-all hover:scale-105 hover:shadow-[0_0_40px_rgba(255,255,255,0.3)] overflow-hidden">
+                    <span class="relative z-10 flex items-center gap-2">
+                        Get Started Free <iconify-icon icon="lucide:arrow-right" style="stroke-width: 1.5;" class="w-4 h-4 transition-transform group-hover:translate-x-1"></iconify-icon>
+                    </span>
+                </button>
+                <button class="px-8 py-4 bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 shadow-[0_2px_10px_rgba(0,0,0,0.2)] hover:bg-white/10 hover:border-white/20 transition-all duration-300 rounded-full text-neutral-100 font-medium text-sm hover:text-white flex items-center gap-2 group">
+                    <iconify-icon icon="lucide:play-circle" style="stroke-width: 1.5;" class="w-4 h-4 text-neutral-300 group-hover:text-blue-400 transition-colors"></iconify-icon>
+                    Watch the Demo
+                </button>
+            </div>
+        </div>
+
+        <!-- NEW Dashboard UI Visualization -->
+        <div class="[animation:animationIn_0.8s_ease-out_0.6s_both] w-full max-w-6xl mt-24 relative">
+            
+            <!-- Energy Animation Drop -->
+            <div class="absolute -top-24 left-1/2 -translate-x-1/2 w-px h-24 bg-gradient-to-b from-transparent to-blue-700/40 overflow-hidden">
+                <div class="absolute left-1/2 -translate-x-1/2 w-[2px] h-12 bg-gradient-to-b from-transparent to-blue-600 drop-animation"></div>
+            </div>
+            <!-- Energy Impact point -->
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-blue-600 to-transparent shadow-[0_0_8px_rgba(37,99,235,0.4)] z-20"></div>
+
+            <div class="-top-20 -translate-x-1/2 blur-[100px] -z-10 bg-blue-600/5 w-[80%] h-[200px] rounded-full absolute left-1/2"></div>
+            
+            <div class="backdrop-blur-[12px] border-white/[0.08] border rounded-2xl pt-1.5 pr-1.5 pb-1.5 pl-1.5 shadow-[0_30px_60px_rgba(0,0,0,0.6)] relative z-10">
+                <div class="overflow-hidden flex flex-col bg-[#050505] border-white/10 border rounded-xl" style="height: 550px">
+                    
+                    <!-- Top App Bar -->
+                    <div class="h-12 border-b border-white/5 flex items-center justify-between px-4 bg-[#080808] shrink-0">
+                        <!-- Mac Buttons -->
+                        <div class="flex items-center gap-2 w-1/4">
+                            <div class="flex gap-1.5">
+                                <div class="w-3 h-3 rounded-full bg-red-500/50 border border-red-500/20"></div>
+                                <div class="w-3 h-3 rounded-full bg-yellow-500/50 border border-yellow-500/20"></div>
+                                <div class="w-3 h-3 rounded-full bg-green-500/50 border border-green-500/20"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Breadcrumb / Path -->
+                        <div class="flex items-center justify-center gap-3 text-sm text-neutral-300 font-normal flex-1">
+                            <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/5 border border-blue-500/20 text-blue-300 font-medium">
+                                <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse shadow-[0_0_8px_#3b82f6]"></div>
+                                Active Fleet
+                            </div>
+                            <span class="text-neutral-500">/</span>
+                            <span>looper.ai</span>
+                            <span class="text-neutral-500">/</span>
+                            <span class="text-white font-medium">orchestration</span>
+                        </div>
+
+                        <!-- Right Icons -->
+                        <div class="flex items-center justify-end gap-5 text-neutral-300 w-1/4">
+                            <iconify-icon icon="lucide:search" style="stroke-width: 1.5;" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></iconify-icon>
+                            <iconify-icon icon="lucide:code-2" style="stroke-width: 1.5;" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></iconify-icon>
+                            <iconify-icon icon="lucide:menu" style="stroke-width: 1.5;" class="w-4 h-4 hover:text-white transition-colors cursor-pointer"></iconify-icon>
+                        </div>
+                    </div>
+
+                    <!-- Main App Area -->
+                    <div class="flex flex-1 overflow-hidden">
+                        
+                        <!-- Left Sidebar -->
+                        <div class="w-64 border-r border-white/5 bg-[#080808] flex flex-col shrink-0 relative z-20">
+                            <div class="p-5 flex items-center gap-3">
+                                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white shadow-[0_0_15px_rgba(37,99,235,0.3)]">
+                                    <iconify-icon icon="lucide:infinity" style="stroke-width: 2;" class="w-4 h-4"></iconify-icon>
+                                </div>
+                                <span class="text-white font-semibold text-sm tracking-tight">Fleet Command</span>
+                            </div>
+
+                            <div class="px-4 mb-6">
+                                <div class="bg-[#111] border border-white/5 rounded-md px-3 py-2 flex items-center justify-between text-neutral-300 group focus-within:border-white/20 transition-colors cursor-text">
+                                    <div class="flex items-center gap-2">
+                                        <iconify-icon icon="lucide:search" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon>
+                                        <span class="text-xs font-normal">Search agents, logs...</span>
+                                    </div>
+                                    <div class="flex items-center gap-1 text-xs font-mono bg-white/5 px-1.5 py-0.5 rounded text-neutral-300">
+                                        <iconify-icon icon="lucide:command" class="w-3 h-3"></iconify-icon>K
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex-1 overflow-y-auto px-3 space-y-6">
+                                <div class="">
+                                    <div class="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-2 px-2">HQ</div>
+                                    <div class="space-y-1">
+                                        <div class="flex items-center gap-3 px-2 py-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/5 transition-colors cursor-pointer text-sm font-normal">
+                                            <iconify-icon icon="lucide:layout-dashboard" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon> Overview
+                                        </div>
+                                        <div class="flex items-center justify-between px-2 py-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/5 transition-colors cursor-pointer text-sm font-normal">
+                                            <div class="flex items-center gap-3">
+                                                <iconify-icon icon="lucide:inbox" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon> Agent Inbox
+                                            </div>
+                                            <span class="bg-blue-500/20 text-blue-300 text-xs px-2 py-0.5 rounded-full font-semibold">12</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="">
+                                    <div class="text-xs uppercase tracking-widest text-neutral-400 font-semibold mb-2 px-2">Workforces</div>
+                                    <div class="space-y-1">
+                                        <div class="flex items-center gap-3 px-2 py-1.5 rounded-md text-white bg-white/5 border-l-2 border-blue-500 transition-colors cursor-pointer text-sm font-semibold">
+                                            <iconify-icon icon="lucide:network" style="stroke-width: 1.5;" class="w-4 h-4 text-blue-400"></iconify-icon> Sales SDR Swarm
+                                        </div>
+                                        <div class="flex items-center gap-3 px-2 py-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/5 transition-colors cursor-pointer text-sm font-normal">
+                                            <iconify-icon icon="lucide:user-cog" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon> CEO Co-Pilot
+                                        </div>
+                                        <div class="flex items-center gap-3 px-2 py-1.5 rounded-md text-neutral-200 hover:text-white hover:bg-white/5 transition-colors cursor-pointer text-sm font-normal">
+                                            <iconify-icon icon="lucide:server-cog" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon> IT Support Agent
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- User Profile -->
+                            <div class="p-4 border-t border-white/5 mt-auto flex items-center gap-3 cursor-pointer hover:bg-white/5 transition-colors">
+                                <div class="w-8 h-8 rounded-full bg-neutral-800 border border-white/10 flex items-center justify-center text-xs text-white font-semibold">SJ</div>
+                                <div class="flex-1">
+                                    <div class="text-sm text-white font-semibold tracking-tight">Sarah Jenkins</div>
+                                    <div class="text-xs text-neutral-300 font-normal">sarah@looper.ai</div>
+                                </div>
+                                <iconify-icon icon="lucide:settings" style="stroke-width: 1.5;" class="w-4 h-4 text-neutral-300"></iconify-icon>
+                            </div>
+                        </div>
+
+                        <!-- Center Canvas -->
+                        <div class="flex-1 bg-[#030303] relative overflow-hidden flex flex-col z-10">
+                            <!-- Dot Grid Background -->
+                            <div class="absolute inset-0 pointer-events-none opacity-20" style="background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.4) 1px, transparent 0); background-size: 24px 24px;"></div>
+                            
+                            <!-- Canvas Header -->
+                            <div class="absolute top-0 left-0 right-0 p-4 flex justify-between items-center z-30 pointer-events-none">
+                                <div class="flex items-center gap-2 text-sm text-neutral-200 font-normal pointer-events-auto">
+                                    <iconify-icon icon="lucide:chevron-left" style="stroke-width: 1.5;" class="w-4 h-4 hover:text-white cursor-pointer"></iconify-icon>
+                                    <span class="hover:text-white cursor-pointer transition-colors">Workforces</span>
+                                    <span class="text-neutral-400">/</span>
+                                    <span class="text-white font-semibold">Sales SDR Swarm</span>
+                                </div>
+                                <div class="flex gap-3 pointer-events-auto">
+                                    <button class="px-4 py-1.5 rounded-md border border-white/10 text-neutral-100 text-sm font-medium hover:bg-white/5 transition-colors flex items-center gap-2">
+                                        <iconify-icon icon="lucide:play" style="stroke-width: 1.5;" class="w-3 h-3"></iconify-icon> Simulate Run
+                                    </button>
+                                    <button class="px-4 py-1.5 rounded-md bg-blue-600 text-white text-sm font-semibold hover:bg-blue-500 transition-colors shadow-[0_0_15px_rgba(37,99,235,0.4)]">
+                                        Activate Swarm
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Nodes & Connections Area -->
+                            <div class="relative w-full h-full overflow-x-auto overflow-y-hidden">
+                                <div class="w-[1000px] h-[600px] relative">
+                                    
+                                    <!-- SVG Connections -->
+                                    <svg class="absolute inset-0 pointer-events-none w-full h-full z-0">
+                                        <!-- Node 1 to Node 2 -->
+                                        <path d="M 330 300 C 400 300, 400 200, 500 200" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"></path>
+                                        <path d="M 330 300 C 400 300, 400 200, 500 200" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 8" class="animate-flow"></path>
+                                        
+                                        <!-- Node 1 to Node 3 -->
+                                        <path d="M 330 300 C 400 300, 400 400, 500 400" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="2"></path>
+                                        <path d="M 330 300 C 400 300, 400 400, 500 400" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="8 8" class="animate-flow-slow"></path>
+
+                                        <!-- Connection Dots -->
+                                        <circle cx="330" cy="300" r="4" fill="#080808" stroke="#2563eb" stroke-width="2" class="animate-pulse shadow-[0_0_8px_#2563eb]"></circle>
+                                        <circle cx="500" cy="200" r="4" fill="#080808" stroke="#2563eb" stroke-width="2"></circle>
+                                        <circle cx="500" cy="400" r="4" fill="#080808" stroke="#2563eb" stroke-width="2"></circle>
+                                    </svg>
+
+                                    <!-- Node 1: Data Source -->
+                                    <div class="absolute w-[280px] bg-[#0c0c0c] border border-white/10 rounded-xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:border-blue-500/30 transition-colors z-10" style="left: 50px; top: 240px;">
+                                        <div class="absolute -top-3 left-4 bg-blue-900/40 border border-blue-500/30 text-blue-300 text-xs font-semibold px-2 py-0.5 rounded uppercase tracking-wider backdrop-blur-md">
+                                            Data Source
+                                        </div>
+                                        <div class="flex items-center gap-3 mt-2">
+                                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-blue-300">
+                                                <iconify-icon icon="lucide:database" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon>
+                                            </div>
+                                            <div>
+                                                <div class="text-sm text-white font-semibold tracking-tight">High-Intent Lead</div>
+                                                <div class="text-xs text-neutral-300 font-normal">Signal from Apollo</div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-black/40 rounded-lg border border-white/5 text-xs text-neutral-200 font-normal flex flex-col gap-1.5">
+                                            <div class="flex justify-between"><span>Enrich:</span> <span class="text-white font-medium">Clearbit API</span></div>
+                                            <div class="w-full h-px bg-white/5"></div>
+                                            <div class="flex justify-between"><span>Filter:</span> <span class="text-white font-medium">ICP Match</span></div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Node 2: Agent SDR -->
+                                    <div class="absolute w-[280px] bg-[#0c0c0c] border border-white/10 rounded-xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors z-10" style="left: 500px; top: 120px;">
+                                        <div class="absolute -top-3 left-4 bg-neutral-800 border border-white/10 text-neutral-200 text-xs font-semibold px-2 py-0.5 rounded uppercase tracking-wider">
+                                            Agent: SDR
+                                        </div>
+                                        <div class="flex items-center gap-3 mt-2">
+                                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-neutral-200">
+                                                <iconify-icon icon="lucide:message-square-dashed" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon>
+                                            </div>
+                                            <div class="text-sm text-white font-semibold tracking-tight">Draft Outreach</div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-black/40 rounded-lg border border-white/5 text-center">
+                                            <div class="text-xs text-neutral-300 uppercase tracking-widest font-medium mb-1">Context</div>
+                                            <div class="text-sm text-white font-normal">Analyze recent company news</div>
+                                        </div>
+                                        <div class="mt-3 flex gap-2">
+                                            <span class="inline-flex items-center gap-1.5 px-2 py-1 rounded bg-blue-500/10 border border-blue-500/20 text-xs text-blue-300 font-semibold">
+                                                <div class="w-1.5 h-1.5 rounded-full bg-blue-500"></div> GPT-4o Reasoning
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <!-- Node 3: Agent Co-Pilot -->
+                                    <div class="absolute w-[280px] bg-[#0c0c0c] border border-white/10 rounded-xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:border-white/20 transition-colors z-10" style="left: 500px; top: 340px;">
+                                        <div class="absolute -top-3 left-4 bg-neutral-800 border border-white/10 text-neutral-200 text-xs font-semibold px-2 py-0.5 rounded uppercase tracking-wider">
+                                            Agent: Co-Pilot
+                                        </div>
+                                        <div class="flex items-center gap-3 mt-2">
+                                            <div class="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center border border-white/10 text-green-400">
+                                                <iconify-icon icon="lucide:shield-check" style="stroke-width: 1.5;" class="w-4 h-4"></iconify-icon>
+                                            </div>
+                                            <div class="text-sm text-white font-semibold tracking-tight">Review &amp; Approve</div>
+                                        </div>
+                                        <div class="mt-4 p-3 bg-black/40 rounded-lg border border-white/5 flex justify-between items-center text-xs">
+                                            <span class="text-neutral-300 font-normal">Rule Engine</span>
+                                            <span class="text-cyan-400 font-mono font-medium">Brand Safety</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                            <!-- Canvas Bottom Bar -->
+                            <div class="absolute bottom-0 left-0 right-0 h-10 border-t border-white/5 bg-[#080808]/80 backdrop-blur-md flex items-center justify-between px-4 z-20">
+                                <div class="flex items-center gap-4 text-xs font-normal text-neutral-200">
+                                    <div class="flex items-center gap-2">
+                                        <iconify-icon icon="lucide:activity" style="stroke-width: 1.5;" class="w-3.5 h-3.5"></iconify-icon>
+                                        Agent Status
+                                    </div>
+                                    <div class="w-1 h-1 rounded-full bg-white/20"></div>
+                                    <div>Success rate <span class="text-blue-300 font-semibold ml-1">99.2%</span></div>
+                                </div>
+                                <div class="flex items-center gap-4 text-xs font-normal text-neutral-200">
+                                    <span>Last action: 2m ago</span>
+                                    <div class="flex items-center gap-1.5 text-green-400 font-medium">
+                                        <div class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_#22c55e]"></div>
+                                        Swarm Active
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Right Sidebar (Agent Settings) -->
+                        <div class="w-80 border-l border-white/5 bg-[#080808] flex flex-col shrink-0 relative z-20 overflow-y-auto">
+                            <div class="p-6 border-b border-white/5">
+                                <h2 class="text-base text-white font-semibold tracking-tight mb-1">AI SDR Agent</h2>
+                                <p class="text-xs text-neutral-300 font-normal flex items-center gap-1.5">
+                                    Role <span class="w-1 h-1 rounded-full bg-neutral-600"></span> Outbound Sales
+                                </p>
+                            </div>
+
+                            <div class="p-5 flex-1 space-y-6">
+                                <!-- Agent Mandate -->
+                                <div class="bg-[#0c0c0c] border border-white/5 rounded-xl overflow-hidden shadow-sm">
+                                    <div class="p-4 border-b border-white/5">
+                                        <div class="text-xs text-neutral-300 uppercase tracking-widest font-semibold mb-2">Agent Mandate</div>
+                                        <p class="text-xs text-white font-normal leading-relaxed">
+                                            Instruct the agent in plain text. It will adapt its approach based on your guidelines.
+                                        </p>
+                                    </div>
+                                    <div class="p-4 bg-black/30 relative">
+                                        <p class="text-xs text-neutral-200 font-mono leading-relaxed opacity-90 mb-6">
+                                            e.g. Focus on VP level targets. Use a casual tone. Reference their recent funding round if applicable.<span class="inline-block w-1.5 h-3.5 bg-neutral-400 ml-1 align-middle animate-pulse"></span>
+                                        </p>
+                                        <div class="flex justify-end">
+                                            <button class="bg-blue-600 hover:bg-blue-500 text-white text-xs font-semibold px-4 py-1.5 rounded-md transition-colors shadow-[0_0_10px_rgba(37,99,235,0.2)]">
+                                                Update
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Knowledge Base -->
+                                <div>
+                                    <div class="flex items-center justify-between mb-3">
+                                        <div class="text-xs text-neutral-300 uppercase tracking-widest font-semibold">Knowledge Base</div>
+                                        <span class="text-xs text-green-400 bg-green-500/10 border border-green-500/20 px-2 py-0.5 rounded-full font-semibold">Synced</span>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/5 text-sm font-normal text-neutral-100 hover:border-white/10 transition-colors cursor-pointer">
+                                            <iconify-icon icon="lucide:file-text" style="stroke-width: 1.5;" class="text-neutral-300"></iconify-icon>
+                                            <span class="truncate">Company_Pitch_Deck.pdf</span>
+                                        </div>
+                                        <div class="flex items-center gap-3 p-3 rounded-lg bg-white/5 border border-white/5 text-sm font-normal text-neutral-100 hover:border-white/10 transition-colors cursor-pointer">
+                                            <iconify-icon icon="lucide:link" style="stroke-width: 1.5;" class="text-neutral-300"></iconify-icon>
+                                            <span class="truncate">looper.ai/case-studies</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Bottom Stats -->
+                            <div class="p-5 border-t border-white/5 bg-[#0a0a0a]">
+                                <div class="flex justify-between items-center mb-4">
+                                    <span class="text-xs text-neutral-300 font-normal">Swarm Health</span>
+                                    <span class="text-xs text-green-400 font-semibold">Optimal</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="bg-[#111] border border-white/5 rounded-lg p-3 text-center">
+                                        <div class="text-xs text-neutral-400 font-normal mb-1">Active Agents</div>
+                                        <div class="text-lg text-white font-semibold">3</div>
+                                    </div>
+                                    <div class="bg-[#111] border border-white/5 rounded-lg p-3 text-center">
+                                        <div class="text-xs text-neutral-400 font-normal mb-1">Tasks Executed</div>
+                                        <div class="text-lg text-white font-semibold">1,402</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Social Proof Grid -->
+    <section class="py-12 border-y border-white/5 bg-black/40 overflow-hidden relative">
+        <div class="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#050505] to-transparent z-10 pointer-events-none"></div>
+        <div class="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#050505] to-transparent z-10 pointer-events-none"></div>
+        
+        <div class="flex flex-wrap justify-center gap-16 md:gap-24 items-center px-10 opacity-70 grayscale hover:grayscale-0 transition-all duration-700 max-w-7xl mx-auto [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
+            <span class="text-xl font-semibold tracking-tight font-sans text-neutral-200">ACME CORP</span>
+            <span class="text-xl font-medium tracking-tight font-serif text-neutral-200">Globex</span>
+            <span class="text-xl font-normal tracking-tight font-mono text-neutral-200">Soylent</span>
+            <span class="text-xl font-semibold tracking-tight italic text-neutral-200">Umbrella</span>
+            <span class="text-xl font-medium tracking-tight text-neutral-200">Initech</span>
+            <span class="text-xl font-semibold tracking-tight font-sans text-neutral-200 hidden sm:block">Massive Dynamic</span>
+        </div>
+    </section>
+
+    <!-- Features Grid -->
+    <section id="features" class="py-32 px-6 relative">
+        <div class="max-w-6xl mx-auto">
+            <div class="mb-20 md:text-center max-w-3xl mx-auto [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
+                <h2 class="text-3xl md:text-5xl font-medium tracking-tight mb-6 text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                    The engine room for <br> <span class="text-neutral-300">modern revenue teams.</span>
+                </h2>
+                <p class="text-neutral-200 text-sm md:text-lg font-normal">Forget templates. Our AI analyzes your prospect's recent news, LinkedIn posts, and company reports to craft messages that actually get read.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Prospecting -->
+                <div class="md:col-span-2 group relative rounded-3xl p-8 bg-black/40 border border-white/5 hover:border-blue-500/20 transition-all duration-500 overflow-hidden min-h-[400px] [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    
+                    <div class="relative z-10 h-full flex flex-col justify-between">
+                        <div class="">
+                            <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center mb-6 text-white group-hover:bg-blue-900/50 group-hover:text-blue-400 transition-colors">
+                                <iconify-icon icon="lucide:search" style="stroke-width: 1.5;" class="text-xl"></iconify-icon>
+                            </div>
+                            <h3 class="text-2xl font-medium tracking-tight text-white mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">Deep Search Prospecting</h3>
+                            <p class="text-neutral-200 font-normal text-sm max-w-md">Filter 500M+ profiles by technology stack, funding rounds, and hiring intent. The AI builds your list automatically.</p>
+                        </div>
+
+                        <!-- Visual -->
+                        <div class="mt-10 relative">
+                            <div class="flex gap-3 overflow-hidden" style="mask-image: linear-gradient(to right, black 60%, transparent 100%); -webkit-mask-image: linear-gradient(to right, black 60%, transparent 100%);">
+                                <div class="bg-neutral-800/80 rounded-lg p-4 w-64 border border-white/5 backdrop-blur-sm">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-8 h-8 rounded-full bg-blue-500/20"></div>
+                                        <div>
+                                            <div class="h-2 w-20 bg-white/20 rounded mb-1"></div>
+                                            <div class="h-2 w-12 bg-white/10 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="text-xs font-normal text-neutral-300 flex justify-between">
+                                            <span>Match Score</span>
+                                            <span class="text-blue-400 font-medium">98%</span>
+                                        </div>
+                                        <div class="h-1 w-full bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full w-[98%] bg-blue-400 shadow-[0_0_10px_#3b82f6]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="bg-neutral-800/80 rounded-lg p-4 w-64 border border-white/5 backdrop-blur-sm opacity-60">
+                                    <div class="flex items-center gap-3 mb-3">
+                                        <div class="w-8 h-8 rounded-full bg-cyan-500/20"></div>
+                                        <div>
+                                            <div class="h-2 w-20 bg-white/20 rounded mb-1"></div>
+                                            <div class="h-2 w-12 bg-white/10 rounded"></div>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="text-xs font-normal text-neutral-300 flex justify-between">
+                                            <span>Match Score</span>
+                                            <span class="text-cyan-400 font-medium">94%</span>
+                                        </div>
+                                        <div class="h-1 w-full bg-neutral-700 rounded-full overflow-hidden">
+                                            <div class="h-full w-[94%] bg-cyan-400 shadow-[0_0_10px_#22d3ee]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Writing -->
+                <div class="md:col-span-1 group relative rounded-3xl p-8 bg-black/40 border border-white/5 hover:border-blue-500/20 transition-all duration-500 overflow-hidden [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll">
+                    <div class="absolute inset-0 bg-gradient-to-bl from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative z-10 h-full flex flex-col">
+                        <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center mb-6 text-white group-hover:bg-blue-900/50 group-hover:text-blue-400 transition-colors">
+                            <iconify-icon icon="lucide:pen-tool" style="stroke-width: 1.5;" class="text-xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-2xl font-medium tracking-tight text-white mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">Human-Level Copy</h3>
+                        <p class="text-neutral-200 font-normal text-sm mb-8">Context-aware generation that references specific details about the prospect.</p>
+                        
+                        <div class="flex-1 bg-black/40 rounded-xl p-4 font-mono text-xs text-neutral-100 font-medium border border-white/5 shadow-inner relative overflow-hidden">
+                            <div class="absolute top-0 left-0 w-1 h-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                            <p class="leading-relaxed opacity-90">
+                                "Hey Sarah,<br><br>
+                                Saw PitchwithAI just raised Series A—congrats!<br><br>
+                                Given you're scaling the sales team..."
+                            </p>
+                            <div class="mt-2 inline-block w-1.5 h-3.5 bg-blue-500 animate-pulse shadow-[0_0_8px_#3b82f6]"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Multichannel -->
+                <div class="md:col-span-1 group relative rounded-3xl p-8 bg-black/40 border border-white/5 hover:border-blue-500/20 transition-all duration-500 [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="relative z-10">
+                        <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center mb-6 text-white group-hover:bg-blue-900/50 group-hover:text-blue-400 transition-colors">
+                            <iconify-icon icon="lucide:share-2" style="stroke-width: 1.5;" class="text-xl"></iconify-icon>
+                        </div>
+                        <h3 class="text-2xl font-medium tracking-tight text-white mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">Omnichannel</h3>
+                        <p class="text-neutral-200 font-normal text-sm mb-6">Seamlessly weave between Email, LinkedIn, and Phone steps.</p>
+                        
+                        <div class="flex justify-around items-center mt-8">
+                            <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-neutral-800 relative z-10">
+                                <iconify-icon icon="lucide:mail" style="stroke-width: 1.5;" class="text-xl text-neutral-300"></iconify-icon>
+                            </div>
+                            <div class="h-[1px] w-8 bg-neutral-700"></div>
+                            <div class="w-12 h-12 rounded-full border border-blue-500/50 flex items-center justify-center bg-blue-900/20 relative z-10 shadow-[0_0_20px_rgba(59,130,246,0.4)]">
+                                <iconify-icon icon="lucide:users" style="stroke-width: 1.5;" class="text-xl text-blue-400"></iconify-icon>
+                            </div>
+                            <div class="h-[1px] w-8 bg-neutral-700"></div>
+                            <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center bg-neutral-800 relative z-10">
+                                <iconify-icon icon="lucide:phone" style="stroke-width: 1.5;" class="text-xl text-neutral-300"></iconify-icon>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Analytics -->
+                <div class="md:col-span-2 group relative rounded-3xl p-8 bg-black/40 border border-white/5 hover:border-blue-500/20 transition-all duration-500 overflow-hidden [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center h-full">
+                        <div class="relative z-10">
+                            <div class="w-10 h-10 rounded-full bg-neutral-800 flex items-center justify-center mb-6 text-white group-hover:bg-blue-900/50 group-hover:text-blue-400 transition-colors">
+                                <iconify-icon icon="lucide:bar-chart-2" style="stroke-width: 1.5;" class="text-xl"></iconify-icon>
+                            </div>
+                            <h3 class="text-2xl font-medium tracking-tight text-white mb-3" style="font-family: 'Plus Jakarta Sans', sans-serif;">Predictive Analytics</h3>
+                            <p class="text-neutral-200 font-normal text-sm">Know which campaigns will succeed before you launch them. Optimization based on millions of data points.</p>
+                        </div>
+                        <div class="relative h-40 md:h-full w-full flex items-center justify-center">
+                            <!-- Abstract Chart -->
+                            <div class="flex items-end gap-2 h-32 w-full px-4">
+                                <div class="w-full bg-neutral-800 rounded-t-sm h-[30%] group-hover:h-[40%] transition-all duration-700"></div>
+                                <div class="w-full bg-neutral-800 rounded-t-sm h-[50%] group-hover:h-[65%] transition-all duration-700"></div>
+                                <div class="w-full bg-neutral-800 rounded-t-sm h-[40%] group-hover:h-[45%] transition-all duration-700"></div>
+                                <div class="w-full bg-neutral-800 rounded-t-sm h-[70%] group-hover:h-[80%] transition-all duration-700"></div>
+                                <div class="w-full bg-blue-500 rounded-t-sm h-[55%] group-hover:h-[90%] transition-all duration-700 shadow-[0_0_20px_rgba(59,130,246,0.5)]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-32 px-6 relative overflow-hidden">
+        <!-- Hooks -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-b from-transparent to-neutral-800"></div>
+        
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20 [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll">
+                <h2 class="text-4xl md:text-6xl font-medium tracking-tight mb-6 text-white" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                    ROI in <span class="text-blue-500 drop-shadow-[0_0_15px_rgba(59,130,246,0.5)]">Days</span>, Not Months.
+                </h2>
+                <p class="text-neutral-200 text-sm md:text-lg font-normal max-w-2xl mx-auto mb-10">
+                    Cheaper than an SDR. Smarter than a template. Costs less than a lost deal.
+                </p>
+
+                <!-- Toggle -->
+                <div class="inline-flex bg-neutral-900 p-1 rounded-full border border-white/10 relative">
+                    <div class="w-1/2 h-full absolute left-0 bg-neutral-800 rounded-full transition-all duration-300" id="toggle-bg"></div>
+                    <button class="relative z-10 px-6 py-2 text-sm font-medium text-white rounded-full" onclick="switchPricing('monthly')">Monthly</button>
+                    <button class="relative z-10 px-6 py-2 text-sm font-medium text-neutral-300 hover:text-white rounded-full" onclick="switchPricing('yearly')">Yearly <span class="text-xs text-blue-400 ml-1 font-semibold">-20%</span></button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto items-start">
+                
+                <!-- Starter -->
+                <div class="bg-white/[0.01] bg-black/40 backdrop-blur-[12px] border border-white/[0.08] rounded-3xl p-8 flex flex-col hover:border-white/15 transition-colors [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium tracking-tight text-white mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">Solo Pilot</h3>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-4xl font-medium text-white tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">$49</span>
+                            <span class="text-neutral-400 font-normal">/mo</span>
+                        </div>
+                        <p class="text-neutral-200 text-sm font-normal mt-4">Perfect for founders doing their own sales.</p>
+                    </div>
+                    <div class="h-px w-full bg-white/5 mb-6"></div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-neutral-400"></iconify-icon> 500 AI Credits
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-neutral-400"></iconify-icon> Email Automation
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-neutral-400"></iconify-icon> Basic Analytics
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-neutral-800 text-white font-medium text-sm hover:bg-neutral-700 transition-colors border border-white/5">
+                        Start Free Trial
+                    </button>
+                </div>
+
+                <!-- Growth (Highlighted) -->
+                <div class="bg-gradient-to-b from-blue-950/30 to-black/40 backdrop-blur-[12px] border border-blue-500/20 rounded-3xl p-8 relative md:-mt-8 shadow-[0_0_30px_-10px_rgba(37,99,235,0.2)] [animation:animationIn_0.8s_ease-out_0.4s_both] animate-on-scroll">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-blue-600 shadow-[0_0_15px_rgba(37,99,235,0.5)] text-white text-xs font-semibold px-4 py-1 rounded-full tracking-wide uppercase">
+                        Most Popular
+                    </div>
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium tracking-tight text-white mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">Growth Engine</h3>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-4xl font-medium text-white tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">$149</span>
+                            <span class="text-neutral-400 font-normal">/mo</span>
+                        </div>
+                        <p class="text-neutral-200 text-sm font-normal mt-4">Full power for closing teams.</p>
+                    </div>
+                    <div class="h-px w-full bg-white/10 mb-6"></div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]"></iconify-icon> Unlimited AI Credits
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]"></iconify-icon> Multi-channel (Email + LI)
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-blue-400 drop-shadow-[0_0_5px_rgba(59,130,246,0.8)]"></iconify-icon> Intent Data Signals
+                        </li>
+                        
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-white text-black font-semibold text-sm hover:bg-neutral-200 transition-colors shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                        Get Growth
+                    </button>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="bg-white/[0.01] bg-black/40 backdrop-blur-[12px] border border-white/[0.08] rounded-3xl p-8 flex flex-col hover:border-white/15 transition-colors [animation:animationIn_0.8s_ease-out_0.6s_both] animate-on-scroll">
+                    <div class="mb-6">
+                        <h3 class="text-lg font-medium tracking-tight text-white mb-2" style="font-family: 'Plus Jakarta Sans', sans-serif;">Scale</h3>
+                        <div class="flex items-baseline gap-1">
+                            <span class="text-4xl font-medium text-white tracking-tight" style="font-family: 'Plus Jakarta Sans', sans-serif;">Custom</span>
+                        </div>
+                        <p class="text-neutral-200 text-sm font-normal mt-4">For large organizations requiring API access.</p>
+                    </div>
+                    <div class="h-px w-full bg-white/5 mb-6"></div>
+                    <ul class="space-y-4 mb-8 flex-1">
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-neutral-400"></iconify-icon> API Access
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-neutral-400"></iconify-icon> White-glove Onboarding
+                        </li>
+                        <li class="flex items-center gap-3 text-sm text-white font-normal">
+                            <iconify-icon icon="lucide:check-circle-2" style="stroke-width: 1.5;" class="text-lg text-neutral-400"></iconify-icon> Dedicated Success Manager
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 rounded-xl bg-neutral-800 text-white font-medium text-sm hover:bg-neutral-700 transition-colors border border-white/5">
+                        Contact Sales
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Footer -->
+    <section class="py-20 px-6 border-t border-white/5 [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll">
+        <div class="max-w-4xl mx-auto text-center relative">
+            <!-- Glow behind text -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 bg-blue-600/10 blur-[100px] rounded-full pointer-events-none"></div>
+            
+            <h2 class="text-4xl md:text-5xl font-medium tracking-tight mb-8 text-white relative z-10" style="font-family: 'Plus Jakarta Sans', sans-serif;">
+                Ready to fill your calendar?
+            </h2>
+            <div class="flex flex-col items-center gap-6 relative z-10">
+                <button class="px-10 py-4 bg-white text-black rounded-full font-semibold text-sm transition-all hover:scale-105 hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                    Start Your 14-Day Free Trial
+                </button>
+                <p class="text-xs text-neutral-300 uppercase tracking-widest font-normal">No Credit Card Required</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/5 bg-[#030303] text-neutral-300 text-sm [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll relative">
+        <!-- Energy Animation End Drop -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-gradient-to-b from-blue-700/40 to-transparent overflow-hidden">
+            <div class="absolute left-1/2 -translate-x-1/2 w-[2px] h-12 bg-gradient-to-b from-transparent to-blue-600 drop-animation" style="animation-delay: 1.25s;"></div>
+        </div>
+        <!-- Energy Impact point at bottom -->
+        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-[2px] bg-gradient-to-r from-transparent via-blue-600 to-transparent shadow-[0_0_8px_rgba(37,99,235,0.4)] z-20"></div>
+
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6 relative z-10">
+            <div class="flex items-center gap-2">
+                <div class="w-6 h-6 bg-neutral-800 rounded flex items-center justify-center">
+                    <span style="font-family: 'Agbalumo', system-ui;" class="text-xs text-white pb-0.5">P</span>
+                </div>
+                <span class="font-medium text-white">PitchwithAI</span>
+            </div>
+            <div class="flex gap-8 font-normal text-sm">
+                <a href="#" class="hover:text-white transition-colors">Privacy</a>
+                <a href="#" class="hover:text-white transition-colors">Terms</a>
+                <a href="#" class="hover:text-white transition-colors">Twitter</a>
+                <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
+            </div>
+            <div class="font-normal text-sm">
+                © 2024 PitchwithAI Inc.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function switchPricing(plan) {
+            const bg = document.getElementById('toggle-bg');
+            if (plan === 'yearly') {
+                bg.style.left = '50%';
+            } else {
+                bg.style.left = '0';
+            }
+        }
+    </script>
+
+
+</body></html>

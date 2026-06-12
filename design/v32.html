@@ -1,0 +1,1584 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HubFit — Powering your coaching business</title>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Geist:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;family=Oswald:wght@200;300;400;500;600;700&amp;display=swap"
+rel="stylesheet"
+/>
+<!-- Scripts -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdn.jsdelivr.net/npm/iconify-icon@1.0.7/dist/iconify-icon.min.js"></script>
+<!-- Custom Styles -->
+<style>
+/* Base settings */
+body { font-family: 'Inter', sans-serif; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+.font-oswald { font-family: 'Oswald', sans-serif; }
+/* Animations */
+@keyframes float-cursor { 0%,100%{transform:translate(0,0)} 50%{transform:translate(4px,-6px)} }
+@keyframes float-chip-1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-8px,-12px)} }
+.float-cursor { animation: float-cursor 6s ease-in-out infinite; }
+.float-chip-1 { animation: float-chip-1 8s ease-in-out infinite; }
+/* Fade Slide In */
+@keyframes fadeSlideIn {
+0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+}
+.animate-enter { animation: fadeSlideIn 0.8s ease-out 0s both; }
+.animate-enter-delay-2 { animation: fadeSlideIn 0.8s ease-out 0.2s both; }
+/* Marquee Animation */
+@keyframes scroll { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+.marquee-container { mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); }
+.marquee-content { animation: scroll 40s linear infinite; }
+/* Unicorn Mask */
+.unicorn-mask { mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 12%, black 88%, rgba(0,0,0,0) 100%); }
+/* Button CSS */
+.btn-wrapper::after {
+content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+border-radius: inherit; pointer-events: none; background-color: #0000;
+background-image: repeating-linear-gradient(45deg, var(--grid-color) 0 1px, transparent 2px 5px);
+opacity: 0; z-index: -1;
+}
+.btn-wrapper:has(.btn:hover)::after { animation: opacity-anim 1.4s ease-in-out forwards; }
+@keyframes opacity-anim { 80% { opacity: 0; } 100% { opacity: 1; } }
+.btn-wrapper .btn {
+position: relative; display: flex; justify-content: center; align-items: center;
+padding: 0.8rem 1.5rem; background-color: #fff0; border: 1px solid var(--grid-color);
+color: #fffd; font-family: "Inter", sans-serif; letter-spacing: -0.01em; font-size: 1rem;
+font-weight: 500; border-radius: 12px; cursor: pointer; transition: transform .2s ease-in-out, letter-spacing .2s ease-in-out;
+}
+.btn-wrapper .btn:hover { background-color: #0ea5e9; color: #fff; transform: scale(1.05); letter-spacing: .02em; border-color: #0ea5e9; }
+.btn-wrapper .btn:active { background-color: #0284c7; transform: scale(.98); }
+/* Scroll Observer Class */
+.animate-on-scroll { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+.animate-on-scroll.animate { opacity: 1; transform: translateY(0); }
+/* FAQ Accordion */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+@keyframes sweep { 0% {opacity: 0; transform: translateY(-10px)} 100% {opacity: 1; transform: translateY(0)} }
+details > summary { position: relative; padding-right: 20px; }
+details > summary::after {
+content: "+"; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+font-size: 1.2rem; color: #94a3b8; transition: transform 0.2s;
+}
+details[open] > summary::after { content: "-"; transform: translateY(-50%) rotate(0deg); color: #fff; }
+/* Custom Scrollbar for Code */
+.custom-scrollbar::-webkit-scrollbar { width: 4px; }
+.custom-scrollbar::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); }
+.custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 4px; }
+/* Ray Animation */
+@keyframes ray-shift {
+0% { transform: translateX(0) translateY(0); }
+50% { transform: translateX(-20px) translateY(20px); }
+100% { transform: translateX(0) translateY(0); }
+}
+</style></head>
+
+  <body class="antialiased text-slate-100 bg-[#000000]">
+    <!-- Unicorn Studio Background -->
+    <div
+      class="fixed top-0 left-0 right-0 bottom-0 unicorn-stack unicorn-mask pointer-events-none z-[-10]"
+    >
+      <div
+        data-us-project="VaqT3bxlc2sugR8faApF"
+        class="absolute inset-0 w-full h-full"
+      ></div>
+    </div>
+    <script class="">
+      (function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.async=!0,i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head||document.body).appendChild(i)}})();
+    </script>
+
+    <!-- Header -->
+    <header class="sticky top-4 z-50 animate-enter px-4 sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-7xl">
+        <div
+          class="rounded-2xl border border-white/10 bg-black/30 backdrop-blur supports-[backdrop-filter]:bg-black/30"
+        >
+          <div
+            class="flex items-center justify-between rounded-2xl border border-[#ffffff]/10 bg-[#000000]/40 p-3"
+          >
+            <div class="flex items-center gap-3 pl-2">
+              <div
+                class="flex items-center gap-2 font-semibold text-xl tracking-tight"
+              >
+                <div
+                  class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white"
+                >
+                  <span class="font-bold">H</span>
+                </div>
+                <span>HubFit</span>
+              </div>
+            </div>
+
+            <nav
+              class="hidden items-center gap-8 text-sm font-medium text-slate-300 md:flex"
+            >
+              <a href="#features" class="transition-colors hover:text-white">
+                Platform
+              </a>
+              <a href="#pricing" class="transition-colors hover:text-white">
+                Presale
+              </a>
+              <a href="#" class="transition-colors hover:text-white">
+                Client App
+              </a>
+              <a href="#" class="transition-colors hover:text-white">
+                Coach App
+              </a>
+            </nav>
+
+            <div class="flex items-center justify-center gap-3">
+              <a
+                href="#"
+                class="hidden text-sm font-medium text-slate-300 transition-colors hover:text-white sm:block"
+              >
+                Sign in
+              </a>
+              <a
+                href="#pricing"
+                class="group relative inline-flex items-center gap-2 rounded-xl bg-white px-5 py-2.5 text-sm font-semibold text-neutral-900 shadow-[0_0_15px_rgba(255,255,255,0.1)] ring-0 transition-all duration-300 hover:scale-105 hover:bg-slate-100"
+              >
+                Pre-order now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="animate-enter-delay-2 relative">
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="sm:pt-24 sm:pb-28 lg:pt-32 lg:pb-0 max-w-7xl mr-auto ml-auto pt-16 pb-20"
+        >
+          <!-- Floating Labels -->
+          <div class="pointer-events-none relative select-none z-10">
+            <span
+              class="float-cursor float-chip-1 absolute left-[65%] -top-12 -translate-x-1/2 -translate-y-8 sm:-top-16"
+            >
+              <span
+                class="block whitespace-nowrap rounded-full bg-cyan-400/10 border border-cyan-400/20 px-4 py-1.5 text-xs font-semibold text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.15)]"
+              >
+                #1 Coaching Platform
+              </span>
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <div class="text-center relative z-10">
+            <h1
+              class="sm:text-6xl md:text-7xl text-5xl font-semibold text-white tracking-tight max-w-5xl mr-auto ml-auto"
+            >
+              The Future Of
+              <span class="relative inline-block mt-2">
+                <span
+                  class="absolute -inset-1 rounded-lg bg-blue-500/20 blur-2xl"
+                ></span>
+                <span
+                  class="bg-clip-text text-transparent bg-gradient-to-b from-white to-white/60 relative"
+                  style=""
+                >
+                  Coaching Is Here
+                </span>
+              </span>
+            </h1>
+
+            <p
+              class="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-slate-400"
+            >
+              HubFit makes it easy to build, scale, and automate your fitness
+              business all without being slow or clunky ⚡️
+            </p>
+
+            <!-- CTAs -->
+            <div
+              class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+            >
+              <!-- Custom Button -->
+              <div
+                class="btn-wrapper"
+                style="--dot-size: 8px; --line-weight: 1px; --line-distance: 0.8rem 1rem; --animation-speed: 2s; --dot-color: #fffa; --line-color: #fffa; --grid-color: #fff3;"
+              >
+                <a
+                  href="#pricing"
+                  class="btn bg-white text-black hover:bg-slate-200 border-none"
+                >
+                  <span class="btn-text font-semibold">
+                    Get Lifetime Access
+                  </span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dashboard Preview -->
+          <div
+            class="md:mt-20 md:mb-24 sm:h-[380px] md:h-auto overflow-hidden md:overflow-visible flex md:block md:px-0 w-full h-[280px] mt-16 mb-16 pr-4 pl-4 relative justify-center"
+          >
+            <div
+              class="relative mx-auto max-w-6xl overflow-hidden rounded-xl border border-white/10 shadow-2xl bg-black/40 backdrop-blur-xl w-[850px] md:w-full origin-top transform scale-[0.4] sm:scale-50 md:scale-100 md:transform-none"
+            >
+              <!-- Background Glows -->
+              <div class="absolute inset-0 pointer-events-none z-0">
+                <div
+                  class="absolute -right-20 top-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[100px]"
+                ></div>
+                <div
+                  class="absolute inset-0 bg-[linear-gradient(115deg,transparent_30%,rgba(255,255,255,0.03)_40%,rgba(255,255,255,0.05)_50%,rgba(255,255,255,0.03)_60%,transparent_70%)]"
+                ></div>
+              </div>
+
+              <!-- Window Bar -->
+              <div
+                class="z-20 flex bg-white/5 h-10 border-white/5 border-b pr-4 pl-4 relative items-center"
+              >
+                <div class="flex gap-2">
+                  <div
+                    class="h-3 w-3 rounded-full bg-red-500/20 border border-red-500/50"
+                  ></div>
+                  <div
+                    class="h-3 w-3 rounded-full bg-yellow-500/20 border border-yellow-500/50"
+                  ></div>
+                  <div
+                    class="h-3 w-3 rounded-full bg-green-500/20 border border-green-500/50"
+                  ></div>
+                </div>
+              </div>
+
+              <!-- Main Grid -->
+              <div
+                class="relative z-10 grid grid-cols-12 min-h-[600px] text-slate-400"
+              >
+                <!-- Left Sidebar -->
+                <div
+                  class="col-span-3 flex flex-col border-r border-white/10 bg-transparent p-4"
+                >
+                  <div class="mb-6 flex items-center justify-between">
+                    <div
+                      class="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-lucide="briefcase"
+                        aria-hidden="true"
+                        class="lucide lucide-briefcase h-3.5 w-3.5"
+                      >
+                        <path
+                          d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"
+                        ></path>
+                        <rect width="20" height="14" x="2" y="6" rx="2"></rect>
+                      </svg>
+                      Operations
+                    </div>
+                    <button
+                      class="rounded p-1 hover:bg-white/10 text-slate-500 transition"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-lucide="plus"
+                        aria-hidden="true"
+                        class="lucide lucide-plus h-4 w-4"
+                      >
+                        <path d="M5 12h14"></path>
+                        <path d="M12 5v14"></path>
+                      </svg>
+                    </button>
+                  </div>
+
+                  <div class="mb-6 flex gap-1 rounded-lg bg-white/5 p-1">
+                    <button
+                      class="flex-1 rounded-md bg-white px-2 py-1 text-[10px] font-semibold text-black shadow-sm"
+                    >
+                      Business
+                    </button>
+                    <button
+                      class="flex-1 rounded-md px-2 py-1 text-[10px] font-medium text-slate-400 hover:text-white"
+                    >
+                      Finance
+                    </button>
+                    <button
+                      class="flex-1 rounded-md px-2 py-1 text-[10px] font-medium text-slate-400 hover:text-white"
+                    >
+                      HR
+                    </button>
+                  </div>
+
+                  <div class="flex-1 space-y-1">
+                    <div
+                      class="text-[10px] font-medium uppercase tracking-wider text-slate-600 mb-2 pl-2"
+                    >
+                      Active Workflows
+                    </div>
+                    <div
+                      class="group flex items-center justify-between rounded-lg bg-white/5 px-3 py-2.5 text-xs text-white"
+                    >
+                      <div class="flex items-center gap-2">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          data-lucide="pie-chart"
+                          aria-hidden="true"
+                          class="lucide lucide-pie-chart h-3.5 w-3.5 text-slate-400"
+                        >
+                          <path
+                            d="M21 12c.552 0 1.005-.449.95-.998a10 10 0 0 0-8.953-8.951c-.55-.055-.998.398-.998.95v8a1 1 0 0 0 1 1z"
+                          ></path>
+                          <path d="M21.21 15.89A10 10 0 1 1 8 2.83"></path>
+                        </svg>
+                        <span class="">Q3 Revenue Forecast</span>
+                      </div>
+                      <span class="text-[10px] text-green-400">Live</span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="mt-auto rounded-xl border border-white/5 bg-black/20 p-4"
+                  >
+                    <div
+                      class="mb-3 flex items-center gap-2 text-xs font-medium text-white"
+                    >
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="1.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        data-lucide="trending-up"
+                        aria-hidden="true"
+                        class="lucide lucide-trending-up h-3.5 w-3.5"
+                      >
+                        <path d="M16 7h6v6"></path>
+                        <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                      </svg>
+                      Business Health
+                    </div>
+                    <div class="space-y-3">
+                      <div
+                        class="flex items-center justify-between text-[10px]"
+                      >
+                        <div class="flex items-center gap-2 text-slate-400">
+                          <div class="h-2 w-3 rounded-sm bg-white"></div>
+                          Margin
+                        </div>
+                        <span class="text-white">24.5%</span>
+                      </div>
+                      <div
+                        class="flex items-center justify-between text-[10px]"
+                      >
+                        <div class="flex items-center gap-2 text-slate-400">
+                          <div class="h-2 w-3 rounded-sm bg-slate-600"></div>
+                          Growth
+                        </div>
+                        <span class="text-green-400">+12%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Center Area -->
+                <div
+                  class="col-span-6 flex flex-col border-r border-white/10 bg-transparent"
+                >
+                  <!-- Mock Content -->
+                  <div
+                    class="flex items-center justify-between border-b border-white/5 px-6 py-4"
+                  >
+                    <div class="flex items-center gap-2 text-xs">
+                      <span class="font-medium text-white">
+                        quarterly_revenue.model
+                      </span>
+                      <span class="text-slate-600">•</span>
+                      <span class="text-slate-500">Finance Team</span>
+                    </div>
+                  </div>
+                  <div class="flex-1 pt-6 pr-6 pb-6 pl-6">
+                    <!-- Graph/Code Placeholder -->
+                    <div
+                      class="flex-1 rounded-xl border border-white/10 bg-black/50 p-4 relative overflow-hidden group mb-6"
+                    >
+                      <div class="flex items-center justify-between mb-4">
+                        <span class="text-xs font-medium text-white">
+                          Business Logic
+                        </span>
+                        <span class="text-[10px] text-slate-600 font-mono">
+                          Python
+                        </span>
+                      </div>
+                      <div
+                        class="font-mono text-xs leading-relaxed text-slate-300 h-32 overflow-hidden"
+                      >
+                        <span class="text-purple-400">import</span>
+                        seaint.business
+                        <span class="text-purple-400">as</span>
+                        biz <br />
+                        <span class="text-purple-400">def</span>
+                        <span class="text-blue-400">forecast_q3</span>
+                        (current_mrr, growth_rate):
+                        <br />&nbsp;&nbsp;projection =
+                        biz.models.linear(current_mrr, growth_rate)
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Right Sidebar -->
+                <div
+                  class="col-span-3 flex flex-col bg-transparent p-4 relative overflow-hidden"
+                >
+                  <div
+                    class="absolute -right-20 top-0 h-64 w-64 rounded-full bg-blue-500/10 blur-[60px] pointer-events-none"
+                  ></div>
+                  <div class="relative z-10">
+                    <div class="mb-6 flex items-center gap-2">
+                      <div
+                        class="flex items-center gap-2 rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-xs font-medium text-white"
+                      >
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          height="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="1.5"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          data-lucide="sliders"
+                          aria-hidden="true"
+                          class="lucide lucide-sliders h-3.5 w-3.5"
+                        >
+                          <path d="M10 8h4"></path>
+                          <path d="M12 21v-9"></path>
+                          <path d="M12 8V3"></path>
+                          <path d="M17 16h4"></path>
+                          <path d="M19 12V3"></path>
+                          <path d="M19 21v-5"></path>
+                          <path d="M3 14h4"></path>
+                          <path d="M5 10V3"></path>
+                          <path d="M5 21v-7"></path>
+                        </svg>
+                        Parameters
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 01 CORE PLATFORM (Sakura Style) -->
+    <section class="animate-entry delay-200 [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll animate lg:mx-auto bg-gradient-to-br max-w-7xl rounded-3xl mt-24 mr-auto mb-24 ml-auto pt-10 pr-10 pb-10 pl-10 relative from-white/10 via-white/0 to-white/10" id="features" style="position: relative; --border-gradient: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.1)); --border-radius-before: 24px">
+      <!-- Main Grid -->
+      <div class="flex flex-col rounded-none mt-0 mb-0 pt-0 pr-0 pb-0 pl-0 relative">
+        <!-- Header Section -->
+        <div class="flex flex-col gap-10 w-full gap-x-10 gap-y-10">
+          <!-- Top label row -->
+          <div class="flex items-center gap-6">
+            <span class="text-xs font-mono tracking-widest font-sans text-blue-400" style="">
+              01
+            </span>
+            <div class="h-px flex-1 bg-white/10"></div>
+            <span class="uppercase text-xs tracking-widest text-gray-500 font-sans" style="">
+              Core Platform
+            </span>
+          </div>
+
+          <!-- Main content -->
+          <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-10 gap-x-10 gap-y-10">
+            <div class="max-w-3xl flex flex-col gap-6">
+              <h2 class="text-4xl md:text-5xl lg:text-6xl leading-[1.05] font-oswald font-light text-white" style="">
+                Focus on Coaching.
+                <span class="block text-gray-500 font-oswald font-light" style="">
+                  Results you can see.
+                </span>
+              </h2>
+
+              <p class="text-lg font-light max-w-xl leading-relaxed font-sans text-gray-400" style="">
+                A complete operating system for your fitness business. Manage clients, chats, tasks, and AI in one place.
+              </p>
+            </div>
+
+            <!-- Secondary CTA -->
+            <button class="group flex items-center gap-2 px-6 py-3 border text-sm font-medium rounded-full transition font-sans whitespace-nowrap border-white/15 text-white hover:bg-white/5">
+              <span class="font-sans" style="">View Platform</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 transition-transform group-hover:translate-x-1">
+                <path d="M5 12h14" class=""></path>
+                <path d="m12 5 7 7-7 7" class=""></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Features Grid -->
+        <div class="grid grid-cols-1 md:grid-cols-3 w-full mt-8 gap-x-6 gap-y-6">
+          <!-- Card 1: Members -->
+          <div class="group flex flex-col overflow-hidden hover:border-blue-500/30 transition-all duration-500 md:col-span-1 bg-[#000000] border rounded-[2rem] pt-8 pr-8 pb-8 pl-8 relative justify-between border-white/10">
+            <style>
+              @keyframes orbit-slow {
+                from { transform: rotate(0deg); }
+                to { transform: rotate(360deg); }
+              }
+              @keyframes breathe-glow {
+                0%, 100% { transform: scale(1); box-shadow: 0 0 20px rgba(59, 130, 246, 0.1); }
+                50% { transform: scale(1.05); box-shadow: 0 0 35px rgba(59, 130, 246, 0.3); }
+              }
+              @keyframes ripple-expand {
+                0% { transform: scale(0.8); opacity: 0.6; border-width: 1px; }
+                100% { transform: scale(2.5); opacity: 0; border-width: 0px; }
+              }
+              @keyframes dot-handoff {
+                0%, 100% { opacity: 0.3; r: 2px; fill: #60A5FA; }
+                50% { opacity: 1; r: 3.5px; fill: #3B82F6; }
+              }
+            </style>
+
+            <!-- Visual -->
+            <div class="relative h-48 w-full flex items-center justify-center mb-6 overflow-visible">
+              <!-- Ambient Background -->
+              <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-50 rounded-full blur-3xl transform scale-75"></div>
+
+              <!-- Expanding Ripple Ring -->
+              <div class="absolute w-16 h-16 rounded-full border z-0 border-blue-400/30" style="animation: ripple-expand 4s cubic-bezier(0, 0, 0.2, 1) infinite;"></div>
+
+              <svg class="w-full h-full text-blue-500/20 z-10" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <!-- Rotating Container for Orbiting Elements -->
+                <g style="transform-origin: 100px 100px; animation: orbit-slow 12s linear infinite;" class="">
+                  <!-- Outer Dashed Ring -->
+                  <circle cx="100" cy="100" r="80" stroke="currentColor" stroke-width="1" stroke-dasharray="6 6" class="opacity-30"></circle>
+
+                  <!-- Orbiting Dots -->
+                  <circle cx="100" cy="20" r="3" fill="#60A5FA" class="drop-shadow-[0_0_8px_rgba(96,165,250,0.8)]"></circle>
+                  <circle cx="180" cy="100" r="2.5" fill="#3B82F6" class="opacity-60"></circle>
+                  <circle cx="20" cy="100" r="2.5" fill="#3B82F6" class="opacity-60"></circle>
+                </g>
+
+                <!-- Static Inner Ring -->
+                <circle cx="100" cy="100" r="50" stroke="currentColor" stroke-width="1" class="opacity-40"></circle>
+
+                <!-- Sequential Hand-off Dots (Inner) -->
+                <circle cx="100" cy="50" r="2" fill="#3B82F6" style="animation: dot-handoff 3s ease-in-out infinite; animation-delay: 0s;" class=""></circle>
+                <circle cx="150" cy="100" r="2" fill="#3B82F6" style="animation: dot-handoff 3s ease-in-out infinite; animation-delay: 1s;" class=""></circle>
+                <circle cx="100" cy="150" r="2" fill="#3B82F6" style="animation: dot-handoff 3s ease-in-out infinite; animation-delay: 2s;" class=""></circle>
+                <circle cx="50" cy="100" r="2" fill="#3B82F6" style="animation: dot-handoff 3s ease-in-out infinite; animation-delay: 3s;" class=""></circle>
+              </svg>
+
+              <!-- Breathing Center Icon -->
+              <div class="absolute flex items-center justify-center w-16 h-16 bg-[#15151A] rounded-full border z-20 border-white/10" style="animation: breathe-glow 4s ease-in-out infinite;">
+                <div class="absolute inset-0 bg-blue-500/10 rounded-full blur-sm"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor" stroke="none" class="relative z-10 text-gray-100">
+                  <path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" class=""></path>
+                  <circle cx="12" cy="7" r="4" class=""></circle>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <h3 class="text-4xl text-left font-oswald font-light text-white" style="">
+                Members
+              </h3>
+              <p class="leading-relaxed text-lg font-light text-left mt-2 font-sans text-gray-400" style="">
+                Manage your clients efficiently with comprehensive profiles and group tracking tools.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 2: Messages -->
+          <div class="md:col-span-2 group flex flex-col overflow-hidden hover:border-blue-500/30 transition-all duration-500 bg-[#000000] border rounded-[2rem] px-8 py-8 relative justify-between border-white/10">
+            <style>
+              @keyframes flowData {
+                0% { stroke-dashoffset: 120; opacity: 0; }
+                15% { opacity: 1; }
+                85% { opacity: 1; }
+                100% { stroke-dashoffset: 0; opacity: 0; }
+              }
+              @keyframes breatheDiamond {
+                0%, 100% { transform: rotate(45deg) scale(1); box-shadow: 0 0 30px rgba(59,130,246,0.3); border-color: rgba(59,130,246,0.3); }
+                50% { transform: rotate(45deg) scale(1.05); box-shadow: 0 0 50px rgba(59,130,246,0.5); border-color: rgba(59,130,246,0.6); }
+              }
+              @keyframes orbitSpin {
+                0% { transform: rotate(0deg); }
+                100% { transform: rotate(360deg); }
+              }
+            </style>
+
+            <!-- Background Glow -->
+            <div class="absolute top-0 right-0 w-[300px] h-[300px] blur-[100px] rounded-full -translate-y-1/2 translate-x-1/2 group-hover:bg-indigo-500/30 transition-colors duration-700 bg-indigo-600/20"></div>
+
+            <!-- Visual -->
+            <div class="relative h-48 w-full flex items-center justify-center mb-6 overflow-visible">
+              <!-- Graphic lines -->
+              <svg class="absolute top-0 right-0 bottom-0 left-0 w-full h-full" viewBox="0 0 400 200" fill="none" preserveAspectRatio="xMidYMid meet">
+                <defs class="">
+                  <linearGradient id="flowGradientLeft" x1="0%" y1="0%" x2="100%" y2="0%" class="">
+                    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0" class=""></stop>
+                    <stop offset="50%" stop-color="#60A5FA" stop-opacity="1" class=""></stop>
+                    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" class=""></stop>
+                  </linearGradient>
+                  <linearGradient id="flowGradientRight" x1="100%" y1="0%" x2="0%" y2="0%" class="">
+                    <stop offset="0%" stop-color="#3B82F6" stop-opacity="0" class=""></stop>
+                    <stop offset="50%" stop-color="#60A5FA" stop-opacity="1" class=""></stop>
+                    <stop offset="100%" stop-color="#3B82F6" stop-opacity="0" class=""></stop>
+                  </linearGradient>
+                </defs>
+
+                <!-- Static Base Paths -->
+                <path d="M50 100 L120 100 L150 70" stroke="currentColor" stroke-width="1" class="text-white/10"></path>
+                <path d="M350 100 L280 100 L250 130" stroke="currentColor" stroke-width="1" class="text-white/10"></path>
+
+                <!-- Animated Data Flow -->
+                <path d="M50 100 L120 100 L150 70" stroke="url(#flowGradientLeft)" stroke-width="2" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="120" style="animation: flowData 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;" class=""></path>
+                <path d="M350 100 L280 100 L250 130" stroke="url(#flowGradientRight)" stroke-width="2" stroke-linecap="round" stroke-dasharray="120" stroke-dashoffset="120" style="animation: flowData 3s cubic-bezier(0.4, 0, 0.2, 1) infinite; animation-delay: 1.5s;" class=""></path>
+
+                <!-- End Nodes -->
+                <g transform="translate(50 100) rotate(45)" class="">
+                  <rect x="-10" y="-10" width="20" height="20" fill="#1A1A20" stroke="white" stroke-opacity="0.2" class="group-hover:stroke-blue-500/50 transition-colors duration-300"></rect>
+                  <circle cx="0" cy="0" r="2" fill="#60A5FA" class="opacity-0 group-hover:opacity-100 transition-opacity duration-500"></circle>
+                </g>
+                <g transform="translate(350 100) rotate(45)" class="">
+                  <rect x="-10" y="-10" width="20" height="20" fill="#1A1A20" stroke="white" stroke-opacity="0.2" class="group-hover:stroke-blue-500/50 transition-colors duration-300"></rect>
+                  <circle cx="0" cy="0" r="2" fill="#60A5FA" class="opacity-0 group-hover:opacity-100 transition-opacity duration-500"></circle>
+                </g>
+              </svg>
+
+              <!-- Center Diamond -->
+              <div class="relative flex items-center justify-center">
+                <div class="absolute inset-0 blur-[40px] opacity-40 group-hover:opacity-60 transition-opacity duration-500 bg-blue-600"></div>
+                <!-- Animated Diamond -->
+                <div class="w-24 h-24 border border-blue-500/30 bg-gradient-to-br backdrop-blur-md rounded-2xl flex items-center justify-center shadow-[0_0_30px_rgba(59,130,246,0.3)] z-10 relative overflow-hidden from-indigo-900/50 to-blue-900/20" style="animation: breatheDiamond 4s ease-in-out infinite;">
+                  <!-- Inner Core -->
+                  <div class="w-12 h-12 border rounded-lg flex items-center justify-center bg-blue-500/5 relative z-20 border-blue-400/50">
+                    <div class="w-1.5 h-1.5 rounded-full shadow-[0_0_10px_#60A5FA] bg-blue-400"></div>
+                  </div>
+
+                  <!-- Subtle Rotating Ring Highlight -->
+                  <div class="absolute inset-0 z-10 opacity-30" style="animation: orbitSpin 8s linear infinite;">
+                    <div class="w-full h-full rounded-2xl border-t border-r border-blue-400/40"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <h3 class="text-4xl text-left group-hover:text-blue-50 transition-colors duration-300 font-oswald font-light text-white" style="">
+                Seamless Messaging
+              </h3>
+              <p class="leading-relaxed text-lg font-light text-left mt-2 group-hover:text-gray-300 transition-colors duration-300 font-sans text-gray-400" style="">
+                Chat seamlessly with clients and keep conversations organized in one central inbox, eliminating scattered texts and emails.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 3: Todos/Task Tracking -->
+          <div class="md:col-span-2 group flex flex-col overflow-hidden hover:border-blue-500/30 transition-all duration-500 bg-[#000000] border rounded-[2rem] px-8 py-8 relative justify-between border-white/10">
+            <style>
+              @keyframes shimmer-lock {
+                0%, 100% { opacity: 0.4; border-color: rgba(255,255,255,0.1); transform: scale(1); }
+                50% { opacity: 0.8; border-color: rgba(255,255,255,0.25); transform: scale(1.05); }
+              }
+              @keyframes active-pulse {
+                0%, 100% { box-shadow: 0 0 20px rgba(79, 70, 229, 0.4); transform: scale(1); border-color: rgba(255,255,255,0.1); }
+                50% { box-shadow: 0 0 35px rgba(79, 70, 229, 0.6); transform: scale(1.02); border-color: rgba(79, 70, 229, 0.5); }
+              }
+              @keyframes scan-sweep {
+                0% { transform: translateY(-150%) rotate(15deg); opacity: 0; }
+                20% { opacity: 1; }
+                80% { opacity: 1; }
+                100% { transform: translateY(250%) rotate(15deg); opacity: 0; }
+              }
+              @keyframes bg-pulse-soft {
+                0%, 100% { opacity: 0.15; transform: translate(-50%, -50%) scale(0.9); }
+                50% { opacity: 0.25; transform: translate(-50%, -50%) scale(1.1); }
+              }
+              @keyframes progress-spin {
+                0% { stroke-dashoffset: 100; }
+                100% { stroke-dashoffset: 25; }
+              }
+            </style>
+
+            <!-- Visual -->
+            <div class="flex w-full h-48 mb-6 relative items-center justify-center">
+              <div class="flex items-center gap-4 relative">
+                <!-- Background Glow for active element -->
+                <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-48 h-48 blur-[60px] rounded-full pointer-events-none bg-blue-600/20" style="animation: bg-pulse-soft 4s ease-in-out infinite;"></div>
+
+                <!-- Left Locks -->
+                <div class="w-12 h-12 rounded-xl border bg-[#121215] flex items-center justify-center border-white/10 text-gray-600" style="animation: shimmer-lock 4s ease-in-out infinite; animation-delay: 0s;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" class=""></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" class=""></path>
+                  </svg>
+                </div>
+                <div class="w-12 h-12 rounded-xl border bg-[#121215] flex items-center justify-center text-gray-500 border-white/10" style="animation: shimmer-lock 4s ease-in-out infinite; animation-delay: 1s;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" class=""></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" class=""></path>
+                  </svg>
+                </div>
+
+                <!-- Center Active Asset -->
+                <div class="relative w-20 h-20 rounded-2xl bg-[#4F46E5] flex items-center justify-center shadow-[0_0_20px_rgba(79,70,229,0.4)] z-10 border ring-4 ring-[#08080A] text-white border-white/10" style="animation: active-pulse 3s ease-in-out infinite;">
+                  <!-- Scanning Effect -->
+                  <div class="absolute inset-0 overflow-hidden rounded-2xl">
+                    <div class="w-full h-1/3 bg-gradient-to-b absolute top-0 left-0 from-white/0 via-white/20 to-white/0" style="animation: scan-sweep 3s ease-in-out infinite;"></div>
+                  </div>
+
+                  <!-- Circular Progress SVG Overlay -->
+                  <svg class="absolute inset-0 w-full h-full -rotate-90 p-1" viewBox="0 0 36 36">
+                    <path class="text-white/20" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="2"></path>
+                    <path class="drop-shadow-[0_0_2px_rgba(255,255,255,0.8)] text-white" stroke-dasharray="100, 100" d="M18 2.0845 a 15.9155 15.9155 0 0 1 0 31.831 a 15.9155 15.9155 0 0 1 0 -31.831" fill="none" stroke="currentColor" stroke-width="2" style="animation: progress-spin 1.5s ease-out forwards;"></path>
+                  </svg>
+
+                  <!-- Icon -->
+                  <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="relative z-10">
+                    <path d="M22 12h-4l-3 9L9 3l-3 9H2" class=""></path>
+                  </svg>
+
+                  <!-- Status Badge -->
+                  <div class="absolute -bottom-3 bg-[#08080A] border px-2 py-0.5 rounded-full flex items-center gap-1 shadow-lg text-white border-white/10">
+                    <span class="relative flex h-2 w-2">
+                      <span class="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-green-400"></span>
+                      <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                    </span>
+                    <span class="text-[9px] font-mono tracking-wider font-semibold font-sans" style="">
+                      LIVE
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Right Locks -->
+                <div class="w-12 h-12 rounded-xl border bg-[#121215] flex items-center justify-center text-gray-500 border-white/10" style="animation: shimmer-lock 4s ease-in-out infinite; animation-delay: 2s;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" class=""></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" class=""></path>
+                  </svg>
+                </div>
+                <div class="w-12 h-12 rounded-xl border bg-[#121215] flex items-center justify-center border-white/10 text-gray-600" style="animation: shimmer-lock 4s ease-in-out infinite; animation-delay: 3s;">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                    <rect width="18" height="11" x="3" y="11" rx="2" ry="2" class=""></rect>
+                    <path d="M7 11V7a5 5 0 0 1 10 0v4" class=""></path>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <h3 class="text-4xl text-left font-oswald font-light text-white" style="">
+                Real-Time Tracking
+              </h3>
+              <p class="leading-relaxed text-lg font-light text-left mt-2 font-sans text-gray-400" style="">
+                Monitor client progress, daily habits, and task completion in real-time, ensuring accountability and consistent results.
+              </p>
+            </div>
+          </div>
+
+          <!-- Card 4: Benchy AI -->
+          <div class="md:col-span-1 group flex flex-col overflow-hidden hover:border-blue-500/30 transition-all duration-500 bg-[#08080A] border rounded-[2rem] p-8 relative justify-between border-white/10">
+            <style>
+              @keyframes drift-vertical-slow {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(-8px); }
+              }
+              @keyframes drift-vertical-reverse {
+                0%, 100% { transform: translateY(0px); }
+                50% { transform: translateY(8px); }
+              }
+              @keyframes signal-flow {
+                0% { stroke-dashoffset: 20; opacity: 0.3; }
+                100% { stroke-dashoffset: 0; opacity: 0.6; }
+              }
+              @keyframes signal-pulse {
+                0%, 100% { stroke-width: 1; opacity: 0.2; }
+                50% { stroke-width: 1.5; opacity: 0.8; stroke: #60A5FA; }
+              }
+              @keyframes node-activate {
+                0%, 90%, 100% { fill: white; r: 3px; filter: none; }
+                92% { fill: #3B82F6; r: 4.5px; filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.8)); }
+                95% { fill: #60A5FA; r: 4px; }
+              }
+              @keyframes grid-pan-diagonal {
+                0% { background-position: 0% 0%; }
+                100% { background-position: 100px 100px; }
+              }
+            </style>
+
+            <!-- Animated Background Grid Parallax -->
+            <div class="absolute inset-0 opacity-[0.07] pointer-events-none" style="background-image: linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px); background-size: 40px 40px; transform: scale(1.5) rotate(15deg); animation: grid-pan-diagonal 60s linear infinite;"></div>
+            <div class="bg-[#000000] z-0 absolute top-0 right-0 bottom-0 left-0"></div>
+
+            <!-- Visual -->
+            <div class="relative h-48 w-full flex items-center justify-center mb-6 z-10">
+              <svg class="w-full h-full text-white/10" viewBox="0 0 200 200" fill="none">
+                <!-- Vertical Data Lines with Flow -->
+                <line x1="100" y1="20" x2="100" y2="180" stroke="currentColor" stroke-width="1" class=""></line>
+
+                <!-- Left Flow Line -->
+                <line x1="60" y1="20" x2="60" y2="180" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" style="animation: signal-flow 3s linear infinite;" class=""></line>
+                <!-- Right Flow Line -->
+                <line x1="140" y1="20" x2="140" y2="180" stroke="currentColor" stroke-width="1" stroke-dasharray="4 4" style="animation: signal-flow 4s linear infinite reverse;" class=""></line>
+
+                <!-- Drifting Group 1 (Top Left) -->
+                <g style="animation: drift-vertical-slow 7s ease-in-out infinite;" class="">
+                  <path d="M60 80 C 80 80, 80 100, 100 100" stroke="currentColor" stroke-width="1" style="animation: signal-pulse 5s ease-in-out infinite 0s;" class=""></path>
+                  <circle cx="60" cy="80" r="3" fill="white" style="animation: node-activate 8s ease-in-out infinite 0.5s;" class=""></circle>
+                </g>
+
+                <!-- Drifting Group 2 (Top Right) -->
+                <g style="animation: drift-vertical-reverse 8s ease-in-out infinite 1s;" class="">
+                  <path d="M100 60 C 120 60, 120 80, 140 80" stroke="currentColor" stroke-width="1" style="animation: signal-pulse 5s ease-in-out infinite 2.5s;" class=""></path>
+                  <circle cx="140" cy="80" r="3" fill="white" style="animation: node-activate 8s ease-in-out infinite 3s;" class=""></circle>
+                </g>
+
+                <!-- Drifting Group 3 (Bottom Left) -->
+                <g style="animation: drift-vertical-slow 6s ease-in-out infinite 2s;" class="">
+                  <path d="M100 120 C 80 120, 80 140, 60 140" stroke="currentColor" stroke-width="1" style="animation: signal-pulse 5s ease-in-out infinite 1.5s;" class=""></path>
+                  <circle cx="60" cy="140" r="3" fill="white" style="animation: node-activate 8s ease-in-out infinite 5.5s;" class=""></circle>
+                </g>
+
+                <!-- Central Nodes (Pulsing Sequence) -->
+                <circle cx="100" cy="60" r="3" fill="white" style="animation: node-activate 8s ease-in-out infinite 0s;" class=""></circle>
+                <circle cx="100" cy="100" r="3" fill="white" style="animation: node-activate 8s ease-in-out infinite 2s;" class=""></circle>
+                <circle cx="100" cy="150" r="3" fill="white" style="animation: node-activate 8s ease-in-out infinite 4s;" class=""></circle>
+
+                <!-- Floating Micro Particles -->
+                <circle cx="120" cy="40" r="1" fill="#60A5FA" class="opacity-50" style="animation: drift-vertical-reverse 10s ease-in-out infinite;"></circle>
+                <circle cx="80" cy="160" r="1" fill="#60A5FA" class="opacity-50" style="animation: drift-vertical-slow 9s ease-in-out infinite;"></circle>
+              </svg>
+            </div>
+
+            <!-- Content -->
+            <div class="relative z-10">
+              <h3 class="text-4xl text-left group-hover:text-blue-50 transition-colors duration-300 font-oswald font-light text-white" style="">
+                Benchy AI
+              </h3>
+              <p class="leading-relaxed text-lg font-light text-left mt-2 group-hover:text-gray-300 transition-colors duration-300 font-sans text-gray-400" style="">
+                Your personal AI assistant that helps program and manage your business effortlessly.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 02 MANAGEMENT FEATURE BLOCK -->
+    <section class="animate-on-scroll relative z-10 mx-auto max-w-7xl mt-24 mb-24 rounded-[2.5rem] p-10 bg-gradient-to-br from-white/5 via-transparent to-white/5 border border-white/10 overflow-hidden group/section" id="management">
+        <!-- Intense Blue Rays Background -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+            <!-- Diagonal Blue Beams -->
+            <div class="absolute -top-1/2 -left-1/2 w-[200%] h-[200%] opacity-40" 
+                 style="background: repeating-linear-gradient(60deg, rgba(30,58,138,0) 0%, rgba(30,58,138,0) 45%, rgba(59, 130, 246, 0.15) 48%, rgba(59, 130, 246, 0.3) 50%, rgba(59, 130, 246, 0.15) 52%, rgba(30,58,138,0) 55%); animation: ray-shift 10s ease-in-out infinite alternate;">
+            </div>
+            
+            <!-- Strong Top Right Glow Source -->
+            <div class="absolute -top-40 right-0 w-[800px] h-[800px] bg-blue-500/20 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
+            
+            <!-- Additional Streak Highlight -->
+            <div class="absolute top-0 right-1/4 w-[2px] h-[150%] bg-blue-400/30 blur-[4px] rotate-[30deg] origin-top-left"></div>
+            <div class="absolute top-0 right-1/3 w-[100px] h-[150%] bg-gradient-to-r from-transparent via-blue-500/10 to-transparent rotate-[30deg] origin-top-left blur-xl"></div>
+        </div>
+    
+        <div class="relative z-10 flex flex-col gap-10">
+            <!-- Label -->
+            <div class="flex items-center gap-6">
+                <span class="text-xs font-mono tracking-widest text-blue-400">02</span>
+                <div class="h-px flex-1 bg-white/10"></div>
+                <span class="uppercase text-xs tracking-widest text-gray-500">Management</span>
+            </div>
+    
+            <!-- Headline -->
+            <div class="max-w-3xl">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light text-white mb-6">
+                    Total Control.
+                    <span class="text-gray-500">Zero Friction.</span>
+                </h2>
+                <p class="text-lg font-light text-gray-400 max-w-xl leading-relaxed font-sans">
+                    Streamline your operations with powerful tools for team management, client intake, and financial tracking.
+                </p>
+            </div>
+    
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Teams (Solid Background) -->
+                <div class="group relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 p-8 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-1 shadow-lg z-10">
+                    <!-- Subtle inner glow on hover only -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    
+                    <!-- Icon Box -->
+                    <div class="relative w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300">
+                        <iconify-icon icon="solar:users-group-two-rounded-linear" width="24"></iconify-icon>
+                    </div>
+                    
+                    <h3 class="relative text-xl font-semibold text-white mb-3 tracking-tight">Teams</h3>
+                    <p class="relative text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                        Group clients together for challenges or community events with ease.
+                    </p>
+                </div>
+    
+                <!-- Card 2: Client Forms (Solid Background) -->
+                <div class="group relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 p-8 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-1 shadow-lg z-10">
+                     <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    
+                    <!-- Icon Box -->
+                    <div class="relative w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300">
+                        <iconify-icon icon="solar:clipboard-list-linear" width="24"></iconify-icon>
+                    </div>
+                    
+                    <h3 class="relative text-xl font-semibold text-white mb-3 tracking-tight">Client Forms</h3>
+                    <p class="relative text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                        Collect check-ins, feedback, and intake information seamlessly.
+                    </p>
+                </div>
+    
+                <!-- Card 3: Finance (Solid Background) -->
+                <div class="group relative overflow-hidden rounded-2xl bg-[#000000] border border-white/10 p-8 hover:border-blue-500/30 transition-all duration-500 hover:-translate-y-1 shadow-lg z-10">
+                     <div class="absolute inset-0 bg-gradient-to-br from-blue-500/0 via-blue-500/0 to-blue-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    
+                    <!-- Icon Box -->
+                    <div class="relative w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 mb-6 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(59,130,246,0.3)] transition-all duration-300">
+                        <iconify-icon icon="solar:wallet-money-linear" width="24"></iconify-icon>
+                    </div>
+                    
+                    <h3 class="relative text-xl font-semibold text-white mb-3 tracking-tight">Finance</h3>
+                    <p class="relative text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                        Track invoices, payments, and revenue directly in the app.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 AUTOMATIONS (Updated Section) -->
+    <section class="animate-on-scroll relative z-10 mx-auto max-w-7xl mt-24 mb-24 rounded-[2.5rem] p-10 bg-transparent border border-white/10 overflow-hidden group/section" id="automations">
+        <!-- Blue Rays Background -->
+        <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+             <!-- Deep Background Gradient -->
+            <div class="absolute inset-0 bg-gradient-to-b from-cyan-900/10 via-transparent to-transparent opacity-50"></div>
+            
+            <!-- Strong Top Left Glow Source -->
+            <div class="absolute -top-[20%] left-[10%] w-[600px] h-[600px] bg-cyan-500/10 blur-[120px] rounded-full mix-blend-screen pointer-events-none"></div>
+            
+            <!-- Diagonal Blue Beams from Top Left -->
+            <div class="absolute -top-[50%] -left-[50%] w-[200%] h-[200%] opacity-20" 
+                 style="background: repeating-linear-gradient(135deg, transparent 0%, transparent 45%, rgba(6, 182, 212, 0.1) 48%, rgba(6, 182, 212, 0.2) 50%, rgba(6, 182, 212, 0.1) 52%, transparent 55%); animation: ray-shift 15s ease-in-out infinite alternate;">
+            </div>
+        </div>
+    
+        <div class="relative z-10 flex flex-col gap-10">
+            <!-- Label -->
+            <div class="flex items-center justify-between border-b border-white/5 pb-8 mb-4">
+                <span class="text-xs font-mono tracking-widest text-cyan-400">03</span>
+                <span class="uppercase text-xs tracking-widest text-gray-500">Automations</span>
+            </div>
+    
+            <!-- Headline -->
+            <div class="max-w-3xl">
+                <h2 class="text-4xl md:text-5xl lg:text-6xl font-oswald font-light text-white mb-6">
+                    Automations
+                </h2>
+            </div>
+    
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Card 1: Auto Flow -->
+                <div class="group relative overflow-hidden rounded-2xl bg-[#050505] border border-white/5 p-8 transition-all duration-500 hover:-translate-y-1 shadow-lg z-10">
+                    
+                    <div class="relative w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-105 transition-all duration-300">
+                        <iconify-icon icon="lucide:infinity" width="24"></iconify-icon>
+                    </div>
+                    
+                    <h3 class="relative text-xl font-semibold text-white mb-3 tracking-tight">Auto Flow</h3>
+                    <p class="relative text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                        Create powerful automated workflows to save time.
+                    </p>
+                </div>
+    
+                <!-- Card 2: Onboarding Flow -->
+                <div class="group relative overflow-hidden rounded-2xl bg-[#050505] border border-white/5 p-8 transition-all duration-500 hover:-translate-y-1 shadow-lg z-10">
+                    
+                    <div class="relative w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-105 transition-all duration-300">
+                        <iconify-icon icon="lucide:user-plus" width="24"></iconify-icon>
+                    </div>
+                    
+                    <h3 class="relative text-xl font-semibold text-white mb-3 tracking-tight">Onboarding Flow</h3>
+                    <p class="relative text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                        Automate the new client welcome experience.
+                    </p>
+                </div>
+    
+                <!-- Card 3: Benchy Calling -->
+                <div class="group relative overflow-hidden rounded-2xl bg-[#050505] border border-white/5 p-8 transition-all duration-500 hover:-translate-y-1 shadow-lg z-10">
+                    
+                    <div class="relative w-12 h-12 rounded-xl bg-pink-500/10 border border-pink-500/20 flex items-center justify-center text-pink-400 mb-6 group-hover:scale-105 transition-all duration-300">
+                        <iconify-icon icon="lucide:phone-call" width="24"></iconify-icon>
+                    </div>
+                    
+                    <h3 class="relative text-xl font-semibold text-white mb-3 tracking-tight">Benchy Calling</h3>
+                    <p class="relative text-sm leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors">
+                        AI-powered automated phone calls for leads and clients.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW CONTENT LIBRARY SECTION (Redesigned) -->
+    <section class="animate-on-scroll sm:px-6 lg:px-8 sm:mt-32 max-w-7xl mt-24 mr-auto ml-auto pr-4 pl-4 relative z-10">
+      <div class="relative overflow-visible">
+        <div class="pointer-events-none absolute inset-0 -z-10">
+          <div
+            class="absolute left-1/2 top-0 h-[32rem] w-[36rem] -translate-x-1/2 rounded-full bg-blue-500/10 blur-[140px] opacity-20">
+          </div>
+          <div class="absolute -left-20 bottom-0 h-[20rem] w-[28rem] rounded-full bg-cyan-500/20 blur-[140px] opacity-30">
+          </div>
+          <div
+            class="absolute -right-24 top-1/3 h-[22rem] w-[22rem] rounded-full bg-indigo-500/20 blur-[120px] opacity-20">
+          </div>
+        </div>
+
+        <div class="text-center mb-8 sm:mb-12">
+          <div
+            class="mx-auto inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs text-cyan-400 shadow-sm backdrop-blur hover:bg-white/10 hover:border-white/20 transition-all duration-300 cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5">
+              <rect width="7" height="7" x="3" y="3" rx="1" class=""></rect>
+              <rect width="7" height="7" x="14" y="3" rx="1" class=""></rect>
+              <rect width="7" height="7" x="14" y="14" rx="1" class=""></rect>
+              <rect width="7" height="7" x="3" y="14" rx="1" class=""></rect>
+            </svg>
+            Complete Content Engine
+          </div>
+          <h2 class="mt-3 sm:mt-4 text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white/90 px-4">
+            Centralize your entire
+          </h2>
+          <h3 class="mt-1 text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-white px-4">
+            coaching knowledge base
+          </h3>
+          <p class="mt-2 sm:mt-3 text-xs sm:text-sm lg:text-base text-white/60 max-w-2xl mx-auto px-4">From workout templates to meal plans—discover the building blocks that empower your client results.</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-3 sm:gap-4 auto-rows-[140px] sm:auto-rows-[180px] sm:gap-x-4 sm:gap-y-4 gap-x-3 gap-y-3">
+
+          <!-- 1. Training (Large) -->
+          <div
+            class="group relative col-span-1 sm:col-span-2 lg:col-span-7 row-span-2 lg:row-span-2 rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-br from-white/10 via-white/5 to-transparent ring-1 ring-white/10 backdrop-blur p-4 sm:p-6 overflow-hidden hover:border-white/20 hover:shadow-[0_20px_70px_-20px_rgba(0,0,0,0.8)] transition-all duration-500 cursor-pointer">
+            <div class="z-10 flex flex-col h-full relative">
+              <div class="flex items-start justify-between mb-3 sm:mb-4">
+                <div
+                  class="inline-flex text-[9px] sm:text-[10px] font-medium text-white-300 bg-white-500/20 ring-white/20 ring-1 rounded-md mb-2 pt-1 pr-2 pb-1 pl-2 items-center">
+                  LIBRARY
+                </div>
+                <div class="flex items-center gap-1.5 sm:gap-2">
+                  <div class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-400 animate-pulse"></div>
+                  <span class="text-[10px] sm:text-xs text-white/60">Live</span>
+                </div>
+              </div>
+
+              <h3 class="text-base sm:text-xl font-semibold tracking-tight text-white mb-1.5 sm:mb-2">Training Systems</h3>
+              <p class="text-xs sm:text-sm text-white/70 mb-4 sm:mb-6 max-w-md">Build cohesive workout programs with reusable exercises, unified templates, and comprehensive guides that keep your entire client base in sync.</p>
+
+              <div class="mt-auto">
+                <div class="grid grid-cols-3 gap-2 sm:gap-3 mb-3 sm:mb-4">
+                  <div
+                    class="rounded-lg bg-white/5 ring-1 ring-white/10 p-2 sm:p-3 backdrop-blur hover:bg-white/10 hover:ring-white/20 hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+                    <div class="text-lg sm:text-2xl font-semibold text-white mb-0.5 sm:mb-1">500+</div>
+                    <div class="text-[9px] sm:text-xs text-white/60">Exercises</div>
+                  </div>
+                  <div
+                    class="rounded-lg bg-white/5 ring-1 ring-white/10 p-2 sm:p-3 backdrop-blur hover:bg-white/10 hover:ring-white/20 hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+                    <div class="text-lg sm:text-2xl font-semibold text-white mb-0.5 sm:mb-1">45</div>
+                    <div class="text-[9px] sm:text-xs text-white/60">Plans</div>
+                  </div>
+                  <div
+                    class="rounded-lg bg-white/5 ring-1 ring-white/10 p-2 sm:p-3 backdrop-blur hover:bg-white/10 hover:ring-white/20 hover:scale-[1.02] transition-all duration-200 cursor-pointer">
+                    <div class="text-lg sm:text-2xl font-semibold text-white mb-0.5 sm:mb-1">12</div>
+                    <div class="text-[9px] sm:text-xs text-white/60">Weeks</div>
+                  </div>
+                </div>
+
+                <button class="inline-flex items-center gap-1.5 sm:gap-2 rounded-lg bg-white/10 hover:bg-white/15 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white ring-1 ring-white/20 transition-all duration-200 hover:scale-[1.02] hover:ring-white/30">
+                  Open Builder
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="h-3.5 w-3.5 sm:h-4 sm:w-4"><path d="m9 18 6-6-6-6" class=""></path></svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="pointer-events-none absolute inset-0">
+              <div
+                class="absolute right-0 bottom-0 h-48 sm:h-64 w-48 sm:w-64 rounded-full bg-blue-500/10 blur-3xl group-hover:bg-blue-500/20 transition-all duration-500">
+              </div>
+              <div
+                class="absolute left-0 top-0 h-24 sm:h-32 w-24 sm:w-32 rounded-full bg-cyan-500/10 blur-2xl group-hover:bg-cyan-500/20 transition-all duration-500">
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Clients (Avatars) -->
+          <div
+            class="group relative col-span-1 sm:col-span-1 lg:col-span-5 row-span-1 lg:row-span-1 rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 ring-1 ring-white/10 backdrop-blur p-4 sm:p-5 overflow-hidden hover:border-white/20 hover:from-white/[0.12] transition-all duration-300 cursor-pointer">
+            <div class="flex items-start justify-between h-full">
+              <div class="flex-1">
+                <div
+                  class="inline-flex text-[9px] sm:text-[10px] font-medium text-white-300 bg-white-500/20 ring-white/20 ring-1 rounded-md mb-2 pt-1 pr-2 pb-1 pl-2 items-center">
+                  CLIENTS
+                </div>
+                <h3 class="text-sm sm:text-base font-semibold tracking-tight text-white/90 mb-1.5 sm:mb-2">Client Access</h3>
+                <p class="text-[10px] sm:text-xs text-white/70 mb-2 sm:mb-3">Assign programs instantly to individuals or groups.</p>
+
+                <div class="flex items-center gap-1.5 sm:gap-2 mb-2 sm:mb-3">
+                  <div class="flex -space-x-1.5 sm:-space-x-2">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=64&h=64" alt="" class="w-6 h-6 sm:w-8 sm:h-8 object-cover ring-black/50 ring-2 rounded-full hover:scale-110 hover:z-10 transition-transform duration-200">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=64&h=64" alt="" class="w-6 h-6 sm:w-8 sm:h-8 object-cover ring-black/50 ring-2 rounded-full hover:scale-110 hover:z-10 transition-transform duration-200">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=64&h=64" alt="" class="ring-2 ring-black/50 w-6 h-6 sm:w-8 sm:h-8 object-cover rounded-full hover:scale-110 hover:z-10 transition-transform duration-200">
+                    <div
+                      class="h-6 w-6 sm:h-8 sm:w-8 rounded-full bg-white/10 ring-2 ring-black/50 flex items-center justify-center text-[10px] sm:text-xs text-white/70 hover:bg-white/20 hover:scale-110 transition-all duration-200 cursor-pointer">
+                      +8</div>
+                  </div>
+                  <span class="text-[10px] sm:text-xs text-white/60">Active now</span>
+                </div>
+              </div>
+
+              <div class="relative ml-2 sm:ml-3 shrink-0">
+                <div
+                  class="ring-1 ring-white/10 overflow-visible flex bg-gradient-to-br from-white/10 to-transparent w-16 h-16 sm:w-20 sm:h-20 rounded-full relative items-center justify-center hover:ring-white/20 hover:scale-110 transition-all duration-300 cursor-pointer">
+                  <img alt="avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&h=150" class="w-14 h-14 sm:w-16 sm:h-16 object-cover rounded-full">
+                  <div class="pointer-events-none absolute inset-0 flex items-center justify-center">
+                    <span class="absolute h-16 w-16 sm:h-20 sm:w-20 rounded-full ring-1 ring-white/20"></span>
+                    <span class="absolute h-14 w-14 sm:h-16 sm:w-16 rounded-full ring-1 ring-white/10"></span>
+                  </div>
+                  <div
+                    class="absolute right-1 bottom-1 sm:right-1.5 sm:bottom-1.5 h-2.5 w-2.5 sm:h-3 sm:w-3 rounded-full bg-emerald-400 ring-2 ring-black/50">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3. Forms (Controls) -->
+          <div
+            class="relative col-span-1 sm:col-span-1 lg:col-span-5 row-span-1 lg:row-span-1 rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 ring-1 ring-white/10 backdrop-blur p-4 sm:p-5 overflow-hidden hover:border-white/20 hover:from-white/[0.12] transition-all duration-300 cursor-pointer">
+            <div class="flex items-start justify-between mb-2 sm:mb-3">
+              <div class="">
+                <div
+                  class="inline-flex text-[9px] sm:text-[10px] font-medium text-white-300 bg-white-500/20 ring-white/20 ring-1 rounded-md mb-2 pt-1 pr-2 pb-1 pl-2 items-center">
+                  FORMS
+                </div>
+                <h3 class="text-sm sm:text-base font-semibold tracking-tight text-white/90">Check-ins & Intake</h3>
+              </div>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                class="text-white/40 h-4 w-4 sm:h-5 sm:w-5">
+                <circle cx="12" cy="12" r="1" class=""></circle>
+                <circle cx="19" cy="12" r="1" class=""></circle>
+                <circle cx="5" cy="12" r="1" class=""></circle>
+              </svg>
+            </div>
+
+            <div class="space-y-2 sm:space-y-3">
+              <div
+                class="flex items-center justify-between rounded-lg bg-black/20 p-2 sm:p-2.5 ring-1 ring-white/10 hover:bg-black/30 hover:ring-white/20 transition-all duration-200 cursor-pointer">
+                <span class="text-[10px] sm:text-xs text-white/80">Weekly Check-in</span>
+                <div
+                  class="relative h-4 w-8 sm:h-5 sm:w-10 rounded-full bg-indigo-500/80 ring-1 ring-indigo-400/30 hover:bg-indigo-500 transition-colors duration-200">
+                  <span class="absolute right-0.5 top-0.5 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-white shadow-sm"></span>
+                </div>
+              </div>
+
+              <div
+                class="flex items-center justify-between rounded-lg bg-black/20 p-2 sm:p-2.5 ring-1 ring-white/10 hover:bg-black/30 hover:ring-white/20 transition-all duration-200 cursor-pointer">
+                <span class="text-[10px] sm:text-xs text-white/80">Photos Required</span>
+                <div
+                  class="relative h-4 w-8 sm:h-5 sm:w-10 rounded-full bg-white/10 ring-1 ring-white/10 hover:bg-white/15 transition-colors duration-200">
+                  <span class="absolute left-0.5 top-0.5 h-3 w-3 sm:h-4 sm:w-4 rounded-full bg-white/40"></span>
+                </div>
+              </div>
+
+              <div
+                class="rounded-lg bg-black/20 p-2 sm:p-2.5 ring-1 ring-white/10 hover:bg-black/30 hover:ring-white/20 transition-all duration-200 cursor-pointer">
+                <div class="flex items-center justify-between mb-1.5 sm:mb-2">
+                  <span class="text-[10px] sm:text-xs text-white/80">Compliance</span>
+                  <span class="text-[10px] sm:text-xs text-white/60">94%</span>
+                </div>
+                <div class="h-1 w-full rounded-full bg-white/10">
+                  <div class="h-1 w-[94%] rounded-full bg-gradient-to-r from-emerald-400 to-cyan-400"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 4. The Vault (Visuals) -->
+          <div
+            class="col-span-1 sm:col-span-1 lg:col-span-4 row-span-2 lg:row-span-2 overflow-hidden ring-white/10 ring-1 bg-gradient-to-br from-white/10 to-white/5 max-h-fit border-white/10 border rounded-xl sm:rounded-2xl pt-4 pr-4 pb-4 pl-4 sm:pt-5 sm:pr-5 sm:pb-5 sm:pl-5 relative backdrop-blur hover:border-white/20 hover:from-white/[0.12] transition-all duration-300 cursor-pointer">
+            <div class="flex flex-col h-full max-h-fit">
+              <div class="flex items-start justify-between mb-3 sm:mb-4">
+                <div class="">
+                  <div
+                    class="inline-flex text-[9px] sm:text-[10px] font-medium text-white-300 bg-white-500/20 ring-white/20 ring-1 rounded-md mb-2 pt-1 pr-2 pb-1 pl-2 items-center">
+                    ASSETS
+                  </div>
+                  <h3 class="text-sm sm:text-base font-semibold tracking-tight text-white/90">The Vault</h3>
+                  <p class="text-[10px] sm:text-xs text-white/60 mt-0.5 sm:mt-1">Documents, videos, and guides.</p>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-3 gap-1.5 sm:gap-2">
+                <div
+                  class="aspect-square rounded-lg overflow-hidden ring-1 ring-white/10 hover:ring-white/20 hover:scale-[1.05] transition-all duration-300 cursor-pointer bg-white/5 flex items-center justify-center">
+                   <iconify-icon icon="solar:file-text-bold-duotone" class="text-white/50 text-2xl"></iconify-icon>
+                </div>
+                <div
+                  class="aspect-square rounded-lg overflow-hidden ring-1 ring-white/10 hover:ring-white/20 hover:scale-[1.05] transition-all duration-300 cursor-pointer bg-white/5 flex items-center justify-center">
+                   <iconify-icon icon="solar:play-circle-bold-duotone" class="text-white/50 text-2xl"></iconify-icon>
+                </div>
+                <div
+                  class="aspect-square ring-1 ring-white/10 flex bg-white/5 rounded-lg blur-none items-center justify-center hover:ring-white/20 hover:scale-[1.05] hover:bg-white/10 transition-all duration-300 cursor-pointer">
+                  <span class="text-[10px] sm:text-xs text-white/70">+120</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5. Nutrition (Code) -->
+          <div
+            class="relative col-span-1 sm:col-span-1 lg:col-span-4 row-span-1 lg:row-span-1 rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 ring-1 ring-white/10 backdrop-blur p-4 sm:p-5 hover:border-white/20 hover:from-white/[0.12] transition-all duration-300 cursor-pointer">
+            <div
+              class="inline-flex text-[9px] sm:text-[10px] font-medium text-white-300 bg-white-500/20 ring-white/20 ring-1 rounded-md mb-2 pt-1 pr-2 pb-1 pl-2 items-center">
+              MACROS
+            </div>
+            <h3 class="text-sm sm:text-base font-semibold tracking-tight text-white/90 mb-1.5 sm:mb-2">Nutrition Logic</h3>
+            <p class="text-[10px] sm:text-xs text-white/70 mb-3 sm:mb-4">Custom meal plans and macro calculations.</p>
+
+            <div
+              class="ring-white/10 ring-1 bg-black/80 border-white/10 border rounded-lg pt-2.5 pr-2.5 pb-2.5 pl-2.5 sm:pt-3 sm:pr-3 sm:pb-3 sm:pl-3 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)] backdrop-blur-xl hover:bg-black/30 hover:ring-white/20 transition-all duration-200">
+              <div class="flex items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                <div class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-red-400"></div>
+                <div class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-yellow-400"></div>
+                <div class="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-emerald-400"></div>
+                <span class="text-[9px] sm:text-[10px] text-white/50 ml-auto">meal.json</span>
+              </div>
+              <pre class="text-[9px] sm:text-[10px] text-white/70 leading-relaxed overflow-x-auto"><code class=""><span class="text-purple-400">const</span> <span class="text-blue-400">plan</span> = {
+  <span class="text-white/90">target</span>: <span class="text-emerald-400">"Fat Loss"</span>,
+  <span class="text-white/90">cals</span>: <span class="text-yellow-400">2400</span>,
+  <span class="text-white/90">macros</span>: { p: <span class="text-yellow-400">180</span>, c: <span class="text-yellow-400">220</span> }
+}</code></pre>
+            </div>
+          </div>
+
+          <!-- 6. Habits (Speed) -->
+          <div
+            class="relative col-span-1 sm:col-span-1 lg:col-span-4 row-span-1 lg:row-span-1 rounded-xl sm:rounded-2xl border border-white/10 bg-gradient-to-b from-white/10 to-white/5 ring-1 ring-white/10 backdrop-blur p-4 sm:p-5 hover:border-white/20 hover:from-white/[0.12] transition-all duration-300 cursor-pointer">
+            <div class="flex items-start justify-between mb-3 sm:mb-4">
+              <div class="">
+                <div
+                  class="inline-flex text-[9px] sm:text-[10px] font-medium text-white-300 bg-white-500/20 ring-white/20 ring-1 rounded-md mb-2 pt-1 pr-2 pb-1 pl-2 items-center">
+                  HABITS
+                </div>
+                <h3 class="text-sm sm:text-base font-semibold tracking-tight text-white/90">Routine Tracking</h3>
+              </div>
+              <div class="flex items-center gap-1">
+                <div
+                  class="h-5 w-5 sm:h-6 sm:w-6 rounded-full bg-emerald-500/20 ring-1 ring-emerald-500/30 flex items-center justify-center hover:bg-emerald-500/30 hover:scale-110 transition-all duration-200">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                    class="text-emerald-400 h-3 w-3 sm:h-3.5 sm:w-3.5">
+                    <polyline points="20 6 9 17 4 12" class=""></polyline>
+                  </svg>
+                </div>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-2 gap-2 sm:gap-3">
+              <div
+                class="rounded-lg bg-black/20 p-2.5 sm:p-3 ring-1 ring-white/10 hover:bg-black/30 hover:ring-white/20 hover:scale-[1.02] transition-all duration-200">
+                <div class="text-base sm:text-lg font-semibold text-emerald-400 mb-0.5">100%</div>
+                <div class="text-[9px] sm:text-[10px] text-white/60">Consistency</div>
+              </div>
+              <div
+                class="rounded-lg bg-black/20 p-2.5 sm:p-3 ring-1 ring-white/10 hover:bg-black/30 hover:ring-white/20 hover:scale-[1.02] transition-all duration-200">
+                <div class="text-base sm:text-lg font-semibold text-sky-400 mb-0.5">Daily</div>
+                <div class="text-[9px] sm:text-[10px] text-white/60">Reminders</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section
+      id="pricing"
+      class="animate-on-scroll relative z-10 border-t border-white/5 bg-gradient-to-b from-white/[0.02] to-transparent py-24"
+    >
+      <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col items-center justify-center text-center mb-16"
+        >
+          <span
+            class="inline-flex items-center gap-2 rounded-full border border-yellow-500/30 bg-yellow-500/10 px-3 py-1 text-xs font-medium text-yellow-400 mb-6"
+          >
+            <span
+              class="h-1.5 w-1.5 rounded-full bg-yellow-500 animate-pulse"
+            ></span>
+            Presale Offer
+          </span>
+          <h2
+            class="text-4xl font-semibold tracking-tight text-white sm:text-5xl"
+          >
+            Unlock Lifetime Access
+          </h2>
+          <p class="mt-4 text-slate-400 max-w-lg">
+            Join the presale and secure the future of your coaching business.
+            Pay once, use HubFit forever.
+          </p>
+        </div>
+
+        <div
+          class="relative mx-auto flex max-w-3xl flex-col items-center rounded-3xl border border-white/10 bg-[#0A0A0A] p-8 shadow-2xl md:p-12 overflow-hidden"
+        >
+          <div
+            class="absolute -top-24 left-1/2 h-96 w-96 -translate-x-1/2 bg-blue-500/20 blur-[100px] pointer-events-none"
+          ></div>
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent pointer-events-none"
+          ></div>
+
+          <div class="relative z-10 w-full text-center">
+            <div class="mb-2 text-lg font-medium text-blue-400">
+              All-Access Bundle
+            </div>
+            <h3 class="text-3xl font-bold text-white mb-6">
+              Lifetime Membership
+            </h3>
+
+            <div class="flex items-center justify-center gap-2 mb-8">
+              <span class="text-6xl font-bold tracking-tight text-white">
+                $997
+              </span>
+              <span class="text-sm font-medium text-slate-500 self-end mb-2">
+                one-time payment
+              </span>
+            </div>
+
+            <p class="mx-auto max-w-md text-slate-400 mb-10">
+              Get unlimited access to every feature we build, forever. No
+              monthly subscriptions, no hidden fees.
+            </p>
+
+            <button
+              class="w-full max-w-md rounded-xl bg-white px-8 py-4 text-base font-bold text-black transition hover:bg-slate-200 hover:scale-[1.02] shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+            >
+              Get Lifetime Access
+            </button>
+            <div class="mt-4 text-xs text-slate-500">
+              Limited spots available for presale
+            </div>
+          </div>
+
+          <!-- Feature check list... -->
+          <div class="relative z-10 mt-12 w-full border-t border-white/10 pt-10">
+             <div class="grid grid-cols-1 gap-y-4 gap-x-8 md:grid-cols-2 text-sm text-slate-300 max-w-2xl mx-auto">
+                 <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 h-5 w-5 text-blue-400 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                    <span>Unlimited Clients</span>
+                 </div>
+                 <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 h-5 w-5 text-blue-400 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                    <span>Team Accounts & Roles</span>
+                 </div>
+                 <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 h-5 w-5 text-blue-400 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                    <span>Custom Branding</span>
+                 </div>
+                 <div class="flex items-center gap-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-check-circle-2 h-5 w-5 text-blue-400 flex-shrink-0"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg>
+                    <span>Automated Workflows</span>
+                 </div>
+             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="animate-on-scroll relative z-10 mx-auto max-w-3xl px-4 py-24 sm:px-6 lg:px-8">
+      <h2 class="text-center text-3xl font-semibold text-white mb-12">
+        Frequently asked questions
+      </h2>
+      <div class="space-y-4">
+        <!-- Item 1 -->
+        <details class="group rounded-xl border border-white/10 bg-[#0A0A0A] p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between font-medium text-slate-200 group-hover:text-white">
+            What does Lifetime Access mean?
+          </summary>
+          <div class="mt-4 text-sm leading-relaxed text-slate-400">
+            You pay once and get access to the HubFit Business plan forever.
+            This includes all future updates and features we release for that
+            plan, with no recurring monthly fees.
+          </div>
+        </details>
+        
+        <!-- Item 2 -->
+        <details class="group rounded-xl border border-white/10 bg-[#0A0A0A] p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between font-medium text-slate-200 group-hover:text-white">
+            Can I migrate my data from other platforms?
+          </summary>
+          <div class="mt-4 text-sm leading-relaxed text-slate-400">
+            Yes, we offer free migration support from most major coaching platforms. Our team will help you transfer your clients, programs, and data so you can hit the ground running.
+          </div>
+        </details>
+
+        <!-- Item 3 -->
+        <details class="group rounded-xl border border-white/10 bg-[#0A0A0A] p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between font-medium text-slate-200 group-hover:text-white">
+            Is the Coach App included?
+          </summary>
+          <div class="mt-4 text-sm leading-relaxed text-slate-400">
+            Absolutely. You get full access to both the web dashboard and the dedicated mobile app for coaches, allowing you to manage your business from anywhere.
+          </div>
+        </details>
+
+        <!-- Item 4 -->
+        <details class="group rounded-xl border border-white/10 bg-[#0A0A0A] p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between font-medium text-slate-200 group-hover:text-white">
+            What happens after the presale ends?
+          </summary>
+          <div class="mt-4 text-sm leading-relaxed text-slate-400">
+            Once the presale period is over, HubFit will switch to a monthly subscription model. This lifetime offer is exclusively available to early supporters.
+          </div>
+        </details>
+        
+         <!-- Item 5 -->
+        <details class="group rounded-xl border border-white/10 bg-[#0A0A0A] p-4 [&_summary::-webkit-details-marker]:hidden">
+          <summary class="flex cursor-pointer items-center justify-between font-medium text-slate-200 group-hover:text-white">
+            Is there a refund policy?
+          </summary>
+          <div class="mt-4 text-sm leading-relaxed text-slate-400">
+            Yes, we offer a 30-day money-back guarantee. If you decide HubFit isn't the right fit for your business, we'll refund your purchase in full, no questions asked.
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="animate-on-scroll relative z-10 mx-auto max-w-7xl px-4 pt-10 pb-16 sm:px-6 lg:px-8 border-t border-white/10">
+      <div class="grid grid-cols-2 gap-8 md:grid-cols-4 lg:grid-cols-5 pt-16">
+        <div class="col-span-2 lg:col-span-1">
+          <div class="flex items-center gap-2 font-bold text-xl text-white mb-6">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-blue-600 text-white">
+              H
+            </div>
+            <span>HubFit</span>
+          </div>
+          <p class="text-xs text-slate-500 mb-6">
+            © 2025 HubFit. All rights reserved.
+          </p>
+        </div>
+        
+        <!-- Product Column -->
+        <div>
+          <h3 class="text-sm font-semibold text-white">Product</h3>
+          <ul class="mt-4 space-y-4">
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Features</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Pricing</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Client App</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Coach App</a></li>
+          </ul>
+        </div>
+        
+        <!-- Company Column -->
+        <div>
+          <h3 class="text-sm font-semibold text-white">Company</h3>
+          <ul class="mt-4 space-y-4">
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">About Us</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Blog</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Careers</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Contact</a></li>
+          </ul>
+        </div>
+        
+        <!-- Resources Column -->
+        <div>
+          <h3 class="text-sm font-semibold text-white">Resources</h3>
+          <ul class="mt-4 space-y-4">
+             <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Help Center</a></li>
+             <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Community</a></li>
+             <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">API Docs</a></li>
+             <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Status</a></li>
+          </ul>
+        </div>
+        
+        <!-- Legal Column -->
+        <div>
+          <h3 class="text-sm font-semibold text-white">Legal</h3>
+          <ul class="mt-4 space-y-4">
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Privacy</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Terms</a></li>
+            <li><a href="#" class="text-sm text-slate-400 hover:text-white transition-colors">Security</a></li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scroll Observer -->
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                  entry.target.classList.add('animate');
+                  observer.unobserve(entry.target);
+              }
+          });
+      }, { threshold: 0.1 });
+      document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+      lucide.createIcons({
+          attrs: {
+              'stroke-width': 1.5
+          }
+      });
+    </script>
+  </body>
+</html>

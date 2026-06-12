@@ -1,0 +1,917 @@
+<html lang="en"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Runlyx — Solve faster. Ship smarter.</title>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Geist:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<!-- Scripts -->
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Custom Styles -->
+<style>
+/* Base settings */
+body { font-family: 'Inter', sans-serif; background-color: #02120e; color: #eec; }
+.font-mono { font-family: 'JetBrains Mono', monospace; }
+/* Warm Emerald/Amber Theme Variables */
+:root {
+--primary-amber: #D4A574;
+--primary-orange: #C85A3A;
+--deep-emerald: #1B4D3E;
+--dark-bg: #02120e;
+--panel-bg: rgba(27, 77, 62, 0.2);
+}
+/* Floating animations */
+@keyframes float-cursor { 0%,100%{transform:translate(0,0)} 50%{transform:translate(4px,-6px)} }
+@keyframes float-chip-1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-8px,-12px)} }
+@keyframes float-chip-2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(10px,8px)} }
+@keyframes float-chip-3 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-6px,10px)} }
+.float-cursor { animation: float-cursor 3s ease-in-out infinite; }
+.float-chip-1 { animation: float-chip-1 4s ease-in-out infinite; }
+.float-chip-2 { animation: float-chip-2 4.5s ease-in-out infinite; }
+.float-chip-3 { animation: float-chip-3 4.2s ease-in-out infinite; }
+/* Fade Slide In */
+@keyframes fadeSlideIn {
+0% { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+100% { opacity: 1; transform: translateY(0); filter: blur(0px); }
+}
+.animate-enter { animation: fadeSlideIn 0.8s ease-out 0s both; }
+.animate-enter-delay-1 { animation: fadeSlideIn 0.8s ease-out 0.1s both; }
+.animate-enter-delay-2 { animation: fadeSlideIn 0.8s ease-out 0.2s both; }
+/* Unicorn Mask */
+.unicorn-mask {
+mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 12%, black 88%, rgba(0,0,0,0) 100%);
+-webkit-mask-image: linear-gradient(to bottom, rgba(0,0,0,0) 0%, black 12%, black 88%, rgba(0,0,0,0) 100%);
+}
+/* Border Gradient Utility */
+[style*="--border-gradient"]::before {
+content: "";
+position: absolute;
+inset: 0;
+padding: 1px;
+border-radius: var(--border-radius-before, inherit);
+-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+background: var(--border-gradient);
+pointer-events: none;
+}
+/* Start Creating Button CSS - Modified for Amber Theme */
+.btn-wrapper::after {
+content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+border-radius: inherit; pointer-events: none; background-color: #0000;
+background-image: repeating-linear-gradient(45deg, var(--grid-color) 0 1px, transparent 2px 5px);
+opacity: 0; z-index: -1;
+}
+.btn-wrapper:has(.btn:hover)::after { animation: opacity-anim calc(var(--animation-speed) * 4) ease-in-out forwards; }
+@keyframes opacity-anim { 80% { opacity: 0; } 100% { opacity: 1; } }
+.btn-wrapper .btn {
+position: relative; display: flex; justify-content: center; align-items: center;
+padding: 0.8rem 1.25rem; background: linear-gradient(135deg, #D4A574 0%, #C85A3A 100%);
+border: 1px solid rgba(212, 165, 116, 0.3);
+color: #02120e; font-family: "Inter", sans-serif; letter-spacing: -0.01em; font-size: 1rem;
+font-weight: 600; border-radius: 6px; cursor: pointer;
+transition: transform .2s ease-in-out, letter-spacing .2s ease-in-out, box-shadow .2s;
+box-shadow: 0 4px 20px rgba(200, 90, 58, 0.15);
+}
+.btn-wrapper .btn:hover { transform: scale(1.02); letter-spacing: .02em; box-shadow: 0 0 25px rgba(212, 165, 116, 0.4); }
+.btn-wrapper .btn:active { transform: scale(.98); }
+.btn-wrapper .btn-svg {
+margin-left: .5rem; height: 24px; stroke-width: 1.5; stroke-linecap: round;
+stroke-linejoin: round; stroke: #02120e; fill: none; transition: all .2s ease-in-out;
+}
+.btn-wrapper .btn:hover .btn-svg { stroke: #000; }
+.btn-wrapper .dot { position: absolute; width: var(--dot-size); aspect-ratio: 1; border-radius: 2px; background-color: var(--dot-color); transition: all .3s ease-in-out; opacity: 0; }
+.btn-wrapper:has(.btn:hover) .dot.top.left { top: 50%; left: 20%; animation: move-top-left var(--animation-speed) ease-in-out forwards; }
+@keyframes move-top-left { 90% { opacity: .6; } 100% { top: calc(var(--dot-size) * -0.5); left: calc(var(--dot-size) * -0.5); opacity: 1; } }
+.btn-wrapper:has(.btn:hover) .dot.top.right { top: 50%; right: 20%; animation: move-top-right var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*.6); }
+@keyframes move-top-right { 80% { opacity: .6; } 100% { top: calc(var(--dot-size) * -0.5); right: calc(var(--dot-size) * -0.5); opacity: 1; } }
+.btn-wrapper:has(.btn:hover) .dot.bottom.right { bottom: 50%; right: 20%; animation: move-bottom-right var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*1.2); }
+@keyframes move-bottom-right { 80% { opacity: .6; } 100% { bottom: calc(var(--dot-size) * -0.5); right: calc(var(--dot-size) * -0.5); opacity: 1; } }
+.btn-wrapper:has(.btn:hover) .dot.bottom.left { bottom: 50%; left: 20%; animation: move-bottom-left var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*1.8); }
+@keyframes move-bottom-left { 80% { opacity: .6; } 100% { bottom: calc(var(--dot-size) * -0.5); left: calc(var(--dot-size) * -0.5); opacity: 1; } }
+.btn-wrapper .line { position: absolute; transition: all .3s ease-in-out; }
+.btn-wrapper .line.horizontal { height: var(--line-weight); width: 100%; background-image: repeating-linear-gradient(90deg, #0000 0 calc(var(--line-weight)*2), var(--line-color) calc(var(--line-weight)*2) calc(var(--line-weight)*4)); }
+.btn-wrapper .line.top { top: calc(var(--line-weight)*-0.5); transform-origin: top left; transform: rotate(5deg) scaleX(0); }
+.btn-wrapper:has(.btn:hover) .line.top { animation: draw-top var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*.8); }
+@keyframes draw-top { 100% { transform: rotate(0deg) scaleX(1); } }
+.btn-wrapper .line.bottom { bottom: calc(var(--line-weight)*-0.5); transform-origin: bottom right; transform: rotate(5deg) scaleX(0); }
+.btn-wrapper:has(.btn:hover) .line.bottom { animation: draw-bottom var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*2); }
+@keyframes draw-bottom { 100% { transform: rotate(0deg) scaleX(1); } }
+.btn-wrapper .line.vertical { width: var(--line-weight); height: 100%; background-image: repeating-linear-gradient(0deg, #0000 0 calc(var(--line-weight)*2), var(--line-color) calc(var(--line-weight)*2) calc(var(--line-weight)*4)); }
+.btn-wrapper .line.left { left: calc(var(--line-weight)*-0.5); transform-origin: bottom left; transform: rotate(0deg) scaleY(0); }
+.btn-wrapper:has(.btn:hover) .line.left { animation: draw-left var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*2.4); }
+@keyframes draw-left { 100% { transform: rotate(0deg) scaleY(1); } }
+.btn-wrapper .line.right { right: calc(var(--line-weight)*-0.5); transform-origin: top right; transform: rotate(5deg) scaleY(0); }
+.btn-wrapper:has(.btn:hover) .line.right { animation: draw-right var(--animation-speed) ease-in-out forwards; animation-delay: calc(var(--animation-speed)*1.4); }
+@keyframes draw-right { 100% { transform: rotate(0deg) scaleY(1); } }
+/* Scroll Animation */
+.animate-on-scroll { opacity: 0; transform: translateY(20px); transition: all 0.8s ease-out; }
+.animate-on-scroll.animate { opacity: 1; transform: translateY(0); }
+/* Typography Overrides for Enterprise Feel */
+h1, h2, h3, h4 { letter-spacing: -0.03em; }
+</style>
+<link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style>
+<style id="border-gradient-shared-style">
+[style*="--border-gradient"]::before {
+content: "";
+position: absolute;
+inset: 0;
+padding: 1px;
+border-radius: var(--border-radius-before, inherit);
+-webkit-mask: linear-gradient(#fff 0 0) content-box,
+linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+background: var(--border-gradient);
+pointer-events: none;
+}</style></head>
+
+<body class="antialiased text-[#E5E0D8] bg-[#02120e]">
+
+    <!-- Unicorn Studio Background -->
+    <div class="fixed top-0 left-0 right-0 bottom-0 unicorn-stack unicorn-mask pointer-events-none z-[-10]">
+        <!-- Added tint to match emerald theme -->
+        <div class="absolute inset-0 bg-[#02120e]/80 mix-blend-multiply z-10"></div>
+        <div data-us-project="VaqT3bxlc2sugR8faApF" class="absolute inset-0 w-full h-full grayscale opacity-60"></div>
+    </div>
+    <script>
+        (function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.async=!0,i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head||document.body).appendChild(i)}})();
+    </script>
+
+    <!-- Header -->
+    <header class="sticky top-4 z-30 animate-enter px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto max-w-7xl">
+            <div class="rounded-2xl border border-[#D4A574]/20 bg-[#02120e]/60 backdrop-blur supports-[backdrop-filter]:bg-[#02120e]/60 shadow-[0_4px_30px_rgba(0,0,0,0.3)]">
+                <div class="flex items-center justify-between p-3 pl-4 pr-3">
+                    <div class="flex items-center gap-3">
+                        <!-- Sepia/Warm filter applied to logo placeholder -->
+                        <a href="#" class="inline-flex items-center justify-center bg-center mix-blend-screen w-[50px] h-[30px] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ca6ac371-d12a-4d8e-ba2f-3d7f7af32834_320w.png)] bg-cover rounded invert sepia brightness-90 saturate-150 hue-rotate-15"></a>
+                    </div>
+
+                    <nav class="hidden items-center gap-8 text-sm font-medium text-[#D4A574]/80 md:flex">
+                        <a href="#" class="transition-colors hover:text-[#D4A574]">Product</a>
+                        <a href="#features" class="transition-colors hover:text-[#D4A574]">Solutions</a>
+                        <a href="#pricing" class="transition-colors hover:text-[#D4A574]">Pricing</a>
+                        <a href="#" class="transition-colors hover:text-[#D4A574]">Resources</a>
+                        <a href="#" class="transition-colors hover:text-[#D4A574]">Enterprise</a>
+                    </nav>
+
+                    <div class="flex items-center justify-center gap-3">
+                        <a href="#" class="group relative inline-flex items-center gap-2 rounded-md border border-[#D4A574]/30 bg-[#1B4D3E]/30 px-5 py-2.5 text-sm font-semibold text-[#D4A574] transition-all duration-300 hover:bg-[#1B4D3E]/50 hover:text-white hover:border-[#D4A574]/60" style="--border-gradient: linear-gradient(135deg, rgba(212, 165, 116, 0), rgba(212, 165, 116, 0.4), rgba(212, 165, 116, 0)); --border-radius-before: 6px;">
+                            See It In Action
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="animate-enter-delay-2 relative">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="sm:pt-24 sm:pb-28 lg:pt-40 lg:pb-0 max-w-7xl mr-auto ml-auto pt-16 pb-20">
+                
+                <!-- Floating Labels -->
+                <div class="pointer-events-none relative select-none">
+                    <span class="float-cursor float-chip-1 absolute left-[55%] -top-12 -translate-x-1/2 -translate-y-8 sm:-top-16">
+                        <span class="block whitespace-nowrap rounded-lg bg-[#D4A574] px-3 py-1.5 text-xs font-bold text-[#02120e] shadow-[0_4px_20px_rgba(212,165,116,0.2)] ring-1 ring-[#D4A574]/50">Automated</span>
+                        <span class="mx-auto -mt-1 block h-2 w-2 rotate-45 rounded-sm bg-[#D4A574]"></span>
+                    </span>
+                    <span class="float-cursor float-chip-2 absolute right-[2%] top-12 hidden translate-x-8 translate-y-12 md:block">
+                        <span class="block whitespace-nowrap rounded-lg bg-[#1B4D3E] px-3 py-1.5 text-xs font-medium text-[#D4A574] shadow-[0_4px_20px_rgba(0,0,0,0.4)] ring-1 ring-[#D4A574]/30">Compliance Check</span>
+                        <span class="mx-auto -mt-1 block h-2 w-2 rotate-45 rounded-sm bg-[#1B4D3E]"></span>
+                    </span>
+                    <span class="float-cursor float-chip-3 absolute left-[10%] bottom-6 hidden sm:block">
+                        <span class="block whitespace-nowrap rounded-lg bg-[#02120e] px-3 py-1.5 text-xs font-medium text-[#D4A574] shadow-[0_4px_20px_rgba(0,0,0,0.4)] ring-1 ring-[#D4A574]/30">Zero Latency</span>
+                        <span class="mx-auto -mt-1 block h-2 w-2 rotate-45 rounded-sm bg-[#02120e]"></span>
+                    </span>
+                </div>
+
+                <!-- Headline -->
+                <div class="text-center">
+                    <h1 class="mx-auto max-w-5xl text-4xl font-semibold tracking-tight text-white sm:text-6xl md:text-7xl">
+                        <span class="text-[#f5f5f0]">Solve faster.</span>
+                        <span class="relative inline-block">
+                            <span class="absolute -inset-1 rounded-md bg-[#1B4D3E]/50 blur-2xl"></span>
+                            <span class="relative">
+                                <span class="relative z-10">
+                                    <span class="relative inline-block">
+                                        <span class="absolute -inset-1 rounded-md ring-1 ring-[#D4A574]/40 bg-gradient-to-br from-[#1B4D3E]/20 via-[#D4A574]/10 to-[#1B4D3E]/20"></span>
+                                        <span class="px-2 text-transparent bg-clip-text bg-gradient-to-br from-[#D4A574] to-[#C85A3A]">Ship</span>
+                                    </span>
+                                </span>
+                            </span>
+                        </span>
+                        <span class="text-[#f5f5f0]">smarter.</span>
+                    </h1>
+                    
+                    <p class="mx-auto mt-8 max-w-3xl text-lg leading-relaxed text-[#a8b3af] font-light">
+                        Enterprise automation that handles your critical workflows—so your team focuses on strategy, not firefighting.
+                    </p>
+
+                    <!-- CTAs -->
+                    <div class="mt-12 flex flex-col items-center justify-center gap-5 sm:flex-row">
+                        <!-- Custom Button -->
+                        <div class="btn-wrapper" style="--dot-size: 8px; --line-weight: 1px; --line-distance: 0.8rem 1rem; --animation-speed: 0.35s; --dot-color: #D4A574; --line-color: #D4A574; --grid-color: rgba(212, 165, 116, 0.2);">
+                            <div class="line horizontal top"></div>
+                            <div class="line vertical right"></div>
+                            <div class="line horizontal bottom"></div>
+                            <div class="line vertical left"></div>
+                            <div class="dot top left"></div>
+                            <div class="dot top right"></div>
+                            <div class="dot bottom right"></div>
+                            <div class="dot bottom left"></div>
+                            <button class="btn">
+                                <span class="btn-text">Start Free Trial</span>
+                                <svg class="btn-svg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M5 12h14" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                    <path d="m12 5 7 7-7 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        
+                        <a href="#" class="group relative inline-flex items-center gap-2 rounded-md bg-[#1B4D3E]/20 px-6 py-3.5 text-base font-medium text-[#D4A574] shadow-[0_0_15px_rgba(27,77,62,0.15)] ring-1 ring-[#D4A574]/20 transition-all duration-300 hover:scale-105 hover:bg-[#1B4D3E]/40 hover:text-white hover:shadow-[0_0_25px_rgba(212,165,116,0.25)]">
+                            See It In Action
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play h-4 w-4 fill-current stroke-[1.5] transition-transform group-hover:translate-x-1"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Dashboard Preview -->
+                <div class="relative mt-24 mb-24 w-full overflow-hidden rounded-2xl border border-[#D4A574]/20 shadow-2xl backdrop-blur-xl bg-[#010b09]">
+                    <!-- Window Controls -->
+                    <div class="flex items-center justify-between border-b border-[#D4A574]/10 bg-[#02120e] px-3 py-2">
+                        <div class="flex items-center gap-2">
+                            <span class="h-3 w-3 rounded-full bg-[#C85A3A]/80"></span>
+                            <span class="h-3 w-3 rounded-full bg-[#D4A574]/80"></span>
+                            <span class="h-3 w-3 rounded-full bg-[#1B4D3E]/80"></span>
+                        </div>
+                    </div>
+
+                    <!-- Platform Body -->
+                    <div class="grid grid-cols-1 md:grid-cols-12">
+                        <!-- Left Panel -->
+                        <aside class="hidden border-r border-[#D4A574]/10 bg-[#051d16] p-3 md:block md:col-span-3">
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="inline-flex items-center gap-2 rounded-md border border-[#D4A574]/20 bg-[#1B4D3E]/20 px-2 py-1 text-xs font-medium text-[#D4A574]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="library" class="lucide lucide-library h-3.5 w-3.5"><path d="m16 6 4 14"></path><path d="M12 6v14"></path><path d="M8 8v12"></path><path d="M4 4v16"></path></svg> Playbooks
+                                </div>
+                                <button class="rounded-md border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-1 text-[#D4A574] hover:bg-[#1B4D3E]/30">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" class="lucide lucide-plus h-3.5 w-3.5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+                                </button>
+                            </div>
+
+                            <div class="flex flex-col text-[#a8b3af] h-[520px] space-y-4">
+                                <div class="flex gap-1 mb-3">
+                                    <button class="rounded bg-[#D4A574] px-2 py-1 text-xs font-bold text-[#02120e]">Active</button>
+                                    <button class="rounded bg-[#1B4D3E]/20 px-2 py-1 text-xs text-[#a8b3af] hover:bg-[#1B4D3E]/40 hover:text-[#D4A574]">Draft</button>
+                                    <button class="rounded bg-[#1B4D3E]/20 px-2 py-1 text-xs text-[#a8b3af] hover:bg-[#1B4D3E]/40 hover:text-[#D4A574]">Archive</button>
+                                </div>
+                                <div class="flex-1 rounded-lg bg-[#02120e]/40 p-2">
+                                    <div class="mb-2 text-xs text-[#6e7d78] uppercase tracking-wider font-semibold">Active Playbooks</div>
+                                    <ul class="space-y-1 text-xs">
+                                        <li class="flex items-center gap-2 rounded-md bg-[#1B4D3E]/30 border border-[#D4A574]/10 px-2 py-1.5 text-[#e5e7eb]">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="circle-check" class="lucide lucide-circle-check h-3.5 w-3.5 text-[#D4A574]"><circle cx="12" cy="12" r="10"></circle><path d="m9 12 2 2 4-4"></path></svg> DB Failover Script
+                                            <div class="ml-auto text-[9px] text-[#D4A574]/70">Ready</div>
+                                        </li>
+                                        <li class="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-[#1B4D3E]/20 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="activity" class="lucide lucide-activity h-3.5 w-3.5 text-[#C85A3A]"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg> Scale Workers
+                                            <div class="ml-auto text-[9px] text-[#6e7d78]">Ready</div>
+                                        </li>
+                                        <li class="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-[#1B4D3E]/20 hover:text-white transition-colors">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="rotate-cw" class="lucide lucide-rotate-cw h-3.5 w-3.5 text-[#D4A574]"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path></svg> Restart Service
+                                            <div class="ml-auto text-[9px] text-[#6e7d78]">Ready</div>
+                                        </li>
+                                        <li class="flex items-center gap-2 rounded-md px-2 py-1.5 hover:bg-[#1B4D3E]/20 opacity-60">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="undo-2" class="lucide lucide-undo-2 h-3.5 w-3.5 text-[#a8b3af]"><path d="M9 14 4 9l5-5"></path><path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5a5.5 5.5 0 0 1-5.5 5.5H11"></path></svg> Deploy Rollback
+                                            <div class="ml-auto text-[9px] text-[#a8b3af]">Paused</div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <!-- Stats -->
+                                <div class="mt-3 rounded-lg bg-[#02120e]/40 p-2 border border-[#D4A574]/5">
+                                    <div class="mb-1 flex items-center justify-between">
+                                        <div class="flex items-center gap-2">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="bar-chart-2" class="lucide lucide-bar-chart-2 h-4 w-4 text-[#D4A574]"><path d="M5 21v-6"></path><path d="M12 21V3"></path><path d="M19 21V9"></path></svg>
+                                            <span class="text-xs font-medium text-[#D4A574]">Execution Stats</span>
+                                        </div>
+                                    </div>
+                                    <div class="space-y-1">
+                                        <div class="flex items-center gap-2 rounded p-1 text-xs hover:bg-[#1B4D3E]/20">
+                                            <div class="h-2 w-3 rounded-sm bg-[#D4A574]"></div>
+                                            <span class="text-[10px] text-[#a8b3af]">Success Rate</span>
+                                            <div class="ml-auto text-[10px] text-[#e5e7eb]">99.9%</div>
+                                        </div>
+                                        <div class="flex items-center gap-2 rounded p-1 text-xs hover:bg-[#1B4D3E]/20">
+                                            <div class="h-2 w-5 rounded-sm bg-[#C85A3A]"></div>
+                                            <span class="text-[10px] text-[#a8b3af]">Avg Duration</span>
+                                            <div class="ml-auto text-[10px] text-[#e5e7eb]">1.8s</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </aside>
+
+                        <!-- Center Panel -->
+                        <main class="relative bg-[#010b09] md:col-span-6">
+                            <div class="flex items-center gap-2 border-b border-[#D4A574]/10 px-3 py-2 text-xs text-[#a8b3af]">
+                                <span class="text-[#D4A574]">recover-workers.playbook</span>
+                                <div class="text-[#6e7d78]">•</div>
+                                <span class="text-[#6e7d78]">Live editing</span>
+                                <div class="ml-auto flex items-center gap-1">
+                                    <span class="text-xs text-[#6e7d78]">Saved 1m ago</span>
+                                    <div class="mx-2 h-4 w-px bg-[#D4A574]/10"></div>
+                                    <button class="rounded-md border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-1 hover:bg-[#1B4D3E]/30 text-[#D4A574]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="clock" class="lucide lucide-clock h-3.5 w-3.5"><path d="M12 6v6l4 2"></path><circle cx="12" cy="12" r="10"></circle></svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Toolbar -->
+                            <div class="flex flex-col items-center justify-between gap-2 border-b border-[#D4A574]/10 bg-[#02120e] px-3 py-2 sm:flex-row">
+                                <div class="flex w-full items-center gap-2 sm:w-auto">
+                                    <button class="rounded border border-[#D4A574]/20 bg-[#D4A574] p-1 text-[#02120e] hover:bg-[#C85A3A] transition-colors">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="code" class="lucide lucide-code h-3.5 w-3.5"><path d="m16 18 6-6-6-6"></path><path d="m8 6-6 6 6 6"></path></svg>
+                                    </button>
+                                    <button class="rounded border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-1 text-[#a8b3af] hover:bg-[#1B4D3E]/30 hover:text-[#D4A574]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="play" class="lucide lucide-play h-3.5 w-3.5"><path d="M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z"></path></svg>
+                                    </button>
+                                    <div class="h-4 w-px bg-[#D4A574]/10"></div>
+                                    <div class="flex flex-1 items-center gap-1">
+                                        <span class="text-xs text-[#6e7d78]">Version:</span>
+                                        <button class="inline-flex items-center justify-center rounded border border-[#D4A574]/10 bg-[#1B4D3E]/10 px-2 py-1 text-xs text-[#D4A574] hover:bg-[#1B4D3E]/30">v1.2.1</button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Editor Area -->
+                            <div class="p-4 sm:p-6 bg-[#010b09]">
+                                <div class="grid min-h-[400px] grid-rows-[auto,1fr,auto,auto] gap-4">
+                                    <!-- Row 1 -->
+                                    <div class="grid grid-cols-2 gap-3">
+                                        <div class="rounded-xl border border-[#D4A574]/10 bg-[#1B4D3E]/10 px-4 py-4 backdrop-blur">
+                                            <div class="mb-2 flex items-center justify-between">
+                                                <span class="text-xs text-[#6e7d78]">Active Editors</span>
+                                            </div>
+                                            <div class="flex items-center gap-2">
+                                                <div class="h-8 w-8 rounded-full bg-[#D4A574] ring-2 ring-[#02120e]"></div>
+                                                <div class="h-8 w-8 -ml-3 rounded-full bg-[#C85A3A] ring-2 ring-[#02120e]"></div>
+                                                <div class="flex h-8 w-8 -ml-3 items-center justify-center rounded-full bg-[#1B4D3E] text-xs text-[#D4A574] ring-2 ring-[#02120e] border border-[#D4A574]/20">+1</div>
+                                            </div>
+                                            <div class="mt-2 text-xs text-[#a8b3af]">3 engineers online</div>
+                                        </div>
+                                        <div class="rounded-xl border border-[#D4A574]/10 bg-[#1B4D3E]/10 px-4 py-4 backdrop-blur">
+                                            <div class="mb-2 flex items-center justify-between">
+                                                <span class="text-xs text-[#6e7d78]">Last Execution</span>
+                                            </div>
+                                            <div class="text-2xl font-medium text-[#D4A574]">1.8s</div>
+                                            <div class="mt-1 text-xs text-[#a8b3af]">Verified • 2m ago</div>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 2: Code -->
+                                    <div class="min-h-0 rounded-xl border border-[#D4A574]/10 bg-[#02120e] px-4 py-4">
+                                        <div class="mb-3 flex items-center justify-between">
+                                            <h3 class="text-sm font-medium text-[#D4A574]">Playbook Script</h3>
+                                            <span class="text-xs text-[#6e7d78]">TypeScript</span>
+                                        </div>
+                                        <div class="relative max-h-[250px] overflow-auto rounded-lg bg-[#000000]/40 p-4 font-mono text-sm text-[#e5e7eb]">
+                                            <pre class="whitespace-pre-wrap text-xs sm:text-sm">// enterprise automation logic
+const s = Runlyx.Script.open("recover-workers");
+
+s.apply("restartWorkers()", { user: "sys_admin" });
+s.comment(2, "Optimizing resource allocation");
+s.save("v1.2.1", "Automated scaling adjustment");</pre>
+                                        </div>
+                                    </div>
+
+                                    <!-- Row 3: Actions -->
+                                    <div class="grid grid-cols-2 gap-2 sm:grid-cols-4">
+                                        <button class="rounded-lg border border-[#D4A574]/20 bg-[#D4A574]/10 p-2 text-center backdrop-blur hover:bg-[#D4A574]/20 transition">
+                                            <div class="text-sm font-medium text-[#D4A574]">Deploy</div>
+                                            <div class="text-[10px] text-[#a8b3af]">Production</div>
+                                        </button>
+                                        <button class="rounded-lg border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-2 text-center backdrop-blur hover:bg-[#1B4D3E]/30 transition">
+                                            <div class="text-sm font-medium text-[#e5e7eb]">Test</div>
+                                            <div class="text-[10px] text-[#6e7d78]">Sandbox</div>
+                                        </button>
+                                        <button class="rounded-lg border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-2 text-center backdrop-blur hover:bg-[#1B4D3E]/30 transition">
+                                            <div class="text-sm font-medium text-[#e5e7eb]">Share</div>
+                                            <div class="text-[10px] text-[#6e7d78]">Team</div>
+                                        </button>
+                                        <button class="rounded-lg border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-2 text-center backdrop-blur hover:bg-[#1B4D3E]/30 transition">
+                                            <div class="text-sm font-medium text-[#e5e7eb]">Log</div>
+                                            <div class="text-[10px] text-[#6e7d78]">Audit Trail</div>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </main>
+
+                        <!-- Right Panel -->
+                        <aside class="hidden border-l border-[#D4A574]/10 bg-[#051d16] p-3 md:block md:col-span-3">
+                            <div class="mb-3 flex items-center justify-between">
+                                <div class="inline-flex items-center gap-2 rounded-md border border-[#D4A574]/20 bg-[#1B4D3E]/20 px-2 py-1 text-xs font-medium text-[#D4A574]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="settings-2" class="lucide lucide-settings-2 h-3.5 w-3.5"><path d="M14 17H5"></path><path d="M19 7h-9"></path><circle cx="17" cy="17" r="3"></circle><circle cx="7" cy="7" r="3"></circle></svg> Configuration
+                                </div>
+                            </div>
+                            <!-- Settings Tabs -->
+                            <div class="mb-3 flex gap-1">
+                                <button class="rounded bg-[#D4A574] px-2 py-1 text-xs font-bold text-[#02120e]">Params</button>
+                                <button class="rounded bg-[#1B4D3E]/20 px-2 py-1 text-xs text-[#a8b3af] hover:bg-[#1B4D3E]/40 hover:text-[#D4A574]">Safety</button>
+                                <button class="rounded bg-[#1B4D3E]/20 px-2 py-1 text-xs text-[#a8b3af] hover:bg-[#1B4D3E]/40 hover:text-[#D4A574]">Triggers</button>
+                            </div>
+                            <div class="h-[480px] overflow-y-auto space-y-3">
+                                <div class="rounded-lg bg-[#02120e]/40 p-3 space-y-3 border border-[#D4A574]/5">
+                                    <div class="mb-2 text-xs text-[#D4A574]">Input Parameters</div>
+                                    <div class="space-y-2 text-[10px]">
+                                        <div>
+                                            <div class="mb-1 text-[#6e7d78]">Service Name</div>
+                                            <input type="text" value="worker_process" class="w-full rounded border border-[#D4A574]/20 bg-[#02120e] px-2 py-1 text-[#e5e7eb] focus:border-[#D4A574] focus:outline-none">
+                                        </div>
+                                        <div>
+                                            <div class="mb-1 text-[#6e7d78]">Region</div>
+                                            <select class="w-full rounded border border-[#D4A574]/20 bg-[#02120e] px-2 py-1 text-[#e5e7eb] focus:border-[#D4A574] focus:outline-none">
+                                                <option>us-east-1</option>
+                                                <option>eu-west-1</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="rounded-lg bg-[#02120e]/40 p-3 space-y-3 border border-[#D4A574]/5">
+                                    <div class="mb-2 flex items-center justify-between text-xs">
+                                        <span class="text-[#D4A574]">Recent Executions</span>
+                                        <span class="rounded-md bg-[#1B4D3E]/30 px-2 py-0.5 text-[10px] text-[#e5e7eb]">24h</span>
+                                    </div>
+                                    <div class="space-y-2">
+                                        <div class="space-y-1">
+                                            <div class="flex items-center justify-between text-xs">
+                                                <span class="text-[#a8b3af]">Today</span>
+                                                <span class="text-[10px] text-[#6e7d78]">142 runs</span>
+                                            </div>
+                                            <div class="h-2 overflow-hidden rounded-full bg-[#1B4D3E]/30">
+                                                <div class="h-2 rounded-full bg-[#D4A574]" style="width: 96%"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 flex gap-2">
+                                <button class="flex-1 rounded bg-[#D4A574] px-3 py-2 text-xs font-bold text-[#02120e] hover:bg-[#C85A3A] transition-colors">Run Script</button>
+                                <button class="rounded border border-[#D4A574]/20 bg-[#1B4D3E]/10 px-3 py-2 text-xs font-medium text-[#D4A574] hover:bg-[#1B4D3E]/30">Test</button>
+                            </div>
+                        </aside>
+                    </div>
+                </div>
+                
+                <!-- Glow -->
+                <div class="pointer-events-none absolute inset-x-0 top-24 -z-0 flex justify-center">
+                    <div class="h-72 w-[80%] max-w-4xl rounded-full bg-gradient-to-b from-[#1B4D3E]/30 to-transparent blur-3xl"></div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="animate-on-scroll relative z-10 mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8" id="features">
+        <div class="relative overflow-hidden rounded-3xl bg-[#02120e] ring-1 ring-[#D4A574]/20 backdrop-blur">
+            <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#1B4D3E]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-[#D4A574]/10 blur-3xl"></div>
+
+            <div class="grid grid-cols-1 items-stretch lg:grid-cols-2 gap-8 lg:gap-0">
+                <!-- Left -->
+                <div class="flex flex-col p-8 pt-8 sm:p-12">
+                    <h2 class="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
+                        Built for teams that<span class="block text-[#D4A574]">demand reliability</span>
+                    </h2>
+                    <p class="mt-4 max-w-2xl text-base text-[#a8b3af] md:text-lg">
+                        Robust infrastructure designed to accelerate your workflow and eliminate operational bottlenecks.
+                    </p>
+                    
+                    <div class="mt-12 space-y-6">
+                        <!-- Card 1 -->
+                        <section class="group relative overflow-hidden rounded-xl p-5 ring-1 ring-[#D4A574]/20 transition-all hover:ring-[#D4A574]/40 md:p-6 bg-[#051d16]" id="card-ai">
+                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1B4D3E]/10 to-transparent"></div>
+                            <div class="rounded-lg bg-[#02120e]/60 p-4 ring-1 ring-[#D4A574]/10 backdrop-blur">
+                                <div class="mb-3 flex items-center gap-2 text-sm text-[#D4A574]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="zap" class="lucide lucide-zap h-4 w-4"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                                    <span class="font-bold tracking-wide uppercase text-xs">Intelligent Automation Engine</span>
+                                </div>
+                                <div class="space-y-3">
+                                    <div class="rounded border-l-2 border-[#D4A574] bg-[#D4A574]/5 p-3">
+                                        <div class="flex items-start gap-3">
+                                            <div class="flex-1">
+                                                <p class="mb-2 text-sm text-[#e5e7eb]">Analyzing system logs...</p>
+                                                <div id="typing-demo" class="h-8 font-mono text-xs text-[#D4A574]">Optimizing query performance...</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-white">Intelligent Automation Engine</h3>
+                            <p class="mt-1.5 text-sm text-[#a8b3af]">Let AI handle mission-critical tasks. Reduce manual work, eliminate errors, boost team velocity.</p>
+                        </section>
+                        
+                        <!-- Card 2 -->
+                        <section class="group relative overflow-hidden rounded-xl p-5 ring-1 ring-[#D4A574]/20 transition-all hover:ring-[#D4A574]/40 md:p-6 bg-[#051d16]">
+                            <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1B4D3E]/10 to-transparent"></div>
+                            <div class="rounded-lg bg-[#02120e]/60 p-4 ring-1 ring-[#D4A574]/10 backdrop-blur">
+                                <div class="mb-3 flex items-center gap-2 text-sm text-[#D4A574]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="activity" class="lucide lucide-activity h-4 w-4"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg>
+                                    <span class="font-bold tracking-wide uppercase text-xs">Real-Time Performance Metrics</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-3">
+                                    <div class="rounded bg-[#D4A574]/5 p-3 border border-[#D4A574]/10">
+                                        <p class="mb-1 text-xs text-[#6e7d78] uppercase">Uptime</p>
+                                        <p class="text-2xl font-bold text-[#e5e7eb]">99.99%</p>
+                                        <p class="mt-1 text-xs text-[#D4A574]">+0.01% MoM</p>
+                                    </div>
+                                    <div class="rounded bg-[#D4A574]/5 p-3 border border-[#D4A574]/10">
+                                        <p class="mb-1 text-xs text-[#6e7d78] uppercase">Latency</p>
+                                        <p class="text-2xl font-bold text-[#e5e7eb]">12ms</p>
+                                        <p class="mt-1 text-xs text-[#D4A574]">-4ms improved</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <h3 class="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-white">Real-Time Performance Metrics</h3>
+                            <p class="mt-1.5 text-sm text-[#a8b3af]">Track operational efficiency with detailed insights. Make data-driven decisions instantly.</p>
+                        </section>
+                    </div>
+                </div>
+
+                <!-- Right -->
+                <div class="flex flex-col gap-6 p-8 sm:p-12 lg:col-start-2 bg-[#051d16]/30 border-l border-[#D4A574]/10">
+                    <!-- Card 3 -->
+                    <section class="group relative overflow-hidden rounded-xl bg-[#02120e]/40 p-5 ring-1 ring-[#D4A574]/20 transition-all hover:ring-[#D4A574]/40 md:p-6">
+                        <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1B4D3E]/10 to-transparent"></div>
+                        <div class="rounded-lg bg-[#02120e]/60 p-4 ring-1 ring-[#D4A574]/10 backdrop-blur">
+                            <div class="mb-3 flex items-center gap-2 text-sm text-[#D4A574]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="users" class="lucide lucide-users h-4 w-4"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"></path><path d="M16 3.128a4 4 0 0 1 0 7.744"></path><path d="M22 21v-2a4 4 0 0 0-3-3.87"></path><circle cx="9" cy="7" r="4"></circle></svg>
+                                <span class="font-bold tracking-wide uppercase text-xs">Team Collaboration</span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <div class="h-8 w-8 rounded-full bg-[#D4A574] ring-2 ring-[#02120e]"></div>
+                                <div class="h-8 w-8 -ml-3 rounded-full bg-[#C85A3A] ring-2 ring-[#02120e]"></div>
+                                <div class="h-8 w-8 -ml-3 rounded-full bg-[#1B4D3E] ring-2 ring-[#02120e]"></div>
+                                <div class="flex h-8 w-8 -ml-3 items-center justify-center rounded-full bg-[#02120e] border border-[#D4A574]/30 text-xs text-[#D4A574] ring-2 ring-[#02120e]">+12</div>
+                            </div>
+                            <div class="mt-3 space-y-2">
+                                <div class="h-1.5 w-full overflow-hidden rounded-full bg-[#1B4D3E]/30">
+                                    <div class="h-full rounded-full bg-[#D4A574]" style="width: 85%"></div>
+                                </div>
+                                <p class="text-xs text-[#6e7d78]">Incident Response Team Active</p>
+                            </div>
+                        </div>
+                        <h3 class="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-white">Enterprise Collaboration</h3>
+                        <p class="mt-1.5 text-sm text-[#a8b3af]">Enterprise-grade collaboration for incident response and critical operations. Sync instantly.</p>
+                    </section>
+
+                    <!-- Card 4 -->
+                    <section class="group relative overflow-hidden rounded-xl bg-[#02120e]/40 p-5 ring-1 ring-[#D4A574]/20 transition-all hover:ring-[#D4A574]/40 md:p-6">
+                        <div class="pointer-events-none absolute inset-0 bg-gradient-to-b from-[#1B4D3E]/10 to-transparent"></div>
+                        <div class="rounded-lg bg-[#02120e]/60 p-4 ring-1 ring-[#D4A574]/10 backdrop-blur">
+                            <div class="mb-3 flex items-center gap-2 text-sm text-[#D4A574]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="server" class="lucide lucide-server h-4 w-4"><rect width="20" height="8" x="2" y="2" rx="2" ry="2"></rect><rect width="20" height="8" x="2" y="14" rx="2" ry="2"></rect><line x1="6" x2="6.01" y1="6" y2="6"></line><line x1="6" x2="6.01" y1="18" y2="18"></line></svg>
+                                <span class="font-bold tracking-wide uppercase text-xs">Automation at Scale</span>
+                            </div>
+                            <div class="space-y-2">
+                                <div class="flex items-center gap-2 text-xs text-[#a8b3af]">
+                                    <div class="h-2 w-2 rounded-full bg-[#D4A574]"></div>
+                                    <span>Audit logging enabled</span>
+                                </div>
+                                <div class="flex items-center gap-2 text-xs text-[#a8b3af]">
+                                    <div class="h-2 w-2 rounded-full bg-[#1B4D3E]"></div>
+                                    <span>SOC2 Compliant storage</span>
+                                </div>
+                            </div>
+                        </div>
+                        <h3 class="mt-5 text-xl font-semibold tracking-tight md:text-2xl text-white">Automation at Scale</h3>
+                        <p class="mt-1.5 text-sm text-[#a8b3af]">Automate with confidence. Full compliance and audit trails for every action taken.</p>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        const demoEl = document.querySelector('#typing-demo');
+        if(demoEl) {
+            const textStr = "Optimizing query performance...";
+            let idx = 0;
+            const typeLoop = () => {
+                if (idx < textStr.length) {
+                    demoEl.textContent += textStr.charAt(idx++);
+                    setTimeout(typeLoop, 80);
+                } else {
+                    setTimeout(() => { demoEl.textContent = ''; idx = 0; typeLoop(); }, 2000);
+                }
+            };
+            typeLoop();
+        }
+    </script>
+
+    <!-- Playbook Feature Tabs -->
+    <section class="animate-on-scroll relative z-10 mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8">
+        <div class="relative overflow-hidden rounded-3xl bg-[#02120e] ring-1 ring-[#D4A574]/20 backdrop-blur">
+            <div class="pointer-events-none absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#D4A574]/10 blur-3xl"></div>
+            <div class="pointer-events-none absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-[#1B4D3E]/20 blur-3xl"></div>
+
+            <div class="mb-10 p-6 pb-0 pt-6 sm:p-12">
+                <h2 class="text-4xl font-bold tracking-tight text-white md:text-5xl">Automation playbooks</h2>
+                <p class="mt-4 max-w-2xl text-lg text-[#a8b3af]">Build, test and run safe automations that turn alerts into fixes.</p>
+            </div>
+
+            <div class="relative mb-10 px-6 sm:px-12">
+                <div class="flex w-max gap-3 md:w-auto" id="pb-tabs">
+                    <button data-key="collab" class="pb-tab inline-flex items-center rounded-xl border border-[#D4A574]/30 bg-[#1B4D3E]/30 px-4 py-2.5 text-sm font-medium text-[#D4A574] shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] ring-1 ring-[#D4A574]/20">Real-time collaboration</button>
+                    <button data-key="templates" class="pb-tab inline-flex items-center rounded-xl border border-[#D4A574]/10 bg-[#02120e]/50 px-4 py-2.5 text-sm font-medium text-[#a8b3af] hover:bg-[#1B4D3E]/20 hover:text-[#D4A574] hover:border-[#D4A574]/20">Parameterized templates</button>
+                    <button data-key="safety" class="pb-tab inline-flex items-center rounded-xl border border-[#D4A574]/10 bg-[#02120e]/50 px-4 py-2.5 text-sm font-medium text-[#a8b3af] hover:bg-[#1B4D3E]/20 hover:text-[#D4A574] hover:border-[#D4A574]/20">Safety and approvals</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 items-stretch lg:grid-cols-2">
+                <div class="p-6 pt-6 sm:p-12">
+                    <div class="max-w-xl">
+                        <h3 class="mb-3 text-2xl font-semibold tracking-tight text-white md:text-3xl" id="pb-title">Real-time collaboration</h3>
+                        <p id="pb-tagline" class="mb-4 text-[12px] uppercase tracking-wide text-[#D4A574] font-bold">Edit scripts together with live cursors and versioned saves.</p>
+                        <p id="pb-p1" class="text-sm leading-relaxed text-[#a8b3af]">Edit remediation scripts together in real time with live cursors, inline comments and versioned saves.</p>
+                        <p id="pb-p2" class="mt-4 text-sm leading-relaxed text-[#a8b3af]">Everyone on call sees changes immediately so your team can author and run fixes together during an incident.</p>
+                        <a id="pb-cta" href="#" class="mt-8 inline-flex h-11 items-center gap-2 rounded-lg bg-[#D4A574] px-6 text-sm font-bold text-[#02120e] shadow-[0_4px_12px_rgba(212,165,116,0.2)] transition hover:bg-[#C85A3A]">
+                            Learn more
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-[18px] w-[18px]"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="p-6 pt-0 sm:p-12">
+                    <div class="relative">
+                        <div class="relative overflow-hidden rounded-xl bg-[#010b09] ring-1 ring-[#D4A574]/20 backdrop-blur shadow-2xl">
+                            <div class="flex items-center justify-between border-b border-[#D4A574]/10 bg-[#051d16] px-4 py-3">
+                                <div class="flex items-center gap-2">
+                                    <span class="h-2.5 w-2.5 rounded-full bg-[#C85A3A]"></span>
+                                    <span class="h-2.5 w-2.5 rounded-full bg-[#D4A574]"></span>
+                                    <span class="h-2.5 w-2.5 rounded-full bg-[#1B4D3E]"></span>
+                                </div>
+                                <div class="flex items-center gap-2 text-[12px] text-[#a8b3af]">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-code-2" class="lucide lucide-file-code-2 h-[15px] w-[15px] text-[#D4A574]"><path d="M4 12.15V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.706.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2h-3.35"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="m5 16-3 3 3 3"></path><path d="m9 22 3-3-3-3"></path></svg> recover-workers.playbook
+                                </div>
+                            </div>
+                            <div class="relative">
+                                <pre id="pb-code" class="whitespace-pre-wrap p-5 font-mono text-[12px] leading-relaxed text-[#e5e7eb] md:text-[13px] bg-[#02120e]">// shared live script
+const s = Runlyx.Script.open("recover-workers");
+
+s.apply("restartWorkers()", { user: "sys_admin" });
+s.comment(2, "Checking memory thresholds");
+s.save("v1.2.1", "Added safety verification");</pre>
+                            </div>
+                        </div>
+                        <div class="pointer-events-none absolute -inset-2 rounded-[26px] bg-gradient-to-b from-[#D4A574]/10 via-transparent to-transparent blur-2xl"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function () {
+            const tabs = document.querySelectorAll('.pb-tab');
+            const els = {
+                title: document.getElementById('pb-title'),
+                tagline: document.getElementById('pb-tagline'),
+                p1: document.getElementById('pb-p1'),
+                p2: document.getElementById('pb-p2'),
+                code: document.getElementById('pb-code')
+            };
+            const data = {
+                collab: {
+                    title: 'Real-time collaboration',
+                    tagline: 'EDIT SCRIPTS TOGETHER WITH LIVE CURSORS AND VERSIONED SAVES.',
+                    p1: 'Edit remediation scripts together in real time with live cursors, inline comments and versioned saves.',
+                    p2: 'Everyone on call sees changes immediately so your team can author and run fixes together during an incident.',
+                    code: `// shared live script\nconst s = Runlyx.Script.open("recover-workers");\n\ns.apply("restartWorkers()", { user: "sys_admin" });\ns.comment(2, "Checking memory thresholds");\ns.save("v1.2.1", "Added safety verification");`
+                },
+                templates: {
+                    title: 'Parameterized templates',
+                    tagline: 'REUSABLE PLAYBOOKS WITH TYPED INPUTS AND SANE DEFAULTS.',
+                    p1: 'Publish reusable playbooks with typed inputs and sane defaults so teams can standardize fixes.',
+                    p2: 'Validate inputs before execution and stamp every run with immutable parameters for auditing.',
+                    code: `// template inputs\ntype Params = { service: "api" | "worker", region: string }\n\nconst s = Runlyx.Template.use<Params>("scale-service");\ns.run({ service: "worker", region: "us-east-1" });`
+                },
+                safety: {
+                    title: 'Safety and approvals',
+                    tagline: 'GUARDRAILS, DRY RUNS, AND MULTI-STEP APPROVALS.',
+                    p1: 'Protect production with guardrails: dry runs, blast-radius checks and multi-step approvals.',
+                    p2: 'Require reviewers on sensitive playbooks and log every decision for compliance.',
+                    code: `// safety first\nconst p = Runlyx.Playbook("db-failover");\np.requireApproval({ teams: ["SRE"], min: 2 });\np.dryRun().assert("replicasHealthy > 2");\np.execute();`
+                }
+            };
+            function setActive(key) {
+                const cfg = data[key];
+                if(!cfg) return;
+                els.title.textContent = cfg.title;
+                els.tagline.textContent = cfg.tagline;
+                els.p1.textContent = cfg.p1;
+                els.p2.textContent = cfg.p2;
+                els.code.textContent = cfg.code;
+                tabs.forEach(b => {
+                    const active = b.getAttribute('data-key') === key;
+                    b.classList.toggle('bg-[#1B4D3E]/30', active);
+                    b.classList.toggle('text-[#D4A574]', active);
+                    b.classList.toggle('border-[#D4A574]/30', active);
+                    b.classList.toggle('text-[#a8b3af]', !active);
+                    b.classList.toggle('bg-[#02120e]/50', !active);
+                    b.classList.toggle('border-[#D4A574]/10', !active);
+                });
+            }
+            tabs.forEach(b => b.addEventListener('click', () => setActive(b.getAttribute('data-key'))));
+        })();
+    </script>
+
+    <!-- Pricing Section -->
+    <section class="animate-on-scroll relative z-10 mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8" id="pricing">
+        <div class="relative overflow-hidden rounded-3xl bg-[#02120e] ring-1 ring-[#D4A574]/20 backdrop-blur">
+            <div class="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#1B4D3E]/20 blur-3xl"></div>
+            <div class="pointer-events-none absolute -left-24 -bottom-24 h-72 w-72 rounded-full bg-[#D4A574]/10 blur-3xl"></div>
+
+            <div class="grid grid-cols-1 items-stretch lg:grid-cols-2">
+                <div class="flex flex-col p-8 pt-8 sm:p-12">
+                    <h2 class="mt-4 text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-5xl">
+                        Transparent pricing,<span class="block text-[#D4A574]">built for scale</span>
+                    </h2>
+                    <p class="mt-4 max-w-2xl text-base text-[#a8b3af] md:text-lg">
+                        Pick a plan today and switch anytime. Clear value across Starter, Pro, and Enterprise.
+                    </p>
+                    <div class="mt-8">
+                        <div class="inline-flex items-center gap-1 rounded-lg border border-[#D4A574]/10 bg-[#1B4D3E]/10 p-1">
+                            <button data-billing="monthly" class="billing-tab rounded bg-[#D4A574] px-4 py-2 text-[11px] font-bold uppercase tracking-tight text-[#02120e] shadow-sm transition">Monthly</button>
+                            <button data-billing="annual" class="billing-tab rounded px-4 py-2 text-[11px] font-bold uppercase tracking-tight text-[#a8b3af] transition hover:text-[#D4A574]">Annually</button>
+                        </div>
+                    </div>
+                    <div class="mt-12 space-y-4">
+                        <button data-plan-select="starter" class="plan-select-btn group flex w-full items-center justify-between rounded-xl bg-gradient-to-br from-[#1B4D3E]/20 to-transparent p-5 text-left border border-[#D4A574]/20 transition hover:bg-[#1B4D3E]/30 hover:border-[#D4A574]/40" style="--border-gradient: linear-gradient(135deg, rgba(212, 165, 116, 0.2), rgba(212, 165, 116, 0)); --border-radius-before: 12px">
+                            <div>
+                                <p class="text-xl font-semibold tracking-tight text-white">Starter</p>
+                                <p class="mt-1 text-[12px] uppercase tracking-wide text-[#a8b3af]">Launch fast, learn faster.</p>
+                            </div>
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#D4A574]/10 text-[#D4A574] transition group-hover:bg-[#D4A574] group-hover:text-[#02120e]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-[18px] w-[18px]"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </span>
+                        </button>
+                        <button data-plan-select="pro" class="plan-select-btn group flex w-full items-center justify-between rounded-xl p-5 text-left border border-transparent transition hover:bg-[#1B4D3E]/20 hover:border-[#D4A574]/20">
+                            <div>
+                                <p class="text-xl font-semibold tracking-tight text-white">Pro</p>
+                                <p class="mt-1 text-[12px] uppercase tracking-wide text-[#a8b3af]">Grow with confidence.</p>
+                            </div>
+                            <span class="inline-flex h-9 w-9 items-center justify-center rounded-full bg-[#1B4D3E]/20 text-[#a8b3af] transition group-hover:bg-[#D4A574]/10 group-hover:text-[#D4A574]">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-right" class="lucide lucide-arrow-right h-[18px] w-[18px]"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="relative mt-8 mb-8 ml-8 mr-8 flex max-w-xl flex-col gap-6 rounded-2xl bg-gradient-to-br from-[#1B4D3E]/10 to-transparent p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] sm:p-10 border border-[#D4A574]/10">
+                    <div class="pointer-events-none absolute inset-0 opacity-[0.1]" style="background: radial-gradient(900px 360px at 20% -10%, rgba(212,165,116,0.2) 15%, transparent 60%);"></div>
+                    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+                        <h3 id="planName" class="text-center text-3xl font-bold tracking-tight text-white sm:text-left">Starter</h3>
+                    </div>
+                    <div class="flex flex-col items-center justify-between gap-6 sm:flex-row sm:items-end">
+                        <div class="flex items-end justify-center gap-2 sm:justify-start">
+                            <span class="text-6xl font-bold tracking-tight text-[#D4A574]" id="planPrice">$19</span>
+                            <span id="planPriceSuffix" class="mb-2 text-sm text-[#a8b3af]">/month</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-between gap-4 sm:flex-row">
+                        <p id="planTagline" class="text-center text-[12px] font-bold uppercase tracking-wide text-[#C85A3A] sm:text-left">GREAT FOR SMALL TEAMS LAUNCHING THEIR FIRST WORKFLOWS.</p>
+                    </div>
+                    <div class="rounded-xl bg-[#02120e]/50 border border-[#D4A574]/10 p-6">
+                        <ul id="featureList" class="space-y-4 text-sm text-[#e5e7eb]"><li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check mt-0.5 h-4 w-4 text-[#D4A574] stroke-[2]"><path d="M20 6 9 17l-5-5"></path></svg><span>UP TO 5 PROJECTS</span></li><li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check mt-0.5 h-4 w-4 text-[#D4A574] stroke-[2]"><path d="M20 6 9 17l-5-5"></path></svg><span>BASIC AUTOMATIONS</span></li><li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check mt-0.5 h-4 w-4 text-[#D4A574] stroke-[2]"><path d="M20 6 9 17l-5-5"></path></svg><span>30-DAY RUN HISTORY</span></li><li class="flex items-start gap-3"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="check" class="lucide lucide-check mt-0.5 h-4 w-4 text-[#D4A574] stroke-[2]"><path d="M20 6 9 17l-5-5"></path></svg><span>EMAIL SUPPORT</span></li></ul>
+                        <div class="mt-8">
+                            <a id="ctaBtn" href="#" class="inline-flex h-12 w-full items-center justify-center gap-2 rounded-lg bg-[#D4A574] px-5 text-sm font-bold text-[#02120e] shadow-lg transition hover:bg-[#C85A3A]">Request Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script>
+        (function () {
+            const state = { plan: 'starter', billing: 'monthly' };
+            const plans = {
+                starter: { name: 'Starter', tagline: 'Great for small teams launching their first workflows.', priceMonthly: 19, priceAnnual: 190, cta: 'Request Demo', features: ['UP TO 5 PROJECTS', 'BASIC AUTOMATIONS', '30-DAY RUN HISTORY', 'EMAIL SUPPORT'] },
+                pro: { name: 'Pro', tagline: 'Built for growing teams and production workloads.', priceMonthly: 49, priceAnnual: 490, cta: 'Choose Plan', features: ['UP TO 50 PROJECTS', 'ADVANCED AUTOMATIONS', 'PRIORITY QUEUING', 'PRIORITY SUPPORT'] }
+            };
+            const els = {
+                tabs: document.querySelectorAll('.billing-tab'),
+                btns: document.querySelectorAll('.plan-select-btn'),
+                name: document.getElementById('planName'),
+                price: document.getElementById('planPrice'),
+                suffix: document.getElementById('planPriceSuffix'),
+                tagline: document.getElementById('planTagline'),
+                list: document.getElementById('featureList'),
+                cta: document.getElementById('ctaBtn')
+            };
+            function render() {
+                const cfg = plans[state.plan] || plans.starter;
+                els.name.textContent = cfg.name;
+                els.tagline.textContent = cfg.tagline.toUpperCase();
+                els.price.textContent = '$' + (state.billing === 'monthly' ? cfg.priceMonthly : cfg.priceAnnual);
+                els.suffix.textContent = state.billing === 'monthly' ? '/month' : '/yr';
+                els.cta.textContent = cfg.cta;
+                els.list.innerHTML = cfg.features.map(f => `<li class="flex items-start gap-3"><i data-lucide="check" class="mt-0.5 h-4 w-4 text-[#D4A574] stroke-[2]"></i><span>${f}</span></li>`).join('');
+                if(window.lucide) lucide.createIcons();
+                els.btns.forEach(b => {
+                    const active = b.getAttribute('data-plan-select') === state.plan;
+                    b.classList.toggle('bg-[#1B4D3E]/20', active);
+                    b.classList.toggle('border-[#D4A574]/20', active);
+                    b.classList.toggle('border-transparent', !active);
+                });
+                els.tabs.forEach(t => {
+                    const active = t.getAttribute('data-billing') === state.billing;
+                    t.classList.toggle('bg-[#D4A574]', active);
+                    t.classList.toggle('text-[#02120e]', active);
+                    t.classList.toggle('text-[#a8b3af]', !active);
+                });
+            }
+            els.btns.forEach(b => b.addEventListener('click', () => { state.plan = b.getAttribute('data-plan-select'); render(); }));
+            els.tabs.forEach(t => t.addEventListener('click', () => { state.billing = t.getAttribute('data-billing'); render(); }));
+            render();
+        })();
+    </script>
+
+    <!-- Footer -->
+    <div class="animate-on-scroll relative z-10 mx-auto max-w-7xl px-4 pt-20 pb-16 sm:px-6 lg:px-8">
+        <div class="relative mt-6 overflow-hidden rounded-3xl bg-[#02120e] ring-1 ring-[#D4A574]/10 backdrop-blur">
+            <div class="pointer-events-none absolute inset-0">
+                <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-[#1B4D3E]/10 blur-3xl"></div>
+                <div class="absolute -right-24 -bottom-24 h-72 w-72 rounded-full bg-[#D4A574]/5 blur-3xl"></div>
+                <div class="absolute inset-0 bg-gradient-to-b from-[#02120e] via-transparent to-[#051d16]/80"></div>
+            </div>
+            <div class="relative mx-auto flex flex-col items-center justify-center px-8 pt-16 pb-16 text-center sm:py-16 md:px-8">
+                <div class="w-full max-w-7xl">
+                    <div class="grid grid-cols-1 gap-12 border-b border-[#D4A574]/10 pb-12 md:grid-cols-2 lg:grid-cols-5">
+                        <div class="lg:col-span-2">
+                            <div class="flex flex-col items-start">
+                                <div class="mb-4 inline-flex h-[30px] w-[50px] rounded bg-[url(https://cdn.midjourney.com/ff6f82bf-d54f-4853-a2a4-321ec87a6422/0_0.png?w=800&amp;q=80)] bg-cover bg-center invert sepia brightness-90 saturate-150 hue-rotate-15 mix-blend-screen"></div>
+                                <p class="mb-6 text-left text-sm leading-relaxed text-[#6e7d78]">Enterprise automation that handles your critical workflows—so your team focuses on strategy, not firefighting.</p>
+                                <div class="flex items-center gap-3">
+                                    <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1B4D3E]/10 text-[#a8b3af] ring-1 ring-[#D4A574]/10 transition hover:bg-[#1B4D3E]/30 hover:text-[#D4A574]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="twitter" class="lucide lucide-twitter h-[18px] w-[18px]"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg></a>
+                                    <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1B4D3E]/10 text-[#a8b3af] ring-1 ring-[#D4A574]/10 transition hover:bg-[#1B4D3E]/30 hover:text-[#D4A574]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="github" class="lucide lucide-github h-[18px] w-[18px]"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path><path d="M9 18c-4.51 2-5-2-7-2"></path></svg></a>
+                                    <a href="#" class="flex h-9 w-9 items-center justify-center rounded-lg bg-[#1B4D3E]/10 text-[#a8b3af] ring-1 ring-[#D4A574]/10 transition hover:bg-[#1B4D3E]/30 hover:text-[#D4A574]"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="linkedin" class="lucide lucide-linkedin h-[18px] w-[18px]"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="mb-4 text-sm font-bold tracking-tight text-white">Product</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Features</a></li>
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Pricing</a></li>
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Updates</a></li>
+                            </ul>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="mb-4 text-sm font-bold tracking-tight text-white">Resources</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Documentation</a></li>
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Guides</a></li>
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">API Reference</a></li>
+                            </ul>
+                        </div>
+                        <div class="text-left">
+                            <h4 class="mb-4 text-sm font-bold tracking-tight text-white">Company</h4>
+                            <ul class="space-y-3">
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">About</a></li>
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Blog</a></li>
+                                <li><a href="#" class="text-sm text-[#a8b3af] transition hover:text-[#D4A574]">Careers</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="flex flex-col items-center justify-between gap-4 pt-8 md:flex-row">
+                        <p class="text-sm text-[#6e7d78]">© 2025 Runlyx. All rights reserved.</p>
+                        <div class="flex items-center gap-6">
+                            <a href="#" class="text-sm text-[#6e7d78] transition hover:text-[#D4A574]">Privacy</a>
+                            <a href="#" class="text-sm text-[#6e7d78] transition hover:text-[#D4A574]">Terms</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scroll Observer -->
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+        lucide.createIcons();
+    </script>
+
+</body></html>

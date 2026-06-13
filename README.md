@@ -1,88 +1,121 @@
-#важная информация по языкам (important information on languages)
+<div align="center">
 
+# 🚀 IIOL
 
+### Полезные ресурсы: вёрстка · обучение · инструменты · трейдинг · книги
 
-1. для html и css
+Личная подборка ссылок, чтобы всё нужное было под рукой.
 
+</div>
 
+---
 
-https://uiverse.io/elements - кнопки, дизайн
+## 📑 Содержание
 
-https://icons.getbootstrap.com/ - иконки кнопок
+- [🎨 HTML и CSS](#-html-и-css)
+- [📚 Обучение](#-обучение)
+- [🛠️ Важные инструменты](#️-важные-инструменты)
+- [📈 Трейдинг](#-трейдинг)
+- [📖 Книги](#-книги)
+- [🎬 Фильмы](#-фильмы)
+- [⬇️ Загрузчики видео](#️-загрузчики-видео)
 
-https://ui.shadcn.com/docs/installation - кнопки, дизайн
+---
 
-https://vecto3d.xyz/ - анимации 
+## 🎨 HTML и CSS
 
-https://www.reactbits.dev/ - Огромная библиотека стильных анимаций для сайтов — ReactBits. Можно забирать для своих веб-приложений прямо с кодом.
+> Дизайн, вёрстка и анимации
 
-https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster - гайд по html и css
+| Ресурс | Описание |
+| :--- | :--- |
+| [Uiverse](https://uiverse.io/elements) | Кнопки, готовые элементы дизайна |
+| [Bootstrap Icons](https://icons.getbootstrap.com/) | Иконки для кнопок |
+| [shadcn/ui](https://ui.shadcn.com/docs/installation) | Кнопки, компоненты, дизайн |
+| [Vecto3d](https://vecto3d.xyz/) | Анимации |
+| [ReactBits](https://www.reactbits.dev/) | Огромная библиотека стильных анимаций для сайтов — можно забирать прямо с кодом |
+| [Гайд по HTML и CSS](https://www.youtube.com/watch?v=2tAPxjcGLms&ab_channel=WebDesignMaster) | Видео · WebDesignMaster |
+| [Мобильная вёрстка](https://www.youtube.com/watch?v=LAq9p4mqrpI&ab_channel=REDGroup) | Видео · REDGroup |
+| [Project Wallace](https://www.projectwallace.com/css-code-quality) | Проверка качества CSS-кода |
 
-https://www.youtube.com/watch?v=LAq9p4mqrpI&ab_channel=REDGroup - мобильная верстка 
+---
 
-https://www.projectwallace.com/css-code-quality - проверка CSS кода
+## 📚 Обучение
 
+> Курсы, учебники и подготовка к экзаменам
 
+| Ресурс | Описание |
+| :--- | :--- |
+| [Командная строка](https://youtube.com/shorts/eBk-gZ8ht5c?si=8e8ZQIbcPp366RY1) | Короткое видео |
+| [Бесплатный учебник с языками](https://youtube.com/shorts/sgIcHQvxM38?si=eKNVz-o_R2YKaeoG) | Короткое видео |
+| [MediaSoft Academy](https://academy.mediasoft.team/) | Разные уроки по языкам программирования |
+| [AI Skills Fest (Microsoft)](https://aiskillsfest.event.microsoft.com/) | От основ ML до работы с Azure и Copilot |
+| [VS Code Edu](https://vscodeedu.com/courses) | Python с нуля (19 ч), HTML, CSS, JavaScript (16 ч) · [Intro to Python](https://vscodeedu.com/courses/intro-to-python) |
 
-2. обучение
+<details>
+<summary>🎓 <b>Подготовка к ОГЭ / ЕГЭ</b></summary>
 
+<br>
 
+- [MediaSoft Academy](https://academy.mediasoft.team/) — сайт для подготовки
+- [Т-банк · tnumber](https://tnumber.tbank.ru/app/topics) — задачник и темы для подготовки
 
-https://youtube.com/shorts/eBk-gZ8ht5c?si=8e8ZQIbcPp366RY1 - командная строка
+</details>
 
-https://youtube.com/shorts/sgIcHQvxM38?si=eKNVz-o_R2YKaeoG - бесплатный учебник с языками
+---
 
-https://academy.mediasoft.team/ - разные уроки по языкам
+## 🛠️ Важные инструменты
 
-https://aiskillsfest.event.microsoft.com/ - от основ машинного обучения до работы с Azure и Copilot.
+| Инструмент | Описание |
+| :--- | :--- |
+| [ContentCore](https://contentcore.xyz/) | Дизайн, логотипы |
+| [Browser.lol](https://browser.lol/) | Браузер в браузере — разблокировка любого сервиса без VPN |
+| [YouTubeGo](https://youtubego.org/) | Скачать видео с YouTube |
+| [Project Indigo](https://apps.apple.com/ge/app/project-indigo/id6742591546) | Бесплатное приложение от Adobe для профессиональной съёмки на iPhone |
 
-https://vscodeedu.com/courses - уроки по языкам (Python с нуля (19 часов), HTML, CSS, JavaScript (16 часов)) ((https://vscodeedu.com/courses/intro-to-python))
+---
 
-https://academy.mediasoft.team/ - сайт для ОГЭ/ЕГЭ (подготовка) 
+## 📈 Трейдинг
 
-https://tnumber.tbank.ru/app/topics сайт для ОГЭ/ЕГЭ - от Т-банка (подготовка) 
+> «Время — деньги» — *Генри Форд*
 
+**📦 Книги (Ozon):**
+[1](https://ozon.ru/t/L4bqsIM) · [2](https://ozon.ru/t/qyZUFHk) · [3](https://ozon.ru/t/zDxH1JJ) · [4](https://ozon.ru/t/Ev6WKKv) · [5](https://ozon.ru/t/cBjNRj8)
 
+**🎥 Материалы и видео:**
 
+| Ресурс | Описание |
+| :--- | :--- |
+| [Antarctic Wallet](https://t.me/antarcticwallet/442?single) | Telegram |
+| [Greg Isenberg](https://x.com/gregisenberg/status/2005317303370486015) | AI-стартап · X |
+| [Трейдинг с нуля](https://www.youtube.com/watch?v=1qqkcJLj3MQ) | Видео |
+| [Про депозит](https://www.youtube.com/watch?v=msfIXonsfCY) | Видео |
+| [Smart Money](https://www.youtube.com/watch?v=xL7HAuZMbjA) | Видео |
+| [Трейдинг с нуля](https://www.perplexity.ai/search/naidi-mne-video-gde-realno-kac-HcytqqhPTlmfHb6FUCFl9g) | Поиск видео · Perplexity |
+| [Трейдинг с нуля — Эрик](https://www.perplexity.ai/search/ia-podpisan-na-kanal-odnogo-tr-..D3i_oIS3mYN.4mYGgBjQ) | Поиск · Perplexity |
+| [Xynth Finance](https://www.xynth.finance/) | ИИ как личный менеджер по инвестициям |
 
-3. важные инструменты
+---
 
+## 📖 Книги
 
-https://contentcore.xyz/ - дизайн, лого
+- [ ] **«Первые 20 часов»** — Джош Кауфман
 
-https://browser.lol/ - браузер в браузере - разблокировка любого сервиса без VPN
+---
 
-https://youtubego.org/ - скачать видео с ютуба
+## 🎬 Фильмы
 
-https://apps.apple.com/ge/app/project-indigo/id6742591546 - Adobe выпустили бесплатное приложение Project Indigo для профессиональной съемки на iPhone.
+- [Nothing to Watch](https://nothing-to-watch.port80.ch/) — сайт для выбора фильмов
 
+---
 
+## ⬇️ Загрузчики видео
 
-4. трейдинг:
-https://ozon.ru/t/L4bqsIM
-https://ozon.ru/t/qyZUFHk
-https://ozon.ru/t/zDxH1JJ
-https://ozon.ru/t/Ev6WKKv
-https://ozon.ru/t/cBjNRj8
-Время деньги (Генри форд)
-https://t.me/antarcticwallet/442?single
-https://x.com/gregisenberg/status/2005317303370486015 - ии стартап
-https://www.youtube.com/watch?v=1qqkcJLj3MQ - т с 0
-https://www.youtube.com/watch?v=msfIXonsfCY - про деп
-https://www.youtube.com/watch?v=xL7HAuZMbjA - s.m. 
-https://www.perplexity.ai/search/naidi-mne-video-gde-realno-kac-HcytqqhPTlmfHb6FUCFl9g - т с 0
-https://www.perplexity.ai/search/ia-podpisan-na-kanal-odnogo-tr-..D3i_oIS3mYN.4mYGgBjQ - т с 0 (эрик) 
-https://www.xynth.finance/ - Превращаем ИИ в личного менеджера по инвестициям — Xynth прошерстит весь интернет, чтобы выдать понятный и точный анализ любой компании или рынка.
+- [MeTube](https://github.com/alexta69/metube) — удобный загрузчик видео с YouTube
 
+---
 
+<div align="center">
 
-6. книги (важно)
-- первые 20 часов (Джош Кауфман)
+⭐ <i>Сохрани в закладки и дополняй по мере необходимости</i>
 
-
-
-6. сайт для выбора фильмов - https://nothing-to-watch.port80.ch/
-
-
-7. https://github.com/alexta69/metube - удобный загрузчик видео с YouTube 
-
+</div>

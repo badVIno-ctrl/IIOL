@@ -1,0 +1,1311 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aura | Context Before Canvas</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<style>
+.font-google-sans-flex { font-family: 'Manrope', sans-serif !important; }
+.font-sans { font-family: 'Manrope', sans-serif !important; }
+</style>
+<meta name="aura-font-heading-class" content="font-gloock">
+<meta name="aura-font-body-class" content="font-manrope">
+<meta name="aura-font-heading-label" content="Gloock">
+<meta name="aura-font-body-label" content="Manrope">
+<meta name="disabled-font-classes" content="font-anton,font-dm-sans,font-aboreto">
+<style>
+/* Custom Noise Overlay */
+.noise-bg {
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+/* Hide Details Marker */
+details > summary { list-style: none; }
+details > summary::-webkit-details-marker { display: none; }
+/* Smooth Details Toggle */
+details[open] summary ~ * { animation: sweep .3s ease-in-out; }
+@keyframes sweep { 0% {opacity: 0; transform: translateY(-0.5rem)} 100% {opacity: 1; transform: translateY(0)} }
+/* Custom Scrollbar */
+::-webkit-scrollbar { width: 0.5rem; }
+::-webkit-scrollbar-track { background: #070707; }
+::-webkit-scrollbar-thumb { background: #333; }
+::-webkit-scrollbar-thumb:hover { background: #e8c382; }
+</style>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+<style>
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-scrolling iframe { pointer-events: none; }
+</style>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+const lenis = new Lenis({
+duration: 1.2,
+easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+smooth: true,
+});
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time)=>{ lenis.raf(time * 1000) });
+gsap.ticker.lagSmoothing(0, 0);
+gsap.registerPlugin(ScrollTrigger);
+const headings = document.querySelectorAll("h1, h2, h3");
+headings.forEach(heading => {
+const spans = heading.querySelectorAll("span");
+if(spans.length === 0 && heading.children.length === 0) {
+const text = heading.innerText;
+heading.innerHTML = text.split(" ").map(w => `<span style=\"display:inline-block; overflow:hidden;\"><span class=\"word\" style=\"display:inline-block;\">${w}&nbsp;</span></span>`).join("");
+}
+});
+headings.forEach(heading => {
+let targets = heading.querySelectorAll(".word");
+if(targets.length === 0) targets = heading.querySelectorAll("span");
+gsap.fromTo(targets,
+{ opacity: 0, y: 100, filter: "blur(12px)" },
+{
+scrollTrigger: { trigger: heading, start: "top 90%" },
+opacity: 1,
+y: 0,
+filter: "blur(0px)",
+duration: 1.5,
+stagger: 0.1,
+ease: "power4.out"
+}
+);
+});
+const images = document.querySelectorAll("img.object-cover");
+images.forEach(img => {
+if(img.parentElement) img.parentElement.style.overflow = "hidden";
+gsap.fromTo(img,
+{ y: "-15%", scale: 1.15 },
+{
+scrollTrigger: { trigger: img.parentElement, start: "top bottom", end: "bottom top", scrub: true },
+y: "15%",
+ease: "none"
+}
+);
+});
+const fadeElements = document.querySelectorAll("p, button:not(header button), details, .group");
+fadeElements.forEach(el => {
+gsap.fromTo(el,
+{ opacity: 0, y: 30, filter: "blur(8px)" },
+{
+scrollTrigger: { trigger: el, start: "top 95%" },
+opacity: 1,
+y: 0,
+filter: "blur(0px)",
+duration: 1.4,
+ease: "power3.out"
+}
+);
+});
+});
+</script>
+<link id="all-fonts-link-font-gloock" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&display=swap">
+<link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+<style id="all-fonts-style-font-manrope">
+.font-manrope { font-family: 'Manrope', sans-serif !important; }
+</style>
+<style id="all-fonts-style-font-gloock">
+.font-gloock { font-family: 'Gloock', serif !important; }
+</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+  <body class="bg-[#070707] text-white font-sans antialiased selection:bg-[#e8c382] selection:text-[#351e10] overflow-x-hidden min-h-screen" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-image: linear-gradient(135deg, rgba(255,255,255,0.035) 1px, transparent 1px), radial-gradient(circle at 20% 10%, rgba(255,255,255,0.07), transparent 28%), radial-gradient(circle at 80% 0%, rgba(120,120,120,0.12), transparent 30%); background-size: 3rem 3rem, 100% 100%, 100% 100%;">
+    <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-screen noise-bg"></div>
+    <div class="pointer-events-none fixed inset-0 z-0 opacity-30" style="background-image: linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 5rem 5rem;"></div>
+    <div class="pointer-events-none fixed inset-x-0 top-0 z-0 h-48 opacity-60" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);"></div>
+
+    <header class="relative z-20 border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl">
+      <div class="mx-auto flex max-w-7xl items-stretch justify-between px-4 sm:px-6 lg:px-8">
+        <a href="#" aria-label="Vectorline home" class="group relative flex min-h-20 items-center gap-3 border-x border-white/10 px-4 sm:px-6">
+          <span class="absolute -left-1 top-4 h-2 w-2 bg-zinc-500"></span>
+          <span class="absolute -right-1 bottom-4 h-2 w-2 bg-zinc-500"></span>
+          <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-sm font-medium text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.045)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1rem 2rem rgba(0,0,0,0.35); text-shadow: 0 1px 0 rgba(0,0,0,0.8);">
+            VL
+          </span>
+          <span class="hidden leading-none sm:block">
+            <span class="block text-sm font-medium tracking-tight text-white font-sans">
+              Vectorline
+            </span>
+            <span class="mt-1 block text-xs font-normal uppercase tracking-widest text-zinc-500 font-sans">
+              Spec console
+            </span>
+          </span>
+        </a>
+
+        <nav aria-label="Primary navigation" class="hidden items-stretch lg:flex">
+          <a href="#model" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
+            <iconify-icon icon="solar:box-minimalistic-linear" class="text-lg"></iconify-icon>
+            Model
+          </a>
+          <a href="#signals" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
+            <iconify-icon icon="solar:chart-square-linear" class="text-lg"></iconify-icon>
+            Signals
+          </a>
+          <a href="#assets" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
+            <iconify-icon icon="solar:gallery-wide-linear" class="text-lg"></iconify-icon>
+            Assets
+          </a>
+          <a href="#protocol" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
+            <iconify-icon icon="solar:code-square-linear" class="text-lg"></iconify-icon>
+            Protocol
+          </a>
+        </nav>
+
+        <div class="hidden items-center gap-3 py-4 lg:flex">
+          <a href="#" class="inline-flex h-10 items-center justify-center rounded-lg border border-white/10 px-4 text-xs font-medium uppercase tracking-widest text-zinc-300 transition hover:border-white/25 hover:text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.85);">
+            Log in
+          </a>
+          <a href="#" class="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/20 px-4 text-xs font-medium uppercase tracking-widest text-black font-sans" style="background: linear-gradient(to bottom, #f8fafc, #a1a1aa); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.35), 0 1rem 2.5rem rgba(255,255,255,0.08);">
+            Open console
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+          </a>
+        </div>
+
+        <button type="button" aria-label="Open menu" class="my-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-zinc-300 lg:hidden" style="background: linear-gradient(to bottom, rgba(255,255,255,0.11), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.8);">
+          <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
+        </button>
+      </div>
+    </header>
+
+    <main class="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+      <section id="model" class="frame-section relative overflow-hidden border border-white/10" style="background: linear-gradient(180deg, rgba(39,39,42,0.72), rgba(10,10,10,0.88)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95), 0 2rem 5rem rgba(0,0,0,0.45);">
+        <span class="pointer-events-none absolute left-0 top-0 h-10 w-10 border-l border-t border-indigo-500/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-10 w-10 border-r border-t border-indigo-500/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-10 w-10 border-b border-l border-indigo-500/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-10 w-10 border-b border-r border-indigo-500/40"></span>
+
+        <div class="absolute left-4 top-4 h-2 w-2 bg-indigo-500/50"></div>
+        <div class="absolute right-4 top-4 h-2 w-2 bg-indigo-500/50"></div>
+        <div class="absolute bottom-4 left-4 h-2 w-2 bg-indigo-500/50"></div>
+        <div class="absolute bottom-4 right-4 h-2 w-2 bg-indigo-500/50"></div>
+
+        <div class="grid min-h-[calc(100vh-8rem)] grid-cols-1 lg:grid-cols-[0.72fr_1.28fr]">
+          <aside class="relative border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+            <div class="reveal-block max-w-xl">
+              <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.7);">
+                <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-[0_0_1rem_rgba(129,140,248,0.65)]"></span>
+                Diagnostic layer active
+              </div>
+
+              <p class="mb-4 text-xs font-medium uppercase tracking-widest text-neutral-500 font-sans">
+                Build node 08.42 / viewport 1366
+              </p>
+              <h1 class="max-w-2xl text-5xl tracking-tighter text-white sm:text-6xl lg:text-7xl leading-[1.1] font-bebas-neue font-normal">
+                Map ideas as a
+                <br>
+                <span class="text-indigo-400 tracking-tighter font-bebas-neue font-normal" style="background: linear-gradient(to right, #818cf8, #c7d2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                  measured
+                </span>
+                <br>
+                system.
+              </h1>
+              <p class="mt-6 max-w-lg text-sm leading-6 text-neutral-400 sm:text-base font-sans">
+                Vectorline turns planning sessions into annotated structures:
+                live frames, spatial notes, asset references, ownership signals,
+                and route-level context rendered in one calm workspace.
+              </p>
+
+              <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-white/10 pt-6">
+                <div class="flex flex-col items-start">
+                  <div class="flex items-center justify-center w-10 h-10 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-2">
+                    <div class="w-4 h-4 bg-indigo-400 rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"></div>
+                  </div>
+                  <h3 class="text-lg text-neutral-200 mt-2 font-light tracking-tighter font-sans">
+                    Latency Limits
+                  </h3>
+                  <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                    Optimized 12ms target allocation across environments.
+                  </p>
+                </div>
+                <div class="flex flex-col items-start">
+                  <div class="flex items-center justify-center w-10 h-10 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-2">
+                    <div class="w-4 h-4 bg-indigo-400 rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"></div>
+                  </div>
+                  <h3 class="text-lg text-neutral-200 mt-2 font-light tracking-tighter font-sans">
+                    Frame Topology
+                  </h3>
+                  <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                    Uncovering 624 hidden data vectors for decisions.
+                  </p>
+                </div>
+              </div>
+
+              <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+                <a href="#" class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-5 text-xs font-medium uppercase tracking-widest text-black font-sans" style="background: linear-gradient(to bottom, #fafafa, #a3a3a3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(0,0,0,0.35), 0 1rem 2rem rgba(255,255,255,0.08);">
+                  Start mapping
+                  <iconify-icon icon="solar:map-arrow-right-linear" class="text-lg"></iconify-icon>
+                </a>
+                <a href="#assets" class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.02)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.13), inset 0 -1px 0 rgba(0,0,0,0.85);">
+                  Inspect assets
+                  <iconify-icon icon="solar:magnifer-linear" class="text-lg"></iconify-icon>
+                </a>
+              </div>
+            </div>
+
+            <div class="mt-10 rounded-2xl border border-white/10 p-4" style="background: linear-gradient(to bottom, rgba(255,255,255,0.075), rgba(0,0,0,0.2)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.9);">
+              <div class="flex items-center justify-between border-b border-white/10 pb-3">
+                <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans">
+                  Session operators
+                </p>
+                <span class="text-xs text-zinc-500 font-sans">05 online</span>
+              </div>
+              <div class="mt-4 flex -space-x-2">
+                <img alt="Operator Maya headshot" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b94b411a-e647-4262-bb32-dd6dd64ce236_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b94b411a-e647-4262-bb32-dd6dd64ce236_1600w.png">
+                <img alt="Operator Theo headshot" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e8160c9-b485-42e9-bd6b-25a41e4ebda2_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e8160c9-b485-42e9-bd6b-25a41e4ebda2_1600w.png">
+                <img alt="Operator Ilya headshot" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51103d1b-20cf-4050-bc90-32838f19e2e2_3840w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51103d1b-20cf-4050-bc90-32838f19e2e2_3840w.png">
+                <span class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-950 bg-zinc-800 text-xs text-zinc-300 font-sans">
+                  +2
+                </span>
+              </div>
+            </div>
+          </aside>
+
+          <div class="relative min-h-[38rem] overflow-hidden">
+            <div class="absolute inset-0 opacity-30 mix-blend-overlay" style="background-image: linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 4rem 4rem;"></div>
+
+            <canvas id="wireframeCanvas" aria-label="Animated structural wireframe model" class="absolute inset-0 h-full w-full" width="1553" height="2015"></canvas>
+
+            <svg class="pointer-events-none absolute inset-0 h-full w-full text-zinc-300/50" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
+              <path class="connector-line" d="M188 158 H316 V254" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
+              <path class="connector-line" d="M816 172 H686 V278" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
+              <path class="connector-line" d="M196 526 H356 V426" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
+              <path class="connector-line" d="M790 552 H636 V446" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
+            </svg>
+
+            <div class="absolute top-6 left-6 z-20 flex items-center gap-3">
+              <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse shadow-[0_0_10px_#818cf8]"></div>
+              <span class="text-xs tracking-widest uppercase font-medium text-indigo-400/80 font-sans">
+                Active Simulation
+              </span>
+            </div>
+
+            <div class="label-pill absolute right-5 top-12 w-52 rounded-xl border border-white/10 p-3 sm:right-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+                  Sync mesh
+                </p>
+                <span class="text-xs text-zinc-500 font-sans">98%</span>
+              </div>
+              <div class="mt-3 grid grid-cols-8 gap-1">
+                <span class="h-8 rounded bg-zinc-300/70"></span>
+                <span class="h-6 self-end rounded bg-zinc-500/70"></span>
+                <span class="h-10 self-end rounded bg-zinc-200/80"></span>
+                <span class="h-5 self-end rounded bg-zinc-600/70"></span>
+                <span class="h-9 self-end rounded bg-zinc-400/80"></span>
+                <span class="h-7 self-end rounded bg-zinc-500/70"></span>
+                <span class="h-11 self-end rounded bg-zinc-200/80"></span>
+                <span class="h-4 self-end rounded bg-zinc-700"></span>
+              </div>
+            </div>
+
+            <div class="label-pill absolute bottom-24 left-5 w-52 rounded-xl border border-white/10 p-3 sm:left-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
+              <p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+                Route memory
+              </p>
+              <p class="mt-2 text-2xl tracking-tight text-white font-bebas-neue font-normal">
+                41.8k
+              </p>
+              <p class="mt-1 text-xs text-zinc-500 font-sans">
+                visible relations indexed
+              </p>
+            </div>
+
+            <div class="label-pill absolute bottom-16 right-5 w-60 rounded-xl border border-white/10 p-3 sm:right-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
+              <div class="flex items-center justify-between">
+                <p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+                  Canvas load
+                </p>
+                <iconify-icon icon="solar:cpu-linear" class="text-lg text-zinc-400"></iconify-icon>
+              </div>
+              <div class="mt-3 space-y-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-16 text-xs text-zinc-500 font-sans">
+                    Notes
+                  </span>
+                  <span class="h-1.5 flex-1 rounded-full bg-black/60">
+                    <span class="block h-full w-9/12 rounded-full bg-zinc-200"></span>
+                  </span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-16 text-xs text-zinc-500 font-sans">
+                    Media
+                  </span>
+                  <span class="h-1.5 flex-1 rounded-full bg-black/60">
+                    <span class="block h-full w-6/12 rounded-full bg-zinc-400"></span>
+                  </span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="w-16 text-xs text-zinc-500 font-sans">
+                    Tasks
+                  </span>
+                  <span class="h-1.5 flex-1 rounded-full bg-black/60">
+                    <span class="block h-full w-8/12 rounded-full bg-zinc-300"></span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <div class="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/35 px-5 py-4 backdrop-blur-xl sm:px-8">
+              <div class="grid grid-cols-2 gap-3 text-xs text-zinc-500 sm:grid-cols-4">
+                <div>
+                  <span class="block uppercase tracking-widest font-sans">
+                    Grid
+                  </span>
+                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+                    128 × 72
+                  </strong>
+                </div>
+                <div>
+                  <span class="block uppercase tracking-widest font-sans">
+                    Vectors
+                  </span>
+                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+                    7,504
+                  </strong>
+                </div>
+                <div>
+                  <span class="block uppercase tracking-widest font-sans">
+                    Assets
+                  </span>
+                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+                    319
+                  </strong>
+                </div>
+                <div>
+                  <span class="block uppercase tracking-widest font-sans">
+                    Revision
+                  </span>
+                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+                    R-27C
+                  </strong>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="core-architecture" class="frame-section relative mt-6 border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.86), rgba(10,10,10,0.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+
+        <div class="border-b border-white/10 p-5 sm:p-8">
+          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.7);">
+            <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-[0_0_1rem_rgba(129,140,248,0.65)] animate-pulse"></span>
+            System Active
+          </div>
+          <h2 class="text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+            Core Architecture Mapping
+          </h2>
+          <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+            Distributed network topology utilizing isometric spatial consensus
+            and multi-tier cryptographic layers.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-12 auto-rows-fr">
+          <article class="ui-card flex flex-col md:col-span-5 relative border-b border-white/10 md:border-r group">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+              <div id="canvas-1" class="absolute inset-0"></div>
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+                  <iconify-icon icon="lucide:shield" class="text-xl text-indigo-400"></iconify-icon>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Quantum Lattice Array
+              </h3>
+              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                Military-grade isometric encryption protocols ensuring
+                zero-knowledge spatial security across all nodes.
+              </p>
+            </div>
+          </article>
+
+          <article class="ui-card flex flex-col md:col-span-7 relative border-b border-white/10 group">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+              <div id="canvas-2" class="absolute inset-0"></div>
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+                  <iconify-icon icon="lucide:network" class="text-xl text-indigo-400"></iconify-icon>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Distributed Node Consensus
+              </h3>
+              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans pr-8">
+                Automated propagation and validation of credentials across the
+                decentralized subnet. Eliminates single points of failure.
+              </p>
+            </div>
+          </article>
+
+          <article class="ui-card flex flex-col md:col-span-7 relative border-b border-white/10 md:border-b-0 md:border-r group">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+              <div id="canvas-3" class="absolute inset-0"></div>
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+                  <iconify-icon icon="lucide:users" class="text-xl text-indigo-400"></iconify-icon>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Multi-Tenant Access Control
+              </h3>
+              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans pr-8">
+                Granular role-based permissions governing secure inter-team
+                structural sharing and logic segregation.
+              </p>
+            </div>
+          </article>
+
+          <article class="ui-card flex flex-col md:col-span-5 relative group">
+            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+
+            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+              <div id="canvas-4" class="absolute inset-0"></div>
+              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+                  <iconify-icon icon="lucide:file-text" class="text-xl text-indigo-400"></iconify-icon>
+                </div>
+              </div>
+            </div>
+
+            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Immutable Audit Trails
+              </h3>
+              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                Continuous cryptographic logging of all volumetric operations,
+                stored in non-volatile structural arrays.
+              </p>
+            </div>
+          </article>
+        </div>
+
+        <script>
+          (function() {
+            if (typeof THREE === 'undefined') return;
+
+            const ACCENT_COLOR = 0x818CF8;
+            const BASE_COLOR = 0x18181B;
+            const WIRE_COLOR = 0x3F3F46;
+
+            const createTechnicalScene = (containerId, setupLogic) => {
+              const container = document.getElementById(containerId);
+              if (!container) return;
+
+              const scene = new THREE.Scene();
+              const aspect = container.clientWidth / container.clientHeight;
+              const d = 8;
+              const camera = new THREE.OrthographicCamera(-d * aspect, d * aspect, d, -d, 1, 1000);
+              camera.position.set(20, 20, 20);
+              camera.lookAt(0, 0, 0);
+
+              const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+              renderer.setSize(container.clientWidth, container.clientHeight);
+              renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+              container.appendChild(renderer.domElement);
+
+              const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
+              scene.add(ambientLight);
+
+              const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+              dirLight.position.set(10, 20, 10);
+              scene.add(dirLight);
+
+              const pointLight = new THREE.PointLight(ACCENT_COLOR, 2, 20);
+              pointLight.position.set(0, 0, 0);
+              scene.add(pointLight);
+
+              const baseMaterial = new THREE.MeshStandardMaterial({
+                color: BASE_COLOR,
+                roughness: 0.8,
+                metalness: 0.2
+              });
+
+              const accentMaterial = new THREE.MeshStandardMaterial({
+                color: ACCENT_COLOR,
+                emissive: ACCENT_COLOR,
+                emissiveIntensity: 0.8,
+                roughness: 0.2
+              });
+
+              const wireMaterial = new THREE.LineBasicMaterial({
+                color: ACCENT_COLOR,
+                transparent: true,
+                opacity: 0.3
+              });
+
+              const darkWireMaterial = new THREE.LineBasicMaterial({
+                color: WIRE_COLOR,
+                transparent: true,
+                opacity: 0.5
+              });
+
+              const group = new THREE.Group();
+              scene.add(group);
+
+              const gridHelper = new THREE.GridHelper(20, 10, WIRE_COLOR, 0x1a1a1a);
+              gridHelper.position.y = -3;
+              gridHelper.material.transparent = true;
+              gridHelper.material.opacity = 0.2;
+              group.add(gridHelper);
+
+              const animatables = setupLogic(group, baseMaterial, accentMaterial, wireMaterial, darkWireMaterial);
+
+              window.addEventListener('resize', () => {
+                if (!container.clientWidth) return;
+                const newAspect = container.clientWidth / container.clientHeight;
+                camera.left = -d * newAspect;
+                camera.right = d * newAspect;
+                camera.top = d;
+                camera.bottom = -d;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+              });
+
+              const clock = new THREE.Clock();
+              const animate = () => {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+
+                const pulse = (Math.sin(elapsedTime * 2) + 1) * 0.5;
+                accentMaterial.emissiveIntensity = 0.4 + pulse * 0.8;
+                pointLight.intensity = 1 + pulse * 1.5;
+
+                group.rotation.y = Math.sin(elapsedTime * 0.2) * 0.15;
+
+                if (animatables) animatables(elapsedTime);
+
+                renderer.render(scene, camera);
+              };
+              animate();
+            };
+
+            createTechnicalScene('canvas-1', (group, baseMat, accentMat, wireMat, darkWireMat) => {
+              const cylGeo = new THREE.CylinderGeometry(2.5, 2.5, 0.5, 8);
+              const base = new THREE.Mesh(cylGeo, baseMat);
+              group.add(base);
+
+              const ringGroup = new THREE.Group();
+              for(let i=1; i<=3; i++) {
+                const tGeo = new THREE.TorusGeometry(2 + i*0.8, 0.02, 4, 16);
+                const ring = new THREE.LineSegments(new THREE.EdgesGeometry(tGeo), wireMat);
+                ring.rotation.x = Math.PI / 2;
+                ring.position.y = (i-2) * 0.5;
+                ringGroup.add(ring);
+              }
+              group.add(ringGroup);
+
+              return (time) => {
+                ringGroup.rotation.y = time * 0.5;
+                ringGroup.children.forEach((r, i) => {
+                  r.position.y = Math.sin(time * 2 + i) * 0.2;
+                });
+              };
+            });
+
+            createTechnicalScene('canvas-2', (group, baseMat, accentMat, wireMat, darkWireMat) => {
+              const boxGeo = new THREE.BoxGeometry(2, 2, 2);
+              const edges = new THREE.LineSegments(new THREE.EdgesGeometry(boxGeo), wireMat);
+              group.add(edges);
+
+              const nodes = [];
+              const positions = [
+                [-4, 1, -4], [4, -1, 4], [-4, -1, 4], [4, 1, -4],
+                [0, 2, -5], [-5, 0, 0], [5, 0, 0]
+              ];
+
+              positions.forEach(pos => {
+                const nGeo = new THREE.BoxGeometry(0.6, 0.6, 0.6);
+                const node = new THREE.Mesh(nGeo, baseMat);
+                node.position.set(...pos);
+
+                const coreGeo = new THREE.BoxGeometry(0.3, 0.3, 0.3);
+                const core = new THREE.Mesh(coreGeo, accentMat);
+                node.add(core);
+
+                nodes.push({ mesh: node, basePos: pos, offset: Math.random() * Math.PI * 2 });
+                group.add(node);
+
+                const points = [new THREE.Vector3(0,0,0), new THREE.Vector3(...pos)];
+                const lineGeo = new THREE.BufferGeometry().setFromPoints(points);
+                const line = new THREE.Line(lineGeo, darkWireMat);
+                group.add(line);
+              });
+
+              return (time) => {
+                nodes.forEach(n => {
+                  n.mesh.position.y = n.basePos[1] + Math.sin(time * 2 + n.offset) * 0.3;
+                });
+              };
+            });
+
+            createTechnicalScene('canvas-3', (group, baseMat, accentMat, wireMat, darkWireMat) => {
+              const platformGeo = new THREE.BoxGeometry(8, 0.2, 8);
+              const platform = new THREE.LineSegments(new THREE.EdgesGeometry(platformGeo), darkWireMat);
+              group.add(platform);
+
+              const clusters = [[-2, -2], [2, 2], [-2, 2], [2, -2]];
+              clusters.forEach((pos, i) => {
+                const pGeo = new THREE.BoxGeometry(1.5, 0.5, 1.5);
+                const p = new THREE.Mesh(pGeo, baseMat);
+                p.position.set(pos[0], 0.25, pos[1]);
+                group.add(p);
+
+                if(i < 3) {
+                  const actGeo = new THREE.BoxGeometry(0.8, 0.8, 0.8);
+                  const act = new THREE.Mesh(actGeo, i===0 ? accentMat : baseMat);
+                  const actWire = new THREE.LineSegments(new THREE.EdgesGeometry(actGeo), wireMat);
+                  act.add(actWire);
+                  act.position.set(pos[0], 0.9, pos[1]);
+                  group.add(act);
+                }
+              });
+
+              return null;
+            });
+
+            createTechnicalScene('canvas-4', (group, baseMat, accentMat, wireMat, darkWireMat) => {
+              const layers = [];
+              for(let i=0; i<4; i++) {
+                const sGeo = new THREE.BoxGeometry(3, 0.3, 3);
+                const slab = new THREE.Mesh(sGeo, baseMat);
+                const wire = new THREE.LineSegments(new THREE.EdgesGeometry(sGeo), darkWireMat);
+                slab.add(wire);
+
+                if(i===2) {
+                  const dotGeo = new THREE.BoxGeometry(0.2, 0.4, 0.2);
+                  const dot = new THREE.Mesh(dotGeo, accentMat);
+                  dot.position.set(1, 0, 1);
+                  slab.add(dot);
+                }
+
+                slab.position.y = (i * 1.2) - 1.8;
+                layers.push({ mesh: slab, offset: i * 0.5 });
+                group.add(slab);
+              }
+
+              return (time) => {
+                layers.forEach(l => {
+                  l.mesh.position.y = (l.offset * 2.4 - 1.8) + Math.sin(time + l.offset) * 0.1;
+                });
+              };
+            });
+
+            if (typeof gsap !== 'undefined') {
+              gsap.from(".ui-card", {
+                y: 18,
+                opacity: 0,
+                duration: 0.65,
+                stagger: 0.06,
+                ease: "power3.out",
+                scrollTrigger: {
+                  trigger: "#core-architecture",
+                  start: "top 78%"
+                }
+              });
+            }
+
+          })();
+        </script>
+      </section>
+
+      <section id="signals" class="frame-section relative mt-6 border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.86), rgba(10,10,10,0.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr]">
+          <div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+            <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+              Signal overview
+            </p>
+            <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+              A workspace with measurable intent.
+            </h2>
+            <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+              Every object carries state, ownership, and history. Instead of
+              scattered sticky notes, the console exposes how ideas connect and
+              where decisions are slowing down.
+            </p>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3">
+            <article class="metric-card border-b border-white/10 p-5 sm:border-b-0 sm:border-r sm:p-6">
+              <iconify-icon icon="solar:users-group-rounded-linear" class="text-2xl text-zinc-300"></iconify-icon>
+              <p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
+                Collaborators
+              </p>
+              <p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
+                86
+              </p>
+              <p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
+                across four planning rooms
+              </p>
+            </article>
+            <article class="metric-card border-b border-white/10 p-5 sm:border-b-0 sm:border-r sm:p-6">
+              <iconify-icon icon="solar:branching-paths-up-linear" class="text-2xl text-zinc-300"></iconify-icon>
+              <p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
+                Decision routes
+              </p>
+              <p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
+                1,248
+              </p>
+              <p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
+                mapped with source context
+              </p>
+            </article>
+            <article class="metric-card p-5 sm:p-6">
+              <iconify-icon icon="solar:clock-circle-linear" class="text-2xl text-zinc-300"></iconify-icon>
+              <p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
+                Time recovered
+              </p>
+              <p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
+                34h
+              </p>
+              <p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
+                per product cycle average
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="assets" class="frame-section relative mt-6 border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.82), rgba(10,10,10,0.94)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+
+        <div class="border-b border-white/10 p-5 sm:p-8">
+          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div>
+              <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+                Asset acquisition
+              </p>
+              <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+                Five candidate visuals indexed for the board.
+              </h2>
+            </div>
+            <div class="relative max-w-md">
+              <label for="asset-search" class="sr-only font-sans">
+                Search asset library
+              </label>
+              <iconify-icon icon="solar:magnifer-linear" class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-lg text-zinc-500"></iconify-icon>
+              <input id="asset-search" type="search" value="abstract architecture headshot" class="h-12 w-full rounded-xl border border-white/10 bg-black/40 pl-11 pr-4 text-sm text-zinc-300 outline-none ring-0 placeholder:text-zinc-600 focus:border-white/25" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.9);" aria-label="Search assets">
+            </div>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-5">
+          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+            <img alt="Abstract neon light wave on black" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg">
+            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Abstract wave
+            </p>
+            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+              fa51902b..._1600w.jpg
+            </p>
+          </article>
+          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+            <img alt="Modern glass villa at dusk in lush landscape" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ad43cd6-06fd-4688-8d31-1255a49e65b6_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ad43cd6-06fd-4688-8d31-1255a49e65b6_1600w.png">
+            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Glass habitat
+            </p>
+            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+              005600e5..._1600w.jpg
+            </p>
+          </article>
+          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+            <img alt="Futuristic deconstructed pyramid in grayscale" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0381c1be-4833-400e-8980-ba655a35c355_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0381c1be-4833-400e-8980-ba655a35c355_1600w.png">
+            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Pyramid study
+            </p>
+            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+              724142aa..._1600w.jpg
+            </p>
+          </article>
+          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+            <img alt="Studio portrait of woman with striking blue eyes" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad4abe08-8cf7-4aff-8f68-7b905586a39f_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad4abe08-8cf7-4aff-8f68-7b905586a39f_1600w.png">
+            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Studio subject
+            </p>
+            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+              77415a2e..._1600w.jpg
+            </p>
+          </article>
+          <article class="asset-card p-4">
+            <img alt="Abstract blue wave at dusk" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/35f471e8-2800-451e-9d01-6ee6d33c395d_3840w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/35f471e8-2800-451e-9d01-6ee6d33c395d_3840w.png">
+            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Dusk waveform
+            </p>
+            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+              e534354d..._1600w.jpg
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="protocol" class="frame-section relative mt-6 overflow-hidden border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.84), rgba(10,10,10,0.96)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr]">
+          <div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+            <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+              Operating protocol
+            </p>
+            <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+              From workshop noise to structured output.
+            </h2>
+            <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+              Use frames as containers, attach assets as evidence, assign paths
+              to owners, then export a decision map with the metadata still
+              intact.
+            </p>
+          </div>
+
+          <div class="divide-y divide-white/10">
+            <div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
+                01
+              </span>
+              <div>
+                <h3 class="text-sm font-medium text-white font-sans">
+                  Capture signals
+                </h3>
+                <p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
+                  Import sketches, notes, product screenshots, and reference
+                  visuals without flattening context.
+                </p>
+              </div>
+            </div>
+            <div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
+                02
+              </span>
+              <div>
+                <h3 class="text-sm font-medium text-white font-sans">
+                  Connect dependencies
+                </h3>
+                <p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
+                  Route issues, assumptions, and commitments through visible
+                  relationship lines.
+                </p>
+              </div>
+            </div>
+            <div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
+              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
+                03
+              </span>
+              <div>
+                <h3 class="text-sm font-medium text-white font-sans">
+                  Export decisions
+                </h3>
+                <p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
+                  Generate a clean spec trail for stakeholders, engineering,
+                  design, and operations.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="deployment" class="frame-section relative mt-6 overflow-hidden border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.84), rgba(10,10,10,0.96)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr]">
+          <div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+            <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+              System deployment
+            </p>
+            <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+              Push structural changes directly to production.
+            </h2>
+            <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+              Export decision vectors seamlessly. Vectorline generates
+              ready-to-deploy metadata that syncs directly with your existing
+              pipeline and infrastructure.
+            </p>
+          </div>
+
+          <div class="flex min-h-[16rem] items-center justify-center p-5 sm:p-8">
+            <div class="flex flex-col items-center gap-6">
+              <div class="flex items-center gap-3">
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+                  <iconify-icon icon="solar:server-square-update-linear"></iconify-icon>
+                </div>
+                <div class="h-px w-8 bg-white/10"></div>
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+                  <iconify-icon icon="solar:code-square-linear"></iconify-icon>
+                </div>
+                <div class="h-px w-8 bg-white/10"></div>
+                <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+                  <iconify-icon icon="solar:cloud-upload-linear"></iconify-icon>
+                </div>
+              </div>
+              <a href="#" class="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-300 transition hover:border-white/25 hover:text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.85);">
+                Initialize sync
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative z-10 mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8 pt-12">
+      <div class="frame-section border border-white/10 p-8 sm:p-12 mb-6 relative overflow-hidden" style="background: linear-gradient(180deg, rgba(24,24,27,0.4), rgba(10,10,10,0.6)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.8);">
+        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+          <div class="md:col-span-2">
+            <a href="#" aria-label="Vectorline home" class="group relative inline-flex items-center gap-3">
+              <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-sm font-medium text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.045)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1rem 2rem rgba(0,0,0,0.35); text-shadow: 0 1px 0 rgba(0,0,0,0.8);">
+                VL
+              </span>
+              <span class="leading-none block">
+                <span class="block text-sm font-medium tracking-tight text-white font-sans">
+                  Vectorline
+                </span>
+                <span class="mt-1 block text-xs font-normal uppercase tracking-widest text-zinc-500 font-sans">
+                  Spec console
+                </span>
+              </span>
+            </a>
+            <p class="mt-6 text-sm text-zinc-400 max-w-sm leading-relaxed font-sans">
+              Vectorline turns planning sessions into annotated structures: live
+              frames, spatial notes, and route-level context rendered in one
+              workspace.
+            </p>
+          </div>
+          <div>
+            <h3 class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans mb-5">
+              Platform
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="#model" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Model
+                </a>
+              </li>
+              <li>
+                <a href="#signals" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Signals
+                </a>
+              </li>
+              <li>
+                <a href="#assets" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Assets
+                </a>
+              </li>
+              <li>
+                <a href="#protocol" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Protocol
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans mb-5">
+              Company
+            </h3>
+            <ul class="space-y-3">
+              <li>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  About
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Changelog
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col gap-3 border border-white/10 px-5 py-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between" style="background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.18)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.85);">
+        <p class="font-sans">Vectorline structural console / build 08.42</p>
+        <div class="flex flex-wrap gap-4">
+          <a href="#" class="hover:text-white transition font-sans">
+            Privacy Policy
+          </a>
+          <a href="#" class="hover:text-white transition font-sans">
+            Terms of Service
+          </a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        gsap.registerPlugin(ScrollTrigger);
+
+        gsap.from(".reveal-block > *", {
+          y: 24,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.08,
+          ease: "power3.out"
+        });
+
+        gsap.from(".label-pill", {
+          y: 18,
+          opacity: 0,
+          duration: 0.9,
+          stagger: 0.12,
+          delay: 0.35,
+          ease: "power3.out"
+        });
+
+        gsap.from(".connector-line", {
+          strokeDashoffset: 80,
+          opacity: 0,
+          duration: 1.2,
+          stagger: 0.12,
+          delay: 0.6,
+          ease: "power2.out"
+        });
+
+        gsap.utils.toArray(".frame-section").forEach(function (section) {
+          gsap.from(section, {
+            y: 28,
+            opacity: 0,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: {
+              trigger: section,
+              start: "top 82%"
+            }
+          });
+        });
+
+        gsap.from(".metric-card, .asset-card, .protocol-row", {
+          y: 18,
+          opacity: 0,
+          duration: 0.65,
+          stagger: 0.06,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: "#signals",
+            start: "top 78%"
+          }
+        });
+
+        const canvas = document.getElementById("wireframeCanvas");
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+        camera.position.set(0, 0.9, 7);
+
+        const renderer = new THREE.WebGLRenderer({ canvas: canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+
+        const group = new THREE.Group();
+        scene.add(group);
+
+        const lineMaterial = new THREE.LineBasicMaterial({ color: 0xd4d4d8, transparent: true, opacity: 0.72 });
+        const faintMaterial = new THREE.LineBasicMaterial({ color: 0x71717a, transparent: true, opacity: 0.34 });
+
+        function addWireBox(width, height, depth, y, material) {
+          const geometry = new THREE.BoxGeometry(width, height, depth);
+          const edges = new THREE.EdgesGeometry(geometry);
+          const mesh = new THREE.LineSegments(edges, material);
+          mesh.position.y = y;
+          group.add(mesh);
+          return mesh;
+        }
+
+        function addWireTorus(radius, tube, y, material) {
+          const geometry = new THREE.TorusGeometry(radius, tube, 18, 96);
+          const wire = new THREE.WireframeGeometry(geometry);
+          const mesh = new THREE.LineSegments(wire, material);
+          mesh.rotation.x = Math.PI / 2;
+          mesh.position.y = y;
+          group.add(mesh);
+          return mesh;
+        }
+
+        const core = addWireBox(2.1, 1.25, 2.1, 0, lineMaterial);
+        const top = addWireBox(1.65, 0.24, 1.65, 1.05, faintMaterial);
+        const bottom = addWireBox(1.75, 0.2, 1.75, -1.08, faintMaterial);
+        const ringA = addWireTorus(1.85, 0.018, 0.55, lineMaterial);
+        const ringB = addWireTorus(2.35, 0.014, -0.55, faintMaterial);
+
+        const nodeMaterial = new THREE.LineBasicMaterial({ color: 0xf4f4f5, transparent: true, opacity: 0.55 });
+        for (let i = 0; i < 8; i++) {
+          const angle = (i / 8) * Math.PI * 2;
+          const geometry = new THREE.BoxGeometry(0.24, 0.24, 0.24);
+          const edges = new THREE.EdgesGeometry(geometry);
+          const node = new THREE.LineSegments(edges, nodeMaterial);
+          node.position.set(Math.cos(angle) * 2.55, Math.sin(i) * 0.34, Math.sin(angle) * 2.55);
+          group.add(node);
+        }
+
+        function resizeRenderer() {
+          const rect = canvas.parentElement.getBoundingClientRect();
+          renderer.setSize(rect.width, rect.height, false);
+          camera.aspect = rect.width / rect.height;
+          camera.updateProjectionMatrix();
+        }
+
+        window.addEventListener("resize", resizeRenderer);
+        resizeRenderer();
+
+        let time = 0;
+        function animate() {
+          time += 0.01;
+          group.rotation.y += 0.004;
+          group.rotation.x = Math.sin(time) * 0.08;
+          top.position.y = 1.05 + Math.sin(time * 1.2) * 0.06;
+          bottom.position.y = -1.08 + Math.cos(time * 1.1) * 0.05;
+          ringA.rotation.z += 0.003;
+          ringB.rotation.z -= 0.002;
+          renderer.render(scene, camera);
+          requestAnimationFrame(animate);
+        }
+        animate();
+      });
+    </script>
+  
+</body></html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="de" class="scroll-smooth">
+<head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lumière Films | Luxury Wedding Films & Photography</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+/* Custom Font Assignments */
+.font-serif { font-family: 'Cormorant Garamond', serif; }
+.font-sans { font-family: 'Inter', sans-serif; }
+/* Smooth Fade Slideshow Animation */
+@keyframes fadeZoom {
+0% { opacity: 0; transform: scale(1.05); }
+10% { opacity: 1; transform: scale(1); }
+40% { opacity: 1; transform: scale(1); }
+50% { opacity: 0; transform: scale(1.05); }
+100% { opacity: 0; transform: scale(1.05); }
+}
+.slide-bg {
+position: absolute;
+inset: 0;
+background-size: cover;
+background-position: center;
+opacity: 0;
+animation: fadeZoom 18s infinite;
+}
+.slide-1 { animation-delay: 0s; background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=2070&auto=format&fit=crop'); }
+.slide-2 { animation-delay: 6s; background-image: url('https://images.unsplash.com/photo-1511285560982-1351cdeb9821?q=80&w=2070&auto=format&fit=crop'); }
+.slide-3 { animation-delay: 12s; background-image: url('https://images.unsplash.com/photo-1606800052052-a08af7148866?q=80&w=2070&auto=format&fit=crop'); }
+/* Custom UI Elements */
+.custom-underline {
+position: relative;
+text-decoration: none;
+}
+.custom-underline::after {
+content: '';
+position: absolute;
+width: 100%;
+transform: scaleX(0);
+height: 1px;
+bottom: 0;
+left: 0;
+background-color: #B89B5E;
+transform-origin: bottom right;
+transition: transform 0.4s ease-out;
+}
+.custom-underline:hover::after {
+transform: scaleX(1);
+transform-origin: bottom left;
+}
+/* Hide scrollbar for clean look */
+::-webkit-scrollbar {
+width: 6px;
+}
+::-webkit-scrollbar-track {
+background: #FBF7F0;
+}
+::-webkit-scrollbar-thumb {
+background: #D8C3A5;
+}
+</style></head>
+<body class="bg-[#FBF7F0] text-[#2B2622] font-sans antialiased selection:bg-[#B89B5E] selection:text-white">
+
+    <!-- Navigation (Overlay) -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 md:px-12 md:py-8 flex justify-between items-center mix-blend-difference text-[#FBF7F0]">
+        <div class="z-50">
+            <a href="#" class="font-serif text-2xl tracking-wide uppercase">Lumière Films</a>
+        </div>
+        <button class="group z-50 space-y-1.5 cursor-pointer">
+            <div class="w-8 h-[1px] bg-[#FBF7F0] transition-all duration-300 group-hover:w-6 ml-auto"></div>
+            <div class="w-8 h-[1px] bg-[#FBF7F0] transition-all duration-300 group-hover:w-8"></div>
+        </button>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <header class="relative h-screen w-full overflow-hidden flex flex-col justify-center">
+        <!-- Background Slideshow -->
+        <div class="absolute inset-0 z-0 bg-[#2B2622]">
+            <div class="slide-bg slide-1"></div>
+            <div class="slide-bg slide-2"></div>
+            <div class="slide-bg slide-3"></div>
+            <!-- Dark Overlay for Readability -->
+            <div class="absolute inset-0 bg-[#2B2622]/30"></div>
+        </div>
+
+        <!-- Hero Content -->
+        <!-- Added -mt-24 to shift block upwards, letting image lead -->
+        <div class="relative z-10 px-6 md:px-12 text-[#FBF7F0] max-w-5xl -mt-24">
+            
+            <!-- Primary Title: Reduced size, increased tracking -->
+            <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl leading-none tracking-wide mb-6 opacity-95">
+                Lumière Films
+            </h1>
+            
+            <!-- Secondary Claim: Italic, lighter, increased tracking, clear hierarchy step-down -->
+            <p class="font-serif italic text-xl md:text-3xl lg:text-4xl font-light opacity-80 mb-10 tracking-wide">
+                Wo Licht auf Film trifft
+            </p>
+            
+            <!-- Service Line: Significantly restrained, smaller, higher opacity drop -->
+            <div class="flex items-center space-x-4 opacity-60">
+                <div class="w-8 h-[1px] bg-[#FBF7F0]"></div>
+                <p class="font-sans text-xs md:text-sm tracking-[0.25em] uppercase">
+                    Cinematische Hochzeitsfilme & Fotografie
+                </p>
+            </div>
+        </div>
+
+        <!-- Bottom Footer in Hero -->
+        <div class="absolute bottom-8 left-6 md:left-12 z-10">
+            <span class="font-sans text-[10px] tracking-[0.2em] uppercase text-[#FBF7F0]/50">
+                Hochzeiten · Brands · Events
+            </span>
+        </div>
+    </header>
+
+    <!-- BRAND INTRO -->
+    <section class="py-24 md:py-32 px-6 md:px-12 bg-[#FBF7F0]">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl text-[#2B2622] mb-12 tracking-wide">Lumière Films</h2>
+            <div class="space-y-8 font-sans font-light text-lg md:text-xl leading-relaxed text-[#2B2622]/80">
+                <p>
+                    Lumière Films ist ein kreatives Studio für hochwertige Hochzeitsfilme und Fotografie.
+                </p>
+                <p class="font-serif text-2xl md:text-3xl italic text-[#B89B5E] tracking-wide">
+                    Der Fokus liegt darauf, Geschichten in Licht, Bewegung und Emotion zu erzählen – cinematisch, zeitlos und echt.
+                </p>
+                <p>
+                    Neben Hochzeiten entstehen ausgewählte Produktionen für Brands und Events, immer mit dem gleichen ästhetischen Anspruch.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FEATURED WORK (Editorial Grid) -->
+    <section class="pb-24 px-4 md:px-8 bg-[#FBF7F0]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-8">
+            <!-- Item 1 -->
+            <div class="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden cursor-pointer">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Wedding" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-colors duration-500"></div>
+                <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <p class="font-serif italic text-2xl tracking-wide">Anna & Markus</p>
+                    <p class="text-xs uppercase tracking-widest mt-1 opacity-80">Hochzeiten</p>
+                </div>
+            </div>
+
+            <!-- Item 2 -->
+            <div class="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden cursor-pointer md:mt-24">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?q=80&w=1974&auto=format&fit=crop" alt="Destination" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <p class="font-serif italic text-2xl tracking-wide">Tuscany Vows</p>
+                    <p class="text-xs uppercase tracking-widest mt-1 opacity-80">Destination Weddings</p>
+                </div>
+            </div>
+
+            <!-- Item 3 -->
+            <div class="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden cursor-pointer">
+                <img src="https://images.unsplash.com/photo-1469334031218-e382a71b716b?q=80&w=2070&auto=format&fit=crop" alt="Brand" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <p class="font-serif italic text-2xl tracking-wide">Atelier Gold</p>
+                    <p class="text-xs uppercase tracking-widest mt-1 opacity-80">Brand Stories</p>
+                </div>
+            </div>
+
+             <!-- Item 4 -->
+             <div class="group relative aspect-[4/5] md:aspect-[3/4] overflow-hidden cursor-pointer md:mt-24">
+                <img src="https://images.unsplash.com/photo-1511795409834-ef04bbd61622?q=80&w=2069&auto=format&fit=crop" alt="Event" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105">
+                <div class="absolute bottom-6 left-6 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <p class="font-serif italic text-2xl tracking-wide">Gala Night</p>
+                    <p class="text-xs uppercase tracking-widest mt-1 opacity-80">Event Films</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES LIST -->
+    <section class="py-24 px-6 md:px-12 bg-[#F6F0E6]">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-baseline mb-16">
+            <h3 class="font-serif text-3xl md:text-4xl text-[#2B2622] mb-4 md:mb-0 tracking-wide">Leistungen</h3>
+            <span class="font-sans text-xs tracking-widest uppercase text-[#B89B5E]">Excellence in Motion</span>
+        </div>
+
+        <div class="border-t border-[#D8C3A5]">
+            <div class="group flex justify-between items-center py-8 border-b border-[#D8C3A5] cursor-pointer hover:bg-[#D8C3A5]/10 transition-colors">
+                <h4 class="font-serif text-2xl md:text-3xl text-[#2B2622] group-hover:pl-4 transition-all duration-500 tracking-wide">Hochzeitsfilm</h4>
+                <span class="iconify text-[#B89B5E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="lucide:arrow-right" data-width="24"></span>
+            </div>
+            <div class="group flex justify-between items-center py-8 border-b border-[#D8C3A5] cursor-pointer hover:bg-[#D8C3A5]/10 transition-colors">
+                <h4 class="font-serif text-2xl md:text-3xl text-[#2B2622] group-hover:pl-4 transition-all duration-500 tracking-wide">Hochzeitsfotografie</h4>
+                <span class="iconify text-[#B89B5E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="lucide:arrow-right" data-width="24"></span>
+            </div>
+            <div class="group flex justify-between items-center py-8 border-b border-[#D8C3A5] cursor-pointer hover:bg-[#D8C3A5]/10 transition-colors">
+                <h4 class="font-serif text-2xl md:text-3xl text-[#2B2622] group-hover:pl-4 transition-all duration-500 tracking-wide">Foto & Film Kombi</h4>
+                <span class="iconify text-[#B89B5E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="lucide:arrow-right" data-width="24"></span>
+            </div>
+            <div class="group flex justify-between items-center py-8 border-b border-[#D8C3A5] cursor-pointer hover:bg-[#D8C3A5]/10 transition-colors">
+                <h4 class="font-serif text-2xl md:text-3xl text-[#2B2622] group-hover:pl-4 transition-all duration-500 tracking-wide">Brands & Commercials</h4>
+                <span class="iconify text-[#B89B5E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="lucide:arrow-right" data-width="24"></span>
+            </div>
+             <div class="group flex justify-between items-center py-8 border-b border-[#D8C3A5] cursor-pointer hover:bg-[#D8C3A5]/10 transition-colors">
+                <h4 class="font-serif text-2xl md:text-3xl text-[#2B2622] group-hover:pl-4 transition-all duration-500 tracking-wide">Events & Aftermovies</h4>
+                <span class="iconify text-[#B89B5E] opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-icon="lucide:arrow-right" data-width="24"></span>
+            </div>
+        </div>
+        
+        <div class="mt-12 text-center md:text-right">
+            <a href="#contact" class="inline-block border border-[#2B2622] px-8 py-3 text-xs uppercase tracking-[0.2em] hover:bg-[#2B2622] hover:text-[#FBF7F0] transition-colors duration-300">
+                Verfügbarkeit anfragen
+            </a>
+        </div>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="py-24 px-6 md:px-12 bg-[#FBF7F0]">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-5 gap-8 md:gap-4 relative">
+                <!-- Line for Desktop -->
+                <div class="hidden md:block absolute top-4 left-0 w-full h-[1px] bg-[#D8C3A5]"></div>
+
+                <!-- Step 1 -->
+                <div class="relative pt-0 md:pt-12">
+                    <div class="hidden md:block absolute top-3 left-0 w-2 h-2 bg-[#B89B5E] rounded-full -translate-y-1/2"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#B89B5E] block mb-2">01</span>
+                    <h5 class="font-serif text-xl mb-2 tracking-wide">Kennenlernen</h5>
+                    <p class="font-sans font-light text-sm text-[#2B2622]/70">Erste Gespräche und Visionen.</p>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative pt-0 md:pt-12">
+                    <div class="hidden md:block absolute top-3 left-0 w-2 h-2 bg-[#D8C3A5] rounded-full -translate-y-1/2"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#B89B5E] block mb-2">02</span>
+                    <h5 class="font-serif text-xl mb-2 tracking-wide">Planung</h5>
+                    <p class="font-sans font-light text-sm text-[#2B2622]/70">Konzept und Abläufe.</p>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative pt-0 md:pt-12">
+                    <div class="hidden md:block absolute top-3 left-0 w-2 h-2 bg-[#D8C3A5] rounded-full -translate-y-1/2"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#B89B5E] block mb-2">03</span>
+                    <h5 class="font-serif text-xl mb-2 tracking-wide">Produktion</h5>
+                    <p class="font-sans font-light text-sm text-[#2B2622]/70">Der große Tag.</p>
+                </div>
+                <!-- Step 4 -->
+                <div class="relative pt-0 md:pt-12">
+                    <div class="hidden md:block absolute top-3 left-0 w-2 h-2 bg-[#D8C3A5] rounded-full -translate-y-1/2"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#B89B5E] block mb-2">04</span>
+                    <h5 class="font-serif text-xl mb-2 tracking-wide">Schnitt</h5>
+                    <p class="font-sans font-light text-sm text-[#2B2622]/70">Magie im Detail.</p>
+                </div>
+                <!-- Step 5 -->
+                <div class="relative pt-0 md:pt-12">
+                    <div class="hidden md:block absolute top-3 left-0 w-2 h-2 bg-[#D8C3A5] rounded-full -translate-y-1/2"></div>
+                    <span class="text-xs uppercase tracking-widest text-[#B89B5E] block mb-2">05</span>
+                    <h5 class="font-serif text-xl mb-2 tracking-wide">Übergabe</h5>
+                    <p class="font-sans font-light text-sm text-[#2B2622]/70">Eure Erinnerung.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="py-32 px-6 bg-[#F6F0E6] flex items-center justify-center">
+        <div class="max-w-2xl text-center">
+            <span class="iconify inline-block text-[#B89B5E] mb-6 opacity-50" data-icon="lucide:quote" data-width="32"></span>
+            <p class="font-serif text-2xl md:text-3xl italic leading-relaxed text-[#2B2622] mb-8 tracking-wide">
+                "Lumière Films hat nicht nur unsere Hochzeit gefilmt, sondern die Gefühle dieses Tages konserviert. Wir weinen jedes Mal, wenn wir den Film sehen."
+            </p>
+            <p class="font-sans text-xs uppercase tracking-widest text-[#2B2622]/60">— Julia & David</p>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="grid grid-cols-1 md:grid-cols-2 bg-[#FBF7F0]">
+        <div class="relative min-h-[500px] md:h-auto">
+            <img src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?q=80&w=1964&auto=format&fit=crop" alt="Camera" class="absolute inset-0 w-full h-full object-cover grayscale opacity-90">
+        </div>
+        <div class="p-12 md:p-24 flex flex-col justify-center">
+            <span class="font-sans text-xs uppercase tracking-widest text-[#B89B5E] mb-4">Über Lumière Films</span>
+            <h2 class="font-serif text-4xl md:text-5xl mb-8 tracking-wide">Hinter der Kamera</h2>
+            <div class="space-y-6 font-sans font-light text-lg text-[#2B2622]/80">
+                <p>
+                    Ich glaube an Licht zur richtigen Zeit, echte Emotionen und an Filme, die man fühlt. Mein Ziel ist es, Hochzeiten und Projekte so festzuhalten, wie sie wirklich sind – ungestellt, ästhetisch und zeitlos.
+                </p>
+                <p>
+                    Lumière Films ist kein klassischer Hochzeitsfilm. Es ist Erinnerung in Bewegung.
+                </p>
+            </div>
+            
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 px-6 md:px-12 bg-[#FBF7F0] border-t border-[#D8C3A5]/30">
+        <div class="max-w-screen-xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-32">
+            
+            <!-- Contact Info -->
+            <div>
+                <h2 class="font-serif text-4xl md:text-5xl lg:text-6xl mb-8 tracking-wide">Lasst uns eure Geschichte erzählen.</h2>
+                <div class="space-y-8 mt-12">
+                    <div class="flex items-center space-x-4">
+                        <span class="iconify text-[#B89B5E]" data-icon="lucide:mail" data-width="20"></span>
+                        <a href="mailto:info@lumierefilms.de" class="font-sans font-light text-lg custom-underline">info@lumierefilms.de</a>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <span class="iconify text-[#B89B5E]" data-icon="lucide:phone" data-width="20"></span>
+                        <a href="tel:01783422704" class="font-sans font-light text-lg custom-underline">0178 3422704</a>
+                    </div>
+                </div>
+
+                <div class="mt-16 flex space-x-6">
+                    <a href="#" class="text-[#2B2622] hover:text-[#B89B5E] transition-colors"><span class="iconify" data-icon="lucide:instagram" data-width="24"></span></a>
+                    <a href="#" class="text-[#2B2622] hover:text-[#B89B5E] transition-colors"><span class="iconify" data-icon="lucide:youtube" data-width="24"></span></a>
+                    <a href="#" class="text-[#2B2622] hover:text-[#B89B5E] transition-colors"><span class="iconify" data-icon="lucide:clapperboard" data-width="24"></span></a>
+                </div>
+            </div>
+
+            <!-- Contact Form -->
+            <form class="space-y-8 mt-8 md:mt-0">
+                <div class="group">
+                    <input type="text" placeholder="Name" class="w-full bg-transparent border-b border-[#D8C3A5] py-4 text-[#2B2622] focus:outline-none focus:border-[#B89B5E] transition-colors font-sans font-light placeholder-[#2B2622]/40">
+                </div>
+                <div class="group">
+                    <input type="email" placeholder="E-Mail" class="w-full bg-transparent border-b border-[#D8C3A5] py-4 text-[#2B2622] focus:outline-none focus:border-[#B89B5E] transition-colors font-sans font-light placeholder-[#2B2622]/40">
+                </div>
+                <div class="grid grid-cols-2 gap-8">
+                     <div class="group">
+                        <input type="text" placeholder="Datum" onfocus="(this.type='date')" class="w-full bg-transparent border-b border-[#D8C3A5] py-4 text-[#2B2622] focus:outline-none focus:border-[#B89B5E] transition-colors font-sans font-light placeholder-[#2B2622]/40">
+                    </div>
+                    <div class="relative w-full">
+                        <div class="relative">
+                           <select class="w-full bg-transparent border-b border-[#D8C3A5] py-4 text-[#2B2622] focus:outline-none focus:border-[#B89B5E] transition-colors font-sans font-light appearance-none cursor-pointer">
+                                <option value="" disabled selected>Art des Projekts</option>
+                                <option value="hochzeit">Hochzeit</option>
+                                <option value="brand">Brand</option>
+                                <option value="event">Event</option>
+                            </select>
+                            <span class="iconify absolute right-0 top-1/2 -translate-y-1/2 text-[#2B2622]/40 pointer-events-none" data-icon="lucide:chevron-down" data-width="16"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="group">
+                    <input type="text" placeholder="Location" class="w-full bg-transparent border-b border-[#D8C3A5] py-4 text-[#2B2622] focus:outline-none focus:border-[#B89B5E] transition-colors font-sans font-light placeholder-[#2B2622]/40">
+                </div>
+                <div class="group">
+                    <textarea placeholder="Nachricht" rows="4" class="w-full bg-transparent border-b border-[#D8C3A5] py-4 text-[#2B2622] focus:outline-none focus:border-[#B89B5E] transition-colors font-sans font-light placeholder-[#2B2622]/40 resize-none"></textarea>
+                </div>
+                
+                <div class="pt-8">
+                    <button type="submit" class="w-full md:w-auto bg-[#2B2622] text-[#FBF7F0] px-12 py-4 uppercase text-xs tracking-[0.2em] hover:bg-[#B89B5E] transition-colors duration-500 ease-out">
+                        Jetzt anfragen
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="py-12 px-6 bg-[#2B2622] text-[#FBF7F0]/60 text-center md:text-left flex flex-col md:flex-row justify-between items-center text-[10px] tracking-widest uppercase">
+        <p>&copy; 2024 Lumière Films.</p>
+        <div class="space-x-6 mt-4 md:mt-0">
+            <a href="#" class="hover:text-white transition-colors">Impressum</a>
+            <a href="#" class="hover:text-white transition-colors">Datenschutz</a>
+        </div>
+    </footer>
+
+</body>
+</html>

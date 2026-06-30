@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NOVAFALL: IRIS — A Revolution Begins</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Archivo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-[#101113] text-white antialiased overflow-hidden" style="font-family:'Rajdhani',sans-serif; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 14px), radial-gradient(ellipse at 50% 0%, rgba(120,130,160,0.06), transparent 60%);">
+
+  <!-- ===== OUTER FRAME / CENTERED VIEWPORT ===== -->
+  <div class="fixed inset-2 sm:inset-4 md:inset-6 lg:inset-8 border border-white/10" style="box-shadow:0 0 80px rgba(0,0,0,0.8);">
+
+    <!-- Corner brackets -->
+    <div class="absolute -top-px -left-px w-5 h-5 border-t-2 border-l-2 border-white/40 z-50 pointer-events-none"></div>
+    <div class="absolute -top-px -right-px w-5 h-5 border-t-2 border-r-2 border-white/40 z-50 pointer-events-none"></div>
+    <div class="absolute -bottom-px -left-px w-5 h-5 border-b-2 border-l-2 border-white/40 z-50 pointer-events-none"></div>
+    <div class="absolute -bottom-px -right-px w-5 h-5 border-b-2 border-r-2 border-white/40 z-50 pointer-events-none"></div>
+
+    <!-- Container size lines + mini squares (desktop) -->
+    <div class="hidden lg:block absolute top-0 bottom-0 -left-5 w-px bg-white/15 pointer-events-none" aria-hidden="true">
+      <div class="absolute -left-[3px] top-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+      <div class="absolute -left-[3px] bottom-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+      <div class="absolute -left-[3px] top-1/2 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+    </div>
+    <div class="hidden lg:block absolute top-0 bottom-0 -right-5 w-px bg-white/15 pointer-events-none" aria-hidden="true">
+      <div class="absolute -right-[3px] top-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+      <div class="absolute -right-[3px] bottom-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+      <div class="absolute -right-[3px] top-1/2 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+    </div>
+
+    <!-- ===== FIXED NAV ===== -->
+    <nav class="absolute top-0 left-0 right-0 z-40 border-b border-white/10 backdrop-blur-sm" style="background:linear-gradient(to bottom, rgba(8,9,12,0.55), rgba(8,9,12,0));" aria-label="Main navigation">
+      <div class="grid grid-cols-3 items-center px-5 sm:px-10 h-14 sm:h-16">
+        <div class="flex items-center gap-6 sm:gap-10 text-xs tracking-[0.3em] font-medium uppercase">
+          <a href="#showcase" class="hover:text-cyan-300 transition-colors duration-300 nav-item">Worlds</a>
+          <a href="#showcase" class="hidden sm:inline hover:text-cyan-300 transition-colors duration-300 nav-item">Devices</a>
+        </div>
+        <a href="#hero" class="flex justify-center nav-item" aria-label="Novafall home">
+          <span class="w-9 h-9 border border-white/40 flex items-center justify-center" style="clip-path:polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%);">
+            <iconify-icon icon="solar:black-hole-linear" class="text-cyan-300 text-lg" aria-hidden="true"></iconify-icon>
+          </span>
+        </a>
+        <div class="flex items-center justify-end gap-6 sm:gap-10 text-xs tracking-[0.3em] font-medium uppercase">
+          <a href="#story" class="hidden sm:inline hover:text-cyan-300 transition-colors duration-300 nav-item">Studio</a>
+          <a href="#cta" class="hover:text-cyan-300 transition-colors duration-300 nav-item">Signal</a>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ===== SCROLLER ===== -->
+    <main id="scroller" class="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth" style="scrollbar-width:none;">
+
+      <!-- ===== HERO ===== -->
+      <section id="hero" class="relative h-full snap-start overflow-hidden">
+        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center will-change-transform" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5ee0a38a-b5d3-4531-8793-98beed4af162_1600w.jpg'); transform:scale(1.08); filter:saturate(0.7) brightness(0.85) hue-rotate(-10deg);"></div>
+        <!-- WebGL fog -->
+        <canvas id="fog" class="absolute inset-0 w-full h-full pointer-events-none" style="mix-blend-mode:screen; opacity:0.55;" aria-hidden="true"></canvas>
+        <!-- Washes -->
+        <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, rgba(96,90,140,0.28), rgba(10,12,18,0.25) 50%, rgba(6,8,12,0.85));"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55));"></div>
+
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+          <p id="hero-kicker" class="text-xs sm:text-sm tracking-[0.7em] uppercase font-medium text-white/80 mb-4 sm:mb-6">Novafall</p>
+          <h1 id="hero-title" class="tracking-tight text-white leading-none select-none" style="font-family:'Archivo',sans-serif; font-weight:200; letter-spacing:0.18em; font-size:clamp(4rem, 16vw, 13rem);">IRIS</h1>
+          <div id="hero-rule" class="mt-6 sm:mt-8 h-px w-24 bg-cyan-300/70" style="box-shadow:0 0 14px rgba(103,232,249,0.7);"></div>
+          <p id="hero-sub" class="mt-5 text-xs sm:text-sm tracking-[0.4em] uppercase text-white/60">The signal beneath Meridian 9</p>
+        </div>
+
+        <div class="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-2 text-white/50">
+          <span class="text-xs tracking-[0.4em] uppercase">Descend</span>
+          <iconify-icon id="scroll-hint" icon="solar:alt-arrow-down-linear" class="text-lg" aria-hidden="true"></iconify-icon>
+        </div>
+      </section>
+
+      <!-- ===== GAMEPLAY SHOWCASE ===== -->
+      <section id="showcase" class="relative h-full snap-start overflow-hidden bg-black">
+        <div id="fade-a" class="absolute inset-0 bg-cover bg-center transition-opacity duration-[900ms] ease-in-out" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg'); opacity:1; filter:brightness(0.8) saturate(0.9);"></div>
+        <div id="fade-b" class="absolute inset-0 bg-cover bg-center transition-opacity duration-[900ms] ease-in-out" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/75134536-4198-40bf-9944-315511fe8c0b_1600w.jpg'); opacity:0; filter:brightness(0.75) saturate(0.8);"></div>
+        <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.4));"></div>
+
+        <!-- inner frame -->
+        <div class="absolute inset-4 sm:inset-8 border border-white/10 pointer-events-none">
+          <div class="absolute -top-px -left-px w-4 h-4 border-t border-l border-cyan-300/60"></div>
+          <div class="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-cyan-300/60"></div>
+        </div>
+
+        <div class="relative z-10 h-full flex flex-col justify-end p-8 sm:p-14">
+          <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8">
+            <div class="reveal">
+              <p class="text-xs tracking-[0.45em] uppercase text-cyan-300 mb-2 flex items-center gap-2">
+                <iconify-icon icon="solar:bolt-linear" class="text-sm" aria-hidden="true"></iconify-icon>
+                Vault Exclusive
+              </p>
+              <h2 class="text-2xl sm:text-4xl tracking-tight text-white" style="font-family:'Archivo',sans-serif; font-weight:500;">Available October 2027</h2>
+              <p class="mt-2 text-sm text-white/50 max-w-md font-normal" style="font-family:'Archivo',sans-serif;">Built from the ground up for immersive hardware. Every drawer, every wire, every shadow can be touched.</p>
+            </div>
+            <a href="#cta" class="reveal group relative inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-white border border-white/50 hover:border-cyan-300 hover:text-cyan-300 transition-colors duration-300" style="clip-path:polygon(0 0, 100% 0, 100% 65%, 92% 100%, 0 100%); background:rgba(0,0,0,0.35);">
+              Reserve Access
+              <iconify-icon icon="solar:alt-arrow-right-linear" class="text-base transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></iconify-icon>
+            </a>
+          </div>
+          <div class="mt-8 flex items-center gap-3" aria-hidden="true">
+            <span id="dot-a" class="h-px w-10 bg-cyan-300 transition-all duration-500"></span>
+            <span id="dot-b" class="h-px w-10 bg-white/25 transition-all duration-500"></span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== BLACK TRANSITION ===== -->
+      <section class="relative h-full snap-start bg-black flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0" style="background:radial-gradient(ellipse at center, rgba(40,48,66,0.25), transparent 65%);"></div>
+        <p class="transition-line relative text-center px-8 text-lg sm:text-3xl tracking-[0.25em] uppercase text-white/70" style="font-family:'Archivo',sans-serif; font-weight:300;">They took the sky.<br class="sm:hidden"> <span class="text-cyan-300/80">She took it back.</span></p>
+      </section>
+
+      <!-- ===== STORY SECTION ===== -->
+      <section id="story" class="relative h-full snap-start bg-black overflow-hidden">
+        <div class="absolute inset-0 pointer-events-none" style="background-image:repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 16px);"></div>
+        <div class="relative z-10 h-full flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-24">
+          <div class="max-w-3xl">
+            <p class="story-el text-xs tracking-[0.5em] uppercase text-cyan-300 mb-4">Chapter Zero</p>
+            <h2 class="story-el text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.05]" style="font-family:'Archivo',sans-serif; font-weight:600; letter-spacing:0.02em;">You are Iris Vale, and you're about to ignite an uprising.</h2>
+            <p class="story-el mt-6 text-sm sm:text-base text-white/45 max-w-xl leading-relaxed font-normal" style="font-family:'Archivo',sans-serif;">Displaced to Meridian 9 in the years after the Concord seized the surface, you work in the undercity's hidden laboratories — salvaging forbidden instruments, decoding the resonance grid, and building the tools that will tear the occupation apart from below.</p>
+          </div>
+
+          <!-- Numbered thumbnail carousel -->
+          <div class="story-el mt-10 sm:mt-14 flex gap-4 sm:gap-6 overflow-x-auto pb-4" style="scrollbar-width:none;" role="list" aria-label="Story chapters">
+            <figure role="listitem" class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" style="padding:1px; background:linear-gradient(135deg, rgba(103,232,249,0.5), rgba(255,255,255,0.08) 40%, rgba(255,255,255,0.04));">
+              <div class="relative w-full h-full overflow-hidden bg-black">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/724142aa-44a6-48d3-9cf3-761e00d05b78_1600w.jpg" alt="The fractured monolith above the undercity" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
+                <figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">014</figcaption>
+              </div>
+              <div class="absolute -bottom-3 left-0 h-px w-full bg-white/15"><div id="thumb-progress" class="h-px bg-white" style="width:0%; box-shadow:0 0 8px rgba(255,255,255,0.6);"></div></div>
+            </figure>
+            <figure role="listitem" class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" style="padding:1px; background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));">
+              <div class="relative w-full h-full overflow-hidden bg-black">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c31dd008-598b-4fc9-b5c7-9c3e1d296d38_1600w.jpg" alt="Resonance storm over the eastern quarter" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
+                <figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">015</figcaption>
+              </div>
+            </figure>
+            <figure role="listitem" class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" style="padding:1px; background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));">
+              <div class="relative w-full h-full overflow-hidden bg-black">
+                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4780cd9-2a3d-4bdc-9e5f-85a097b3a8bf_1600w.webp" alt="Signal relay deep in the flooded tunnels" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
+                <figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">016</figcaption>
+              </div>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== CTA / FOOTER ===== -->
+      <section id="cta" class="relative h-full snap-start bg-black overflow-hidden">
+        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d14dc069-558a-4c51-8aad-5cc237f9b61d_1600w.jpg'); opacity:0.3; filter:saturate(0.5) brightness(0.7);"></div>
+        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4));"></div>
+        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+          <div class="cta-el relative border border-white/15 px-8 sm:px-16 py-12 sm:py-16 max-w-2xl w-full" style="background:rgba(8,10,14,0.55); backdrop-filter:blur(6px);">
+            <div class="absolute -top-px -left-px w-4 h-4 border-t border-l border-cyan-300/70"></div>
+            <div class="absolute -top-px -right-px w-4 h-4 border-t border-r border-cyan-300/70"></div>
+            <div class="absolute -bottom-px -left-px w-4 h-4 border-b border-l border-cyan-300/70"></div>
+            <div class="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-cyan-300/70"></div>
+            <p class="text-xs tracking-[0.5em] uppercase text-cyan-300 mb-3">Transmission Open</p>
+            <h2 class="text-3xl sm:text-5xl tracking-tight text-white" style="font-family:'Archivo',sans-serif; font-weight:300; letter-spacing:0.1em;">NOVAFALL: IRIS</h2>
+            <p class="mt-4 text-sm text-white/50" style="font-family:'Archivo',sans-serif;">October 2027 · Immersive hardware required · 17 districts to liberate</p>
+            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+              <a href="#hero" class="group inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-black bg-white hover:bg-cyan-200 transition-colors duration-300" style="clip-path:polygon(0 0, 100% 0, 100% 65%, 93% 100%, 0 100%);">
+                Reserve Now
+                <iconify-icon icon="solar:alt-arrow-right-linear" class="text-base transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></iconify-icon>
+              </a>
+              <a href="#story" class="inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-white/70 border border-white/30 hover:border-white hover:text-white transition-colors duration-300">
+                Watch Reveal
+                <iconify-icon icon="solar:play-linear" class="text-sm" aria-hidden="true"></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <footer class="cta-el absolute bottom-5 left-0 right-0 flex items-center justify-between px-6 sm:px-12 text-xs tracking-[0.3em] uppercase text-white/35">
+            <span>© 2027 Halcyon Forge Interactive</span>
+            <span class="hidden sm:inline">Meridian Protocol v9.14</span>
+            <span>Privacy · Terms</span>
+          </footer>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    // ===== WebGL fog shader =====
+    (function () {
+      const canvas = document.getElementById('fog');
+      const gl = canvas.getContext('webgl');
+      if (!gl) return;
+      const vs = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+      const fs = `
+        precision mediump float;
+        uniform float t; uniform vec2 r;
+        float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
+        float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+          return mix(mix(hash(i),hash(i+vec2(1.,0.)),f.x),mix(hash(i+vec2(0.,1.)),hash(i+vec2(1.,1.)),f.x),f.y);}
+        float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p*=2.03;a*=.5;}return v;}
+        void main(){
+          vec2 uv=gl_FragCoord.xy/r; uv.x*=r.x/r.y;
+          float f=fbm(uv*2.2+vec2(t*.04,-t*.02));
+          f=fbm(uv*2.5+f+vec2(-t*.03,t*.015));
+          float fog=smoothstep(.35,.95,f);
+          vec3 col=mix(vec3(.07,.09,.14),vec3(.45,.55,.75),fog);
+          col+=vec3(.2,.7,.8)*pow(fog,4.)*.35;
+          float vig=1.-length(gl_FragCoord.xy/r-.5)*.9;
+          gl_FragColor=vec4(col*fog*vig,1.);
+        }`;
+      function sh(type, src) { const s = gl.createShader(type); gl.shaderSource(s, src); gl.compileShader(s); return s; }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, sh(gl.VERTEX_SHADER, vs));
+      gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, fs));
+      gl.linkProgram(prog); gl.useProgram(prog);
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+      const loc = gl.getAttribLocation(prog, 'p');
+      gl.enableVertexAttribArray(loc);
+      gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+      const uT = gl.getUniformLocation(prog, 't'), uR = gl.getUniformLocation(prog, 'r');
+      function resize() {
+        const d = Math.min(window.devicePixelRatio, 1.5);
+        canvas.width = canvas.clientWidth * d; canvas.height = canvas.clientHeight * d;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      window.addEventListener('resize', resize); resize();
+      (function loop(ts) {
+        gl.uniform1f(uT, ts * 0.001);
+        gl.uniform2f(uR, canvas.width, canvas.height);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+        requestAnimationFrame(loop);
+      })(0);
+    })();
+
+    // ===== GSAP motion =====
+    gsap.registerPlugin(ScrollTrigger);
+    const scroller = document.getElementById('scroller');
+    ScrollTrigger.defaults({ scroller: scroller });
+
+    // Hero intro: title fades upward
+    gsap.timeline({ defaults: { ease: 'power3.out' } })
+      .from('.nav-item', { y: -14, opacity: 0, stagger: 0.07, duration: 0.7 }, 0.2)
+      .from('#hero-kicker', { y: 24, opacity: 0, duration: 0.9 }, 0.4)
+      .from('#hero-title', { y: 60, opacity: 0, duration: 1.2 }, 0.5)
+      .from('#hero-rule', { scaleX: 0, opacity: 0, duration: 0.9 }, 0.9)
+      .from('#hero-sub', { y: 16, opacity: 0, duration: 0.9 }, 1.0);
+
+    // Slow background drift + scroll hint pulse
+    gsap.to('#hero-bg', { scale: 1.0, duration: 14, ease: 'none' });
+    gsap.to('#scroll-hint', { y: 6, repeat: -1, yoyo: true, duration: 1.1, ease: 'sine.inOut' });
+
+    // Hero parallax on scroll
+    gsap.to('#hero-bg', {
+      yPercent: 12, ease: 'none',
+      scrollTrigger: { trigger: '#hero', start: 'top top', end: 'bottom top', scrub: true }
+    });
+
+    // Showcase reveals
+    gsap.from('#showcase .reveal', {
+      y: 40, opacity: 0, stagger: 0.15, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: '#showcase', start: 'top 60%' }
+    });
+
+    // Transition line
+    gsap.from('.transition-line', {
+      opacity: 0, letterSpacing: '0.6em', duration: 1.4, ease: 'power2.out',
+      scrollTrigger: { trigger: '.transition-line', start: 'top 70%' }
+    });
+
+    // Story stagger
+    gsap.from('.story-el', {
+      y: 36, opacity: 0, stagger: 0.14, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: '#story', start: 'top 55%' }
+    });
+
+    // CTA
+    gsap.from('.cta-el', {
+      y: 30, opacity: 0, scale: 0.98, stagger: 0.15, duration: 0.9, ease: 'power3.out',
+      scrollTrigger: { trigger: '#cta', start: 'top 60%' }
+    });
+
+    // ===== Showcase crossfade + progress =====
+    (function () {
+      const a = document.getElementById('fade-a'), b = document.getElementById('fade-b');
+      const da = document.getElementById('dot-a'), db = document.getElementById('dot-b');
+      let showA = true;
+      setInterval(() => {
+        showA = !showA;
+        a.style.opacity = showA ? '1' : '0';
+        b.style.opacity = showA ? '0' : '1';
+        da.className = showA ? 'h-px w-10 bg-cyan-300 transition-all duration-500' : 'h-px w-10 bg-white/25 transition-all duration-500';
+        db.className = showA ? 'h-px w-10 bg-white/25 transition-all duration-500' : 'h-px w-10 bg-cyan-300 transition-all duration-500';
+      }, 4500);
+    })();
+
+    // Thumbnail progress line
+    gsap.to('#thumb-progress', {
+      width: '100%', duration: 6, ease: 'none', repeat: -1,
+      scrollTrigger: { trigger: '#story', start: 'top 60%' }
+    });
+  </script>
+</body>
+</html>

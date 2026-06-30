@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="id">
+  <head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Auden FX — ACRCandel Indicator &amp; Mentorship</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<link
+href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500&amp;family=JetBrains+Mono:wght@100;400;600&amp;display=swap"
+rel="stylesheet"
+/>
+<style>
+body { font-family: 'Inter', sans-serif; background-color: #1a1a1a; color: #c8c4bc; }
+.font-mono-custom { font-family: 'JetBrains Mono', monospace; }
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #1a1a1a; }
+::-webkit-scrollbar-thumb { background: #8b3a2a; }
+.flicker-text { animation: flicker 4s infinite; }
+@keyframes flicker { 0%,100%{opacity:1;} 50%{opacity:0.6;} 51%{opacity:0.9;} 52%{opacity:0.5;} 53%{opacity:1;} }
+.poster-shell { background: linear-gradient(135deg, rgba(200,196,188,0.2) 0%, rgba(26,26,26,0.8) 40%, rgba(139,58,42,0.3) 100%); }
+</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+  <body
+    class="antialiased min-h-screen relative overflow-x-hidden selection:bg-[#8b3a2a] selection:text-[#c8c4bc]"
+  >
+    <!-- Edge Lines -->
+    <div
+      class="fixed top-0 bottom-0 left-4 sm:left-12 w-[1px] bg-[#c8c4bc]/10 z-0 pointer-events-none"
+    ></div>
+    <div
+      class="fixed top-0 bottom-0 right-4 sm:right-12 w-[1px] bg-[#c8c4bc]/10 z-0 pointer-events-none"
+    ></div>
+
+    <!-- NAV -->
+    <nav
+      class="sticky top-0 z-50 backdrop-blur-md bg-[#1a1a1a]/80 border-b border-[#c8c4bc]/10"
+    >
+      <div
+        class="max-w-[1200px] mx-auto px-6 sm:px-16 h-16 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-3">
+          <iconify-icon
+            icon="solar:graph-up-linear"
+            class="text-xl text-[#8b3a2a]"
+          ></iconify-icon>
+          <span
+            class="font-sans font-medium text-base tracking-tighter text-[#c8c4bc]"
+          >
+            AUDEN
+            <span class="text-[#8b3a2a]">FX</span>
+          </span>
+        </div>
+        <div
+          class="hidden md:flex items-center gap-8 font-mono-custom text-xs uppercase tracking-widest text-[#c8c4bc]/50"
+        >
+          <a href="#indikator" class="hover:text-[#8b3a2a] transition-colors">
+            Indikator
+          </a>
+          <a href="#mentorship" class="hover:text-[#8b3a2a] transition-colors">
+            Mentorship
+          </a>
+          <a href="#harga" class="hover:text-[#8b3a2a] transition-colors">
+            Harga
+          </a>
+        </div>
+        <a
+          href="#harga"
+          class="font-mono-custom text-xs uppercase tracking-widest text-[#c8c4bc] border border-[#8b3a2a] px-4 py-2 rounded-lg hover:bg-[#8b3a2a] transition-colors"
+        >
+          Gabung
+        </a>
+      </div>
+    </nav>
+
+    <!-- HERO -->
+    <main class="max-w-[1200px] mx-auto px-6 sm:px-16 pt-10 relative z-20">
+      <div
+        class="poster-shell p-[1px] rounded-2xl shadow-2xl shadow-black/80 gs-reveal opacity-0"
+      >
+        <div
+          class="bg-[#1a1a1a]/95 backdrop-blur-sm rounded-2xl relative overflow-hidden"
+        >
+          <div
+            class="absolute inset-0 pointer-events-none opacity-[0.03]"
+            style="background-image: linear-gradient(to right, #c8c4bc 1px, transparent 1px); background-size: 48px 100%;"
+          ></div>
+          <div
+            class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-[#c8c4bc]/5 rounded-full blur-[100px] pointer-events-none"
+          ></div>
+
+          <header
+            class="flex justify-between items-center p-6 border-b border-[#c8c4bc]/10 relative z-30"
+          >
+            <div class="flex items-center gap-4">
+              <iconify-icon
+                icon="solar:cpu-linear"
+                class="text-xl text-[#8b3a2a]"
+              ></iconify-icon>
+              <span
+                class="font-mono-custom text-xs uppercase tracking-widest text-[#c8c4bc]/70"
+              >
+                [ ACRCANDEL // SYSTEM ]
+              </span>
+            </div>
+            <div
+              class="flex items-center gap-3 font-mono-custom text-xs uppercase tracking-widest text-[#c8c4bc]/50"
+            >
+              <span
+                class="w-1.5 h-1.5 rounded-full bg-[#8b3a2a] flicker-text"
+              ></span>
+              <span id="live-time">SYS.ACTIVE</span>
+            </div>
+          </header>
+
+          <section
+            class="relative min-h-[560px] flex items-center justify-center overflow-hidden"
+          >
+            <div
+              id="webgl-container"
+              class="absolute inset-0 z-0 mix-blend-screen opacity-50"
+            ></div>
+            <div
+              class="absolute top-6 left-6 w-4 h-4 border-t border-l border-[#8b3a2a] z-20"
+            ></div>
+            <div
+              class="absolute top-6 right-6 w-4 h-4 border-t border-r border-[#8b3a2a] z-20"
+            ></div>
+            <div
+              class="absolute bottom-6 left-6 w-4 h-4 border-b border-l border-[#8b3a2a] z-20"
+            ></div>
+            <div
+              class="absolute bottom-6 right-6 w-4 h-4 border-b border-r border-[#8b3a2a] z-20"
+            ></div>
+
+            <div
+              class="relative z-10 text-center flex flex-col items-center max-w-3xl px-4 py-20"
+            >
+              <div
+                class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-5 gs-text-up"
+              >
+                Premium Trading Environment
+              </div>
+              <h1
+                class="font-sans font-extralight text-4xl sm:text-5xl lg:text-7xl tracking-tighter uppercase text-[#c8c4bc] leading-[0.9] gs-text-up"
+              >
+                Trade
+                <br />
+                Dengan Presisi
+              </h1>
+              <p
+                class="mt-7 font-mono-custom text-xs text-[#c8c4bc]/50 tracking-wider uppercase max-w-md mx-auto leading-relaxed gs-text-up"
+              >
+                Indikator ACRCandel untuk TradingView, dipadukan mentorship
+                privat membaca arah pasar secara real-time.
+              </p>
+              <div class="mt-9 flex flex-col sm:flex-row gap-4 gs-text-up">
+                <a
+                  href="#harga"
+                  class="font-mono-custom text-xs uppercase tracking-widest bg-[#8b3a2a] text-[#c8c4bc] px-7 py-3.5 rounded-lg hover:bg-[#8b3a2a]/80 transition-colors"
+                >
+                  Mulai Sekarang
+                </a>
+                <a
+                  href="#indikator"
+                  class="font-mono-custom text-xs uppercase tracking-widest border border-[#c8c4bc]/20 text-[#c8c4bc]/70 px-7 py-3.5 rounded-lg hover:border-[#8b3a2a] transition-colors"
+                >
+                  Lihat Fitur
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <!-- Stats Bar -->
+          <section
+            class="grid grid-cols-2 md:grid-cols-4 border-t border-[#c8c4bc]/10 relative z-30 bg-[#1a1a1a]"
+          >
+            <div
+              class="p-6 border-r border-b md:border-b-0 border-[#c8c4bc]/10 text-center"
+            >
+              <div
+                class="font-sans font-light text-3xl tracking-tight text-[#c8c4bc]"
+              >
+                2.4K+
+              </div>
+              <div
+                class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-1"
+              >
+                Pengguna Aktif
+              </div>
+            </div>
+            <div
+              class="p-6 border-r border-b md:border-b-0 border-[#c8c4bc]/10 text-center"
+            >
+              <div
+                class="font-sans font-light text-3xl tracking-tight text-[#c8c4bc]"
+              >
+                87%
+              </div>
+              <div
+                class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-1"
+              >
+                Win Rate Setup
+              </div>
+            </div>
+            <div class="p-6 border-r border-[#c8c4bc]/10 text-center">
+              <div
+                class="font-sans font-light text-3xl tracking-tight text-[#c8c4bc]"
+              >
+                24/7
+              </div>
+              <div
+                class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-1"
+              >
+                Support Grup
+              </div>
+            </div>
+            <div class="p-6 text-center">
+              <div
+                class="font-sans font-light text-3xl tracking-tight text-[#c8c4bc]"
+              >
+                ∞
+              </div>
+              <div
+                class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-1"
+              >
+                Akses Update
+              </div>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <!-- INDIKATOR -->
+      <section id="indikator" class="mt-24">
+        <div
+          class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-4"
+        >
+          [ 01 // ACRCANDEL INDICATOR ]
+        </div>
+        <h2
+          class="font-sans font-extralight text-3xl sm:text-4xl tracking-tighter uppercase text-[#c8c4bc] max-w-2xl leading-tight"
+        >
+          Indikator yang membaca struktur candle
+        </h2>
+        <p
+          class="mt-5 font-mono-custom text-xs text-[#c8c4bc]/50 uppercase tracking-wider max-w-xl leading-relaxed"
+        >
+          Terintegrasi langsung di TradingView. Sinyal buy/sell akurat dengan
+          filter noise market secara dinamis.
+        </p>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-px mt-12 bg-[#c8c4bc]/10 rounded-2xl overflow-hidden border border-[#c8c4bc]/10"
+        >
+          <!-- Feature cards -->
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <iconify-icon
+              icon="solar:chart-2-linear"
+              class="text-2xl text-[#8b3a2a]"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Sinyal Real-Time
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Notifikasi entry &amp; exit langsung di chart tanpa delay.
+            </p>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <iconify-icon
+              icon="solar:filter-linear"
+              class="text-2xl text-[#8b3a2a]"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Noise Filtering
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Algoritma menyaring fake signal saat market sideways.
+            </p>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <iconify-icon
+              icon="solar:layers-minimalistic-linear"
+              class="text-2xl text-[#8b3a2a]"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Multi Timeframe
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Konfirmasi tren dari M1 hingga Daily dalam satu tools.
+            </p>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <iconify-icon
+              icon="solar:shield-check-linear"
+              class="text-2xl text-[#8b3a2a]"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Risk Management
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Auto-level TP &amp; SL untuk menjaga modal kamu.
+            </p>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <iconify-icon
+              icon="solar:bolt-linear"
+              class="text-2xl text-[#8b3a2a]"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Semua Pair
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Forex, Gold, Crypto, Indices — kompatibel semua aset.
+            </p>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <iconify-icon
+              icon="solar:refresh-linear"
+              class="text-2xl text-[#8b3a2a]"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Update Seumur Hidup
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Setiap versi baru otomatis tersedia tanpa biaya tambahan.
+            </p>
+          </div>
+        </div>
+        <div
+          class="mt-12 poster-shell p-[1px] rounded-2xl shadow-2xl shadow-black/80"
+        >
+          <div class="bg-[#1a1a1a]/95 rounded-2xl p-2 relative overflow-hidden">
+            <div
+              class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 px-4 py-3"
+            >
+              [ PREVIEW // ACRCANDEL ON CHART ]
+            </div>
+            <img
+              src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&amp;fit=crop&amp;w=1600&amp;q=80"
+              alt="Preview indikator ACRCandel di TradingView"
+              class="w-full h-auto rounded-xl object-cover"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- MENTORSHIP -->
+      <section class="mt-24">
+        <div
+          class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-4"
+        >
+          [ // CARA MENDAPATKAN ]
+        </div>
+        <h2
+          class="font-sans font-extralight text-3xl sm:text-4xl tracking-tighter uppercase text-[#c8c4bc] max-w-2xl leading-tight"
+        >
+          Dua cara akses indikator
+        </h2>
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-px mt-12 bg-[#c8c4bc]/10 rounded-2xl overflow-hidden border border-[#c8c4bc]/10"
+        >
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <span class="font-mono-custom text-xs text-[#8b3a2a]/40">01</span>
+            <iconify-icon
+              icon="solar:link-circle-linear"
+              class="text-2xl text-[#8b3a2a] block mt-4"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Broker Ref Exness
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Daftar broker menggunakan ref Exness
+              <span class="text-[#8b3a2a]">AudenFX</span>
+              untuk akses gratis.
+            </p>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-8 group hover:bg-[#c8c4bc]/[0.02] transition-colors duration-500 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-0 left-0 w-full h-[1px] bg-[#8b3a2a] scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-700"
+            ></div>
+            <span class="font-mono-custom text-xs text-[#8b3a2a]/40">02</span>
+            <iconify-icon
+              icon="solar:wallet-money-linear"
+              class="text-2xl text-[#8b3a2a] block mt-4"
+            ></iconify-icon>
+            <h3
+              class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc] mt-5"
+            >
+              Paket Berbayar
+            </h3>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-3"
+            >
+              Rp
+              <span class="text-[#8b3a2a]">500K</span>
+              untuk akses selama 3 bulan.
+            </p>
+          </div>
+        </div>
+      </section>
+      <section id="mentorship" class="mt-24">
+        <div
+          class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-4"
+        >
+          [ 02 // MENTORSHIP PROGRAM ]
+        </div>
+        <h2
+          class="font-sans font-extralight text-3xl sm:text-4xl tracking-tighter uppercase text-[#c8c4bc] max-w-2xl leading-tight"
+        >
+          Bimbingan privat hingga konsisten profit
+        </h2>
+
+        <div
+          class="mt-12 space-y-px bg-[#c8c4bc]/10 rounded-2xl overflow-hidden border border-[#c8c4bc]/10"
+        >
+          <div
+            class="bg-[#1a1a1a] p-6 sm:p-8 flex items-start gap-5 group hover:bg-[#c8c4bc]/[0.02] transition-colors"
+          >
+            <span class="font-mono-custom text-xs text-[#8b3a2a]/40 mt-1">
+              01
+            </span>
+            <div class="flex-grow">
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Live Trading Session
+              </h3>
+              <p
+                class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-2"
+              >
+                Trading bareng mentor melihat eksekusi langsung pada market
+                berjalan.
+              </p>
+            </div>
+            <iconify-icon
+              icon="solar:videocamera-linear"
+              class="text-xl text-[#8b3a2a]/60"
+            ></iconify-icon>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-6 sm:p-8 flex items-start gap-5 group hover:bg-[#c8c4bc]/[0.02] transition-colors"
+          >
+            <span class="font-mono-custom text-xs text-[#8b3a2a]/40 mt-1">
+              02
+            </span>
+            <div class="flex-grow">
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Materi Terstruktur
+              </h3>
+              <p
+                class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-2"
+              >
+                Dari dasar hingga advanced strategy, disusun bertahap dan mudah
+                diikuti.
+              </p>
+            </div>
+            <iconify-icon
+              icon="solar:notebook-linear"
+              class="text-xl text-[#8b3a2a]/60"
+            ></iconify-icon>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-6 sm:p-8 flex items-start gap-5 group hover:bg-[#c8c4bc]/[0.02] transition-colors"
+          >
+            <span class="font-mono-custom text-xs text-[#8b3a2a]/40 mt-1">
+              03
+            </span>
+            <div class="flex-grow">
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Grup Privat Eksklusif
+              </h3>
+              <p
+                class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-2"
+              >
+                Akses komunitas trader serius dengan diskusi &amp; sharing setup
+                harian.
+              </p>
+            </div>
+            <iconify-icon
+              icon="solar:users-group-rounded-linear"
+              class="text-xl text-[#8b3a2a]/60"
+            ></iconify-icon>
+          </div>
+          <div
+            class="bg-[#1a1a1a] p-6 sm:p-8 flex items-start gap-5 group hover:bg-[#c8c4bc]/[0.02] transition-colors"
+          >
+            <span class="font-mono-custom text-xs text-[#8b3a2a]/40 mt-1">
+              04
+            </span>
+            <div class="flex-grow">
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Konsultasi 1-on-1
+              </h3>
+              <p
+                class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-2"
+              >
+                Evaluasi personal terhadap psikologi &amp; sistem trading kamu.
+              </p>
+            </div>
+            <iconify-icon
+              icon="solar:chat-round-line-linear"
+              class="text-xl text-[#8b3a2a]/60"
+            ></iconify-icon>
+          </div>
+        </div>
+      </section>
+
+      <!-- HARGA -->
+      <section id="harga" class="mt-24">
+        <div
+          class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-4 text-center"
+        >
+          [ 03 // PAKET LENGKAP ]
+        </div>
+        <div
+          class="poster-shell p-[1px] rounded-2xl shadow-2xl shadow-black/80 max-w-2xl mx-auto"
+        >
+          <div
+            class="bg-[#1a1a1a]/95 rounded-2xl p-8 sm:p-12 relative overflow-hidden"
+          >
+            <div
+              class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[400px] h-[400px] bg-[#8b3a2a]/10 rounded-full blur-[80px] pointer-events-none"
+            ></div>
+            <div class="relative z-10">
+              <div class="flex items-center justify-between">
+                <h3
+                  class="font-sans font-light text-xl tracking-tight uppercase text-[#c8c4bc]"
+                >
+                  Indikator + Mentorship
+                </h3>
+                <span
+                  class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#8b3a2a] border border-[#8b3a2a] px-3 py-1 rounded-full"
+                >
+                  Best Value
+                </span>
+              </div>
+              <div class="mt-8 flex items-baseline gap-2">
+                <span
+                  class="font-sans font-light text-5xl sm:text-6xl tracking-tighter text-[#c8c4bc]"
+                >
+                  Rp 8
+                </span>
+                <span
+                  class="font-mono-custom text-sm text-[#c8c4bc]/50 uppercase"
+                >
+                  juta / lifetime
+                </span>
+              </div>
+              <div class="mt-8 space-y-4">
+                <div
+                  class="flex items-center gap-3 font-mono-custom text-xs text-[#c8c4bc]/70 uppercase tracking-wider"
+                >
+                  <iconify-icon
+                    icon="solar:check-circle-linear"
+                    class="text-[#8b3a2a] text-base"
+                  ></iconify-icon>
+                  Akses penuh indikator ACRCandel
+                </div>
+                <div
+                  class="flex items-center gap-3 font-mono-custom text-xs text-[#c8c4bc]/70 uppercase tracking-wider"
+                >
+                  <iconify-icon
+                    icon="solar:check-circle-linear"
+                    class="text-[#8b3a2a] text-base"
+                  ></iconify-icon>
+                  Program mentorship lengkap
+                </div>
+                <div
+                  class="flex items-center gap-3 font-mono-custom text-xs text-[#c8c4bc]/70 uppercase tracking-wider"
+                >
+                  <iconify-icon
+                    icon="solar:check-circle-linear"
+                    class="text-[#8b3a2a] text-base"
+                  ></iconify-icon>
+                  Grup privat &amp; support 24/7
+                </div>
+                <div
+                  class="flex items-center gap-3 font-mono-custom text-xs text-[#c8c4bc]/70 uppercase tracking-wider"
+                >
+                  <iconify-icon
+                    icon="solar:check-circle-linear"
+                    class="text-[#8b3a2a] text-base"
+                  ></iconify-icon>
+                  Update seumur hidup gratis
+                </div>
+              </div>
+              <a
+                href="#"
+                class="mt-10 w-full block text-center font-mono-custom text-xs uppercase tracking-widest bg-[#8b3a2a] text-[#c8c4bc] px-7 py-4 rounded-lg hover:bg-[#8b3a2a]/80 transition-colors"
+              >
+                Daftar &amp; Mulai Trading
+              </a>
+              <p
+                class="mt-4 text-center font-mono-custom text-[0.65rem] text-[#c8c4bc]/30 uppercase tracking-widest"
+              >
+                Pembayaran aman • Akses instan
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mt-24">
+        <div
+          class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-4"
+        >
+          [ 04 // TESTIMONIAL ]
+        </div>
+        <h2
+          class="font-sans font-extralight text-3xl sm:text-4xl tracking-tighter uppercase text-[#c8c4bc] max-w-2xl leading-tight"
+        >
+          Kata para trader
+        </h2>
+        <div
+          class="grid grid-cols-1 md:grid-cols-3 gap-px mt-12 bg-[#c8c4bc]/10 rounded-2xl overflow-hidden border border-[#c8c4bc]/10"
+        >
+          <div class="bg-[#1a1a1a] p-8">
+            <div class="flex items-center gap-1 text-[#8b3a2a] text-sm">
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+            </div>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/60 uppercase leading-relaxed mt-4"
+            >
+              Sinyalnya akurat, win rate naik drastis sejak pakai ACRCandel.
+            </p>
+            <div
+              class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-5"
+            >
+              — Rizki, Forex Trader
+            </div>
+          </div>
+          <div class="bg-[#1a1a1a] p-8">
+            <div class="flex items-center gap-1 text-[#8b3a2a] text-sm">
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+            </div>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/60 uppercase leading-relaxed mt-4"
+            >
+              Mentorship-nya jelas dan terstruktur, mentor sangat responsif.
+            </p>
+            <div
+              class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-5"
+            >
+              — Dewi, Gold Trader
+            </div>
+          </div>
+          <div class="bg-[#1a1a1a] p-8">
+            <div class="flex items-center gap-1 text-[#8b3a2a] text-sm">
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+              <iconify-icon icon="solar:star-bold"></iconify-icon>
+            </div>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/60 uppercase leading-relaxed mt-4"
+            >
+              Grup privatnya aktif, sharing setup harian sangat membantu.
+            </p>
+            <div
+              class="font-mono-custom text-[0.65rem] uppercase tracking-widest text-[#c8c4bc]/40 mt-5"
+            >
+              — Bayu, Crypto Trader
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="mt-24">
+        <div
+          class="font-mono-custom text-xs text-[#8b3a2a] tracking-[0.3em] uppercase mb-4"
+        >
+          [ 05 // FAQ ]
+        </div>
+        <h2
+          class="font-sans font-extralight text-3xl sm:text-4xl tracking-tighter uppercase text-[#c8c4bc] max-w-2xl leading-tight"
+        >
+          Pertanyaan umum
+        </h2>
+        <div
+          class="mt-12 space-y-px bg-[#c8c4bc]/10 rounded-2xl overflow-hidden border border-[#c8c4bc]/10"
+        >
+          <details class="bg-[#1a1a1a] p-6 sm:p-8 group">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none"
+            >
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Bagaimana cara akses gratis?
+              </h3>
+              <iconify-icon
+                icon="solar:alt-arrow-down-linear"
+                class="text-[#8b3a2a] group-open:rotate-180 transition-transform"
+              ></iconify-icon>
+            </summary>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-4"
+            >
+              Daftar broker dengan ref Exness AudenFX, indikator otomatis aktif
+              untuk akun kamu.
+            </p>
+          </details>
+          <details class="bg-[#1a1a1a] p-6 sm:p-8 group">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none"
+            >
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Apakah ada paket berbayar?
+              </h3>
+              <iconify-icon
+                icon="solar:alt-arrow-down-linear"
+                class="text-[#8b3a2a] group-open:rotate-180 transition-transform"
+              ></iconify-icon>
+            </summary>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-4"
+            >
+              Ya, tersedia paket Rp 500K untuk akses indikator selama 3 bulan.
+            </p>
+          </details>
+          <details class="bg-[#1a1a1a] p-6 sm:p-8 group">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none"
+            >
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Platform apa yang didukung?
+              </h3>
+              <iconify-icon
+                icon="solar:alt-arrow-down-linear"
+                class="text-[#8b3a2a] group-open:rotate-180 transition-transform"
+              ></iconify-icon>
+            </summary>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-4"
+            >
+              Indikator berjalan di TradingView dan kompatibel semua pair:
+              Forex, Gold, Crypto, Indices.
+            </p>
+          </details>
+          <details class="bg-[#1a1a1a] p-6 sm:p-8 group">
+            <summary
+              class="flex items-center justify-between cursor-pointer list-none"
+            >
+              <h3
+                class="font-sans font-light text-base tracking-tight uppercase text-[#c8c4bc]"
+              >
+                Apakah pemula bisa ikut?
+              </h3>
+              <iconify-icon
+                icon="solar:alt-arrow-down-linear"
+                class="text-[#8b3a2a] group-open:rotate-180 transition-transform"
+              ></iconify-icon>
+            </summary>
+            <p
+              class="font-mono-custom text-xs text-[#c8c4bc]/50 uppercase leading-relaxed mt-4"
+            >
+              Bisa. Mentorship disusun bertahap dari dasar hingga advanced,
+              mudah diikuti pemula.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FOOTER -->
+      <footer
+        class="mt-24 mb-12 border-t border-[#c8c4bc]/10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4"
+      >
+        <div class="flex items-center gap-3">
+          <span
+            class="font-sans font-medium text-sm tracking-tighter text-[#c8c4bc]"
+          >
+            AUDEN
+            <span class="text-[#8b3a2a]">FX</span>
+          </span>
+          <span
+            class="font-mono-custom text-[0.65rem] text-[#c8c4bc]/30 uppercase tracking-widest"
+          >
+            © 2024
+          </span>
+        </div>
+        <div class="flex items-center gap-5 text-[#c8c4bc]/40">
+          <a
+            href="#"
+            class="hover:text-[#8b3a2a] transition-colors"
+            aria-label="WhatsApp"
+          >
+            <iconify-icon
+              icon="solar:phone-linear"
+              class="text-lg"
+            ></iconify-icon>
+          </a>
+          <a
+            href="#"
+            class="hover:text-[#8b3a2a] transition-colors"
+            aria-label="Telegram"
+          >
+            <iconify-icon
+              icon="solar:plain-linear"
+              class="text-lg"
+            ></iconify-icon>
+          </a>
+          <a
+            href="#"
+            class="hover:text-[#8b3a2a] transition-colors"
+            aria-label="Instagram"
+          >
+            <iconify-icon
+              icon="solar:gallery-linear"
+              class="text-lg"
+            ></iconify-icon>
+          </a>
+          <a
+            href="#"
+            class="hover:text-[#8b3a2a] transition-colors"
+            aria-label="YouTube"
+          >
+            <iconify-icon
+              icon="solar:videocamera-linear"
+              class="text-lg"
+            ></iconify-icon>
+          </a>
+        </div>
+      </footer>
+    </main>
+
+    <script>
+      const container = document.getElementById('webgl-container');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+      camera.position.z = 8;
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      renderer.setSize(container.clientWidth, container.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      container.appendChild(renderer.domElement);
+
+      const geometry = new THREE.IcosahedronGeometry(3, 2);
+      const material = new THREE.MeshPhysicalMaterial({ color: 0x1a1a1a, roughness: 0.3, metalness: 0.7, flatShading: true, transparent: true, opacity: 0.9 });
+      const globe = new THREE.Mesh(geometry, material);
+      const wireframe = new THREE.LineSegments(new THREE.WireframeGeometry(geometry), new THREE.LineBasicMaterial({ color: 0x8b3a2a, transparent: true, opacity: 0.25 }));
+      globe.add(wireframe);
+      scene.add(globe);
+
+      scene.add(new THREE.AmbientLight(0xc8c4bc, 0.4));
+      const d1 = new THREE.DirectionalLight(0x8b3a2a, 3); d1.position.set(5,3,4); scene.add(d1);
+      const d2 = new THREE.DirectionalLight(0xc8c4bc, 1); d2.position.set(-5,-4,-2); scene.add(d2);
+
+      const clock = new THREE.Clock();
+      function animate() {
+          requestAnimationFrame(animate);
+          const t = clock.getElapsedTime();
+          globe.rotation.y = t * 0.1;
+          globe.rotation.x = Math.sin(t * 0.05) * 0.2;
+          globe.position.y = Math.sin(t * 0.5) * 0.1;
+          renderer.render(scene, camera);
+      }
+      animate();
+
+      window.addEventListener('resize', () => {
+          if(container){
+              camera.aspect = container.clientWidth / container.clientHeight;
+              camera.updateProjectionMatrix();
+              renderer.setSize(container.clientWidth, container.clientHeight);
+          }
+      });
+
+      gsap.to(".gs-reveal", { opacity: 1, duration: 1.5, ease: "power2.inOut", delay: 0.2 });
+      gsap.from(".gs-text-up", { y: 30, opacity: 0, duration: 1.2, stagger: 0.15, ease: "expo.out", delay: 0.6 });
+
+      setInterval(() => {
+          const now = new Date();
+          const timeStr = now.toISOString().split('T')[1].split('.')[0] + 'Z';
+          const el = document.getElementById('live-time');
+          if(el) el.innerText = `SYS.SYNC // ${timeStr}`;
+      }, 1000);
+    </script>
+  </body>
+</html>

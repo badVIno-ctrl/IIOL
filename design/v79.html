@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prosperity Island Restaurant</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+body { font-family: 'Inter', sans-serif; }
+.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }
+.font-geist { font-family: 'Geist', sans-serif !important; }
+.glass-panel {
+background: rgba(255, 255, 255, 0.15);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.glass-panel-dark {
+background: rgba(255, 255, 255, 0.05);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Hide scrollbar */
+::-webkit-scrollbar { width: 0px; background: transparent; }
+/* --- Entrance Animations (Hero) --- */
+@keyframes fadeInUp {
+from { opacity: 0; transform: translateY(20px); }
+to { opacity: 1; transform: translateY(0); }
+}
+.animate-enter {
+opacity: 0;
+animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.delay-100 { animation-delay: 100ms; }
+.delay-200 { animation-delay: 200ms; }
+.delay-300 { animation-delay: 300ms; }
+.delay-500 { animation-delay: 500ms; }
+/* --- Scroll Reveal Animations --- */
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal.active { opacity: 1; transform: translateY(0); }
+.reveal-delay-100 { transition-delay: 100ms; }
+.reveal-delay-200 { transition-delay: 200ms; }
+.reveal-delay-300 { transition-delay: 300ms; }
+</style>
+<link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap"><link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600&display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+<body class="md:p-6 min-h-screen flex items-center justify-center text-slate-900 bg-stone-100 pt-2 pr-2 pb-2 pl-2">
+
+    <!-- Main Device Container -->
+    <div class="relative w-full max-w-[1600px] bg-white rounded-[3rem] overflow-hidden shadow-2xl ring-8 ring-white flex flex-col">
+        
+        <!-- HERO SECTION -->
+        <div class="relative w-full h-[92vh] bg-stone-900 overflow-hidden shrink-0">
+            <!-- Background Image -->
+            <div class="absolute inset-0 animate-enter duration-1000">
+                <img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=2560&q=80" alt="Caribbean Food Spread" class="w-full h-full object-cover object-center opacity-80 scale-105">
+                <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
+            </div>
+
+            <!-- Top Navigation/Badges -->
+            <nav class="absolute top-0 left-0 right-0 z-50 px-6 md:px-10 py-8 flex justify-between items-start animate-enter delay-500">
+                <div class="flex items-center gap-3">
+                    <span class="px-5 py-2.5 rounded-full border border-white/20 text-white bg-black/20 backdrop-blur-md text-sm font-normal tracking-wide font-geist flex items-center gap-2">
+                        <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                        West Palm Beach, FL
+                    </span>
+                </div>
+                
+                <div class="hidden md:flex items-center gap-3">
+                    <span class="px-5 py-2.5 rounded-full border border-white/20 text-white bg-black/20 backdrop-blur-md text-sm font-normal tracking-wide font-geist">
+                       Authentic Cuisine
+                    </span>
+                </div>
+            </nav>
+
+            <!-- Main Content Grid -->
+            <div class="relative w-full h-full flex flex-col justify-end pb-12 md:pb-20 px-8 md:px-16 pointer-events-none">
+                <div class="pointer-events-auto">
+                    <!-- Rating & Price Pill -->
+                    <div class="flex flex-wrap items-center gap-3 mb-6 animate-enter delay-100">
+                        <div class="flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-sm font-semibold font-geist shadow-lg hover:scale-105 transition-transform duration-300">
+                            <iconify-icon icon="solar:star-linear" class="text-orange-500 text-base" stroke-width="1.5"></iconify-icon>
+                            Highly Rated <span class="text-stone-500 font-normal font-geist">by our guests</span>
+                        </div>
+                        <div class="flex items-center gap-2 glass-panel text-white px-4 py-1.5 rounded-full text-sm font-normal font-geist">
+                            <iconify-icon icon="solar:wallet-linear" class="text-base" stroke-width="1.5"></iconify-icon>
+                            Dine-in &amp; Catering
+                        </div>
+                    </div>
+
+                    <h1 class="text-5xl md:text-8xl font-normal text-white tracking-tight font-jakarta mb-6 leading-[1.05] drop-shadow-xl max-w-4xl animate-enter delay-200">
+                        Prosperity Island <br> Restaurant
+                    </h1>
+                    
+                    <p class="text-white/80 text-lg md:text-xl font-light max-w-xl leading-relaxed font-geist mb-10 animate-enter delay-300">
+                        Authentic Caribbean flavors for all to enjoy. Each ingredient is selected with care and purpose with you in mind.
+                    </p>
+
+                    <div class="flex flex-col md:flex-row items-start md:items-center gap-4 animate-enter delay-500">
+                        <a href="#menu" class="flex items-center gap-3 hover:bg-stone-200 transition group text-sm font-medium text-black font-geist bg-white rounded-full pt-2.5 pr-2 pb-2.5 pl-8">
+                            Explore Menu
+                            <span class="bg-black text-white p-2 rounded-full transition-transform group-hover:-translate-y-0.5 group-hover:translate-x-0.5 flex items-center justify-center">
+                                <iconify-icon icon="solar:arrow-right-up-linear" class="text-base" stroke-width="1.5"></iconify-icon>
+                            </span>
+                        </a>
+                        <a href="tel:5617212710" class="flex items-center gap-3 glass-panel text-white pl-8 pr-2 py-2.5 rounded-full font-normal text-sm hover:bg-white/20 transition font-geist group">
+                            Call (561) 721-2710
+                            <span class="bg-stone-800 text-white p-2 rounded-full border border-white/10 flex items-center justify-center">
+                                <iconify-icon icon="solar:phone-linear" class="text-base" stroke-width="1.5"></iconify-icon>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SECTION 1: Intro & Menu -->
+        <section class="md:px-16 lg:py-24 bg-white w-full pt-20 pr-8 pb-20 pl-8" id="menu">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+                
+                <!-- About Column -->
+                <div class="lg:col-span-5 flex flex-col gap-8 reveal">
+                    <div>
+                        <span class="inline-block px-4 py-1.5 rounded-full border border-stone-200 text-xs font-medium text-stone-600 font-geist tracking-wide uppercase mb-6">
+                            Welcome to Prosperity Island
+                        </span>
+                        <h2 class="text-3xl lg:text-4xl font-normal tracking-tight leading-[1.2] text-black font-jakarta mb-6">
+                            Discover our <br> authentic cuisine.
+                        </h2>
+                        <p class="text-stone-500 font-geist leading-relaxed text-lg mb-4 font-light">
+                            We believe great food does great things for the body, mind and spirit and should be accessible to everyone. The movement to healthier and more sustainable living is here, and we want you to be a part of it!
+                        </p>
+                        <ul class="space-y-3 mt-4">
+                            <li class="flex items-center gap-3 text-stone-700 font-geist font-normal">
+                                <div class="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center text-orange-600"><iconify-icon icon="solar:heart-angle-linear" stroke-width="1.5"></iconify-icon></div>
+                                Our food is our passion.
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-700 font-geist font-normal">
+                                <div class="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center text-orange-600"><iconify-icon icon="solar:chef-hat-linear" stroke-width="1.5"></iconify-icon></div>
+                                Fresh, authentic ingredients.
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-700 font-geist font-normal">
+                                <div class="w-6 h-6 rounded-full bg-orange-50 flex items-center justify-center text-orange-600"><iconify-icon icon="solar:stars-linear" stroke-width="1.5"></iconify-icon></div>
+                                Unforgettable Caribbean flavor.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Menu Preview Column -->
+                <div class="lg:col-span-7">
+                    <div class="bg-stone-50 rounded-[2.5rem] p-8 md:p-10 border border-stone-100 h-full reveal reveal-delay-200">
+                        <div class="flex justify-between items-end mb-8">
+                            <h3 class="text-2xl font-normal font-jakarta tracking-tight">Popular Items</h3>
+                            <a href="#" class="text-sm font-medium border-b border-black pb-0.5 hover:text-stone-600 hover:border-stone-600 transition font-geist">See full menu →</a>
+                        </div>
+                        
+                        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center gap-3 hover:scale-105 transition duration-300 cursor-pointer reveal reveal-delay-100">
+                                <div class="flex text-xl text-orange-600 bg-orange-100 w-10 h-10 rounded-full items-center justify-center">
+                                    <iconify-icon icon="solar:pot-linear" stroke-width="1.5"></iconify-icon>
+                                </div>
+                                <span class="font-normal font-geist text-sm">Oxtail</span>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center gap-3 hover:scale-105 transition duration-300 cursor-pointer reveal reveal-delay-100">
+                                <div class="w-10 h-10 rounded-full bg-stone-100 text-stone-600 flex items-center justify-center text-xl">
+                                    <iconify-icon icon="solar:plate-linear" stroke-width="1.5"></iconify-icon>
+                                </div>
+                                <span class="font-normal font-geist text-sm">Stew Chicken</span>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center gap-3 hover:scale-105 transition duration-300 cursor-pointer reveal reveal-delay-200">
+                                <div class="w-10 h-10 rounded-full bg-red-50 text-red-600 flex items-center justify-center text-xl">
+                                    <iconify-icon icon="solar:fire-linear" stroke-width="1.5"></iconify-icon>
+                                </div>
+                                <span class="font-normal font-geist text-sm">Fried Pork</span>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center gap-3 hover:scale-105 transition duration-300 cursor-pointer reveal reveal-delay-200">
+                                <div class="w-10 h-10 rounded-full bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+                                    <iconify-icon icon="solar:waterdrop-linear" stroke-width="1.5"></iconify-icon>
+                                </div>
+                                <span class="font-normal font-geist text-sm">Fresh Conch</span>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center gap-3 hover:scale-105 transition duration-300 cursor-pointer reveal reveal-delay-300">
+                                <div class="w-10 h-10 rounded-full bg-green-50 text-green-600 flex items-center justify-center text-xl">
+                                    <iconify-icon icon="solar:leaf-linear" stroke-width="1.5"></iconify-icon>
+                                </div>
+                                <span class="font-normal font-geist text-sm">Veggie Legumes</span>
+                            </div>
+                            
+                            <div class="bg-white p-5 rounded-2xl shadow-sm border border-stone-100 flex flex-col items-center text-center gap-3 hover:scale-105 transition duration-300 cursor-pointer reveal reveal-delay-300">
+                                <div class="w-10 h-10 rounded-full bg-purple-50 text-purple-600 flex items-center justify-center text-xl">
+                                    <iconify-icon icon="solar:cup-linear" stroke-width="1.5"></iconify-icon>
+                                </div>
+                                <span class="font-normal font-geist text-sm">Island Drinks</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 2: Dark Facilities Grid (Bento) -->
+        <section class="bg-stone-950 w-full px-8 md:px-16 py-20 lg:py-28 text-white">
+            
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 reveal">
+                <div class="max-w-3xl">
+                    <h2 class="text-4xl lg:text-5xl font-normal tracking-tight font-jakarta leading-[1.1] mb-6">
+                        Bring the island flavor <br><span class="text-stone-500">to your next event.</span>
+                    </h2>
+                    <p class="text-stone-400 text-lg font-light max-w-xl font-geist">
+                        Whether you’re celebrating a company milestone or conducting a long day of meetings, our catering service is a great way to keep your team engaged!
+                    </p>
+                </div>
+            </div>
+
+            <!-- Bento Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-min">
+                
+                <!-- Card 1: Services (Large Left) -->
+                <div class="md:col-span-1 relative bg-stone-900 rounded-[2.5rem] p-8 border border-white/5 transition-all hover:border-white/10 flex flex-col justify-between min-h-[400px] reveal">
+                    <div class="w-12 h-12 glass-panel-dark rounded-full flex items-center justify-center text-white mb-6 text-2xl">
+                        <iconify-icon icon="solar:chef-hat-linear" stroke-width="1.5"></iconify-icon>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-normal font-jakarta tracking-tight mb-6">Catering Options</h3>
+                        <ul class="space-y-4">
+                            <li class="flex items-center gap-3 text-stone-300 font-geist text-sm font-light">
+                                <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Office Lunches &amp; Dinners
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-300 font-geist text-sm font-light">
+                                <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Corporate Events
+                            </li>
+                            <li class="flex items-center gap-3 text-stone-300 font-geist text-sm font-light">
+                                <div class="w-1.5 h-1.5 rounded-full bg-orange-500"></div> Private Parties
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Card 2: Reviews (Wide Image) -->
+                <div class="md:col-span-2 relative bg-stone-900 rounded-[2.5rem] overflow-hidden p-8 lg:p-12 group border border-white/5 min-h-[400px] reveal reveal-delay-200">
+                    <img src="https://images.unsplash.com/photo-1555244162-803834f70033?w=1600&q=80" alt="Catering Spread" class="absolute inset-0 w-full h-full object-cover opacity-30 group-hover:scale-105 group-hover:opacity-40 transition duration-700">
+                    <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent"></div>
+                    
+                    <div class="relative z-10 flex flex-col h-full justify-between">
+                        <div class="flex justify-start">
+                            <span class="px-4 py-1.5 rounded-full bg-white/10 text-xs font-normal backdrop-blur-md border border-white/10 text-white flex items-center gap-2">
+                                <iconify-icon icon="solar:star-linear" class="text-orange-400"></iconify-icon> Guest Reviews
+                            </span>
+                        </div>
+                        <div class="max-w-lg space-y-6">
+                            <h3 class="text-3xl font-normal font-jakarta tracking-tight text-white">What Our Guests Say</h3>
+                            <div class="space-y-4">
+                                <p class="text-white/80 font-geist text-sm italic font-light border-l-2 border-orange-500 pl-4">"Very authentic Haitian food." <br><span class="not-italic text-white/50 text-xs mt-1 block">— Sandy</span></p>
+                                <p class="text-white/80 font-geist text-sm italic font-light border-l-2 border-orange-500 pl-4">"The food is really good in my opinion." <br><span class="not-italic text-white/50 text-xs mt-1 block">— Natacha</span></p>
+                                <p class="text-white/80 font-geist text-sm italic font-light border-l-2 border-orange-500 pl-4">"Delicious Haitian food." <br><span class="not-italic text-white/50 text-xs mt-1 block">— John</span></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Features (Wide) -->
+                <div class="md:col-span-3 bg-stone-800/50 rounded-[2.5rem] p-8 border border-white/5 flex flex-col md:flex-row items-center justify-between gap-6 reveal reveal-delay-300">
+                    <div class="flex items-center gap-6">
+                        <div class="w-14 h-14 bg-orange-600 rounded-full flex items-center justify-center shrink-0 text-white text-2xl">
+                            <iconify-icon icon="solar:star-ring-linear" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-normal font-jakarta tracking-tight text-white">Our Commitment</h3>
+                            <p class="text-stone-400 font-geist text-sm mt-1 font-light">Flavorful dishes made with dedication.</p>
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 justify-center md:justify-end">
+                        <span class="px-4 py-2 rounded-xl bg-stone-900 border border-stone-700 text-xs text-stone-300 font-geist font-light tracking-wide uppercase">Passion</span>
+                        <span class="px-4 py-2 rounded-xl bg-stone-900 border border-stone-700 text-xs text-stone-300 font-geist font-light tracking-wide uppercase">Authentic</span>
+                        <span class="px-4 py-2 rounded-xl bg-stone-900 border border-stone-700 text-xs text-stone-300 font-geist font-light tracking-wide uppercase">Flavor</span>
+                        <span class="px-4 py-2 rounded-xl bg-stone-900 border border-stone-700 text-xs text-stone-300 font-geist font-light tracking-wide uppercase">Caribbean</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION 3: Location & Info -->
+        <section class="bg-stone-100 w-full px-8 md:px-16 py-20 relative overflow-hidden">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                
+                <!-- Location Card -->
+                <div class="bg-white rounded-[2rem] p-8 border border-stone-200 shadow-sm flex flex-col justify-between h-full min-h-[300px] reveal">
+                    <div>
+                        <div class="w-10 h-10 rounded-full bg-stone-100 flex items-center justify-center mb-6 text-xl text-stone-700">
+                            <iconify-icon icon="solar:map-point-linear" stroke-width="1.5"></iconify-icon>
+                        </div>
+                        <h3 class="text-2xl font-normal text-stone-900 font-jakarta mb-2 tracking-tight">Visit Us</h3>
+                        <p class="text-stone-500 font-geist text-lg leading-relaxed max-w-sm font-light">
+                            5784 Okeechobee Blvd.<br>West Palm Beach, FL 33417<br>United States
+                        </p>
+                    </div>
+                    <div class="mt-8 pt-8 border-t border-stone-100 space-y-3">
+                        <div class="flex items-center gap-3 text-sm font-normal text-stone-600 font-geist">
+                            <iconify-icon icon="solar:phone-linear" class="text-lg" stroke-width="1.5"></iconify-icon>
+                            <a href="tel:(561) 721-2710">(561) 721-2710</a>
+                        </div>
+                        <div class="flex items-center gap-3 text-sm font-normal text-stone-600 font-geist">
+                            <iconify-icon icon="solar:letter-linear" class="text-lg" stroke-width="1.5"></iconify-icon>
+                            info@prosperityrestaurant.com
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Card -->
+                <div class="bg-black text-white rounded-[2rem] p-8 border border-black shadow-xl flex flex-col justify-between h-full min-h-[300px] relative overflow-hidden reveal reveal-delay-200">
+                    <!-- Decor -->
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-stone-800 rounded-bl-full opacity-50"></div>
+                    
+                    <div class="relative z-10 flex flex-col h-full">
+                        <div>
+                            <div class="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center mb-6 backdrop-blur-md text-xl">
+                                <iconify-icon icon="solar:info-circle-linear" stroke-width="1.5"></iconify-icon>
+                            </div>
+                            <h3 class="text-2xl font-normal font-jakarta mb-2 tracking-tight">Restaurant Info</h3>
+                            <p class="text-white/60 font-geist text-sm mb-6 font-light">Join us for dine-in or order takeout.</p>
+                        </div>
+                        
+                        <div class="space-y-4 mt-auto">
+                             <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                <span class="text-white/80 font-geist font-light text-sm">Service Options</span>
+                                <span class="text-white font-normal font-geist text-sm flex items-center gap-2">
+                                     <iconify-icon icon="solar:check-circle-linear" class="text-orange-400"></iconify-icon> Dine-in &amp; Takeaway
+                                </span>
+                            </div>
+                            <div class="flex justify-between items-center border-b border-white/10 pb-3">
+                                <span class="text-white/80 font-geist font-light text-sm">Specialties</span>
+                                <span class="text-white font-normal font-geist text-sm flex items-center gap-2">
+                                    <iconify-icon icon="solar:check-circle-linear" class="text-orange-400"></iconify-icon> Authentic Haitian
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECTION 4: Contact & CTA -->
+        <section class="bg-white w-full px-8 md:px-16 py-20 border-t border-stone-100">
+            <div class="bg-stone-900 rounded-[2.5rem] p-8 md:p-16 text-center relative overflow-hidden reveal">
+                 <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+                 
+                 <div class="relative z-10 max-w-2xl mx-auto">
+                    <h2 class="text-3xl md:text-5xl font-normal font-jakarta text-white mb-6 tracking-tight">Ready to Order?</h2>
+                    <p class="text-stone-400 text-lg font-geist mb-10 font-light">
+                        Get in touch for orders, catering inquiries, or reservations. We bring the island to your table.
+                    </p>
+                    
+                    <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                        <a href="tel:5617212710" class="w-full md:w-auto bg-white text-black px-8 py-4 rounded-full font-medium font-geist hover:bg-stone-200 transition flex items-center justify-center gap-2">
+                            <iconify-icon icon="solar:phone-linear" class="text-xl" stroke-width="1.5"></iconify-icon>
+                            (561) 721-2710
+                        </a>
+                        <a href="mailto:info@prosperityrestaurant.com" class="w-full md:w-auto bg-transparent border border-white/30 text-white px-8 py-4 rounded-full font-medium font-geist hover:bg-white/10 transition flex items-center justify-center gap-2">
+                            <iconify-icon icon="solar:letter-linear" class="text-xl" stroke-width="1.5"></iconify-icon>
+                            Email Us
+                        </a>
+                    </div>
+                 </div>
+
+            </div>
+        </section>
+
+        <!-- Footer Strip -->
+        <div class="bg-white px-8 py-6 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="text-left text-center md:text-left">
+                <p class="text-black font-medium font-jakarta text-sm tracking-tight">Prosperity Island Restaurant</p>
+                <p class="text-stone-400 text-xs font-geist mt-0.5 font-light">Authentic Caribbean Flavors.</p>
+            </div>
+            <div class="flex gap-6">
+                <span class="text-stone-400 text-xs font-geist font-light text-center md:text-right">© Copyright Prosperity Island Restaurant.<br class="block md:hidden"> Designed by UNITY GRAPHIC &amp; MARKETING LLC</span>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, observerOptions);
+
+            const scrollElements = document.querySelectorAll('.reveal');
+            scrollElements.forEach(el => observer.observe(el));
+        });
+    </script>
+</body></html>

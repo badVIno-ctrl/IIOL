@@ -1,0 +1,1244 @@
+<html lang="en" class="bg-[#030303]"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>RoysCompany | Global</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- GSAP & ScrollTrigger -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<!-- Lenis (Smooth Scroll) -->
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<style>
+:root {
+--cursor-size: 20px;
+}
+body {
+font-family: 'Manrope', sans-serif;
+background-color: #030303;
+color: #ffffff;
+overflow-x: hidden;
+margin: 0;
+/* Custom cursor hidden on touch devices */
+}
+@media (hover: hover) and (pointer: fine) {
+body { cursor: none; }
+}
+/* --- CUSTOM CURSOR --- */
+#cursor {
+position: fixed;
+top: 0; left: 0;
+width: var(--cursor-size); height: var(--cursor-size);
+border: 1px solid rgba(255, 255, 255, 0.5);
+border-radius: 50%;
+pointer-events: none;
+z-index: 9999;
+transform: translate(-50%, -50%);
+transition: width 0.3s, height 0.3s, background-color 0.3s;
+mix-blend-mode: difference;
+display: none; /* Hidden by default, shown via JS on desktop */
+}
+@media (hover: hover) and (pointer: fine) {
+#cursor { display: block; }
+}
+#cursor.hovered {
+width: 50px; height: 50px;
+background-color: white;
+border-color: transparent;
+mix-blend-mode: exclusion;
+}
+#cursor.view-cursor {
+width: 80px; height: 80px;
+background-color: rgba(255,255,255,0.1);
+backdrop-filter: blur(2px);
+border-color: rgba(255,255,255,0.2);
+display: flex; align-items: center; justify-content: center;
+}
+#cursor.view-cursor::after {
+content: 'VIEW';
+font-size: 10px; font-weight: 700; color: white;
+letter-spacing: 1px;
+}
+/* --- TYPOGRAPHY --- */
+.font-display { font-family: 'Space Grotesk', sans-serif; }
+/* --- UTILITIES --- */
+.glass {
+background: rgba(255, 255, 255, 0.03);
+backdrop-filter: blur(10px);
+border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.grayscale-img {
+filter: grayscale(100%);
+transition: filter 0.5s ease, transform 0.7s ease;
+}
+.group:hover .grayscale-img {
+filter: grayscale(0%);
+transform: scale(1.05);
+}
+/* --- 3D ANIMATIONS --- */
+.card-3d-wrap { perspective: 1000px; }
+.card-3d-inner {
+transform-style: preserve-3d;
+transition: transform 0.5s;
+}
+.card-element { transform: translateZ(40px); }
+/* --- MASK REVEAL --- */
+.mask-text { overflow: hidden; display: block; }
+.mask-text span {
+display: block;
+transform: translateY(110%);
+will-change: transform;
+}
+/* --- NOISE TEXTURE --- */
+.bg-noise {
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+}
+/* --- NEW ANIMATIONS FOR CARDS --- */
+@keyframes scan-line {
+0% { top: 0%; opacity: 0; }
+10% { opacity: 1; }
+90% { opacity: 1; }
+100% { top: 100%; opacity: 0; }
+}
+.animate-scan {
+animation: scan-line 3s linear infinite;
+}
+@keyframes code-type {
+0% { width: 0; }
+50% { width: 70%; }
+100% { width: 70%; }
+}
+.animate-type {
+animation: code-type 2s steps(20, end) infinite alternate;
+}
+</style>
+<script>
+// Configure Tailwind to include our custom 3D transform utilities
+tailwind.config = {
+theme: {
+extend: {
+// Add any custom theme extensions here if needed
+}
+},
+plugins: [
+function({ addUtilities }) {
+const rotateXUtilities = {};
+const rotateYUtilities = {};
+const rotateZUtilities = {};
+const rotateValues = [0, 5, 10, 15, 20, 30, 45, 75];
+// Generate rotate-x utilities
+rotateValues.forEach((value) => {
+rotateXUtilities[`.rotate-x-${value}`] = {
+'--tw-rotate-x': `${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+if (value !== 0) {
+rotateXUtilities[`.-rotate-x-${value}`] = {
+'--tw-rotate-x': `-${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+}
+});
+// Generate rotate-y utilities
+rotateValues.forEach((value) => {
+rotateYUtilities[`.rotate-y-${value}`] = {
+'--tw-rotate-y': `${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+if (value !== 0) {
+rotateYUtilities[`.-rotate-y-${value}`] = {
+'--tw-rotate-y': `-${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+}
+});
+// Generate rotate-z utilities
+rotateValues.forEach((value) => {
+rotateZUtilities[`.rotate-z-${value}`] = {
+'--tw-rotate-z': `${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+if (value !== 0) {
+rotateZUtilities[`.-rotate-z-${value}`] = {
+'--tw-rotate-z': `-${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+}
+});
+// Perspective utilities
+const perspectiveUtilities = {
+".perspective-none": { perspective: "none" },
+".perspective-dramatic": { perspective: "100px" },
+".perspective-near": { perspective: "300px" },
+".perspective-normal": { perspective: "500px" },
+".perspective-midrange": { perspective: "800px" },
+".perspective-distant": { perspective: "1200px" },
+};
+// Transform style utilities
+const transformStyleUtilities = {
+".transform-style-preserve-3d": { "transform-style": "preserve-3d" },
+".transform-style-flat": { "transform-style": "flat" },
+};
+addUtilities({
+...rotateXUtilities,
+...rotateYUtilities,
+...rotateZUtilities,
+...perspectiveUtilities,
+...transformStyleUtilities,
+});
+}
+]
+};
+</script>  <link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style><link id="all-fonts-link-font-space-grotesk" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-space-grotesk">.font-space-grotesk { font-family: 'Space Grotesk', sans-serif !important; }</style><link id="all-fonts-link-font-geist" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist">.font-geist { font-family: 'Geist', sans-serif !important; }</style><link id="all-fonts-link-font-roboto" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-roboto">.font-roboto { font-family: 'Roboto', sans-serif !important; }</style><link id="all-fonts-link-font-montserrat" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-montserrat">.font-montserrat { font-family: 'Montserrat', sans-serif !important; }</style><link id="all-fonts-link-font-poppins" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-poppins">.font-poppins { font-family: 'Poppins', sans-serif !important; }</style><link id="all-fonts-link-font-playfair" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;900&amp;display=swap"><style id="all-fonts-style-font-playfair">.font-playfair { font-family: 'Playfair Display', serif !important; }</style><link id="all-fonts-link-font-instrument-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-instrument-serif">.font-instrument-serif { font-family: 'Instrument Serif', serif !important; }</style><link id="all-fonts-link-font-merriweather" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&amp;display=swap"><style id="all-fonts-style-font-merriweather">.font-merriweather { font-family: 'Merriweather', serif !important; }</style><link id="all-fonts-link-font-bricolage" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-bricolage">.font-bricolage { font-family: 'Bricolage Grotesque', sans-serif !important; }</style><link id="all-fonts-link-font-jakarta" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-jakarta">.font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }</style><link id="all-fonts-link-font-work-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-work-sans">.font-work-sans { font-family: 'Work Sans', sans-serif !important; }</style><link id="all-fonts-link-font-pt-serif" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Serif:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-pt-serif">.font-pt-serif { font-family: 'PT Serif', serif !important; }</style><link id="all-fonts-link-font-geist-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-geist-mono">.font-geist-mono { font-family: 'Geist Mono', monospace !important; }</style><link id="all-fonts-link-font-space-mono" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&amp;display=swap"><style id="all-fonts-style-font-space-mono">.font-space-mono { font-family: 'Space Mono', monospace !important; }</style><link id="all-fonts-link-font-quicksand" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-quicksand">.font-quicksand { font-family: 'Quicksand', sans-serif !important; }</style><link id="all-fonts-link-font-nunito" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800&amp;display=swap"><style id="all-fonts-style-font-nunito">.font-nunito { font-family: 'Nunito', sans-serif !important; }</style><link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><link id="all-fonts-link-font-google-sans-flex" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans+Flex:wght@400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-google-sans-flex">.font-google-sans-flex { font-family: 'Google Sans Flex', sans-serif !important; }</style><link id="all-fonts-link-font-oswald" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-oswald">.font-oswald { font-family: 'Oswald', sans-serif !important; }</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap"><style id="all-fonts-style-font-dm-sans">.font-dm-sans { font-family: 'DM Sans', sans-serif !important; }</style>  <style>
+/* 3D Transform utilities */
+.perspective-none { perspective: none !important; }
+.perspective-dramatic { perspective: 100px !important; }
+.perspective-near { perspective: 300px !important; }
+.perspective-normal { perspective: 500px !important; }
+.perspective-midrange { perspective: 800px !important; }
+.perspective-distant { perspective: 1200px !important; }
+.transform-style-preserve-3d { transform-style: preserve-3d !important; }
+.transform-style-flat { transform-style: flat !important; }
+</style></head>
+<body class="antialiased overflow-x-hidden text-white bg-black relative"><div class="video-background-container fixed top-0 w-full h-full -z-10" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent)"><video src="https://drive.google.com/file/d/121QJWC0zeFW1IjL1vLchKsb1Ax1EHpCA/view?usp=sharing" autoplay="" loop="" muted="" playsinline="" class="w-full h-full object-cover"></video></div>
+
+<!-- Background (video) added by Aura -->
+
+
+    <!-- Unicorn / Aura Background -->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="aura-background-component inset-0 pointer-events-none z-0 fixed saturate-200 hue-rotate-180" data-alpha-mask="80" style="mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent);
+           -webkit-mask-image: linear-gradient(to bottom, transparent, black 0%, black 80%, transparent);"><div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+  <div data-us-project="FixNvEwvWwbu3QX9qC3F" class="absolute w-full h-full left-0 top-0 -z-10"></div>
+  <script type="text/javascript">
+    !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
+  </script>
+</div></div>
+
+    <!-- Unicorn script (can sit anywhere in body) -->
+    <script type="text/javascript" class="">
+        !function () {
+      if (!window.UnicornStudio) {
+        window.UnicornStudio = { isInitialized: !1 };
+        var i = document.createElement("script");
+        i.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js";
+        i.onload = function () {
+          if (!window.UnicornStudio.isInitialized) {
+            UnicornStudio.init();
+            window.UnicornStudio.isInitialized = !0;
+          }
+        };
+        (document.head || document.body).appendChild(i);
+      }
+    }();
+    </script>
+
+
+    <!-- CUSTOM CURSOR -->
+    <div id="cursor" style="left: 760px; top: 360px;" class=""></div>
+
+    <!-- NAVIGATION -->
+    <nav class="fixed transition-transform duration-300 z-50 pt-4 px-4 md:pt-6 md:px-6 top-0 right-0 left-0" id="navbar">
+        <div class="flex flex-col glass max-w-[1600px] rounded-[24px] md:rounded-full mr-auto ml-auto px-4 py-3 md:px-8 items-center justify-between transition-all duration-300">
+            <div class="flex w-full items-center justify-between">
+                <a href="#" class="flex items-center gap-3 group hover-trigger">
+                    <div class="flex overflow-hidden bg-center text-black bg-white w-7 h-7 md:w-8 md:h-8 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8bb0d554-8131-4079-a0d6-89e7a16208c0_320w.png)] max-w-full bg-cover rounded-sm scale-100 items-center justify-center">
+                    </div>
+                    <span class="text-base md:text-lg font-semibold text-white tracking-tight font-display text-left">Roys<span class="font-light text-yellow-500">Company</span></span>
+                </a>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex items-center gap-12">
+                    <a href="#work" class="text-xs font-medium uppercase tracking-widest transition-colors hover-trigger hover:text-white text-yellow-400">Work</a>
+                    <a href="#services" class="uppercase transition-colors hover-trigger hover:text-white text-xs font-medium text-yellow-400 tracking-widest">Services</a>
+                    <a href="#testimonials" class="uppercase transition-colors hover-trigger hover:text-white text-xs font-medium text-yellow-400 tracking-widest">Stories</a>
+                </div>
+
+                <!-- Right Actions -->
+                <div class="flex items-center gap-4">
+                    <button class="uppercase transition-colors hover-trigger hover:bg-yellow-200 cursor-pointer text-xs font-semibold text-black tracking-wider bg-amber-400 rounded-full px-6 py-2" onclick="window.location.href='https://calendly.com/noocapm/new-meeting'" role="button">BOOK A CALL</button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Dropdown -->
+            <div class="mobile-menu hidden w-full flex-col gap-6 pt-6 pb-4 border-t border-white/10 mt-4 md:hidden animate-fade-in bg-black/50 rounded-b-xl backdrop-blur-xl" style="opacity: 1;">
+                <div class="flex flex-col gap-4 items-center">
+                    <a href="#work" class="text-sm font-medium uppercase tracking-widest text-yellow-400 hover:text-white w-full text-center py-3 border-b border-white/5" onclick="this.closest('.mobile-menu').classList.add('hidden'); this.closest('.mobile-menu').classList.remove('flex');">Work</a>
+                    <a href="#services" class="text-sm font-medium uppercase tracking-widest text-yellow-400 hover:text-white w-full text-center py-3 border-b border-white/5" onclick="this.closest('.mobile-menu').classList.add('hidden'); this.closest('.mobile-menu').classList.remove('flex');">Services</a>
+                    <a href="#testimonials" class="text-sm font-medium uppercase tracking-widest text-yellow-400 hover:text-white w-full text-center py-3" onclick="this.closest('.mobile-menu').classList.add('hidden'); this.closest('.mobile-menu').classList.remove('flex');">Stories</a>
+                </div>
+                <button class="w-full uppercase transition-colors hover:bg-yellow-200 cursor-pointer text-xs font-semibold text-black tracking-wider bg-amber-400 rounded-full py-4 mt-2" onclick="window.location.href='https://calendly.com/noocapm/new-meeting'">BOOK A CALL</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1: HERO -->
+    <section class="min-h-[100dvh] flex flex-col overflow-hidden z-10 md:px-6 pr-4 pl-4 relative items-center justify-center">
+        <!-- Creative Canvas Background -->
+        <canvas class="pointer-events-none z-0 opacity-40 w-full h-full absolute top-0 right-0 bottom-0 left-0" width="1030" height="794" id="hero-canvas"></canvas>
+        <div class="z-0 pointer-events-none bg-gradient-to-t from-[#030303] via-transparent to-[#030303]/80 absolute top-0 right-0 bottom-0 left-0"></div>
+
+        <div class="z-10 text-center max-w-[1400px] mr-auto ml-auto relative gap-x-12 gap-y-16">
+            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full border backdrop-blur-md mb-8 md:mb-12 hover-trigger opacity-0 animate-fade-in border-white/10 bg-white/5" style="opacity: 1;">
+                <span class="w-1.5 h-1.5 rounded-full animate-pulse bg-white"></span>
+                <span class="text-[10px] uppercase font-medium tracking-[0.2em] text-yellow-300" style="">Global AI Agency</span>
+            </div>
+
+            <h1 class="font-display text-5xl sm:text-6xl md:text-8xl lg:text-[7rem] font-medium tracking-tighter leading-[0.95] mb-8 md:mb-12 mix-blend-difference text-white">
+                <span class="mask-text"><span class="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">AI</span></span>
+                <span class="mask-text"><span class="text-yellow-500" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">SYSTEM</span></span>
+                <span class="mask-text"><span class="" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px);">ENGINEERED</span></span>
+            </h1>
+
+            <div class="flex flex-col md:flex-row items-center justify-between w-full max-w-4xl mx-auto mt-8 md:mt-12 border-t pt-8 opacity-0 animate-fade-up border-white/10" style="translate: none; rotate: none; scale: none; transform: translate(0px, 0px); opacity: 1;">
+                <p class="text-sm text-yellow-400 text-center md:text-left max-w-xs mb-8 md:mb-0">We automate content, workflows, and decision-making so your business scales without adding headcount.</p>
+                <div class="flex gap-12">
+                    <div class="text-center md:text-left">
+                        <div class="text-2xl font-bold font-display">150+</div>
+                        <div class="text-[10px] uppercase tracking-widest text-yellow-500" style="">Video Generated</div>
+                    </div>
+                    <div class="text-center md:text-left">
+                        <div class="text-2xl font-bold font-display">10M+</div>
+                        <div class="text-[10px] uppercase tracking-widest text-yellow-500" style="">Views Generated</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2: GENERATED WORK SAMPLE (Moved as requested) -->
+    <section class="md:py-32 md:px-6 bg-[#030303] border-white/5 border-t pt-20 pr-4 pb-20 pl-4 relative" id="work">
+        <div class="z-10 max-w-[1400px] mr-auto ml-auto relative">
+            <!-- Section Header -->
+            <div class="flex flex-col md:flex-row md:items-end md:mb-16 gap-6 md:gap-8 mb-16 items-start justify-between">
+                <div class="gap-x-4 gap-y-4">
+                    <h2 class="text-3xl md:text-4xl lg:text-6xl font-display font-medium mb-4 md:mb-6 text-white">Generated Outputs</h2>
+                    <p class="text-base md:text-lg text-yellow-400 max-w-lg">AI-generated assets that maintain brand consistency while scaling production 100x.</p>
+                </div>
+                <div class="flex items-center gap-2 text-xs font-mono text-white/40 uppercase tracking-widest">
+                    <span class="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+                    Live Generation Feed
+                </div>
+            </div>
+
+            <!-- Video Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full">
+    
+    <!-- Video Card 1: Viral Cuts (Yellow Theme) -->
+    <div class="group relative aspect-[9/16] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 cursor-pointer shadow-lg hover:shadow-[0_0_40px_-10px_rgba(234,179,8,0.3)] hover:border-yellow-500/50 transition-all duration-500 hover:-translate-y-2">
+        <!-- Video Layer -->
+        <div class="absolute inset-0 w-full h-full bg-gray-900">
+            <div class="relative w-full h-full" onmouseenter="const v = this.querySelector('video'); const iconOn = this.querySelector('.on'); const iconOff = this.querySelector('.off'); v.muted = false; v.play().then(() =&gt; { iconOn.classList.remove('hidden'); iconOff.classList.add('hidden'); }).catch(() =&gt; { v.muted = true; v.play(); iconOn.classList.add('hidden'); iconOff.classList.remove('hidden'); });" onmouseleave="this.querySelector('video').pause();">
+    <video src="https://pub-21eb86ee9a1c403b9a6b04eaab4c3966.r2.dev/Hook%202%20CTA%201.mp4" class="group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out group-hover:grayscale-0 opacity-60 w-full h-full object-cover grayscale" loop="" playsinline=""></video>
+    <button onclick="event.stopPropagation(); const v = this.parentElement.querySelector('video'); v.muted = !v.muted; this.querySelector('.off').classList.toggle('hidden'); this.querySelector('.on').classList.toggle('hidden');" class="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/90 hover:text-white hover:bg-black/60 transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="off lucide lucide-volume-x"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" x2="17" y1="9" y2="15"></line><line x1="17" x2="23" y1="9" y2="15"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="on lucide lucide-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+    </button>
+</div>
+        </div>
+        
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"></div>
+
+        <!-- Play Button Overlay -->
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none">
+            <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+        </div>
+
+        <!-- Status Badge -->
+        <div class="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
+            <div class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></div>
+            <span class="text-[10px] font-mono font-medium text-white/90 tracking-wider uppercase">Viral Cut</span>
+        </div>
+
+        <!-- Content -->
+        <div class="absolute bottom-0 left-0 w-full p-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <div class="flex flex-col gap-2">
+                <div class="flex items-center gap-2 mb-1 opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100">
+                    <span class="inline-flex items-center justify-center w-6 h-6 rounded bg-yellow-500/10 text-yellow-500 shadow-[0_0_10px_rgba(234,179,8,0.2)]">
+                        
+                    </span>
+                    
+                </div>
+                
+                <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-white/20 to-transparent mt-2 mb-2 group-hover:via-yellow-500/50 transition-all duration-500"></div>
+                <div class="flex justify-between items-center text-[11px] text-white/50 font-mono">
+                    <span class="flex items-center gap-1.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 0:42s</span>
+                    <span class="flex items-center gap-1.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> 1.2M Views</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Card 2: Market Trends (Blue Theme) -->
+    <div class="group relative aspect-[9/16] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 cursor-pointer shadow-lg hover:shadow-[0_0_40px_-10px_rgba(59,130,246,0.3)] hover:border-blue-500/50 transition-all duration-500 hover:-translate-y-2" style="transition-delay: 100ms;">
+        <div class="absolute inset-0 w-full h-full bg-gray-900">
+            <div class="relative w-full h-full" onmouseenter="this.querySelector('video').play()" onmouseleave="this.querySelector('video').pause()">
+    <video src="https://pub-21eb86ee9a1c403b9a6b04eaab4c3966.r2.dev/REPLIT%202nd%20video.mp4" class="group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out group-hover:grayscale-0 opacity-60 w-full h-full object-cover grayscale" muted="" loop="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/Screenshot%202025-12-25%20at%204.43.41%E2%80%AFAM.png"></video>
+    <button onclick="event.stopPropagation(); const v = this.previousElementSibling; v.muted = !v.muted; this.querySelector('.off').classList.toggle('hidden'); this.querySelector('.on').classList.toggle('hidden');" class="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/90 hover:text-white hover:bg-black/60 transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="off lucide lucide-volume-x"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" class=""></polygon><line x1="23" x2="17" y1="9" y2="15"></line><line x1="17" x2="23" y1="9" y2="15"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="on hidden lucide lucide-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+    </button>
+</div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"></div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none">
+            <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
+            <div class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></div>
+            <span class="text-[10px] font-mono font-medium text-white/90 tracking-wider uppercase">Optimized</span>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <div class="flex flex-col gap-2">
+                
+                
+                <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-white/20 to-transparent mt-2 mb-2 group-hover:via-blue-500/50 transition-all duration-500"></div>
+                <div class="flex justify-between items-center text-[11px] text-white/50 font-mono">
+                    <span class="flex items-center gap-1.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 0:15s</span>
+                    <span class="flex items-center gap-1.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> 850K Views</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Card 3: Founder Stories (Purple Theme) -->
+    <div class="group relative aspect-[9/16] rounded-2xl overflow-hidden bg-[#0A0A0A] border border-white/10 cursor-pointer shadow-lg hover:shadow-[0_0_40px_-10px_rgba(168,85,247,0.3)] hover:border-purple-500/50 transition-all duration-500 hover:-translate-y-2" style="transition-delay: 200ms;">
+        <div class="absolute inset-0 w-full h-full bg-gray-900">
+            <div class="relative w-full h-full" onmouseenter="const v = this.querySelector('video'); const iconOn = this.querySelector('.on'); const iconOff = this.querySelector('.off'); v.muted = false; v.play().then(() =&gt; { iconOn.classList.remove('hidden'); iconOff.classList.add('hidden'); }).catch(() =&gt; { v.muted = true; v.play(); iconOn.classList.add('hidden'); iconOff.classList.remove('hidden'); });" onmouseleave="this.querySelector('video').pause();">
+    <video src="https://pub-21eb86ee9a1c403b9a6b04eaab4c3966.r2.dev/AQOziJ--1xHV_dUDZ-djLXQQU5z5_FK-z-4ZuPaE3NUgSWv_pxH7cVJuozuxw1UMBhjNSKWRH3DNmIFZMrqgX5BxS2hAm55jfpmIghU.mp4" class="group-hover:opacity-100 group-hover:scale-110 transition-all duration-700 ease-out group-hover:grayscale-0 opacity-60 w-full h-full object-cover grayscale" loop="" playsinline=""></video>
+    <button onclick="event.stopPropagation(); const v = this.parentElement.querySelector('video'); v.muted = !v.muted; this.querySelector('.off').classList.toggle('hidden'); this.querySelector('.on').classList.toggle('hidden');" class="absolute top-4 left-4 z-20 p-2.5 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white/90 hover:text-white hover:bg-black/60 transition-all duration-300 opacity-0 group-hover:opacity-100 cursor-pointer flex items-center justify-center">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="off lucide lucide-volume-x"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" x2="17" y1="9" y2="15"></line><line x1="17" x2="23" y1="9" y2="15"></line></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="on lucide lucide-volume-2"><polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path><path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path></svg>
+    </button>
+</div>
+        </div>
+        <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500 pointer-events-none"></div>
+
+        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-10 pointer-events-none">
+            <div class="w-14 h-14 rounded-full bg-white/10 backdrop-blur-md flex items-center justify-center border border-white/20 shadow-xl transform scale-50 group-hover:scale-100 transition-transform duration-500 delay-75">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="text-white ml-1"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+            </div>
+        </div>
+
+        <div class="absolute top-4 right-4 px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-xl border border-white/10 flex items-center gap-1.5 opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 transform translate-y-2 group-hover:translate-y-0">
+            <div class="w-1.5 h-1.5 rounded-full bg-purple-500 animate-pulse"></div>
+            <span class="text-[10px] font-mono font-medium text-white/90 tracking-wider uppercase">Live</span>
+        </div>
+
+        <div class="absolute bottom-0 left-0 w-full p-6 z-20 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+            <div class="flex flex-col gap-2">
+                
+                
+                <div class="h-[1px] w-full bg-gradient-to-r from-transparent via-white/20 to-transparent mt-2 mb-2 group-hover:via-purple-500/50 transition-all duration-500"></div>
+                <div class="flex justify-between items-center text-[11px] text-white/50 font-mono">
+                    <span class="flex items-center gap-1.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-clock"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg> 1:00m</span>
+                    <span class="flex items-center gap-1.5"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-eye"><path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"></path><circle cx="12" cy="12" r="3"></circle></svg> 2.4M Views</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+    </section>
+
+    <!-- SECTION 3: 3D SERVICES -->
+    <section class="z-10 bg-[#050509] border-white/5 border-t pt-16 md:pt-40 px-4 md:px-6 pb-0 relative" id="services">
+        <div class="max-w-7xl mr-auto ml-auto gap-x-4 gap-y-4">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-24">
+                <div class="lg:sticky md:top-32 lg:mb-0 h-fit mb-12 relative top-0">
+                    <h2 class="md:text-5xl lg:text-6xl md:mb-8 text-4xl font-medium text-white tracking-tight font-display mb-6">Our <br>Expertise</h2>
+                    <p class="text-base md:text-lg text-yellow-400 text-justify max-w-md mb-8 md:mb-12">We engineer AI-driven systems that automate execution, reduce dependency on people, and scale operations with precision.</p>
+                    <ul class="space-y-3 md:space-y-4 text-sm md:text-base">
+                        <li class="flex text-yellow-400 gap-x-4 gap-y-4 items-center font-medium">Content System Architecture</li>
+                        <li class="flex text-yellow-500 gap-x-4 gap-y-4 items-center font-medium">AI Repurposing Engines</li>
+                        <li class="flex text-yellow-500 gap-x-4 gap-y-4 items-center font-medium">Distribution &amp; Publishing Automation</li>
+                    </ul>
+                </div>
+
+                <div class="flex flex-col gap-8 md:gap-12 pb-16">
+                    
+                    <!-- Service Card 1: STRATEGY -->
+                    <div class="card-3d-wrap group h-auto min-h-[400px] md:h-[450px] w-full cursor-pointer hover-trigger">
+                        <div class="card-3d-inner relative w-full h-full border rounded-2xl p-4 md:p-10 flex flex-col justify-between shadow-2xl overflow-hidden bg-noise default border-white/10" style="transform: rotateX(0deg) rotateY(0deg);">
+                            <!-- Background Grid -->
+                            <div class="absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 20px 20px">
+</div>
+                            
+                            <!-- THE DETAILED VISUAL: Abstract Schematic -->
+                            <div class="card-element relative w-full h-48 md:h-64 border bg-[#0f0f0f]/80 backdrop-blur-sm rounded-xl overflow-hidden mb-6 flex items-center justify-center border-white/10">
+    <!-- Background Grid -->
+    <div class="absolute inset-0 z-0 opacity-20" style="background-image: linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px); background-size: 24px 24px;"></div>
+
+    <!-- Connecting Lines & Particles (SVG) -->
+    <svg class="absolute inset-0 w-full h-full z-0 pointer-events-none" preserveAspectRatio="none" viewBox="0 0 400 256">
+        <!-- Paths from Left (Inputs) to Center -->
+        <path d="M70 85 C 130 85, 130 128, 200 128" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4 4"></path>
+        <path d="M70 171 C 130 171, 130 128, 200 128" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5" stroke-dasharray="4 4"></path>
+        
+        <!-- Paths from Center to Right (Outputs) -->
+        <path d="M200 128 C 270 128, 270 64, 330 64" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"></path>
+        <path d="M200 128 C 270 128, 270 128, 330 128" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"></path>
+        <path d="M200 128 C 270 128, 270 192, 330 192" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"></path>
+
+        <!-- Animated Data Packets -->
+        <circle r="2" fill="#eab308" class="opacity-80">
+            <animateMotion repeatCount="indefinite" dur="3s" keyPoints="0;1" keyTimes="0;1" path="M70 85 C 130 85, 130 128, 200 128"></animateMotion>
+        </circle>
+        
+        
+        <circle r="2" fill="#22c55e" class="opacity-80">
+            <animateMotion repeatCount="indefinite" dur="2s" path="M200 128 C 270 128, 270 64, 330 64"></animateMotion>
+        </circle>
+    </svg>
+
+    <!-- UI Layer -->
+    <div class="relative z-10 w-full h-full flex items-center justify-between px-2 md:px-10">
+        
+        <!-- Left Column: Inputs -->
+        <div class="flex flex-col gap-4 md:gap-10">
+            <!-- Node: Docs -->
+            <div class="flex items-center gap-3 p-1.5 md:p-2 rounded-lg bg-[#0A0A0A] border border-white/10 shadow-lg transform transition-transform hover:scale-105">
+                <div class="flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded bg-blue-500/10 text-blue-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-file-text"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path><polyline points="14 2 14 8 20 8"></polyline><line x1="16" x2="8" y1="13" y2="13"></line><line x1="16" x2="8" y1="17" y2="17"></line><line x1="10" x2="8" y1="9" y2="9"></line></svg>
+                </div>
+                <div class="hidden sm:block">
+                    <div class="text-[9px] font-semibold text-white tracking-wider uppercase">Source</div>
+                </div>
+            </div>
+            <!-- Node: Media -->
+            <div class="flex items-center gap-3 p-1.5 md:p-2 rounded-lg bg-[#0A0A0A] border border-white/10 shadow-lg transform transition-transform hover:scale-105">
+                <div class="flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded bg-purple-500/10 text-purple-400">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video"><path d="m22 8-6 4 6 4V8Z" class=""></path><rect width="14" height="12" x="2" y="6" rx="2" ry="2" class=""></rect></svg>
+                </div>
+                <div class="hidden sm:block">
+                    <div class="text-[9px] font-semibold text-white tracking-wider uppercase">Ingest</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Center: Processing Core -->
+        <div class="relative group">
+            <div class="absolute inset-0 bg-yellow-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <div class="w-12 h-12 md:w-16 md:h-16 rounded-xl bg-gradient-to-br from-[#1a1a1a] to-black border border-white/20 shadow-[0_0_20px_rgba(255,255,255,0.05)] flex items-center justify-center relative z-10">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-cpu text-white"><rect width="16" height="16" x="4" y="4" rx="2" class=""></rect><rect width="6" height="6" x="9" y="9" rx="1"></rect><path d="M15 2v2"></path><path d="M15 20v2"></path><path d="M2 15h2"></path><path d="M2 9h2"></path><path d="M20 15h2"></path><path d="M20 9h2"></path><path d="M9 2v2"></path><path d="M9 20v2"></path></svg>
+            </div>
+            <!-- Status Label -->
+            <div class="absolute -bottom-6 md:-bottom-8 left-1/2 -translate-x-1/2 flex items-center gap-1.5 whitespace-nowrap px-2 py-1 rounded-full bg-white/5 border border-white/5 backdrop-blur-sm">
+                <div class="w-1.5 h-1.5 rounded-full bg-yellow-500 animate-pulse"></div>
+                <span class="text-[8px] font-mono font-medium text-white/80 tracking-tight">PROCESSING</span>
+            </div>
+        </div>
+
+        <!-- Right Column: Outputs -->
+        <div class="flex flex-col gap-2 md:gap-5">
+            <!-- Output: Web -->
+            <div class="flex items-center justify-end gap-3 group">
+                <div class="hidden sm:block text-right">
+                    <div class="text-[9px] font-semibold text-white tracking-wider uppercase">Web</div>
+                </div>
+                <div class="flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#0A0A0A] border border-white/10 text-slate-400 group-hover:text-white group-hover:border-white/30 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                </div>
+            </div>
+            <!-- Output: Social -->
+            <div class="flex items-center justify-end gap-3 group">
+                <div class="hidden sm:block text-right">
+                    <div class="text-[9px] font-semibold text-white tracking-wider uppercase">Social</div>
+                </div>
+                <div class="flex items-center justify-center w-6 h-6 md:w-8 md:h-8 rounded-full bg-[#0A0A0A] border border-white/10 text-slate-400 group-hover:text-white group-hover:border-white/30 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-smartphone"><rect width="14" height="20" x="5" y="2" rx="2" ry="2"></rect><path d="M12 18h.01"></path></svg>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Decorative Corner Text -->
+    <div class="absolute bottom-3 left-4 text-[8px] font-mono text-white/20 uppercase tracking-widest pointer-events-none">
+        System Architecture v2.0
+    </div>
+</div>
+                            
+                            <!-- Card Text -->
+                            <div class="card-element relative z-10">
+                                <h3 class="text-2xl md:text-3xl font-medium text-white font-display mb-2 tracking-tight">Content System Architecture</h3>
+                                <p class="text-yellow-500 max-w-sm text-sm md:text-base">We design the end-to-end AI architecture that converts raw content into structured, repeatable, and scalable media workflows.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 2: DEVELOPMENT -->
+                    <div class="card-3d-wrap group cursor-pointer hover-trigger w-full h-auto min-h-[400px] md:h-[450px]">
+                        <div class="card-3d-inner relative w-full h-full border rounded-2xl p-4 md:p-10 flex flex-col justify-between shadow-2xl overflow-hidden bg-noise default border-white/10" style="transform: rotateX(0deg) rotateY(0deg);">
+                            <!-- Background Grid -->
+                            <div class="absolute top-0 right-0 bottom-0 left-0" style="background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px); background-size: 100% 40px;">
+</div>
+
+                            <!-- THE DETAILED VISUAL: Deconstructed Terminal -->
+                            <div class="card-element w-full h-48 md:h-64 mb-6 relative perspective-1000">
+    <!-- Background Decoration for Depth -->
+    <div class="absolute top-8 left-8 w-[85%] h-48 border border-white/5 bg-white/[0.02] rounded-xl -z-10 transform translate-x-2 translate-y-2"></div>
+    
+    <!-- Main Window Interface -->
+    <div class="w-full h-full bg-[#050505] border border-white/10 rounded-xl overflow-hidden flex flex-col shadow-2xl relative group hover:-translate-y-1 transition-transform duration-500">
+        
+        <!-- Window Header -->
+        <div class="h-8 border-b border-white/5 flex items-center px-4 bg-white/[0.02] justify-between">
+            <div class="flex gap-1.5">
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FF5F56]/20 border border-[#FF5F56]/50"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#FFBD2E]/20 border border-[#FFBD2E]/50"></div>
+                <div class="w-2.5 h-2.5 rounded-full bg-[#27C93F]/20 border border-[#27C93F]/50"></div>
+            </div>
+            <div class="text-[9px] font-mono text-white/30 flex items-center gap-2">
+                <span class="">engine.py</span>
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"></span>
+            </div>
+        </div>
+
+        <!-- Main Display Area -->
+        <div class="flex-1 p-3 md:p-5 flex flex-col relative font-mono text-[10px]">
+            
+            <!-- Visualization Container -->
+            <div class="flex-1 flex pr-2 pl-2 relative items-center justify-between">
+                
+                <!-- Connection Lines (SVG) -->
+                <svg class="absolute inset-0 w-full h-full pointer-events-none opacity-30" viewBox="0 0 280 140" preserveAspectRatio="none">
+                    <!-- Path from Input to Brain -->
+                    <path d="M50 70 L 110 70" stroke="url(#gradient-line-aura)" stroke-width="1.5" stroke-dasharray="4 2">
+                        <animate attributeName="stroke-dashoffset" from="12" to="0" dur="1s" repeatCount="indefinite"></animate>
+                    </path>
+                    <!-- Paths from Brain to Outputs -->
+                    <path d="M140 70 C 170 70, 170 40, 210 40" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"></path>
+                    <path d="M140 70 C 170 70, 170 70, 210 70" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"></path>
+                    <path d="M140 70 C 170 70, 170 100, 210 100" fill="none" stroke="rgba(255,255,255,0.2)" stroke-width="1"></path>
+                    
+                    <defs>
+                        <linearGradient id="gradient-line-aura" x1="0%" y1="0%" x2="100%" y2="0%">
+                            <stop offset="0%" stop-color="rgba(59, 130, 246, 0.2)"></stop>
+                            <stop offset="100%" stop-color="#3b82f6"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+
+                <!-- Step 1: Input Source -->
+                <div class="flex flex-col items-center gap-2 z-10 w-12 md:w-16">
+                    <div class="flex transition-colors text-blue-400 bg-blue-500/10 w-8 h-8 md:w-10 md:h-10 border-blue-500/30 border rounded-lg relative shadow-[0_0_15px_rgba(59,130,246,0.15)] items-center justify-center">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-video"><path d="m22 8-6 4 6 4V8Z"></path><rect width="14" height="12" x="2" y="6" rx="2" ry="2"></rect></svg>
+</div>
+                    <span class="text-[8px] text-white/40 uppercase tracking-wider">Source</span>
+                </div>
+
+                <!-- Step 2: AI Processor -->
+                <div class="relative z-10 w-12 md:w-16 flex flex-col items-center gap-2">
+                    <div class="w-10 h-10 md:w-12 md:h-12 rounded-xl bg-gradient-to-br from-blue-500/10 to-purple-500/10 border border-white/10 flex items-center justify-center shadow-[0_0_15px_rgba(59,130,246,0.15)] relative backdrop-blur-sm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sparkles text-blue-400 animate-pulse"><path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z"></path></svg>
+                        <!-- Orbital rings -->
+                        <div class="absolute inset-0 rounded-xl border border-white/5 animate-[spin_4s_linear_infinite]"></div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Outputs -->
+                <div class="flex flex-col gap-2 z-10 w-24 md:w-28">
+                    <!-- Item 1 -->
+                    <div class="flex items-center gap-2 bg-[#111] border border-white/10 p-1.5 rounded-lg shadow-sm">
+                        <div class="w-4 h-4 md:w-5 md:h-5 rounded bg-pink-500/10 flex items-center justify-center text-pink-500">
+                             <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="10" height="16" x="7" y="4" rx="2"></rect><path d="M11 5h2"></path><path d="M12 17v.01"></path></svg>
+                        </div>
+                        <div class="flex flex-col w-full">
+                            <div class="flex justify-between items-center mb-0.5">
+                                <span class="text-[8px] text-white/90 leading-none">Shorts</span>
+                                <span class="text-[7px] text-green-500">DONE</span>
+                            </div>
+                            <div class="w-full h-0.5 bg-white/10 rounded-full overflow-hidden"><div class="w-full h-full bg-pink-500"></div></div>
+                        </div>
+                    </div>
+                     <!-- Item 2 -->
+                    <div class="flex items-center gap-2 bg-[#111] border border-white/10 p-1.5 rounded-lg shadow-sm opacity-90">
+                        <div class="w-4 h-4 md:w-5 md:h-5 rounded bg-sky-500/10 flex items-center justify-center text-sky-500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                        </div>
+                        <div class="flex flex-col w-full">
+                             <div class="flex justify-between items-center mb-0.5">
+                                <span class="text-[8px] text-white/90 leading-none">Thread</span>
+                                <span class="text-[7px] text-yellow-500">82%</span>
+                            </div>
+                            <div class="w-full h-0.5 bg-white/10 rounded-full overflow-hidden"><div class="w-[82%] h-full bg-sky-500 animate-pulse"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Terminal Log Footer -->
+            <div class="mt-4 pt-3 border-t border-white/5 text-[9px] text-white/30 flex flex-col gap-1">
+                <div class="flex gap-2">
+                    <span class="text-green-500">✓</span>
+                    <span class="">Analyzed audio waveforms (12 key moments)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                            
+                            <!-- Card Text -->
+                            <div class="card-element relative z-10">
+                                <h3 class="text-2xl md:text-3xl font-medium text-white font-display mb-2 tracking-tight">AI Repurposing Engine</h3>
+                                <p class="text-yellow-500 max-w-sm text-sm md:text-base">A modular AI system that creates short-form videos, carousels, posts, and captions automatically.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Service Card 3: DISTRIBUTION -->
+                    <div class="card-3d-wrap group cursor-pointer hover-trigger w-full h-auto min-h-[400px] md:h-[450px]">
+                        <div class="card-3d-inner flex flex-col overflow-hidden default w-full h-full border-white/10 border rounded-2xl p-4 md:p-10 relative shadow-2xl justify-between" style="transform: rotateX(0deg) rotateY(0deg);">
+                            
+                            <!-- Background Grid -->
+                            <div class="mt-10 mb-10 absolute top-0 right-0 bottom-0 left-0" style="background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 30px 30px">
+  <!-- Floating "Distribution" Status Card (Hidden on Mobile) -->
+  <div class="hidden md:block absolute bottom-10 right-8 w-48 bg-[#0A0A0A]/90 backdrop-blur-md border border-white/10 rounded-xl p-3 shadow-2xl transform rotate-3 transition-transform duration-500 group-hover:rotate-0 group-hover:-translate-y-2 pointer-events-none" style="visibility: hidden;">
+    <div class="flex items-center justify-between mb-2">
+      <span class="text-[9px] font-medium tracking-widest text-slate-400 uppercase font-mono">Distribution</span>
+      <div class="h-1.5 w-1.5 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.6)] animate-pulse"></div>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-white/5 border border-white/5 text-white">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-share-2"><circle cx="18" cy="5" r="3"></circle><circle cx="6" cy="12" r="3"></circle><circle cx="18" cy="19" r="3"></circle><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"></line><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"></line></svg>
+      </div>
+      <div class="flex flex-col">
+        <span class="text-xs font-medium text-white">Auto-Publish</span>
+        <span class="text-[9px] font-medium text-slate-500">Queue: Active</span>
+      </div>
+    </div>
+    <!-- Progress Indicator -->
+    <div class="mt-3 flex gap-1">
+        <div class="h-0.5 w-full bg-yellow-500/80 rounded-full"></div>
+        <div class="h-0.5 w-full bg-yellow-500/80 rounded-full"></div>
+        <div class="h-0.5 w-full bg-white/10 rounded-full"></div>
+    </div>
+  </div>
+</div>
+                            
+                            <!-- THE DETAILED VISUAL: Network Distribution -->
+                            <div class="card-element relative w-full h-48 md:h-64 border bg-[#050505]/80 backdrop-blur-sm rounded-xl overflow-hidden mb-6 flex items-center justify-center border-white/10">
+                                
+                                <!-- World/Network Map Representation -->
+                                <div class="relative w-full h-full flex items-center justify-center scale-75 md:scale-100">
+                                    <!-- Radar Circles -->
+                                    <div class="absolute border rounded-full border-white/5 w-64 h-64 animate-[spin_20s_linear_infinite]"></div>
+                                    <div class="absolute border rounded-full border-white/10 w-48 h-48 animate-[spin_15s_linear_infinite_reverse]"></div>
+                                    <div class="absolute border rounded-full border-white/5 w-32 h-32 animate-pulse"></div>
+                                    
+                                    <!-- Central Hub -->
+                                    <div class="relative z-10 w-12 h-12 bg-white/10 rounded-full flex items-center justify-center border border-white/20 shadow-[0_0_30px_rgba(255,255,255,0.2)]">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-globe text-white"><circle cx="12" cy="12" r="10"></circle><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"></path><path d="M2 12h20"></path></svg>
+                                    </div>
+
+                                    <!-- Satellite Nodes (Platform Icons) -->
+                                    <!-- Node 1: Twitter/X -->
+                                    <div class="absolute top-1/4 right-1/4 transform translate-x-4 -translate-y-4">
+                                        <div class="w-8 h-8 bg-[#1DA1F2]/10 border border-[#1DA1F2]/40 rounded-lg flex items-center justify-center backdrop-blur-md animate-bounce" style="animation-duration: 3s">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#1DA1F2]"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Node 2: LinkedIn -->
+                                    <div class="absolute bottom-1/3 left-1/4 transform -translate-x-4 translate-y-2">
+                                        <div class="w-8 h-8 bg-[#0077B5]/10 border border-[#0077B5]/40 rounded-lg flex items-center justify-center backdrop-blur-md animate-bounce" style="animation-duration: 4s; animation-delay: 1s;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#0077B5]"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect width="4" height="12" x="2" y="9"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+                                        </div>
+                                    </div>
+
+                                    <!-- Node 3: Youtube -->
+                                    <div class="absolute bottom-1/4 right-1/3 transform translate-x-2 translate-y-4">
+                                        <div class="w-8 h-8 bg-[#FF0000]/10 border border-[#FF0000]/40 rounded-lg flex items-center justify-center backdrop-blur-md animate-bounce" style="animation-duration: 3.5s; animation-delay: 0.5s;">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-[#FF0000]"><path d="M2.5 17a24.12 24.12 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.56 49.56 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.12 24.12 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.55 49.55 0 0 1-16.2 0A2 2 0 0 1 2.5 17" class=""></path><path d="m10 15 5-3-5-3z"></path></svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <!-- Floating Stat Badge (Hidden on very small screens) -->
+                                <div class="hidden xs:flex absolute bottom-4 left-4 gap-3 items-center bg-black/80 backdrop-blur-md px-3 py-2 rounded-lg border border-white/10 group-hover:scale-105 transition-transform duration-300">
+                                    <div class="flex flex-col">
+                                        <span class="text-[9px] uppercase tracking-widest text-slate-400 font-mono">Total Reach</span>
+                                        <span class="text-xs font-mono font-bold text-yellow-500">12.4M+ Viewers</span>
+                                    </div>
+                                    <div class="h-2 w-12 bg-white/10 rounded-full overflow-hidden">
+                                        <div class="h-full bg-green-500 w-[80%] animate-pulse"></div>
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                            <!-- Card Text -->
+                            <div class="card-element relative z-10">
+                                <h3 class="text-2xl md:text-3xl font-medium text-white font-display mb-2 tracking-tight">Distribution &amp; Publishing</h3>
+                                <p class="text-yellow-500 max-w-sm text-sm md:text-base">Automated scheduling and multi-platform publishing that ensures your content reaches the right audience at peak times.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 5: FLOATING PARALLAX TESTIMONIALS -->
+    <section class="md:py-32 md:px-6 overflow-hidden bg-black border-white/10 border-t pt-20 pr-4 pb-20 pl-4 relative" id="testimonials">
+        <div class="z-10 max-w-[1400px] mr-auto ml-auto relative">
+    <div class="text-center mb-12 md:mb-20">
+        <h2 class="text-3xl md:text-6xl font-medium text-white font-display mb-4 md:mb-6 tracking-tight">Client Stories</h2>
+        <p class="uppercase text-xs text-yellow-500 tracking-widest">See how Creators scale with us</p>
+    </div>
+
+    <!-- Video Testimonial Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+
+        <!-- Testimonial 1 -->
+        <div class="group relative rounded-2xl overflow-hidden aspect-[9/16] border border-white/10 bg-[#0A0A0A] transition-transform duration-500 hover:-translate-y-2">
+            <!-- Video Container -->
+            <div class="absolute inset-0 w-full h-full bg-gray-900">
+                <video src="https://cdn.coverr.co/videos/coverr-people-working-in-office-4566/1080p.mp4" poster="https://images.unsplash.com/photo-1640906152676-dace6710d24b?w=800&amp;q=80" class="group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out opacity-60 w-full h-full object-cover" muted="" loop="" playsinline="" onmouseover="this.play()" onmouseout="this.pause()"></video>
+            </div>
+
+            <!-- Overlay & Content -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-300 pointer-events-none">
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 z-20">
+                
+
+                <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&amp;q=80" class="group-hover:grayscale-0 transition-all duration-500 w-full h-full object-cover grayscale">
+                    </div>
+                    <div class="">
+                        <div class="text-sm font-medium text-white">Brad Gains</div>
+                        <div class="uppercase text-xs text-yellow-500 tracking-wider">CREATOR</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial 2 -->
+        <div class="group relative rounded-2xl overflow-hidden aspect-[9/16] border border-white/10 bg-[#0A0A0A] transition-transform duration-500 hover:-translate-y-2 md:-mt-12">
+            <!-- Video Container -->
+            <div class="absolute inset-0 w-full h-full bg-gray-900">
+                <video src="https://pub-21eb86ee9a1c403b9a6b04eaab4c3966.r2.dev/Chris%20Testimonial%20.mp4" class="group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out opacity-60 w-full h-full object-cover" muted="" loop="" playsinline="" onmouseover="this.play()" onmouseout="this.pause()"></video>
+            </div>
+            
+            <!-- Mute/Unmute Button -->
+            <button class="hover:bg-black/60 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-0 hover:scale-110 cursor-pointer text-white bg-black/40 opacity-0 z-30 border-white/10 border rounded-full pt-2.5 pr-2.5 pb-2.5 pl-2.5 absolute top-4 right-4 backdrop-blur-md translate-y-2" onclick="event.stopPropagation(); const v = this.closest('.group').querySelector('video'); v.muted = !v.muted; this.querySelector('.mute-icon').classList.toggle('hidden'); this.querySelector('.unmute-icon').classList.toggle('hidden');" aria-label="Toggle Mute">
+    <!-- Mute Icon (Visible when muted/default) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mute-icon lucide lucide-volume-x w-[16px] h-[16px]" data-icon-replaced="true" style="color: rgb(255, 255, 255); width: 16px; height: 16px">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <line x1="23" x2="17" y1="9" y2="15"></line>
+        <line x1="17" x2="23" y1="9" y2="15"></line>
+    </svg>
+    <!-- Unmute Icon (Hidden by default, shows when sound is ON) -->
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="unmute-icon hidden lucide lucide-volume-2">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+        <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+    </svg>
+</button>
+
+            <!-- Overlay & Content -->
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-300 pointer-events-none">
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 z-20">
+                
+
+                <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ca4f769-07d3-4430-bcc9-32949b6c22a5_320w.jpg" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div class="">
+                        <div class="text-sm font-medium text-white">Chris Cordero</div>
+                        <div class="text-xs uppercase tracking-wider text-yellow-500">Creator</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Testimonial 3 -->
+        <div class="group relative rounded-2xl overflow-hidden aspect-[9/16] border border-white/10 bg-[#0A0A0A] transition-transform duration-500 hover:-translate-y-2">
+            <div class="absolute inset-0 w-full h-full bg-gray-900">
+                <video src="https://cdn.coverr.co/videos/coverr-woman-working-on-her-laptop-328/1080p.mp4" poster="https://images.unsplash.com/photo-1724525647065-f948fc102e68?w=800&amp;q=80" class="group-hover:opacity-100 group-hover:scale-105 transition-all duration-700 ease-out opacity-60 w-full h-full object-cover" muted="" loop="" playsinline="" onmouseover="this.play()" onmouseout="this.pause()"></video>
+            </div>
+
+            <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 transition-opacity duration-300 pointer-events-none">
+            </div>
+
+            <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 z-20">
+                
+
+                <div class="flex items-center gap-4 border-t border-white/10 pt-4">
+                    <div class="w-10 h-10 rounded-full overflow-hidden border border-white/20">
+                        <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&amp;q=80" class="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500">
+                    </div>
+                    <div class="">
+                        <div class="text-sm font-medium text-white">David K.</div>
+                        <div class="text-xs uppercase tracking-wider text-yellow-500">Founder, Orbit</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+    </section>
+
+    <!-- NEW FOOTER SECTION -->
+    <footer class="relative overflow-hidden bg-[#050509] border-t pt-16 md:pt-24 pb-8 md:pb-12 border-white/5">
+        <!-- 1. Gradient Top Border -->
+        <div class="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent to-transparent opacity-50 via-white/20"></div>
+
+        <!-- 2. Gray Glow (Top Middle) -->
+        <div class="absolute -top-[150px] left-1/2 -translate-x-1/2 w-[300px] md:w-[600px] h-[300px] blur-[80px] rounded-full pointer-events-none mix-blend-screen bg-white/5"></div>
+
+        <div class="max-w-[1400px] mx-auto px-4 md:px-6 relative z-10">
+            <!-- Content Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-4 gap-12 mb-16 md:mb-20">
+                <!-- Column 1: Brand -->
+                <div class="lg:col-span-1 space-y-6">
+                    <a href="#" class="flex items-center gap-3">
+                        <div class="flex overflow-hidden text-black bg-white w-8 h-8 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/700319bb-4971-4d91-b1bc-1343b4dd3841_320w.png)] bg-contain rounded-sm items-center justify-center">
+                            
+                        </div>
+                        <span class="text-lg font-bold text-white tracking-tight font-display">Roys<span class="font-light text-yellow-500">Company</span></span>
+                    </a>
+                    <p class="text-sm leading-relaxed max-w-xs text-yellow-400" style="">
+                        Engineering the digital nervous system for global brands. London, New York, Tokyo.
+                    </p>
+                </div>
+
+                <!-- Column 2: Links -->
+                <div class="lg:col-span-2 grid grid-cols-2 md:grid-cols-3 gap-8">
+                    <div class="">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white">Explore</h4>
+                        <ul class="space-y-4 text-sm text-yellow-500" style="">
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Work</a></li>
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Services</a></li>
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Process</a></li>
+                            
+                        </ul>
+                    </div>
+                    <div class="">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white">Company</h4>
+                        <ul class="space-y-4 text-sm text-yellow-500" style="">
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Careers</a></li>
+                            <li class=""><a href="#" class="transition-colors hover:text-white">News</a></li>
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="">
+                        <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white">Socials</h4>
+                        <ul class="space-y-4 text-sm text-yellow-500" style="">
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Twitter / X</a></li>
+                            <li class=""><a href="https://www.linkedin.com/company/107967592/admin/dashboard/" class="transition-colors hover:text-white">LinkedIn</a></li>
+                            <li class=""><a href="#" class="transition-colors hover:text-white">Instagram</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Column 3: Newsletter -->
+                <div class="lg:col-span-1">
+                    <h4 class="text-xs font-bold uppercase tracking-widest mb-6 text-white">Stay Updated</h4>
+                    <div class="relative">
+                        <input type="email" placeholder="Email address" class="focus:outline-none focus:border-white/30 transition-colors text-sm text-white bg-white/5 w-full border-white/10 border rounded-lg pt-3 pr-4 pb-3 pl-4">
+                        <button class="absolute right-2 top-2 p-1 rounded transition-colors bg-white text-black hover:bg-yellow-200" style="">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-[16px] h-[16px]" data-icon-replaced="true" style="color: rgb(0, 0, 0); width: 16px; height: 16px"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="pt-8 border-t flex flex-col md:flex-row justify-between items-center gap-4 border-white/10">
+                <div class="text-[10px] uppercase text-yellow-600 tracking-widest text-center md:text-left">© 2025 RoysCompany Agency. All Rights Reserved.</div>
+                <div class="flex gap-6 text-[10px] uppercase tracking-widest text-yellow-600" style="">
+                    <a href="#" class="transition-colors hover:text-yellow-400" style="">Privacy Policy</a>
+                    <a href="#" class="transition-colors hover:text-yellow-400" style="">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- SCRIPTS -->
+    <script class="">
+        // 1. LIGHTER SMOOTH SCROLL CONFIG
+        const lenis = new Lenis({
+            duration: 0.8,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 0.8,
+            smoothTouch: false,
+            touchMultiplier: 2,
+        })
+
+        function raf(time) {
+            lenis.raf(time)
+            requestAnimationFrame(raf)
+        }
+        requestAnimationFrame(raf)
+
+        // Connect GSAP to Lenis
+        gsap.registerPlugin(ScrollTrigger);
+        
+        // 2. Custom Cursor Logic (Only on Desktop)
+        if (window.matchMedia("(pointer: fine)").matches) {
+            const cursor = document.getElementById('cursor');
+            const hoverTriggers = document.querySelectorAll('.hover-trigger');
+            const viewTriggers = document.querySelectorAll('.view-trigger');
+
+            document.addEventListener('mousemove', (e) => {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            hoverTriggers.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('hovered'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('hovered'));
+            });
+
+            viewTriggers.forEach(el => {
+                el.addEventListener('mouseenter', () => cursor.classList.add('view-cursor'));
+                el.addEventListener('mouseleave', () => cursor.classList.remove('view-cursor'));
+            });
+        }
+
+        // 3. CANVAS ANIMATION
+        const canvas = document.getElementById('hero-canvas');
+        const ctx = canvas.getContext('2d');
+        let width, height;
+        let streams = [];
+        const gap = 40; 
+
+        class Stream {
+            constructor(x) {
+                this.x = x;
+                this.y = Math.random() * height;
+                this.speed = Math.random() * 2 + 0.5;
+                this.length = Math.random() * 100 + 50;
+                this.opacity = Math.random() * 0.3 + 0.05;
+            }
+            update(mouseY) {
+                this.y -= this.speed;
+                if (this.y + this.length < 0) {
+                    this.y = height + Math.random() * 100;
+                    this.speed = Math.random() * 2 + 0.5;
+                }
+            }
+            draw(ctx) {
+                ctx.strokeStyle = `rgba(255, 255, 255, 0.03)`;
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(this.x, 0);
+                ctx.lineTo(this.x, height);
+                ctx.stroke();
+
+                const gradient = ctx.createLinearGradient(this.x, this.y, this.x, this.y + this.length);
+                gradient.addColorStop(0, `rgba(255, 255, 255, 0)`);
+                gradient.addColorStop(0.5, `rgba(255, 255, 255, ${this.opacity})`);
+                gradient.addColorStop(1, `rgba(255, 255, 255, 0)`);
+
+                ctx.fillStyle = gradient;
+                ctx.fillRect(this.x - 1, this.y, 3, this.length);
+            }
+        }
+
+        function initCanvas() {
+            width = window.innerWidth;
+            height = window.innerHeight;
+            canvas.width = width;
+            canvas.height = height;
+            streams = [];
+            for (let x = gap / 2; x < width; x += gap) {
+                streams.push(new Stream(x));
+            }
+        }
+
+        function animateCanvas() {
+            ctx.clearRect(0, 0, width, height);
+            streams.forEach(s => {
+                s.update();
+                s.draw(ctx);
+            });
+            requestAnimationFrame(animateCanvas);
+        }
+
+        window.addEventListener('resize', initCanvas);
+        initCanvas();
+        animateCanvas();
+
+        // 4. Hero Text Mask Animation
+        const headings = document.querySelectorAll('.mask-text span');
+        headings.forEach((h, i) => {
+            gsap.to(h, {
+                y: 0,
+                duration: 1.2,
+                ease: "power3.out",
+                delay: i * 0.1
+            });
+        });
+
+        gsap.to(".animate-fade-in", { opacity: 1, duration: 1, delay: 0.5 });
+        gsap.to(".animate-fade-up", { opacity: 1, y: 0, duration: 1, delay: 0.8, ease: "power2.out" });
+
+       
+
+        // 7. Testimonial Parallax (Only on desktop to save performance on mobile)
+        if (window.innerWidth > 768) {
+            const testimonialSection = document.querySelector('#testimonials');
+            const cols = document.querySelectorAll('.testimonial-col');
+
+            cols.forEach((col) => {
+                const speed = col.dataset.speed;
+                gsap.to(col, {
+                    y: () => (speed * 100), 
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: testimonialSection,
+                        start: "top bottom",
+                        end: "bottom top",
+                        scrub: true
+                    }
+                });
+            });
+        }
+
+        // 8. 3D Card Tilt (Disabled on mobile for better scrolling)
+        if (window.matchMedia("(hover: hover)").matches) {
+            const cards3d = document.querySelectorAll('.card-3d-wrap');
+            cards3d.forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const rotateX = ((y - centerY) / centerY) * -10;
+                    const rotateY = ((x - centerX) / centerX) * 10;
+
+                    const inner = card.querySelector('.card-3d-inner');
+                    inner.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    const inner = card.querySelector('.card-3d-inner');
+                    inner.style.transform = `rotateX(0deg) rotateY(0deg)`;
+                });
+            });
+        }
+
+        // 9. NEW: Video Showcase Animation
+        // Staggers the video cards in as you scroll down
+        gsap.from(".video-card", {
+            scrollTrigger: {
+                trigger: "#work",
+                start: "top 80%", 
+                toggleActions: "play none none reverse"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out"
+        });
+
+    </script>
+
+</body></html>

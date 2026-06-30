@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
+<title>SERENE · A private island</title>
+<meta name="description" content="SERENE, a private island. Twelve overwater villas, one island, nowhere else. A scroll-driven escape, reached only by seaplane."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<style>
+:root{
+--ivory:#f5f0e6; --sand:#ece2d0; --sand2:#e4d8c2; --ink:#143230; --ink2:#0c2422; --muted:#6f807c;
+--aqua:#2f8f86; --aqua2:#3fae9f; --gold:#c79a52; --line:rgba(20,50,48,.14); --lineL:rgba(245,240,230,.18);
+--disp:"Playfair Display",Georgia,serif; --fn:"Inter",system-ui,sans-serif;
+--pad:clamp(20px,5vw,84px); --max:1240px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--ink)}
+body{font-family:var(--fn);font-weight:300;color:var(--ink);background:var(--ivory);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+::selection{background:var(--aqua);color:#fff}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 var(--pad)}
+.disp{font-family:var(--disp);font-weight:400;line-height:1.05}
+.eyebrow{font-size:.64rem;letter-spacing:.4em;text-transform:uppercase;color:var(--aqua)}
+.muted{color:var(--muted)}
+.rv{opacity:0;transform:translateY(26px)}
+.wipe{opacity:0}
+html.lenis,html.lenis body{height:auto}
+.lenis.lenis-smooth{scroll-behavior:auto!important}
+.lenis.lenis-stopped{overflow:hidden}
+.loader{position:fixed;inset:0;z-index:120;background:var(--ink);display:grid;place-items:center;transition:opacity .8s}
+.loader.done{opacity:0;pointer-events:none}
+.loader .mk{font-family:var(--disp);font-size:1.7rem;letter-spacing:.5em;color:var(--ivory);padding-left:.5em;position:relative}
+.loader .mk::after{content:"";position:absolute;left:0;right:14%;bottom:-14px;height:1px;background:var(--lineL);transform:scaleX(var(--lp,0));transform-origin:left;transition:transform .3s}
+nav{position:fixed;top:0;left:0;right:0;z-index:80;display:flex;align-items:center;justify-content:space-between;padding:1.5rem var(--pad);color:var(--ivory);transition:color .4s ease}
+nav .wm{font-family:var(--disp);font-weight:500;font-size:1.3rem;letter-spacing:.34em;padding-left:.3em;text-shadow:0 1px 3px rgba(0,0,0,.9),0 0 8px rgba(0,0,0,.75),0 0 22px rgba(0,0,0,.5)}
+nav .mn{display:flex;gap:1.8rem;font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;font-weight:600}
+nav .mn a{position:relative;text-shadow:0 1px 3px rgba(0,0,0,.92),0 0 7px rgba(0,0,0,.8),0 0 16px rgba(0,0,0,.55)}
+nav .mn a::after{content:"";position:absolute;left:0;right:0;bottom:-5px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .4s cubic-bezier(.2,.7,.2,1)}
+nav .mn a:hover::after{transform:scaleX(1);transform-origin:left}
+nav.on-light{color:var(--ink)}
+nav.on-light .wm,nav.on-light .mn a{text-shadow:none}
+@media(max-width:680px){ nav .mn{display:none} }
+/* cold open */
+.open{position:relative;height:100svh;min-height:600px;overflow:hidden;display:grid;place-items:center;text-align:center;color:#fff}
+.open .bg{position:absolute;inset:0;z-index:0}
+.open .bg img{width:100%;height:108%;object-fit:cover;object-position:center 45%}
+.open .caus{position:absolute;inset:0;z-index:1;mix-blend-mode:screen;opacity:.5;pointer-events:none}
+.open .bg::after{content:"";position:absolute;inset:0;z-index:2;background:radial-gradient(120% 100% at 50% 38%,transparent 38%,rgba(8,28,26,.5)),linear-gradient(180deg,rgba(8,28,26,.5),transparent 32%,rgba(8,28,26,.62))}
+.open .ct{position:relative;z-index:3;padding:0 var(--pad)}
+.open .ct .eyebrow{display:inline-flex;align-items:center;justify-content:center;gap:.95rem;margin-bottom:1.7rem;color:#fff;opacity:1;font-weight:500}
+.open .ct .eyebrow::before,.open .ct .eyebrow::after{content:"";width:clamp(26px,5vw,54px);height:1px;background:var(--gold);opacity:.95}
+.open h1{font-family:var(--disp);font-weight:400;font-size:clamp(3rem,10vw,8.5rem);line-height:.98}
+.open h1 .ln{display:block;overflow:hidden}
+.open h1 .ln > span{display:block}
+.open h1 em{font-style:italic}
+.open .sub{margin-top:1.5rem;font-size:clamp(.95rem,1.5vw,1.2rem);letter-spacing:.03em;opacity:.95}
+.sec{padding:clamp(6rem,13vh,11rem) 0}
+.center{text-align:center}
+.intro{text-align:center}
+.intro h2{font-family:var(--disp);font-weight:400;font-size:clamp(2rem,5vw,4rem);line-height:1.12;max-width:20ch;margin:1.2rem auto 0}
+.intro h2 em{font-style:italic;color:var(--aqua)}
+.intro p{color:var(--muted);max-width:54ch;margin:1.6rem auto 0}
+.rule{width:1px;height:64px;margin:2.6rem auto 0;background:linear-gradient(var(--aqua),transparent);transform-origin:top;transform:scaleY(0)}
+/* full-bleed cinematic moment (arrival/water/reserve) */
+.bleed{position:relative;height:100svh;min-height:560px;overflow:hidden;color:#fff}
+.bleed > img{position:absolute;inset:0;width:100%;height:120%;top:-10%;object-fit:cover;will-change:transform}
+.bleed .caus{position:absolute;inset:0;mix-blend-mode:screen;opacity:.45;pointer-events:none}
+.bleed::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,28,26,.4),transparent 34%,rgba(8,28,26,.55))}
+.bleed .cap{position:absolute;left:var(--pad);bottom:13vh;z-index:3;max-width:min(90vw,560px);text-shadow:0 1px 24px rgba(8,28,26,.45)}
+.bleed.right .cap{left:auto;right:var(--pad);text-align:right}
+.bleed .cap .k{font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:#fff;opacity:.88;display:block;margin-bottom:.9rem}
+.bleed .cap .t{font-family:var(--disp);font-weight:400;font-size:clamp(2.2rem,5.6vw,4.2rem);line-height:1.02}
+.bleed .cap p{margin-top:1rem;max-width:38ch;opacity:.92;font-size:.98rem}
+/* split feature */
+.feat{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(2rem,5vw,4.5rem);align-items:center}
+.feat.rev{grid-template-columns:.85fr 1.15fr}
+.feat.rev .media{order:2}
+.feat .media{overflow:hidden;border-radius:2px}
+.feat .media img{width:100%;height:clamp(420px,74vh,760px);object-fit:cover;will-change:transform}
+.feat .copy .eyebrow{display:block;margin-bottom:1rem}
+.feat .copy h2{font-family:var(--disp);font-weight:400;font-size:clamp(2rem,4.4vw,3.4rem);line-height:1.04;margin-bottom:1.1rem}
+.feat .copy p{color:var(--muted);max-width:42ch;margin-bottom:1rem}
+.feat .copy .det{margin-top:1.6rem;border-top:1px solid var(--line);padding-top:1.2rem;display:flex;flex-direction:column;gap:.65rem}
+.feat .copy .det div{display:flex;justify-content:space-between;gap:1rem;font-size:.9rem}
+.feat .copy .det .l{color:var(--muted)}
+.feat .copy .det .v{font-family:var(--disp);font-size:1.1rem}
+@media(max-width:820px){ .feat,.feat.rev{grid-template-columns:1fr;gap:2rem} .feat.rev .media{order:0} .feat .media img{height:56vh} }
+/* villa types */
+.vtypes{background:var(--sand)}
+.vtypes .head{text-align:center;margin-bottom:2.8rem}
+.vtypes .head h2{font-family:var(--disp);font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);margin-top:1rem}
+.vt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2vw,1.6rem)}
+.vt{position:relative;overflow:hidden;border-radius:2px}
+.vt img{width:100%;height:clamp(360px,52vh,520px);object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.vt:hover img{transform:scale(1.06)}
+.vt::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(8,28,26,.66))}
+.vt .lab{position:absolute;left:1.4rem;right:1.4rem;bottom:1.3rem;z-index:2;color:#fff}
+.vt .lab .k{font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;opacity:.85;display:block;margin-bottom:.35rem}
+.vt .lab .t{display:block;font-family:var(--disp);font-size:1.5rem;line-height:1.12}
+.vt .lab .d{display:block;font-size:.82rem;opacity:.82;margin-top:.55rem;max-width:30ch;line-height:1.5}
+@media(max-width:820px){ .vt-grid{grid-template-columns:1fr} .vt img{height:54vh} }
+/* cinematic 'one day' sequence */
+.film{background:var(--ink);color:#fff}
+.film-stage{position:relative;height:100svh;min-height:560px;overflow:hidden}
+.film .frame{position:absolute;inset:0;opacity:0;will-change:opacity,transform}
+.film .frame:first-child{opacity:1}
+.film .frame img{width:100%;height:100%;object-fit:cover}
+.film-grad{position:absolute;inset:0;z-index:2;background:linear-gradient(180deg,rgba(8,28,26,.34),transparent 28%,rgba(8,28,26,.72))}
+.film-ui{position:absolute;left:var(--pad);right:var(--pad);bottom:9vh;z-index:3;display:flex;flex-direction:column;gap:1.3rem}
+.film-ey{font-size:.62rem;letter-spacing:.4em;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.film-clock{display:flex;align-items:baseline;gap:1.1rem;flex-wrap:wrap}
+.film-clock .time{font-family:var(--fn);font-weight:400;font-variant-numeric:tabular-nums;font-size:.8rem;letter-spacing:.3em;color:var(--gold)}
+.film-clock .label{font-family:var(--disp);font-weight:400;font-size:clamp(2rem,5.4vw,4rem);line-height:1}
+.film-track{position:relative;height:1px;background:rgba(255,255,255,.22)}
+.film-track i{position:absolute;left:0;top:0;height:100%;width:0;background:var(--gold)}
+.film-dots{display:flex;gap:.6rem}
+.film-dots b{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.3);transition:background .3s,transform .3s}
+.film-dots b.on{background:var(--gold);transform:scale(1.35)}
+@media (prefers-reduced-motion:reduce){
+.film-stage{height:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.film .frame{position:relative;opacity:1!important;transform:none!important}
+.film .frame img{height:34vh}
+.film-grad,.film-ui{display:none}
+}
+@media(max-width:680px){
+.film-stage{display:grid;grid-template-columns:1fr 1fr;gap:4px;height:auto}
+.film .frame{position:relative;opacity:1!important;transform:none!important}
+.film .frame img{height:30vh}
+.film-grad,.film-ui{display:none}
+}
+/* experiences */
+.exp{background:var(--ivory)}
+.exp .head{text-align:center;margin-bottom:2.8rem}
+.exp .head h2{font-family:var(--disp);font-weight:400;font-size:clamp(2rem,4.6vw,3.4rem);margin-top:1rem}
+.exp .grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1rem,2.5vw,1.8rem)}
+.exp figure{overflow:hidden;position:relative;border-radius:2px}
+.exp img{width:100%;height:clamp(280px,46vh,440px);object-fit:cover;transition:transform 1s cubic-bezier(.2,.7,.2,1)}
+.exp figure:hover img{transform:scale(1.06)}
+.exp figure::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 50%,rgba(8,28,26,.62))}
+.exp figcaption{position:absolute;left:1.5rem;bottom:1.4rem;color:#fff;z-index:2}
+.exp figcaption .k{font-size:.6rem;letter-spacing:.3em;text-transform:uppercase;opacity:.9;display:block;margin-bottom:.3rem}
+.exp figcaption .t{display:block;font-family:var(--disp);font-size:1.5rem;line-height:1.12}
+.exp figcaption .d{display:block;font-size:.82rem;opacity:.85;margin-top:.55rem;max-width:32ch;line-height:1.5}
+@media(max-width:680px){ .exp .grid{grid-template-columns:1fr} }
+/* numbers */
+.house{background:var(--sand)}
+.house .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2rem;text-align:center}
+.house .cell{padding:.5rem 0}
+.house .v{font-family:var(--disp);font-weight:400;font-size:clamp(2.4rem,5.5vw,4.2rem);color:var(--aqua);line-height:1}
+.house .l{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:.7rem}
+@media(max-width:680px){ .house .grid{grid-template-columns:1fr 1fr;gap:2.6rem} }
+/* quote */
+.quote{background:var(--ink);color:var(--ivory);text-align:center}
+.quote .wrap{max-width:min(92vw,900px)}
+.quote .mk{color:var(--gold);font-family:var(--disp);font-size:3rem;line-height:0;display:block;margin-bottom:1.4rem;opacity:.8}
+.quote blockquote{font-family:var(--disp);font-weight:400;font-style:italic;font-size:clamp(1.5rem,3vw,2.4rem);line-height:1.3;text-wrap:balance}
+.quote blockquote .nb{white-space:nowrap}
+.quote .by{margin-top:1.8rem;font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(245,240,230,.6)}
+/* reserve */
+.reserve{position:relative;overflow:hidden;color:#fff;text-align:center}
+.reserve > img{position:absolute;inset:0;width:100%;height:120%;top:-10%;object-fit:cover;z-index:0;will-change:transform}
+.reserve::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,28,26,.5),rgba(8,28,26,.62));z-index:1}
+.reserve .ct{position:relative;z-index:2;padding:clamp(6rem,16vh,11rem) var(--pad);max-width:760px;margin:0 auto}
+.reserve h2{font-family:var(--disp);font-weight:400;font-size:clamp(2.6rem,7vw,5.5rem);line-height:1;margin:1rem 0}
+.reserve h2 em{font-style:italic}
+.reserve p{max-width:44ch;margin:0 auto 2.2rem;opacity:.92}
+.resv{display:grid;grid-template-columns:1fr 1fr;gap:1rem;max-width:520px;margin:0 auto 1.6rem;text-align:left}
+.resv .f{display:flex;flex-direction:column;gap:.4rem}
+.resv .f.full{grid-column:1 / -1}
+.resv label{font-size:.56rem;letter-spacing:.24em;text-transform:uppercase;opacity:.8}
+.resv input{background:transparent;border:0;border-bottom:1px solid rgba(255,255,255,.4);color:#fff;padding:.6rem 0;font-family:var(--fn);font-size:.95rem;outline:none;transition:border-color .3s}
+.resv input::placeholder{color:rgba(255,255,255,.5)}
+.resv input:focus{border-color:#fff}
+.btn{display:inline-flex;align-items:center;gap:.7rem;font-size:.66rem;letter-spacing:.28em;text-transform:uppercase;border:1px solid #fff;color:#fff;padding:1.1rem 2.4rem;transition:.35s;cursor:pointer;background:transparent}
+.btn:hover{background:#fff;color:var(--ink)}
+.btn .ar{transition:transform .35s}
+.btn:hover .ar{transform:translateX(4px)}
+@media(max-width:520px){ .resv{grid-template-columns:1fr} }
+/* footer */
+.foot{background:var(--ink);color:rgba(245,240,230,.62)}
+.foot .top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1.4fr;gap:2rem;padding:clamp(3.5rem,8vh,5.5rem) var(--pad) 2.4rem}
+.foot .brand .wm{font-family:var(--disp);letter-spacing:.36em;color:var(--ivory);font-size:1.3rem;display:block;margin-bottom:1rem}
+.foot .brand p{max-width:30ch;font-size:.86rem}
+.foot h4{font-size:.58rem;letter-spacing:.26em;text-transform:uppercase;color:var(--ivory);margin-bottom:1rem;opacity:.9}
+.foot ul{list-style:none;display:flex;flex-direction:column;gap:.6rem;font-size:.86rem}
+.foot ul a:hover{color:var(--ivory)}
+.foot .news input{background:transparent;border:0;border-bottom:1px solid var(--lineL);color:var(--ivory);padding:.5rem 0;width:100%;font-family:var(--fn);outline:none;font-size:.9rem}
+.foot .news button{margin-top:.9rem;background:transparent;border:1px solid var(--lineL);color:var(--ivory);padding:.7rem 1.4rem;font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;cursor:pointer;transition:.3s}
+.foot .news button:hover{background:var(--ivory);color:var(--ink);border-color:var(--ivory)}
+.foot .bot{border-top:1px solid var(--lineL);padding:1.5rem var(--pad);display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;font-size:.6rem;letter-spacing:.18em;text-transform:uppercase}
+@media(max-width:820px){ .foot .top{grid-template-columns:1fr 1fr} }
+@media(max-width:520px){ .foot .top{grid-template-columns:1fr} }
+@media (prefers-reduced-motion:reduce){
+.rv,.wipe{opacity:1!important;transform:none!important}
+.rule{transform:scaleY(1)!important}
+.bleed > img,.reserve > img,.feat .media img{transform:none!important}
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+<body>
+<div class="loader" id="loader"><div class="mk">SERENE</div></div>
+
+<nav>
+  <div class="wm">SERENE</div>
+  <div class="mn"><a href="#villa">The Villas</a><a href="#exp">Experiences</a><a href="#gallery">Gallery</a><a href="#reserve">Reserve</a></div>
+</nav>
+
+<!-- COLD OPEN -->
+<header class="open">
+  <div class="bg"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/aerial-hero.jpg" alt="SERENE private island from the air" decoding="async"></div>
+  <canvas class="caus" id="causHero"></canvas>
+  <div class="ct">
+    <span class="eyebrow">A private island</span>
+    <h1><span class="ln"><span>Nowhere,</span></span><span class="ln"><span><em>perfected.</em></span></span></h1>
+    <div class="sub">Twelve villas. One island. No one else.</div>
+  </div>
+</header>
+
+<!-- INTRO -->
+<section class="sec intro"><div class="wrap">
+  <span class="eyebrow rv">The island</span>
+  <h2 class="disp wipe">An island at the <em>end of the map.</em></h2>
+  <p class="rv">Forty-seven acres of palm and white sand, ringed by a private reef. A single resort of twelve overwater villas, reached only by seaplane. Here the day has no schedule but the tide.</p>
+  <div class="rule" id="introRule"></div>
+</div></section>
+
+<!-- ARRIVAL -->
+<section class="bleed" id="arrival">
+  <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/seaplane.jpg" alt="A seaplane arriving at the island" class="par" loading="lazy" decoding="async">
+  <div class="cap rv"><span class="k">The arrival</span><span class="t disp">An hour from the world,<br>and then gone from it.</span><p>A single seaplane crosses the lagoon at golden hour. From the float to your deck is forty steps. There is no road, no lobby, no one waiting but the sea.</p></div>
+</section>
+
+<!-- THE VILLA -->
+<section class="sec" id="villa" style="padding-bottom:clamp(4rem,9vh,7rem)"><div class="wrap feat">
+  <div class="media rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/suite-interior.jpg" alt="An overwater villa suite" class="par" loading="lazy" decoding="async"></div>
+  <div class="copy">
+    <span class="eyebrow rv">The villas</span>
+    <h2 class="disp wipe">A room that opens<br>to the sea</h2>
+    <p class="rv">Each villa stands alone over the lagoon, glass walls folding away to a private deck and steps straight into the water. Natural wood, stone and linen, cooled by the trade wind.</p>
+    <div class="det rv">
+      <div><span class="l">Villas</span><span class="v">12, overwater</span></div>
+      <div><span class="l">Living space</span><span class="v">From 220 m2</span></div>
+      <div><span class="l">Access</span><span class="v">Seaplane, 40 min</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- VILLA TYPES -->
+<section class="sec vtypes"><div class="wrap">
+  <div class="head"><span class="eyebrow rv">Choose your water</span><h2 class="disp wipe">Three ways to stay</h2></div>
+  <div class="vt-grid">
+    <div class="vt rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/infinity-pool.jpg" alt="Pool villa" loading="lazy" decoding="async"><div class="lab"><span class="k">01</span><span class="t">The Pool Villa</span><span class="d">A private infinity pool that spills into the lagoon.</span></div></div>
+    <div class="vt rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/hammock.jpg" alt="Lagoon villa" loading="lazy" decoding="async"><div class="lab"><span class="k">02</span><span class="t">The Lagoon Villa</span><span class="d">Hammock over glass-clear water, steps to the reef.</span></div></div>
+    <div class="vt rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg" alt="Sunset villa" loading="lazy" decoding="async"><div class="lab"><span class="k">03</span><span class="t">The Sunset Villa</span><span class="d">The far point of the island, kept for the stars.</span></div></div>
+  </div>
+</div></section>
+
+<!-- THE WATER (full bleed) -->
+<section class="bleed" id="water">
+  <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/infinity-pool.jpg" alt="Private infinity pool over the lagoon" class="par" loading="lazy" decoding="async">
+  <canvas class="caus" id="causWater"></canvas>
+  <div class="cap rv"><span class="k">Your own horizon</span><span class="t disp">A pool that ends<br>where the ocean begins.</span></div>
+</section>
+
+<!-- REEF -->
+<section class="sec" id="reef"><div class="wrap feat rev">
+  <div class="media rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg" alt="The house reef" class="par" loading="lazy" decoding="async"></div>
+  <div class="copy">
+    <span class="eyebrow rv">The house reef</span>
+    <h2 class="disp wipe">A garden, just<br>beneath the surface</h2>
+    <p class="rv">Slip off your deck into a living reef of coral and colour. Turtles drift the drop-off at dawn; the lagoon keeps the water still and warm and impossibly clear.</p>
+    <div class="det rv">
+      <div><span class="l">Reef</span><span class="v">Private, house</span></div>
+      <div><span class="l">Visibility</span><span class="v">To 30 m</span></div>
+      <div><span class="l">Water</span><span class="v">28°C, year-round</span></div>
+    </div>
+  </div>
+</div></section>
+
+<!-- A DAY (cinematic crossfade sequence) -->
+<section class="film" id="gallery">
+  <div class="film-stage">
+    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/aerial-hero.jpg" alt="First light over the island" decoding="async"></div>
+    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/hammock.jpg" alt="Midday over the lagoon" loading="lazy" decoding="async"></div>
+    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg" alt="Beneath the surface" loading="lazy" decoding="async"></div>
+    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/dining.jpg" alt="The blue hour" loading="lazy" decoding="async"></div>
+    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/beach-dusk.jpg" alt="Sundown" loading="lazy" decoding="async"></div>
+    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg" alt="And then, stars" loading="lazy" decoding="async"></div>
+    <div class="film-grad"></div>
+    <div class="film-ui">
+      <span class="film-ey">A day, in passing</span>
+      <div class="film-clock"><span class="time">06:00</span><span class="label disp">First light</span></div>
+      <div class="film-track"><i id="filmProg"></i></div>
+      <div class="film-dots"><b class="on"></b><b></b><b></b><b></b><b></b><b></b></div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCES -->
+<section class="sec exp" id="exp"><div class="wrap">
+  <div class="head"><span class="eyebrow rv">Experiences</span><h2 class="disp wipe">Days made of small perfect things</h2></div>
+  <div class="grid">
+    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/dining.jpg" alt="Overwater private dining" loading="lazy" decoding="async"><figcaption><span class="k">Dining</span><span class="t">A table on the water</span><span class="d">A chef, a lantern-lit deck, and the tide for company.</span></figcaption></figure>
+    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/spa.jpg" alt="Overwater spa" loading="lazy" decoding="async"><figcaption><span class="k">Wellness</span><span class="t">The overwater spa</span><span class="d">Treatments above the lagoon, scored by water.</span></figcaption></figure>
+    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg" alt="Diving the reef" loading="lazy" decoding="async"><figcaption><span class="k">The water</span><span class="t">Dive the house reef</span><span class="d">Guided from your deck, or alone at first light.</span></figcaption></figure>
+    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/beach-dusk.jpg" alt="The shore at dusk" loading="lazy" decoding="async"><figcaption><span class="k">The shore</span><span class="t">Sunset, kept for you</span><span class="d">A lantern, two chairs, and no one for a mile.</span></figcaption></figure>
+  </div>
+</div></section>
+
+<!-- NUMBERS -->
+<section class="sec house"><div class="wrap"><div class="grid">
+  <div class="cell rv"><div class="v disp num" data-count="12"></div><div class="l">Overwater villas</div></div>
+  <div class="cell rv"><div class="v disp num" data-count="47"></div><div class="l">Private acres</div></div>
+  <div class="cell rv"><div class="v disp">5:1</div><div class="l">Staff to guest</div></div>
+  <div class="cell rv"><div class="v disp num" data-count="1"></div><div class="l">Island, entirely</div></div>
+</div></div></section>
+
+<!-- QUOTE -->
+<section class="sec quote"><div class="wrap">
+  <span class="mk disp">“</span>
+  <blockquote class="wipe">We have travelled everywhere. This is the only place we have ever truly arrived.</blockquote>
+  <div class="by rv">Travel + Leisure · Reader's choice</div>
+</div></section>
+
+<!-- RESERVE -->
+<section class="reserve" id="reserve">
+  <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg" alt="SERENE at night" class="par" loading="lazy" decoding="async">
+  <div class="ct">
+    <span class="eyebrow" style="color:#fff;opacity:.9">Reserve</span>
+    <h2 class="disp wipe">The island is <em>yours.</em></h2>
+    <p>We take a single party at a time on request, or one villa among few. Tell us your dates and we will hold the tide.</p>
+    <form class="resv" onsubmit="return false">
+      <div class="f"><label>Arrive</label><input type="text" placeholder="Add dates" aria-label="Arrival date"></div>
+      <div class="f"><label>Depart</label><input type="text" placeholder="Add dates" aria-label="Departure date"></div>
+      <div class="f"><label>Guests</label><input type="text" placeholder="2 adults" aria-label="Guests"></div>
+      <div class="f"><label>Villa</label><input type="text" placeholder="Pool villa" aria-label="Villa"></div>
+      <div class="f full"><label>Email</label><input type="email" placeholder="you@elsewhere.com" aria-label="Email"></div>
+    </form>
+    <a href="#reserve" class="btn">Request a stay <span class="ar">→</span></a>
+  </div>
+</section>
+
+<footer class="foot">
+  <div class="top">
+    <div class="brand"><span class="wm">SERENE</span><p>A private island in the Indian Ocean. Twelve overwater villas, one reef, nowhere else.</p></div>
+    <div><h4>Explore</h4><ul><li><a href="#villa">The Villas</a></li><li><a href="#reef">The Reef</a></li><li><a href="#exp">Experiences</a></li><li><a href="#gallery">Gallery</a></li></ul></div>
+    <div><h4>Visit</h4><ul><li><a href="#arrival">Getting here</a></li><li><a href="#reef">The reef</a></li><li><a href="#reserve">Reserve</a></li><li><a href="#reserve">Private buyout</a></li></ul></div>
+    <div class="news"><h4>The tide letter</h4><p style="font-size:.84rem;margin-bottom:1rem">Word from the island, a few times a year.</p>
+      <form onsubmit="return false"><input type="email" placeholder="you@elsewhere.com" aria-label="Email"><button type="submit">Subscribe</button></form>
+    </div>
+  </div>
+  <div class="bot"><span>© 2026 Serene Island · Nowhere, perfected.</span><span>By seaplane, on request</span></div>
+</footer>
+
+<script>
+(function(){
+  const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
+  const loader=$('#loader'); let started=false;
+  const imgs=[...document.images]; let n=0;
+  const bump=()=>{ n++; loader.style.setProperty('--lp', Math.min(1,n/Math.max(1,imgs.length))); };
+  imgs.forEach(i=> i.complete?bump():(i.addEventListener('load',bump),i.addEventListener('error',bump)));
+  function fin(){ if(started)return; started=true; setTimeout(()=>{loader.classList.add('done'); start();},150); }
+  window.addEventListener('load', fin); setTimeout(fin, 2600);
+
+  /* --- WebGL caustics (subtle water-light), gated by viewport + reduced-motion --- */
+  function makeCaustics(canvas){
+    let gl; try{ gl = canvas.getContext('webgl',{alpha:true,premultipliedAlpha:false,antialias:false}); }catch(e){}
+    if(!gl) { canvas.style.display='none'; return null; }
+    const vs='attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+    const fs='precision mediump float;uniform float t;uniform vec2 r;'+
+      'void main(){vec2 uv=gl_FragCoord.xy/r;vec2 q=uv*vec2(r.x/r.y,1.0)*3.2;'+
+      'for(int i=1;i<=4;i++){float f=float(i);q+=0.35*vec2(sin(t*0.5+q.y*1.3*f),cos(t*0.45+q.x*1.2*f));}'+
+      'float c=pow(abs(sin(q.x)*sin(q.y)),2.2);'+
+      'float vg=smoothstep(1.0,0.2,length(uv-0.5));'+
+      'vec3 col=mix(vec3(0.18,0.55,0.55),vec3(0.75,1.0,0.92),c)*c;'+
+      'gl_FragColor=vec4(col, c*0.55*vg);}';
+    function sh(t,s){const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o;}
+    const prog=gl.createProgram();gl.attachShader(prog,sh(gl.VERTEX_SHADER,vs));gl.attachShader(prog,sh(gl.FRAGMENT_SHADER,fs));gl.linkProgram(prog);gl.useProgram(prog);
+    const buf=gl.createBuffer();gl.bindBuffer(gl.ARRAY_BUFFER,buf);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW);
+    const loc=gl.getAttribLocation(prog,'p');gl.enableVertexAttribArray(loc);gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+    const uT=gl.getUniformLocation(prog,'t'), uR=gl.getUniformLocation(prog,'r');
+    gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
+    function size(){ const w=canvas.clientWidth||canvas.offsetWidth, h=canvas.clientHeight||canvas.offsetHeight; const s=0.5; canvas.width=Math.max(2,Math.floor(w*s)); canvas.height=Math.max(2,Math.floor(h*s)); gl.viewport(0,0,canvas.width,canvas.height); }
+    size(); addEventListener('resize',size);
+    let active=false, raf=0, t0=null;
+    function frame(ts){ if(!active)return; if(t0===null)t0=ts; gl.uniform1f(uT,(ts-t0)/1000); gl.uniform2f(uR,canvas.width,canvas.height); gl.drawArrays(gl.TRIANGLES,0,3); raf=requestAnimationFrame(frame); }
+    const io=new IntersectionObserver(es=>{ es.forEach(e=>{ if(e.isIntersecting && !RM){ if(!active){active=true;t0=null;raf=requestAnimationFrame(frame);} } else { active=false; cancelAnimationFrame(raf);} }); },{threshold:0.02});
+    io.observe(canvas);
+    return true;
+  }
+
+  function start(){
+    try{ makeCaustics($('#causHero')); makeCaustics($('#causWater')); }catch(e){}
+
+    if(!window.gsap){ $$('.rv,.wipe').forEach(e=>{e.style.opacity=1;e.style.transform='none';}); $$('[data-count]').forEach(e=>{}); return; }
+    gsap.registerPlugin(ScrollTrigger);
+    let lenis=null;
+    if(!RM && window.Lenis){ lenis=new Lenis({lerp:.09,smoothWheel:true});
+      lenis.on('scroll',ScrollTrigger.update); gsap.ticker.add(t=>lenis.raf(t*1000)); gsap.ticker.lagSmoothing(0); }
+    $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();lenis?lenis.scrollTo(t,{duration:1.4}):t.scrollIntoView({behavior:'smooth'});}));
+
+    /* nav contrast: ink over light sections, bone (+shadow) over images/dark sections (no backdrop bar) */
+    const navEl=$('nav');
+    const lightSecs=$$('.intro,#villa,.vtypes,#reef,.exp,.house');
+    function navSpy(){ const y=46; let light=false; for(const s of lightSecs){ const r=s.getBoundingClientRect(); if(r.top<=y && r.bottom>=y){ light=true; break; } } navEl.classList.toggle('on-light',light); }
+    navSpy(); window.addEventListener('scroll',navSpy,{passive:true}); if(lenis) lenis.on('scroll',navSpy);
+
+    /* hero entrance */
+    if(!RM){
+      gsap.from('.open .ct .eyebrow',{opacity:0,y:18,duration:1,delay:.15,ease:'power3.out'});
+      gsap.from('.open h1 .ln > span',{yPercent:115,duration:1.25,delay:.3,ease:'power4.out',stagger:.12});
+      gsap.from('.open .sub',{opacity:0,y:18,duration:1,delay:.7,ease:'power3.out'});
+      gsap.to('.open .bg img',{yPercent:8,scale:1.12,ease:'none',scrollTrigger:{trigger:'.open',start:'top top',end:'bottom top',scrub:true}});
+    } else {
+      $$('.open h1 .ln > span').forEach(s=>s.style.transform='none');
+    }
+
+    /* generic parallax on full-bleed / feature images */
+    if(!RM){
+      $$('.par').forEach(img=>{
+        const host=img.closest('.bleed,.reserve,.feat,.vt')||img.parentElement;
+        gsap.fromTo(img,{yPercent:-8},{yPercent:8,ease:'none',scrollTrigger:{trigger:host,start:'top bottom',end:'bottom top',scrub:true}});
+      });
+    }
+
+    /* reveals */
+    $$('.rv').forEach(el=>{ if(el.closest('.open')) return; gsap.fromTo(el,{opacity:0,y:26},{opacity:1,y:0,duration:1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 88%'}}); });
+    /* wipe-rise headings */
+    $$('.wipe').forEach(el=>{ gsap.fromTo(el,{opacity:0,clipPath:'inset(0 0 100% 0)',y:10},{opacity:1,clipPath:'inset(0 0 -5% 0)',y:0,duration:1.1,ease:'power3.out',scrollTrigger:{trigger:el,start:'top 86%'}}); });
+    /* intro rule draw */
+    gsap.to('#introRule',{scaleY:1,duration:1.1,ease:'power2.out',scrollTrigger:{trigger:'#introRule',start:'top 92%'}});
+
+    /* cinematic 'one day' crossfade (pinned vertical scrub, desktop) */
+    const film=$('#gallery');
+    if(film && !RM && matchMedia('(min-width:681px)').matches){
+      const frames=$$('.frame',film), N=frames.length;
+      const meta=[['06:00','First light'],['11:00','Midday, suspended'],['14:00','Beneath'],['18:30','The blue hour'],['19:30','Sundown'],['22:00','And then, stars']];
+      const tEl=$('.film-clock .time',film), lEl=$('.film-clock .label',film), pEl=$('#filmProg'), dots=$$('.film-dots b',film);
+      let cur=-1;
+      function render(p){
+        const seg=p*(N-1), idx=Math.max(0,Math.min(N-1,Math.round(seg)));
+        frames.forEach((f,i)=>{ f.style.opacity=Math.max(0,1-Math.abs(seg-i)); });
+        const z=(1.06+0.10*p).toFixed(4); frames.forEach(f=>f.style.transform='scale('+z+')');
+        if(pEl)pEl.style.width=(p*100)+'%';
+        if(idx!==cur){ cur=idx; if(tEl)tEl.textContent=meta[idx][0]; if(lEl)lEl.textContent=meta[idx][1]; dots.forEach((d,i)=>d.classList.toggle('on',i===idx)); }
+      }
+      render(0);
+      ScrollTrigger.create({trigger:'#gallery',start:'top top',end:'+=420%',pin:true,scrub:true,anticipatePin:1,invalidateOnRefresh:true,onUpdate:s=>render(s.progress)});
+    }
+
+    /* count-ups */
+    $$('[data-count]').forEach(el=>{
+      const target=parseFloat(el.getAttribute('data-count'));
+      const render=v=>el.textContent=Math.round(v).toLocaleString();
+      if(RM){ render(target); return; }
+      render(0); const o={v:0};
+      ScrollTrigger.create({trigger:el,start:'top 92%',once:true,onEnter:()=>gsap.to(o,{v:target,duration:1.7,ease:'power2.out',onUpdate:()=>render(o.v)})});
+    });
+
+
+    setTimeout(()=>ScrollTrigger.refresh(),400);
+  }
+})();
+</script>
+</body>
+</html>

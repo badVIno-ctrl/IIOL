@@ -1,0 +1,3055 @@
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Apex — Creative Growth Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Syncopate:wght@400;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+--bg:#080808;
+--panel:#0e0e0e;
+--panel-2:#141414;
+--cream:#e9ebd9;
+--cream-soft:#f1f2e7;
+--lime:#c8f23e;
+--lime-soft:#dff79a;
+--lime-deep:#a9d92b;
+--text:#f4f4f0;
+--muted:#9a9a93;
+--muted-2:#6f6f68;
+--line:rgba(255,255,255,.08);
+--radius:28px;
+--maxw:1280px;
+--grok:'Space Grotesk',sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);
+-webkit-font-smoothing:antialiased;line-height:1.6;overflow-x:hidden;cursor:none;
+}
+@media (hover:none){body{cursor:auto}}
+::selection{background:var(--lime);color:#0a0a0a}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px}
+a{color:inherit;text-decoration:none}
+.display{font-family:'Syncopate',sans-serif;letter-spacing:.06em}
+.grok{font-family:var(--grok)}
+.lime{color:var(--lime)}
+/* custom cursor */
+.cursor{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--lime);
+top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .12s ease}
+.cursor-ring{position:fixed;width:38px;height:38px;border:1px solid rgba(200,242,62,.5);border-radius:50%;
+top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:transform .18s ease,width .18s ease,height .18s ease,border-color .18s ease}
+body.hovering .cursor-ring{width:64px;height:64px;border-color:var(--lime)}
+@media (hover:none){.cursor,.cursor-ring{display:none}}
+.pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:999px;
+padding:8px 16px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+color:var(--lime);background:rgba(200,242,62,.04)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;font-weight:600;font-size:15px;
+border-radius:999px;padding:15px 30px;cursor:none;border:none;
+transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,background .25s,color .25s}
+.btn-lime{background:var(--lime);color:#0a0a0a}
+.btn-lime:hover{box-shadow:0 14px 36px rgba(200,242,62,.35)}
+.btn-dark{background:#0a0a0a;color:#fff;border:1px solid #1d1d1d}
+.btn-dark:hover{background:#161616}
+.btn-ghost{background:transparent;border:1px solid var(--line);color:#fff}
+.btn-ghost:hover{border-color:var(--lime);color:var(--lime)}
+.arrow{transition:transform .25s ease}
+.btn:hover .arrow{transform:translateX(5px)}
+.eyebrow{font-size:13px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--lime-deep)}
+.section{padding:120px 0;position:relative}
+.section-head{max-width:720px;margin:0 auto 64px}
+.section-head.center{text-align:center;margin-left:auto;margin-right:auto}
+.section-head h2{font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:600;line-height:1.05;margin:18px 0 16px;letter-spacing:-.02em}
+.section-head p{color:var(--muted);font-size:17px}
+/* reveal animation */
+.reveal{opacity:0;transform:translateY(38px);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform .9s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+.reveal.d1{transition-delay:.08s}.reveal.d2{transition-delay:.16s}.reveal.d3{transition-delay:.24s}.reveal.d4{transition-delay:.32s}.reveal.d5{transition-delay:.4s}
+.mask-line{overflow:hidden;display:block}
+.mask-line > span{display:block;transform:translateY(110%);transition:transform 1s cubic-bezier(.2,.8,.2,1)}
+.mask-line.in > span{transform:none}
+/* NAV */
+header.nav{position:fixed;top:0;left:0;right:0;z-index:60;backdrop-filter:blur(14px);
+background:rgba(8,8,8,.55);border-bottom:1px solid transparent;transition:background .3s,border-color .3s}
+header.nav.scrolled{background:rgba(8,8,8,.85);border-color:var(--line)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:76px}
+.logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:20px;letter-spacing:-.01em;font-family:var(--grok)}
+.logo .mark{width:32px;height:32px;border-radius:10px;background:var(--lime);display:grid;place-items:center;color:#0a0a0a;font-weight:800;
+animation:spin 14s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.nav-links{display:flex;gap:34px;font-size:15px;color:var(--muted)}
+.nav-links a{position:relative}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:-4px;width:0;height:1px;background:var(--lime);transition:width .3s}
+.nav-links a:hover{color:#fff}.nav-links a:hover::after{width:100%}
+.nav-cta{display:flex;align-items:center;gap:16px}
+.nav-cta .login{font-size:15px;color:var(--muted)}.nav-cta .login:hover{color:#fff}
+.burger{display:none;flex-direction:column;gap:5px;cursor:none}
+.burger span{width:24px;height:2px;background:#fff;border-radius:2px}
+/* HERO */
+.hero{position:relative;padding:190px 0 90px;overflow:hidden}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);z-index:0}
+.blob.b1{width:520px;height:520px;background:radial-gradient(circle,rgba(200,242,62,.22),transparent 65%);top:-120px;left:-80px;animation:float1 16s ease-in-out infinite}
+.blob.b2{width:460px;height:460px;background:radial-gradient(circle,rgba(120,200,255,.12),transparent 65%);bottom:-160px;right:-60px;animation:float2 20s ease-in-out infinite}
+@keyframes float1{50%{transform:translate(60px,40px) scale(1.1)}}
+@keyframes float2{50%{transform:translate(-50px,-40px) scale(1.08)}}
+.hero-inner{position:relative;z-index:2}
+.hero h1{font-family:'Syncopate',sans-serif;font-weight:700;letter-spacing:.01em;font-size:clamp(44px,9vw,128px);line-height:.98;margin:26px 0 0}
+.hero h1 .plus{color:var(--lime);font-weight:400;display:inline-block;animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.4;transform:scale(.9)}}
+.hero-row{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;margin-top:34px}
+.hero p.sub{font-size:clamp(17px,2vw,20px);color:var(--muted);max-width:480px}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+/* MARQUEE */
+.marquee{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 0;overflow:hidden;white-space:nowrap;background:var(--panel)}
+.marquee-track{display:inline-flex;gap:40px;animation:scroll 26s linear infinite;will-change:transform}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee-track span{font-family:var(--grok);font-size:34px;font-weight:600;color:#2a2a2a;display:inline-flex;align-items:center;gap:40px}
+.marquee-track span b{color:var(--lime);font-weight:600}
+.marquee-track .dot{width:9px;height:9px;border-radius:50%;background:var(--lime)}
+/* STATS */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.stat-cell{background:var(--bg);padding:44px 30px}
+.stat-cell .num{font-family:var(--grok);font-size:clamp(36px,5vw,60px);font-weight:700;letter-spacing:-.02em;line-height:1}
+.stat-cell .num .lime{color:var(--lime)}
+.stat-cell .lbl{font-size:14px;color:var(--muted);margin-top:10px;letter-spacing:.04em}
+/* SERVICES BENTO */
+.bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:minmax(190px,auto);gap:18px}
+.b-card{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);
+border-radius:var(--radius);padding:32px;overflow:hidden;transition:transform .4s cubic-bezier(.2,.8,.2,1),border-color .4s}
+.b-card:hover{border-color:rgba(200,242,62,.45)}
+.b-card .glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,62,.18),transparent 70%);
+top:-120px;right:-120px;opacity:0;transition:opacity .5s}
+.b-card:hover .glow{opacity:1}
+.b-card .num-tag{font-family:var(--grok);font-size:13px;color:var(--muted-2);letter-spacing:.1em}
+.b-card h3{font-family:var(--grok);font-size:22px;font-weight:600;margin:14px 0 10px}
+.b-card p{color:var(--muted);font-size:15px}
+.b-icon{width:54px;height:54px;border-radius:15px;display:grid;place-items:center;background:rgba(200,242,62,.08);
+border:1px solid rgba(200,242,62,.22);color:var(--lime);margin-bottom:20px}
+.col-3{grid-column:span 3}.col-2{grid-column:span 2}.col-4{grid-column:span 4}.row-2{grid-row:span 2}
+.b-feature{background:linear-gradient(150deg,#11160a,#0c0c0c)}
+.b-feature h3{font-size:30px}
+.b-feature .big-emoji{font-size:54px;line-height:1;margin-bottom:18px}
+/* PROCESS TIMELINE */
+.process{position:relative}
+.steps{display:grid;gap:0;position:relative}
+.step{display:grid;grid-template-columns:120px 1fr;gap:40px;padding:46px 0;border-top:1px solid var(--line);
+align-items:start;transition:padding-left .4s}
+.step:last-child{border-bottom:1px solid var(--line)}
+.step:hover{padding-left:14px}
+.step .idx{font-family:'Syncopate',sans-serif;font-size:46px;font-weight:700;color:#1c1c1c;transition:color .4s}
+.step:hover .idx{color:var(--lime)}
+.step h3{font-family:var(--grok);font-size:26px;font-weight:600;margin-bottom:10px}
+.step p{color:var(--muted);max-width:560px}
+.step .tags{margin-top:16px;display:flex;gap:10px;flex-wrap:wrap}
+.tag{font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:5px 12px}
+/* SHOWCASE */
+.show-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+.show-card{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);
+min-height:340px;display:flex;flex-direction:column;justify-content:flex-end;padding:34px;
+transition:transform .4s cubic-bezier(.2,.8,.2,1)}
+.show-card .bgwrap{position:absolute;inset:0;z-index:0;transition:transform .6s ease}
+.show-card:hover .bgwrap{transform:scale(1.06)}
+.show-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.82));z-index:1}
+.show-card > *{position:relative;z-index:2}
+.show-card .cat{font-size:13px;color:var(--lime);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px}
+.show-card h3{font-family:var(--grok);font-size:26px;font-weight:600}
+.show-card .res{margin-top:10px;color:#cfcfca;font-size:15px}
+.sc1{background:linear-gradient(135deg,#1a2208,#0c0c0c)}
+.sc2{background:linear-gradient(135deg,#08161a,#0c0c0c)}
+.sc3{background:linear-gradient(135deg,#1a0814,#0c0c0c)}
+.sc4{background:linear-gradient(135deg,#161a08,#0c0c0c)}
+/* PRICING */
+#pricing{background:radial-gradient(circle at 50% 0%,rgba(200,242,62,.05),transparent 55%)}
+.price-card{position:relative;border-radius:36px;overflow:hidden;background:var(--panel);border:1px solid var(--line);
+display:grid;grid-template-columns:1.15fr 1fr;min-height:660px;box-shadow:0 40px 120px rgba(0,0,0,.5)}
+.price-left{position:relative;padding:54px 50px;display:flex;flex-direction:column;z-index:2}
+.price-left h2{font-family:'Syncopate',sans-serif;font-weight:700;letter-spacing:.04em;font-size:clamp(34px,4vw,54px);line-height:1.05;margin:24px 0 20px}
+.price-left h2 .plus{color:var(--lime);font-weight:400}
+.price-left .lead{color:var(--muted);font-size:16px;max-width:330px;margin-bottom:42px}
+.feat-list{display:flex;flex-direction:column;gap:26px;margin-top:auto}
+.feat-item{display:flex;gap:18px;align-items:flex-start}
+.feat-item .ico{width:50px;height:50px;border-radius:50%;flex:none;display:grid;place-items:center;background:#181818;border:1px solid #242424;color:var(--lime)}
+.feat-item h4{font-size:16px;font-weight:600;margin-bottom:2px}
+.feat-item p{font-size:14px;color:var(--muted-2)}
+.price-graphic{position:absolute;top:50%;left:54%;transform:translate(-50%,-50%);width:380px;height:440px;z-index:3;pointer-events:none}
+.layerG{animation:bob 5s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-10px)}}
+.price-right{position:relative;background:linear-gradient(155deg,var(--cream-soft),var(--cream));color:#15160f;padding:54px 48px;display:flex;flex-direction:column}
+.price-right::before{content:"";position:absolute;top:0;left:-90px;width:140px;height:100%;background:linear-gradient(155deg,var(--cream-soft),var(--cream));transform:skewX(-9deg);transform-origin:top;z-index:0}
+.price-right > *{position:relative;z-index:1}
+.plan-name{font-size:14px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;margin-bottom:14px}
+.plan-name .lime{color:var(--lime-deep)}.plan-name .dark{color:#15160f}
+.price-amount{display:flex;align-items:flex-start;gap:4px;line-height:1}
+.price-amount .cur{font-size:34px;font-weight:600;margin-top:8px}
+.price-amount .big{font-size:92px;font-weight:600;letter-spacing:-.03em;font-family:var(--grok)}
+.price-amount .per{font-size:22px;color:#5d5e52;align-self:flex-end;margin-bottom:14px}
+.billing{display:flex;align-items:center;gap:12px;margin:14px 0 34px}
+.billing .txt{color:#5d5e52;font-size:15px}
+.badge-save{background:var(--lime-soft);color:#3c4a09;font-size:12px;font-weight:700;letter-spacing:.06em;padding:6px 12px;border-radius:999px}
+.price-right .btn-dark{width:100%;padding:18px;font-size:16px}
+.guarantee{display:flex;align-items:center;gap:14px;margin:22px 0 30px;color:#6b6c5f;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.guarantee::before,.guarantee::after{content:"";flex:1;height:1px;background:rgba(0,0,0,.14)}
+.includes{border:1px solid rgba(0,0,0,.12);border-radius:20px;padding:26px}
+.includes h5{font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#15160f;margin-bottom:18px}
+.inc-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px 18px}
+.inc-item{display:flex;align-items:center;gap:10px;font-size:14px;color:#2c2d22}
+.inc-check{width:22px;height:22px;border-radius:50%;background:var(--lime-soft);display:grid;place-items:center;flex:none;color:#3c4a09}
+/* TESTIMONIALS marquee */
+.test-wrap{overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent);mask-image:linear-gradient(90deg,transparent,#000 12%,#000 88%,transparent)}
+.test-track{display:flex;gap:22px;width:max-content;animation:scroll 40s linear infinite}
+.test-wrap:hover .test-track{animation-play-state:paused}
+.test-card{width:380px;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:32px}
+.stars{color:var(--lime);font-size:15px;letter-spacing:2px;margin-bottom:16px}
+.test-card p{font-size:15px;color:#d6d6cf;margin-bottom:22px}
+.test-who{display:flex;align-items:center;gap:12px}
+.avatar{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--lime),var(--lime-deep));display:grid;place-items:center;color:#0a0a0a;font-weight:700}
+.test-who .nm{font-size:15px;font-weight:600}.test-who .rl{font-size:13px;color:var(--muted)}
+/* FAQ */
+.faq{max-width:860px;margin:0 auto}
+.faq-item{border-bottom:1px solid var(--line)}
+.faq-q{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;cursor:none;font-family:var(--grok);font-size:19px;font-weight:500}
+.faq-q .pm{flex:none;width:30px;height:30px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;transition:transform .3s,background .3s,color .3s;color:var(--lime)}
+.faq-item.open .pm{transform:rotate(45deg);background:var(--lime);color:#0a0a0a;border-color:var(--lime)}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--muted)}
+.faq-a p{padding:0 0 26px}
+/* CTA */
+.cta-band{position:relative;border-radius:40px;overflow:hidden;padding:90px 40px;text-align:center;background:linear-gradient(135deg,#101407,#080808);border:1px solid rgba(200,242,62,.25)}
+.cta-band::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 50% 130%,rgba(200,242,62,.26),transparent 60%)}
+.cta-band > *{position:relative;z-index:1}
+.cta-band h2{font-family:'Syncopate',sans-serif;font-weight:700;font-size:clamp(30px,5vw,60px);line-height:1.05;margin-bottom:18px}
+.cta-band p{color:var(--muted);font-size:18px;max-width:540px;margin:0 auto 34px}
+/* FOOTER */
+footer{border-top:1px solid var(--line);padding:90px 0 36px;margin-top:30px;position:relative;overflow:hidden}
+.foot-huge{font-family:'Syncopate',sans-serif;font-weight:700;font-size:clamp(60px,18vw,260px);line-height:.8;letter-spacing:.01em;color:#111;text-align:center;margin-bottom:60px;user-select:none}
+.foot-top{display:grid;grid-template-columns:1.6fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px}
+.foot-brand p{color:var(--muted);font-size:14px;max-width:260px;margin-top:16px}
+.foot-col h6{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:18px}
+.foot-col a{display:block;color:var(--muted);font-size:14px;margin-bottom:12px}
+.foot-col a:hover{color:var(--lime)}
+.foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:26px;border-top:1px solid var(--line);color:var(--muted-2);font-size:14px;flex-wrap:wrap;gap:14px}
+.foot-bottom .socials{display:flex;gap:16px}.foot-bottom .socials a:hover{color:var(--lime)}
+/* scroll progress */
+.progress{position:fixed;top:0;left:0;height:3px;background:var(--lime);z-index:70;width:0%}
+@media (max-width:980px){
+.bento{grid-template-columns:repeat(2,1fr)}
+.col-3,.col-2,.col-4{grid-column:span 1}.row-2{grid-row:span 1}
+.stats{grid-template-columns:repeat(2,1fr)}
+.show-grid{grid-template-columns:1fr}
+.price-card{grid-template-columns:1fr}
+.price-graphic{position:relative;top:auto;left:auto;transform:none;margin:10px auto -30px;width:300px;height:340px}
+.price-right::before{display:none}
+.foot-top{grid-template-columns:1fr 1fr}
+}
+@media (max-width:680px){
+body{cursor:auto}.cursor,.cursor-ring{display:none}
+.nav-links,.nav-cta .login{display:none}.burger{display:flex}
+.bento,.stats,.inc-grid,.foot-top{grid-template-columns:1fr}
+.section{padding:80px 0}
+.hero{padding:150px 0 70px}
+.step{grid-template-columns:60px 1fr;gap:20px}.step .idx{font-size:30px}
+.price-left,.price-right{padding:38px 26px}.price-amount .big{font-size:72px}
+}
+</style>
+<style>
+/* static logo mark */
+.logo .mark{animation:none}
+/* hero orbit badge */
+.orbit-badge{
+position:absolute;
+right:5vw;
+bottom:54px;
+width:118px;
+height:118px;
+z-index:3;
+pointer-events:none;
+background:transparent !important;
+border:0 !important;
+outline:0 !important;
+box-shadow:none !important;
+appearance:none;
+-webkit-appearance:none;
+-webkit-tap-highlight-color:transparent;
+}
+.orbit-badge,
+.orbit-badge:focus,
+.orbit-badge:focus-visible,
+.orbit-badge:active,
+.orbit-badge *{
+border:0 !important;
+outline:0 !important;
+box-shadow:none !important;
+}
+.orbit-badge::before,
+.orbit-badge::after{
+content:none !important;
+display:none !important;
+}
+.orbit-badge .ring{
+display:block;
+width:100%;
+height:100%;
+overflow:visible;
+background:transparent !important;
+animation:orbitSpin 14s linear infinite;
+}
+@keyframes orbitSpin{to{transform:rotate(360deg)}}
+.orbit-badge .core{
+position:absolute;
+inset:0;
+display:grid;
+place-items:center;
+color:var(--lime);
+background:transparent !important;
+animation:coreBob 2.4s ease-in-out infinite;
+}
+@keyframes coreBob{50%{transform:translateY(6px)}}
+@media(max-width:980px){.orbit-badge{display:none}}
+/* kinetic manifesto */
+.manifesto .kinetic{font-family:var(--grok);font-size:clamp(28px,4.4vw,56px);font-weight:600;line-height:1.3;letter-spacing:-.02em;max-width:1060px;margin-top:28px}
+.kinetic .w{color:#232323;transition:color .45s ease}
+.kinetic .w.lit{color:var(--text)}
+.kinetic .w.accent.lit{color:var(--lime)}
+/* studio bento with images */
+.studio-bento{display:grid;grid-template-columns:repeat(6,1fr);grid-auto-rows:215px;gap:18px}
+.s-tile{position:relative;border-radius:var(--radius);overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.s-tile.span4{grid-column:span 4;grid-row:span 2}
+.s-tile.span2{grid-column:span 2}
+.s-tile img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.16);filter:grayscale(55%) brightness(.72);transition:filter .6s ease}
+.s-tile:hover img{filter:grayscale(0%) brightness(.88)}
+.s-tile .ovl{position:absolute;inset:0;background:linear-gradient(180deg,transparent 35%,rgba(0,0,0,.88))}
+.s-tile .meta{position:absolute;left:26px;right:26px;bottom:24px;z-index:2}
+.s-ico{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(200,242,62,.14);border:1px solid rgba(200,242,62,.32);color:var(--lime);margin-bottom:14px;backdrop-filter:blur(6px)}
+.s-tile .meta h3{font-family:var(--grok);font-size:22px;font-weight:600}
+.s-tile .meta p{color:#cfcfca;font-size:14px;margin-top:6px;max-width:440px}
+.s-tile .meta .tags{margin-top:12px;display:flex;gap:8px;flex-wrap:wrap}
+.s-lime{background:linear-gradient(150deg,var(--lime-soft),var(--lime));color:#15160f;display:flex;flex-direction:column;justify-content:space-between;padding:28px;border:none}
+.s-lime .s-num{font-family:var(--grok);font-size:62px;font-weight:700;letter-spacing:-.03em;line-height:1}
+.s-lime .s-num span{font-size:22px;font-weight:600;margin-left:4px}
+.s-lime p{font-size:14px;color:#3c4a09;margin-top:10px}
+@media(max-width:980px){.studio-bento{grid-template-columns:1fr 1fr}.s-tile.span4{grid-column:span 2}}
+@media(max-width:680px){.studio-bento{grid-template-columns:1fr}.s-tile.span4,.s-tile.span2{grid-column:span 1}}
+</style>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+  <body class="">
+    <div class="progress" id="progress" style="width: 84.2005%;"></div>
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <!-- NAV -->
+    <header class="nav" id="nav">
+      <div class="wrap nav-inner">
+        <a href="#" class="logo">
+          <span class="mark">A</span>
+          Apex
+        </a>
+        <nav class="nav-links">
+          <a href="#services" class="">Services</a>
+          <a href="#process" class="">Process</a>
+          <a href="#work" class="">Work</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+        <div class="nav-cta">
+          <a href="#" class="login">Log in</a>
+          <a href="#pricing" class="btn btn-lime" style="padding:11px 22px;font-size:14px">
+            Get Started
+          </a>
+          <div class="burger" id="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero">
+      <canvas id="bubbleCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none" width="3024" height="1493"></canvas>
+      <span class="blob b1"></span>
+      <span class="blob b2"></span>
+      <div class="wrap hero-inner" style="position: relative; z-index: 2;">
+        <span class="pill reveal in">✦ Creative growth studio — Est. 2018</span>
+        <h1 class="" style="--ml-delay:.05s">
+          <span class="mask-line in"><span>UNLOCK</span></span>
+          <span class="mask-line in">
+            <span class="">
+              POTENTIAL
+              <span class="plus">+</span>
+            </span>
+          </span>
+        </h1>
+        <div class="hero-row">
+          <p class="sub reveal d1 in">
+            We design, build and scale digital products with powerful features,
+            advanced analytics, and priority support — everything your brand
+            needs to move faster.
+          </p>
+          <div class="hero-actions reveal d2 in" style="margin-right:auto">
+            <a href="#pricing" class="btn btn-lime">
+              Start a Project
+              <span class="arrow">→</span>
+            </a>
+            <a href="#work" class="btn btn-ghost">View Work</a>
+          </div>
+        </div>
+      </div>
+      <div class="orbit-badge reveal d3 in" aria-hidden="true">
+        <svg class="ring" viewBox="0 0 120 120">
+          <defs>
+            <path id="orbitPath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"></path>
+          </defs>
+
+          <text fill="#9a9a93" font-size="10.5" letter-spacing="3.2" font-family="Inter,sans-serif">
+            <textPath href="#orbitPath">
+              SCROLL TO EXPLORE • SCROLL TO EXPLORE •
+            </textPath>
+          </text>
+        </svg>
+
+        <span class="core">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 5v14M19 12l-7 7-7-7"></path>
+          </svg>
+        </span>
+      </div>
+      <script>
+        (function(){var h=document.querySelector('.hero h1');if(!h)return;requestAnimationFrame(function(){requestAnimationFrame(function(){h.querySelectorAll('.mask-line').forEach(function(l,i){setTimeout(function(){l.classList.add('in');},120+i*180);});});});})();
+      </script>
+    </section>
+
+    <!-- MARQUEE -->
+    <div class="marquee">
+      <div class="marquee-track">
+        <span class="">
+          Branding
+          <b>✦</b>
+          Web Design
+          <span class="dot"></span>
+          Analytics
+          <b class="">✦</b>
+          Product Strategy
+          <span class="dot"></span>
+          Motion
+          <b>✦</b>
+          Development
+          <span class="dot"></span>
+        </span>
+        <span>
+          Branding
+          <b>✦</b>
+          Web Design
+          <span class="dot"></span>
+          Analytics
+          <b>✦</b>
+          Product Strategy
+          <span class="dot"></span>
+          Motion
+          <b>✦</b>
+          Development
+          <span class="dot"></span>
+        </span>
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <section class="section" style="padding:90px 0">
+      <div class="wrap">
+        <div class="stats reveal in">
+          <div class="stat-cell">
+            <div class="num" data-count="240" data-suffix="+">0</div>
+            <div class="lbl">Projects shipped</div>
+          </div>
+          <div class="stat-cell">
+            <div class="num" data-count="98" data-suffix="%">
+              <span class="lime">0</span>
+            </div>
+            <div class="lbl">Client retention</div>
+          </div>
+          <div class="stat-cell">
+            <div class="num" data-count="12" data-suffix="k+">0</div>
+            <div class="lbl">Active teams</div>
+          </div>
+          <div class="stat-cell">
+            <div class="num" data-count="18" data-suffix="x">0</div>
+            <div class="lbl">Avg. ROI delivered</div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="manifesto" style="padding:0">
+      <style>
+        #manifesto .mz-pin{position:relative}
+        #manifesto .mz-sticky{padding:90px 28px}
+        #manifesto .mz-frame{position:relative;width:100%;max-width:var(--maxw);margin:0 auto;background:linear-gradient(150deg,#11160a,#080808);border:1px solid rgba(200,242,62,.25);border-radius:var(--radius);overflow:hidden;display:grid;place-items:center;text-align:center;padding:70px 32px}
+        #manifesto .mz-inner{position:relative;z-index:2;max-width:900px;padding:0 24px}
+        #manifesto .mz-text{font-family:var(--grok);font-size:clamp(24px,3.8vw,50px);font-weight:600;line-height:1.25;letter-spacing:-.02em;margin-top:22px;color:var(--text)}
+        #manifesto .mz-veil{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 50% 120%,rgba(200,242,62,.28),transparent 60%);opacity:0;pointer-events:none}
+        #manifesto .mz-pin.mz-on{height:240vh}
+        #manifesto .mz-pin.mz-on .mz-sticky{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden;padding:0}
+        #manifesto .mz-pin.mz-on .mz-frame{max-width:none;margin:0;width:62vw;height:56vh;border-radius:28px;will-change:width,height,border-radius}
+      </style>
+      <div class="mz-pin mz-on" id="mzPin">
+        <div class="mz-sticky">
+          <div class="mz-frame" id="mzFrame" style="width: 100vw; height: 100vh; border-radius: 0px;">
+            <span class="mz-veil" id="mzVeil" aria-hidden="true"></span>
+            <div class="mz-inner">
+              <span class="eyebrow">Our manifesto</span>
+              <p class="mz-text">
+                We believe great products aren't designed — they're
+                <span class="lime">unlocked.</span>
+                Strategy sets the direction, craft gives it soul, and relentless
+                <span class="lime">momentum</span>
+                turns bold ideas into measurable
+                <span class="lime">outcomes.</span>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function(){
+        var pin=document.getElementById('mzPin'),frame=document.getElementById('mzFrame'),veil=document.getElementById('mzVeil');
+        if(!pin||!frame)return;
+        function canPin(){return window.matchMedia('(min-width:861px)').matches&&window.matchMedia('(hover:hover) and (pointer:fine)').matches;}
+        function onScroll(){
+        if(!pin.classList.contains('mz-on'))return;
+        var dist=pin.offsetHeight-window.innerHeight;
+        var p=dist>0?Math.min(1,Math.max(0,-pin.getBoundingClientRect().top/dist)):0;
+        var e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2;
+        frame.style.width=(62+38*e)+'vw';
+        frame.style.height=(56+44*e)+'vh';
+        frame.style.borderRadius=(28*(1-e)).toFixed(2)+'px';
+        veil.style.opacity=String(Math.max(0,Math.min(1,(p-.7)/.3)));
+        }
+        function measure(){
+        if(!canPin()){pin.classList.remove('mz-on');frame.style.width='';frame.style.height='';frame.style.borderRadius='';veil.style.opacity='';return;}
+        pin.classList.add('mz-on');onScroll();
+        }
+        window.addEventListener('scroll',onScroll,{passive:true});
+        window.addEventListener('resize',measure);
+        measure();
+        })();
+      </script>
+    </section>
+    <section id="kinetic-reveal" class="section" style="padding:140px 0;overflow:hidden;position:relative">
+      <div class="wrap">
+        <span class="eyebrow" style="display:block;text-align:center;margin-bottom:30px">
+          Why we exist
+        </span>
+        <div id="kineticType" style="font-family:var(--grok);font-weight:700;letter-spacing:-.03em;line-height:1.04;text-align:center;font-size:clamp(34px,7vw,98px);max-width:1100px;margin:0 auto" class="">
+          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            We&nbsp;
+          </span>
+          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            turn&nbsp;
+          </span>
+          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            bold&nbsp;
+          </span>
+          <span class="kw" style="display:inline-block;color:var(--lime);transition:color .5s ease,transform .5s ease;transform:translateY(20px)" data-accent="1">
+            ideas&nbsp;
+          </span>
+          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            into&nbsp;
+          </span>
+          <span class="kw" style="display:inline-block;color:var(--lime);transition:color .5s ease,transform .5s ease;transform:translateY(20px)" data-accent="1">
+            measurable&nbsp;
+          </span>
+          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            momentum.
+          </span>
+        </div>
+      </div>
+      <script>
+        (function(){var sec=document.getElementById('kinetic-reveal');if(!sec)return;var words=sec.querySelectorAll('.kw');function reveal(){var r=sec.getBoundingClientRect();var p=Math.min(1,Math.max(0,(window.innerHeight*0.85-r.top)/(r.height+window.innerHeight*0.4)));var n=Math.round(p*words.length);words.forEach(function(w,i){if(i<n){w.style.color=w.style.color.indexOf('200')>-1||w.dataset.accent?w.style.color:w.style.color;w.style.transform='translateY(0)';if(!w.dataset.accent&&w.style.color.indexOf('rgb(28')>-1){}var orig=w.getAttribute('data-orig');}else{w.style.transform='translateY(20px)';}});words.forEach(function(w,i){var isAccent=w.getAttribute('data-accent')==='1';if(i<n){w.style.color=isAccent?'#c8f23e':'#f4f4f0';w.style.transform='translateY(0)';}else{w.style.color='#1c1c1c';w.style.transform='translateY(20px)';}});}words.forEach(function(w){if(w.style.color.indexOf('lime')>-1||w.textContent.indexOf('ideas')>-1||w.textContent.indexOf('measurable')>-1){w.setAttribute('data-accent','1');}});window.addEventListener('scroll',reveal,{passive:true});reveal();})();
+      </script>
+    </section>
+
+    <!-- SERVICES BENTO -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="section-head center sbr" style="margin:0 auto 60px;max-width:780px">
+          <span class="pill">✦ Built for performance. Designed for scale.</span>
+          <h2 class="tracking-tight" style="margin-top:22px">
+            Everything you need to
+            <br>
+            build, ship &amp;
+            <span class="lime">unlock potential</span>
+          </h2>
+          <p class="">
+            Powerful strategy, design and engineering primitives. Production
+            ready — designed for speed, built for the future.
+          </p>
+        </div>
+        <style>
+          #services .sbr{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.2,.8,.2,1),transform .85s cubic-bezier(.2,.8,.2,1)}#services .sbr.sb-in{opacity:1;transform:none}.svc-bento{display:grid;grid-template-columns:repeat(10,1fr);gap:18px}.svc-bento>.sb:nth-child(2){transition-delay:.08s}.svc-bento>.sb:nth-child(3){transition-delay:.16s}.svc-bento>.sb:nth-child(4){transition-delay:.24s}.svc-bento>.sb:nth-child(5){transition-delay:.3s}.svc-bento>.sb:nth-child(6){transition-delay:.36s}.sb{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:30px;overflow:hidden}.sb:hover{border-color:rgba(200,242,62,.45)}.sb .glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,62,.16),transparent 70%);top:-120px;right:-120px;opacity:0;transition:opacity .5s;pointer-events:none}.sb:hover .glow{opacity:1}.sb .eyeb{display:block;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}.sb h3{font-family:var(--grok);font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}.sb p{color:var(--muted);font-size:14px}.sb-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(200,242,62,.08);border:1px solid rgba(200,242,62,.25);color:var(--lime);margin-bottom:22px;flex:none}.sb-a{grid-column:span 3;grid-row:span 2;display:flex;flex-direction:column}.sb-b{grid-column:span 4;padding-right:215px;min-height:250px}.sb-b h3{font-size:26px}.sb-c{grid-column:span 3;grid-row:span 2;display:flex;flex-direction:column}.sb-s{grid-column:span 2;padding-bottom:70px}.sb-s h3{font-size:19px}.sb-band{grid-column:span 10;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}.sb-stats{display:flex;margin-top:auto;border-top:1px solid var(--line);padding-top:22px}.sb-stats>div{flex:1}.sb-stats>div+div{border-left:1px solid var(--line);padding-left:22px}.sb-stats .v{font-family:var(--grok);font-size:27px;font-weight:600;letter-spacing:-.02em;color:var(--lime)}.sb-stats .l{font-size:12px;color:var(--muted-2);margin-top:3px}.sb-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#0a0a0a;border-radius:999px;padding:7px 14px;font-size:12px;color:var(--muted);margin-top:18px}.sb-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:sbPulse 1.8s ease-in-out infinite}@keyframes sbPulse{50%{opacity:.25;transform:scale(.75)}}.sb-cube{position:absolute;right:-10px;top:50%;width:215px;margin-top:-108px;pointer-events:none}.sb-cube .bob{animation:sbBob 5s ease-in-out infinite}@keyframes sbBob{50%{transform:translateY(-10px)}}.sb-chart{width:100%;height:auto;display:block;margin-top:auto}.sb-chart .line{stroke-dasharray:620;stroke-dashoffset:620}.sbr.sb-in .sb-chart .line{animation:sbDraw 2.4s ease-out .4s forwards}@keyframes sbDraw{to{stroke-dashoffset:0}}.sb-chart .area{opacity:0;transition:opacity 1.2s ease 1.4s}.sbr.sb-in .sb-chart .area{opacity:1}.sb-chart .cdot{animation:sbPulse 2s ease-in-out infinite}.sb-badge{align-self:flex-end;background:#0a0a0a;border:1px solid #222;border-radius:12px;padding:8px 14px;text-align:right;margin:14px 0 6px}.sb-badge .bv{font-family:var(--grok);font-size:16px;font-weight:600;color:#fff;line-height:1.1}.sb-badge .bl{font-size:11px;color:var(--muted-2)}.sb-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;border-top:1px solid var(--line);padding-top:16px}.sb-foot .gr{color:var(--lime);font-weight:600;font-size:14px}.sb-foot .gl{color:var(--muted-2);font-size:13px;margin-left:6px}.sb-arrow{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--lime);transition:background .3s,color .3s,transform .3s;flex:none}.sb:hover .sb-arrow{background:var(--lime);color:#0a0a0a;transform:rotate(-45deg)}.sb-s .sb-arrow{position:absolute;right:22px;bottom:22px}.sb-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.sb-tool{width:56px;height:56px;border-radius:16px;background:#101010;border:1px solid #202020;display:grid;place-items:center;color:var(--muted);transition:transform .3s,border-color .3s,color .3s}.sb-tool:hover{transform:translateY(-4px);border-color:rgba(200,242,62,.4);color:var(--lime)}@media(max-width:980px){.svc-bento{grid-template-columns:1fr 1fr}.sb-a,.sb-b,.sb-c,.sb-band{grid-column:span 2}.sb-s{grid-column:span 1}.sb-b{padding-right:30px;min-height:0}.sb-cube{display:none}}@media(max-width:680px){.svc-bento{grid-template-columns:1fr}.sb-a,.sb-b,.sb-c,.sb-s,.sb-band{grid-column:span 1}}
+        </style>
+        <style id="svcPuzzleStyle">
+          #services .svc-bento .sb{opacity:0;transform:translate(var(--pz-x,0),var(--pz-y,0)) rotate(var(--pz-r,0deg)) scale(.86);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}#services .svc-bento .sb.sb-in{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}#services .svc-bento .sb:nth-child(2).sb-in{transition-delay:.08s}#services .svc-bento .sb:nth-child(3).sb-in{transition-delay:.16s}#services .svc-bento .sb:nth-child(4).sb-in{transition-delay:.24s}#services .svc-bento .sb:nth-child(5).sb-in{transition-delay:.32s}#services .svc-bento .sb:nth-child(6).sb-in{transition-delay:.4s}
+        </style>
+        <div class="svc-bento" id="svcBento">
+          <div class="sb sb-a sbr" style="--pz-x:-120px;--pz-y:-90px;--pz-r:-7deg">
+            <span class="glow"></span>
+            <div class="sb-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <span class="eyeb">High performance</span>
+            <h3 class="">Blazing fast delivery</h3>
+            <p class="">
+              Optimized strategy, design and engineering pipelines for ultra-low
+              friction launches at any scale.
+            </p>
+            <div class="sb-stats">
+              <div>
+                <div class="v">98%</div>
+                <div class="l">Client retention</div>
+              </div>
+              <div>
+                <div class="v">6 wks</div>
+                <div class="l">Idea to launch</div>
+              </div>
+            </div>
+          </div>
+          <div class="sb sb-b sbr" style="--pz-x:130px;--pz-y:-70px;--pz-r:6deg">
+            <span class="glow"></span>
+            <div class="sb-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                <line x1="12" y1="22.08" x2="12" y2="12"></line>
+              </svg>
+            </div>
+            <span class="eyeb">Flexible &amp; scalable</span>
+            <h3 class="">Scale without limits</h3>
+            <p>
+              Auto-scale seamlessly from prototype to production with one
+              embedded Apex team.
+            </p>
+            <span class="sb-pill">
+              <span class="dot"></span>
+              Momentum enabled
+            </span>
+            <svg class="sb-cube" viewBox="0 0 220 220" fill="none" aria-hidden="true">
+              <ellipse cx="110" cy="152" rx="80" ry="34" fill="rgba(200,242,62,.10)"></ellipse>
+              <polygon points="110,110 196,152 110,194 24,152" fill="#101010" stroke="#262626"></polygon>
+              <g stroke="#c8f23e" fill="none" opacity=".35">
+                <ellipse cx="110" cy="152" rx="26" ry="12"></ellipse>
+                <ellipse cx="110" cy="152" rx="52" ry="23"></ellipse>
+              </g>
+              <g class="bob">
+                <polygon points="110,96 158,120 110,144 62,120" fill="#3a4413"></polygon>
+                <polygon points="110,58 158,82 110,106 62,82" fill="#5d6e1c"></polygon>
+                <polygon points="62,44 110,68 110,106 62,82" fill="#a9d92b"></polygon>
+                <polygon points="158,44 110,68 110,106 158,82" fill="#c8f23e"></polygon>
+                <polygon points="110,20 158,44 110,68 62,44" fill="#dff79a"></polygon>
+              </g>
+            </svg>
+          </div>
+          <div class="sb sb-c sbr" style="--pz-x:140px;--pz-y:80px;--pz-r:7deg">
+            <span class="glow"></span>
+            <div class="sb-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 3v18h18"></path>
+                <path d="M18 17V9"></path>
+                <path d="M13 17V5"></path>
+                <path d="M8 17v-3"></path>
+              </svg>
+            </div>
+            <span class="eyeb">Real-time insights</span>
+            <h3>Monitor. Analyze. Optimize.</h3>
+            <p>
+              Real-time observability and deep insights to keep your brand
+              performing.
+            </p>
+            <div class="sb-badge">
+              <div class="bv">74.2K</div>
+              <div class="bl">Signals tracked</div>
+            </div>
+            <svg class="sb-chart" viewBox="0 0 260 110" fill="none" aria-hidden="true">
+              <defs>
+                <linearGradient id="sbChartFill" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#c8f23e" stop-opacity=".28"></stop>
+                  <stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
+                </linearGradient>
+              </defs>
+              <path class="area" d="M0 86 C28 82 44 62 68 68 C92 74 108 46 132 52 C156 58 172 28 202 24 C226 21 244 34 260 26 V110 H0 Z" fill="url(#sbChartFill)"></path>
+              <path class="line" d="M0 86 C28 82 44 62 68 68 C92 74 108 46 132 52 C156 58 172 28 202 24 C226 21 244 34 260 26" stroke="#c8f23e" stroke-width="2" stroke-linecap="round"></path>
+              <circle class="cdot" cx="202" cy="24" r="4" fill="#c8f23e"></circle>
+            </svg>
+            <div class="sb-foot">
+              <span>
+                <span class="gr">+18.6%</span>
+                <span class="gl">vs last 7 days</span>
+              </span>
+              <span class="sb-arrow">
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M7 7h10v10"></path>
+                  <path d="M7 17 17 7"></path>
+                </svg>
+              </span>
+            </div>
+          </div>
+          <div class="sb sb-s sbr" style="--pz-x:-150px;--pz-y:60px;--pz-r:-9deg">
+            <span class="glow"></span>
+            <div class="sb-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+                <polyline points="9 12 11 14 15 10"></polyline>
+              </svg>
+            </div>
+            <span class="eyeb">Enterprise grade</span>
+            <h3>Secure by default</h3>
+            <p>
+              Built-in security, compliance and data privacy at every layer.
+            </p>
+            <span class="sb-arrow">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="sb sb-s sbr" style="--pz-x:160px;--pz-y:120px;--pz-r:8deg">
+            <span class="glow"></span>
+            <div class="sb-ico">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="16 18 22 12 16 6"></polyline>
+                <polyline points="8 6 2 12 8 18"></polyline>
+              </svg>
+            </div>
+            <span class="eyeb">Developer first</span>
+            <h3>Built for builders</h3>
+            <p>
+              Clean systems, design tokens and quickstarts to ship faster, every
+              time.
+            </p>
+            <span class="sb-arrow">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
+            </span>
+          </div>
+          <div class="sb sb-band sbr" style="--pz-x: 0px; --pz-y: 140px; --pz-r: -4deg;">
+            <span class="glow"></span>
+            <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap" class="">
+              <div class="sb-ico" style="margin-bottom:0;width:54px;height:54px">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22v-5"></path>
+                  <path d="M9 8V2"></path>
+                  <path d="M15 8V2"></path>
+                  <path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"></path>
+                </svg>
+              </div>
+              <div style="max-width:420px" class="">
+                <span class="eyeb" style="margin-bottom:6px">
+                  Seamless integrations
+                </span>
+                <h3 style="margin-bottom:6px" class="">Connect your favorite tools</h3>
+                <p class="">
+                  Integrate effortlessly with your existing stack and
+                  supercharge your workflows.
+                </p>
+              </div>
+            </div>
+            <div class="sb-tools">
+              <span class="sb-tool">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="4" y1="9" x2="20" y2="9"></line>
+                  <line x1="4" y1="15" x2="20" y2="15"></line>
+                  <line x1="10" y1="3" x2="8" y2="21"></line>
+                  <line x1="16" y1="3" x2="14" y2="21"></line>
+                </svg>
+              </span>
+              <span class="sb-tool">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
+                </svg>
+              </span>
+              <span class="sb-tool">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+                </svg>
+              </span>
+              <span class="sb-tool">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </span>
+              <span style="color:var(--lime);font-weight:600;font-size:14px;margin-left:8px">
+                + 25 more
+              </span>
+            </div>
+          </div>
+        </div>
+        <script>
+          (function(){var els=document.querySelectorAll('#services .sbr');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('sb-in');io.unobserve(e.target);}});},{threshold:.15});els.forEach(function(el){io.observe(el)});document.querySelectorAll('#svcBento .sb').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5;var y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(900px) rotateX('+(-y*4)+'deg) rotateY('+(x*4)+'deg) translateY(-3px)';});card.addEventListener('mouseleave',function(){card.style.transform='';});card.addEventListener('mouseenter',function(){document.body.classList.add('hovering')});card.addEventListener('mouseleave',function(){document.body.classList.remove('hovering')});});})();
+        </script>
+      </div>
+    </section>
+    <section class="section caps-on" id="capabilities" style="padding:0">
+      <style>
+        #capabilities.caps-on .caps-pin { position: relative; }
+        #capabilities.caps-on .caps-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: 0; }
+        #capabilities.caps-on .caps-track { flex-direction: row; gap: 24px; will-change: transform; display: flex; padding: 0 5vw; width: max-content; }
+        #capabilities.caps-on .caps-panel { flex: 0 0 420px; min-height: 420px; display: flex; flex-direction: column; justify-content: flex-start; }
+
+        @media (max-width: 860px) {
+          #capabilities .caps-track { flex-direction: column; gap: 24px; display: flex; padding: 0 24px; width: 100%; }
+          #capabilities .caps-panel { width: 100%; min-height: 320px; flex: auto; }
+          #capabilities .caps-sticky { padding: 80px 0; height: auto; position: relative; display: block; }
+          #capabilities .caps-pin { height: auto !important; }
+        }
+      </style>
+
+      <div class="caps-pin w-full" id="capsPin" style="height: 1209px;">
+        <div class="caps-sticky w-full" id="capsSticky">
+          <div class="w-full mb-12 lg:mb-16" style="padding: 0 5vw;">
+            <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
+              <div class="max-w-xl">
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#c8f23e] text-[11px] font-medium tracking-widest uppercase mb-6">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#c8f23e] animate-pulse"></span>
+                  Capabilities reel
+                </div>
+                <h2 class="text-4xl md:text-5xl lg:text-[56px] font-medium tracking-tight text-white leading-[1.05]" style="font-family: var(--grok);">
+                  Four ways we move
+                  <br>
+                  brands forward
+                </h2>
+              </div>
+
+              <div class="w-full md:w-[260px] h-[3px] bg-[#1d1d1d] rounded-full overflow-hidden flex-shrink-0 relative hidden md:block mb-3">
+                <span id="capsBar" class="absolute top-0 left-0 h-full w-full bg-[#c8f23e] origin-left" style="width: 0%;"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="caps-track" id="capsTrack">
+            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+                  <path d="M2 2l7.586 7.586"></path>
+                  <circle cx="11" cy="11" r="2"></circle>
+                </svg>
+              </div>
+
+              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                01 — BRAND
+              </div>
+              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Brand systems
+              </h3>
+              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                Identities, voice and design languages built to flex across
+                every surface your brand touches.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Identity
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Guidelines
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Art direction
+                </span>
+              </div>
+            </div>
+
+            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                  <rect x="3" y="3" width="18" height="18" rx="2" class=""></rect>
+                  <line x1="3" y1="9" x2="21" y2="9"></line>
+                  <line x1="9" y1="21" x2="9" y2="9"></line>
+                </svg>
+              </div>
+
+              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                02 — PRODUCT
+              </div>
+              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Product design
+              </h3>
+              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                UX flows, interfaces and prototypes validated with real users —
+                designed to convert from day one.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  UX
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  UI
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Prototyping
+                </span>
+              </div>
+            </div>
+
+            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+
+              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                03 — BUILD
+              </div>
+              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Engineering
+              </h3>
+              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                Clean, scalable platforms with analytics wired in from the
+                start. Ship in weeks, not quarters.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Web
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Mobile
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  APIs
+                </span>
+              </div>
+            </div>
+
+            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 7h6v6"></path>
+                  <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                </svg>
+              </div>
+
+              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                04 — GROWTH
+              </div>
+              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Growth &amp; motion
+              </h3>
+              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                Measurement, iteration and motion craft that turn launch
+                momentum into compounding results.
+              </p>
+
+              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Analytics
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Motion
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  CRO
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script>
+        (function(){
+          var sec = document.getElementById('capabilities'),
+              pin = document.getElementById('capsPin'),
+              track = document.getElementById('capsTrack'),
+              bar = document.getElementById('capsBar');
+          if(!sec || !pin || !track) return;
+          var on = false;
+
+          function canPin() {
+            return window.matchMedia('(min-width: 861px)').matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+          }
+
+          function onScroll() {
+            if(!on) return;
+            var dist = pin.offsetHeight - window.innerHeight;
+            var p = dist > 0 ? Math.min(1, Math.max(0, -pin.getBoundingClientRect().top / dist)) : 0;
+            var max = Math.max(0, track.scrollWidth - window.innerWidth);
+            track.style.transform = 'translate3d(' + (-p * max).toFixed(1) + 'px, 0, 0)';
+            if(bar) bar.style.transform = 'scaleX(' + p + ')';
+          }
+
+          function measure() {
+            if(!canPin()) {
+              on = false;
+              sec.classList.remove('caps-on');
+              pin.style.height = '';
+              track.style.transform = '';
+              if(bar) bar.style.transform = 'scaleX(1)';
+              return;
+            }
+            sec.classList.add('caps-on');
+            on = true;
+            var max = Math.max(0, track.scrollWidth - window.innerWidth);
+            pin.style.height = (window.innerHeight + max) + 'px';
+            onScroll();
+          }
+
+          window.addEventListener('scroll', onScroll, {passive: true});
+          window.addEventListener('resize', measure);
+          measure();
+        })();
+      </script>
+    </section>
+
+    <!-- PROCESS -->
+    <section class="section process" id="process">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">How we work</span>
+          <h2 class="">A process designed for momentum</h2>
+          <p class="">
+            Four focused phases that take you from idea to impact — fast.
+          </p>
+        </div>
+        <div class="steps">
+          <div class="step reveal">
+            <div class="idx">01</div>
+            <div class="">
+              <h3 class="">Discover</h3>
+              <p class="">
+                We dig into your goals, users, and data to map the real
+                opportunity before a single pixel is drawn.
+              </p>
+              <div class="tags">
+                <span class="tag">Research</span>
+                <span class="tag">Audit</span>
+                <span class="tag">Strategy</span>
+              </div>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="idx">02</div>
+            <div class="">
+              <h3 class="">Design</h3>
+              <p class="">
+                Concepts, systems and prototypes that look sharp and convert —
+                validated with your users early.
+              </p>
+              <div class="tags">
+                <span class="tag">UX</span>
+                <span class="tag">UI</span>
+                <span class="tag">Brand</span>
+              </div>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="idx">03</div>
+            <div class="">
+              <h3 class="">Build</h3>
+              <p class="">
+                Clean, scalable engineering with analytics wired in from day
+                one. Ship in weeks, not quarters.
+              </p>
+              <div class="tags">
+                <span class="tag">Development</span>
+                <span class="tag">QA</span>
+                <span class="tag">Analytics</span>
+              </div>
+            </div>
+          </div>
+          <div class="step reveal">
+            <div class="idx">04</div>
+            <div class="">
+              <h3 class="">Scale</h3>
+              <p class="">
+                We measure, iterate and grow — turning launch momentum into
+                compounding results.
+              </p>
+              <div class="tags">
+                <span class="tag">Optimize</span>
+                <span class="tag">Support</span>
+                <span class="tag">Growth</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WORK SHOWCASE -->
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="section-head reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;">
+          <div class="">
+            <span class="eyebrow">Selected work</span>
+            <h2 class="tracking-tight">Results we're proud of</h2>
+            <p class="">
+              A glimpse at brands we've helped unlock their potential.
+            </p>
+          </div>
+          <a href="#" class="group inline-flex items-center gap-2 text-sm font-medium transition-colors duration-300" style="color:#c8f23e;border:1px solid rgba(200,242,62,.35);border-radius:999px;padding:10px 20px;backdrop-filter:blur(4px);">
+            View all case studies
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </a>
+        </div>
+        <div class="deck-spread relative" id="workDeck">
+          <div class="show-card sc1 reveal group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6f2845a6-b5d7-4ad4-8be5-0c5c19759d45_1600w.webp" alt="Lumen Dashboard analytics interface" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </span>
+            <div class="relative">
+              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                SaaS · Analytics
+              </div>
+              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+                Lumen Dashboard
+              </h3>
+              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 7h6v6"></path>
+                  <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                </svg>
+                +212% activation in 90 days
+              </div>
+            </div>
+          </div>
+          <div class="show-card sc2 reveal d1 group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/7d765bdd-2d6a-4433-a716-7cff00c86850/1600w.jpg" alt="Vertex Wallet mobile fintech app" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </span>
+            <div class="relative">
+              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                Fintech · Mobile
+              </div>
+              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+                Vertex Wallet
+              </h3>
+              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="#c8f23e" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+                </svg>
+                4.9★ launch, 50k installs
+              </div>
+            </div>
+          </div>
+          <div class="show-card sc3 reveal group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c78a081-43fc-417f-9d0f-b87ee6b9bf6a_1600w.jpg" alt="Quantia Store e-commerce brand" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </span>
+            <div class="relative">
+              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                E-commerce · Brand
+              </div>
+              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+                Quantia Store
+              </h3>
+              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="8" cy="21" r="1"></circle>
+                  <circle cx="19" cy="21" r="1"></circle>
+                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+                </svg>
+                3.1x conversion rate
+              </div>
+            </div>
+          </div>
+          <div class="show-card sc4 reveal d1 group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4ca1e73a-69c6-49d2-b4d2-339c3a121dda_1600w.webp" alt="Helios Cloud B2B platform" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
+            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M7 7h10v10"></path>
+                <path d="M7 17 17 7"></path>
+              </svg>
+            </span>
+            <div class="relative">
+              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                B2B · Platform
+              </div>
+              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+                Helios Cloud
+              </h3>
+              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="12" x2="12" y1="2" y2="22"></line>
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                $2.4M pipeline sourced
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <style>
+        #work .deck-spread{position:relative;min-height:600px;display:flex;align-items:center;justify-content:center;perspective:1600px;margin-top:20px}#work .deck-spread .show-card{position:absolute!important;width:min(70%,520px);min-height:380px!important;opacity:0;transform-style:preserve-3d;transform:translate(0,80px) rotate(0deg) scale(.7);transition:transform 1.1s cubic-bezier(.16,1,.3,1),opacity .8s ease,box-shadow .6s ease;will-change:transform;box-shadow:0 30px 60px rgba(0,0,0,.55)}#work .deck-spread .show-card:nth-child(1){z-index:1;--rot:-15deg;--tx:-260px;--ty:38px}#work .deck-spread .show-card:nth-child(2){z-index:2;--rot:-5deg;--tx:-90px;--ty:6px}#work .deck-spread .show-card:nth-child(3){z-index:3;--rot:6deg;--tx:90px;--ty:6px}#work .deck-spread .show-card:nth-child(4){z-index:4;--rot:16deg;--tx:260px;--ty:38px}#work .deck-spread.dealt .show-card{opacity:1;transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(1)}#work .deck-spread.dealt .show-card:nth-child(1){transition-delay:.1s}#work .deck-spread.dealt .show-card:nth-child(2){transition-delay:.32s}#work .deck-spread.dealt .show-card:nth-child(3){transition-delay:.54s}#work .deck-spread.dealt .show-card:nth-child(4){transition-delay:.76s}#work .deck-spread .show-card.lifted{z-index:60!important;transform:translate(var(--tx),calc(var(--ty) - 46px)) rotate(0deg) scale(1.12)!important;box-shadow:0 50px 110px rgba(0,0,0,.7),0 0 0 1px rgba(200,242,62,.25)!important;transition-delay:0s!important}@media(max-width:860px){#work .deck-spread{flex-direction:column;min-height:0;perspective:none}#work .deck-spread .show-card{position:relative!important;width:100%;transform:translate(0,40px) rotate(0deg) scale(.9)}#work .deck-spread.dealt .show-card{transform:none}#work .deck-spread .show-card.lifted{transform:scale(1.02)!important}}
+      </style>
+      <script>
+        (function(){var deck=document.getElementById('workDeck');if(!deck)return;var cards=Array.prototype.slice.call(deck.querySelectorAll('.show-card'));var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){deck.classList.add('dealt');io.unobserve(e.target);}});},{threshold:.25});io.observe(deck);var desktop=window.matchMedia('(min-width:861px)').matches;function onScroll(){if(!desktop)return;var vh=window.innerHeight;cards.forEach(function(c,i){var r=c.getBoundingClientRect();var center=r.top+r.height/2;var dist=Math.abs(center-vh/2);var lift=dist<vh*0.22;c.classList.toggle('lifted',lift);var p=(vh/2-center)/vh;c.style.setProperty('--parY',(p*18).toFixed(1)+'px');});}window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',function(){desktop=window.matchMedia('(min-width:861px)').matches;});onScroll();})();
+      </script>
+    </section>
+    <section class="section" id="studio">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <span class="eyebrow">Inside the studio</span>
+          <h2 class="">Where the magic actually happens</h2>
+          <p class="">
+            A look behind the curtain — the people, spaces and rituals powering
+            every launch.
+          </p>
+        </div>
+        <div class="studio-bento">
+          <div class="s-tile span4 reveal">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg" alt="Design lab critique session" loading="lazy">
+            <div class="ovl"></div>
+            <div class="meta">
+              <span class="s-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+                  <polyline points="2 17 12 22 22 17"></polyline>
+                  <polyline points="2 12 12 17 22 12"></polyline>
+                </svg>
+              </span>
+              <h3 class="">The Design Lab</h3>
+              <p class="">
+                Weekly critique rituals where every pixel earns its place —
+                strategy, design and engineering around one table.
+              </p>
+              <div class="tags">
+                <span class="tag">Berlin HQ</span>
+                <span class="tag">28 craftspeople</span>
+              </div>
+            </div>
+          </div>
+          <div class="s-tile span2 reveal d1">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c7c582f0-2e26-487e-ae18-fee9da10561d_1600w.jpg" alt="Engineering floor" loading="lazy">
+            <div class="ovl"></div>
+            <div class="meta">
+              <span class="s-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </span>
+              <h3 class="">Engineering Floor</h3>
+              <p class="">Ship-ready code, reviewed twice.</p>
+            </div>
+          </div>
+          <div class="s-tile span2 reveal d2">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ebb79511-26fb-462e-9c38-b1bef4ad3707_1600w.webp" alt="Strategy war room" loading="lazy">
+            <div class="ovl"></div>
+            <div class="meta">
+              <span class="s-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="6"></circle>
+                  <circle cx="12" cy="12" r="2"></circle>
+                </svg>
+              </span>
+              <h3 class="">The War Room</h3>
+              <p class="">Where roadmaps are torn apart and rebuilt.</p>
+            </div>
+          </div>
+          <div class="s-tile span2 s-lime reveal">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+            <div class="">
+              <div class="s-num">
+                6
+                <span>wks</span>
+              </div>
+              <p class="">
+                Average idea-to-launch time across every 2025 project.
+              </p>
+            </div>
+          </div>
+          <div class="s-tile span2 reveal d1">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/a3ad5791-19e9-4399-be36-74624cb027cd/1600w.jpg" alt="Motion studio" loading="lazy">
+            <div class="ovl"></div>
+            <div class="meta">
+              <span class="s-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
+                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+              </span>
+              <h3 class="">Motion Studio</h3>
+              <p class="">Stories told at 60 frames per second.</p>
+            </div>
+          </div>
+          <div class="s-tile span2 reveal d2">
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/20190aa3-b468-4e00-880a-fb6c6779f3be_1600w.webp" alt="Studio café" loading="lazy">
+            <div class="ovl"></div>
+            <div class="meta">
+              <span class="s-ico">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"></path>
+                  <line x1="6" y1="1" x2="6" y2="4"></line>
+                  <line x1="10" y1="1" x2="10" y2="4"></line>
+                  <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+              </span>
+              <h3 class="">Third Floor Café</h3>
+              <p class="">Where the best ideas get caffeinated.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="gsap-creative" class="section" style="padding:0;position:relative">
+      <style>
+        #gsap-creative .gc-pin{position:relative;height:340vh}#gsap-creative .gc-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,#11160a,#080808)}#gsap-creative .gc-stage{position:relative;width:100%;height:100%}#gsap-creative .gc-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--grok);font-weight:700;letter-spacing:-.03em;font-size:clamp(48px,12vw,180px);white-space:nowrap;will-change:transform,opacity}#gsap-creative .gc-ring{position:absolute;top:50%;left:50%;border:1px solid rgba(200,242,62,.18);border-radius:50%;transform:translate(-50%,-50%);will-change:transform}#gsap-creative .gc-card{position:absolute;width:240px;border-radius:22px;border:1px solid rgba(200,242,62,.3);background:linear-gradient(180deg,#141414,#0c0c0c);padding:26px;will-change:transform,opacity}#gsap-creative .gc-card .gci{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(200,242,62,.1);border:1px solid rgba(200,242,62,.3);color:var(--lime);margin-bottom:16px}#gsap-creative .gc-card h4{font-family:var(--grok);font-size:18px;font-weight:600;margin-bottom:6px}#gsap-creative .gc-card p{color:var(--muted);font-size:13px}@media(max-width:860px){#gsap-creative .gc-pin{height:auto}#gsap-creative .gc-sticky{position:relative;height:auto;padding:90px 24px;display:block}#gsap-creative .gc-word{position:relative;transform:none;top:auto;left:auto;white-space:normal;text-align:center;font-size:clamp(40px,12vw,80px);margin:0 auto 40px}#gsap-creative .gc-ring{display:none}#gsap-creative .gc-card{position:relative;width:100%;margin:0 auto 16px;transform:none!important;opacity:1!important}}
+      </style>
+      <div class="gc-pin" id="gcPin">
+        <div class="gc-sticky">
+          <div class="gc-stage" id="gcStage">
+            <span class="gc-ring" data-ring="1" style="width:360px;height:360px"></span>
+            <span class="gc-ring" data-ring="2" style="width:620px;height:620px"></span>
+            <span class="gc-ring" data-ring="3" style="width:920px;height:920px"></span>
+            <span class="gc-word" id="gcWord1" style=" filter: blur(8px);">
+              UNLOCK
+            </span>
+            <span class="gc-word lime" id="gcWord2" style="opacity:0">
+              MOMENTUM
+            </span>
+            <div class="gc-card" data-card="1" style="top:18%;left:14%">
+              <div class="gci">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                </svg>
+              </div>
+              <h4>Strategy first</h4>
+              <p>Direction before pixels — every move earns its place.</p>
+            </div>
+            <div class="gc-card" data-card="2" style="top:20%;right:14%">
+              <div class="gci">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <circle cx="12" cy="12" r="4"></circle>
+                </svg>
+              </div>
+              <h4>Craft with soul</h4>
+              <p>Interfaces tuned to delight and convert.</p>
+            </div>
+            <div class="gc-card" data-card="3" style="bottom:18%;left:18%">
+              <div class="gci">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M16 7h6v6"></path>
+                  <path d="m22 7-8.5 8.5-5-5L2 17"></path>
+                </svg>
+              </div>
+              <h4>Relentless growth</h4>
+              <p>Measure, iterate, compound the results.</p>
+            </div>
+            <div class="gc-card" data-card="4" style="bottom:20%;right:18%">
+              <div class="gci">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="16 18 22 12 16 6"></polyline>
+                  <polyline points="8 6 2 12 8 18"></polyline>
+                </svg>
+              </div>
+              <h4>Built to ship</h4>
+              <p>Clean systems that launch in weeks, not quarters.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+      <script>
+        (function(){function init(){if(!window.gsap||!window.ScrollTrigger){return setTimeout(init,120);}var mq=window.matchMedia('(min-width:861px)');if(!mq.matches)return;gsap.registerPlugin(ScrollTrigger);var tl=gsap.timeline({scrollTrigger:{trigger:'#gcPin',start:'top top',end:'bottom bottom',scrub:1}});tl.fromTo('#gcWord1',{scale:.6,opacity:0,rotate:-8},{scale:1,opacity:1,rotate:0,duration:1},0);tl.fromTo('[data-card]',{opacity:0,scale:.5,y:60},{opacity:1,scale:1,y:0,duration:1,stagger:.15},0.4);tl.fromTo('[data-ring]',{scale:0,opacity:0},{scale:1,opacity:1,duration:1,stagger:.1},0.2);tl.to('[data-ring]',{rotate:90,duration:2},1);tl.to('#gcWord1',{scale:2.4,opacity:0,filter:'blur(8px)',duration:1.2},1.4);tl.to('[data-card]',{x:function(i){return (i%2===0?-1:1)*420;},y:function(i){return (i<2?-1:1)*260;},opacity:0,scale:.4,duration:1.2},1.4);tl.fromTo('#gcWord2',{scale:.4,opacity:0},{scale:1,opacity:1,duration:1.2},1.9);}init();})();
+      </script>
+    </section>
+    <section class="section" style="padding:110px 0;overflow:hidden" id="integrations">
+      <style>
+        .int-diagram{position:relative;max-width:1200px;margin:0 auto;height:500px;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
+        .int-node{position:absolute;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#1e1e1e,#0b0b0b);border:1px solid #262626;display:grid;place-items:center;z-index:2}
+        .serif-accent{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:300;color:var(--lime)}
+        .trust-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+        .trust-card{background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:30px}
+        .trust-card h3{font-family:var(--grok);font-size:21px;font-weight:400;margin-bottom:8px;letter-spacing:-0.02em}
+        .trust-card .desc{color:var(--muted);font-size:14px}
+        .trust-panel{margin-top:24px;background:#0a0a0a;border:1px solid #1f1f1f;border-radius:18px;padding:20px}
+        .mini-tab{font-size:11px;color:var(--muted);background:#141414;border:1px solid #222;border-radius:999px;padding:4px 10px}
+        .mini-tab.on{color:#0a0a0a;background:var(--cream);border-color:var(--cream);font-weight:500}
+
+        @keyframes shootNode{0%{stroke-dashoffset:12;opacity:0}5%{opacity:1}95%{opacity:1}100%{stroke-dashoffset:-600;opacity:0}}
+        .conn-node{stroke-dasharray:12 600;stroke-dashoffset:12;animation:shootNode 2.5s linear infinite}
+
+        @media(max-width:980px){.trust-grid{grid-template-columns:1fr}.int-diagram{height:380px}.int-node{width:48px;height:48px}}
+      </style>
+      <div class="wrap" style="text-align:center">
+        <span class="pill reveal">✦ Integrations</span>
+        <h2 class="reveal d1 tracking-tight" style="font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:22px auto 64px">
+          Integrate with your
+          <em class="serif-accent">favorite tool</em>
+        </h2>
+        <div class="int-diagram reveal d2">
+          <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1200 500" preserveAspectRatio="none" fill="none" aria-hidden="true" class="">
+            <g stroke="#2e3340" stroke-width="1.3" stroke-dasharray="2 5">
+              <path d="M120 60 C360 60 400 250 550 250"></path>
+              <path d="M120 155 C360 155 400 250 550 250"></path>
+              <path d="M120 250 H550"></path>
+              <path d="M120 345 C360 345 400 250 550 250"></path>
+              <path d="M120 440 C360 440 400 250 550 250"></path>
+              <path d="M1080 60 C840 60 800 250 650 250"></path>
+              <path d="M1080 155 C840 155 800 250 650 250"></path>
+              <path d="M1080 250 H650"></path>
+              <path d="M1080 345 C840 345 800 250 650 250"></path>
+              <path d="M1080 440 C840 440 800 250 650 250"></path>
+            </g>
+            <g stroke-width="2.5" stroke-linecap="round" class="conn-node-group">
+              <path class="conn-node" stroke="#c8f23e" style="animation-delay: 0.2s" d="M120 60 C360 60 400 250 550 250"></path>
+              <path class="conn-node" stroke="#ff9f43" style="animation-delay: 1.5s" d="M120 155 C360 155 400 250 550 250"></path>
+              <path class="conn-node" stroke="#a78bfa" style="animation-delay: 0.7s" d="M120 250 H550"></path>
+              <path class="conn-node" stroke="#2dd4bf" style="animation-delay: 2.1s" d="M120 345 C360 345 400 250 550 250"></path>
+              <path class="conn-node" stroke="#e879f9" style="animation-delay: 1.1s" d="M120 440 C360 440 400 250 550 250"></path>
+              <path class="conn-node" stroke="#facc15" style="animation-delay: 0.9s" d="M1080 60 C840 60 800 250 650 250"></path>
+              <path class="conn-node" stroke="#c8f23e" style="animation-delay: 2.3s" d="M1080 155 C840 155 800 250 650 250"></path>
+              <path class="conn-node" stroke="#4ade80" style="animation-delay: 0.4s" d="M1080 250 H650"></path>
+              <path class="conn-node" stroke="#22d3ee" style="animation-delay: 1.8s" d="M1080 345 C840 345 800 250 650 250"></path>
+              <path class="conn-node" stroke="#34d399" style="animation-delay: 0.1s" d="M1080 440 C840 440 800 250 650 250"></path>
+            </g>
+          </svg>
+          <span class="int-node" style="left:calc(9.5% - 28px);top:24px;box-shadow:0 0 20px rgba(200,242,62,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round">
+              <line x1="12" y1="2" x2="12" y2="6"></line>
+              <line x1="12" y1="18" x2="12" y2="22"></line>
+              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+              <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+              <line x1="2" y1="12" x2="6" y2="12"></line>
+              <line x1="18" y1="12" x2="22" y2="12"></line>
+              <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+              <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+            </svg>
+          </span>
+          <span class="int-node" style="left:calc(9.5% - 28px);top:103px;box-shadow:0 0 20px rgba(255,159,67,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff9f43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </span>
+          <span class="int-node" style="left:calc(9.5% - 28px);top:182px;box-shadow:0 0 20px rgba(167,139,250,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.4" stroke-linecap="round">
+              <line x1="4" y1="7" x2="20" y2="7"></line>
+              <line x1="4" y1="12" x2="14" y2="12"></line>
+              <line x1="4" y1="17" x2="17" y2="17"></line>
+            </svg>
+          </span>
+          <span class="int-node" style="left:calc(9.5% - 28px);top:261px;box-shadow:0 0 20px rgba(45,212,191,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2.4">
+              <circle cx="12" cy="12" r="7"></circle>
+            </svg>
+          </span>
+          <span class="int-node" style="left:calc(9.5% - 28px);top:340px;box-shadow:0 0 20px rgba(232,121,249,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2.4" stroke-linecap="round">
+              <path d="M12 6v12"></path>
+              <path d="M17.2 9 6.8 15"></path>
+              <path d="m6.8 9 10.4 6"></path>
+            </svg>
+          </span>
+          <span class="int-node" style="right:calc(9.5% - 28px);top:24px;box-shadow:0 0 20px rgba(250,204,21,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+            </svg>
+          </span>
+          <span class="int-node" style="right:calc(9.5% - 28px);top:103px;box-shadow:0 0 20px rgba(200,242,62,.25)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2.2" stroke-linejoin="round">
+              <path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z"></path>
+              <circle cx="12" cy="12" r="3"></circle>
+            </svg>
+          </span>
+          <span class="int-node" style="right:calc(9.5% - 28px);top:182px;box-shadow:0 0 20px rgba(74,222,128,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2">
+              <circle cx="12" cy="12" r="9"></circle>
+              <path d="M3 12h18"></path>
+              <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path>
+            </svg>
+          </span>
+          <span class="int-node" style="right:calc(9.5% - 28px);top:261px;box-shadow:0 0 20px rgba(34,211,238,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8z"></path>
+            </svg>
+          </span>
+          <span class="int-node" style="right:calc(9.5% - 28px);top:340px;box-shadow:0 0 20px rgba(52,211,153,.2)">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linejoin="round">
+              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+            </svg>
+          </span>
+          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3">
+            <span style="position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,62,.3),transparent 70%);filter:blur(16px)" aria-hidden="true"></span>
+            <span style="position:relative;width:100px;height:100px;border-radius:28px;background:linear-gradient(180deg,#222,#0a0a0a);border:1px solid #383838;display:grid;place-items:center">
+              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="m2 9 3-3 3 3"></path>
+                <path d="M13 18H7a2 2 0 0 1-2-2V6"></path>
+                <path d="m22 15-3 3-3-3"></path>
+                <path d="M11 6h6a2 2 0 0 1 2 2v10"></path>
+              </svg>
+            </span>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section" id="trust" style="padding-top:0">
+      <div class="wrap">
+        <h2 class="reveal tracking-tight" style="text-align:center;font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1.05;margin:0 auto 56px">
+          Why businesses trust
+          <em class="serif-accent">Apex solutions</em>
+        </h2>
+        <div class="trust-grid">
+          <div class="trust-card reveal">
+            <h3 class="">Sentiment analysis</h3>
+            <p class="desc">
+              Gauge customer interest using AI-driven insights across every Apex
+              project.
+            </p>
+            <div class="trust-panel">
+              <div style="font-size:14px;font-weight:600;margin-bottom:14px" class="">
+                User Growth
+              </div>
+              <div style="display:flex;gap:8px;margin-bottom:18px" class="">
+                <span class="mini-tab on">12h</span>
+                <span class="mini-tab">24h</span>
+                <span class="mini-tab">A week</span>
+              </div>
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px" class="">
+                <span style="font-family:var(--grok);font-size:26px;font-weight:600;letter-spacing:-.02em" class="">
+                  192,269
+                </span>
+                <span style="font-size:11px;font-weight:700;color:#0a0a0a;background:var(--lime);border-radius:999px;padding:4px 10px">
+                  ↗ +24%
+                </span>
+              </div>
+              <div style="height:10px;border-radius:999px;background:linear-gradient(90deg,#3b82f6,#7dd3fc,#c8f23e)" class=""></div>
+              <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--muted-2)" class="">
+                <span>Tracking totals</span>
+                <span>+120 today</span>
+              </div>
+            </div>
+          </div>
+          <div class="trust-card reveal d1">
+            <h3 class="">AI driven insights</h3>
+            <p class="desc">
+              AI-driven insights in Apex empower teams with real-time data
+              analysis.
+            </p>
+            <div class="trust-panel">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+                <span style="font-size:14px;font-weight:600">
+                  Highest Sales Record
+                </span>
+                <span style="font-size:11px;font-weight:700;color:#fff;background:#2563eb;border-radius:999px;padding:4px 10px">
+                  +89%
+                </span>
+              </div>
+              <svg viewBox="0 0 260 90" style="width:100%;height:auto;display:block" fill="none" aria-hidden="true">
+                <defs>
+                  <linearGradient id="trustChartFill" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="#3b82f6" stop-opacity=".35"></stop>
+                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"></stop>
+                  </linearGradient>
+                </defs>
+                <path d="M0 70 C30 68 45 60 70 62 C95 64 105 40 130 44 C155 48 165 18 195 14 C220 11 240 20 260 16 V90 H0 Z" fill="url(#trustChartFill)"></path>
+                <path d="M0 70 C30 68 45 60 70 62 C95 64 105 40 130 44 C155 48 165 18 195 14 C220 11 240 20 260 16" stroke="#3b82f6" stroke-width="2"></path>
+              </svg>
+              <div style="margin-top:12px">
+                <span style="font-family:var(--grok);font-size:26px;font-weight:600;letter-spacing:-.02em">
+                  $491K
+                </span>
+                <span style="font-size:13px;color:var(--muted-2)">/day</span>
+              </div>
+            </div>
+          </div>
+          <div class="trust-card reveal d2">
+            <h3>Performance dashboard</h3>
+            <p class="desc">
+              The performance dashboard in Apex provides real-time insights at a
+              glance.
+            </p>
+            <div class="trust-panel">
+              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
+                <span style="font-size:14px;font-weight:600">
+                  Total Insights
+                </span>
+                <span style="width:30px;height:30px;border-radius:50%;border:1px solid #2a2a2a;background:#141414;display:grid;place-items:center;color:var(--lime)">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M7 17 17 7"></path>
+                    <path d="M7 7h10v10"></path>
+                  </svg>
+                </span>
+              </div>
+              <div style="font-family:var(--grok);font-size:34px;font-weight:600;letter-spacing:-.02em;margin-bottom:20px">
+                $159,789
+              </div>
+              <div style="display:flex;align-items:center;gap:10px">
+                <span style="font-size:11px;font-weight:700;color:#0a0a0a;background:var(--lime);border-radius:999px;padding:4px 10px">
+                  +1.5%
+                </span>
+                <span style="font-size:12px;color:var(--muted-2)">
+                  Than last month
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section class="section" id="pricing">
+      <style>
+        #pricing {
+          --lime: #c8f23e;
+          --black: #0b0b0b;
+          --dark: #111111;
+          --soft-dark: #171717;
+          --cream: #f4f4e8;
+          --muted: rgba(255, 255, 255, 0.58);
+          --line: rgba(255, 255, 255, 0.1);
+          --wipe: 56%;
+          --diagonal: 7%;
+          padding: 120px 20px;
+          background: #050505;
+          color: white;
+          overflow: hidden;
+        }
+    
+        #pricing .wrap {
+          width: min(1480px, 100%);
+          margin: 0 auto;
+        }
+    
+        #pricing .section-head {
+          text-align: center;
+          max-width: 760px;
+          margin: 0 auto 42px;
+        }
+    
+        #pricing .eyebrow {
+          display: inline-flex;
+          color: var(--lime);
+          text-transform: uppercase;
+          letter-spacing: 0.18em;
+          font-size: 13px;
+          margin-bottom: 18px;
+        }
+    
+        #pricing .section-head h2 {
+          font-size: clamp(38px, 6vw, 78px);
+          line-height: 0.95;
+          margin: 0;
+        }
+    
+        #pricing .section-head p {
+          color: var(--muted);
+          max-width: 620px;
+          margin: 22px auto 0;
+          line-height: 1.7;
+        }
+    
+        #pricing .billing-toggle {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: 16px;
+          margin-top: 34px;
+        }
+    
+        #pricing .toggle {
+          position: relative;
+          width: 56px;
+          height: 28px;
+          border-radius: 999px;
+          border: 0;
+          background: var(--lime);
+          cursor: pointer;
+        }
+    
+        #pricing .toggle span {
+          position: absolute;
+          top: 2px;
+          right: 2px;
+          width: 24px;
+          height: 24px;
+          border-radius: 50%;
+          background: #141414;
+        }
+    
+        #pricing .save-badge {
+          display: inline-flex;
+          align-items: center;
+          border-radius: 999px;
+          background: var(--lime);
+          color: #141414;
+          font-size: 12px;
+          font-weight: 700;
+          padding: 4px 10px;
+          letter-spacing: 0.04em;
+        }
+    
+        #pricing .comparison-card {
+          position: relative;
+          width: 100%;
+          min-height: 760px;
+          border-radius: 44px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          overflow: hidden;
+          background: #0d0d0d;
+          box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+          user-select: none;
+          touch-action: none;
+        }
+    
+        #pricing .plan-layer {
+          position: absolute;
+          inset: 0;
+          display: grid;
+          grid-template-columns:
+            minmax(430px, 0.95fr) minmax(300px, 0.72fr) minmax(520px, 1fr);
+          align-items: center;
+          min-height: 760px;
+          box-sizing: border-box;
+        }
+    
+        #pricing .basic-layer {
+          background:
+            radial-gradient(circle at 80% 50%, rgba(200, 242, 62, 0.08), transparent 28%),
+            linear-gradient(135deg, #101010, #080808);
+          z-index: 1;
+        }
+    
+        #pricing .pro-layer {
+          background: var(--cream);
+          color: #101010;
+          z-index: 2;
+          clip-path: polygon(calc(var(--wipe) + var(--diagonal)) 0,
+              100% 0,
+              100% 100%,
+              calc(var(--wipe) - var(--diagonal)) 100%);
+        }
+    
+        #pricing .price-left,
+        #pricing .price-graphic,
+        #pricing .price-right {
+          position: relative;
+          z-index: 3;
+          box-sizing: border-box;
+        }
+    
+        #pricing .price-left {
+          padding-left: clamp(34px, 6vw, 92px);
+          max-width: 620px;
+        }
+    
+        #pricing .pill {
+          display: inline-flex;
+          align-items: center;
+          gap: 8px;
+          border-radius: 999px;
+          border: 1px solid rgba(200, 242, 62, 0.25);
+          background: rgba(200, 242, 62, 0.11);
+          color: var(--lime);
+          padding: 10px 20px;
+          text-transform: uppercase;
+          letter-spacing: 0.14em;
+          font-size: 13px;
+          font-weight: 700;
+          margin-bottom: 34px;
+        }
+    
+        #pricing .price-left h2 {
+          font-size: clamp(54px, 6.4vw, 98px);
+          line-height: 0.92;
+          letter-spacing: 0.035em;
+          margin: 0;
+          font-weight: 800;
+        }
+    
+        #pricing .price-left .plus {
+          color: var(--lime);
+          font-weight: 300;
+          margin-left: 20px;
+        }
+    
+        #pricing .lead {
+          margin-top: 28px;
+          color: rgba(255, 255, 255, 0.64);
+          line-height: 1.7;
+          max-width: 500px;
+        }
+    
+        #pricing .pro-layer .lead {
+          color: rgba(20, 20, 20, 0.62);
+        }
+    
+        #pricing .feat-list {
+          display: grid;
+          gap: 28px;
+          margin-top: 110px;
+        }
+    
+        #pricing .feat-item {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+        }
+    
+        #pricing .ico {
+          display: grid;
+          place-items: center;
+          width: 62px;
+          height: 62px;
+          border-radius: 50%;
+          color: var(--lime);
+          background: rgba(255, 255, 255, 0.055);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          flex: 0 0 auto;
+        }
+    
+        #pricing .feat-item h4 {
+          margin: 0 0 6px;
+          font-size: 20px;
+        }
+    
+        #pricing .feat-item p {
+          margin: 0;
+          color: rgba(255, 255, 255, 0.45);
+        }
+    
+        #pricing .price-graphic {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          pointer-events: none;
+        }
+    
+        #pricing .layerG {
+          width: min(390px, 28vw);
+          overflow: visible;
+          filter: drop-shadow(0 30px 50px rgba(0, 0, 0, 0.3));
+        }
+    
+        #pricing .price-right {
+          justify-self: end;
+          width: min(560px, 100%);
+          padding-right: clamp(72px, 8vw, 140px);
+        }
+    
+        #pricing .plan-name {
+          display: flex;
+          gap: 12px;
+          align-items: center;
+          letter-spacing: 0.22em;
+          text-transform: uppercase;
+          font-size: 18px;
+          margin-bottom: 26px;
+          white-space: nowrap;
+        }
+    
+        #pricing .lime {
+          color: var(--lime);
+        }
+    
+        #pricing .dark {
+          color: inherit;
+        }
+    
+        #pricing .price-amount {
+          display: flex;
+          align-items: flex-start;
+          gap: 10px;
+          margin-bottom: 28px;
+          white-space: nowrap;
+        }
+    
+        #pricing .price-amount .cur {
+          font-size: 36px;
+          margin-top: 16px;
+          flex: 0 0 auto;
+        }
+    
+        #pricing .price-amount .big {
+          font-size: clamp(86px, 7.8vw, 124px);
+          line-height: 0.82;
+          font-weight: 800;
+          letter-spacing: -0.06em;
+          flex: 0 0 auto;
+        }
+    
+        #pricing .price-amount .per {
+          align-self: flex-end;
+          font-size: 26px;
+          margin-bottom: 10px;
+          color: rgba(20, 20, 20, 0.7);
+          flex: 0 0 auto;
+        }
+    
+        #pricing .basic-layer .price-amount .per,
+        #pricing .basic-layer .billing .txt {
+          color: rgba(255, 255, 255, 0.58);
+        }
+    
+        #pricing .billing {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          margin-bottom: 40px;
+          flex-wrap: wrap;
+        }
+    
+        #pricing .billing .txt {
+          color: rgba(20, 20, 20, 0.62);
+        }
+    
+        #pricing .badge-save {
+          display: inline-flex;
+          align-items: center;
+          border-radius: 999px;
+          background: rgba(200, 242, 62, 0.55);
+          color: #141414;
+          padding: 10px 18px;
+          font-size: 13px;
+          font-weight: 800;
+          letter-spacing: 0.06em;
+          white-space: nowrap;
+        }
+    
+        #pricing .btn {
+          display: inline-flex;
+          width: 100%;
+          height: 74px;
+          align-items: center;
+          justify-content: center;
+          gap: 10px;
+          border-radius: 999px;
+          text-decoration: none;
+          font-weight: 700;
+          font-size: 18px;
+          transition: transform 0.25s ease;
+        }
+    
+        #pricing .btn:hover {
+          transform: translateY(-2px);
+        }
+    
+        #pricing .btn-dark {
+          background: #070707;
+          color: white;
+        }
+    
+        #pricing .basic-layer .btn-dark {
+          background: var(--lime);
+          color: #101010;
+        }
+    
+        #pricing .guarantee {
+          text-align: center;
+          margin-top: 22px;
+          color: rgba(20, 20, 20, 0.45);
+          text-transform: uppercase;
+          letter-spacing: 0.16em;
+          font-size: 13px;
+          font-weight: 700;
+        }
+    
+        #pricing .basic-layer .guarantee {
+          color: rgba(255, 255, 255, 0.32);
+        }
+    
+        #pricing .includes {
+          margin-top: 40px;
+          border: 1px solid rgba(20, 20, 20, 0.13);
+          border-radius: 28px;
+          padding: 34px;
+          background: rgba(255, 255, 255, 0.28);
+        }
+    
+        #pricing .basic-layer .includes {
+          border-color: rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.035);
+        }
+    
+        #pricing .includes h5 {
+          margin: 0 0 22px;
+          text-transform: uppercase;
+          letter-spacing: 0.18em;
+          font-size: 14px;
+        }
+    
+        #pricing .inc-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 20px 26px;
+        }
+    
+        #pricing .inc-item {
+          display: flex;
+          align-items: center;
+          gap: 12px;
+          font-size: 17px;
+          line-height: 1.4;
+        }
+    
+        #pricing .inc-check {
+          display: grid;
+          place-items: center;
+          width: 28px;
+          height: 28px;
+          border-radius: 50%;
+          background: rgba(200, 242, 62, 0.45);
+          color: #111;
+          flex: 0 0 auto;
+        }
+    
+        #pricing .basic-layer .inc-check {
+          color: var(--lime);
+          background: rgba(200, 242, 62, 0.12);
+        }
+    
+        #pricing .wipe-ui {
+          position: absolute;
+          inset: 0;
+          z-index: 10;
+          pointer-events: none;
+        }
+    
+        #pricing .wipe-line {
+          position: absolute;
+          top: -16%;
+          bottom: -16%;
+          left: var(--wipe);
+          width: 2px;
+          transform: translateX(-50%) rotate(7deg);
+          transform-origin: center;
+          background: linear-gradient(to bottom,
+              transparent,
+              rgba(200, 242, 62, 0.35),
+              var(--lime),
+              rgba(200, 242, 62, 0.35),
+              transparent);
+          box-shadow: 0 0 28px rgba(200, 242, 62, 0.55);
+        }
+    
+        #pricing .wipe-handle {
+          position: absolute;
+          top: 50%;
+          left: var(--wipe);
+          width: 64px;
+          height: 64px;
+          border-radius: 50%;
+          border: 0;
+          transform: translate(-50%, -50%);
+          display: grid;
+          place-items: center;
+          background: var(--lime);
+          color: #101010;
+          cursor: grab;
+          pointer-events: auto;
+          box-shadow:
+            0 0 0 10px rgba(200, 242, 62, 0.08),
+            0 0 40px rgba(200, 242, 62, 0.65);
+          transition: scale 0.2s ease, box-shadow 0.2s ease;
+        }
+    
+        #pricing .wipe-handle:active {
+          cursor: grabbing;
+          scale: 0.95;
+          box-shadow:
+            0 0 0 14px rgba(200, 242, 62, 0.12),
+            0 0 60px rgba(200, 242, 62, 0.85);
+        }
+    
+        #pricing .wipe-label {
+          position: absolute;
+          top: 28px;
+          left: var(--wipe);
+          transform: translateX(-50%);
+          background: rgba(0, 0, 0, 0.65);
+          color: white;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          border-radius: 999px;
+          padding: 10px 16px;
+          font-size: 13px;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+          backdrop-filter: blur(16px);
+          white-space: nowrap;
+        }
+    
+        @media (max-width: 1200px) {
+          #pricing .plan-layer {
+            grid-template-columns:
+              minmax(360px, 0.9fr) minmax(240px, 0.6fr) minmax(440px, 1fr);
+          }
+    
+          #pricing .price-right {
+            padding-right: clamp(56px, 6vw, 90px);
+          }
+    
+          #pricing .price-amount .big {
+            font-size: clamp(78px, 7.5vw, 108px);
+          }
+    
+          #pricing .price-left h2 {
+            font-size: clamp(48px, 6vw, 84px);
+          }
+        }
+    
+        @media (max-width: 1050px) {
+          #pricing .comparison-card {
+            min-height: 980px;
+          }
+    
+          #pricing .plan-layer {
+            grid-template-columns: 1fr;
+            grid-template-rows: auto auto auto;
+            align-items: start;
+            min-height: 980px;
+            padding: 60px 26px;
+          }
+    
+          #pricing .price-left,
+          #pricing .price-right {
+            padding: 0;
+            justify-self: stretch;
+            max-width: none;
+            width: 100%;
+          }
+    
+          #pricing .price-graphic {
+            margin: 34px 0;
+          }
+    
+          #pricing .layerG {
+            width: min(320px, 82vw);
+          }
+    
+          #pricing .feat-list {
+            margin-top: 42px;
+          }
+    
+          #pricing .pro-layer {
+            clip-path: polygon(calc(var(--wipe) + 12%) 0,
+                100% 0,
+                100% 100%,
+                calc(var(--wipe) - 12%) 100%);
+          }
+    
+          #pricing .wipe-line {
+            transform: translateX(-50%) rotate(9deg);
+          }
+        }
+    
+        @media (max-width: 640px) {
+          #pricing {
+            padding: 80px 14px;
+          }
+    
+          #pricing .comparison-card {
+            border-radius: 28px;
+            min-height: 1080px;
+          }
+    
+          #pricing .plan-layer {
+            min-height: 1080px;
+            padding: 42px 20px;
+          }
+    
+          #pricing .price-left h2 {
+            font-size: 46px;
+          }
+    
+          #pricing .price-amount .big {
+            font-size: 82px;
+          }
+    
+          #pricing .inc-grid {
+            grid-template-columns: 1fr;
+          }
+    
+          #pricing .wipe-handle {
+            width: 54px;
+            height: 54px;
+          }
+    
+          #pricing .wipe-label {
+            display: none;
+          }
+        }
+      </style>
+    
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow font-medium">Pricing</span>
+          <h2 class="tracking-tight font-medium">
+            One simple plan. Everything included.
+          </h2>
+          <p class="text-lg">
+            Drag the diagonal comparison handle to reveal the upgrade from Basic to Pro.
+          </p>
+    
+          <div class="billing-toggle">
+            <span class="text-base font-medium text-neutral-400">Monthly</span>
+            <button type="button" class="toggle" role="switch" aria-checked="true">
+              <span aria-hidden="true"></span>
+            </button>
+            <span class="flex items-center gap-2 text-base font-medium text-white">
+              Annually
+              <span class="save-badge">SAVE 20%</span>
+            </span>
+          </div>
+        </div>
+    
+        <div class="comparison-card reveal mt-8" data-comparison-wipe="">
+          <!-- BASIC PLAN LAYER -->
+          <div class="plan-layer basic-layer">
+            <div class="price-left">
+              <span class="pill">✦ Current Plan</span>
+              <h2>
+                BASIC
+                <span class="plus">+</span>
+                <br>
+                ACCESS
+              </h2>
+              <p class="lead">
+                Start with the essentials, simple analytics, and everything you need to launch.
+              </p>
+    
+              <div class="feat-list">
+                <div class="feat-item">
+                  <span class="ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4>Basic Analytics</h4>
+                    <p>Simple reports and insights</p>
+                  </div>
+                </div>
+    
+                <div class="feat-item">
+                  <span class="ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4>Solo Workspace</h4>
+                    <p>Perfect for small projects</p>
+                  </div>
+                </div>
+    
+                <div class="feat-item">
+                  <span class="ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4>Standard Support</h4>
+                    <p>Help when you need it</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="price-graphic">
+              <svg class="layerG" viewBox="0 0 380 440" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="basicDark" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#2b2b2b"></stop>
+                    <stop offset="100%" stop-color="#101010"></stop>
+                  </linearGradient>
+                  <radialGradient id="basicGlow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#c8f23e" stop-opacity=".55"></stop>
+                    <stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
+                  </radialGradient>
+                </defs>
+                <g transform="translate(190 350)">
+                  <polygon points="0,-78 150,0 0,78 -150,0" fill="url(#basicDark)" stroke="#333"></polygon>
+                  <g stroke="#c8f23e" fill="none" opacity=".25">
+                    <ellipse cx="0" cy="0" rx="30" ry="15"></ellipse>
+                    <ellipse cx="0" cy="0" rx="62" ry="31"></ellipse>
+                    <ellipse cx="0" cy="0" rx="92" ry="46"></ellipse>
+                  </g>
+                </g>
+                <g transform="translate(190 255)">
+                  <polygon points="0,-66 128,0 0,66 -128,0" fill="none" stroke="#555"></polygon>
+                </g>
+                <g transform="translate(190 170)">
+                  <polygon points="0,-66 128,0 0,66 -128,0" fill="none" stroke="#555"></polygon>
+                </g>
+                <circle cx="190" cy="350" r="12" fill="url(#basicGlow)"></circle>
+              </svg>
+            </div>
+    
+            <div class="price-right">
+              <div class="plan-name">
+                <span class="lime">BASIC</span>
+                <span class="dark">PLAN</span>
+              </div>
+    
+              <div class="price-amount">
+                <span class="cur">$</span>
+                <span class="big">19</span>
+                <span class="per">/mo</span>
+              </div>
+    
+              <div class="billing">
+                <span class="txt">Billed annually</span>
+                <span class="badge-save">STARTER</span>
+              </div>
+    
+              <a href="#" class="btn btn-dark">
+                Current Plan
+                <span class="arrow">→</span>
+              </a>
+    
+              <div class="guarantee">Basic workspace included</div>
+    
+              <div class="includes">
+                <h5>Plan Includes</h5>
+                <div class="inc-grid">
+                  <div class="inc-item"><span class="inc-check">✓</span> 5 Projects</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Basic Support</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Basic Analytics</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> 1 Workspace</div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- PRO PLAN LAYER -->
+          <div class="plan-layer pro-layer">
+            <div class="price-left">
+              <span class="pill">✦ Limited Offer</span>
+              <h2>
+                UNLOCK
+                <span class="plus">+</span>
+                <br>
+                POTENTIAL
+              </h2>
+              <p class="lead">
+                Access powerful features, advanced analytics, and priority support.
+              </p>
+    
+              <div class="feat-list">
+                <div class="feat-item">
+                  <span class="ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4>Advanced Analytics</h4>
+                    <p>Deep insights, unlimited reports</p>
+                  </div>
+                </div>
+    
+                <div class="feat-item">
+                  <span class="ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4>Team Collaboration</h4>
+                    <p>Work together seamlessly</p>
+                  </div>
+                </div>
+    
+                <div class="feat-item">
+                  <span class="ico">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                      <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+                    </svg>
+                  </span>
+                  <div>
+                    <h4>Priority Support</h4>
+                    <p>Get help when you need it</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+    
+            <div class="price-graphic">
+              <svg class="layerG" viewBox="0 0 380 440" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <linearGradient id="glassLime" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#e7ff8a"></stop>
+                    <stop offset="55%" stop-color="#c8f23e"></stop>
+                    <stop offset="100%" stop-color="#9fce2a"></stop>
+                  </linearGradient>
+                  <linearGradient id="glassDark" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#2b2b2b"></stop>
+                    <stop offset="100%" stop-color="#141414"></stop>
+                  </linearGradient>
+                  <linearGradient id="glassDark2" x1="0" y1="0" x2="1" y2="1">
+                    <stop offset="0%" stop-color="#222"></stop>
+                    <stop offset="100%" stop-color="#0d0d0d"></stop>
+                  </linearGradient>
+                  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+                    <stop offset="0%" stop-color="#c8f23e" stop-opacity=".9"></stop>
+                    <stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
+                  </radialGradient>
+                  <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
+                    <feGaussianBlur stdDeviation="6"></feGaussianBlur>
+                  </filter>
+                </defs>
+    
+                <line x1="190" y1="20" x2="190" y2="150" stroke="#c8f23e" stroke-width="1.4" opacity=".7"></line>
+                <circle cx="190" cy="20" r="6" fill="#c8f23e"></circle>
+                <circle cx="190" cy="20" r="16" fill="url(#glow)"></circle>
+    
+                <g transform="translate(190 360)">
+                  <polygon points="0,-78 150,0 0,78 -150,0" fill="url(#glassDark2)" stroke="#2a2a2a"></polygon>
+                  <g stroke="#c8f23e" fill="none" opacity=".55">
+                    <ellipse cx="0" cy="0" rx="20" ry="10"></ellipse>
+                    <ellipse cx="0" cy="0" rx="42" ry="21"></ellipse>
+                    <ellipse cx="0" cy="0" rx="66" ry="33"></ellipse>
+                    <ellipse cx="0" cy="0" rx="92" ry="46"></ellipse>
+                  </g>
+                  <circle cx="0" cy="0" r="5" fill="#c8f23e"></circle>
+                  <circle cx="0" cy="0" r="14" fill="url(#glow)"></circle>
+                </g>
+    
+                <g transform="translate(190 270)">
+                  <polygon points="0,-66 128,0 0,66 -128,0" fill="url(#glassDark)" stroke="#333"></polygon>
+                </g>
+    
+                <g transform="translate(190 215)">
+                  <polygon points="0,-62 120,0 0,62 -120,0" fill="url(#glassDark)" stroke="#3a3a3a"></polygon>
+                </g>
+    
+                <ellipse cx="190" cy="150" rx="120" ry="60" fill="url(#glow)" opacity=".5" filter="url(#soft)"></ellipse>
+    
+                <g transform="translate(190 150)">
+                  <polygon points="0,-66 128,0 0,66 -128,0" fill="url(#glassLime)" stroke="#dff79a" stroke-width="1.2" opacity=".95"></polygon>
+                  <polygon points="0,-66 128,0 0,0 -128,0" fill="#ffffff" opacity=".18"></polygon>
+                </g>
+              </svg>
+            </div>
+    
+            <div class="price-right">
+              <div class="plan-name">
+                <span class="lime">PRO</span>
+                <span class="dark">PLAN</span>
+              </div>
+    
+              <div class="price-amount">
+                <span class="cur">$</span>
+                <span class="big">49</span>
+                <span class="per">/mo</span>
+              </div>
+    
+              <div class="billing">
+                <span class="txt">Billed annually</span>
+                <span class="badge-save">SAVE 20%</span>
+              </div>
+    
+              <a href="#" class="btn btn-dark">
+                Get Started
+                <span class="arrow">→</span>
+              </a>
+    
+              <div class="guarantee">30-Day Money Back Guarantee</div>
+    
+              <div class="includes">
+                <h5>Plan Includes</h5>
+                <div class="inc-grid">
+                  <div class="inc-item"><span class="inc-check">✓</span> Unlimited Projects</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Priority Support</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Advanced Analytics</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Custom Integrations</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Team Collaboration</div>
+                  <div class="inc-item"><span class="inc-check">✓</span> Early Access</div>
+                </div>
+              </div>
+            </div>
+          </div>
+    
+          <!-- DRAGGABLE DIAGONAL HANDLE -->
+          <div class="wipe-ui">
+            <div class="wipe-line"></div>
+            <div class="wipe-label">Drag to compare</div>
+            <button class="wipe-handle" type="button" aria-label="Drag pricing comparison handle">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M8 5L3 12L8 19"></path>
+                <path d="M16 5L21 12L16 19"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    
+      <script>
+        (() => {
+          const cards = document.querySelectorAll("[data-comparison-wipe]");
+    
+          cards.forEach((card) => {
+            const handle = card.querySelector(".wipe-handle");
+            let isDragging = false;
+    
+            const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+    
+            const setWipeFromClientX = (clientX) => {
+              const rect = card.getBoundingClientRect();
+              const x = clientX - rect.left;
+              const rawPercent = (x / rect.width) * 100;
+              const percent = clamp(rawPercent, -10, 110);
+    
+              card.style.setProperty("--wipe", `${percent}%`);
+            };
+    
+            const startDrag = (event) => {
+              isDragging = true;
+              card.classList.add("is-dragging");
+              handle.setPointerCapture?.(event.pointerId);
+              setWipeFromClientX(event.clientX);
+            };
+    
+            const moveDrag = (event) => {
+              if (!isDragging) return;
+              setWipeFromClientX(event.clientX);
+            };
+    
+            const stopDrag = (event) => {
+              isDragging = false;
+              card.classList.remove("is-dragging");
+              handle.releasePointerCapture?.(event.pointerId);
+            };
+    
+            handle.addEventListener("pointerdown", startDrag);
+            window.addEventListener("pointermove", moveDrag);
+            window.addEventListener("pointerup", stopDrag);
+            window.addEventListener("pointercancel", stopDrag);
+    
+            card.addEventListener("pointerdown", (event) => {
+              if (event.target.closest(".wipe-handle")) return;
+              setWipeFromClientX(event.clientX);
+            });
+          });
+        })();
+      </script>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="section" id="testimonials">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">Loved by teams</span>
+          <h2 class="">Don't just take our word for it</h2>
+          <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px" class="">
+            <div style="display:flex">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px">
+              <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px">
+            </div>
+            <span style="font-size:14px;color:var(--muted)">
+              <span style="color:var(--lime);font-weight:600">4.9/5</span>
+              from 200+ teams
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="test-wrap reveal">
+        <div class="test-track">
+          <div class="test-card" style="position:relative">
+            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+              ”
+            </span>
+            <div class="stars">★★★★★</div>
+            <p class="">
+              "Apex replaced four tools we paid for separately. The analytics
+              alone paid for itself in month one."
+            </p>
+            <div class="test-who">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara Kim" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
+              <div class="">
+                <div class="nm">Sara Kim</div>
+                <div class="rl">Head of Ops, Lumen</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card" style="position:relative">
+            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+              ”
+            </span>
+            <div class="stars">★★★★★</div>
+            <p>
+              "The collaboration features are unreal. Our remote team finally
+              feels in the same room."
+            </p>
+            <div class="test-who">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marco Torres" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
+              <div>
+                <div class="nm">Marco Torres</div>
+                <div class="rl">CTO, Vertex</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card" style="position:relative;border-color:rgba(200,242,62,.4);background:linear-gradient(165deg,#141a09,#0e0e0e)">
+            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.28);user-select:none">
+              ”
+            </span>
+            <div class="stars">★★★★★</div>
+            <p class="">
+              "Priority support is no joke — every question answered in minutes.
+              Most responsive team I've worked with."
+            </p>
+            <div class="test-who">
+              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Aisha Hassan" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--lime)">
+              <div>
+                <div class="nm">Aisha Hassan</div>
+                <div class="rl">Founder, Quantia</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card" style="position:relative">
+            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+              ”
+            </span>
+            <div class="stars">★★★★★</div>
+            <p>
+              "We shipped a full rebrand and platform in six weeks. The momentum
+              was contagious."
+            </p>
+            <div class="test-who">
+              <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Jonas Lind" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
+              <div>
+                <div class="nm">Jonas Lind</div>
+                <div class="rl">CEO, Helios</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card" style="position:relative">
+            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+              ”
+            </span>
+            <div class="stars">★★★★★</div>
+            <p>
+              "Apex replaced four tools we paid for separately. The analytics
+              alone paid for itself in month one."
+            </p>
+            <div class="test-who">
+              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara Kim" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
+              <div>
+                <div class="nm">Sara Kim</div>
+                <div class="rl">Head of Ops, Lumen</div>
+              </div>
+            </div>
+          </div>
+          <div class="test-card" style="position:relative">
+            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+              ”
+            </span>
+            <div class="stars">★★★★★</div>
+            <p>
+              "The collaboration features are unreal. Our remote team finally
+              feels in the same room."
+            </p>
+            <div class="test-who">
+              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marco Torres" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
+              <div>
+                <div class="nm">Marco Torres</div>
+                <div class="rl">CTO, Vertex</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="section-head center reveal">
+          <span class="eyebrow">FAQ</span>
+          <h2>Questions, answered</h2>
+        </div>
+        <div class="faq reveal">
+          <div class="faq-item">
+            <div class="faq-q">
+              What's included in the Pro plan?
+              <span class="pm">+</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                Everything: unlimited projects, advanced analytics, team
+                collaboration, custom integrations, priority support, and early
+                access to new features. No hidden tiers.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              Can I cancel anytime?
+              <span class="pm">+</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                Yes. There are no long-term contracts. Cancel whenever you like,
+                and you're covered by our 30-day money-back guarantee.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              Do you offer onboarding support?
+              <span class="pm">+</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                Every plan includes priority support with response times
+                measured in minutes, plus a guided onboarding to get your team
+                up and running fast.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              Is my data secure?
+              <span class="pm">+</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                We use bank-grade encryption, regular audits, and are fully GDPR
+                and SOC 2 compliant. Your data is always yours.
+              </p>
+            </div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-q">
+              Can I integrate my existing tools?
+              <span class="pm">+</span>
+            </div>
+            <div class="faq-a">
+              <p>
+                Absolutely. Apex connects with a growing library of native
+                integrations and offers a flexible API for anything custom.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="section" style="padding-top:0">
+      <div class="wrap">
+        <div class="cta-band reveal">
+          <span class="pill">✦ Limited Offer — Save 20%</span>
+          <h2 style="margin-top:18px" class="">
+            Ready to unlock
+            <br>
+            your potential?
+          </h2>
+          <p>
+            Join 12,000+ teams already building faster with Apex. Start today
+            with a 30-day money-back guarantee.
+          </p>
+          <div class="hero-actions" style="justify-content:center">
+            <a href="#pricing" class="btn btn-lime">
+              Start a Project
+              <span class="arrow">→</span>
+            </a>
+            <a href="#" class="btn btn-ghost">Talk to Sales</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="">
+      <div class="foot-huge">APEX</div>
+      <div class="wrap">
+        <div class="foot-top">
+          <div class="foot-brand">
+            <a href="#" class="logo">
+              <span class="mark">A</span>
+              Apex
+            </a>
+            <p class="">
+              The creative growth studio that designs, builds and scales digital
+              products — without the friction.
+            </p>
+          </div>
+          <div class="foot-col">
+            <h6>Services</h6>
+            <a href="#services">Analytics</a>
+            <a href="#services">Design</a>
+            <a href="#services">Development</a>
+            <a href="#services">Strategy</a>
+          </div>
+          <div class="foot-col">
+            <h6>Company</h6>
+            <a href="#work">Work</a>
+            <a href="#process">Process</a>
+            <a href="#">Careers</a>
+            <a href="#">Contact</a>
+          </div>
+          <div class="foot-col">
+            <h6>Legal</h6>
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+            <a href="#">Security</a>
+            <a href="#">Status</a>
+          </div>
+        </div>
+        <div class="foot-bottom">
+          <span class="">© 2026 Apex Studio. All rights reserved.</span>
+          <div class="socials">
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Dribbble</a>
+            <a href="#">GitHub</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // scroll progress
+      const progress=document.getElementById('progress');
+      // nav scrolled state
+      const nav=document.getElementById('nav');
+      window.addEventListener('scroll',()=>{
+        const h=document.documentElement;
+        const pct=(h.scrollTop)/(h.scrollHeight-h.clientHeight)*100;
+        progress.style.width=pct+'%';
+        nav.classList.toggle('scrolled',h.scrollTop>30);
+      });
+
+      // reveal on scroll
+      const io=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+      },{threshold:.16});
+      document.querySelectorAll('.reveal,.mask-line').forEach(el=>io.observe(el));
+
+      // count up
+      const countIO=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(!e.isIntersecting)return;
+          const el=e.target, target=+el.dataset.count, suffix=el.dataset.suffix||'';
+          const isLime=el.querySelector('.lime'); let cur=0; const step=Math.max(1,Math.ceil(target/60));
+          const t=setInterval(()=>{cur+=step; if(cur>=target){cur=target;clearInterval(t);}
+            el.innerHTML=(isLime?'<span class="lime">':'')+cur+suffix+(isLime?'</span>':'');},22);
+          countIO.unobserve(el);
+        });
+      },{threshold:.5});
+      document.querySelectorAll('[data-count]').forEach(el=>countIO.observe(el));
+
+      // FAQ accordion
+      document.querySelectorAll('.faq-q').forEach(q=>{
+        q.addEventListener('click',()=>{
+          const item=q.parentElement, a=item.querySelector('.faq-a'), open=item.classList.contains('open');
+          document.querySelectorAll('.faq-item').forEach(i=>{i.classList.remove('open');i.querySelector('.faq-a').style.maxHeight=null;});
+          if(!open){item.classList.add('open');a.style.maxHeight=a.scrollHeight+'px';}
+        });
+      });
+
+      // bento + showcase tilt
+      document.querySelectorAll('.b-card,.show-card').forEach(card=>{
+        card.addEventListener('mousemove',e=>{
+          const r=card.getBoundingClientRect();
+          const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+          card.style.transform=`perspective(900px) rotateX(${-y*5}deg) rotateY(${x*5}deg) translateY(-4px)`;
+        });
+        card.addEventListener('mouseleave',()=>{card.style.transform='';});
+      });
+
+      // custom cursor + hover state
+      const cursor=document.getElementById('cursor'), ring=document.getElementById('cursorRing');
+      let mx=0,my=0,rx=0,ry=0;
+      window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cursor.style.transform=`translate(${mx}px,${my}px) translate(-50%,-50%)`;});
+      (function loop(){rx+=(mx-rx)*.18;ry+=(my-ry)*.18;ring.style.transform=`translate(${rx}px,${ry}px) translate(-50%,-50%)`;requestAnimationFrame(loop);})();
+      document.querySelectorAll('a,button,.btn,.faq-q,.b-card,.show-card,.s-tile').forEach(el=>{
+        el.addEventListener('mouseenter',()=>document.body.classList.add('hovering'));
+        el.addEventListener('mouseleave',()=>document.body.classList.remove('hovering'));
+      });
+
+      // mobile menu
+      document.getElementById('burger').addEventListener('click',function(){
+        const links=document.querySelector('.nav-links');
+        const open=links.style.display==='flex';
+        links.style.display=open?'none':'flex';
+        Object.assign(links.style,{position:'absolute',top:'76px',left:'0',right:'0',flexDirection:'column',background:'#080808',padding:'22px 28px',borderBottom:'1px solid rgba(255,255,255,.08)',gap:'18px'});
+      });
+    </script>
+
+    <script>
+      // kinetic manifesto — words light up as you scroll
+      (function(){
+        const kin=document.querySelector('#manifesto .kinetic');
+        if(!kin)return;
+        const words=kin.querySelectorAll('.w');
+        const lightUp=()=>{
+          const r=kin.getBoundingClientRect();
+          const p=Math.min(1,Math.max(0,(window.innerHeight*.85-r.top)/(r.height+window.innerHeight*.45)));
+          const n=Math.round(p*words.length);
+          words.forEach((w,i)=>w.classList.toggle('lit',i<n));
+        };
+        window.addEventListener('scroll',lightUp,{passive:true});lightUp();
+      })();
+      // studio bento image parallax on scroll
+      (function(){
+        const tiles=document.querySelectorAll('#studio .s-tile img');
+        if(!tiles.length)return;
+        const par=()=>{tiles.forEach(img=>{
+          const r=img.parentElement.getBoundingClientRect();
+          if(r.bottom<0||r.top>innerHeight)return;
+          const v=(r.top+r.height/2-innerHeight/2)/innerHeight;
+          img.style.transform=`translateY(${v*-26}px) scale(1.18)`;
+        });};
+        window.addEventListener('scroll',par,{passive:true});par();
+      })();
+    </script>
+
+    <script>
+      (function(){var canvas=document.getElementById('bubbleCanvas');if(!canvas)return;var hero=canvas.parentElement;var ctx=canvas.getContext('2d');var W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);var bubbles=[];var mouse={x:-9999,y:-9999,active:false};var obstacles=[];function rand(a,b){return a+Math.random()*(b-a);}function resize(){var r=hero.getBoundingClientRect();W=r.width;H=r.height;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}function collectObstacles(){obstacles=[];var heroRect=hero.getBoundingClientRect();var sels=['.hero h1','.hero .sub','.hero-actions .btn','.logo','.pill'];sels.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el){var r=el.getBoundingClientRect();if(r.bottom<heroRect.top||r.top>heroRect.bottom)return;obstacles.push({x:r.left-heroRect.left,y:r.top-heroRect.top,w:r.width,h:r.height});});});}function makeBubbles(){bubbles=[];var n=Math.max(14,Math.round(W/52));for(var i=0;i<n;i++){var rad=rand(10,38);bubbles.push({x:rand(rad,W-rad),y:-rand(rad,H*.8),r:rad,vx:rand(-.25,.25),vy:rand(0,.4)});}}function resolveObstacles(b){for(var k=0;k<obstacles.length;k++){var o=obstacles[k];var cx=Math.max(o.x,Math.min(b.x,o.x+o.w));var cy=Math.max(o.y,Math.min(b.y,o.y+o.h));var dx=b.x-cx,dy=b.y-cy;var d2=dx*dx+dy*dy;if(d2<b.r*b.r){var d=Math.sqrt(d2)||0.0001;var nx=dx/d,ny=dy/d;if(d2===0){nx=0;ny=-1;}var overlap=b.r-d;b.x+=nx*overlap;b.y+=ny*overlap;var dot=b.vx*nx+b.vy*ny;if(dot<0){b.vx-=(1+0.7)*dot*nx;b.vy-=(1+0.7)*dot*ny;}}}}function step(){ctx.clearRect(0,0,W,H);for(var i=0;i<bubbles.length;i++){var b=bubbles[i];var mdx=b.x-mouse.x,mdy=b.y-mouse.y;var mdist=Math.sqrt(mdx*mdx+mdy*mdy);if(mouse.active&&mdist<b.r+90){var f=(b.r+90-mdist)/(b.r+90);var ang=Math.atan2(mdy,mdx);b.vx+=Math.cos(ang)*f*1.6;b.vy+=Math.sin(ang)*f*1.6;}b.vy+=0.04;b.vx*=0.99;b.vy*=0.99;b.x+=b.vx;b.y+=b.vy;if(b.x<b.r){b.x=b.r;b.vx*=-.6;}if(b.x>W-b.r){b.x=W-b.r;b.vx*=-.6;}if(b.y>H-b.r){b.y=H-b.r;b.vy*=-.55;b.vx*=.92;}resolveObstacles(b);for(var j=i+1;j<bubbles.length;j++){var o=bubbles[j];var ddx=o.x-b.x,ddy=o.y-b.y;var d=Math.sqrt(ddx*ddx+ddy*ddy);var min=b.r+o.r;if(d>0&&d<min){var ov=(min-d)/2;var nx=ddx/d,ny=ddy/d;b.x-=nx*ov;b.y-=ny*ov;o.x+=nx*ov;o.y+=ny*ov;var p=(b.vx-o.vx)*nx+(b.vy-o.vy)*ny;b.vx-=p*nx;b.vy-=p*ny;o.vx+=p*nx;o.vy+=p*ny;}}var grad=ctx.createRadialGradient(b.x-b.r*.35,b.y-b.r*.35,b.r*.1,b.x,b.y,b.r);grad.addColorStop(0,'rgba(223,247,154,.32)');grad.addColorStop(.7,'rgba(200,242,62,.10)');grad.addColorStop(1,'rgba(200,242,62,.02)');ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='rgba(200,242,62,.35)';ctx.lineWidth=1;ctx.stroke();ctx.beginPath();ctx.arc(b.x-b.r*.32,b.y-b.r*.32,b.r*.18,0,Math.PI*2);ctx.fillStyle='rgba(241,242,231,.4)';ctx.fill();}requestAnimationFrame(step);}function setMouse(x,y){var r=canvas.getBoundingClientRect();mouse.x=x-r.left;mouse.y=y-r.top;mouse.active=true;}window.addEventListener('mousemove',function(e){setMouse(e.clientX,e.clientY);});hero.addEventListener('mouseleave',function(){mouse.active=false;});hero.addEventListener('touchmove',function(e){if(e.touches[0]){setMouse(e.touches[0].clientX,e.touches[0].clientY);}},{passive:true});hero.addEventListener('touchstart',function(e){if(e.touches[0]){setMouse(e.touches[0].clientX,e.touches[0].clientY);}},{passive:true});hero.addEventListener('touchend',function(){mouse.active=false;});window.addEventListener('resize',function(){resize();collectObstacles();makeBubbles();});window.addEventListener('scroll',collectObstacles,{passive:true});resize();collectObstacles();makeBubbles();step();})();
+    </script>
+  
+</body></html>

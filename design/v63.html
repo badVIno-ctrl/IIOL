@@ -1,0 +1,2966 @@
+<html lang="en"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge — Premium Fitness &amp; Performance</title>
+<meta name="description" content="Forge — Premium fitness and athletic performance training. Science-backed programming, progressive overload tracking, and recovery intelligence.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<style>
+/* ─── Reset & Base ─────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+--bg-0: #08080A;
+--bg-1: #0C0C10;
+--bg-2: #111118;
+--orange: #F97316;
+--orange-light: #FB923C;
+--peach: #FDBA74;
+--orange-deep: #EA580C;
+--blue: #3B82F6;
+--text: #f0f0f2;
+--muted: #8a8a96;
+--glass: rgba(255,255,255,0.03);
+--border-o: rgba(249,115,22,0.15);
+--border-s: rgba(255,255,255,0.06);
+}
+html { scroll-behavior: smooth; }
+body {
+font-family: 'Inter', system-ui, -apple-system, sans-serif;
+background: var(--bg-0);
+color: var(--text);
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+}
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+img { display: block; max-width: 100%; }
+/* ─── Grain overlay ─────────────────────────────────────────── */
+body::before {
+content: '';
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 9999;
+opacity: 0.035;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+background-size: 180px 180px;
+}
+/* ─── Scroll reveal ─────────────────────────────────────────── */
+.reveal {
+opacity: 0;
+transform: translateY(24px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-left {
+opacity: 0;
+transform: translateX(-40px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-left.visible { opacity: 1; transform: translateX(0); }
+.reveal-right {
+opacity: 0;
+transform: translateX(40px);
+transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal-right.visible { opacity: 1; transform: translateX(0); }
+.stagger-up .reveal-child {
+opacity: 0;
+transform: translateY(24px);
+transition: opacity 0.6s ease, transform 0.6s ease;
+}
+.stagger-up.visible .reveal-child { opacity: 1; transform: translateY(0); }
+.stagger-up.visible .reveal-child:nth-child(1) { transition-delay: 0ms; }
+.stagger-up.visible .reveal-child:nth-child(2) { transition-delay: 100ms; }
+.stagger-up.visible .reveal-child:nth-child(3) { transition-delay: 200ms; }
+.stagger-up.visible .reveal-child:nth-child(4) { transition-delay: 300ms; }
+.stagger-up.visible .reveal-child:nth-child(5) { transition-delay: 400ms; }
+.stagger-up.visible .reveal-child:nth-child(6) { transition-delay: 500ms; }
+/* ─── Typography helpers ────────────────────────────────────── */
+.text-grad {
+background: linear-gradient(135deg, var(--orange) 0%, var(--peach) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.section-label {
+font-size: 0.72rem;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--orange);
+font-weight: 500;
+}
+/* ─── NAV ────────────────────────────────────────────────────── */
+nav {
+position: fixed;
+top: 0; left: 0; right: 0;
+z-index: 1000;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 48px;
+background: rgba(8,8,10,0.72);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border-bottom: 1px solid var(--border-s);
+transition: background 0.3s;
+}
+.nav-logo {
+display: inline-flex;
+align-items: center;
+gap: 0;
+position: relative;
+}
+.logo-text {
+font-family: 'Bebas Neue', sans-serif;
+font-weight: 400;
+letter-spacing: 0.12em;
+color: var(--text);
+line-height: 1;
+position: relative;
+}
+.nav-logo .logo-text {
+font-size: 1.5rem;
+}
+.logo-text::after {
+content: '';
+position: absolute;
+bottom: -3px;
+left: 0;
+width: 100%;
+height: 2.5px;
+border-radius: 2px;
+background: linear-gradient(90deg, var(--orange), var(--peach));
+}
+.nav-links {
+display: flex;
+align-items: center;
+gap: 32px;
+}
+.nav-links a {
+font-size: 0.82rem;
+font-weight: 400;
+color: var(--muted);
+letter-spacing: -0.01em;
+transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--text); }
+.nav-cta {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+.nav-cta a:first-child {
+font-size: 0.82rem;
+color: var(--muted);
+transition: color 0.2s;
+}
+.nav-cta a:first-child:hover { color: var(--text); }
+.btn-nav {
+font-size: 0.8rem;
+font-weight: 500;
+padding: 8px 20px;
+border-radius: 999px;
+background: rgba(249,115,22,0.06);
+border: 1px solid var(--border-o);
+color: var(--orange-light);
+cursor: pointer;
+transition: background 0.2s, box-shadow 0.2s;
+position: relative;
+overflow: hidden;
+box-shadow: 0 0 12px rgba(249,115,22,0.1);
+animation: navGlow 3s ease-in-out infinite;
+}
+@keyframes navGlow {
+0%, 100% { box-shadow: 0 0 12px rgba(249,115,22,0.1); }
+50% { box-shadow: 0 0 20px rgba(249,115,22,0.2); }
+}
+.btn-nav::before {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(249,115,22,0.12), transparent);
+opacity: 0;
+transition: opacity 0.2s;
+}
+.btn-nav:hover::before { opacity: 1; }
+.btn-nav:hover { box-shadow: 0 0 16px rgba(249,115,22,0.25); }
+/* Hamburger */
+.hamburger {
+display: none;
+flex-direction: column;
+gap: 5px;
+cursor: pointer;
+padding: 4px;
+background: none;
+border: none;
+}
+.hamburger span {
+display: block;
+width: 22px; height: 1.5px;
+background: var(--text);
+transition: transform 0.3s, opacity 0.3s;
+transform-origin: center;
+}
+.hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+.hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.mobile-menu {
+display: none;
+position: fixed;
+top: 53px; left: 0; right: 0;
+background: rgba(8,8,10,0.97);
+backdrop-filter: blur(20px);
+border-bottom: 1px solid var(--border-s);
+padding: 24px 24px 32px;
+z-index: 999;
+flex-direction: column;
+gap: 20px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a {
+font-size: 1rem;
+color: var(--muted);
+letter-spacing: -0.02em;
+padding: 8px 0;
+border-bottom: 1px solid var(--border-s);
+transition: color 0.2s;
+}
+.mobile-menu a:hover { color: var(--text); }
+/* ─── GLITCH EFFECT ─────────────────────────────────────────── */
+@keyframes glitch-r {
+0%, 90%, 100% { text-shadow: none; }
+91% { text-shadow: -3px 0 rgba(249,115,22,0.9), 3px 0 rgba(59,130,246,0.7); }
+93% { text-shadow: 3px 0 rgba(249,115,22,0.9), -3px 0 rgba(59,130,246,0.7); }
+95% { text-shadow: -2px 0 rgba(253,186,116,0.8), 2px 0 rgba(234,88,12,0.8); }
+97% { text-shadow: none; }
+}
+.glitch-text:hover {
+animation: glitch-r 0.6s steps(1) forwards;
+}
+/* ─── SECTION 1: HERO ────────────────────────────────────────── */
+#hero {
+position: relative;
+height: 100vh;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+}
+.hero-mesh {
+position: absolute;
+inset: 0;
+z-index: 0;
+background:
+radial-gradient(ellipse 80% 60% at 70% 40%, rgba(249,115,22,0.08) 0%, transparent 60%),
+radial-gradient(ellipse 60% 50% at 20% 70%, rgba(234,88,12,0.06) 0%, transparent 55%),
+radial-gradient(ellipse 100% 80% at 50% 50%, rgba(8,8,10,0) 0%, var(--bg-0) 80%);
+background-size: 400% 400%;
+animation: meshDrift 25s ease-in-out infinite;
+}
+@keyframes meshDrift {
+0%   { background-position: 0% 50%, 100% 0%, 50% 50%; }
+33%  { background-position: 50% 0%, 0% 100%, 30% 70%; }
+66%  { background-position: 100% 50%, 50% 0%, 70% 30%; }
+100% { background-position: 0% 50%, 100% 0%, 50% 50%; }
+}
+.hero-grid-lines {
+position: absolute;
+inset: 0;
+z-index: 0;
+background-image:
+linear-gradient(rgba(249,115,22,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(249,115,22,0.04) 1px, transparent 1px);
+background-size: 80px 80px;
+mask-image: linear-gradient(to bottom, transparent 0%, black 20%, black 60%, transparent 100%);
+}
+/* Animated vertical accent line */
+.hero-accent-line {
+position: absolute;
+left: 48%;
+top: 15%;
+bottom: 15%;
+width: 1px;
+z-index: 1;
+background: linear-gradient(to bottom, transparent, rgba(249,115,22,0.4), rgba(253,186,116,0.2), transparent);
+opacity: 0.6;
+}
+.hero-accent-line::before {
+content: '';
+position: absolute;
+top: 0;
+left: -3px;
+width: 7px;
+height: 40px;
+background: linear-gradient(to bottom, transparent, rgba(249,115,22,0.8), transparent);
+border-radius: 4px;
+animation: accentPulse 4s ease-in-out infinite;
+box-shadow: 0 0 16px rgba(249,115,22,0.4);
+}
+@keyframes accentPulse {
+0%, 100% { top: 0%; opacity: 0; }
+10% { opacity: 1; }
+90% { opacity: 1; }
+100% { top: 100%; opacity: 0; }
+}
+/* Floating glass metric cards in hero */
+.hero-float-metrics {
+position: absolute;
+z-index: 2;
+display: flex;
+flex-direction: column;
+gap: 12px;
+left: 44%;
+top: 50%;
+transform: translateY(-50%);
+}
+.hero-metric {
+padding: 12px 18px;
+background: rgba(255,255,255,0.03);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(249,115,22,0.12);
+border-radius: 10px;
+display: flex;
+align-items: center;
+gap: 12px;
+box-shadow: 0 8px 32px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.03);
+animation: floatMetric 6s ease-in-out infinite;
+}
+.hero-metric:nth-child(2) { animation-delay: -2s; }
+.hero-metric:nth-child(3) { animation-delay: -4s; }
+@keyframes floatMetric {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(-6px); }
+}
+.hero-metric-icon {
+width: 32px;
+height: 32px;
+border-radius: 8px;
+background: rgba(249,115,22,0.1);
+border: 1px solid rgba(249,115,22,0.2);
+display: flex;
+align-items: center;
+justify-content: center;
+color: var(--orange);
+font-size: 15px;
+flex-shrink: 0;
+}
+.hero-metric-label {
+font-size: 0.6rem;
+color: var(--muted);
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.hero-metric-value {
+font-size: 1.05rem;
+font-weight: 300;
+letter-spacing: -0.03em;
+color: var(--text);
+}
+.hero-metric-value span { color: var(--orange); font-weight: 500; }
+/* ─── Hero Split Layout ──────────────────────────────────────── */
+.hero-split {
+position: relative;
+z-index: 1;
+flex: 1;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 80px 48px 40px;
+max-width: 46%;
+}
+.hero-left {
+display: flex;
+flex-direction: column;
+justify-content: center;
+}
+.hero-left .hero-headline {
+flex: unset;
+margin-bottom: 28px;
+}
+.hero-left .hero-desc { margin-bottom: 0; }
+.hero-left .hero-desc p { margin-bottom: 24px; }
+/* Animated underline on headline */
+.hero-headline .line-3 {
+position: relative;
+}
+.hero-headline .line-3::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 2px;
+background: linear-gradient(90deg, var(--orange), var(--peach), transparent);
+animation: underlineShimmer 3s ease-in-out infinite;
+}
+@keyframes underlineShimmer {
+0%, 100% { opacity: 0.4; transform: scaleX(0.7); transform-origin: left; }
+50% { opacity: 1; transform: scaleX(1); transform-origin: left; }
+}
+/* ─── Hero Right Visual ──────────────────────────────────────── */
+/* WebGL ambient background */
+#hero-webgl {
+position: absolute;
+inset: 0;
+z-index: 0;
+pointer-events: none;
+}
+.hero-right {
+position: absolute;
+top: 0;
+right: 0;
+bottom: 0;
+width: 60%;
+z-index: 0;
+overflow: hidden;
+-webkit-mask-image:
+linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,0.7) 30%, black 50%),
+linear-gradient(to top, transparent 0%, black 25%);
+-webkit-mask-composite: destination-in;
+mask-image:
+linear-gradient(to right, transparent 0%, rgba(0,0,0,0.3) 15%, rgba(0,0,0,0.7) 30%, black 50%),
+linear-gradient(to top, transparent 0%, black 25%);
+mask-composite: intersect;
+}
+.hero-right img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+filter: saturate(0.85) contrast(1.1);
+}
+/* HUD overlay stats */
+.hero-hud {
+position: absolute;
+bottom: 32px;
+right: 32px;
+left: auto;
+z-index: 5;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 12px 18px;
+background: rgba(8,8,10,0.6);
+backdrop-filter: blur(20px);
+-webkit-backdrop-filter: blur(20px);
+border: 1px solid rgba(249,115,22,0.12);
+border-radius: 10px;
+gap: 16px;
+}
+.hud-item {
+display: flex;
+align-items: center;
+gap: 8px;
+}
+.hud-dot {
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: var(--orange);
+box-shadow: 0 0 8px rgba(249,115,22,0.6);
+animation: pulse-dot 2s ease-in-out infinite;
+}
+.hud-item-label {
+font-size: 0.58rem;
+color: var(--muted);
+letter-spacing: 0.06em;
+text-transform: uppercase;
+}
+.hud-item-value {
+font-size: 1rem;
+font-weight: 300;
+letter-spacing: -0.03em;
+color: var(--text);
+}
+.hud-item-value span { color: var(--orange); font-weight: 500; }
+.hud-separator {
+width: 1px;
+height: 28px;
+background: linear-gradient(to bottom, transparent, rgba(249,115,22,0.2), transparent);
+}
+.hero-eyebrow {
+display: flex;
+align-items: center;
+gap: 10px;
+margin-bottom: 32px;
+}
+.hero-eyebrow-dot {
+width: 6px; height: 6px;
+border-radius: 50%;
+background: var(--orange);
+box-shadow: 0 0 8px rgba(249,115,22,0.6);
+animation: pulse-dot 2s ease-in-out infinite;
+}
+@keyframes pulse-dot {
+0%, 100% { box-shadow: 0 0 8px rgba(249,115,22,0.6); }
+50% { box-shadow: 0 0 16px rgba(249,115,22,0.9); }
+}
+.hero-headline {
+font-size: clamp(3.5rem, 11vw, 11rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+line-height: 0.92;
+text-transform: uppercase;
+flex: 1;
+}
+.hero-headline .line-1 { display: block; color: var(--text); }
+.hero-headline .line-2 { display: block; color: var(--text); }
+.hero-headline .line-3 {
+display: block;
+background: linear-gradient(135deg, var(--orange) 0%, var(--peach) 60%, var(--orange-light) 100%);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+background-clip: text;
+}
+.hero-desc {
+max-width: 380px;
+}
+.hero-desc p {
+font-size: 0.88rem;
+line-height: 1.7;
+color: var(--muted);
+font-weight: 300;
+letter-spacing: -0.01em;
+margin-bottom: 28px;
+}
+.hero-actions {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+/* Glitch CTA button */
+.btn-hero-primary {
+position: relative;
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 14px 28px;
+font-size: 0.85rem;
+font-weight: 500;
+letter-spacing: 0.02em;
+cursor: pointer;
+border: none;
+color: #fff;
+background: linear-gradient(135deg, var(--orange-deep), var(--orange));
+overflow: hidden;
+clip-path: none;
+box-shadow: 0 4px 20px rgba(249,115,22,0.3), 0 0 0 1px rgba(253,186,116,0.2);
+transition: box-shadow 0.3s, transform 0.3s;
+}
+.btn-hero-primary:hover {
+box-shadow: 0 8px 32px rgba(249,115,22,0.45), 0 0 0 1px rgba(253,186,116,0.3);
+transform: translateY(-1px);
+}
+.btn-hero-primary::before {
+content: '';
+position: absolute;
+top: 0; left: -100%;
+width: 60%;
+height: 100%;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+transition: left 0.4s ease;
+}
+.btn-hero-primary:hover::before { left: 150%; }
+.btn-hero-primary .btn-text {
+position: relative;
+z-index: 1;
+}
+.btn-hero-primary:hover .btn-text {
+animation: glitch-r 0.5s steps(1) forwards;
+}
+.btn-hero-primary iconify-icon {
+position: relative;
+z-index: 1;
+transition: transform 0.2s;
+}
+.btn-hero-primary:hover iconify-icon { transform: translateX(3px); }
+.btn-hero-ghost {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+padding: 14px 24px;
+font-size: 0.85rem;
+font-weight: 400;
+color: var(--muted);
+background: rgba(255,255,255,0.03);
+border: 1px solid var(--border-s);
+cursor: pointer;
+transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+}
+.btn-hero-ghost:hover {
+color: var(--text);
+border-color: rgba(249,115,22,0.2);
+box-shadow: 0 4px 24px rgba(249,115,22,0.1), 0 0 0 1px rgba(249,115,22,0.08);
+background: rgba(249,115,22,0.04);
+}
+/* ─── SECTION 2: PROGRAMS ────────────────────────────────────── */
+#programs {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 60% 50% at 80% 20%, rgba(249,115,22,0.04) 0%, transparent 70%),
+radial-gradient(ellipse 50% 60% at 10% 80%, rgba(234,88,12,0.03) 0%, transparent 60%),
+var(--bg-1);
+position: relative;
+}
+#programs::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--border-o), transparent);
+}
+#programs::after {
+content: '';
+position: absolute;
+inset: 0;
+background-image: radial-gradient(circle, rgba(249,115,22,0.03) 1px, transparent 1px);
+background-size: 32px 32px;
+mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 20%, transparent 70%);
+pointer-events: none;
+}
+.programs-header {
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+margin-bottom: 64px;
+}
+.programs-header h2 {
+font-size: clamp(1.8rem, 3vw, 2.2rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+}
+.programs-header p {
+font-size: 0.82rem;
+color: var(--muted);
+max-width: 280px;
+text-align: right;
+line-height: 1.6;
+font-weight: 300;
+}
+.program-cards {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+.program-card {
+display: grid;
+grid-template-columns: 1fr 1fr;
+height: 180px;
+border-top: 1px solid var(--border-s);
+overflow: hidden;
+position: relative;
+transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+.program-card:hover {
+box-shadow: 0 8px 32px rgba(249,115,22,0.08), 0 0 0 1px rgba(249,115,22,0.1);
+border-color: rgba(249,115,22,0.15);
+}
+.program-card:last-child { border-bottom: 1px solid var(--border-s); }
+.program-card-left {
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 28px 36px;
+position: relative;
+background:
+radial-gradient(ellipse 80% 80% at 20% 50%, rgba(249,115,22,0.03) 0%, transparent 70%);
+}
+.program-card-right {
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 28px 36px;
+border-left: 1px solid var(--border-s);
+position: relative;
+}
+/* Program card background images */
+.program-card-img {
+position: absolute;
+inset: 0;
+z-index: 0;
+overflow: hidden;
+}
+.program-card-img img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: saturate(0.6) brightness(0.25) contrast(1.2);
+transition: filter 0.4s, transform 0.4s;
+}
+.program-card:hover .program-card-img img {
+filter: saturate(0.7) brightness(0.35) contrast(1.1);
+transform: scale(1.03);
+}
+.program-card-img::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(90deg, transparent 60%, var(--bg-1) 100%);
+pointer-events: none;
+}
+.program-card-left { z-index: 1; }
+.program-card-right { z-index: 1; }
+.prog-bg-diagonal {
+background-image: repeating-linear-gradient(
+-45deg,
+rgba(249,115,22,0.03) 0px,
+rgba(249,115,22,0.03) 1px,
+transparent 1px,
+transparent 14px
+);
+}
+.prog-bg-dots {
+background-image: radial-gradient(circle, rgba(249,115,22,0.07) 1px, transparent 1px);
+background-size: 18px 18px;
+}
+.prog-bg-cross {
+background-image:
+repeating-linear-gradient(0deg, rgba(249,115,22,0.03) 0px, rgba(249,115,22,0.03) 1px, transparent 1px, transparent 18px),
+repeating-linear-gradient(90deg, rgba(249,115,22,0.03) 0px, rgba(249,115,22,0.03) 1px, transparent 1px, transparent 18px);
+}
+.prog-bg-wave {
+background-image: repeating-linear-gradient(
+90deg,
+rgba(249,115,22,0.03) 0px,
+rgba(249,115,22,0.03) 1px,
+transparent 1px,
+transparent 20px
+);
+}
+.prog-num {
+font-size: 0.7rem;
+letter-spacing: 0.12em;
+color: var(--orange);
+opacity: 0.7;
+font-weight: 500;
+margin-bottom: 6px;
+}
+.prog-name {
+font-size: 1.5rem;
+font-weight: 200;
+letter-spacing: -0.03em;
+margin-bottom: 8px;
+}
+.prog-badge {
+display: inline-flex;
+align-items: center;
+gap: 5px;
+font-size: 0.68rem;
+font-weight: 500;
+letter-spacing: 0.08em;
+text-transform: uppercase;
+padding: 4px 10px;
+border-radius: 999px;
+border: 1px solid var(--border-o);
+color: var(--orange-light);
+background: rgba(249,115,22,0.06);
+width: fit-content;
+box-shadow: 0 2px 8px rgba(249,115,22,0.08), 0 0 0 1px rgba(255,255,255,0.02);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+}
+.prog-badge iconify-icon { font-size: 10px; }
+.prog-desc {
+font-size: 0.82rem;
+line-height: 1.65;
+color: var(--muted);
+font-weight: 300;
+margin-bottom: 16px;
+max-width: 340px;
+}
+.prog-meta {
+display: flex;
+align-items: center;
+gap: 20px;
+margin-bottom: 12px;
+}
+.prog-meta-item {
+display: flex;
+align-items: center;
+gap: 5px;
+font-size: 0.74rem;
+color: var(--muted);
+}
+.prog-meta-item iconify-icon { font-size: 12px; color: var(--orange); }
+.intensity-bar {
+height: 3px;
+background: rgba(255,255,255,0.07);
+border-radius: 2px;
+overflow: hidden;
+width: 120px;
+}
+.intensity-fill {
+height: 100%;
+background: linear-gradient(90deg, var(--orange-deep), var(--peach));
+border-radius: 2px;
+transition: width 1s ease 0.3s;
+}
+.intensity-label {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-top: 2px;
+}
+.intensity-label span {
+font-size: 0.68rem;
+color: var(--muted);
+letter-spacing: 0.04em;
+}
+/* ─── SECTION 3: METHODOLOGY ─────────────────────────────────── */
+#methodology {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 70% 50% at 85% 30%, rgba(249,115,22,0.05) 0%, transparent 70%),
+radial-gradient(ellipse 50% 40% at 15% 70%, rgba(234,88,12,0.03) 0%, transparent 60%),
+var(--bg-0);
+position: relative;
+}
+#methodology::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(249,115,22,0.2), transparent);
+}
+#methodology::after {
+content: '';
+position: absolute;
+inset: 0;
+background-image:
+repeating-linear-gradient(-45deg, rgba(249,115,22,0.015) 0px, rgba(249,115,22,0.015) 1px, transparent 1px, transparent 20px);
+mask-image: linear-gradient(to bottom, transparent, black 30%, black 70%, transparent);
+pointer-events: none;
+}
+.method-header {
+margin-bottom: 72px;
+}
+.method-header h2 {
+font-size: clamp(1.8rem, 3vw, 2.2rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+margin-top: 12px;
+}
+.method-blocks {
+display: flex;
+flex-direction: column;
+}
+.method-block {
+display: grid;
+grid-template-columns: 200px 1fr;
+align-items: center;
+padding: 48px 16px;
+margin: 0 -16px;
+border-top: 1px solid var(--border-s);
+gap: 60px;
+border-radius: 4px;
+transition: background 0.3s;
+}
+.method-block:hover {
+background: rgba(249,115,22,0.015);
+}
+.method-block:last-child { border-bottom: 1px solid var(--border-s); }
+.method-num {
+font-size: clamp(4rem, 10vw, 8rem);
+font-weight: 700;
+color: transparent;
+-webkit-text-stroke: 1px rgba(249,115,22,0.35);
+line-height: 1;
+letter-spacing: -0.05em;
+white-space: nowrap;
+}
+.method-content { max-width: 640px; }
+.method-content h3 {
+font-size: 1.25rem;
+font-weight: 300;
+letter-spacing: -0.03em;
+margin-bottom: 14px;
+color: var(--text);
+}
+.method-content p {
+font-size: 0.85rem;
+line-height: 1.75;
+color: var(--muted);
+font-weight: 300;
+}
+.method-tag {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+font-size: 0.7rem;
+color: var(--orange);
+letter-spacing: 0.08em;
+text-transform: uppercase;
+margin-top: 16px;
+padding: 5px 12px;
+border-radius: 999px;
+background: rgba(249,115,22,0.06);
+border: 1px solid rgba(249,115,22,0.12);
+box-shadow: 0 2px 8px rgba(249,115,22,0.06);
+}
+.method-tag iconify-icon { font-size: 11px; }
+/* Methodology showcase image */
+.method-showcase {
+position: relative;
+width: 100%;
+height: 320px;
+border-radius: 16px;
+overflow: hidden;
+margin-bottom: 64px;
+box-shadow: 0 12px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+}
+.method-showcase::before {
+content: '';
+position: absolute;
+inset: 0;
+border-radius: 16px;
+padding: 1px;
+background: linear-gradient(160deg, rgba(249,115,22,0.3), transparent 50%);
+-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+pointer-events: none;
+z-index: 2;
+}
+.method-showcase::after {
+content: '';
+position: absolute;
+inset: 0;
+background:
+linear-gradient(to right, var(--bg-0) 0%, transparent 30%, transparent 70%, var(--bg-0) 100%),
+linear-gradient(to bottom, transparent 50%, var(--bg-0) 100%);
+pointer-events: none;
+z-index: 1;
+}
+.method-showcase img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: saturate(0.8) contrast(1.1) brightness(0.7);
+}
+.method-showcase-overlay {
+position: absolute;
+bottom: 24px;
+left: 32px;
+z-index: 3;
+display: flex;
+align-items: center;
+gap: 24px;
+}
+.method-showcase-stat {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 10px 16px;
+background: rgba(12,12,16,0.7);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(249,115,22,0.12);
+border-radius: 10px;
+box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.method-showcase-stat iconify-icon {
+font-size: 16px;
+color: var(--orange);
+}
+.method-showcase-stat span {
+font-size: 0.72rem;
+color: var(--muted);
+font-weight: 400;
+letter-spacing: 0.02em;
+}
+.method-showcase-stat strong {
+color: var(--text);
+font-weight: 500;
+}
+/* ─── SECTION 4: RESULTS ─────────────────────────────────────── */
+#results {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 50% 50% at 20% 30%, rgba(249,115,22,0.04) 0%, transparent 70%),
+radial-gradient(ellipse 60% 40% at 75% 80%, rgba(234,88,12,0.03) 0%, transparent 60%),
+var(--bg-1);
+position: relative;
+}
+#results::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--border-o), transparent);
+}
+#results::after {
+content: '';
+position: absolute;
+inset: 0;
+background-image:
+repeating-linear-gradient(0deg, rgba(249,115,22,0.015) 0px, rgba(249,115,22,0.015) 1px, transparent 1px, transparent 40px),
+repeating-linear-gradient(90deg, rgba(249,115,22,0.015) 0px, rgba(249,115,22,0.015) 1px, transparent 1px, transparent 40px);
+mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 10%, transparent 70%);
+pointer-events: none;
+}
+.results-header {
+margin-bottom: 72px;
+}
+.results-header h2 {
+font-size: clamp(1.8rem, 3vw, 2.2rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+margin-top: 12px;
+}
+.stat-rows {
+display: flex;
+flex-direction: column;
+gap: 0;
+}
+.stat-row {
+display: flex;
+flex-direction: column;
+gap: 10px;
+padding: 28px 16px;
+margin: 0 -16px;
+border-top: 1px solid var(--border-s);
+border-radius: 4px;
+transition: background 0.3s, box-shadow 0.3s;
+}
+.stat-row:hover {
+background: rgba(249,115,22,0.02);
+box-shadow: 0 4px 20px rgba(249,115,22,0.04);
+}
+.stat-row:last-child { border-bottom: 1px solid var(--border-s); }
+.stat-row-top {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+}
+.stat-row-label {
+font-size: 0.82rem;
+font-weight: 400;
+color: var(--text);
+letter-spacing: -0.01em;
+}
+.stat-row-value {
+font-size: 1.4rem;
+font-weight: 200;
+letter-spacing: -0.04em;
+color: var(--text);
+}
+.stat-row-value .stat-num { color: var(--orange-light); }
+.stat-progress-track {
+height: 4px;
+background: rgba(255,255,255,0.06);
+border-radius: 2px;
+overflow: hidden;
+}
+.stat-progress-fill {
+height: 100%;
+width: 0%;
+background: linear-gradient(90deg, var(--orange-deep), var(--orange), var(--peach));
+border-radius: 2px;
+transition: width 1.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.stat-row-sub {
+font-size: 0.72rem;
+color: var(--muted);
+letter-spacing: 0.02em;
+}
+/* Results split layout */
+.results-split {
+display: grid;
+grid-template-columns: 1fr 340px;
+gap: 56px;
+align-items: stretch;
+}
+.results-image-col {
+position: relative;
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 12px 48px rgba(0,0,0,0.4), 0 0 0 1px rgba(255,255,255,0.04);
+}
+.results-image-col::before {
+content: '';
+position: absolute;
+inset: 0;
+border-radius: 16px;
+padding: 1px;
+background: linear-gradient(160deg, rgba(249,115,22,0.35), transparent 50%);
+-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+pointer-events: none;
+z-index: 2;
+}
+.results-image-col::after {
+content: '';
+position: absolute;
+bottom: 0;
+left: 0;
+right: 0;
+height: 50%;
+background: linear-gradient(to bottom, transparent, rgba(12,12,16,0.8));
+pointer-events: none;
+z-index: 1;
+}
+.results-image-col img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: saturate(0.8) contrast(1.1);
+}
+.results-image-badge {
+position: absolute;
+bottom: 20px;
+left: 20px;
+right: 20px;
+z-index: 3;
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 12px 16px;
+background: rgba(12,12,16,0.7);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(249,115,22,0.12);
+border-radius: 10px;
+box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+.results-image-badge iconify-icon {
+font-size: 18px;
+color: var(--orange);
+}
+.results-image-badge-text {
+font-size: 0.72rem;
+color: var(--muted);
+}
+.results-image-badge-text strong {
+display: block;
+color: var(--text);
+font-size: 0.82rem;
+font-weight: 500;
+margin-bottom: 1px;
+}
+/* ─── SECTION 5: COMMUNITY ───────────────────────────────────── */
+#community {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 60% 50% at 90% 60%, rgba(249,115,22,0.04) 0%, transparent 70%),
+radial-gradient(ellipse 40% 50% at 5% 30%, rgba(234,88,12,0.03) 0%, transparent 60%),
+var(--bg-0);
+position: relative;
+}
+#community::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(249,115,22,0.2), transparent);
+}
+#community::after {
+content: '';
+position: absolute;
+inset: 0;
+background-image: radial-gradient(circle, rgba(255,255,255,0.012) 1px, transparent 1px);
+background-size: 24px 24px;
+mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
+pointer-events: none;
+}
+.community-header {
+margin-bottom: 72px;
+}
+.community-header h2 {
+font-size: clamp(1.8rem, 3vw, 2.2rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+margin-top: 12px;
+}
+.testimonial-stack {
+display: flex;
+flex-direction: column;
+}
+.testimonial-item {
+padding: 40px 32px;
+margin-bottom: 16px;
+position: relative;
+background: rgba(255,255,255,0.015);
+border: 1px solid rgba(255,255,255,0.04);
+border-radius: 12px;
+box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+transition: box-shadow 0.3s, border-color 0.3s;
+}
+.testimonial-item:hover {
+box-shadow: 0 8px 32px rgba(249,115,22,0.06), 0 4px 20px rgba(0,0,0,0.2);
+border-color: rgba(249,115,22,0.08);
+}
+.testimonial-item:not(:first-child)::before {
+content: none;
+}
+.testimonial-quote {
+font-size: clamp(1.2rem, 2.5vw, 1.75rem);
+font-weight: 200;
+font-style: italic;
+letter-spacing: -0.03em;
+line-height: 1.4;
+color: var(--text);
+max-width: 860px;
+margin-bottom: 24px;
+}
+.testimonial-quote em {
+font-style: normal;
+color: transparent;
+-webkit-text-stroke: 1px var(--orange-light);
+}
+.testimonial-author {
+display: flex;
+align-items: center;
+gap: 16px;
+}
+.author-line {
+width: 32px;
+height: 1px;
+background: var(--orange);
+}
+.author-avatar {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+overflow: hidden;
+flex-shrink: 0;
+border: 2px solid rgba(249,115,22,0.2);
+box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+.author-avatar img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: saturate(0.85) contrast(1.05);
+}
+.author-info {}
+.author-name {
+font-size: 0.82rem;
+font-weight: 500;
+letter-spacing: 0.04em;
+color: var(--text);
+}
+.author-detail {
+font-size: 0.72rem;
+color: var(--muted);
+letter-spacing: 0.03em;
+margin-top: 2px;
+}
+/* ─── SECTION 6: MEMBERSHIP ──────────────────────────────────── */
+#membership {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 50% 60% at 50% 20%, rgba(249,115,22,0.05) 0%, transparent 70%),
+radial-gradient(ellipse 40% 40% at 80% 85%, rgba(234,88,12,0.03) 0%, transparent 60%),
+var(--bg-1);
+position: relative;
+}
+#membership::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--border-o), transparent);
+}
+.membership-header {
+margin-bottom: 64px;
+}
+.membership-header h2 {
+font-size: clamp(1.8rem, 3vw, 2.2rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+margin-top: 12px;
+}
+.plans-wrapper {
+display: grid;
+grid-template-columns: 1fr 24px 1fr;
+gap: 0;
+align-items: stretch;
+margin-bottom: 64px;
+}
+.plan-divider {
+display: flex;
+justify-content: center;
+}
+.plan-divider-line {
+width: 1px;
+background: linear-gradient(to bottom, transparent, var(--border-o), transparent);
+}
+.plan-col {
+padding: 36px;
+background: var(--glass);
+border: 1px solid var(--border-s);
+box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+transition: box-shadow 0.3s, transform 0.3s;
+}
+.plan-col:hover {
+box-shadow: 0 8px 40px rgba(0,0,0,0.3);
+transform: translateY(-2px);
+}
+.plan-col.elite {
+border: none;
+position: relative;
+box-shadow: 0 8px 48px rgba(249,115,22,0.12), 0 4px 24px rgba(0,0,0,0.4);
+}
+.plan-col.elite::after {
+content: '';
+position: absolute;
+inset: 0;
+padding: 1px;
+background: linear-gradient(160deg, rgba(249,115,22,0.5), rgba(253,186,116,0.2) 50%, rgba(255,255,255,0.05));
+-webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+-webkit-mask-composite: xor;
+mask-composite: exclude;
+pointer-events: none;
+z-index: 0;
+}
+.plan-col.elite:hover {
+box-shadow: 0 12px 56px rgba(249,115,22,0.18), 0 4px 24px rgba(0,0,0,0.5);
+}
+.plan-col.elite::before {
+content: 'MOST POPULAR';
+position: absolute;
+top: -12px;
+left: 50%;
+transform: translateX(-50%);
+font-size: 0.62rem;
+font-weight: 600;
+letter-spacing: 0.14em;
+padding: 3px 12px;
+background: var(--orange);
+color: #fff;
+white-space: nowrap;
+}
+.plan-name {
+font-size: 0.72rem;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--muted);
+margin-bottom: 8px;
+}
+.plan-price {
+display: flex;
+align-items: baseline;
+gap: 4px;
+margin-bottom: 6px;
+}
+.plan-price-num {
+font-size: 2.8rem;
+font-weight: 200;
+letter-spacing: -0.05em;
+color: var(--text);
+}
+.plan-col.elite .plan-price-num { color: var(--orange-light); }
+.plan-price-period {
+font-size: 0.78rem;
+color: var(--muted);
+font-weight: 300;
+}
+.plan-desc {
+font-size: 0.78rem;
+color: var(--muted);
+line-height: 1.6;
+padding-bottom: 24px;
+border-bottom: 1px solid var(--border-s);
+margin-bottom: 24px;
+}
+.plan-features {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+.plan-feature {
+display: flex;
+align-items: center;
+gap: 10px;
+font-size: 0.82rem;
+color: var(--muted);
+font-weight: 300;
+}
+.plan-feature.included { color: var(--text); }
+.plan-feature iconify-icon {
+font-size: 14px;
+flex-shrink: 0;
+}
+.plan-feature.included iconify-icon { color: var(--orange); }
+.plan-feature.excluded iconify-icon { color: rgba(255,255,255,0.15); }
+.btn-plan {
+display: block;
+width: 100%;
+margin-top: 28px;
+padding: 13px;
+font-size: 0.82rem;
+font-weight: 500;
+letter-spacing: 0.04em;
+text-align: center;
+cursor: pointer;
+border: 1px solid var(--border-o);
+background: rgba(249,115,22,0.04);
+color: var(--orange-light);
+transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+box-shadow: 0 2px 10px rgba(249,115,22,0.06);
+}
+.btn-plan:hover {
+background: rgba(249,115,22,0.1);
+box-shadow: 0 4px 24px rgba(249,115,22,0.18);
+transform: translateY(-1px);
+}
+.btn-plan.primary {
+background: linear-gradient(135deg, var(--orange-deep), var(--orange));
+border-color: transparent;
+color: #fff;
+box-shadow: 0 4px 16px rgba(249,115,22,0.2);
+}
+.btn-plan.primary:hover {
+box-shadow: 0 8px 32px rgba(249,115,22,0.4);
+transform: translateY(-1px);
+}
+.membership-cta-banner {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 36px 40px;
+border: 1px solid var(--border-o);
+background: rgba(249,115,22,0.04);
+position: relative;
+overflow: hidden;
+box-shadow: 0 8px 32px rgba(249,115,22,0.06), 0 0 0 1px rgba(255,255,255,0.03);
+backdrop-filter: blur(8px);
+-webkit-backdrop-filter: blur(8px);
+}
+.membership-cta-banner::before {
+content: '';
+position: absolute;
+left: 0; top: 0; bottom: 0;
+width: 3px;
+background: linear-gradient(to bottom, var(--orange-deep), var(--peach));
+}
+.banner-text h3 {
+font-size: 1.2rem;
+font-weight: 200;
+letter-spacing: -0.03em;
+}
+.banner-text p {
+font-size: 0.8rem;
+color: var(--muted);
+margin-top: 4px;
+}
+.btn-banner {
+padding: 14px 32px;
+font-size: 0.85rem;
+font-weight: 500;
+background: linear-gradient(135deg, var(--orange-deep), var(--orange));
+color: #fff;
+border: none;
+cursor: pointer;
+white-space: nowrap;
+display: flex;
+align-items: center;
+gap: 8px;
+transition: box-shadow 0.2s, transform 0.2s;
+flex-shrink: 0;
+}
+.btn-banner:hover {
+box-shadow: 0 0 30px rgba(249,115,22,0.4);
+transform: translateY(-1px);
+}
+.btn-banner .btn-text:hover { animation: glitch-r 0.5s steps(1) forwards; }
+/* ─── SECTION 7: FAQ ─────────────────────────────────────────── */
+#faq {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 50% 50% at 70% 40%, rgba(249,115,22,0.03) 0%, transparent 70%),
+radial-gradient(ellipse 40% 40% at 20% 70%, rgba(234,88,12,0.025) 0%, transparent 60%),
+var(--bg-0);
+position: relative;
+}
+#faq::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(249,115,22,0.2), transparent);
+}
+.faq-header {
+margin-bottom: 72px;
+}
+.faq-header h2 {
+font-size: clamp(1.8rem, 3vw, 2.2rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+margin-top: 12px;
+}
+.faq-grid {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: 0 80px;
+max-width: 1100px;
+}
+.faq-item {
+border-top: 1px solid var(--border-s);
+padding: 0 12px;
+margin: 0 -12px;
+overflow: hidden;
+border-radius: 4px;
+transition: background 0.3s;
+}
+.faq-item:hover {
+background: rgba(249,115,22,0.015);
+}
+.faq-item.open {
+background: rgba(249,115,22,0.02);
+box-shadow: 0 2px 12px rgba(249,115,22,0.04);
+}
+.faq-question {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 22px 0;
+cursor: pointer;
+font-size: 0.88rem;
+font-weight: 400;
+color: var(--muted);
+letter-spacing: -0.01em;
+transition: color 0.2s;
+gap: 16px;
+user-select: none;
+}
+.faq-question:hover { color: var(--text); }
+.faq-item.open .faq-question { color: var(--orange-light); }
+.faq-icon {
+width: 20px;
+height: 20px;
+display: flex;
+align-items: center;
+justify-content: center;
+flex-shrink: 0;
+font-size: 16px;
+color: var(--orange);
+transition: transform 0.3s;
+}
+.faq-item.open .faq-icon { transform: rotate(45deg); }
+.faq-answer {
+max-height: 0;
+overflow: hidden;
+transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.faq-item.open .faq-answer { max-height: 240px; }
+.faq-answer-inner {
+padding: 0 0 24px;
+font-size: 0.82rem;
+line-height: 1.75;
+color: var(--muted);
+font-weight: 300;
+}
+/* ─── SECTION 8: CTA + FOOTER ────────────────────────────────── */
+#cta {
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+padding: 100px 48px;
+background:
+radial-gradient(ellipse 70% 50% at 50% 50%, rgba(249,115,22,0.07) 0%, transparent 70%),
+radial-gradient(ellipse 40% 40% at 20% 30%, rgba(234,88,12,0.04) 0%, transparent 60%),
+radial-gradient(ellipse 40% 40% at 80% 70%, rgba(253,186,116,0.03) 0%, transparent 60%),
+var(--bg-1);
+position: relative;
+overflow: hidden;
+text-align: center;
+}
+#cta::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, var(--border-o), transparent);
+}
+#cta::after {
+content: '';
+position: absolute;
+inset: 0;
+background-image:
+repeating-linear-gradient(-45deg, rgba(249,115,22,0.012) 0px, rgba(249,115,22,0.012) 1px, transparent 1px, transparent 24px);
+mask-image: radial-gradient(ellipse 60% 60% at 50% 50%, black 10%, transparent 70%);
+pointer-events: none;
+}
+.cta-bg-image {
+position: absolute;
+inset: 0;
+z-index: 0;
+}
+.cta-bg-image img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: saturate(0.55) brightness(0.38) contrast(1.15);
+}
+.cta-bg-image::after {
+content: '';
+position: absolute;
+inset: 0;
+background:
+radial-gradient(ellipse 60% 60% at 50% 50%, rgba(12,12,16,0.4) 0%, var(--bg-1) 85%),
+linear-gradient(to bottom, var(--bg-1) 0%, transparent 15%, transparent 85%, var(--bg-1) 100%);
+pointer-events: none;
+}
+#cta .section-label,
+#cta .cta-headline,
+#cta .cta-form,
+#cta .cta-fine { position: relative; z-index: 1; }
+.cta-label { margin-bottom: 20px; }
+.cta-headline {
+font-size: clamp(3rem, 9vw, 8rem);
+font-weight: 200;
+letter-spacing: -0.04em;
+text-transform: uppercase;
+line-height: 0.92;
+margin-bottom: 48px;
+cursor: default;
+}
+.cta-headline .line-a { display: block; color: var(--text); }
+.cta-headline .line-b { display: block; }
+.cta-form {
+display: flex;
+align-items: stretch;
+gap: 0;
+max-width: 460px;
+width: 100%;
+margin-bottom: 16px;
+}
+.cta-input {
+flex: 1;
+padding: 14px 18px;
+font-size: 0.85rem;
+background: rgba(255,255,255,0.04);
+border: 1px solid var(--border-s);
+border-right: none;
+color: var(--text);
+outline: none;
+font-family: inherit;
+letter-spacing: -0.01em;
+transition: border-color 0.2s;
+}
+.cta-input::placeholder { color: var(--muted); }
+.cta-input:focus {
+border-color: rgba(249,115,22,0.3);
+box-shadow: 0 0 16px rgba(249,115,22,0.08), inset 0 0 0 1px rgba(249,115,22,0.05);
+background: rgba(255,255,255,0.06);
+}
+.btn-cta-submit {
+padding: 14px 24px;
+font-size: 0.82rem;
+font-weight: 500;
+background: linear-gradient(135deg, var(--orange-deep), var(--orange));
+color: #fff;
+border: none;
+cursor: pointer;
+display: flex;
+align-items: center;
+gap: 7px;
+transition: box-shadow 0.2s;
+white-space: nowrap;
+}
+.btn-cta-submit:hover { box-shadow: 0 0 24px rgba(249,115,22,0.4); }
+.cta-fine {
+font-size: 0.72rem;
+color: var(--muted);
+letter-spacing: 0.01em;
+}
+/* Footer */
+footer {
+background:
+radial-gradient(ellipse 50% 60% at 50% 0%, rgba(249,115,22,0.03) 0%, transparent 70%),
+var(--bg-0);
+border-top: 1px solid var(--border-s);
+padding: 64px 48px 36px;
+position: relative;
+}
+footer::before {
+content: '';
+position: absolute;
+top: 0; left: 0; right: 0;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(249,115,22,0.25), transparent);
+}
+.footer-grid {
+display: grid;
+grid-template-columns: 1.5fr 1fr 1fr 1fr;
+gap: 48px;
+margin-bottom: 56px;
+}
+.footer-brand {}
+.footer-logo {
+display: flex;
+align-items: center;
+gap: 8px;
+margin-bottom: 14px;
+}
+.footer-logo .logo-text {
+font-size: 1.8rem;
+}
+.footer-brand p {
+font-size: 0.78rem;
+line-height: 1.65;
+color: var(--muted);
+font-weight: 300;
+max-width: 220px;
+}
+.footer-social {
+display: flex;
+gap: 10px;
+margin-top: 20px;
+}
+.footer-social a {
+width: 32px; height: 32px;
+display: flex;
+align-items: center;
+justify-content: center;
+border: 1px solid var(--border-s);
+border-radius: 8px;
+color: var(--muted);
+transition: color 0.2s, border-color 0.2s, box-shadow 0.2s, background 0.2s;
+font-size: 14px;
+background: rgba(255,255,255,0.02);
+}
+.footer-social a:hover {
+color: var(--orange-light);
+border-color: var(--border-o);
+box-shadow: 0 4px 12px rgba(249,115,22,0.1);
+background: rgba(249,115,22,0.06);
+}
+.footer-col h4 {
+font-size: 0.72rem;
+font-weight: 600;
+letter-spacing: 0.1em;
+text-transform: uppercase;
+color: var(--text);
+margin-bottom: 16px;
+}
+.footer-col ul {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.footer-col ul li a {
+font-size: 0.8rem;
+color: var(--muted);
+font-weight: 300;
+transition: color 0.2s;
+}
+.footer-col ul li a:hover { color: var(--text); }
+.footer-bottom {
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding-top: 28px;
+border-top: 1px solid var(--border-s);
+}
+.footer-copy {
+font-size: 0.75rem;
+color: var(--muted);
+font-weight: 300;
+}
+.footer-legal {
+display: flex;
+gap: 24px;
+}
+.footer-legal a {
+font-size: 0.75rem;
+color: var(--muted);
+transition: color 0.2s;
+}
+.footer-legal a:hover { color: var(--text); }
+/* ─── RESPONSIVE ─────────────────────────────────────────────── */
+@media (max-width: 991px) {
+nav { padding: 10px 24px; }
+.nav-links { display: none; }
+.nav-cta { display: none; }
+.hamburger { display: flex; }
+.hero-split { padding: 100px 24px 40px; max-width: 60%; }
+.hero-right { width: 55%; }
+.hero-float-metrics { display: none; }
+.hero-accent-line { display: none; }
+.hero-hud { bottom: 24px; right: 20px; padding: 10px 14px; gap: 12px; }
+.hud-item-value { font-size: 0.88rem; }
+.hud-item-label { font-size: 0.52rem; }
+#programs { padding: 80px 24px; }
+.programs-header { flex-direction: column; align-items: flex-start; gap: 12px; }
+.programs-header p { text-align: left; max-width: 100%; }
+.program-card { grid-template-columns: 1fr; height: auto; }
+.program-card-right { border-left: none; border-top: 1px solid var(--border-s); }
+#methodology { padding: 80px 24px; }
+.method-block { grid-template-columns: 100px 1fr; gap: 24px; }
+.method-num { font-size: clamp(3rem, 8vw, 5rem); }
+#results { padding: 80px 24px; }
+.results-split { grid-template-columns: 1fr; gap: 40px; }
+.results-image-col img { height: 280px; }
+.method-showcase { height: 220px; margin-bottom: 48px; }
+.method-showcase-overlay { flex-wrap: wrap; gap: 12px; }
+#community { padding: 80px 24px; }
+#membership { padding: 80px 24px; }
+.plans-wrapper { grid-template-columns: 1fr; gap: 24px; }
+.plan-divider { display: none; }
+.membership-cta-banner { flex-direction: column; gap: 20px; align-items: flex-start; }
+#faq { padding: 80px 24px; }
+.faq-grid { grid-template-columns: 1fr; gap: 0; }
+#cta { padding: 80px 24px; }
+.cta-form { max-width: 100%; }
+footer { padding: 48px 24px 28px; }
+.footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
+.footer-bottom { flex-direction: column; gap: 16px; text-align: center; }
+.footer-legal { justify-content: center; }
+}
+@media (max-width: 575px) {
+.hero-split { max-width: 100%; padding: 100px 20px 40px; }
+.hero-headline { font-size: clamp(2.8rem, 13vw, 5rem); }
+.hero-actions { flex-direction: column; align-items: flex-start; gap: 10px; }
+.btn-hero-primary, .btn-hero-ghost { width: 100%; justify-content: center; }
+.hero-right { width: 100%; opacity: 0.3; }
+.hero-hud { display: none; }
+.method-block { grid-template-columns: 1fr; gap: 12px; padding: 32px 0; }
+.method-showcase { height: 180px; }
+.method-showcase-overlay { display: none; }
+.results-image-col img { height: 220px; }
+.faq-grid { grid-template-columns: 1fr; }
+footer { padding: 40px 20px 24px; }
+.footer-grid { grid-template-columns: 1fr; gap: 28px; }
+.cta-form { flex-direction: column; }
+.cta-input { border-right: 1px solid var(--border-s); border-bottom: none; }
+.btn-cta-submit { width: 100%; justify-content: center; }
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+<body>
+
+  <!-- ─── NAV ──────────────────────────────────────────────────────── -->
+  <nav id="main-nav">
+    <a href="#" class="nav-logo">
+      <span class="logo-text">FORGE</span>
+    </a>
+
+    <div class="nav-links">
+      <a href="#programs">Programs</a>
+      <a href="#methodology">Methodology</a>
+      <a href="#results">Results</a>
+      <a href="#community">Community</a>
+      <a href="#membership">Membership</a>
+    </div>
+
+    <div class="nav-cta">
+      <a href="#faq">FAQ</a>
+      <a href="#cta" class="btn-nav">Start Free Trial</a>
+    </div>
+
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </nav>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#programs" class="mobile-link">Programs</a>
+    <a href="#methodology" class="mobile-link">Methodology</a>
+    <a href="#results" class="mobile-link">Results</a>
+    <a href="#community" class="mobile-link">Community</a>
+    <a href="#membership" class="mobile-link">Membership</a>
+    <a href="#cta" class="mobile-link">Start Free Trial</a>
+  </div>
+
+  <!-- ─── SECTION 1: HERO ───────────────────────────────────────────── -->
+  <section id="hero">
+    <canvas id="hero-webgl"></canvas>
+    <div class="hero-mesh"></div>
+    <div class="hero-grid-lines"></div>
+    <div class="hero-accent-line"></div>
+
+    <!-- Floating glass metric cards -->
+    <div class="hero-float-metrics">
+      <div class="hero-metric">
+        <div class="hero-metric-icon"><iconify-icon icon="lucide:flame" noobserver=""></iconify-icon></div>
+        <div>
+          <div class="hero-metric-label">Active Streak</div>
+          <div class="hero-metric-value"><span>147</span> days</div>
+        </div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-icon"><iconify-icon icon="lucide:heart-pulse" noobserver=""></iconify-icon></div>
+        <div>
+          <div class="hero-metric-label">Recovery Score</div>
+          <div class="hero-metric-value"><span>94</span>/100</div>
+        </div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-icon"><iconify-icon icon="lucide:trophy" noobserver=""></iconify-icon></div>
+        <div>
+          <div class="hero-metric-label">PRs This Month</div>
+          <div class="hero-metric-value"><span>12</span> new</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-split">
+      <!-- Left: Headline + CTA -->
+      <div class="hero-left">
+        <h1 class="hero-headline">
+          <span class="line-1">Forge</span>
+          <span class="line-2">Your</span>
+          <span class="line-3">Limits</span>
+        </h1>
+
+        <div class="hero-desc reveal">
+          <p>
+            Precision programming meets elite performance science.
+            Built for athletes who refuse to accept ordinary results.
+          </p>
+          <div class="hero-actions">
+            <a href="#cta" class="btn-hero-primary">
+              <span class="btn-text glitch-text">Begin Training</span>
+              <iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
+            </a>
+            <a href="#programs" class="btn-hero-ghost">
+              <iconify-icon icon="lucide:play" noobserver=""></iconify-icon>
+              <span>Explore Programs</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Right: Full-bleed image -->
+    <div class="hero-right">
+      <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1200&amp;q=80&amp;auto=format&amp;fit=crop" alt="Athlete training with intense focus" loading="eager">
+    </div>
+
+    <!-- HUD stats bar (outside hero-right to avoid mask) -->
+    <div class="hero-hud">
+      <div class="hud-item">
+        <div class="hud-dot"></div>
+        <div>
+          <div class="hud-item-label">Athletes</div>
+          <div class="hud-item-value"><span id="stat-members">0</span><span>K+</span></div>
+        </div>
+      </div>
+      <div class="hud-separator"></div>
+      <div class="hud-item">
+        <div>
+          <div class="hud-item-label">Sessions</div>
+          <div class="hud-item-value"><span id="stat-sessions">0</span><span>M</span></div>
+        </div>
+      </div>
+      <div class="hud-separator"></div>
+      <div class="hud-item">
+        <div>
+          <div class="hud-item-label">PRs Broken</div>
+          <div class="hud-item-value"><span id="stat-prs">0</span><span>K+</span></div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ─── SECTION 2: PROGRAMS ────────────────────────────────────────── -->
+  <section id="programs">
+    <div class="programs-header stagger-up">
+      <div class="reveal-child">
+        <span class="section-label">Training Systems</span>
+        <h2>Four paths.<br><em class="text-grad" style="font-style:normal;">One goal.</em></h2>
+      </div>
+      <p class="reveal-child">
+        Every program is precision-designed for your specific adaptation target.
+        Choose your discipline. Own the process.
+      </p>
+    </div>
+
+    <div class="program-cards">
+      <!-- Card 1 — Foundry -->
+      <div class="program-card reveal-left">
+        <div class="program-card-img">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="program-card-left prog-bg-diagonal">
+          <div class="prog-num">01</div>
+          <div class="prog-name">Foundry</div>
+          <div class="prog-badge">
+            <iconify-icon icon="lucide:dumbbell" noobserver=""></iconify-icon>
+            Strength
+          </div>
+        </div>
+        <div class="program-card-right">
+          <p class="prog-desc">
+            The foundation of everything. A 16-week progressive strength protocol built around compound movements, evidence-based volume, and systematic load progression. Forge the base. Build the engine.
+          </p>
+          <div class="prog-meta">
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+              <span>16 weeks</span>
+            </div>
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+              <span>4x / week</span>
+            </div>
+          </div>
+          <div class="intensity-label">
+            <div class="intensity-bar"><div class="intensity-fill" data-width="85%"></div></div>
+            <span>Intensity: High</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 — Ignite -->
+      <div class="program-card reveal-right">
+        <div class="program-card-img">
+          <img src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="program-card-left prog-bg-dots">
+          <div class="prog-num">02</div>
+          <div class="prog-name">Ignite</div>
+          <div class="prog-badge">
+            <iconify-icon icon="lucide:zap" noobserver=""></iconify-icon>
+            HIIT
+          </div>
+        </div>
+        <div class="program-card-right">
+          <p class="prog-desc">
+            Maximum output in minimum time. High-intensity interval protocols engineered to torch calories, spike VO2 max, and trigger EPOC for 48-hour afterburn. Fast, brutal, effective.
+          </p>
+          <div class="prog-meta">
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+              <span>8 weeks</span>
+            </div>
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+              <span>5x / week</span>
+            </div>
+          </div>
+          <div class="intensity-label">
+            <div class="intensity-bar"><div class="intensity-fill" data-width="100%"></div></div>
+            <span>Intensity: Maximum</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 — Forge Flow -->
+      <div class="program-card reveal-left">
+        <div class="program-card-img">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="program-card-left prog-bg-cross">
+          <div class="prog-num">03</div>
+          <div class="prog-name">Forge Flow</div>
+          <div class="prog-badge">
+            <iconify-icon icon="lucide:wind" noobserver=""></iconify-icon>
+            Mobility
+          </div>
+        </div>
+        <div class="program-card-right">
+          <p class="prog-desc">
+            The overlooked edge. Systematic mobility, fascial release, and joint integrity work that unlocks range of motion, eliminates compensation patterns, and makes every other program more effective.
+          </p>
+          <div class="prog-meta">
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+              <span>12 weeks</span>
+            </div>
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+              <span>6x / week</span>
+            </div>
+          </div>
+          <div class="intensity-label">
+            <div class="intensity-bar"><div class="intensity-fill" data-width="55%"></div></div>
+            <span>Intensity: Medium</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4 — Iron Mind -->
+      <div class="program-card reveal-right">
+        <div class="program-card-img">
+          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
+        </div>
+        <div class="program-card-left prog-bg-wave">
+          <div class="prog-num">04</div>
+          <div class="prog-name">Iron Mind</div>
+          <div class="prog-badge">
+            <iconify-icon icon="lucide:brain" noobserver=""></iconify-icon>
+            Mental Performance
+          </div>
+        </div>
+        <div class="program-card-right">
+          <p class="prog-desc">
+            The final frontier of athletic performance. Breathwork, cognitive conditioning, visualization protocols, and stress inoculation. Because every PR is broken in the mind before the body follows.
+          </p>
+          <div class="prog-meta">
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+              <span>10 weeks</span>
+            </div>
+            <div class="prog-meta-item">
+              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+              <span>Daily</span>
+            </div>
+          </div>
+          <div class="intensity-label">
+            <div class="intensity-bar"><div class="intensity-fill" data-width="70%"></div></div>
+            <span>Intensity: Focused</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 3: METHODOLOGY ─────────────────────────────────────── -->
+  <section id="methodology">
+    <div class="method-header">
+      <span class="section-label reveal">How We Build Athletes</span>
+      <h2 class="reveal">The Forge Framework</h2>
+    </div>
+
+    <div class="method-showcase reveal">
+      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&amp;q=75&amp;auto=format&amp;fit=crop" alt="Gym training environment" loading="lazy">
+      <div class="method-showcase-overlay">
+        <div class="method-showcase-stat">
+          <iconify-icon icon="lucide:microscope" noobserver=""></iconify-icon>
+          <span><strong>200+</strong> peer-reviewed studies referenced</span>
+        </div>
+        <div class="method-showcase-stat">
+          <iconify-icon icon="lucide:users" noobserver=""></iconify-icon>
+          <span><strong>12</strong> sport scientists on staff</span>
+        </div>
+        <div class="method-showcase-stat">
+          <iconify-icon icon="lucide:refresh-cw" noobserver=""></iconify-icon>
+          <span>Protocols updated <strong>quarterly</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <div class="method-blocks">
+      <div class="method-block">
+        <div class="method-num reveal-left">01</div>
+        <div class="method-content reveal">
+          <h3>Science-Backed Programming</h3>
+          <p>
+            Every session is built on peer-reviewed exercise science. Rep ranges, rest periods, volume landmarks, and intensity percentages are not guesswork — they are extracted from decades of performance research and validated through thousands of athlete outcomes. We don't follow trends. We follow data.
+          </p>
+          <div class="method-tag">
+            <iconify-icon icon="lucide:flask-conical" noobserver=""></iconify-icon>
+            <span>Research-Validated Protocols</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-num reveal-left">02</div>
+        <div class="method-content reveal">
+          <h3>Progressive Overload Tracking</h3>
+          <p>
+            Adaptation requires progressive stress. Our tracking system records every set, rep, and load — calculating weekly volume, intensity zones, and fatigue markers to ensure you're always training at the precise edge of your current capacity. Never too easy. Never overtrained. Always progressing.
+          </p>
+          <div class="method-tag">
+            <iconify-icon icon="lucide:trending-up" noobserver=""></iconify-icon>
+            <span>Automated Load Progression</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="method-block">
+        <div class="method-num reveal-left">03</div>
+        <div class="method-content reveal">
+          <h3>Recovery Intelligence</h3>
+          <p>
+            You don't grow during training. You grow during recovery. Forge's Recovery Intelligence system monitors HRV trends, sleep quality scores, subjective readiness, and training load to prescribe optimal recovery windows. Deload weeks, active recovery sessions, and rest days are not optional — they are programmed with the same precision as your hardest workouts.
+          </p>
+          <div class="method-tag">
+            <iconify-icon icon="lucide:activity" noobserver=""></iconify-icon>
+            <span>HRV-Informed Recovery Windows</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 4: RESULTS ─────────────────────────────────────────── -->
+  <section id="results">
+    <div class="results-header">
+      <span class="section-label reveal">Proof of Work</span>
+      <h2 class="reveal">The numbers behind<br><em class="text-grad" style="font-style:normal;">the grind</em></h2>
+    </div>
+
+    <div class="results-split">
+    <div class="stat-rows">
+      <div class="stat-row reveal" data-stat="">
+        <div class="stat-row-top">
+          <span class="stat-row-label">Average Strength Gain</span>
+          <span class="stat-row-value"><span class="stat-num counter" data-target="34">0</span>%</span>
+        </div>
+        <div class="stat-progress-track">
+          <div class="stat-progress-fill" data-width="34%"></div>
+        </div>
+        <span class="stat-row-sub">Measured across all Foundry participants, first 16-week cycle</span>
+      </div>
+
+      <div class="stat-row reveal" data-stat="">
+        <div class="stat-row-top">
+          <span class="stat-row-label">Member Retention Rate</span>
+          <span class="stat-row-value"><span class="stat-num counter" data-target="94">0</span>%</span>
+        </div>
+        <div class="stat-progress-track">
+          <div class="stat-progress-fill" data-width="94%"></div>
+        </div>
+        <span class="stat-row-sub">12-month rolling average across all membership tiers</span>
+      </div>
+
+      <div class="stat-row reveal" data-stat="">
+        <div class="stat-row-top">
+          <span class="stat-row-label">Recovery Score Improvement</span>
+          <span class="stat-row-value"><span class="stat-num counter" data-target="89">0</span>/100</span>
+        </div>
+        <div class="stat-progress-track">
+          <div class="stat-progress-fill" data-width="89%"></div>
+        </div>
+        <span class="stat-row-sub">Average HRV-based recovery score after 8 weeks on platform</span>
+      </div>
+
+      <div class="stat-row reveal" data-stat="">
+        <div class="stat-row-top">
+          <span class="stat-row-label">Sessions Completed</span>
+          <span class="stat-row-value"><span class="stat-num counter" data-target="1200000" data-format="compact">0</span></span>
+        </div>
+        <div class="stat-progress-track">
+          <div class="stat-progress-fill" data-width="78%"></div>
+        </div>
+        <span class="stat-row-sub">Total workouts logged since platform launch</span>
+      </div>
+
+      <div class="stat-row reveal" data-stat="">
+        <div class="stat-row-top">
+          <span class="stat-row-label">Personal Records Broken</span>
+          <span class="stat-row-value"><span class="stat-num counter" data-target="847000" data-format="compact">0</span></span>
+        </div>
+        <div class="stat-progress-track">
+          <div class="stat-progress-fill" data-width="65%"></div>
+        </div>
+        <span class="stat-row-sub">Individual lifetime PRs set and logged by Forge members</span>
+      </div>
+    </div>
+
+    <div class="results-image-col reveal-right">
+      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Athlete tracking performance" loading="lazy">
+      <div class="results-image-badge">
+        <iconify-icon icon="lucide:trending-up" noobserver=""></iconify-icon>
+        <div class="results-image-badge-text">
+          <strong>Real-time tracking</strong>
+          Every rep, set, and load logged automatically
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 5: COMMUNITY ───────────────────────────────────────── -->
+  <section id="community">
+    <div class="community-header">
+      <span class="section-label reveal">Member Stories</span>
+      <h2 class="reveal">Built different.<br><em class="text-grad" style="font-style:normal;">Proven results.</em></h2>
+    </div>
+
+    <div class="testimonial-stack">
+      <div class="testimonial-item reveal">
+        <p class="testimonial-quote">
+          "After four years of plateauing, Foundry gave me a 47kg squat PR in twelve weeks.
+          The progressive overload tracking removed every excuse I ever had.
+          The only variable left was <em>showing up</em>."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Marcus D." loading="lazy">
+          </div>
+          <div class="author-line"></div>
+          <div class="author-info">
+            <div class="author-name">Marcus D.</div>
+            <div class="author-detail">Competitive Powerlifter — Foundry Program, Cycle 3</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-item reveal">
+        <p class="testimonial-quote">
+          "Iron Mind is the program nobody talks about but every athlete needs.
+          My race anxiety dropped. My focus blocks doubled.
+          I stopped <em>training</em> and started performing."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=100&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Priya S." loading="lazy">
+          </div>
+          <div class="author-line"></div>
+          <div class="author-info">
+            <div class="author-name">Priya S.</div>
+            <div class="author-detail">Marathon Runner — Iron Mind + Forge Flow Stack</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="testimonial-item reveal">
+        <p class="testimonial-quote">
+          "The recovery intelligence feature alone is worth the price.
+          I used to grind myself into the ground and wonder why I wasn't improving.
+          Now I understand: <em>rest is programming</em>."
+        </p>
+        <div class="testimonial-author">
+          <div class="author-avatar">
+            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&amp;q=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Jordan T." loading="lazy">
+          </div>
+          <div class="author-line"></div>
+          <div class="author-info">
+            <div class="author-name">Jordan T.</div>
+            <div class="author-detail">CrossFit Competitor — Elite Membership, 14 months</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 6: MEMBERSHIP ──────────────────────────────────────── -->
+  <section id="membership">
+    <div class="membership-header">
+      <span class="section-label reveal">Membership Tiers</span>
+      <h2 class="reveal">Invest in your<br><em class="text-grad" style="font-style:normal;">performance</em></h2>
+    </div>
+
+    <div class="plans-wrapper reveal">
+      <!-- Essential -->
+      <div class="plan-col essential">
+        <div class="plan-name">Essential</div>
+        <div class="plan-price">
+          <span class="plan-price-num">$39</span>
+          <span class="plan-price-period">/ month</span>
+        </div>
+        <p class="plan-desc">Full access to our core programming library. Perfect for athletes ready to start building their foundation.</p>
+        <div class="plan-features">
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>All 4 core training programs</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Progress tracking dashboard</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Community forum access</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Exercise video library (400+ movements)</span>
+          </div>
+          <div class="plan-feature excluded">
+            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+            <span>HRV &amp; recovery intelligence</span>
+          </div>
+          <div class="plan-feature excluded">
+            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+            <span>1:1 coach check-ins</span>
+          </div>
+          <div class="plan-feature excluded">
+            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+            <span>Custom program builder</span>
+          </div>
+          <div class="plan-feature excluded">
+            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+            <span>Priority support</span>
+          </div>
+        </div>
+        <a href="#cta" class="btn-plan">Start Essential</a>
+      </div>
+
+      <div class="plan-divider">
+        <div class="plan-divider-line"></div>
+      </div>
+
+      <!-- Elite -->
+      <div class="plan-col elite">
+        <div class="plan-name">Elite</div>
+        <div class="plan-price">
+          <span class="plan-price-num">$89</span>
+          <span class="plan-price-period">/ month</span>
+        </div>
+        <p class="plan-desc">The complete performance ecosystem. Everything in Essential, plus the tools that separate good athletes from exceptional ones.</p>
+        <div class="plan-features">
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>All 4 core training programs</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Progress tracking dashboard</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Community forum access</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Exercise video library (400+ movements)</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>HRV &amp; recovery intelligence</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Monthly 1:1 coach check-ins</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Custom program builder</span>
+          </div>
+          <div class="plan-feature included">
+            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+            <span>Priority support + early access</span>
+          </div>
+        </div>
+        <a href="#cta" class="btn-plan primary">Start Elite</a>
+      </div>
+    </div>
+
+    <div class="membership-cta-banner reveal">
+      <div class="banner-text">
+        <h3>Not sure which plan is right for you?</h3>
+        <p>Start with a 14-day free trial. No credit card required. Cancel anytime.</p>
+      </div>
+      <a href="#cta" class="btn-banner">
+        <span class="btn-text">Claim Free Trial</span>
+        <iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
+      </a>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 7: FAQ ─────────────────────────────────────────────── -->
+  <section id="faq">
+    <div class="faq-header">
+      <span class="section-label reveal">Questions Answered</span>
+      <h2 class="reveal">Everything you<br><em class="text-grad" style="font-style:normal;">need to know</em></h2>
+    </div>
+
+    <div class="faq-grid stagger-up">
+      <div class="faq-item reveal-child">
+        <div class="faq-question">
+          <span>What fitness level do I need to start?</span>
+          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Every Forge program includes a Level Selector assessment during onboarding. Foundry, for example, has Beginner (0–1 yr training), Intermediate (1–3 yrs), and Advanced tracks. The programming adapts to your current numbers. If you can squat, press, and deadlift with basic form, you're ready for any program on this platform.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal-child">
+        <div class="faq-question">
+          <span>Do I need a full gym, or can I train at home?</span>
+          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Foundry and Ignite are designed for a fully-equipped gym with barbells, racks, and machines. Forge Flow and Iron Mind require only a mat and open floor space. The program library also includes home gym variants for Foundry that use dumbbells, bands, and bodyweight substitutions.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal-child">
+        <div class="faq-question">
+          <span>Can I stack multiple programs simultaneously?</span>
+          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Yes — and we encourage it. Our most popular combination is Foundry + Forge Flow, which pairs strength work with daily mobility sessions. Iron Mind is designed as a supplementary layer to any program. Stacking Foundry + Ignite is advanced and should only be attempted after completing at least one full cycle of each individually.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal-child">
+        <div class="faq-question">
+          <span>How does the recovery intelligence system work?</span>
+          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Recovery Intelligence aggregates your daily HRV reading (via compatible wearables or our manual check-in), sleep duration, subjective readiness score, and rolling 7-day training load. The algorithm outputs a daily readiness score and recommends whether to train at full intensity, reduce load by 20%, or take an active recovery day. This feature is exclusive to Elite membership.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal-child">
+        <div class="faq-question">
+          <span>What wearables does Forge integrate with?</span>
+          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Forge connects natively with Whoop, Garmin, Apple Health, and Google Fit. Oura Ring integration is in beta for Elite members. All data syncs automatically every morning and updates your recovery score before your first session of the day.
+          </div>
+        </div>
+      </div>
+
+      <div class="faq-item reveal-child">
+        <div class="faq-question">
+          <span>What's your cancellation policy?</span>
+          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+        </div>
+        <div class="faq-answer">
+          <div class="faq-answer-inner">
+            Cancel any time, no questions asked, directly from your account settings. Your access continues until the end of your current billing period. We don't charge cancellation fees, and all your logged data — workouts, PRs, progress notes — remains accessible for 12 months after cancellation.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SECTION 8: CTA ─────────────────────────────────────────────── -->
+  <section id="cta">
+    <div class="cta-bg-image">
+      <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1400&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
+    </div>
+    <span class="section-label cta-label reveal">The First Rep Is Free</span>
+
+    <h2 class="cta-headline reveal">
+      <span class="line-a">Start</span>
+      <span class="line-b text-grad glitch-text">Forging</span>
+    </h2>
+
+    <form class="cta-form reveal" onsubmit="handleCtaSubmit(event)">
+      <input type="email" class="cta-input" placeholder="your@email.com" required="" autocomplete="email">
+      <button type="submit" class="btn-cta-submit">
+        <span>Start Free Trial</span>
+        <iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
+      </button>
+    </form>
+
+    <p class="cta-fine reveal">14-day free trial. No credit card required. Cancel anytime.</p>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────────────── -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <span class="logo-text">FORGE</span>
+        </div>
+        <p>Premium athletic performance programming. Built for athletes who demand more from themselves.</p>
+        <div class="footer-social">
+          <a href="#" aria-label="Instagram">
+            <iconify-icon icon="lucide:instagram" noobserver=""></iconify-icon>
+          </a>
+          <a href="#" aria-label="Twitter">
+            <iconify-icon icon="lucide:twitter" noobserver=""></iconify-icon>
+          </a>
+          <a href="#" aria-label="YouTube">
+            <iconify-icon icon="lucide:youtube" noobserver=""></iconify-icon>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <iconify-icon icon="lucide:linkedin" noobserver=""></iconify-icon>
+          </a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Programs</h4>
+        <ul>
+          <li><a href="#programs">Foundry — Strength</a></li>
+          <li><a href="#programs">Ignite — HIIT</a></li>
+          <li><a href="#programs">Forge Flow — Mobility</a></li>
+          <li><a href="#programs">Iron Mind — Mental Performance</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#">About Forge</a></li>
+          <li><a href="#">Our Coaches</a></li>
+          <li><a href="#">Research Partners</a></li>
+          <li><a href="#">Press Kit</a></li>
+          <li><a href="#">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#">Help Center</a></li>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Community</a></li>
+          <li><a href="#">System Status</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <span class="footer-copy">
+        © <span id="footer-year"></span> Forge Performance, Inc. All rights reserved.
+      </span>
+      <div class="footer-legal">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+        <a href="#">Cookie Policy</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ─── JAVASCRIPT ─────────────────────────────────────────────────── -->
+  <script>
+    // ── Dynamic year ───────────────────────────────────────────────
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // ── Mobile hamburger ───────────────────────────────────────────
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    hamburger.addEventListener('click', () => {
+      hamburger.classList.toggle('open');
+      mobileMenu.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.mobile-link').forEach(link => {
+      link.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // ── Nav scroll tint ────────────────────────────────────────────
+    const mainNav = document.getElementById('main-nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        mainNav.style.background = 'rgba(8,8,10,0.92)';
+      } else {
+        mainNav.style.background = 'rgba(8,8,10,0.72)';
+      }
+    }, { passive: true });
+
+    // ── IntersectionObserver ───────────────────────────────────────
+    const revealEls = document.querySelectorAll(
+      '.reveal, .reveal-left, .reveal-right, .stagger-up'
+    );
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealEls.forEach(el => revealObserver.observe(el));
+
+    // ── Progress bars ──────────────────────────────────────────────
+    const barEls = document.querySelectorAll('.stat-progress-fill, .intensity-fill');
+
+    const barObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const target = el.getAttribute('data-width');
+          setTimeout(() => { el.style.width = target; }, 100);
+          barObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+
+    barEls.forEach(el => barObserver.observe(el));
+
+    // ── Number counters ────────────────────────────────────────────
+    function formatCompact(n) {
+      if (n >= 1000000) return (n / 1000000).toFixed(1) + 'M+';
+      if (n >= 1000) return Math.round(n / 1000) + 'K+';
+      return n.toString();
+    }
+
+    function animateCounter(el) {
+      const target = parseInt(el.getAttribute('data-target'), 10);
+      const fmt = el.getAttribute('data-format');
+      const duration = 1800;
+      const start = performance.now();
+
+      function tick(now) {
+        const elapsed = now - start;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+
+        if (fmt === 'compact') {
+          el.textContent = formatCompact(current);
+        } else {
+          el.textContent = current;
+        }
+
+        if (progress < 1) requestAnimationFrame(tick);
+        else {
+          if (fmt === 'compact') el.textContent = formatCompact(target);
+          else el.textContent = target;
+        }
+      }
+      requestAnimationFrame(tick);
+    }
+
+    const counterObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.counter').forEach(animateCounter);
+          counterObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+
+    document.querySelectorAll('[data-stat]').forEach(el => counterObserver.observe(el));
+
+    // Hero stats counters — fire on load after short delay
+    function heroCounters() {
+      setTimeout(() => {
+        const members = document.getElementById('stat-members');
+        const sessions = document.getElementById('stat-sessions');
+        const prs = document.getElementById('stat-prs');
+
+        if (members) {
+          // 84K members
+          const dur = 1600;
+          const startT = performance.now();
+          function tickM(now) {
+            const p = Math.min((now - startT) / dur, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            members.textContent = Math.round(e * 84);
+            if (p < 1) requestAnimationFrame(tickM);
+          }
+          requestAnimationFrame(tickM);
+        }
+        if (sessions) {
+          const dur = 1800;
+          const startT = performance.now();
+          function tickS(now) {
+            const p = Math.min((now - startT) / dur, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            sessions.textContent = (e * 1.2).toFixed(1);
+            if (p < 1) requestAnimationFrame(tickS);
+          }
+          requestAnimationFrame(tickS);
+        }
+        if (prs) {
+          const dur = 1700;
+          const startT = performance.now();
+          function tickP(now) {
+            const p = Math.min((now - startT) / dur, 1);
+            const e = 1 - Math.pow(1 - p, 3);
+            prs.textContent = Math.round(e * 847);
+            if (p < 1) requestAnimationFrame(tickP);
+          }
+          requestAnimationFrame(tickP);
+        }
+      }, 800);
+    }
+    heroCounters();
+
+    // ── FAQ toggle ─────────────────────────────────────────────────
+    document.querySelectorAll('.faq-question').forEach(question => {
+      question.addEventListener('click', () => {
+        const item = question.closest('.faq-item');
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item.open').forEach(openItem => {
+          openItem.classList.remove('open');
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) item.classList.add('open');
+      });
+    });
+
+    // ── CTA form submit ────────────────────────────────────────────
+    function handleCtaSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.btn-cta-submit');
+      const originalContent = btn.innerHTML;
+      btn.innerHTML = '<iconify-icon icon="lucide:check" noobserver></iconify-icon><span>You\'re in. Check your email.</span>';
+      btn.style.background = 'linear-gradient(135deg, #16a34a, #22c55e)';
+      setTimeout(() => {
+        btn.innerHTML = originalContent;
+        btn.style.background = '';
+        e.target.reset();
+      }, 4000);
+    }
+
+    // ── Glitch on CTA headline hover ───────────────────────────────
+    const ctaHeadline = document.querySelector('.cta-headline');
+    if (ctaHeadline) {
+      ctaHeadline.addEventListener('mouseenter', () => {
+        ctaHeadline.style.animation = 'none';
+        void ctaHeadline.offsetWidth; // reflow
+      });
+    }
+
+    // ── Hero WebGL ambient background ──────────────────────────
+    (function() {
+      const canvas = document.getElementById('hero-webgl');
+      if (!canvas) return;
+      const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
+      if (!gl) return;
+
+      function resize() {
+        const dpr = Math.min(window.devicePixelRatio, 1.5);
+        canvas.width = canvas.clientWidth * dpr;
+        canvas.height = canvas.clientHeight * dpr;
+        gl.viewport(0, 0, canvas.width, canvas.height);
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const vsrc = `attribute vec2 a_pos;void main(){gl_Position=vec4(a_pos,0,1);}`;
+      const fsrc = `
+        precision mediump float;
+        uniform float u_time;
+        uniform vec2 u_res;
+
+        // Simplex-style noise
+        vec3 mod289(vec3 x){return x-floor(x*(1./289.))*289.;}
+        vec2 mod289(vec2 x){return x-floor(x*(1./289.))*289.;}
+        vec3 permute(vec3 x){return mod289((x*34.+1.)*x);}
+        float snoise(vec2 v){
+          const vec4 C=vec4(.211324865,.366025404,-.577350269,.024390244);
+          vec2 i=floor(v+dot(v,C.yy)),x0=v-i+dot(i,C.xx),i1;
+          i1=(x0.x>x0.y)?vec2(1,0):vec2(0,1);
+          vec4 x12=x0.xyxy+C.xxzz;x12.xy-=i1;
+          i=mod289(i);
+          vec3 p=permute(permute(i.y+vec3(0,i1.y,1.))+i.x+vec3(0,i1.x,1.));
+          vec3 m=max(.5-vec3(dot(x0,x0),dot(x12.xy,x12.xy),dot(x12.zw,x12.zw)),0.);
+          m=m*m;m=m*m;
+          vec3 x=2.*fract(p*C.www)-1.,h=abs(x)-.5,ox=floor(x+.5),a0=x-ox;
+          m*=1.79284291400159-.85373472095314*(a0*a0+h*h);
+          vec3 g;g.x=a0.x*x0.x+h.x*x0.y;g.yz=a0.yz*x12.xz+h.yz*x12.yw;
+          return 130.*dot(m,g);
+        }
+
+        void main(){
+          vec2 uv=gl_FragCoord.xy/u_res;
+          float t=u_time*0.08;
+
+          // Layered noise for organic flow
+          float n1=snoise(uv*1.8+vec2(t*0.7,t*0.5))*0.5+0.5;
+          float n2=snoise(uv*3.2+vec2(-t*0.4,t*0.8))*0.5+0.5;
+          float n3=snoise(uv*0.9+vec2(t*0.3,-t*0.6))*0.5+0.5;
+
+          // Warm orange/amber palette
+          vec3 c1=vec3(0.976,0.451,0.086); // orange
+          vec3 c2=vec3(0.918,0.345,0.047); // deep orange
+          vec3 c3=vec3(0.992,0.729,0.455); // peach
+
+          vec3 col=mix(c1,c2,n1);
+          col=mix(col,c3,n2*0.4);
+
+          // Concentrated glow regions
+          float glow1=smoothstep(0.6,1.0,n1*n3);
+          float glow2=smoothstep(0.55,0.95,n2*n1);
+
+          // Radial vignette — keep edges dark, center subtly lit
+          float vig=1.0-smoothstep(0.2,0.85,length(uv-vec2(0.6,0.4)));
+
+          float alpha=(glow1*0.12+glow2*0.08)*vig;
+
+          gl_FragColor=vec4(col*alpha,alpha);
+        }
+      `;
+
+      function compile(type, src) {
+        const s = gl.createShader(type);
+        gl.shaderSource(s, src);
+        gl.compileShader(s);
+        return s;
+      }
+      const prog = gl.createProgram();
+      gl.attachShader(prog, compile(gl.VERTEX_SHADER, vsrc));
+      gl.attachShader(prog, compile(gl.FRAGMENT_SHADER, fsrc));
+      gl.linkProgram(prog);
+      gl.useProgram(prog);
+
+      const buf = gl.createBuffer();
+      gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+      gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,1,-1,-1,1,1,1]), gl.STATIC_DRAW);
+      const aPos = gl.getAttribLocation(prog, 'a_pos');
+      gl.enableVertexAttribArray(aPos);
+      gl.vertexAttribPointer(aPos, 2, gl.FLOAT, false, 0, 0);
+
+      const uTime = gl.getUniformLocation(prog, 'u_time');
+      const uRes = gl.getUniformLocation(prog, 'u_res');
+
+      gl.enable(gl.BLEND);
+      gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
+
+      function render(t) {
+        gl.uniform1f(uTime, t * 0.001);
+        gl.uniform2f(uRes, canvas.width, canvas.height);
+        gl.clearColor(0, 0, 0, 0);
+        gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+        requestAnimationFrame(render);
+      }
+      requestAnimationFrame(render);
+    })();
+  </script>
+
+
+</body></html>

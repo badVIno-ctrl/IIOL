@@ -1,0 +1,2902 @@
+<!DOCTYPE html>
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CIRON — C1 Performance Bicycle</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/gullying" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/santrio" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<style>
+:root {
+--charcoal-base: #121212;
+--charcoal-mid: #1a1a1a;
+--charcoal-light: #242424;
+--glass-highlight: rgba(255, 255, 255, 0.15);
+--glass-shadow: rgba(0, 0, 0, 0.8);
+--neon-accent: #f4f4f4;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: auto; background: var(--charcoal-base); }
+body {
+margin: 0;
+font-family: "Geist", system-ui, -apple-system, sans-serif;
+background: var(--charcoal-base);
+color: #e0e0e0;
+text-rendering: geometricPrecision;
+-webkit-font-smoothing: antialiased;
+}
+/* Layout UI is intentionally clean. Depth is reserved for the tire only. */
+.liquid-glass-panel {
+background: rgba(10, 10, 10, 0.46);
+backdrop-filter: blur(16px);
+-webkit-backdrop-filter: blur(16px);
+border: 1px solid rgba(255, 255, 255, 0.12);
+box-shadow: none;
+}
+.skeuomorphic-btn {
+background: #ffffff;
+color: #0b0b0b;
+border: 1px solid rgba(255,255,255,0.9);
+border-radius: 999px;
+box-shadow: none;
+transition: transform 0.2s cubic-bezier(0.22, 1, 0.36, 1), background 0.2s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.2s cubic-bezier(0.22, 1, 0.36, 1), color 0.2s cubic-bezier(0.22, 1, 0.36, 1);
+position: relative;
+}
+.skeuomorphic-btn::before { display: none; }
+.skeuomorphic-btn:hover {
+background: #f4f4f4;
+box-shadow: none;
+transform: translateY(-1px);
+}
+.skeuomorphic-btn:active {
+background: #e9e9e9;
+box-shadow: none;
+transform: translateY(0);
+}
+.machined-border {
+border: 1px solid rgba(255,255,255,0.1);
+box-shadow: none;
+}
+.noise {
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23noise)' opacity='0.75'/%3E%3C/svg%3E");
+mix-blend-mode: overlay;
+}
+.technical-grid {
+background-image:
+linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+background-size: 8.333vw 8.333vw;
+}
+.blend-text { color: #fff; text-shadow: none; }
+.nav-link {
+position: relative;
+text-shadow: none;
+}
+.nav-link::after {
+content: "";
+position: absolute;
+left: 0;
+right: 0;
+bottom: -0.45rem;
+height: 1px;
+background: rgba(255,255,255,0.9);
+transform: scaleX(0);
+transform-origin: left;
+transition: transform 0.35s cubic-bezier(.22,1,.36,1);
+opacity: .75;
+}
+.nav-link:hover::after { transform: scaleX(1); }
+.state-line {
+display: inline-block;
+will-change: transform, opacity;
+}
+.gallery-card {
+background: var(--charcoal-mid);
+border: 1px solid rgba(255,255,255,0.05);
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,0.1),
+0 20px 40px rgba(0,0,0,0.6);
+position: relative;
+}
+.gallery-card::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%, rgba(0,0,0,0.4) 100%);
+pointer-events: none;
+}
+.gallery-card img {
+transition: transform .9s cubic-bezier(.22,1,.36,1), filter .9s cubic-bezier(.22,1,.36,1);
+border-bottom: 1px solid #000;
+}
+.gallery-card:hover img {
+transform: scale(1.055);
+filter: grayscale(0) contrast(1.1);
+}
+@media (max-width: 767px) {
+.technical-grid { background-size: 28vw 28vw; }
+}
+/* Clean white sections added after the exact tire hero */
+:root {
+--ink: #303833;
+--muted: #747a76;
+--accent: #FF4F18;
+--paper: #ffffff;
+--soft: #f7f7f3;
+}
+.pill-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+border-radius: 999px;
+border: 1px solid rgba(21, 24, 21, .16);
+padding: .85rem 1.25rem;
+font-size: .68rem;
+font-weight: 700;
+letter-spacing: .16em;
+text-transform: uppercase;
+transition: transform .25s cubic-bezier(.22,1,.36,1), background .25s cubic-bezier(.22,1,.36,1), color .25s cubic-bezier(.22,1,.36,1), border-color .25s cubic-bezier(.22,1,.36,1);
+color: var(--ink);
+}
+.pill-btn:hover { transform: translateY(-1px); }
+.pill-dark { background: var(--ink); color: white; border-color: var(--ink); }
+.pill-dark:hover { background: #000; }
+.pill-light { background: white; color: var(--ink); border-color: rgba(255,255,255,.45); }
+.pill-accent { background: var(--accent); color: #0c1c10; border-color: var(--accent); }
+.section-kicker {
+font-size: .7rem;
+font-weight: 700;
+letter-spacing: .24em;
+text-transform: uppercase;
+color: var(--accent);
+}
+.section-title {
+font-size: clamp(2.5rem, 7vw, 6.9rem);
+line-height: .92;
+letter-spacing: -.055em;
+font-weight: 800;
+}
+.soft-copy {
+color: var(--muted);
+font-size: clamp(1rem, 1.3vw, 1.12rem);
+line-height: 1.75;
+}
+.reveal-up {
+opacity: 0;
+transform: translate3d(0, 28px, 0);
+will-change: transform, opacity;
+}
+.model-panel {
+width: min(84vw, 82rem);
+flex-shrink: 0;
+}
+.label-chip {
+will-change: transform, opacity;
+}
+@media (max-width: 767px) {
+.model-panel { width: 88vw; }
+}
+.signature-card {
+position: sticky;
+top: 6.5rem;
+overflow: hidden;
+border-radius: 1.5rem;
+border: 1px solid #e4e5e1;
+background: #fff;
+box-shadow: 0 20px 50px rgba(15, 18, 15, 0.06);
+will-change: transform, opacity;
+}
+.signature-card + .signature-card { margin-top: 1.25rem; }
+.spec-chip {
+display: inline-flex;
+align-items: center;
+border-radius: 999px;
+border: 1px solid rgba(48,56,51,0.14);
+padding: .55rem .8rem;
+font-size: .68rem;
+font-weight: 700;
+letter-spacing: .12em;
+text-transform: uppercase;
+color: #57605a;
+background: rgba(255,255,255,.72);
+}
+.signal-band {
+background: #0f1110;
+color: white;
+overflow: hidden;
+border-top: 1px solid rgba(255,255,255,.08);
+border-bottom: 1px solid rgba(255,255,255,.08);
+}
+.signal-track {
+display: flex;
+gap: 2.5rem;
+width: max-content;
+padding: 1.1rem 1.5rem;
+white-space: nowrap;
+will-change: transform;
+}
+.signal-item {
+font-size: .72rem;
+font-weight: 700;
+letter-spacing: .24em;
+text-transform: uppercase;
+color: rgba(255,255,255,.78);
+}
+.signal-dot {
+opacity: .45;
+}
+.process-shell {
+position: relative;
+display: grid;
+gap: 2rem;
+align-items: start;
+}
+@media (min-width: 1024px) {
+.process-shell {
+grid-template-columns: 90px minmax(0, 1fr);
+gap: 3rem;
+}
+}
+.process-rail {
+position: relative;
+display: none;
+min-height: 100%;
+}
+@media (min-width: 1024px) {
+.process-rail { display: block; }
+}
+.process-line,
+.process-progress {
+position: absolute;
+left: 1.6rem;
+top: 0;
+width: 1px;
+border-radius: 999px;
+}
+.process-line {
+height: 100%;
+background: #d8dad5;
+}
+.process-progress {
+height: 0%;
+background: #303833;
+}
+.process-step {
+position: relative;
+border-top: 1px solid #dcded9;
+padding-top: 1.5rem;
+opacity: .42;
+transform: translate3d(0, 14px, 0);
+will-change: transform, opacity;
+}
+.process-step.is-active {
+opacity: 1;
+transform: translate3d(0, 0, 0);
+}
+.process-index {
+font-size: .72rem;
+font-weight: 700;
+letter-spacing: .22em;
+text-transform: uppercase;
+color: #8c918d;
+}
+.process-panel {
+border-radius: 1.25rem;
+border: 1px solid #e4e5e1;
+background: white;
+padding: 1.25rem;
+}
+.soft-divider {
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(48,56,51,0.15), transparent);
+}
+.build-studio-card {
+position: relative;
+overflow: hidden;
+border-radius: 1.75rem;
+border: 1px solid #e2e4df;
+background: #ffffff;
+box-shadow: 0 20px 50px rgba(15, 18, 15, 0.06);
+}
+.build-studio-card::before {
+content: "";
+position: absolute;
+inset: 0;
+background:
+radial-gradient(circle at 18% 8%, rgba(255,79,24,.12), transparent 30%),
+linear-gradient(180deg, rgba(255,255,255,.92), rgba(247,247,243,.82));
+pointer-events: none;
+}
+.build-studio-grid {
+background-image:
+linear-gradient(to right, rgba(48,56,51,.065) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(48,56,51,.065) 1px, transparent 1px);
+background-size: 48px 48px;
+}
+.build-step {
+position: relative;
+border-top: 1px solid #dcded9;
+padding: 1.35rem 0 0;
+transition: opacity .35s ease, transform .35s ease;
+opacity: .42;
+transform: translate3d(0, 10px, 0);
+}
+.build-step.is-active {
+opacity: 1;
+transform: translate3d(0, 0, 0);
+}
+.build-step-number {
+font-size: .7rem;
+font-weight: 800;
+letter-spacing: .22em;
+text-transform: uppercase;
+color: #9a9f9a;
+}
+.build-orbit {
+position: relative;
+aspect-ratio: 1 / 1;
+border-radius: 999px;
+border: 1px solid rgba(48,56,51,.12);
+background:
+radial-gradient(circle at 50% 50%, rgba(255,255,255,1) 0 19%, rgba(255,79,24,.11) 20% 21%, transparent 22%),
+radial-gradient(circle at 50% 50%, transparent 0 39%, rgba(48,56,51,.09) 40% 40.5%, transparent 41%),
+radial-gradient(circle at 50% 50%, transparent 0 64%, rgba(48,56,51,.08) 65% 65.5%, transparent 66%);
+will-change: transform;
+}
+.build-orbit::after {
+content: "C1";
+position: absolute;
+left: 50%;
+top: 50%;
+transform: translate(-50%, -50%);
+font-size: clamp(3rem, 8vw, 6.5rem);
+line-height: .8;
+letter-spacing: -.08em;
+font-weight: 800;
+color: rgba(48,56,51,.12);
+}
+.orbit-dot {
+position: absolute;
+width: .7rem;
+height: .7rem;
+border-radius: 999px;
+background: #303833;
+box-shadow: 0 0 0 8px rgba(48,56,51,.06);
+}
+.orbit-dot:nth-child(1) { left: 48%; top: 4%; }
+.orbit-dot:nth-child(2) { right: 10%; top: 31%; background: #FF4F18; }
+.orbit-dot:nth-child(3) { left: 14%; bottom: 19%; }
+.orbit-dot:nth-child(4) { right: 24%; bottom: 7%; background: #FF4F18; }
+.build-progress-shell {
+height: 1px;
+background: #dcded9;
+overflow: hidden;
+}
+.build-progress-bar {
+height: 1px;
+width: 0%;
+background: #303833;
+}
+.hero-stage-ready header,
+.hero-stage-ready #state0 [data-line],
+.hero-stage-ready [data-chapter],
+.hero-stage-ready #grid {
+will-change: transform, opacity;
+}
+#lightLayer,
+#darkLayer,
+#grid,
+#stage .noise,
+.signature-card img,
+.special-img,
+.model-panel img,
+#ctImage,
+#systemImage,
+#buildOrbit,
+#contactBgText {
+will-change: transform;
+}
+/* Video-inspired on-load sequence */
+.load-overlay {
+position: fixed;
+inset: 0;
+z-index: 9999;
+background: #020202;
+overflow: hidden;
+pointer-events: none;
+color: #0d1110;
+}
+.load-grain {
+position: absolute;
+inset: 0;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='0.32'/%3E%3C/svg%3E");
+mix-blend-mode: soft-light;
+opacity: .3;
+}
+.load-mark {
+position: absolute;
+left: 50%;
+top: 50%;
+display: grid;
+justify-items: center;
+gap: .7rem;
+transform: translate(-50%, -50%);
+color: #f7f7f3;
+text-align: center;
+will-change: transform, opacity;
+}
+.load-kicker,
+.load-spec {
+font-size: .62rem;
+font-weight: 800;
+letter-spacing: .32em;
+line-height: 1;
+text-transform: uppercase;
+color: rgba(247,247,243,.56);
+white-space: nowrap;
+}
+.load-word {
+font-size: clamp(1.1rem, 2.3vw, 2.05rem);
+font-weight: 900;
+letter-spacing: -.045em;
+line-height: .88;
+text-transform: uppercase;
+white-space: nowrap;
+}
+.load-rule {
+width: 7.5rem;
+height: 1px;
+background: rgba(247,247,243,.4);
+transform-origin: center;
+will-change: transform, opacity;
+}
+.load-slab {
+position: absolute;
+bottom: 0;
+width: calc(100% / 3 + 1px);
+background:
+linear-gradient(to right, rgba(13,17,16,.055) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(13,17,16,.055) 1px, transparent 1px),
+#f7f7f3;
+background-size: 8.333vw 8.333vw;
+overflow: hidden;
+will-change: transform;
+}
+.load-slab::before {
+content: "";
+position: absolute;
+inset: 0;
+border-top: 1px solid rgba(13,17,16,.1);
+border-right: 1px solid rgba(13,17,16,.08);
+}
+.load-slab:nth-of-type(1) {
+left: 0;
+height: 41vh;
+}
+.load-slab:nth-of-type(2) {
+left: calc(100% / 3);
+height: 55vh;
+}
+.load-slab:nth-of-type(3) {
+right: 0;
+height: 48vh;
+}
+.load-interface {
+position: absolute;
+inset: auto 4.5vw 6vh;
+display: grid;
+grid-template-columns: minmax(9rem, 1fr) minmax(12rem, 1.7fr) minmax(9rem, 1fr);
+align-items: end;
+gap: 2rem;
+opacity: 0;
+color: #0d1110;
+will-change: transform, opacity;
+}
+.load-interface p {
+margin: 0;
+}
+.load-list,
+.load-note {
+font-size: .58rem;
+font-weight: 900;
+letter-spacing: -.02em;
+line-height: 1.25;
+}
+.load-note {
+justify-self: end;
+max-width: 10rem;
+color: rgba(13,17,16,.64);
+}
+.load-title {
+font-size: clamp(4.8rem, 11vw, 10rem);
+font-weight: 900;
+letter-spacing: -.08em;
+line-height: .75;
+text-transform: uppercase;
+white-space: nowrap;
+color: #0d1110;
+}
+.load-mini-ui {
+position: absolute;
+left: 50%;
+top: 2.7rem;
+display: grid;
+grid-template-columns: repeat(3, 4px);
+gap: 3px;
+transform: translateX(-50%);
+opacity: 0;
+}
+.load-mini-ui span {
+width: 4px;
+height: 4px;
+background: #0d1110;
+}
+.load-gauge {
+position: absolute;
+left: 4.5vw;
+right: 4.5vw;
+bottom: 3.6vh;
+height: 1px;
+background: rgba(13,17,16,.16);
+opacity: 0;
+will-change: transform, opacity;
+}
+.load-gauge span {
+display: block;
+width: 100%;
+height: 100%;
+transform: scaleX(0);
+transform-origin: left;
+background: #0d1110;
+}
+@media (max-width: 767px) {
+.load-slab {
+background-size: 28vw 28vw;
+}
+.load-slab:nth-of-type(1) { height: 34vh; }
+.load-slab:nth-of-type(2) { height: 52vh; }
+.load-slab:nth-of-type(3) { height: 43vh; }
+.load-interface {
+inset: auto 1.2rem 5.8vh;
+grid-template-columns: 1fr;
+gap: 1.2rem;
+}
+.load-note {
+justify-self: start;
+}
+.load-title {
+font-size: clamp(3.15rem, 15vw, 4.75rem);
+letter-spacing: -.095em;
+}
+}
+/* Clean fixed loader: closer to the original video, less busy */
+.load-overlay {
+background: #020202;
+}
+.load-grain {
+opacity: .16;
+}
+.load-mark {
+gap: .72rem;
+filter: none;
+}
+.load-word {
+font-size: clamp(1.2rem, 2.65vw, 2.35rem);
+letter-spacing: -.055em;
+}
+.load-rule {
+width: min(10rem, 42vw);
+background: linear-gradient(90deg, transparent, rgba(247,247,243,.76), transparent);
+}
+.load-slab {
+background:
+linear-gradient(to right, rgba(13,17,16,.045) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(13,17,16,.045) 1px, transparent 1px),
+#f7f7f3;
+box-shadow: none;
+}
+.load-slab::before {
+border-top: 1px solid rgba(13,17,16,.08);
+border-right: 1px solid rgba(13,17,16,.06);
+}
+.load-interface {
+inset: auto 4.5vw 6.8vh;
+}
+.load-title {
+opacity: .96;
+}
+.load-mini-ui,
+.load-gauge {
+display: none;
+}
+/* Video reference loader: white start, dark band, centered logo, shrink, reveal */
+.video-loader {
+position: fixed;
+inset: 0;
+z-index: 9999;
+overflow: hidden;
+pointer-events: none;
+background: #f7f7f3;
+color: #101612;
+}
+.loader-panel {
+position: absolute;
+left: 50%;
+top: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+width: 100vw;
+height: 0vh;
+overflow: hidden;
+background: #121a1f;
+transform: translate(-50%, -50%);
+will-change: width, height, transform, opacity, background-color;
+}
+.mono-loader-mark {
+position: relative;
+width: clamp(5.4rem, 11vw, 8.8rem);
+height: clamp(4.1rem, 8.5vw, 6.75rem);
+color: #f7f7f3;
+opacity: 0;
+transform: scale(.84);
+will-change: transform, opacity, color;
+}
+.mark-piece {
+position: absolute;
+display: block;
+background: currentColor;
+}
+.mark-c {
+left: 0;
+top: 34%;
+width: 35%;
+height: 38%;
+border: clamp(.62rem, 1.25vw, 1rem) solid currentColor;
+border-right: 0;
+border-radius: 1.1rem 0 0 1.1rem;
+background: transparent;
+}
+.mark-bar-a {
+left: 42%;
+top: 18%;
+width: 13%;
+height: 74%;
+}
+.mark-bar-b {
+left: 58%;
+top: 0;
+width: 14%;
+height: 100%;
+}
+.mark-block {
+right: 0;
+top: 0;
+width: 33%;
+height: 35%;
+border-radius: 0 .8rem .8rem 0;
+}
+.mark-foot {
+right: 7%;
+bottom: 0;
+width: 31%;
+height: 34%;
+border-radius: .8rem 0 0 .8rem;
+}
+.loader-micro {
+position: absolute;
+left: 50%;
+bottom: 7vh;
+transform: translateX(-50%);
+color: rgba(16, 22, 18, .55);
+font-size: .68rem;
+font-weight: 800;
+letter-spacing: .28em;
+text-transform: uppercase;
+opacity: 0;
+will-change: transform, opacity;
+}
+.loader-capsule {
+position: absolute;
+left: 50%;
+top: 50%;
+width: 4.5rem;
+height: 1.05rem;
+border-radius: 999px;
+background: #dfe4e2;
+transform: translate(-50%, -50%) scaleX(.25);
+opacity: 0;
+will-change: transform, opacity;
+}
+@media (max-width: 767px) {
+.mono-loader-mark {
+width: 5.4rem;
+height: 4.1rem;
+}
+.loader-micro {
+bottom: 5vh;
+font-size: .58rem;
+}
+}
+/* Header logo uses the same mark language as the on-load animation */
+.nav-brand {
+display: inline-flex;
+align-items: center;
+gap: .72rem;
+color: #fff;
+text-decoration: none;
+}
+.nav-logo-mark {
+position: relative;
+width: 2.05rem;
+height: 1.55rem;
+color: currentColor;
+flex: 0 0 auto;
+}
+.nav-logo-mark .mark-piece {
+position: absolute;
+display: block;
+background: currentColor;
+}
+.nav-logo-mark .mark-c {
+left: 0;
+top: 34%;
+width: 35%;
+height: 38%;
+border: 3px solid currentColor;
+border-right: 0;
+border-radius: .38rem 0 0 .38rem;
+background: transparent;
+}
+.nav-logo-mark .mark-bar-a {
+left: 42%;
+top: 18%;
+width: 13%;
+height: 74%;
+}
+.nav-logo-mark .mark-bar-b {
+left: 58%;
+top: 0;
+width: 14%;
+height: 100%;
+}
+.nav-logo-mark .mark-block {
+right: 0;
+top: 0;
+width: 33%;
+height: 35%;
+border-radius: 0 .26rem .26rem 0;
+}
+.nav-logo-mark .mark-foot {
+right: 7%;
+bottom: 0;
+width: 31%;
+height: 34%;
+border-radius: .26rem 0 0 .26rem;
+}
+.nav-wordmark {
+font-size: .92rem;
+font-weight: 800;
+letter-spacing: .28em;
+line-height: 1;
+text-transform: uppercase;
+}
+@media (max-width: 640px) {
+.nav-logo-mark {
+width: 1.85rem;
+height: 1.4rem;
+}
+.nav-wordmark {
+font-size: .82rem;
+letter-spacing: .22em;
+}
+}
+/* Scroll-dark cinematic sections */
+.scroll-dark-section {
+position: relative;
+overflow: hidden;
+transition: background-color .5s ease, color .5s ease;
+}
+.scroll-dark-section::before {
+content: "";
+position: absolute;
+inset: 0;
+background:
+radial-gradient(circle at 50% 18%, rgba(255,255,255,.08), transparent 32%),
+linear-gradient(180deg, #0d1110 0%, #030403 100%);
+opacity: 0;
+pointer-events: none;
+transition: opacity .45s ease;
+z-index: 0;
+}
+.scroll-dark-section > * {
+position: relative;
+z-index: 1;
+}
+.scroll-dark-section.is-dark {
+background: #050605 !important;
+color: #f7f7f3;
+}
+.scroll-dark-section.is-dark::before {
+opacity: 1;
+}
+.scroll-dark-section.is-dark .section-kicker {
+color: #FF4F18;
+}
+.scroll-dark-section.is-dark .soft-copy,
+.scroll-dark-section.is-dark p,
+.scroll-dark-section.is-dark .text-\[\#747a76\],
+.scroll-dark-section.is-dark .text-\[\#6f746f\],
+.scroll-dark-section.is-dark .text-\[\#969b97\],
+.scroll-dark-section.is-dark .text-\[\#9b9b9b\],
+.scroll-dark-section.is-dark .text-\[\#8c918d\],
+.scroll-dark-section.is-dark .text-\[\#9a9f9a\] {
+color: rgba(247,247,243,.62) !important;
+}
+.scroll-dark-section.is-dark h2,
+.scroll-dark-section.is-dark h3,
+.scroll-dark-section.is-dark h4,
+.scroll-dark-section.is-dark .text-\[\#111\],
+.scroll-dark-section.is-dark .text-\[\#303833\] {
+color: #f7f7f3 !important;
+}
+.scroll-dark-section.is-dark .text-\[\#b9bbb7\] {
+color: rgba(247,247,243,.34) !important;
+}
+.scroll-dark-section.is-dark .border-\[\#d8dad5\],
+.scroll-dark-section.is-dark .border-\[\#dcded9\],
+.scroll-dark-section.is-dark .border-\[\#e0e1dc\],
+.scroll-dark-section.is-dark .border-\[\#e2e4df\],
+.scroll-dark-section.is-dark .border-\[\#e4e5e1\],
+.scroll-dark-section.is-dark .border-\[\#303833\] {
+border-color: rgba(247,247,243,.16) !important;
+}
+.scroll-dark-section.is-dark .bg-white,
+.scroll-dark-section.is-dark .bg-white\/70,
+.scroll-dark-section.is-dark .bg-white\/75,
+.scroll-dark-section.is-dark .bg-\[\#f7f7f7\],
+.scroll-dark-section.is-dark .bg-\[\#f4f5f1\],
+.scroll-dark-section.is-dark .build-studio-card,
+.scroll-dark-section.is-dark .process-panel,
+.scroll-dark-section.is-dark .signature-card {
+background-color: rgba(255,255,255,.055) !important;
+color: #f7f7f3;
+}
+.scroll-dark-section.is-dark .build-studio-card::before {
+opacity: .28;
+}
+.scroll-dark-section.is-dark .build-studio-grid {
+background-image:
+linear-gradient(to right, rgba(247,247,243,.055) 1px, transparent 1px),
+linear-gradient(to bottom, rgba(247,247,243,.055) 1px, transparent 1px);
+}
+.scroll-dark-section.is-dark .spec-chip,
+.scroll-dark-section.is-dark .pill-btn {
+border-color: rgba(247,247,243,.18);
+background: rgba(247,247,243,.06);
+color: rgba(247,247,243,.72);
+}
+.scroll-dark-section.is-dark .pill-accent {
+background: #FF4F18;
+border-color: #FF4F18;
+color: #071008;
+}
+.scroll-dark-section.is-dark .build-orbit {
+border-color: rgba(247,247,243,.16);
+background:
+radial-gradient(circle at 50% 50%, rgba(255,255,255,.06) 0 19%, rgba(255,79,24,.18) 20% 21%, transparent 22%),
+radial-gradient(circle at 50% 50%, transparent 0 39%, rgba(247,247,243,.11) 40% 40.5%, transparent 41%),
+radial-gradient(circle at 50% 50%, transparent 0 64%, rgba(247,247,243,.1) 65% 65.5%, transparent 66%);
+}
+.scroll-dark-section.is-dark .build-orbit::after {
+color: rgba(247,247,243,.12);
+}
+.scroll-dark-section.is-dark .build-progress-shell {
+background: rgba(247,247,243,.16);
+}
+.scroll-dark-section.is-dark .build-progress-bar {
+background: #FF4F18;
+}
+.scroll-dark-section .dark-transition-label {
+position: absolute;
+right: 1.5rem;
+top: 1.5rem;
+z-index: 2;
+font-size: .62rem;
+font-weight: 800;
+letter-spacing: .22em;
+text-transform: uppercase;
+color: rgba(48,56,51,.32);
+opacity: 0;
+transform: translateY(8px);
+pointer-events: none;
+}
+.scroll-dark-section.is-dark .dark-transition-label {
+color: rgba(247,247,243,.32);
+}
+/* Vanguard DESIGN.md adaptation for CIRON */
+:root {
+--primary: #FF4F18;
+--secondary: #FFFFFF;
+--accent: #A08C6C;
+--background: #FFFFFF;
+--surface: #A08C6C;
+--text-primary: #111827;
+--text-secondary: #4B5563;
+--border: #E5E7EB;
+--ink: #111827;
+--muted: #4B5563;
+--soft: #F8F7F4;
+--ciron-display: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--ciron-body: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+--ciron-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}
+body,
+button,
+a,
+input,
+textarea,
+select {
+font-family: var(--ciron-body) !important;
+}
+h1,
+h2,
+h3,
+h4,
+.section-title,
+#state0 h1,
+#state1 h2,
+#state2 h2,
+#state3 h2,
+#state4 h2 {
+font-family: var(--ciron-display) !important;
+font-weight: 500 !important;
+letter-spacing: -0.055em !important;
+line-height: 1.04 !important;
+text-transform: none !important;
+}
+.nav-wordmark,
+.load-title,
+.load-word,
+footer .text-7xl {
+font-family: var(--ciron-display) !important;
+font-weight: 700 !important;
+letter-spacing: -0.035em !important;
+text-transform: none !important;
+}
+.section-kicker,
+.pill-btn,
+.spec-chip,
+.signal-item,
+.build-step-number,
+.process-index,
+.loader-micro,
+.dark-transition-label,
+header nav a,
+.nav-link,
+.text-\[0\.65rem\],
+.text-\[0\.68rem\] {
+font-family: var(--ciron-mono) !important;
+font-weight: 600 !important;
+letter-spacing: .14em !important;
+text-transform: uppercase;
+}
+.soft-copy,
+p,
+li {
+font-family: var(--ciron-body) !important;
+color: var(--text-secondary);
+line-height: 1.6;
+letter-spacing: -0.01em;
+}
+.section-kicker {
+color: var(--primary) !important;
+}
+.pill-btn,
+.skeuomorphic-btn {
+border-radius: 8px !important;
+border-color: var(--border) !important;
+box-shadow: none !important;
+}
+.pill-btn {
+padding: .9rem 1.25rem;
+background: var(--secondary);
+color: var(--text-primary);
+}
+.pill-btn:hover,
+.skeuomorphic-btn:hover {
+transform: translateY(-2px);
+}
+.pill-accent,
+.pill-dark {
+background: var(--primary) !important;
+border-color: var(--primary) !important;
+color: #fff !important;
+}
+.skeuomorphic-btn {
+background: var(--secondary) !important;
+color: var(--text-primary) !important;
+}
+header .skeuomorphic-btn {
+background: rgba(255,255,255,.96) !important;
+}
+.signature-card,
+.model-panel img,
+.build-studio-card,
+.process-panel,
+#system .rounded-2xl,
+#range .rounded-2xl,
+#contact .pill-btn,
+.rounded-2xl,
+.rounded-xl {
+border-radius: 8px !important;
+}
+.border-\[\#d8dad5\],
+.border-\[\#dcded9\],
+.border-\[\#e0e1dc\],
+.border-\[\#e2e4df\],
+.border-\[\#e4e5e1\],
+.border-\[\#303833\] {
+border-color: var(--border) !important;
+}
+section.bg-white,
+#system,
+#range,
+#signatures,
+#models,
+#contact {
+background-color: var(--background) !important;
+}
+#process {
+background-color: #F8F7F4 !important;
+}
+.spec-chip {
+border-radius: 8px !important;
+background: #fff;
+color: var(--text-secondary);
+}
+.signal-band {
+background: #111827 !important;
+border-color: rgba(255,255,255,.1);
+}
+.signal-item {
+color: rgba(255,255,255,.78);
+}
+#contactBgText {
+font-family: var(--ciron-display) !important;
+font-weight: 700 !important;
+color: rgba(160, 140, 108, .13) !important;
+letter-spacing: -0.075em !important;
+text-transform: none !important;
+}
+.scroll-dark-section.is-dark {
+background: #111827 !important;
+color: #fff;
+}
+.scroll-dark-section::before {
+background:
+radial-gradient(circle at 50% 18%, rgba(255,79,24,.16), transparent 35%),
+linear-gradient(180deg, #111827 0%, #070A0F 100%) !important;
+}
+.scroll-dark-section.is-dark .section-kicker {
+color: var(--primary) !important;
+}
+.scroll-dark-section.is-dark .pill-accent {
+background: var(--primary) !important;
+border-color: var(--primary) !important;
+color: #fff !important;
+}
+.scroll-dark-section.is-dark .bg-\[\#f7f7f3\],
+.scroll-dark-section.is-dark .bg-white,
+.scroll-dark-section.is-dark .bg-white\/70,
+.scroll-dark-section.is-dark .bg-white\/75 {
+background-color: rgba(255,255,255,.065) !important;
+}
+.scroll-dark-section.is-dark .text-\[\#b9bbb7\] {
+color: rgba(255,255,255,.32) !important;
+}
+.label-chip {
+border-radius: 8px !important;
+border-color: var(--border) !important;
+color: var(--text-primary) !important;
+}
+.nav-link::after {
+background: var(--primary) !important;
+}
+.loader-panel {
+background: #111827 !important;
+}
+.loader-micro {
+color: rgba(17,24,39,.58) !important;
+}
+.loader-capsule {
+background: var(--primary) !important;
+}
+@media (max-width: 767px) {
+h1,
+h2,
+h3,
+h4,
+.section-title,
+#state0 h1,
+#state1 h2,
+#state2 h2,
+#state3 h2,
+#state4 h2 {
+letter-spacing: -0.045em !important;
+line-height: 1.02 !important;
+}
+.section-kicker,
+.pill-btn,
+.spec-chip,
+.signal-item {
+letter-spacing: .1em !important;
+}
+}
+/* -------------------------------------------------------
+Engineering section readability fix
+- When the section switches to dark, the text layer becomes
+a dark glass card instead of white-on-white.
+- Label chips stay white with dark text.
+- Extra bottom padding keeps the section away from the signal band.
+------------------------------------------------------- */
+#engineering {
+padding-bottom: 8rem !important;
+}
+#engineering #engineeringPin {
+padding-bottom: 7rem !important;
+}
+#engineering .engineering-text-card {
+transition:
+background-color .45s ease,
+border-color .45s ease,
+color .45s ease,
+backdrop-filter .45s ease;
+}
+#engineering.is-dark .engineering-text-card {
+background: rgba(17, 24, 39, 0.76) !important;
+border: 1px solid rgba(255, 255, 255, 0.12) !important;
+box-shadow: 0 24px 80px rgba(0, 0, 0, 0.34) !important;
+backdrop-filter: blur(18px);
+-webkit-backdrop-filter: blur(18px);
+}
+#engineering.is-dark #engineeringText h2 {
+color: #ffffff !important;
+}
+#engineering.is-dark #engineeringText p:not(.section-kicker) {
+color: rgba(255, 255, 255, 0.68) !important;
+}
+#engineering.is-dark #engineeringText .section-kicker {
+color: var(--primary) !important;
+}
+#engineering.is-dark .engineering-cta {
+background: #ffffff !important;
+border-color: rgba(255, 255, 255, 0.9) !important;
+color: #111827 !important;
+}
+#engineering.is-dark .engineering-cta:hover {
+background: #f3f4f6 !important;
+color: #111827 !important;
+}
+#engineering.is-dark .label-chip {
+background: rgba(255, 255, 255, 0.92) !important;
+border-color: rgba(255, 255, 255, 0.18) !important;
+color: #111827 !important;
+}
+#engineering + .signal-band {
+margin-top: 0 !important;
+}
+@media (max-width: 767px) {
+#engineering {
+padding-bottom: 6rem !important;
+}
+#engineering #engineeringPin {
+padding-bottom: 5rem !important;
+}
+#engineering .engineering-text-card {
+padding-left: 1.25rem;
+padding-right: 1.25rem;
+}
+}
+/* -------------------------------------------------------
+Collection layout spacing fix
+- Adds premium breathing room around the horizontal gallery.
+- Prevents the first text column from feeling clipped on scroll.
+- Keeps each bike card readable and centered inside the viewport.
+------------------------------------------------------- */
+#models {
+position: relative;
+overflow: hidden;
+padding-top: clamp(7rem, 9vw, 10.5rem) !important;
+padding-bottom: clamp(7rem, 9vw, 10.5rem) !important;
+}
+#models .models-header {
+padding-left: clamp(1.5rem, 4vw, 4.5rem) !important;
+padding-right: clamp(1.5rem, 4vw, 4.5rem) !important;
+}
+#galleryPin {
+padding-bottom: clamp(1.5rem, 4vw, 4rem);
+}
+#galleryTrack {
+align-items: stretch;
+gap: clamp(2rem, 3.5vw, 4.5rem) !important;
+padding-left: clamp(2rem, 6vw, 7rem) !important;
+padding-right: clamp(2rem, 6vw, 7rem) !important;
+}
+#models .model-panel {
+width: min(86vw, 78rem) !important;
+min-height: clamp(34rem, 62vh, 46rem);
+padding: clamp(1.25rem, 2.4vw, 2.5rem);
+overflow: visible;
+border: 1px solid var(--border) !important;
+border-radius: 8px;
+background: #ffffff;
+box-shadow: 0 20px 70px rgba(17, 24, 39, 0.06);
+}
+#models .model-panel > div:first-child {
+min-width: 0;
+padding-left: clamp(.25rem, 1.2vw, 1rem);
+}
+#models .model-panel > div:first-child > span {
+left: clamp(.25rem, 1vw, .75rem) !important;
+top: clamp(-4.5rem, -5vw, -3rem) !important;
+font-size: clamp(8rem, 14vw, 15.5rem) !important;
+pointer-events: none;
+}
+#models .model-panel .relative.z-10 {
+padding-top: clamp(5.5rem, 10vw, 9rem) !important;
+}
+#models .model-panel img {
+height: clamp(24rem, 56vh, 36rem) !important;
+max-height: 76vh;
+width: 100%;
+object-fit: cover;
+}
+#models .model-panel .order-1.md\:order-2 {
+min-width: 0;
+}
+#galleryProgress {
+transition: width .12s linear;
+}
+@media (max-width: 767px) {
+#models {
+padding-top: 5.5rem !important;
+padding-bottom: 5.5rem !important;
+}
+#models .models-header {
+padding-left: 1rem !important;
+padding-right: 1rem !important;
+}
+#galleryTrack {
+gap: 1.25rem !important;
+padding-left: 1rem !important;
+padding-right: 1rem !important;
+}
+#models .model-panel {
+width: min(88vw, 34rem) !important;
+min-height: auto;
+padding: 1rem;
+gap: 1.25rem !important;
+}
+#models .model-panel > div:first-child > span {
+top: -2.5rem !important;
+font-size: 8rem !important;
+}
+#models .model-panel .relative.z-10 {
+padding-top: 3.25rem !important;
+}
+#models .model-panel img {
+height: 22rem !important;
+}
+}
+/* -------------------------------------------------------
+Collection pinned gallery viewport fix
+- Removes the huge empty white area at the bottom while pinned.
+- Makes each collection card fill the viewport better.
+- Keeps the progress line closer and cleaner.
+------------------------------------------------------- */
+#models {
+padding-top: clamp(5.5rem, 7vw, 8rem) !important;
+padding-bottom: clamp(4.5rem, 6vw, 7rem) !important;
+}
+#galleryPin {
+margin-top: clamp(3.5rem, 5vw, 5rem) !important;
+padding-bottom: clamp(1rem, 2vw, 2rem) !important;
+}
+#galleryTrack {
+align-items: start !important;
+}
+#models .model-panel {
+min-height: auto !important;
+height: auto !important;
+padding: clamp(1.25rem, 2vw, 2rem) !important;
+}
+#models .model-panel .relative.z-10 {
+padding-top: clamp(4.5rem, 8vw, 7rem) !important;
+}
+#models .model-panel img {
+height: clamp(32rem, 70svh, 44rem) !important;
+max-height: calc(100svh - 14rem) !important;
+object-fit: cover;
+}
+#galleryPin .h-px {
+margin-top: clamp(1.75rem, 2.5vw, 2.5rem) !important;
+}
+@media (max-width: 767px) {
+#models {
+padding-top: 4.5rem !important;
+padding-bottom: 4.5rem !important;
+}
+#galleryPin {
+margin-top: 3rem !important;
+padding-bottom: 1rem !important;
+}
+#models .model-panel img {
+height: 24rem !important;
+max-height: none !important;
+}
+}
+/* -------------------------------------------------------
+Collection v3: more breathing room, richer details, less empty area
+------------------------------------------------------- */
+#models.collection-v3 {
+padding-top: clamp(7rem, 8vw, 9rem) !important;
+padding-bottom: clamp(5rem, 6vw, 7rem) !important;
+background: #ffffff !important;
+}
+#models.collection-v3 .models-header {
+max-width: 96rem;
+padding-left: clamp(1.5rem, 5vw, 5rem) !important;
+padding-right: clamp(1.5rem, 5vw, 5rem) !important;
+}
+#models.collection-v3 #galleryPin {
+margin-top: clamp(3rem, 4.5vw, 4.75rem) !important;
+padding-bottom: clamp(1rem, 2vw, 2rem) !important;
+}
+#models.collection-v3 #galleryTrack {
+align-items: stretch !important;
+gap: clamp(1.75rem, 3vw, 3.25rem) !important;
+padding-left: clamp(1.5rem, 5vw, 5rem) !important;
+padding-right: clamp(1.5rem, 5vw, 5rem) !important;
+}
+#models.collection-v3 .model-panel {
+width: min(88vw, 82rem) !important;
+min-height: min(760px, calc(100svh - 112px)) !important;
+display: grid !important;
+grid-template-columns: minmax(24rem, .78fr) minmax(34rem, 1.22fr) !important;
+align-items: stretch !important;
+gap: clamp(1.5rem, 3vw, 3rem) !important;
+padding: clamp(1.5rem, 2.6vw, 2.75rem) !important;
+border: 1px solid #e5e7eb !important;
+border-radius: 14px !important;
+background: #fff !important;
+box-shadow: 0 28px 80px rgba(17, 24, 39, .07) !important;
+}
+#models.collection-v3 .model-copy {
+position: relative;
+min-width: 0;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+padding: clamp(1.25rem, 2.5vw, 2.5rem) clamp(.5rem, 1.5vw, 1.5rem) clamp(.5rem, 1vw, 1rem) 0 !important;
+}
+#models.collection-v3 .model-number {
+position: absolute;
+left: 0;
+top: -2.1rem;
+font-size: clamp(8rem, 13vw, 15rem) !important;
+font-weight: 800;
+line-height: .75;
+letter-spacing: -.08em;
+color: transparent;
+-webkit-text-stroke: 1px rgba(17, 24, 39, .17);
+pointer-events: none;
+}
+#models.collection-v3 .model-copy-main {
+position: relative;
+z-index: 1;
+padding-top: clamp(6rem, 9vw, 9rem) !important;
+}
+#models.collection-v3 .model-copy h3 {
+font-size: clamp(2.45rem, 5vw, 5.8rem) !important;
+line-height: .92 !important;
+letter-spacing: -.065em !important;
+color: #111827 !important;
+}
+#models.collection-v3 .model-copy .soft-copy {
+margin-top: 1.4rem !important;
+max-width: 35rem !important;
+font-size: clamp(1rem, 1.25vw, 1.15rem) !important;
+line-height: 1.75 !important;
+color: #4b5563 !important;
+}
+#models.collection-v3 .model-detail-list {
+margin-top: clamp(2rem, 3vw, 3rem);
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: .75rem;
+}
+#models.collection-v3 .model-detail-list span {
+display: inline-flex;
+min-height: 2.6rem;
+align-items: center;
+border: 1px solid #e5e7eb;
+border-radius: 10px;
+background: #f8f7f4;
+padding: .72rem .9rem;
+font-family: var(--ciron-mono) !important;
+font-size: .62rem;
+font-weight: 700;
+letter-spacing: .12em;
+text-transform: uppercase;
+color: #4b5563;
+}
+#models.collection-v3 .model-actions {
+position: relative;
+z-index: 1;
+margin-top: clamp(2rem, 3vw, 3rem);
+display: flex;
+flex-wrap: wrap;
+align-items: center;
+gap: .9rem;
+}
+#models.collection-v3 .model-actions .model-btn {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+border: 1px solid #111827;
+background: #111827;
+padding: .95rem 1.15rem;
+font-family: var(--ciron-mono) !important;
+font-size: .68rem;
+font-weight: 700;
+letter-spacing: .14em;
+text-transform: uppercase;
+color: #fff;
+transition: transform .25s cubic-bezier(.22,1,.36,1), background .25s ease;
+}
+#models.collection-v3 .model-actions .model-btn:hover {
+transform: translateY(-2px);
+background: #000;
+}
+#models.collection-v3 .model-actions .model-note {
+font-family: var(--ciron-mono) !important;
+font-size: .65rem;
+font-weight: 700;
+letter-spacing: .12em;
+text-transform: uppercase;
+color: rgba(75, 85, 99, .7);
+}
+#models.collection-v3 .model-media {
+min-width: 0;
+display: flex;
+flex-direction: column;
+}
+#models.collection-v3 .model-specs {
+margin-bottom: 1rem;
+display: grid !important;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: .75rem !important;
+color: #303833 !important;
+}
+#models.collection-v3 .model-specs span {
+border: 1px solid #e5e7eb;
+border-radius: 10px;
+padding: .75rem .8rem;
+background: #fff;
+text-align: center;
+font-family: var(--ciron-mono) !important;
+font-size: .64rem;
+font-weight: 700;
+letter-spacing: .14em;
+text-transform: uppercase;
+}
+#models.collection-v3 .model-media img {
+flex: 1 1 auto;
+height: min(640px, calc(100svh - 240px)) !important;
+max-height: none !important;
+min-height: 26rem;
+width: 100%;
+border-radius: 12px !important;
+object-fit: cover;
+}
+#models.collection-v3 #galleryPin .h-px {
+margin-left: clamp(1.5rem, 5vw, 5rem) !important;
+margin-right: clamp(1.5rem, 5vw, 5rem) !important;
+margin-top: clamp(1.75rem, 2.5vw, 2.75rem) !important;
+}
+@media (max-width: 1023px) {
+#models.collection-v3 .model-panel {
+grid-template-columns: 1fr !important;
+width: min(88vw, 42rem) !important;
+min-height: auto !important;
+}
+#models.collection-v3 .model-media { order: 1; }
+#models.collection-v3 .model-copy { order: 2; padding: 0 !important; }
+#models.collection-v3 .model-copy-main { padding-top: 4rem !important; }
+#models.collection-v3 .model-number { top: -1.6rem; font-size: 8rem !important; }
+#models.collection-v3 .model-media img { height: 26rem !important; min-height: auto; }
+}
+@media (max-width: 767px) {
+#models.collection-v3 { padding-top: 5rem !important; padding-bottom: 4rem !important; }
+#models.collection-v3 #galleryTrack { padding-left: 1rem !important; padding-right: 1rem !important; gap: 1rem !important; }
+#models.collection-v3 .model-panel { width: min(88vw, 28rem) !important; padding: 1rem !important; border-radius: 12px !important; }
+#models.collection-v3 .model-specs,
+#models.collection-v3 .model-detail-list { grid-template-columns: 1fr; }
+#models.collection-v3 .model-media img { height: 22rem !important; }
+}
+/* Fixed hero height: prevents the hero from stretching on very tall screens */
+:root {
+--hero-stage-max-height: 920px;
+}
+#stage {
+height: min(100svh, var(--hero-stage-max-height)) !important;
+max-height: var(--hero-stage-max-height) !important;
+}
+#productWrap {
+width: min(116vmin, 1120px) !important;
+height: min(116vmin, 1120px) !important;
+}
+@media (min-width: 1440px) {
+#productWrap {
+width: 1080px !important;
+height: 1080px !important;
+}
+}
+@media (max-width: 767px) {
+#stage {
+height: 100svh !important;
+max-height: none !important;
+}
+#productWrap {
+width: 116vmin !important;
+height: 116vmin !important;
+}
+}
+</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+
+<body class="hero-stage-ready selection:bg-white selection:text-black">
+  <div id="loadOverlay" class="load-overlay video-loader" aria-hidden="true">
+    <div id="loaderPanel" class="loader-panel">
+      <div id="loaderMark" class="mono-loader-mark">
+        <span class="mark-piece mark-c"></span>
+        <span class="mark-piece mark-bar-a"></span>
+        <span class="mark-piece mark-bar-b"></span>
+        <span class="mark-piece mark-block"></span>
+        <span class="mark-piece mark-foot"></span>
+      </div>
+    </div>
+    <div id="loaderMicro" class="loader-micro">CIRON C1</div>
+    <div id="loaderCapsule" class="loader-capsule"></div>
+  </div>
+
+  <header class="fixed left-0 top-0 z-[100] w-full border-b border-white/10 bg-black/24 backdrop-blur-md">
+    <div class="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8 border-t border-white/5">
+      <a href="#" class="nav-brand blend-text" aria-label="CIRON home">
+        <span class="nav-logo-mark" aria-hidden="true">
+          <span class="mark-piece mark-c"></span>
+          <span class="mark-piece mark-bar-a"></span>
+          <span class="mark-piece mark-bar-b"></span>
+          <span class="mark-piece mark-block"></span>
+          <span class="mark-piece mark-foot"></span>
+        </span>
+        <span class="nav-wordmark">CIRON</span>
+      </a>
+
+      <nav class="hidden items-center gap-8 lg:flex">
+        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Technology</a>
+        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Engineering</a>
+        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Experience</a>
+        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Configure</a>
+      </nav>
+
+      <button class="skeuomorphic-btn inline-flex h-9 items-center gap-3 px-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem]">
+        <span class="hidden sm:inline">Configure</span>
+        <i data-lucide="sliders-horizontal" class="h-3.5 w-3.5"></i>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section id="reveal" class="relative h-[610vh] md:h-[690vh]">
+      <div id="stage" class="sticky top-0 h-screen overflow-hidden bg-black">
+        <div id="lightLayer" class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_40%,#1a1a1a_0%,#0a0a0a_44%,#000000_100%)]"></div>
+        <div id="darkLayer" class="absolute inset-0 z-[1] bg-[#030303] opacity-0"></div>
+        
+        <div class="absolute left-1/2 top-[55%] z-[2] h-[74vmin] w-[74vmin] -translate-x-1/2 -translate-y-1/2 rounded-none machined-border opacity-10"></div>
+        
+        <div class="noise pointer-events-none absolute inset-0 z-[60] opacity-[0.4]"></div>
+        <div id="grid" class="technical-grid pointer-events-none absolute inset-0 z-[4] opacity-30"></div>
+
+        <aside class="pointer-events-none absolute left-4 top-28 z-[70] hidden h-[64vh] flex-col justify-between sm:flex">
+          <div class="absolute left-0 top-0 h-full w-[3px] bg-black "></div>
+          <div id="railProgress" class="absolute left-0 top-0 w-[3px] bg-white " style="height: 0%"></div>
+
+          <div data-chapter="0" class="relative pl-6 transition-all duration-300">
+            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
+            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">01</p>
+            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Philosophy</p>
+          </div>
+          <div data-chapter="1" class="relative pl-6 transition-all duration-300 opacity-40">
+            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
+            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">02</p>
+            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Craft</p>
+          </div>
+          <div data-chapter="2" class="relative pl-6 transition-all duration-300 opacity-40">
+            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
+            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">03</p>
+            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Technology</p>
+          </div>
+          <div data-chapter="3" class="relative pl-6 transition-all duration-300 opacity-40">
+            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
+            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">04</p>
+            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Evolution</p>
+          </div>
+        </aside>
+
+        <div id="productWrap" class="absolute left-1/2 top-1/2 z-20 h-[116vmin] w-[116vmin] will-change-transform drop-shadow-[0_40px_50px_rgba(0,0,0,0.9)]" style="transform-style: preserve-3d;">
+          <svg viewBox="0 0 1200 900" class="h-full w-full overflow-visible" aria-hidden="true">
+            <defs>
+              <radialGradient id="rimCarbon" cx="40%" cy="35%" r="67%">
+                <stop offset="0%" stop-color="#999"></stop>
+                <stop offset="15%" stop-color="#333"></stop>
+                <stop offset="20%" stop-color="#555"></stop>
+                <stop offset="40%" stop-color="#111"></stop>
+                <stop offset="70%" stop-color="#020202"></stop>
+                <stop offset="95%" stop-color="#2a2a2a"></stop>
+                <stop offset="100%" stop-color="#000"></stop>
+              </radialGradient>
+              <linearGradient id="edgeLight" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#fff" stop-opacity="0.8"></stop>
+                <stop offset="22%" stop-color="#222" stop-opacity="0.95"></stop>
+                <stop offset="68%" stop-color="#000"></stop>
+                <stop offset="100%" stop-color="#fff" stop-opacity="0.6"></stop>
+              </linearGradient>
+              <filter id="heavyShadow" x="-30%" y="-30%" width="160%" height="160%">
+                <feDropShadow dx="10" dy="45" stdDeviation="25" flood-color="#000" flood-opacity="0.85"></feDropShadow>
+              </filter>
+              <filter id="bevel" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"></feGaussianBlur>
+                <feOffset dx="4" dy="4" result="offsetBlur"></feOffset>
+                <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"></feComposite>
+              </filter>
+            </defs>
+
+            <g id="rearWheel" opacity="0" transform="translate(255 18) scale(.93)" filter="url(#heavyShadow)">
+              <circle cx="420" cy="455" r="284" fill="none" stroke="url(#rimCarbon)" stroke-width="38"></circle>
+              <circle cx="420" cy="455" r="265" fill="none" stroke="#000" stroke-width="12"></circle>
+              <circle cx="420" cy="455" r="303" fill="none" stroke="url(#edgeLight)" stroke-width="3" opacity=".9"></circle>
+              <g id="spokesRear" stroke="#333" stroke-width="2.5" opacity="1"></g>
+              <circle cx="420" cy="455" r="34" fill="#000" stroke="#333" stroke-width="2"></circle>
+              <circle cx="420" cy="455" r="15" fill="#444" stroke="#111" stroke-width="2"></circle>
+            </g>
+
+            <g id="bikeFrame" opacity="0" stroke="#111" stroke-linecap="square" stroke-linejoin="miter" filter="url(#heavyShadow)">
+              <path d="M417 455 L595 285 L760 455 L417 455 L545 455 L595 285" fill="none" stroke-width="18"></path>
+              <path d="M595 285 L645 216" stroke-width="14"></path>
+              <path d="M645 216 L714 216" stroke-width="12"></path>
+              <path d="M760 455 L706 282 L595 285" fill="none" stroke-width="12"></path>
+              <rect x="530" y="440" width="30" height="30" fill="#000" stroke="#333" stroke-width="2"></rect>
+            </g>
+
+            <g id="frontWheel" filter="url(#heavyShadow)">
+              <circle cx="420" cy="455" r="308" fill="none" stroke="url(#rimCarbon)" stroke-width="46" filter="url(#bevel)"></circle>
+              <circle cx="420" cy="455" r="285" fill="none" stroke="#000" stroke-width="14"></circle>
+              <circle cx="420" cy="455" r="331" fill="none" stroke="url(#edgeLight)" stroke-width="4" opacity="1"></circle>
+              <g id="spokesFront" stroke="#444" stroke-width="3" opacity="1"></g>
+
+              <g id="ribTech" opacity="0">
+                <path d="M150 455 C250 420 333 418 420 455 C505 491 590 490 690 455" fill="none" stroke="#111" stroke-width="8" opacity="1" filter="url(#bevel)"></path>
+                <path d="M178 398 C283 377 338 390 420 455 C498 520 560 532 660 512" fill="none" stroke="#111" stroke-width="6" opacity=".9"></path>
+                <path d="M178 512 C283 532 338 520 420 455 C498 390 560 377 660 398" fill="none" stroke="#111" stroke-width="6" opacity=".9"></path>
+              </g>
+
+              <circle cx="420" cy="455" r="48" fill="#000" stroke="#222" stroke-width="3"></circle>
+              <circle cx="420" cy="455" r="31" fill="#1a1a1a"></circle>
+              <circle cx="420" cy="455" r="14" fill="#666" stroke="#fff" stroke-width="1"></circle>
+              <path d="M393 455 h54" stroke="#888" stroke-width="6" stroke-linecap="square"></path>
+            </g>
+          </svg>
+        </div>
+
+        <div class="pointer-events-none absolute inset-0 z-40">
+          <section id="state0" data-state="" data-center="" class="absolute left-1/2 top-[24%] w-[min(42rem,86vw)] -translate-x-1/2 text-center text-white drop-shadow-[0_8px_26px_rgba(0,0,0,.55)]">
+            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.34rem] text-white/80">CIRON / C1</p></div>
+            <div class="mt-5 overflow-hidden"><h1 data-line="" class="state-line text-4xl font-extrabold leading-[0.92] tracking-[-0.02em] sm:text-6xl lg:text-7xl ">Engineered for the pursuit of speed.</h1></div>
+            <div class="mx-auto mt-6 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/70">A performance bicycle developed as one complete system, where carbon architecture, aerodynamics, and rider control work together.</p></div>
+            <div class="mt-8 flex justify-center overflow-hidden"><a data-line="" href="#system" class="pointer-events-auto state-line skeuomorphic-btn px-8 py-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem] text-[#111]">Explore Collection</a></div>
+          </section>
+
+          <section id="state1" data-state="" class="absolute right-[7%] top-[22%] w-[min(36rem,80vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:right-auto max-md:top-[15%]">
+            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Philosophy</p></div>
+            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">Performance should feel effortless</h2></div>
+            <div class="mt-5 max-w-sm overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">From geometry to carbon layup, every decision is made to deliver speed with confidence and control.</p></div>
+          </section>
+
+          <section id="state2" data-state="" data-center="" class="absolute left-1/2 top-[18%] w-[min(40rem,84vw)] -translate-x-1/2 text-center text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:top-[14%]">
+            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Craft</p></div>
+            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">Carbon architecture</h2></div>
+            <div class="mx-auto mt-5 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">Each carbon layer is positioned to balance stiffness, compliance, and efficiency under real riding conditions.</p></div>
+          </section>
+
+          <section id="state3" data-state="" class="absolute left-[7%] top-[31%] w-[min(38rem,82vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:top-[57%]">
+            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Innovation</p></div>
+            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">One integrated performance system</h2></div>
+            <div class="mt-6 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">Frame, wheels, cockpit, geometry, and rider position are developed together so every part supports the same riding experience.</p></div>
+          </section>
+
+          <section id="state4" data-state="" class="absolute left-[7%] top-[24%] w-[min(40rem,82vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:top-[56%]">
+            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Evolution</p></div>
+            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">CIRON C1</h2></div>
+            <div class="mt-6 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">A complete performance platform for riders who want speed, precision, and control without distraction.</p></div>
+            <div class="mt-8 overflow-hidden"><a data-line="" href="#models" class="pointer-events-auto state-line inline-flex skeuomorphic-btn px-8 py-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem] text-[#111]">Configure Yours</a></div>
+          </section>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Brand / performance section from the full landing page, rewritten for CIRON. -->
+<section id="system" class="relative z-30 bg-white py-24 sm:py-28 lg:py-36">
+      <div class="mx-auto grid max-w-[96rem] grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:px-8">
+        <div class="reveal-up">
+          <p class="section-kicker">// Integrated system</p>
+          <h2 class="mt-4 text-4xl font-extrabold leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+            Performance,
+            <span class="text-[#b9bbb7]">Engineered As One.</span>
+          </h2>
+          <p class="soft-copy mt-8 max-w-2xl">
+            CIRON develops rim profile, hub geometry, spoke tension, and tire volume as one complete system. The result is a wheelset that feels fast, quiet, and composed in real conditions.
+          </p>
+
+          <div class="mt-12 grid grid-cols-2 gap-5 border-t border-[#dcded9] pt-8 sm:grid-cols-4">
+            <div>
+              <p class="text-3xl font-extrabold tracking-tight">6.8 kg</p>
+              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Carbon frame</p>
+            </div>
+            <div>
+              <p class="text-3xl font-extrabold tracking-tight">50 mm</p>
+              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Wheel depth</p>
+            </div>
+            <div>
+              <p class="text-3xl font-extrabold tracking-tight">30 mm</p>
+              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Tire clearance</p>
+            </div>
+            <div>
+              <p class="text-3xl font-extrabold tracking-tight">100%</p>
+              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Integrated design</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-up relative min-h-[34rem] overflow-hidden rounded-2xl border border-[#e4e5e1] bg-white p-3">
+          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4f84922c-dc90-4e11-8b18-b895a1e4d910_3840w.png" alt="CIRON performance bicycle" id="systemImage" class="h-full min-h-[32rem] w-full rounded-xl object-cover">
+          <div class="absolute inset-3 rounded-xl bg-gradient-to-t from-black/65 via-black/5 to-transparent"></div>
+          <div class="absolute bottom-8 left-8 max-w-sm text-white">
+            <p class="text-xs font-bold uppercase tracking-[.22em] text-white/60">CIRON control</p>
+            <h3 class="mt-3 text-3xl font-extrabold leading-none tracking-[-.04em]">Precision at every speed.</h3>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pinned range section from the second landing page. -->
+    <section id="range" class="scroll-dark-section relative bg-white py-24 sm:py-28 lg:min-h-screen lg:py-0">
+      <div class="dark-transition-label">CIRON RANGE</div>
+      <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
+        <div class="mb-12 max-w-5xl lg:pt-24 reveal-up">
+          <p class="section-kicker">// Performance range</p>
+          <h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+            Road, aero, all-road, and gravel performance.
+            <span class="text-[#b9bbb7]">One engineering language.</span>
+          </h2>
+        </div>
+
+        <div id="specialPin" class="grid min-h-[44rem] grid-cols-1 gap-10 pb-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
+          <div class="relative h-[26rem] overflow-hidden rounded-2xl bg-[#f7f7f7] sm:h-[34rem] lg:h-[42rem]">
+            <img class="special-img absolute inset-0 h-full w-full object-cover opacity-100" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0cac3195-8317-4b6e-81f4-8f046b0eeff4_3840w.png" alt="C1 RS">
+            <img class="special-img absolute inset-0 h-full w-full object-cover opacity-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/197dcfbd-d45f-4eb4-ba01-94cba3ee3256_3840w.png" alt="Road Bike">
+            <img class="special-img absolute inset-0 h-full w-full object-cover opacity-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3f45cfce-7d09-4592-a38d-a368ee8ec268_3840w.png" alt="City All-roadr">
+            <div class="absolute inset-0 ring-1 ring-inset ring-black/10"></div>
+          </div>
+
+          <div>
+            <div class="mb-10 flex items-end justify-between border-b border-[#d8dad5] pb-5">
+              <h3 class="text-3xl font-extrabold tracking-tight sm:text-4xl">CIRON lineup</h3>
+              <span id="specialNumber" class="text-3xl font-extrabold text-[#303833]">1</span>
+            </div>
+
+            <div class="space-y-7">
+              <div class="special-row opacity-100">
+                <div class="mb-3 flex items-center justify-between">
+                  <h4 class="text-lg font-extrabold">C1 RS</h4>
+                  <span class="text-sm text-[#9b9b9b]">01</span>
+                </div>
+                <p class="soft-copy">Pure race geometry, aero optimization, and a lightweight carbon structure for maximum response.</p>
+                <div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Designed for riders who want speed, precision, and confidence under pressure.</div>
+              </div>
+
+              <div class="special-row opacity-20">
+                <div class="mb-3 flex items-center justify-between">
+                  <h4 class="text-lg font-extrabold">C1 X</h4>
+                  <span class="text-sm text-[#9b9b9b]">02</span>
+                </div>
+                <p class="soft-copy">All-road clearance, tuned compliance, and confident handling for mixed surfaces.</p>
+                <div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Built to carry the CIRON ride feel beyond perfect pavement.</div>
+              </div>
+
+              <div class="special-row opacity-20">
+                <div class="mb-3 flex items-center justify-between">
+                  <h4 class="text-lg font-extrabold">C1 GR</h4>
+                  <span class="text-sm text-[#9b9b9b]">03</span>
+                </div>
+                <p class="soft-copy">A gravel-focused platform with endurance geometry, wider clearance, and durable carbon construction.</p>
+                <div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Created for riders who want speed, stability, and control across rougher terrain.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <section id="signatures" class="relative bg-white py-24 sm:py-28 lg:py-36">
+      <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+          <div class="reveal-up lg:sticky lg:top-24 lg:self-start">
+            <p class="section-kicker">// Performance collection</p>
+            <h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+              Three CIRON expressions.
+              <span class="text-[#b9bbb7]">One performance platform.</span>
+            </h2>
+            <p class="soft-copy mt-7 max-w-xl">
+              The C1 family is tuned for different riders and terrain while sharing the same carbon architecture, geometry logic, and precision-focused ride feel.
+            </p>
+          </div>
+
+          <div class="space-y-5 lg:space-y-8">
+            <article class="signature-card reveal-up">
+              <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
+                <div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
+                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/226eded1-e91c-4e5b-89f1-622052f4a769_3840w.png" alt="CIRON C1 RS" class="h-full w-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
+                </div>
+                <div class="p-6 sm:p-8 lg:p-9">
+                  <p class="process-index">01 / C1 RS</p>
+                  <h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">Race Focus</h3>
+                  <p class="soft-copy mt-4 max-w-lg">A race-focused setup shaped for speed, acceleration, and direct power transfer without sacrificing control.</p>
+                  <div class="mt-6 flex flex-wrap gap-3">
+                    <span class="spec-chip">Race geometry</span>
+                    <span class="spec-chip">Light carbon</span>
+                    <span class="spec-chip">fast response</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="signature-card reveal-up lg:top-32">
+              <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
+                <div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
+                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/45099db5-6a3b-4356-b4fe-c11c8376a080_1600w.png" alt="CIRON C1" class="h-full w-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
+                </div>
+                <div class="p-6 sm:p-8 lg:p-9">
+                  <p class="process-index">02 / C1</p>
+                  <h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">All-Round Performance</h3>
+                  <p class="soft-copy mt-4 max-w-lg">The core CIRON model: fast enough for race days, stable enough for daily rides, and refined enough for long distance.</p>
+                  <div class="mt-6 flex flex-wrap gap-3">
+                    <span class="spec-chip">All-round fit</span>
+                    <span class="spec-chip">balanced geometry</span>
+                    <span class="spec-chip">composed handling</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <article class="signature-card reveal-up lg:top-40">
+              <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
+                <div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
+                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/020b70c0-93a3-449c-a48f-0b6b909c0c5c_1600w.png" alt="CIRON C1 X" class="h-full w-full object-cover">
+                  <div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
+                </div>
+                <div class="p-6 sm:p-8 lg:p-9">
+                  <p class="process-index">03 / C1 X</p>
+                  <h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">All-Road Control</h3>
+                  <p class="soft-copy mt-4 max-w-lg">A deeper-profile build for riders who want more aero support, stronger visual presence, and the same calm CIRON ride character.</p>
+                  <div class="mt-6 flex flex-wrap gap-3">
+                    <span class="spec-chip">wider clearance</span>
+                    <span class="spec-chip">mixed terrain</span>
+                    <span class="spec-chip">stable control</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dark engineering system from CIRON, with the richer image/labels style from the second page. -->
+    <section id="engineering" class="scroll-dark-section relative overflow-hidden bg-white py-24 pb-32 text-[#303833] sm:py-28 sm:pb-36 lg:min-h-screen lg:py-0">
+      <div class="dark-transition-label">DARK ENGINEERING</div>
+      <div class="noise pointer-events-none absolute inset-0 opacity-[0.04]"></div>
+      <div id="engineeringPin" class="relative flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-28 text-center sm:px-6 sm:pb-32 lg:px-8 lg:pb-40">
+        <div id="engineeringText" class="engineering-text-card relative z-10 mx-auto max-w-4xl reveal-up rounded-2xl border border-transparent px-6 py-8 sm:px-10 sm:py-10">
+          <p class="section-kicker">// CIRON engineering</p>
+          <h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] text-[#111] sm:text-5xl lg:text-7xl">Inside Every CIRON.</h2>
+          <p class="mx-auto mt-6 max-w-3xl text-base leading-8 text-[#747a76] sm:text-lg">
+            Every carbon layer, tube profile, and junction is engineered to transfer power while maintaining predictable handling.
+          </p>
+          <a href="#contact" class="engineering-cta mt-8 inline-flex rounded-full border border-[#303833]/18 bg-[#303833] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-black hover:text-white">Request a private fitting</a>
+        </div>
+
+        <div id="ctWrap" class="relative z-0 mt-12 w-full max-w-5xl">
+          <div class="label-chip absolute left-[3%] top-[18%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Wind tested</div>
+          <div class="label-chip absolute right-[4%] top-[22%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Carbon architecture</div>
+          <div class="label-chip absolute bottom-[28%] left-[10%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Load mapped</div>
+          <div class="label-chip absolute bottom-[24%] right-[10%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Integrated cockpit</div>
+          <img id="ctImage" class="mx-auto w-full max-w-3xl translate-y-20 scale-95 rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.12)]" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5372f55d-d6f7-47f9-8852-3311ee0bf24c_3840w.png" alt="Bike engineering">
+        </div>
+      </div>
+    </section>
+
+
+    <section class="signal-band">
+      <div id="signalTrack" class="signal-track">
+        <span class="signal-item">CIRON C1</span><span class="signal-dot">•</span>
+        <span class="signal-item">calm speed</span><span class="signal-dot">•</span>
+        <span class="signal-item">tuned carbon system</span><span class="signal-dot">•</span>
+        <span class="signal-item">precision geometry</span><span class="signal-dot">•</span>
+        <span class="signal-item">private fitting</span><span class="signal-dot">•</span>
+        <span class="signal-item">CIRON C1</span><span class="signal-dot">•</span>
+        <span class="signal-item">calm speed</span><span class="signal-dot">•</span>
+        <span class="signal-item">tuned carbon system</span><span class="signal-dot">•</span>
+        <span class="signal-item">precision geometry</span><span class="signal-dot">•</span>
+        <span class="signal-item">private fitting</span>
+      </div>
+    </section>
+
+    <section id="models" class="collection-v3 bg-white">
+      <div class="models-header mx-auto reveal-up">
+        <p class="section-kicker">// The collection</p>
+        <div class="mt-4 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+          <h2 class="max-w-6xl text-4xl font-extrabold leading-[1.03] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+            Four models, one performance language.
+            <span class="text-[#b9bbb7]">Tuned for different ways to ride.</span>
+          </h2>
+          <p class="soft-copy max-w-xl lg:justify-self-end">
+            Compare the CIRON range through fit, surface, weight, and ride intention. Each model shares the same carbon architecture but is tuned for a different rhythm on the road.
+          </p>
+        </div>
+      </div>
+
+      <div id="galleryPin" class="relative overflow-hidden">
+        <div id="galleryTrack" class="flex w-max">
+          <article class="model-panel">
+            <div class="model-copy">
+              <span class="model-number">1</span>
+              <div class="model-copy-main">
+                <p class="section-kicker">// Race platform</p>
+                <h3>C1 RS</h3>
+                <p class="soft-copy">A pure road race platform with aero tube profiles, integrated routing, and a responsive carbon chassis for explosive efforts and fast descents.</p>
+                <div class="model-detail-list"><span>Aero tube profiles</span><span>Race geometry</span><span>Integrated routing</span><span>Fast response</span></div>
+              </div>
+              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Built for race days</span></div>
+            </div>
+            <div class="model-media">
+              <div class="model-specs"><span>Race</span><span>6.8 kg</span><span>Carbon fiber</span></div>
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5e0a75e7-c063-4242-a8d9-1d10b4afe511_3840w.png" alt="CIRON C1 RS">
+            </div>
+          </article>
+
+          <article class="model-panel">
+            <div class="model-copy">
+              <span class="model-number">2</span>
+              <div class="model-copy-main">
+                <p class="section-kicker">// Daily speed</p>
+                <h3>C1</h3>
+                <p class="soft-copy">The balanced performance model for training, fast group rides, and long days at speed with a composed fit and clean integrated cockpit.</p>
+                <div class="model-detail-list"><span>Balanced handling</span><span>Endurance comfort</span><span>Clean cockpit</span><span>Fast group rides</span></div>
+              </div>
+              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Best all-rounder</span></div>
+            </div>
+            <div class="model-media">
+              <div class="model-specs"><span>Road</span><span>7.1 kg</span><span>Carbon</span></div>
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1680716-7180-4103-a953-b3fd97443d34_3840w.png" alt="CIRON C1">
+            </div>
+          </article>
+
+          <article class="model-panel">
+            <div class="model-copy">
+              <span class="model-number">3</span>
+              <div class="model-copy-main">
+                <p class="section-kicker">// Mixed surface</p>
+                <h3>C1 X</h3>
+                <p class="soft-copy">An all-road model with more clearance, stable geometry, and confident handling for riders who move between pavement, light gravel, and rougher routes.</p>
+                <div class="model-detail-list"><span>Wider clearance</span><span>Stable geometry</span><span>Mixed terrain</span><span>More control</span></div>
+              </div>
+              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Road plus freedom</span></div>
+            </div>
+            <div class="model-media">
+              <div class="model-specs"><span>All-road</span><span>7.6 kg</span><span>Carbon</span></div>
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3df9ba6b-ee09-48e4-be9f-fe0cfbe8f7d2_3840w.png" alt="CIRON C1 X">
+            </div>
+          </article>
+
+          <article class="model-panel">
+            <div class="model-copy">
+              <span class="model-number">4</span>
+              <div class="model-copy-main">
+                <p class="section-kicker">// Gravel endurance</p>
+                <h3>C1 GR</h3>
+                <p class="soft-copy">A gravel performance model with endurance geometry, wider tire clearance, and durable carbon construction for long distance control beyond perfect pavement.</p>
+                <div class="model-detail-list"><span>Endurance fit</span><span>Wider tire support</span><span>Durable carbon</span><span>Long distance control</span></div>
+              </div>
+              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Built for gravel</span></div>
+            </div>
+            <div class="model-media">
+              <div class="model-specs"><span>Gravel</span><span>8.1 kg</span><span>Carbon</span></div>
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ff43859-5ffa-4328-9d09-3f0e943662f9_3840w.png" alt="CIRON C1 GR">
+            </div>
+          </article>
+        </div>
+
+        <div class="mx-8 mt-14 h-px bg-[#d8dad5] sm:mx-10 lg:mx-16 xl:mx-20">
+          <div id="galleryProgress" class="h-px w-0 bg-[#303833]"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="process" class="scroll-dark-section relative overflow-hidden bg-white py-24 text-[#303833] sm:py-28 lg:py-36">
+      <div class="dark-transition-label">CIRON Studio</div>
+
+      <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 gap-12 border-t border-[#dcded9] pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+          <div class="reveal-up lg:sticky lg:top-28 lg:self-start">
+            <p class="section-kicker">// Private configuration</p>
+            <h2 class="mt-4 text-4xl font-extrabold leading-[0.94] tracking-[-.055em] sm:text-5xl lg:text-7xl">
+              Refine the ride,
+              <span class="text-[#b9bbb7]">down to the detail.</span>
+            </h2>
+            <p class="soft-copy mt-7 max-w-xl">
+              Every CIRON build is shaped around model, fit, terrain, and ride feel. The process stays simple, but every decision has a clear performance reason.
+            </p>
+          </div>
+
+          <div class="reveal-up">
+            <div class="grid grid-cols-1 gap-0 border-t border-[#dcded9]">
+              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">01</p>
+                <div>
+                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Select model</h3>
+                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">C1 RS / C1 / C1 X / C1 GR</span>
+                  </div>
+                  <p class="soft-copy mt-4 max-w-3xl">
+                    Start with the platform that matches the ride: pure race, everyday performance, all-road versatility, or gravel endurance.
+                  </p>
+                </div>
+              </article>
+
+              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">02</p>
+                <div>
+                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Dial in fit</h3>
+                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Geometry / position / cockpit</span>
+                  </div>
+                  <p class="soft-copy mt-4 max-w-3xl">
+                    Frame size, cockpit length, saddle position, and reach are treated as part of the performance system, not an afterthought.
+                  </p>
+                </div>
+              </article>
+
+              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">03</p>
+                <div>
+                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Tune the system</h3>
+                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Wheels / tires / finish</span>
+                  </div>
+                  <p class="soft-copy mt-4 max-w-3xl">
+                    Wheel depth, tire profile, carbon finish, and component package are selected to support the same ride character.
+                  </p>
+                </div>
+              </article>
+
+              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">04</p>
+                <div>
+                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Deliver the build</h3>
+                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Final spec / service / support</span>
+                  </div>
+                  <p class="soft-copy mt-4 max-w-3xl">
+                    The final configuration includes fitting notes, service guidance, and a clear explanation behind every choice.
+                  </p>
+                </div>
+              </article>
+            </div>
+
+            <div class="mt-10 flex flex-col justify-between gap-6 rounded-2xl border border-[#e2e4df] bg-[#f7f7f3] p-6 sm:flex-row sm:items-center">
+              <div>
+                <p class="text-[0.68rem] font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">Private fitting</p>
+                <p class="mt-2 max-w-2xl text-2xl font-extrabold tracking-[-.04em]">Precision, finished with restraint.</p>
+              </div>
+              <a href="#contact" class="pill-btn pill-accent shrink-0">Request fitting</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="relative overflow-hidden bg-white px-4 py-32 text-center sm:px-6 lg:px-8 lg:py-40">
+      <div id="contactBgText" class="pointer-events-none absolute left-1/2 top-8 w-full -translate-x-1/2 whitespace-nowrap text-center text-[clamp(4.5rem,13vw,13.5rem)] font-extrabold uppercase leading-[0.78] tracking-[-.075em] text-[#eceee9]">
+        Experience CIRON
+      </div>
+      <div class="relative z-10 mx-auto max-w-3xl pt-24 reveal-up sm:pt-28 lg:pt-32">
+        <p class="section-kicker">// Private fitting program</p>
+        <h2 class="mt-5 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-6xl lg:text-7xl">Experience CIRON.</h2>
+        <p class="soft-copy mx-auto mt-6 max-w-2xl">Choose your model, frame size, carbon finish, wheel system, and component package. CIRON recommends a complete configuration based on your goals and riding style.</p>
+        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+          <a href="#" class="pill-btn pill-accent">Configure your C1</a>
+          <a href="#" class="pill-btn">Request spec sheet</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-black px-4 pb-8 pt-20 text-white sm:px-6 lg:px-8">
+      <div class="mx-auto max-w-[96rem]">
+        <div class="border-b border-white/10 pb-20 text-center">
+          <p class="text-7xl font-extrabold uppercase tracking-[-.06em] text-white/18 sm:text-8xl lg:text-[11rem]">CIRON</p>
+        </div>
+
+        <div class="grid gap-10 border-b border-white/10 py-12 sm:grid-cols-2 lg:grid-cols-5">
+          <div>
+            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Collection</h3>
+            <ul class="mt-5 space-y-3 text-sm text-white/45">
+              <li>C1 RS</li>
+              <li>C1</li>
+              <li>C1 X</li>
+              <li>C1 GR</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Technology</h3>
+            <ul class="mt-5 space-y-3 text-sm text-white/45">
+              <li>Carbon architecture</li>
+              <li>Aero integration</li>
+              <li>Precision geometry</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Studio</h3>
+            <ul class="mt-5 space-y-3 text-sm text-white/45">
+              <li>Private fitting</li>
+              <li>Road validation</li>
+              <li>Service program</li>
+              <li>CIRON Studio</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Resources</h3>
+            <ul class="mt-5 space-y-3 text-sm text-white/45">
+              <li>Spec sheets</li>
+              <li>Service policy</li>
+              <li>Warranty</li>
+              <li>Dealer network</li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Contact</h3>
+            <p class="mt-5 text-sm leading-6 text-white/45">For private fittings, dealer appointments, or CIRON configuration questions.</p>
+            <a href="#" class="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.16rem] text-white">Request fitting</a>
+          </div>
+        </div>
+
+        <div class="flex flex-col items-center justify-between gap-6 pt-8 sm:flex-row">
+          <p class="text-xs text-white/35">© 2026 CIRON. Engineered for precision speed.</p>
+          <div class="flex items-center gap-5 text-white/45">
+            <i data-lucide="camera" class="h-4 w-4"></i>
+            <i data-lucide="play" class="h-4 w-4"></i>
+            <i data-lucide="mail" class="h-4 w-4"></i>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    lucide.createIcons({ attrs: { "stroke-width": 2 } });
+    gsap.registerPlugin(ScrollTrigger);
+
+    const clamp = (value, min = 0, max = 1) => Math.min(max, Math.max(min, value));
+    const lerp = (a, b, t) => a + (b - a) * t;
+    const ease = (t) => 1 - Math.pow(1 - clamp(t), 3);
+    const mapRange = (p, a, b) => clamp((p - a) / (b - a));
+
+    function triangular(p, a, b, c, d) {
+      if (p < a || p > d) return 0;
+      if (p >= b && p <= c) return 1;
+      if (p < b) return ease((p - a) / (b - a));
+      return 1 - ease((p - c) / (d - c));
+    }
+
+    function interpolateKeys(keys, p) {
+      let left = keys[0];
+      let right = keys[keys.length - 1];
+
+      for (let i = 0; i < keys.length - 1; i++) {
+        if (p >= keys[i].p && p <= keys[i + 1].p) {
+          left = keys[i];
+          right = keys[i + 1];
+          break;
+        }
+      }
+
+      const t = ease((p - left.p) / (right.p - left.p));
+      const out = {};
+      Object.keys(left).forEach((key) => {
+        if (key !== "p") out[key] = lerp(left[key], right[key], t);
+      });
+      return out;
+    }
+
+    function makeSpokes(target, cx, cy, r, count, offset) {
+      const group = document.getElementById(target);
+      if (!group) return;
+
+      for (let i = 0; i < count; i++) {
+        const angle = ((Math.PI * 2) / count) * i + offset;
+        const hubAngle = angle + (i % 2 === 0 ? 0.18 : -0.18);
+        const x1 = cx + Math.cos(hubAngle) * 34;
+        const y1 = cy + Math.sin(hubAngle) * 34;
+        const x2 = cx + Math.cos(angle) * r;
+        const y2 = cy + Math.sin(angle) * r;
+        const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        line.setAttribute("x1", x1);
+        line.setAttribute("y1", y1);
+        line.setAttribute("x2", x2);
+        line.setAttribute("y2", y2);
+        line.setAttribute("stroke-linecap", "square"); // sharp joints
+        
+        // Skeuomorphic spoke shadows
+        line.setAttribute("filter", "url(#bevel)");
+        group.appendChild(line);
+      }
+    }
+
+    makeSpokes("spokesFront", 420, 455, 284, 24, -0.05); // fewer spokes, more industrial
+    makeSpokes("spokesRear", 420, 455, 260, 24, 0.08);
+
+    const product = document.getElementById("productWrap");
+    const heroStage = document.getElementById("stage");
+
+    function heroUnitY(value) {
+      const h = heroStage?.getBoundingClientRect().height || window.innerHeight;
+      return `${(h * value) / 100}px`;
+    }
+
+    function heroUnitMin(value) {
+      const rect = heroStage?.getBoundingClientRect();
+      const base = rect ? Math.min(rect.width, rect.height) : Math.min(window.innerWidth, window.innerHeight);
+      return `${(base * value) / 100}px`;
+    }
+
+    const darkLayer = document.getElementById("darkLayer");
+    const lightLayer = document.getElementById("lightLayer");
+    const heroNoise = document.querySelector("#stage .noise");
+    const grid = document.getElementById("grid");
+    const rearWheel = document.getElementById("rearWheel");
+    const bikeFrame = document.getElementById("bikeFrame");
+    const ribTech = document.getElementById("ribTech");
+    const rail = document.getElementById("railProgress");
+    const chapters = Array.from(document.querySelectorAll("[data-chapter]"));
+
+    const states = [
+      { el: document.getElementById("state0"), center: true, opacity: (p) => clamp(1 - mapRange(p, 0.10, 0.23)), mid: 0.11 },
+      { el: document.getElementById("state1"), center: false, opacity: (p) => triangular(p, 0.17, 0.25, 0.33, 0.43), mid: 0.30 },
+      { el: document.getElementById("state2"), center: true, opacity: (p) => triangular(p, 0.36, 0.43, 0.51, 0.59), mid: 0.48 },
+      { el: document.getElementById("state3"), center: false, opacity: (p) => triangular(p, 0.55, 0.62, 0.72, 0.80), mid: 0.67 },
+      { el: document.getElementById("state4"), center: false, opacity: (p) => mapRange(p, 0.75, 0.88), mid: 0.88 }
+    ];
+
+    const desktopKeys = [
+      { p: 0.00, x: 0, y: 23, s: 0.82, z: 0, rx: 0, ry: 0, rear: 0, frame: 0, rib: 0 },
+      { p: 0.18, x: 0, y: 20, s: 1.18, z: 5, rx: 0, ry: 0, rear: 0, frame: 0, rib: 0 },
+      { p: 0.38, x: -35, y: 0, s: 1.55, z: -13, rx: 0, ry: 0, rear: 0, frame: 0, rib: 0 },
+      { p: 0.55, x: -2, y: 8, s: 1.18, z: 86, rx: 0, ry: 68, rear: 0.22, frame: 0, rib: 0 },
+      { p: 0.75, x: 33, y: -2, s: 1.23, z: -8, rx: 70, ry: 0, rear: 0.58, frame: 0, rib: 1 },
+      { p: 1.00, x: 20, y: 0, s: 0.94, z: -8, rx: 0, ry: 0, rear: 1, frame: 1, rib: 0 }
+    ];
+
+    const mobileKeys = [
+      { p: 0.00, x: 0, y: 25, s: 0.62, z: 0, rx: 0, ry: 0, rear: 0, frame: 0, rib: 0 },
+      { p: 0.18, x: 0, y: 24, s: 0.78, z: 5, rx: 0, ry: 0, rear: 0, frame: 0, rib: 0 },
+      { p: 0.38, x: -27, y: 4, s: 0.96, z: -13, rx: 0, ry: 0, rear: 0, frame: 0, rib: 0 },
+      { p: 0.55, x: 1, y: 3, s: 0.82, z: 86, rx: 0, ry: 68, rear: 0.18, frame: 0, rib: 0 },
+      { p: 0.75, x: 20, y: -16, s: 0.78, z: -8, rx: 70, ry: 0, rear: 0.56, frame: 0, rib: 1 },
+      { p: 1.00, x: 8, y: -18, s: 0.70, z: -8, rx: 0, ry: 0, rear: 1, frame: 1, rib: 0 }
+    ];
+
+    function updateChapters(p) {
+      let active = 0;
+      if (p >= 0.36 && p < 0.55) active = 1;
+      if (p >= 0.55 && p < 0.75) active = 2;
+      if (p >= 0.75) active = 3;
+
+      chapters.forEach((chapter, index) => {
+        chapter.style.opacity = index === active ? 1 : 0.4;
+        chapter.style.transform = index === active ? "translate3d(12px,0,0)" : "translate3d(0,0,0)";
+      });
+    }
+
+    function updateStates(p) {
+      states.forEach((state) => {
+        const opacity = state.opacity(p);
+        const yOffset = lerp(20, 0, ease(opacity));
+        const scale = lerp(0.95, 1, ease(opacity));
+        
+        state.el.style.opacity = opacity;
+        state.el.style.pointerEvents = opacity > 0.05 ? "auto" : "none";
+        state.el.style.transform = state.center 
+            ? `translate(-50%, ${yOffset}px) scale(${scale})` 
+            : `translate(0, ${yOffset}px) scale(${scale})`;
+      });
+    }
+
+    ScrollTrigger.create({
+      trigger: "#reveal",
+      start: "top top",
+      end: "bottom bottom",
+      scrub: 0.5,
+      onUpdate: (self) => {
+        const p = self.progress;
+        
+        updateChapters(p);
+        updateStates(p);
+        rail.style.height = `${p * 100}%`;
+
+        const keys = window.innerWidth > 767 ? desktopKeys : mobileKeys;
+        const state = interpolateKeys(keys, p);
+
+        product.style.transform = `translate3d(calc(-50% + ${state.x}vw), calc(-50% + ${heroUnitY(state.y)}), ${heroUnitMin(state.z)}) rotateX(${state.rx}deg) rotateY(${state.ry}deg) scale(${state.s})`;
+
+        rearWheel.style.opacity = state.rear;
+        bikeFrame.style.opacity = state.frame;
+        ribTech.style.opacity = state.rib;
+
+        if (grid) {
+          grid.style.transform = `translate3d(0, ${heroUnitY(lerp(0, 8, p))}, 0) scale(${lerp(1, 1.08, p)})`;
+          grid.style.opacity = lerp(0.3, 0.14, p);
+        }
+        if (heroNoise) {
+          heroNoise.style.transform = `translate3d(0, ${heroUnitY(lerp(0, -5, p))}, 0)`;
+          heroNoise.style.opacity = lerp(0.4, 0.16, p);
+        }
+        if (lightLayer) {
+          lightLayer.style.transform = `scale(${lerp(1, 1.12, p)})`;
+        }
+        
+        darkLayer.style.opacity = mapRange(p, 0.0, 0.15);
+      }
+    });
+
+    gsap.utils.toArray(".reveal-up").forEach((item) => {
+      gsap.to(item, {
+        opacity: 1,
+        y: 0,
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: item,
+          start: "top 82%",
+          toggleActions: "play none none reverse"
+        }
+      });
+    });
+
+    const specialImages = gsap.utils.toArray(".special-img");
+    const specialRows = gsap.utils.toArray(".special-row");
+    const specialNumber = document.getElementById("specialNumber");
+
+    function setSpecial(index) {
+      specialImages.forEach((img, i) => {
+        gsap.to(img, { opacity: i === index ? 1 : 0, duration: 0.35, overwrite: true });
+      });
+      specialRows.forEach((row, i) => {
+        gsap.to(row, { opacity: i === index ? 1 : 0.2, duration: 0.35, overwrite: true });
+      });
+      if (specialNumber) specialNumber.textContent = String(index + 1);
+    }
+
+    ScrollTrigger.create({
+      trigger: "#specialPin",
+      start: "top 12%",
+      end: "+=1500",
+      scrub: true,
+      pin: window.innerWidth >= 1024,
+      onUpdate: self => {
+        const index = Math.min(2, Math.floor(self.progress * 3));
+        setSpecial(index);
+      }
+    });
+
+    gsap.fromTo("#ctImage",
+      { y: 90, scale: 0.94, opacity: 0.72 },
+      {
+        y: 0,
+        scale: 1,
+        opacity: 1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#engineeringPin",
+          start: "top 70%",
+          end: "center center",
+          scrub: true
+        }
+      }
+    );
+
+    gsap.from(".label-chip", {
+      y: 18,
+      opacity: 0,
+      stagger: 0.08,
+      duration: 0.6,
+      ease: "power3.out",
+      scrollTrigger: {
+        trigger: "#ctWrap",
+        start: "top 62%",
+        toggleActions: "play none none reverse"
+      }
+    });
+
+    const galleryTrack = document.getElementById("galleryTrack");
+    const galleryProgress = document.getElementById("galleryProgress");
+
+    function galleryDistance() {
+      return Math.max(0, galleryTrack.scrollWidth - window.innerWidth + 48);
+    }
+
+    let galleryTween;
+    if (galleryTrack) {
+      galleryTween = gsap.to(galleryTrack, {
+        x: () => -galleryDistance(),
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#galleryPin",
+          start: "top 72px",
+          end: () => `+=${galleryDistance()}`,
+          scrub: true,
+          pin: true,
+          anticipatePin: 1,
+          invalidateOnRefresh: true,
+          onUpdate: self => {
+            if (galleryProgress) galleryProgress.style.width = `${self.progress * 100}%`;
+          }
+        }
+      });
+    }
+
+
+    gsap.fromTo("#systemImage",
+      { scale: 1.12, y: 36 },
+      {
+        scale: 1,
+        y: 0,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#system",
+          start: "top 80%",
+          end: "bottom 30%",
+          scrub: true
+        }
+      }
+    );
+
+    gsap.utils.toArray(".signature-card").forEach((card, index) => {
+      gsap.fromTo(card,
+        { y: 60, opacity: 0.35, rotateX: 2.5, scale: 0.985 },
+        {
+          y: 0,
+          opacity: 1,
+          rotateX: 0,
+          scale: 1,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 82%",
+            end: "top 36%",
+            scrub: true
+          }
+        }
+      );
+    });
+
+    
+    
+    gsap.utils.toArray("#process article").forEach((row, index) => {
+      gsap.fromTo(row,
+        { opacity: 0.42, y: 24 },
+        {
+          opacity: 1,
+          y: 0,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: row,
+            start: "top 84%",
+            end: "top 48%",
+            scrub: true
+          }
+        }
+      );
+    });
+
+    const signalTrack = document.getElementById("signalTrack");
+    if (signalTrack) {
+      gsap.to(signalTrack, {
+        x: () => -(signalTrack.scrollWidth - window.innerWidth) * 0.45,
+        ease: "none",
+        scrollTrigger: {
+          trigger: signalTrack.closest("section"),
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+
+
+
+
+    const body = document.body;
+    const header = document.querySelector("header");
+    const headerBrand = header?.querySelector("a");
+    const navLinks = gsap.utils.toArray("header nav a");
+    const headerButton = header?.querySelector("button");
+    const heroIntroLines = gsap.utils.toArray("#state0 [data-line]");
+    const frontWheel = document.getElementById("frontWheel");
+    const frontSpokes = document.getElementById("spokesFront");
+    const loadOverlay = document.getElementById("loadOverlay");
+    const loaderPanel = document.getElementById("loaderPanel");
+    const loaderMark = document.getElementById("loaderMark");
+    const loaderMicro = document.getElementById("loaderMicro");
+    const loaderCapsule = document.getElementById("loaderCapsule");
+    const markPieces = gsap.utils.toArray(".mark-piece");
+
+    gsap.set([header, headerBrand, headerButton, ...navLinks, ...chapters, ...heroIntroLines].filter(Boolean), { autoAlpha: 0, y: -12 });
+    gsap.set(heroIntroLines, { yPercent: 115 });
+    gsap.set(chapters, { x: -16 });
+    gsap.set(product, { autoAlpha: 0, filter: "blur(9px)", scale: 0.96 });
+    gsap.set("#grid", { autoAlpha: 0, scale: 1.06 });
+    gsap.set("#stage .machined-border", { autoAlpha: 0, scale: 0.92 });
+
+    gsap.set(loaderPanel, { width: "100vw", height: "0vh", backgroundColor: "#121a1f" });
+    gsap.set(loaderMark, { autoAlpha: 0, scale: 0.84, y: 10, color: "#f7f7f3" });
+    gsap.set(markPieces, { transformOrigin: "50% 50%" });
+    gsap.set(loaderMicro, { autoAlpha: 0, y: 10 });
+    gsap.set(loaderCapsule, { autoAlpha: 0, scaleX: 0.25 });
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function revealHeroInstantly() {
+      gsap.set(loadOverlay, { autoAlpha: 0 });
+      gsap.set([product, "#grid", "#stage .machined-border"], { autoAlpha: 1, filter: "blur(0px)", scale: 1 });
+      gsap.set("#grid", { autoAlpha: 0.3, scale: 1 });
+      gsap.set("#stage .machined-border", { autoAlpha: 0.1, scale: 1 });
+      gsap.set([header, headerBrand, headerButton, ...navLinks, ...chapters, ...heroIntroLines].filter(Boolean), { autoAlpha: 1, y: 0, yPercent: 0, x: 0 });
+      loadOverlay?.remove();
+      body?.classList.remove("hero-stage-ready");
+    }
+
+    if (reduceMotion) {
+      revealHeroInstantly();
+    } else {
+      const introTl = gsap.timeline({
+        defaults: { ease: "power3.out" },
+        onComplete: () => ScrollTrigger.refresh()
+      });
+
+      introTl
+        // 01. White page begins, then a dark horizontal band expands from center.
+        .to(loaderPanel, { height: "31vh", duration: 0.54, ease: "expo.inOut" }, 0.08)
+        .to(loaderMark, { autoAlpha: 1, y: 0, scale: 1, duration: 0.48, ease: "power4.out" }, 0.28)
+
+        // 02. The band grows into a dark field, like the reference.
+        .to(loaderPanel, { height: "100vh", duration: 0.58, ease: "expo.inOut" }, 0.58)
+        .to(loaderMark, { scale: 1.08, duration: 0.52, ease: "power3.inOut" }, 0.64)
+
+        // 03. The field compresses into a centered dark square/card.
+        .to(loaderPanel, { width: "38vmin", height: "38vmin", duration: 0.72, ease: "expo.inOut" }, 1.08)
+        .to(loaderMark, { scale: 1.2, duration: 0.58, ease: "power4.inOut" }, 1.1)
+
+        // 04. The logo becomes black on the white canvas and starts shrinking.
+        .to(loaderPanel, { backgroundColor: "rgba(247,247,243,0)", duration: 0.16, ease: "none" }, 1.58)
+        .to(loaderMark, { color: "#121a1f", scale: 0.74, duration: 0.46, ease: "power3.inOut" }, 1.58)
+        .to(loaderMicro, { autoAlpha: 1, y: 0, duration: 0.36, ease: "power3.out" }, 1.72)
+
+        // 05. Logo shrinks down to a tiny mark, like the video.
+        .to(loaderMark, { scale: 0.34, duration: 0.44, ease: "power3.inOut" }, 1.96)
+        .to(loaderMicro, { autoAlpha: 0, y: -6, duration: 0.26, ease: "power3.in" }, 2.08)
+        .to(loaderMark, { scale: 0.12, autoAlpha: 0, duration: 0.42, ease: "power3.inOut" }, 2.3)
+
+        // 06. Small pale capsule appears briefly before the page comes in.
+        .to(loaderCapsule, { autoAlpha: 1, scaleX: 1, duration: 0.26, ease: "power3.out" }, 2.54)
+        .to(loaderCapsule, { autoAlpha: 0, scaleX: 0.45, duration: 0.28, ease: "power3.in" }, 2.8)
+
+        // 07. Hero handoff.
+        .to(loadOverlay, { autoAlpha: 0, duration: 0.34, ease: "power2.out" }, 2.96)
+        .to(product, { autoAlpha: 1, filter: "blur(0px)", scale: 1, duration: 0.82, ease: "power4.out" }, 2.78)
+        .from(frontWheel, { svgOrigin: "420 455", rotation: -16, scale: 0.9, duration: 1.18, ease: "power4.out" }, 2.8)
+        .from(frontSpokes, { svgOrigin: "420 455", rotation: -30, duration: 1.22, ease: "power4.out" }, 2.86)
+        .to("#grid", { autoAlpha: 0.3, scale: 1, duration: 0.9, ease: "power3.out" }, 2.98)
+        .to("#stage .machined-border", { autoAlpha: 0.1, scale: 1, duration: 0.9, ease: "power3.out" }, 3.04)
+        .to(header, { y: 0, autoAlpha: 1, duration: 0.62, ease: "power3.out" }, 3.14)
+        .to(headerBrand, { y: 0, autoAlpha: 1, duration: 0.52, ease: "power3.out" }, 3.2)
+        .to(navLinks, { y: 0, autoAlpha: 1, stagger: 0.05, duration: 0.46, ease: "power3.out" }, 3.26)
+        .to(headerButton, { y: 0, autoAlpha: 1, duration: 0.46, ease: "power3.out" }, 3.32)
+        .to(heroIntroLines, { y: 0, yPercent: 0, autoAlpha: 1, stagger: 0.08, duration: 0.78, ease: "power4.out" }, 3.34)
+        .to(chapters, { x: 0, y: 0, autoAlpha: 1, stagger: 0.055, duration: 0.5, ease: "power3.out" }, 3.48)
+        .call(() => {
+          loadOverlay?.remove();
+          body?.classList.remove("hero-stage-ready");
+        });
+    }
+
+    gsap.to("#reveal .state-line", {
+      y: "random(-2, 2)",
+      duration: 3.6,
+      ease: "sine.inOut",
+      stagger: 0.05,
+      repeat: -1,
+      yoyo: true
+    });
+
+    gsap.utils.toArray(".special-img").forEach((img) => {
+      gsap.fromTo(img,
+        { scale: 1.12, yPercent: 6 },
+        {
+          scale: 1,
+          yPercent: -6,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#specialPin",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray(".signature-card img").forEach((img) => {
+      const card = img.closest(".signature-card");
+      gsap.fromTo(img,
+        { scale: 1.12, yPercent: 8 },
+        {
+          scale: 1,
+          yPercent: -8,
+          ease: "none",
+          scrollTrigger: {
+            trigger: card,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray(".model-panel img").forEach((img) => {
+      const panel = img.closest(".model-panel");
+      gsap.fromTo(img,
+        { scale: 1.14, xPercent: -4 },
+        {
+          scale: 1,
+          xPercent: 4,
+          ease: "none",
+          scrollTrigger: {
+            trigger: panel,
+            start: "left right",
+            end: "right left",
+            scrub: true,
+            containerAnimation: galleryTween || undefined
+          }
+        }
+      );
+    });
+
+    gsap.utils.toArray(".label-chip").forEach((chip, index) => {
+      gsap.fromTo(chip,
+        { yPercent: 18 + index * 2 },
+        {
+          yPercent: -12 - index * 2,
+          ease: "none",
+          scrollTrigger: {
+            trigger: "#engineeringPin",
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        }
+      );
+    });
+
+    gsap.fromTo("#contactBgText",
+      { yPercent: 0, scale: 1 },
+      {
+        yPercent: -14,
+        scale: 1.015,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "#contact",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true
+        }
+      }
+    );
+
+
+    gsap.utils.toArray(".scroll-dark-section").forEach((section) => {
+      const label = section.querySelector(".dark-transition-label");
+
+      ScrollTrigger.create({
+        trigger: section,
+        start: "top 58%",
+        end: "bottom 42%",
+        toggleClass: { targets: section, className: "is-dark" }
+      });
+
+      gsap.fromTo(section,
+        { "--darkProgress": 0 },
+        {
+          "--darkProgress": 1,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 72%",
+            end: "top 20%",
+            scrub: true
+          }
+        }
+      );
+
+      if (label) {
+        gsap.to(label, {
+          opacity: 1,
+          y: 0,
+          ease: "none",
+          scrollTrigger: {
+            trigger: section,
+            start: "top 58%",
+            end: "top 28%",
+            scrub: true
+          }
+        });
+      }
+    });
+
+    ScrollTrigger.create({
+      trigger: "#engineering",
+      start: "top center",
+      end: "bottom center",
+      onEnter: () => gsap.to("header", { backgroundColor: "rgba(0,0,0,.5)", borderColor: "rgba(255,255,255,.12)", duration: .25 }),
+      onEnterBack: () => gsap.to("header", { backgroundColor: "rgba(0,0,0,.5)", borderColor: "rgba(255,255,255,.12)", duration: .25 }),
+      onLeave: () => gsap.to("header", { backgroundColor: "rgba(0,0,0,.24)", borderColor: "rgba(255,255,255,.10)", duration: .25 }),
+      onLeaveBack: () => gsap.to("header", { backgroundColor: "rgba(0,0,0,.24)", borderColor: "rgba(255,255,255,.10)", duration: .25 })
+    });
+
+
+    window.addEventListener("resize", () => {
+      ScrollTrigger.refresh();
+    });
+  </script>
+
+</body></html>

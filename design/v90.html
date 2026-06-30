@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NeuroSync - Cognitive AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="bg-[#03040B] text-white overflow-x-hidden selection:bg-purple-500/30 selection:text-white"
+    style="font-family: 'Inter', sans-serif;"
+  >
+    <!-- Background Noise Overlay -->
+    <div
+      class="fixed inset-0 z-0 pointer-events-none opacity-[0.03]"
+      style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
+    ></div>
+
+    <!-- Animated Wave Background Container -->
+    <div class="fixed inset-0 z-0 overflow-hidden pointer-events-none">
+      <canvas
+        id="webgl-wave"
+        class="absolute inset-0 w-full h-full mix-blend-screen opacity-90"
+        width="1440"
+        height="924"
+      ></canvas>
+      <div
+        id="vertical-lines-container"
+        class="absolute top-[10%] right-[10%] w-[60%] h-[70%] z-0 flex justify-end gap-16 md:gap-24 opacity-60"
+      >
+        <div class="relative w-px h-[150%] opacity-31">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 103.289%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[100%] opacity-57">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-blue-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 4.6144%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[200%] opacity-37">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 88.6074%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[120%] opacity-49">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-emerald-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 70.2307%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[150%] opacity-56">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 108.72%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[100%] opacity-59">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-blue-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 109.679%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[150%] opacity-32">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 103.289%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[100%] opacity-34">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-blue-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 4.6144%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[200%] opacity-20">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 88.6074%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[120%] opacity-56">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-emerald-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 70.2307%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[150%] opacity-37">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 103.289%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[100%] opacity-34">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-blue-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 4.6144%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[150%] opacity-41">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 103.289%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[100%] opacity-50">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-blue-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 4.6144%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[200%] opacity-55">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-white/60 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 88.6074%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[120%] opacity-34">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-emerald-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 70.2307%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[150%] opacity-52">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-purple-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 103.289%;"
+          ></div>
+        </div>
+        <div class="relative w-px h-[100%] opacity-53">
+          <div
+            class="absolute inset-0 bg-gradient-to-b from-blue-400 via-transparent to-transparent opacity-30"
+          ></div>
+          <div
+            class="absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]"
+            style=" top: 4.6144%;"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="relative z-50 w-full flex justify-between items-center px-5 py-5 sm:px-6 sm:py-6 md:px-12 md:py-8"
+    >
+      <div class="text-lg sm:text-xl font-medium tracking-tight text-white/90">
+        NeuroSync
+      </div>
+      <div class="hidden lg:flex items-center gap-10">
+        <a
+          href="#features"
+          class="text-sm font-normal text-gray-300 hover:text-white transition-colors"
+        >
+          Features
+        </a>
+        <a
+          href="#"
+          class="text-sm font-normal text-gray-300 hover:text-white transition-colors"
+        >
+          Integrations
+        </a>
+        <a
+          href="#"
+          class="text-sm font-normal text-gray-300 hover:text-white transition-colors"
+        >
+          Enterprise
+        </a>
+        <a
+          href="#"
+          class="text-sm font-normal text-gray-300 hover:text-white transition-colors"
+        >
+          Pricing
+        </a>
+      </div>
+      <button
+        class="group flex items-center gap-2 sm:gap-3 bg-white text-black px-3 py-1.5 sm:px-4 sm:py-2 rounded-full hover:scale-[1.02] transition-transform duration-300 ease-out"
+      >
+        <span class="text-sm font-medium pl-1">Get Started</span>
+        <div
+          class="bg-[#05050A] w-7 h-7 rounded-full flex items-center justify-center text-white overflow-hidden"
+        >
+          <iconify-icon
+            icon="solar:arrow-right-up-linear"
+            class="text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+          ></iconify-icon>
+        </div>
+      </button>
+    </nav>
+
+    <!-- Main Hero Section -->
+    <main
+      class="relative z-10 w-full min-h-[85vh] flex flex-col justify-center px-5 sm:px-6 md:px-12 lg:px-24"
+    >
+      <div
+        class="w-full flex flex-col lg:flex-row justify-between items-start lg:items-end gap-12 sm:gap-16 lg:gap-8 pb-16 sm:pb-20"
+      >
+        <div
+          class="w-full lg:w-[55%] flex flex-col items-start pt-8 sm:pt-12 md:pt-20"
+        >
+          <h1
+            class="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] leading-[1.05] tracking-tight mb-6 sm:mb-8"
+          >
+            <div
+              class="reveal-line flex flex-wrap gap-x-4 overflow-hidden py-1"
+            >
+              <span class="reveal-word font-normal text-gray-100">Think</span>
+              <span class="reveal-word font-normal text-gray-100">
+                Smarter.
+              </span>
+            </div>
+            <div
+              class="reveal-line flex flex-wrap gap-x-4 overflow-hidden py-1"
+            >
+              <span class="reveal-word font-semibold text-white">Perform</span>
+              <span class="reveal-word font-semibold text-white">Better.</span>
+            </div>
+          </h1>
+          <p
+            class="text-sm sm:text-base md:text-lg text-gray-400 font-normal leading-relaxed max-w-md mb-8 sm:mb-12 opacity-0 fade-in-up"
+          >
+            NeuroSync turns cognitive data into real-time insights to help you
+            focus, adapt, and achieve peak performance.
+          </p>
+          <div
+            class="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 sm:gap-6 w-full sm:w-auto opacity-0 fade-in-up delay-100"
+          >
+            <button
+              class="group relative flex items-center gap-3 bg-white text-black px-5 py-3 rounded-full hover:shadow-[0_0_20px_rgba(255,255,255,0.3)] hover:-translate-y-0.5 transition-all duration-300 ease-out w-full sm:w-auto justify-center"
+            >
+              <span class="text-sm font-medium pl-1">Request Access</span>
+              <div
+                class="bg-[#05050A] w-7 h-7 rounded-full flex items-center justify-center text-white"
+              >
+                <iconify-icon
+                  icon="solar:arrow-right-up-linear"
+                  class="text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+                ></iconify-icon>
+              </div>
+            </button>
+            <button
+              class="group flex items-center gap-3 text-gray-300 hover:text-white transition-colors duration-300 w-full sm:w-auto justify-center"
+            >
+              <div
+                class="w-8 h-8 rounded-full border border-gray-600 flex items-center justify-center group-hover:border-gray-400 group-hover:shadow-[0_0_15px_rgba(255,255,255,0.1)] transition-all duration-300 relative"
+              >
+                <div
+                  class="absolute inset-0 rounded-full bg-white/5 opacity-0 group-hover:opacity-100 group-hover:animate-ping"
+                  style="animation-duration: 2s;"
+                ></div>
+                <iconify-icon
+                  icon="solar:play-linear"
+                  class="text-sm translate-x-[0.5px]"
+                ></iconify-icon>
+              </div>
+              <span class="text-sm font-medium">See How It Works</span>
+            </button>
+          </div>
+        </div>
+        <div class="w-full lg:w-[45%] flex justify-start lg:justify-end">
+          <div
+            class="grid grid-cols-1 sm:grid-cols-3 lg:flex lg:flex-row gap-6 sm:gap-8 lg:gap-10 w-full opacity-0 fade-in-up delay-200"
+          >
+            <div
+              class="feature-card group flex flex-col gap-3 sm:gap-4 w-full sm:w-auto lg:w-36 cursor-default"
+            >
+              <div
+                class="w-14 h-14 rounded-full p-[1px] bg-gradient-to-b from-purple-500/50 to-transparent group-hover:from-purple-400/80 transition-colors duration-500"
+              >
+                <div
+                  class="w-full h-full bg-[#05050A] rounded-full flex items-center justify-center relative overflow-hidden"
+                >
+                  <div
+                    class="absolute inset-0 bg-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  ></div>
+                  <iconify-icon
+                    icon="solar:pulse-linear"
+                    class="text-purple-400 text-2xl group-hover:scale-110 group-hover:text-purple-300 transition-all duration-500 relative z-10"
+                  ></iconify-icon>
+                </div>
+              </div>
+              <div>
+                <h3
+                  class="text-sm font-medium tracking-tight text-gray-100 mb-1.5 group-hover:text-white transition-colors"
+                >
+                  Cognitive Tracking
+                </h3>
+                <p class="text-xs text-gray-500 font-normal leading-relaxed">
+                  Real-time mental bandwidth metrics.
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card group flex flex-col gap-3 sm:gap-4 w-full sm:w-auto lg:w-36 cursor-default"
+            >
+              <div
+                class="w-14 h-14 rounded-full p-[1px] bg-gradient-to-b from-blue-500/50 to-transparent group-hover:from-blue-400/80 transition-colors duration-500"
+              >
+                <div
+                  class="w-full h-full bg-[#05050A] rounded-full flex items-center justify-center relative overflow-hidden"
+                >
+                  <div
+                    class="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  ></div>
+                  <iconify-icon
+                    icon="solar:map-linear"
+                    class="text-blue-400 text-2xl group-hover:scale-110 group-hover:text-blue-300 transition-all duration-500 relative z-10"
+                  ></iconify-icon>
+                </div>
+              </div>
+              <div>
+                <h3
+                  class="text-sm font-medium tracking-tight text-gray-100 mb-1.5 group-hover:text-white transition-colors"
+                >
+                  Neural Mapping
+                </h3>
+                <p class="text-xs text-gray-500 font-normal leading-relaxed">
+                  Visualize thought patterns and flow states.
+                </p>
+              </div>
+            </div>
+            <div
+              class="feature-card group flex flex-col gap-3 sm:gap-4 w-full sm:w-auto lg:w-36 cursor-default"
+            >
+              <div
+                class="w-14 h-14 rounded-full p-[1px] bg-gradient-to-b from-emerald-500/50 to-transparent group-hover:from-emerald-400/80 transition-colors duration-500"
+              >
+                <div
+                  class="w-full h-full bg-[#05050A] rounded-full flex items-center justify-center relative overflow-hidden"
+                >
+                  <div
+                    class="absolute inset-0 bg-emerald-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                  ></div>
+                  <iconify-icon
+                    icon="solar:target-linear"
+                    class="text-emerald-400 text-2xl group-hover:scale-110 group-hover:text-emerald-300 transition-all duration-500 relative z-10"
+                  ></iconify-icon>
+                </div>
+              </div>
+              <div>
+                <h3
+                  class="text-sm font-medium tracking-tight text-gray-100 mb-1.5 group-hover:text-white transition-colors"
+                >
+                  Adaptive Focus
+                </h3>
+                <p class="text-xs text-gray-500 font-normal leading-relaxed">
+                  AI-driven routines for peak concentration.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="hidden sm:flex absolute bottom-8 left-1/2 -translate-x-1/2 flex-col items-center gap-3 opacity-0 fade-in-up delay-300"
+      >
+        <span
+          class="text-[10px] uppercase tracking-[0.2em] text-gray-500 font-medium"
+        >
+          Scroll to explore
+        </span>
+        <div
+          class="w-px h-8 bg-gradient-to-b from-gray-500/50 to-transparent"
+        ></div>
+      </div>
+    </main>
+
+    <!-- Logos / Proof Strip -->
+    <section
+      class="relative z-10 w-full px-5 sm:px-6 md:px-12 lg:px-24 py-12 sm:py-16 border-y border-[#27272A]/60 backdrop-blur-sm"
+    >
+      <p
+        class="text-center text-[11px] uppercase tracking-[0.25em] text-gray-500 mb-10"
+        style="font-family: 'JetBrains Mono', monospace;"
+      >
+        Trusted by performance teams worldwide
+      </p>
+      <div
+        class="flex flex-wrap justify-center items-center gap-x-8 sm:gap-x-12 gap-y-5 sm:gap-y-6 opacity-60"
+      >
+        <span class="text-lg font-semibold tracking-tight text-gray-300">
+          Vertex
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-gray-300">
+          Lumina
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-gray-300">
+          Northwind
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-gray-300">
+          Pulsar
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-gray-300">
+          Aether
+        </span>
+        <span class="text-lg font-semibold tracking-tight text-gray-300">
+          Cortex
+        </span>
+      </div>
+    </section>
+
+    <!-- Features Section -->
+    <section
+      id="features"
+      class="relative z-10 w-full px-5 sm:px-6 md:px-12 lg:px-24 py-16 sm:py-24 md:py-32"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="max-w-2xl mb-12 sm:mb-16 reveal-on-scroll">
+          <span
+            class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-purple-300 mb-5"
+            style="font-family: 'JetBrains Mono', monospace;"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+            Capabilities
+          </span>
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight leading-[1.08] mb-5"
+          >
+            Built for the way your mind actually works.
+          </h2>
+          <p class="text-base text-gray-400 leading-relaxed">
+            Every signal, mapped and modeled in real time — so you can stop
+            guessing and start optimizing how you think, focus, and recover.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Large bento card -->
+          <div
+            class="reveal-on-scroll group md:col-span-2 lg:row-span-2 relative bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 overflow-hidden hover:border-purple-500/40 transition-colors duration-500"
+          >
+            <div
+              class="absolute -top-20 -right-20 w-60 h-60 bg-purple-600/10 rounded-full blur-3xl group-hover:bg-purple-600/20 transition-colors duration-700"
+            ></div>
+            <div class="relative z-10">
+              <iconify-icon
+                icon="solar:chart-2-linear"
+                class="text-purple-400 text-2xl mb-5"
+              ></iconify-icon>
+              <h3 class="text-xl font-medium tracking-tight mb-2">
+                Real-time cognitive dashboard
+              </h3>
+              <p class="text-sm text-gray-400 leading-relaxed max-w-md mb-8">
+                Monitor focus, fatigue, and load as continuous waveforms instead
+                of static numbers. Catch dips before they cost you.
+              </p>
+              <div
+                class="bg-[#05050A]/80 border border-[#27272A] rounded-lg p-5"
+              >
+                <div class="flex items-center justify-between mb-5">
+                  <div>
+                    <p
+                      class="text-[10px] uppercase tracking-widest text-gray-500"
+                      style="font-family: 'JetBrains Mono', monospace;"
+                    >
+                      Focus Index
+                    </p>
+                    <p
+                      class="text-2xl font-medium tracking-tight text-white mt-1"
+                    >
+                      87
+                      <span class="text-sm text-gray-500">/100</span>
+                    </p>
+                  </div>
+                  <span
+                    class="text-[10px] text-emerald-400 bg-emerald-500/10 px-2 py-1 rounded-full"
+                    style="font-family: 'JetBrains Mono', monospace;"
+                  >
+                    +12% wk
+                  </span>
+                </div>
+                <div class="flex items-end gap-1.5 h-20">
+                  <div
+                    class="flex-1 bg-gradient-to-t from-purple-500/40 to-purple-400/80 rounded-sm"
+                    style="height:45%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-gradient-to-t from-purple-500/40 to-purple-400/80 rounded-sm"
+                    style="height:65%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-gradient-to-t from-purple-500/40 to-purple-400/80 rounded-sm"
+                    style="height:50%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-gradient-to-t from-blue-500/40 to-blue-400/80 rounded-sm"
+                    style="height:80%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-gradient-to-t from-blue-500/40 to-blue-400/80 rounded-sm"
+                    style="height:70%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-gradient-to-t from-emerald-500/40 to-emerald-400/80 rounded-sm"
+                    style="height:95%"
+                  ></div>
+                  <div
+                    class="flex-1 bg-gradient-to-t from-emerald-500/40 to-emerald-400/80 rounded-sm"
+                    style="height:88%"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="reveal-on-scroll group relative bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 hover:border-blue-500/40 transition-colors duration-500"
+          >
+            <iconify-icon
+              icon="solar:bolt-linear"
+              class="text-blue-400 text-2xl mb-5"
+            ></iconify-icon>
+            <h3 class="text-base font-medium tracking-tight mb-2">
+              Adaptive nudges
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              Micro-interventions delivered exactly when your attention starts
+              to drift.
+            </p>
+          </div>
+
+          <div
+            class="reveal-on-scroll group relative bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 hover:border-emerald-500/40 transition-colors duration-500"
+          >
+            <iconify-icon
+              icon="solar:shield-check-linear"
+              class="text-emerald-400 text-2xl mb-5"
+            ></iconify-icon>
+            <h3 class="text-base font-medium tracking-tight mb-2">
+              Private by design
+            </h3>
+            <p class="text-sm text-gray-400 leading-relaxed">
+              On-device processing keeps your neural data yours — encrypted end
+              to end.
+            </p>
+          </div>
+
+          <div
+            class="reveal-on-scroll group relative bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 hover:border-purple-500/40 transition-colors duration-500 md:col-span-2"
+          >
+            <div class="flex items-start gap-4">
+              <iconify-icon
+                icon="solar:refresh-circle-linear"
+                class="text-purple-400 text-2xl shrink-0"
+              ></iconify-icon>
+              <div>
+                <h3 class="text-base font-medium tracking-tight mb-2">
+                  Recovery modeling
+                </h3>
+                <p class="text-sm text-gray-400 leading-relaxed">
+                  NeuroSync learns your personal rhythms and predicts the ideal
+                  moments for deep work, rest, and creative bursts.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section
+      class="relative z-10 w-full px-5 sm:px-6 md:px-12 lg:px-24 py-16 sm:py-24 md:py-32 border-t border-[#27272A]/60"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div class="max-w-2xl mb-12 sm:mb-16 reveal-on-scroll">
+          <span
+            class="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-blue-300 mb-5"
+            style="font-family: 'JetBrains Mono', monospace;"
+          >
+            <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+            Proof
+          </span>
+          <h2
+            class="text-3xl sm:text-4xl md:text-5xl font-medium tracking-tight leading-[1.08]"
+          >
+            People are thinking differently.
+          </h2>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div
+            class="reveal-on-scroll bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 flex flex-col"
+          >
+            <p class="text-sm text-gray-300 leading-relaxed mb-8">
+              "I stopped fighting my own focus. NeuroSync told me when to push
+              and when to step back — my deep-work hours nearly doubled."
+            </p>
+            <div class="mt-auto flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center text-xs font-semibold"
+              >
+                MR
+              </div>
+              <div>
+                <p class="text-sm font-medium tracking-tight">Maya Reyes</p>
+                <p class="text-xs text-gray-500">Research Lead, Vertex</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="reveal-on-scroll bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 flex flex-col md:mt-8"
+          >
+            <p class="text-sm text-gray-300 leading-relaxed mb-8">
+              "The recovery modeling is uncanny. It predicted my burnout window
+              two days before I felt it. That alone paid for the year."
+            </p>
+            <div class="mt-auto flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-full bg-gradient-to-br from-blue-500 to-emerald-500 flex items-center justify-center text-xs font-semibold"
+              >
+                DK
+              </div>
+              <div>
+                <p class="text-sm font-medium tracking-tight">Daniel Koh</p>
+                <p class="text-xs text-gray-500">Founder, Pulsar</p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="reveal-on-scroll bg-[#18181B]/70 border border-[#27272A] rounded-lg p-6 flex flex-col"
+          >
+            <p class="text-sm text-gray-300 leading-relaxed mb-8">
+              "Finally a tool that treats attention like the resource it is. The
+              dashboard is the first thing I check every morning."
+            </p>
+            <div class="mt-auto flex items-center gap-3">
+              <div
+                class="w-9 h-9 rounded-full bg-gradient-to-br from-emerald-500 to-purple-500 flex items-center justify-center text-xs font-semibold"
+              >
+                AS
+              </div>
+              <div>
+                <p class="text-sm font-medium tracking-tight">Aria Sandoval</p>
+                <p class="text-xs text-gray-500">Performance Coach, Cortex</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section
+      class="relative z-10 w-full px-5 sm:px-6 md:px-12 lg:px-24 py-16 sm:py-24"
+    >
+      <div class="max-w-4xl mx-auto text-center reveal-on-scroll relative">
+        <div
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] h-[28rem] bg-purple-600/10 rounded-full blur-3xl pointer-events-none"
+        ></div>
+        <div class="relative">
+          <h2
+            class="text-3xl sm:text-4xl md:text-6xl font-medium tracking-tight leading-[1.05] mb-6"
+          >
+            Sync your mind.
+            <br />
+            <span class="text-gray-400">Unlock your edge.</span>
+          </h2>
+          <p class="text-base text-gray-400 max-w-md mx-auto mb-10">
+            Join the early access program and start turning your cognitive
+            signals into measurable performance.
+          </p>
+          <button
+            class="group inline-flex items-center gap-3 bg-white text-black px-6 py-3.5 rounded-full hover:shadow-[0_0_30px_rgba(255,255,255,0.3)] hover:-translate-y-0.5 transition-all duration-300 ease-out"
+          >
+            <span class="text-sm font-medium pl-1">Request Access</span>
+            <div
+              class="bg-[#05050A] w-7 h-7 rounded-full flex items-center justify-center text-white"
+            >
+              <iconify-icon
+                icon="solar:arrow-right-up-linear"
+                class="text-sm group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300"
+              ></iconify-icon>
+            </div>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer
+      class="relative z-10 w-full px-5 sm:px-6 md:px-12 lg:px-24 pt-16 sm:pt-20 pb-10 border-t border-[#27272A]/60"
+    >
+      <div class="max-w-7xl mx-auto">
+        <div
+          class="grid grid-cols-2 md:grid-cols-5 gap-8 sm:gap-10 mb-12 sm:mb-16"
+        >
+          <div class="col-span-2">
+            <div class="text-xl font-medium tracking-tight mb-4">NeuroSync</div>
+            <p class="text-sm text-gray-500 leading-relaxed max-w-xs mb-6">
+              Cognitive intelligence for people who refuse to operate on
+              autopilot.
+            </p>
+            <div class="flex items-center gap-4">
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-[#27272A] flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
+              >
+                <iconify-icon
+                  icon="solar:letter-linear"
+                  class="text-base"
+                ></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-[#27272A] flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
+              >
+                <iconify-icon
+                  icon="solar:global-linear"
+                  class="text-base"
+                ></iconify-icon>
+              </a>
+              <a
+                href="#"
+                class="w-9 h-9 rounded-full border border-[#27272A] flex items-center justify-center text-gray-400 hover:text-white hover:border-gray-500 transition-colors"
+              >
+                <iconify-icon
+                  icon="solar:chat-round-linear"
+                  class="text-base"
+                ></iconify-icon>
+              </a>
+            </div>
+          </div>
+          <div>
+            <p
+              class="text-[11px] uppercase tracking-[0.2em] text-gray-500 mb-5"
+              style="font-family: 'JetBrains Mono', monospace;"
+            >
+              Product
+            </p>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#features"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Features
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Integrations
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Enterprise
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Pricing
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p
+              class="text-[11px] uppercase tracking-[0.2em] text-gray-500 mb-5"
+              style="font-family: 'JetBrains Mono', monospace;"
+            >
+              Company
+            </p>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  About
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Careers
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Research
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Contact
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <p
+              class="text-[11px] uppercase tracking-[0.2em] text-gray-500 mb-5"
+              style="font-family: 'JetBrains Mono', monospace;"
+            >
+              Legal
+            </p>
+            <ul class="space-y-3">
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Privacy
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Terms
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="text-sm text-gray-400 hover:text-white transition-colors"
+                >
+                  Security
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div
+          class="flex flex-col md:flex-row justify-between items-center gap-4 pt-8 border-t border-[#27272A]/60"
+        >
+          <p class="text-xs text-gray-500">
+            © 2026 NeuroSync Labs. All rights reserved.
+          </p>
+          <p
+            class="text-xs text-gray-500"
+            style="font-family: 'JetBrains Mono', monospace;"
+          >
+            Built for peak minds.
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", (event) => {
+          gsap.registerPlugin(ScrollTrigger);
+
+          const canvas = document.getElementById('webgl-wave');
+          const gl = canvas.getContext('webgl');
+
+          if (gl) {
+              const vsSource = `attribute vec2 position; void main() { gl_Position = vec4(position, 0.0, 1.0); }`;
+              const fsSource = `
+                  precision highp float;
+                  uniform float time;
+                  uniform vec2 resolution;
+                  void main() {
+                      vec2 uv = gl_FragCoord.xy / resolution.xy;
+                      vec3 color = vec3(0.0);
+                      float baseCurve = uv.x * 0.4 - 0.2;
+                      for(float i = 0.0; i < 5.0; i++) {
+                          float t = time * 0.25 + i * 0.6;
+                          float y = uv.y - 0.35 - baseCurve;
+                          y += 0.15 * sin(uv.x * 2.5 + t);
+                          y += 0.08 * cos(uv.x * 4.0 - t * 0.8 + i);
+                          float dist = abs(y);
+                          float glow = 0.006 / (dist + 0.001);
+                          vec3 c = vec3(0.0);
+                          float x = uv.x;
+                          if (x < 0.2) c = mix(vec3(1.0, 0.4, 0.0), vec3(1.0, 0.1, 0.4), x / 0.2);
+                          else if (x < 0.4) c = mix(vec3(1.0, 0.1, 0.4), vec3(0.6, 0.2, 1.0), (x - 0.2) / 0.2);
+                          else if (x < 0.7) c = mix(vec3(0.6, 0.2, 1.0), vec3(0.0, 0.6, 1.0), (x - 0.4) / 0.3);
+                          else c = mix(vec3(0.0, 0.6, 1.0), vec3(0.0, 1.0, 0.4), (x - 0.7) / 0.3);
+                          color += c * glow * (0.8 + i * 0.15);
+                      }
+                      gl_FragColor = vec4(color, 1.0);
+                  }`;
+              const compileShader = (type, source) => {
+                  const shader = gl.createShader(type);
+                  gl.shaderSource(shader, source);
+                  gl.compileShader(shader);
+                  return shader;
+              };
+              const vs = compileShader(gl.VERTEX_SHADER, vsSource);
+              const fs = compileShader(gl.FRAGMENT_SHADER, fsSource);
+              const program = gl.createProgram();
+              gl.attachShader(program, vs);
+              gl.attachShader(program, fs);
+              gl.linkProgram(program);
+              gl.useProgram(program);
+              const vertices = new Float32Array([-1,-1, 1,-1, -1,1, -1,1, 1,-1, 1,1]);
+              const buffer = gl.createBuffer();
+              gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+              gl.bufferData(gl.ARRAY_BUFFER, vertices, gl.STATIC_DRAW);
+              const positionLocation = gl.getAttribLocation(program, "position");
+              gl.enableVertexAttribArray(positionLocation);
+              gl.vertexAttribPointer(positionLocation, 2, gl.FLOAT, false, 0, 0);
+              const timeLocation = gl.getUniformLocation(program, "time");
+              const resolutionLocation = gl.getUniformLocation(program, "resolution");
+              const resize = () => {
+                  canvas.width = window.innerWidth;
+                  canvas.height = window.innerHeight;
+                  gl.viewport(0, 0, canvas.width, canvas.height);
+                  gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
+              };
+              window.addEventListener('resize', resize);
+              resize();
+              const startTime = Date.now();
+              const render = () => {
+                  const time = (Date.now() - startTime) * 0.001;
+                  gl.uniform1f(timeLocation, time);
+                  gl.drawArrays(gl.TRIANGLES, 0, 6);
+                  requestAnimationFrame(render);
+              };
+              render();
+          }
+
+          const revealLines = gsap.utils.toArray('.reveal-line');
+          revealLines.forEach((line, index) => {
+              const words = line.querySelectorAll('.reveal-word');
+              gsap.fromTo(words, { y: '120%', opacity: 0, rotateZ: 2 },
+                  { y: '0%', opacity: 1, rotateZ: 0, duration: 1.2, stagger: 0.15, ease: "power4.out", delay: index * 0.2,
+                      scrollTrigger: { trigger: line, start: "top 90%" } });
+          });
+
+          gsap.fromTo(".fade-in-up", { y: 30, opacity: 0 },
+              { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: "power3.out", delay: 0.6 });
+
+          gsap.utils.toArray('.reveal-on-scroll').forEach((el) => {
+              gsap.fromTo(el, { y: 40, opacity: 0 },
+                  { y: 0, opacity: 1, duration: 0.9, ease: "power3.out",
+                      scrollTrigger: { trigger: el, start: "top 88%" } });
+          });
+
+          const linesContainer = document.getElementById('vertical-lines-container');
+          const colors = ['from-purple-400', 'from-blue-400', 'from-white/60', 'from-emerald-400'];
+          const heights = ['h-[150%]', 'h-[100%]', 'h-[200%]', 'h-[120%]'];
+          for (let i = 0; i < 6; i++) {
+              const lineWrap = document.createElement('div');
+              lineWrap.className = `relative w-px ${heights[i % heights.length]} opacity-${Math.floor(Math.random() * 40 + 20)}`;
+              const lineGlow = document.createElement('div');
+              lineGlow.className = `absolute inset-0 bg-gradient-to-b ${colors[i % colors.length]} via-transparent to-transparent opacity-30`;
+              const dot = document.createElement('div');
+              dot.className = `absolute left-1/2 -translate-x-1/2 top-0 w-[2px] h-4 rounded-full bg-white shadow-[0_0_10px_2px_rgba(255,255,255,0.8)]`;
+              lineWrap.appendChild(lineGlow);
+              lineWrap.appendChild(dot);
+              linesContainer.appendChild(lineWrap);
+              gsap.fromTo(dot, { top: '-10%', opacity: 0 },
+                  { top: '110%', opacity: 1, duration: Math.random() * 3 + 2, repeat: -1, ease: "none", delay: Math.random() * 2,
+                      onRepeat: function() { gsap.set(dot, {opacity: 0}); gsap.to(dot, {opacity: 1, duration: 0.5}); } });
+              gsap.to(lineWrap, { y: (i % 2 === 0) ? -30 : 30, duration: 4 + i, yoyo: true, repeat: -1, ease: "sine.inOut" });
+          }
+
+          gsap.to(".feature-card", { y: -5, duration: 2.5, yoyo: true, repeat: -1, ease: "sine.inOut", stagger: { each: 0.5, from: "start" } });
+      });
+    </script>
+  </body>
+</html>

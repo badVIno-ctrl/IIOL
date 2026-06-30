@@ -1,0 +1,2042 @@
+<!DOCTYPE html>
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soma | Boutique Yoga Studio</title>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
+<!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Iconify -->
+<script src="https://code.iconify.design/iconify-icon/1.0.8/iconify-icon.min.js"></script>
+<!-- GSAP -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<style>
+:root {
+--bg: #0F0F0E;
+--bg-elevated: #1A1917;
+--copper: #C17F59;
+--copper-light: #D4A07A;
+--sage: #8A9A7B;
+--cream: #F5F0EB;
+--text-muted: #9C9789;
+}
+body {
+background-color: var(--bg);
+color: var(--cream);
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+-moz-osx-font-smoothing: grayscale;
+}
+::selection {
+background: var(--copper);
+color: var(--cream);
+}
+::-webkit-scrollbar {
+width: 8px;
+}
+::-webkit-scrollbar-track {
+background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+background: #2C2B27;
+border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+background: var(--copper);
+}
+.font-display { font-family: 'Playfair Display', serif; }
+.font-body { font-family: 'Inter', sans-serif; }
+/* Hide scrollbar for schedule track but allow scroll */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+/* Masked Text Reveal Utility */
+.word-mask {
+display: inline-block;
+overflow: hidden;
+vertical-align: top;
+}
+.word-inner {
+display: inline-block;
+transform: translateY(110%);
+will-change: transform;
+}
+/* Image Reveal Utility */
+.clip-reveal {
+clip-path: inset(100% 0 0 0);
+will-change: clip-path, transform;
+}
+/* Nav Link Hover */
+.nav-link::after {
+content: '';
+position: absolute;
+bottom: -4px;
+left: 0;
+width: 0%;
+height: 1px;
+background-color: var(--copper-light);
+transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.nav-link:hover::after { width: 100%; }
+/* Rich Interaction Utils */
+.hover-lift { transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+.hover-lift:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.4); }
+/* Custom Checkbox */
+.custom-checkbox input:checked + div {
+background-color: var(--copper);
+border-color: var(--copper);
+}
+.custom-checkbox input:checked + div svg {
+opacity: 1;
+transform: scale(1);
+}
+/* Noise Overlay for Texture */
+.noise-overlay {
+position: fixed;
+inset: 0;
+pointer-events: none;
+z-index: 9999;
+opacity: 0.02;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+</style>
+<meta name="aura-font-heading-class" content="font-playfair">
+<meta name="aura-font-body-class" content="font-manrope">
+<meta name="aura-font-heading-label" content="Playfair Display">
+<meta name="aura-font-body-label" content="Manrope">
+<style>
+.navbar-scrolled {
+background-color: rgba(15, 15, 14, 0.9) !important;
+backdrop-filter: blur(12px) !important;
+-webkit-backdrop-filter: blur(12px) !important;
+border-bottom: 1px solid rgba(193, 127, 89, 0.2) !important;
+padding-top: 1rem !important;
+padding-bottom: 1rem !important;
+}
+</style>
+<style>
+/* Overrides for Interaction Polish */
+.nav-link::after {
+content: '' !important;
+position: absolute !important;
+top: 50% !important;
+left: 0 !important;
+width: 0% !important;
+height: 140% !important;
+background: rgba(193, 127, 89, 0.4) !important;
+filter: blur(8px) !important;
+transform: translateY(-50%) !important;
+transition: width 0.5s ease-out, opacity 0.4s ease !important;
+opacity: 0;
+z-index: -1 !important;
+pointer-events: none !important;
+border-radius: 8px !important;
+}
+.nav-link:hover::after, .nav-link.active::after, .group:hover .nav-link::after {
+width: 100% !important;
+opacity: 1 !important;
+}
+.btn-breathing {
+position: relative;
+overflow: hidden;
+isolation: isolate;
+}
+.btn-breathing::before {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+width: 60px;
+height: 60px;
+background: radial-gradient(circle, rgba(193, 127, 89, 0.5) 0%, transparent 70%);
+transform: translate(-50%, -50%) scale(1);
+opacity: 0;
+pointer-events: none;
+transition: opacity 0.3s ease;
+z-index: -1;
+}
+.btn-breathing:hover::before, .group:hover .btn-breathing::before {
+opacity: 1;
+animation: breathe 3s infinite ease-in-out;
+}
+@keyframes breathe {
+0% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+50% { transform: translate(-50%, -50%) scale(2.2); opacity: 0.8; }
+100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+}
+@keyframes float {
+0%, 100% { transform: translateY(0); }
+50% { transform: translateY(4px); }
+}
+.animate-float {
+animation: float 2.5s infinite ease-in-out;
+}
+.glow-surface {
+position: relative;
+}
+.glow-surface::before {
+content: '';
+position: absolute;
+inset: 0;
+border-radius: inherit;
+background: radial-gradient(circle at var(--x, 50%) var(--y, 50%), rgba(193, 127, 89, 0.15) 0%, transparent 250px);
+opacity: 0;
+transition: opacity 0.3s ease;
+pointer-events: none;
+z-index: 0;
+}
+.glow-surface:hover::before {
+opacity: 1;
+}
+.glow-surface > * {
+position: relative;
+z-index: 1;
+}
+.glow-surface > .absolute {
+position: absolute;
+}
+</style>
+<style>
+form.form-success .success-message {
+opacity: 1 !important;
+pointer-events: auto !important;
+transform: scale(1) !important;
+}
+form.form-success > :not(.success-message) {
+opacity: 0 !important;
+pointer-events: none !important;
+transform: translateY(-10px) !important;
+transition: all 0.5s ease !important;
+}
+</style>
+<link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"><style id="all-fonts-style-font-manrope">
+.font-manrope { font-family: 'Manrope', sans-serif !important; }
+</style><!-- aura-ga4-start -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+</head>
+  <body class="font-body font-light text-base text-[#F5F0EB] bg-[#0F0F0E]">
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full z-50 transition-all duration-700 py-6 px-6 md:px-12" id="navbar" style=" display: none;">
+      <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <a href="#" class="font-display text-2xl tracking-[0.15em] font-normal uppercase text-[#F5F0EB]">
+          Soma
+        </a>
+
+        <div class="hidden md:flex items-center gap-10 text-xs tracking-[0.1em] uppercase text-[#9C9789]">
+          <a href="#philosophy" class="nav-link relative transition-colors duration-300 hover:text-[#F5F0EB] font-manrope">
+            Philosophy
+          </a>
+          <a href="#schedule" class="nav-link relative transition-colors duration-300 hover:text-[#F5F0EB] font-manrope">
+            Schedule
+          </a>
+          <a href="#instructors" class="nav-link relative transition-colors duration-300 hover:text-[#F5F0EB] font-manrope">
+            Instructors
+          </a>
+          <a href="#pricing" class="nav-link relative transition-colors duration-300 hover:text-[#F5F0EB] font-manrope">
+            Pricing
+          </a>
+        </div>
+
+        <a href="#schedule" class="hidden md:inline-flex items-center justify-center text-xs tracking-[0.1em] uppercase text-[#F5F0EB] px-6 py-3 rounded-full border border-[#C17F59]/30 hover:border-[#C17F59] transition-all duration-500 font-manrope btn-breathing">
+          Book a class
+        </a>
+
+        <!-- Mobile Menu Btn -->
+        <button class="md:hidden text-[#F5F0EB] focus:outline-none flex flex-col gap-1.5 z-50 relative group">
+          <span class="w-6 h-[1px] bg-current transition-all group-hover:w-8"></span>
+          <span class="w-8 h-[1px] bg-current transition-all"></span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+      <div class="absolute inset-0 z-0">
+        <div class="absolute inset-0 bg-gradient-to-b from-[#0F0F0E]/40 via-transparent to-[#0F0F0E] z-10"></div>
+        <!-- Subtle slow zoom animation handled via GSAP -->
+        <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/40f1385b-64c6-4a12-bad8-29ce56a7d086/1782090749141-ab7ab3c9-f5b4-4efb-bbc2-021ff0043a8a.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f11f1633-4cee-4b63-916b-4bf9f779ffca_1600w.jpg" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Soma Yoga Environment" class="w-full h-full object-cover origin-center opacity-60 hero-img"></video>
+      </div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center text-center mt-20">
+        <div id="lotus-container" class="relative w-24 h-24 md:w-32 md:h-32 mb-8 md:mb-12 mx-auto z-50 flex justify-center items-center origin-bottom">
+          <svg viewBox="0 0 200 200" class="w-full h-full overflow-visible" style="transform-style: preserve-3d;">
+            <defs>
+              <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="6" result="blur"></feGaussianBlur>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+              </filter>
+              <filter id="shimmer-glow" x="-100%" y="-100%" width="300%" height="300%">
+                <feGaussianBlur stdDeviation="8" result="blur"></feGaussianBlur>
+                <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+              </filter>
+            </defs>
+            <g class="lotus-glow" stroke="#D4A07A" fill="none" opacity="0.5" filter="url(#glow)" stroke-linecap="round" stroke-linejoin="round">
+              <path class="lotus-path-glow" pathLength="100" stroke-width="6" d="M 100 180 C 60 130, 70 70, 100 30 C 130 70, 140 130, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-glow" pathLength="100" stroke-width="5" d="M 100 180 C 50 165, 15 115, 35 75 C 65 95, 85 140, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-glow" pathLength="100" stroke-width="5" d="M 100 180 C 150 165, 185 115, 165 75 C 135 95, 115 140, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-glow" pathLength="100" stroke-width="4" d="M 100 180 C 45 190, -5 160, 10 135 C 45 135, 75 155, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-glow" pathLength="100" stroke-width="4" d="M 100 180 C 155 190, 205 160, 190 135 C 155 135, 125 155, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+            </g>
+            <g class="lotus-main" stroke="#D4A07A" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <path class="lotus-path-main" pathLength="100" stroke-width="2.5" d="M 100 180 C 60 130, 70 70, 100 30 C 130 70, 140 130, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-main" pathLength="100" stroke-width="2" d="M 100 180 C 50 165, 15 115, 35 75 C 65 95, 85 140, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-main" pathLength="100" stroke-width="2" d="M 100 180 C 150 165, 185 115, 165 75 C 135 95, 115 140, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-main" pathLength="100" stroke-width="1.5" d="M 100 180 C 45 190, -5 160, 10 135 C 45 135, 75 155, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+              <path class="lotus-path-main" pathLength="100" stroke-width="1.5" d="M 100 180 C 155 190, 205 160, 190 135 C 155 135, 125 155, 100 180" style="stroke-dashoffset: 0px; stroke-dasharray: 100;"></path>
+            </g>
+            <g class="lotus-shimmer" stroke="#F5F0EB" fill="none" stroke-linecap="round" stroke-linejoin="round" filter="url(#shimmer-glow)">
+              <path class="lotus-path-shimmer" pathLength="100" stroke-width="8" d="M 100 180 C 60 130, 70 70, 100 30 C 130 70, 140 130, 100 180 C 50 165, 15 115, 35 75 C 65 95, 85 140, 100 180 C 150 165, 185 115, 165 75 C 135 95, 115 140, 100 180 C 45 190, -5 160, 10 135 C 45 135, 75 155, 100 180 C 155 190, 205 160, 190 135 C 155 135, 125 155, 100 180" style="stroke-dashoffset: 68px; stroke-dasharray: 0.1, 100;"></path>
+            </g>
+          </svg>
+        </div>
+        <h1 class="font-display text-6xl md:text-8xl lg:text-[10rem] leading-[0.9] tracking-tight font-normal mb-8 overflow-hidden pr-4 -mr-4">
+          <span class="block hero-title-line pr-4 -mr-4">The Art of</span>
+          <span class="block hero-title-line italic text-[#D4A07A] pr-4 -mr-4">
+            Stillness
+          </span>
+        </h1>
+        <p class="text-sm md:text-lg text-[#9C9789] max-w-md mx-auto mb-12 overflow-hidden">
+          <span class="block hero-desc-line leading-relaxed font-manrope">
+            A sanctuary for mindful movement, breathwork, and self-discovery.
+          </span>
+        </p>
+        <div class="p-4 -m-4">
+          <a href="#schedule" class="hero-cta inline-flex items-center gap-3 text-xs tracking-[0.1em] uppercase group">
+            <span class="relative font-manrope nav-link">
+              Explore the schedule
+            </span>
+            <div class="w-8 h-8 rounded-full border border-[#C17F59]/30 flex items-center justify-center transition-all duration-500 animate-float btn-breathing">
+              <iconify-icon icon="solar:arrow-down-linear" style="stroke-width: 1.5px;" class="text-lg"></iconify-icon>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div id="scroll-hint" class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center justify-center z-50 text-[#D4A07A]">
+        <span class="text-xs tracking-[0.2em] uppercase mb-2 font-manrope">
+          Scroll to enter
+        </span>
+        <iconify-icon icon="solar:arrow-down-linear" class="text-2xl animate-bounce"></iconify-icon>
+      </div>
+    </section>
+
+    <!-- Philosophy / Story (Sticky Scroll Experience) -->
+    <section id="philosophy" class="relative bg-[#0F0F0E] py-32 md:py-48 overflow-hidden" style="display: none;">
+      
+
+      <div class="absolute top-0 left-0 w-full h-full overflow-hidden flex flex-col items-center justify-center pointer-events-none z-0 opacity-10 philo-bg-text">
+        <div class="sticky top-1/2 -translate-y-1/2 text-center w-full">
+          <h2 class="font-display text-[15vw] md:text-[12vw] leading-[0.85] tracking-tighter text-[#C17F59] whitespace-nowrap mb-4">
+            STILLNESS
+          </h2>
+          <h2 class="font-display text-[15vw] md:text-[12vw] leading-[0.85] tracking-tighter text-transparent italic whitespace-nowrap" style="-webkit-text-stroke: 1px #9C9789;">
+            IN MOTION
+          </h2>
+        </div>
+      </div><div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 space-y-32 md:space-y-48 pb-16">
+        <div class="flex flex-col md:flex-row items-center gap-12 md:gap-24">
+          <div class="w-full md:w-5/12 philo-text-block">
+            
+            <div class="text-xs tracking-[0.2em] text-[#C17F59] uppercase mb-8 flex items-center gap-4 font-manrope">
+              <span class="w-8 h-[1px] bg-[#C17F59]"></span>
+              Philosophy
+            </div>
+            <h3 class="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight mb-8 text-[#F5F0EB] leading-[1.05]">
+              Movement as
+              <br>
+              <i class="text-[#D4A07A]">Medicine</i>
+            </h3>
+            <p class="text-lg text-[#9C9789] font-manrope leading-relaxed mb-6">
+              Soma was born from a desire to create a space free from
+              distraction. A room where the architecture, lighting, and
+              soundscape exist solely to support your inward journey.
+            </p>
+          <div class="w-12 h-12 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] mt-10 transition-transform duration-500 hover:rotate-90">
+              <iconify-icon icon="solar:leaf-linear" class="text-xl text-[#C17F59]"></iconify-icon>
+            </div></div>
+          <div class="w-full md:w-7/12 flex justify-end">
+            <div class="w-full md:w-4/5 aspect-[4/5] rounded-sm overflow-hidden philo-img-wrap relative shadow-2xl">
+              <div class="absolute top-0 left-0 w-full h-full bg-[#0F0F0E] z-10 philo-img-overlay" style="height: 0px;"></div>
+              
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5d23b341-af81-4884-8d05-ffcf1ef7403f_1600w.jpg" alt="Meditation practice" class="w-full h-full object-cover scale-110 philo-img grayscale hover:grayscale-0 transition-all duration-1000"></div>
+          </div>
+        </div>
+
+        <div class="flex flex-col-reverse md:flex-row items-center gap-12 md:gap-24">
+          <div class="w-full md:w-6/12 flex justify-start">
+            <div class="w-full md:w-5/6 aspect-[4/3] rounded-sm overflow-hidden philo-img-wrap relative shadow-2xl">
+              <div class="absolute top-0 left-0 w-full h-full bg-[#0F0F0E] z-10 philo-img-overlay" style="height: 0px;"></div>
+              
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c1e15dbe-698d-4a79-9bb9-8a39c6d9023c_3840w.png" alt="Studio Architecture" class="w-full h-full object-cover scale-110 philo-img grayscale hover:grayscale-0 transition-all duration-1000"></div>
+          </div>
+          <div class="w-full md:w-6/12 philo-text-block">
+            
+            <div class="text-xs tracking-[0.2em] text-[#8A9A7B] uppercase mb-8 flex items-center gap-4 font-manrope">
+              <span class="w-8 h-[1px] bg-[#8A9A7B]"></span>
+              The Space
+            </div>
+            <h3 class="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight mb-8 text-[#F5F0EB] leading-[1.05]">
+              Stripping away
+              <br>
+              <i class="text-[#8A9A7B]">performance</i>
+            </h3>
+            <p class="text-lg text-[#9C9789] font-manrope leading-relaxed mb-6">
+              Our approach returns to the roots of breath, alignment, and
+              intention. Here, we move not to change our bodies, but to inhabit
+              them fully.
+            </p>
+          <p class="text-base text-[#7A776A] font-manrope leading-relaxed">
+              Every texture, tone, and material was curated to ground your
+              senses and foster profound presence.
+            </p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Schedule -->
+    <section id="schedule" class="py-32 bg-[#1A1917] border-y border-[#C17F59]/10" style=" display: none;">
+      <div class="max-w-7xl mx-auto px-6 md:px-12">
+        <!-- Custom Tab Buttons -->
+
+        <!-- Schedule Lists (Only Monday shown for brevity, JS handles opacity toggle) -->
+        
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16 reveal-up">
+          <div>
+            <h2 class="font-display text-4xl md:text-6xl tracking-tight font-normal mb-4 leading-[1.05]">
+              The
+              <br>
+              <i class="text-[#D4A07A]">Schedule</i>
+            </h2>
+            <p class="text-sm text-[#9C9789] font-manrope">
+              Select a day to view our offerings.
+            </p>
+          </div>
+        </div><div class="flex overflow-x-auto no-scrollbar gap-2 mb-12 pb-4 border-b border-[#C17F59]/10 reveal-up">
+          <!-- Data attributes to drive JS logic -->
+          <button class="schedule-tab active text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent transition-all duration-300 text-[#F5F0EB] bg-[#C17F59]/10 border-[#C17F59]/30 flex-shrink-0 font-manrope" data-day="monday">
+            Mon
+          </button>
+          <button class="schedule-tab text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent text-[#9C9789] hover:text-[#F5F0EB] hover:bg-[#22211E] transition-all duration-300 flex-shrink-0 font-manrope" data-day="tuesday">
+            Tue
+          </button>
+          <button class="schedule-tab text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent text-[#9C9789] hover:text-[#F5F0EB] hover:bg-[#22211E] transition-all duration-300 flex-shrink-0 font-manrope" data-day="wednesday">
+            Wed
+          </button>
+          <button class="schedule-tab text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent text-[#9C9789] hover:text-[#F5F0EB] hover:bg-[#22211E] transition-all duration-300 flex-shrink-0 font-manrope" data-day="thursday">
+            Thu
+          </button>
+          <button class="schedule-tab text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent text-[#9C9789] hover:text-[#F5F0EB] hover:bg-[#22211E] transition-all duration-300 flex-shrink-0 font-manrope" data-day="friday">
+            Fri
+          </button>
+          <button class="schedule-tab text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent text-[#9C9789] hover:text-[#F5F0EB] hover:bg-[#22211E] transition-all duration-300 flex-shrink-0 font-manrope" data-day="saturday">
+            Sat
+          </button>
+          <button class="schedule-tab text-xs tracking-widest uppercase px-6 py-4 rounded-full border border-transparent text-[#9C9789] hover:text-[#F5F0EB] hover:bg-[#22211E] transition-all duration-300 flex-shrink-0 font-manrope" data-day="sunday">
+            Sun
+          </button>
+        </div><div class="schedule-content active flex flex-col" id="monday-schedule">
+          <!-- Class Row -->
+
+          <!-- Class Row -->
+
+          <!-- Class Row -->
+          
+          
+          <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                07:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Vinyasa Flow
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">60 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Elena R.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Moderate
+              </span>
+              <div class="hidden md:block text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Moderate
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div>
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                09:30
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Yin &amp; Restorative
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">75 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Marcus T.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#9C9789] uppercase tracking-widest border border-[#9C9789]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Gentle
+              </span>
+              <div class="hidden md:block text-xs text-[#9C9789] uppercase tracking-widest border border-[#9C9789]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Gentle
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div><div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                06:00
+                <span class="text-lg text-[#9C9789] ml-1">pm</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Dynamic Pilates
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">50 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Sarah J.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Intense
+              </span>
+              <div class="hidden md:block text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Intense
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+        <div class="schedule-content flex-col" id="tuesday-schedule" style="display: none;">
+          
+          
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                08:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Power Vinyasa
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">60 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">David K.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Intense
+              </span>
+              <div class="hidden md:block text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Intense
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div><div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                12:00
+                <span class="text-lg text-[#9C9789] ml-1">pm</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Midday Reset
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">45 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Elena R.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#9C9789] uppercase tracking-widest border border-[#9C9789]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Gentle
+              </span>
+              <div class="hidden md:block text-xs text-[#9C9789] uppercase tracking-widest border border-[#9C9789]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Gentle
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+        <div class="schedule-content flex-col" id="wednesday-schedule" style="display: none;">
+          
+          
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                07:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Vinyasa Flow
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">60 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Elena R.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Moderate
+              </span>
+              <div class="hidden md:block text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Moderate
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div><div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                05:30
+                <span class="text-lg text-[#9C9789] ml-1">pm</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Ashtanga Primary
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">90 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">David K.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Intense
+              </span>
+              <div class="hidden md:block text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Intense
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+        <div class="schedule-content flex-col" id="thursday-schedule" style="display: none;">
+          
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                09:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Hatha Foundation
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">60 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Marcus T.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#9C9789] uppercase tracking-widest border border-[#9C9789]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Gentle
+              </span>
+              <div class="hidden md:block text-xs text-[#9C9789] uppercase tracking-widest border border-[#9C9789]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Gentle
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+        <div class="schedule-content flex-col" id="friday-schedule" style="display: none;">
+          
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                07:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Sunrise Flow
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">60 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Elena R.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Moderate
+              </span>
+              <div class="hidden md:block text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Moderate
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+        <div class="schedule-content flex-col" id="saturday-schedule" style="display: none;">
+          
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                09:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Weekend Warrior
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">75 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">David K.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Intense
+              </span>
+              <div class="hidden md:block text-xs text-[#C17F59] uppercase tracking-widest border border-[#C17F59]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Intense
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+        <div class="schedule-content flex-col" id="sunday-schedule" style="display: none;">
+          
+        <div class="group border-b border-[#C17F59]/10 py-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 hover:bg-[#22211E] transition-colors duration-500 cursor-pointer px-4 -mx-4 rounded-sm reveal-up glow-surface">
+            <div class="flex flex-col md:flex-row gap-6 md:gap-16 w-full md:w-auto">
+              <div class="font-display text-3xl md:text-4xl text-[#D4A07A] tracking-tight w-32">
+                10:00
+                <span class="text-lg text-[#9C9789] ml-1">am</span>
+              </div>
+              <div>
+                <h3 class="text-xl md:text-2xl font-normal mb-2 tracking-tight group-hover:text-[#D4A07A] transition-colors font-manrope">
+                  Sunday Service Flow
+                </h3>
+                <div class="flex items-center gap-4 text-xs text-[#9C9789] tracking-wider uppercase">
+                  <span class="font-manrope">90 Min</span>
+                  <span class="w-1 h-1 rounded-full bg-[#C17F59]/50"></span>
+                  <span class="font-manrope">Elena R.</span>
+                </div>
+              </div>
+            </div>
+            <div class="w-full md:w-auto flex justify-between items-center mt-4 md:mt-0">
+              <span class="text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-3 py-1 rounded-full md:hidden font-manrope">
+                Moderate
+              </span>
+              <div class="hidden md:block text-xs text-[#8A9A7B] uppercase tracking-widest border border-[#8A9A7B]/30 px-4 py-1.5 rounded-full mr-8 font-manrope">
+                Moderate
+              </div>
+              <div class="w-10 h-10 rounded-full border border-[#C17F59]/30 flex items-center justify-center text-[#F5F0EB] group-hover:bg-[#C17F59] group-hover:border-[#C17F59] transition-all duration-500 group-hover:text-[#0F0F0E] overflow-hidden relative">
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute transition-transform duration-500 group-hover:translate-x-full group-hover:-translate-y-full"></iconify-icon>
+                <iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width: 1.5px;" class="text-xl absolute -translate-x-full translate-y-full transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0"></iconify-icon>
+              </div>
+            </div>
+          </div></div>
+      </div>
+    </section>
+
+    <!-- Instructors -->
+    <section id="instructors" class="relative bg-[#0F0F0E] h-[400vh]" style="display: none;">
+      <div class="sticky top-0 h-screen w-full flex flex-col md:flex-row items-center px-6 md:px-12 overflow-hidden py-20 md:py-0">
+        <div class="w-full md:w-1/2 flex flex-col justify-center relative z-20 md:pr-16 mb-8 md:mb-0 h-[40vh] md:h-full">
+          <h2 class="font-display text-4xl md:text-6xl tracking-tight font-normal mb-8 md:mb-16 text-[#F5F0EB] leading-[1.05]">
+            The
+            <br>
+            <i class="text-[#D4A07A]">Guides</i>
+          </h2>
+          <div class="relative h-[220px] md:h-[280px] w-full" id="instructor-texts">
+            
+            
+            <div class="instructor-text absolute top-0 left-0 w-full flex flex-col justify-start opacity-0">
+              <h3 class="font-display text-4xl md:text-7xl tracking-tighter mb-2 text-[#D4A07A]">
+                Elena R.
+              </h3>
+              <p class="text-xs md:text-sm tracking-widest uppercase text-[#9C9789] mb-4 md:mb-6 font-manrope">
+                Vinyasa &amp; Breathwork
+              </p>
+              <p class="text-base md:text-lg text-[#9C9789] leading-relaxed font-manrope max-w-md">
+                Elena weaves dynamic movement with deep breath awareness,
+                creating sequences that challenge the body while quieting the
+                mind.
+              </p>
+            </div><div class="instructor-text absolute top-0 left-0 w-full flex flex-col justify-start opacity-0">
+              <h3 class="font-display text-4xl md:text-7xl tracking-tighter mb-2 text-[#D4A07A]">
+                Milena T.
+              </h3>
+              <p class="text-xs md:text-sm tracking-widest uppercase text-[#9C9789] mb-4 md:mb-6 font-manrope">
+                Yin &amp; Meditation
+              </p>
+              <p class="text-base md:text-lg text-[#9C9789] leading-relaxed font-manrope max-w-md">
+                Specializing in stillness, Milena guides practitioners into
+                profound states of relaxation, focusing on fascial release and
+                nervous system regulation.
+              </p>
+            </div>
+          <div class="instructor-text absolute top-0 left-0 w-full flex flex-col justify-start opacity-0">
+              <h3 class="font-display text-4xl md:text-7xl tracking-tighter mb-2 text-[#D4A07A]">
+                David K.
+              </h3>
+              <p class="text-xs md:text-sm tracking-widest uppercase text-[#9C9789] mb-4 md:mb-6 font-manrope">
+                Ashtanga &amp; Mobility
+              </p>
+              <p class="text-base md:text-lg text-[#9C9789] leading-relaxed font-manrope max-w-md">
+                David brings technical precision to traditional forms, helping
+                students build strength, stability, and functional range of
+                motion.
+              </p>
+            </div></div>
+          <a href="#" class="hidden md:inline-flex mt-8 items-center gap-3 text-xs tracking-[0.1em] uppercase text-[#C17F59] hover:text-[#D4A07A] transition-colors group w-max">
+            <span class="font-manrope">View all guides</span>
+            <iconify-icon icon="solar:arrow-right-linear" style="stroke-width: 1.5px;" class="text-lg transition-transform duration-500 group-hover:translate-x-1"></iconify-icon>
+          </a>
+        </div>
+        <div class="w-full md:w-1/2 flex items-center justify-center md:justify-end lg:justify-center relative z-10 h-[40vh] md:h-full">
+          <div class="relative w-[280px] md:w-full max-w-[460px] aspect-[3/4] overflow-hidden rounded-sm shadow-2xl group">
+            <div class="absolute inset-0 z-40 border border-[#C17F59]/20 rounded-sm pointer-events-none"></div>
+            <div class="instructor-img-wrapper absolute inset-0 z-30 transform origin-top" style="clip-path: inset(0% 0% 10.0005%);">
+              
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9f65c6ca-cfae-431e-9e0b-b31958c0313d_3840w.png" alt="Elena R." class="w-full h-full object-cover instructor-img filter grayscale hover:grayscale-0 transition-all duration-1000"></div>
+            <div class="instructor-img-wrapper absolute inset-0 z-20 transform origin-top" style="clip-path: inset(0% 0% 0% 0%);">
+              
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1329e3cf-bdad-435c-9f39-ed86a0adc887_3840w.jpg" alt="Marcus T." class="w-full h-full object-cover instructor-img filter grayscale hover:grayscale-0 transition-all duration-1000"></div>
+            <div class="instructor-img-wrapper absolute inset-0 z-10 transform origin-top" style="clip-path: inset(0% 0% 0% 0%);">
+              
+            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/872c2f19-a772-4f54-b76b-062a60209c3c_3840w.webp" alt="David K." class="w-full h-full object-cover instructor-img filter grayscale hover:grayscale-0 transition-all duration-1000"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <div style="order: 0; place-self: auto; grid-row-start: auto; grid-column-start: auto; grid-row-end: auto; grid-column-end: auto; z-index: auto; float: none; flex-shrink: 1; display: block; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1432px; height: 3777px; padding: 0px 0px 3000px;" class=""><div style="order: 0; place-self: auto; grid-row-start: auto; grid-column-start: auto; grid-row-end: auto; grid-column-end: auto; z-index: auto; float: none; flex-shrink: 1; display: block; margin: 0px; inset: 0px; position: relative; flex-basis: auto; overflow: visible; box-sizing: border-box; width: 1432px; height: 3777px; padding: 0px 0px 3000px;"><section id="testimonials" class="relative bg-[#0F0F0E] overflow-hidden" style="inset: 0px auto auto 0px; margin: 0px; max-width: 1432px; width: 1432px; max-height: 777px; height: 777px; padding: 0px;">
+      <div class="testi-container relative h-screen w-full flex items-center justify-center">
+        <div class="absolute inset-0 z-0 flex items-center justify-center pointer-events-none opacity-50">
+          <div class="w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] rounded-full testi-bg-glow transition-all duration-1000 ease-in-out blur-3xl mix-blend-screen" style="background: radial-gradient(circle, rgba(193, 127, 89, 0.15) 0%, transparent 70%);"></div>
+        </div>
+        <div class="absolute top-24 md:top-32 left-6 md:left-12 z-20 testi-title opacity-0">
+          <div class="text-xs tracking-[0.2em] text-[#C17F59] uppercase mb-4 font-manrope flex items-center gap-4">
+            <span class="w-8 h-[1px] bg-[#C17F59]"></span>
+            Community
+          </div>
+          <h2 class="font-display text-4xl md:text-5xl tracking-tight text-[#F5F0EB]">
+            Voices of
+            <br>
+            <i class="text-[#D4A07A]">Soma</i>
+          </h2>
+        </div>
+        <div class="relative z-10 w-full max-w-5xl mx-auto px-6 md:px-12 h-full flex items-center justify-center">
+          <div class="testi-item absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none">
+            <iconify-icon icon="solar:quote-right-bold-duotone" class="text-5xl md:text-7xl text-[#C17F59]/20 mb-8"></iconify-icon>
+            <p class="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-[#F5F0EB] mb-10 max-w-4xl testi-quote">
+              "A sanctuary in the truest sense. I found not just flexibility in
+              my body, but a profound stillness in my mind."
+            </p>
+            <div class="testi-author flex flex-col items-center gap-3">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6056b25c-e0d8-4268-9a9d-51c67746305c_320w.jpg" class="w-14 h-14 rounded-full object-cover border border-[#C17F59]/30 grayscale" alt="Sarah M.">
+              <span class="text-sm tracking-widest uppercase text-[#D4A07A] font-manrope">
+                Sarah M.
+              </span>
+              <span class="text-xs text-[#9C9789] font-manrope">
+                Member since 2022
+              </span>
+            </div>
+          </div>
+          <div class="testi-item absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none">
+            <iconify-icon icon="solar:quote-right-bold-duotone" class="text-5xl md:text-7xl text-[#8A9A7B]/20 mb-8"></iconify-icon>
+            <p class="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-[#F5F0EB] mb-10 max-w-4xl testi-quote">
+              "The instructors guide you with such intention and care. Every
+              class feels less like a workout and more like a necessary ritual."
+            </p>
+            <div class="testi-author flex flex-col items-center gap-3">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eca707cc-a5b7-439a-b4fd-247f6106c2e1_1600w.jpg" class="w-14 h-14 rounded-full object-cover border border-[#8A9A7B]/30 grayscale" alt="James T.">
+              <span class="text-sm tracking-widest uppercase text-[#8A9A7B] font-manrope">
+                James T.
+              </span>
+              <span class="text-xs text-[#9C9789] font-manrope">
+                Member since 2023
+              </span>
+            </div>
+          </div>
+          <div class="testi-item absolute inset-0 flex flex-col items-center justify-center text-center opacity-0 pointer-events-none">
+            <iconify-icon icon="solar:quote-right-bold-duotone" class="text-5xl md:text-7xl text-[#D4A07A]/20 mb-8"></iconify-icon>
+            <p class="font-display text-3xl md:text-5xl lg:text-6xl tracking-tight leading-[1.15] text-[#F5F0EB] mb-10 max-w-4xl testi-quote">
+              "Soma strips away the performance of modern yoga. It’s raw, it’s
+              grounding, and the space itself is a masterpiece of calm."
+            </p>
+            <div class="testi-author flex flex-col items-center gap-3">
+              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fba47e77-83f6-4793-8497-3ada589e2f9a_320w.jpg" class="w-14 h-14 rounded-full object-cover border border-[#D4A07A]/30 grayscale" alt="Elena K.">
+              <span class="text-sm tracking-widest uppercase text-[#D4A07A] font-manrope">
+                Elena K.
+              </span>
+              <span class="text-xs text-[#9C9789] font-manrope">
+                Member since 2021
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="absolute bottom-20 md:bottom-24 left-1/2 -translate-x-1/2 flex items-center gap-6 z-20 opacity-0 testi-progress">
+          <div class="h-[1px] w-16 md:w-24 bg-[#C17F59]/20 relative overflow-hidden">
+            <div class="absolute top-0 left-0 h-full bg-[#C17F59] w-0 testi-progress-bar" style="width: 0%;"></div>
+          </div>
+          <span class="text-xs text-[#9C9789] tracking-widest font-manrope testi-counter">01 / 03</span>
+        </div>
+      </div>
+    </section></div></div>
+
+    <!-- Pricing -->
+    <section id="pricing" class="py-32 bg-[#0F0F0E] border-y border-[#C17F59]/10 relative z-10" style="display: none;">
+      <!-- Abstract gradient glow behind pricing -->
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-radial-gradient from-[#C17F59]/5 to-transparent rounded-full blur-3xl pointer-events-none" style="background: radial-gradient(circle, rgba(193,127,89,0.05) 0%, transparent 70%);"></div>
+
+      <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10 flex flex-col lg:flex-row items-stretch gap-16 lg:gap-24">
+        <!-- Sticky Storytelling Left -->
+        <div class="w-full lg:w-5/12 relative">
+          <div class="sticky top-32 pt-16 pb-16 pricing-sticky-text">
+            
+            <div class="text-xs tracking-[0.2em] text-[#C17F59] uppercase mb-8 font-manrope flex items-center gap-4">
+              <span class="w-8 h-[1px] bg-[#C17F59]"></span>
+              Investment
+            </div>
+            <h2 class="font-display text-5xl md:text-6xl lg:text-7xl tracking-tight font-normal mb-8 leading-[1.05] text-[#F5F0EB]">
+              Commit to Your
+              <br>
+              <i class="text-[#D4A07A]">Practice</i>
+            </h2>
+
+            <!-- Animated progress indicator -->
+            <p class="text-lg text-[#9C9789] font-manrope leading-relaxed mb-16 max-w-md">
+              Flexible options designed to support your journey. Find the rhythm
+              that grounds you, whether you join us weekly or daily.
+            </p>
+          <div class="hidden lg:flex flex-col justify-between relative pl-6 border-l border-[#C17F59]/20 pricing-nav h-48">
+              <div class="pricing-indicator absolute left-0 top-0 w-[2px] h-[33.33%] bg-[#C17F59] -translate-x-[1px] transition-all duration-500 ease-out" style="top: 66.66%;"></div>
+              
+              <div class="text-xs uppercase tracking-widest transition-colors duration-500 pricing-nav-item font-manrope" data-index="0">
+                Drop-In
+              </div>
+              <div class="text-xs uppercase tracking-widest transition-colors duration-500 pricing-nav-item font-manrope" data-index="1">
+                Unlimited
+              </div>
+            <div class="text-xs uppercase tracking-widest transition-colors duration-500 pricing-nav-item font-manrope" data-index="2">
+                10-Class Pack
+              </div></div></div>
+        </div>
+
+        <!-- Scrolling Cards Right -->
+        <div class="w-full lg:w-7/12 flex flex-col gap-16 lg:gap-32 pt-16 pb-16 pricing-cards-container">
+          <!-- Card 1 -->
+          
+
+          <!-- Card 2 -->
+          <div class="pricing-card relative p-10 md:p-14 border border-[#C17F59]/20 rounded-sm bg-[#1A1917]/50 backdrop-blur-md hover:border-[#C17F59]/50 transition-all duration-700 glow-surface overflow-hidden group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#C17F59]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+            <div class="relative z-10 flex flex-col gap-10">
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-[#C17F59]/10 pb-8">
+                <div>
+                  <h3 class="text-3xl md:text-4xl font-display font-normal mb-2 text-[#F5F0EB]">
+                    Drop-In
+                  </h3>
+                  <p class="text-sm text-[#9C9789] font-manrope">
+                    For the occasional visit.
+                  </p>
+                </div>
+                <div class="font-display text-5xl md:text-6xl tracking-tight text-[#D4A07A]">
+                  $35
+                </div>
+              </div>
+              <div class="flex flex-col md:flex-row gap-10 items-start justify-between">
+                <ul class="space-y-4 text-sm text-[#9C9789] flex-1">
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#C17F59] text-xl mt-0.5"></iconify-icon>
+                    Access to any single class
+                  </li>
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#C17F59] text-xl mt-0.5"></iconify-icon>
+                    Complimentary mat &amp; towel
+                  </li>
+                </ul>
+                <a href="#" class="w-full md:w-auto inline-flex items-center justify-center gap-4 py-4 px-8 border border-[#C17F59]/30 text-xs tracking-widest uppercase hover:bg-[#C17F59] hover:text-[#0F0F0E] hover:border-[#C17F59] transition-all duration-500 font-manrope rounded-full group/btn flex-shrink-0 relative overflow-hidden">
+                  <span class="relative z-10">Purchase</span>
+                  <iconify-icon icon="solar:arrow-right-linear" class="text-lg transition-transform group-hover/btn:translate-x-1 relative z-10"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="pricing-card relative p-10 md:p-14 border border-[#C17F59] rounded-sm bg-[#1A1917] hover:bg-[#22211E] transition-all duration-700 glow-surface overflow-hidden group hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(193,127,89,0.15)] shadow-[0_10px_30px_rgba(193,127,89,0.05)] cursor-pointer">
+            <div class="absolute top-0 right-0 bg-[#C17F59] text-[#0F0F0E] text-[10px] font-medium tracking-widest uppercase px-8 py-2 translate-x-[30%] translate-y-[50%] rotate-45 font-manrope z-20 shadow-lg origin-center">
+              Most Popular
+            </div>
+            <div class="absolute inset-0 bg-gradient-to-br from-[#C17F59]/10 to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+            <div class="relative z-10 flex flex-col gap-10">
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-[#C17F59]/20 pb-8">
+                <div>
+                  <h3 class="text-3xl md:text-4xl font-display font-normal mb-2 text-[#D4A07A]">
+                    Monthly Unlimited
+                  </h3>
+                  <p class="text-sm text-[#9C9789] font-manrope">
+                    For the dedicated practitioner.
+                  </p>
+                </div>
+                <div class="flex flex-col items-start md:items-end">
+                  <div class="font-display text-5xl md:text-6xl tracking-tight text-[#D4A07A] mb-1">
+                    $220
+                  </div>
+                  <p class="text-[10px] tracking-widest uppercase text-[#C17F59] font-manrope">
+                    per month
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col md:flex-row gap-10 items-start justify-between">
+                <ul class="space-y-4 text-sm text-[#F5F0EB] flex-1">
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#C17F59] text-xl mt-0.5"></iconify-icon>
+                    Unlimited classes
+                  </li>
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#C17F59] text-xl mt-0.5"></iconify-icon>
+                    Priority booking (14 days advance)
+                  </li>
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#C17F59] text-xl mt-0.5"></iconify-icon>
+                    2 guest passes per month
+                  </li>
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#C17F59] text-xl mt-0.5"></iconify-icon>
+                    15% off workshops &amp; events
+                  </li>
+                </ul>
+                <a href="#" class="w-full md:w-auto inline-flex items-center justify-center gap-4 py-4 px-8 bg-[#C17F59] text-[#0F0F0E] text-xs tracking-widest uppercase hover:bg-[#D4A07A] transition-all duration-500 font-manrope rounded-full group/btn flex-shrink-0 shadow-[0_0_20px_rgba(193,127,89,0.3)] hover:shadow-[0_0_30px_rgba(212,160,122,0.4)] relative overflow-hidden">
+                  <span class="relative z-10">Subscribe</span>
+                  <iconify-icon icon="solar:arrow-right-linear" class="text-lg transition-transform group-hover/btn:translate-x-1 relative z-10"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+        <div class="pricing-card relative p-10 md:p-14 border border-[#8A9A7B]/20 rounded-sm bg-[#1A1917]/50 backdrop-blur-md hover:border-[#8A9A7B]/50 transition-all duration-700 glow-surface overflow-hidden group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(0,0,0,0.4)] cursor-pointer">
+            <div class="absolute inset-0 bg-gradient-to-br from-[#8A9A7B]/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-0"></div>
+            <div class="relative z-10 flex flex-col gap-10">
+              <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 border-b border-[#8A9A7B]/10 pb-8">
+                <div>
+                  <h3 class="text-3xl md:text-4xl font-display font-normal mb-2 text-[#F5F0EB]">
+                    10-Class Pack
+                  </h3>
+                  <p class="text-sm text-[#9C9789] font-manrope">
+                    For the consistent schedule.
+                  </p>
+                </div>
+                <div class="flex flex-col items-start md:items-end">
+                  <div class="font-display text-5xl md:text-6xl tracking-tight text-[#8A9A7B] mb-1">
+                    $300
+                  </div>
+                  <p class="text-[10px] tracking-widest uppercase text-[#9C9789] font-manrope">
+                    Valid for 6 months
+                  </p>
+                </div>
+              </div>
+              <div class="flex flex-col md:flex-row gap-10 items-start justify-between">
+                <ul class="space-y-4 text-sm text-[#9C9789] flex-1">
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#8A9A7B] text-xl mt-0.5"></iconify-icon>
+                    Access to any class
+                  </li>
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#8A9A7B] text-xl mt-0.5"></iconify-icon>
+                    Complimentary mat &amp; towel
+                  </li>
+                  <li class="flex items-start gap-4 font-manrope">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[#8A9A7B] text-xl mt-0.5"></iconify-icon>
+                    Shareable with 1 guest
+                  </li>
+                </ul>
+                <a href="#" class="w-full md:w-auto inline-flex items-center justify-center gap-4 py-4 px-8 border border-[#8A9A7B]/30 text-xs tracking-widest uppercase hover:bg-[#8A9A7B] hover:text-[#0F0F0E] hover:border-[#8A9A7B] transition-all duration-500 font-manrope rounded-full group/btn flex-shrink-0 relative overflow-hidden">
+                  <span class="relative z-10">Purchase</span>
+                  <iconify-icon icon="solar:arrow-right-linear" class="text-lg transition-transform group-hover/btn:translate-x-1 relative z-10"></iconify-icon>
+                </a>
+              </div>
+            </div>
+          </div></div>
+      </div>
+    </section>
+
+    <!-- Footer with Contact -->
+    <footer class="bg-[#0F0F0E] pt-32 pb-12 relative overflow-hidden" style=" display: none;">
+      <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+        <!-- Bottom -->
+
+        
+        
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-32 mb-24 border-b border-[#C17F59]/10 pb-24 reveal-up">
+          <!-- Brand & Form -->
+          <div>
+            <h2 class="font-display text-4xl tracking-tight mb-6 leading-[1.05]">
+              Begin Your
+              <br>
+              <i class="text-[#D4A07A]">Journey</i>
+            </h2>
+            <p class="text-sm text-[#9C9789] mb-10 max-w-md font-manrope">
+              Leave your details to receive our introductory guide, studio
+              etiquette, and a complimentary first class pass.
+            </p>
+
+            <form class="space-y-8 max-w-lg group relative" id="inquiry-form" onsubmit="event.preventDefault(); this.classList.add('form-success'); setTimeout(() => this.classList.remove('form-success'), 4000);">
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative">
+                  <input type="text" id="name" class="w-full bg-transparent border-b border-[#C17F59]/30 py-3 text-sm focus:outline-none focus:border-[#C17F59] transition-colors peer placeholder-transparent text-[#F5F0EB] font-manrope" placeholder="Name" required="">
+                  <label for="name" class="absolute left-0 top-3 text-sm text-[#9C9789] transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#C17F59] peer-valid:-top-4 peer-valid:text-xs font-manrope pointer-events-none">
+                    Your Name
+                  </label>
+                </div>
+                <div class="relative">
+                  <input type="email" id="email" class="w-full bg-transparent border-b border-[#C17F59]/30 py-3 text-sm focus:outline-none focus:border-[#C17F59] transition-colors peer placeholder-transparent text-[#F5F0EB] font-manrope" placeholder="Email" required="">
+                  <label for="email" class="absolute left-0 top-3 text-sm text-[#9C9789] transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#C17F59] peer-valid:-top-4 peer-valid:text-xs font-manrope pointer-events-none">
+                    Email Address
+                  </label>
+                </div>
+              </div>
+
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="relative">
+                  <input type="tel" id="phone" class="w-full bg-transparent border-b border-[#C17F59]/30 py-3 text-sm focus:outline-none focus:border-[#C17F59] transition-colors peer placeholder-transparent text-[#F5F0EB] font-manrope" placeholder="Phone" required="">
+                  <label for="phone" class="absolute left-0 top-3 text-sm text-[#9C9789] transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#C17F59] peer-valid:-top-4 peer-valid:text-xs font-manrope pointer-events-none">
+                    Phone Number
+                  </label>
+                </div>
+                <div class="relative group/select">
+                  <select id="inquiry" class="w-full bg-transparent border-b border-[#C17F59]/30 py-3 text-sm text-[#F5F0EB] focus:outline-none focus:border-[#C17F59] transition-colors appearance-none cursor-pointer font-manrope peer" required="">
+                    <option value="" disabled="" selected="" hidden=""></option>
+                    <option value="membership" class="bg-[#1A1917] text-[#F5F0EB]">
+                      Membership Options
+                    </option>
+                    <option value="private" class="bg-[#1A1917] text-[#F5F0EB]">
+                      Private Sessions
+                    </option>
+                    <option value="retreat" class="bg-[#1A1917] text-[#F5F0EB]">
+                      Retreats
+                    </option>
+                    <option value="other" class="bg-[#1A1917] text-[#F5F0EB]">
+                      Other
+                    </option>
+                  </select>
+                  <label for="inquiry" class="absolute left-0 top-3 text-sm text-[#9C9789] transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#C17F59] peer-valid:-top-4 peer-valid:text-xs font-manrope pointer-events-none">
+                    Inquiry Type
+                  </label>
+                  <iconify-icon icon="solar:alt-arrow-down-linear" class="absolute right-0 top-4 text-[#9C9789] pointer-events-none group-hover/select:text-[#C17F59] transition-colors"></iconify-icon>
+                </div>
+              </div>
+
+              <div class="relative group/select">
+                <select id="interest" class="w-full bg-transparent border-b border-[#C17F59]/30 py-3 text-sm text-[#F5F0EB] focus:outline-none focus:border-[#C17F59] transition-colors appearance-none cursor-pointer font-manrope peer" required="">
+                  <option value="" disabled="" selected="" hidden=""></option>
+                  <option value="vinyasa" class="bg-[#1A1917] text-[#F5F0EB]">
+                    Vinyasa &amp; Breathwork
+                  </option>
+                  <option value="yin" class="bg-[#1A1917] text-[#F5F0EB]">
+                    Yin &amp; Restorative
+                  </option>
+                  <option value="ashtanga" class="bg-[#1A1917] text-[#F5F0EB]">
+                    Ashtanga &amp; Mobility
+                  </option>
+                  <option value="pilates" class="bg-[#1A1917] text-[#F5F0EB]">
+                    Dynamic Pilates
+                  </option>
+                  <option value="undecided" class="bg-[#1A1917] text-[#F5F0EB]">
+                    I'm not sure yet
+                  </option>
+                </select>
+                <label for="interest" class="absolute left-0 top-3 text-sm text-[#9C9789] transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#C17F59] peer-valid:-top-4 peer-valid:text-xs font-manrope pointer-events-none">
+                  Preferred Class Style
+                </label>
+                <iconify-icon icon="solar:alt-arrow-down-linear" class="absolute right-0 top-4 text-[#9C9789] pointer-events-none group-hover/select:text-[#C17F59] transition-colors"></iconify-icon>
+              </div>
+
+              <div class="relative">
+                <textarea id="message" rows="2" class="w-full bg-transparent border-b border-[#C17F59]/30 py-3 text-sm focus:outline-none focus:border-[#C17F59] transition-colors peer placeholder-transparent text-[#F5F0EB] font-manrope resize-none" placeholder="Message" required=""></textarea>
+                <label for="message" class="absolute left-0 top-3 text-sm text-[#9C9789] transition-all peer-focus:-top-4 peer-focus:text-xs peer-focus:text-[#C17F59] peer-valid:-top-4 peer-valid:text-xs font-manrope pointer-events-none">
+                  A Short Message
+                </label>
+              </div>
+
+              <label class="custom-checkbox flex items-start gap-3 cursor-pointer mt-8 transition-opacity duration-500">
+                <div class="relative mt-0.5">
+                  <input type="checkbox" class="sr-only" required="">
+                  <div class="w-4 h-4 border border-[#C17F59]/30 rounded-[2px] transition-colors flex items-center justify-center">
+                    <svg class="w-2.5 h-2.5 text-[#0F0F0E] opacity-0 transform scale-50 transition-all duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                  </div>
+                </div>
+                <span class="text-xs text-[#9C9789] leading-tight font-manrope">
+                  I agree to receive communications from Soma regarding my
+                  inquiry and studio updates.
+                </span>
+              </label>
+
+              <button type="submit" class="mt-8 flex items-center gap-3 text-xs tracking-widest uppercase text-[#F5F0EB] hover:text-[#D4A07A] transition-colors group/btn">
+                <span class="font-manrope">Send Request</span>
+                <div class="w-8 h-8 rounded-full border border-[#C17F59]/30 flex items-center justify-center group-hover/btn:bg-[#C17F59]/10 group-hover/btn:border-[#C17F59] transition-all duration-500">
+                  <iconify-icon icon="solar:arrow-right-linear" style="stroke-width: 1.5px;" class="text-lg transition-transform group-hover/btn:translate-x-1"></iconify-icon>
+                </div>
+              </button>
+
+              <div class="absolute inset-0 bg-[#0F0F0E] flex flex-col items-center justify-center text-center opacity-0 pointer-events-none transition-all duration-500 transform scale-95 z-10 success-message">
+                <iconify-icon icon="solar:check-circle-linear" class="text-4xl text-[#C17F59] mb-4"></iconify-icon>
+                <h3 class="font-display text-2xl text-[#F5F0EB] mb-2 tracking-tight">
+                  Message Received
+                </h3>
+                <p class="text-sm text-[#9C9789] font-manrope">
+                  We'll be in touch with you shortly.
+                </p>
+              </div>
+            </form>
+          </div>
+
+          <!-- Navigation & Details -->
+          <div class="flex flex-col md:flex-row gap-16 md:gap-24 md:justify-end mt-12 md:mt-0">
+            <div class="space-y-6">
+              <h4 class="text-xs tracking-[0.2em] text-[#C17F59] uppercase mb-8 font-manrope">
+                Studio
+              </h4>
+              <ul class="space-y-4 text-sm text-[#9C9789]">
+                <li>
+                  <a href="#philosophy" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+                    Philosophy
+                  </a>
+                </li>
+                <li>
+                  <a href="#schedule" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+                    Schedule
+                  </a>
+                </li>
+                <li>
+                  <a href="#instructors" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+                    Instructors
+                  </a>
+                </li>
+                <li>
+                  <a href="#pricing" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+                    Pricing &amp; Membership
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+                    FAQ
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <div class="space-y-6">
+              <h4 class="text-xs tracking-[0.2em] text-[#C17F59] uppercase mb-8 font-manrope">
+                Contact
+              </h4>
+              <ul class="space-y-4 text-sm text-[#9C9789]">
+                <li>
+                  <p class="text-[#F5F0EB] mb-1 font-manrope">Visit</p>
+                  <p class="font-manrope">
+                    1240 Serenity Blvd
+                    <br>
+                    Los Angeles, CA 90012
+                  </p>
+                </li>
+                <li class="pt-4">
+                  <p class="text-[#F5F0EB] mb-1 font-manrope">Reach Out</p>
+                  <a href="mailto:hello@somayoga.com" class="hover:text-[#F5F0EB] transition-colors block font-manrope">
+                    hello@somayoga.com
+                  </a>
+                  <a href="tel:+13105550198" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+                    +1 (310) 555-0198
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div><div class="flex flex-col md:flex-row justify-between items-center gap-6 text-xs text-[#9C9789] reveal-up">
+          <div class="font-display text-xl tracking-[0.15em] uppercase text-[#F5F0EB]">
+            Soma
+          </div>
+          <div class="flex gap-6">
+            <a href="#" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+              Instagram
+            </a>
+            <a href="#" class="hover:text-[#F5F0EB] transition-colors font-manrope">
+              Spotify
+            </a>
+          </div>
+          <div class="font-manrope">
+            © 2024 Soma Yoga Studio. All rights reserved.
+          </div>
+        </div></div>
+    </footer>
+
+    <script>
+      // Utilities
+      gsap.registerPlugin(ScrollTrigger);
+
+      // Text Splitter Utility
+      function splitTextIntoWords(selector) {
+          const elements = document.querySelectorAll(selector);
+          elements.forEach(el => {
+              const text = el.innerText;
+              const words = text.split(' ');
+              el.innerHTML = '';
+              words.forEach(word => {
+                  const mask = document.createElement('span');
+                  mask.className = 'word-mask';
+                  const inner = document.createElement('span');
+                  inner.className = 'word-inner';
+                  inner.innerHTML = word + '&nbsp;';
+                  mask.appendChild(inner);
+                  el.appendChild(mask);
+              });
+          });
+      }
+
+      // Initialize Split
+      splitTextIntoWords('.text-mask-reveal');
+
+      // ---- ONE-WAY LOTUS INTRO ----
+      document.body.style.overflow = 'hidden';
+      gsap.set(['#navbar', '#philosophy', '#schedule', '#instructors', '#pricing', 'footer'], { autoAlpha: 0, display: 'none' });
+      gsap.set(['.hero-img', '.hero-title-line', '.hero-desc-line', '.hero-cta'], { autoAlpha: 0 });
+      gsap.set('#lotus-container', { scale: 5, y: '50vh', rotationX: 0 });
+      gsap.set('.lotus-path-main, .lotus-path-glow', { strokeDasharray: 100, strokeDashoffset: 100 });
+      gsap.set('.lotus-shimmer', { autoAlpha: 0 });
+
+      const lotusTl = gsap.timeline({ paused: true });
+      lotusTl.to('.lotus-path-main', { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut", stagger: 0.5 }, 0);
+      lotusTl.to('.lotus-path-glow', { strokeDashoffset: 0, duration: 0.5, ease: "power2.inOut", stagger: 0.5 }, 0);
+      lotusTl.to('#lotus-container', { scale: 1, y: 0, rotationX: 35, duration: 1.5, ease: "power3.inOut" }, 2.5);
+
+      let introProgress = 0;
+      let introDone = false;
+      let lastTouchY = 0;
+
+      function handleScrollEvt(e) {
+          if(introDone) return;
+          e.preventDefault();
+          let delta = 0;
+          if(e.type === 'wheel') {
+              delta = e.deltaY;
+          } else if (e.type === 'touchmove') {
+              let touchY = e.touches[0].clientY;
+              delta = lastTouchY - touchY;
+              lastTouchY = touchY;
+          }
+          if(delta <= 0) return;
+
+          introProgress += delta * 0.002;
+          if(introProgress > 1) introProgress = 1;
+          gsap.to(lotusTl, { progress: introProgress, duration: 0.5, ease: "power1.out", onComplete: checkDone });
+      }
+
+      window.addEventListener('touchstart', e => { if(!introDone) lastTouchY = e.touches[0].clientY; }, { passive: false });
+      window.addEventListener('wheel', handleScrollEvt, { passive: false });
+      window.addEventListener('touchmove', handleScrollEvt, { passive: false });
+
+      function checkDone() {
+          if(introProgress >= 1 && !introDone) {
+              introDone = true;
+              window.removeEventListener('wheel', handleScrollEvt, { passive: false });
+              window.removeEventListener('touchmove', handleScrollEvt, { passive: false });
+
+              // Start Shimmer
+              gsap.set('.lotus-shimmer', { autoAlpha: 1 });
+              gsap.fromTo('.lotus-path-shimmer',
+                  { strokeDasharray: "0.1 100", strokeDashoffset: 100 },
+                  { strokeDashoffset: 0, duration: 15, repeat: -1, ease: "linear" }
+              );
+
+              // Reveal Site
+              gsap.set(['#navbar', '#philosophy', '#schedule', '#instructors', '#testimonials', '#pricing', 'footer'], { display: '' });
+              document.body.style.overflow = '';
+              ScrollTrigger.refresh();
+
+              const tl = gsap.timeline();
+              if (document.getElementById('scroll-hint')) {
+                  tl.to('#scroll-hint', { autoAlpha: 0, duration: 0.5 }, 0);
+              }
+              tl.to(['#navbar', '#philosophy', '#schedule', '#instructors', '#testimonials', '#pricing', 'footer'], { autoAlpha: 1, duration: 1 }, 0)
+                .fromTo('.hero-img',
+                    { scale: 1.1, autoAlpha: 0 },
+                    { scale: 1, autoAlpha: 0.6, duration: 2.5, ease: "power2.out" }, 0
+                )
+                .fromTo('.hero-title-line',
+                    { yPercent: 100, autoAlpha: 0 },
+                    { yPercent: 0, autoAlpha: 1, duration: 1.2, stagger: 0.2, ease: "power3.out" }, "-=2"
+                )
+                .fromTo('.hero-desc-line',
+                    { yPercent: 100, autoAlpha: 0 },
+                    { yPercent: 0, autoAlpha: 1, duration: 1, ease: "power3.out" }, "-=1.2"
+                )
+                .fromTo('.hero-cta',
+                    { y: 20, autoAlpha: 0 },
+                    { y: 0, autoAlpha: 1, duration: 1, ease: "power2.out" }, "-=0.8"
+                );
+          }
+      }
+
+      // Scroll Animations
+      ScrollTrigger.create({
+          start: 50,
+          end: 99999,
+          toggleClass: { className: 'navbar-scrolled', targets: '#navbar' }
+      });
+
+      gsap.utils.toArray('.text-mask-reveal').forEach(section => {
+          const words = section.querySelectorAll('.word-inner');
+          gsap.to(words, {
+              scrollTrigger: {
+                  trigger: section,
+                  start: "top 80%",
+              },
+              y: 0,
+              duration: 1.2,
+              stagger: 0.03,
+              ease: "power3.out"
+          });
+      });
+
+      gsap.utils.toArray('.reveal-up').forEach(el => {
+          gsap.fromTo(el,
+              { y: 40, opacity: 0 },
+              {
+                  scrollTrigger: {
+                      trigger: el,
+                      start: "top 85%",
+                  },
+                  y: 0,
+                  opacity: 1,
+                  duration: 1,
+                  ease: "power2.out"
+              }
+          );
+      });
+
+      gsap.utils.toArray('.clip-reveal').forEach(el => {
+          gsap.to(el, {
+              scrollTrigger: {
+                  trigger: el,
+                  start: "top 85%",
+              },
+              clipPath: "inset(0% 0 0 0)",
+              duration: 1.5,
+              ease: "power3.inOut"
+          });
+      });
+
+      gsap.utils.toArray('.parallax-img').forEach(img => {
+          gsap.to(img, {
+              scrollTrigger: {
+                  trigger: img.parentElement,
+                  start: "top bottom",
+                  end: "bottom top",
+                  scrub: 1
+              },
+              yPercent: 15,
+              ease: "none"
+          });
+      });
+
+      const tabs = document.querySelectorAll('.schedule-tab');
+      let isAnimating = false;
+      tabs.forEach(tab => {
+          tab.addEventListener('click', () => {
+              if (tab.classList.contains('active') || isAnimating) return;
+              isAnimating = true;
+              tabs.forEach(t => {
+                  t.classList.remove('active', 'bg-[#C17F59]/10', 'border-[#C17F59]/30', 'text-[#F5F0EB]');
+                  t.classList.add('text-[#9C9789]', 'border-transparent');
+              });
+              tab.classList.remove('text-[#9C9789]', 'border-transparent');
+              tab.classList.add('active', 'bg-[#C17F59]/10', 'border-[#C17F59]/30', 'text-[#F5F0EB]');
+
+              const day = tab.getAttribute('data-day');
+              const targetContent = document.getElementById(day + '-schedule');
+              const activeContent = document.querySelector('.schedule-content.active');
+
+              if (activeContent) {
+                  gsap.to(activeContent, { opacity: 0, y: -10, duration: 0.3, ease: "power2.in", onComplete: () => {
+                      activeContent.classList.remove('active');
+                      activeContent.style.display = 'none';
+
+                      if(targetContent) {
+                          targetContent.style.display = 'flex';
+                          gsap.fromTo(targetContent,
+                              { opacity: 0, y: 10 },
+                              { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", onComplete: () => isAnimating = false }
+                          );
+                          targetContent.classList.add('active');
+                      } else {
+                          isAnimating = false;
+                      }
+                  }});
+              } else {
+                  if(targetContent) {
+                      targetContent.style.display = 'flex';
+                      gsap.fromTo(targetContent,
+                          { opacity: 0, y: 10 },
+                          { opacity: 1, y: 0, duration: 0.5, ease: "power2.out", onComplete: () => isAnimating = false }
+                          );
+                      targetContent.classList.add('active');
+                  } else {
+                      isAnimating = false;
+                  }
+              }
+          });
+      });
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e) {
+              e.preventDefault();
+              const target = document.querySelector(this.getAttribute('href'));
+              if (target) {
+                  gsap.to(window, {
+                      duration: 1.5,
+                      scrollTo: { y: target, offsetY: 80 },
+                      ease: "power3.inOut"
+                  });
+              }
+          });
+      });
+    </script>
+
+    <script>
+      document.querySelectorAll('.glow-surface').forEach(el => {
+        el.addEventListener('mousemove', e => {
+          const rect = el.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          el.style.setProperty('--x', `${x}px`);
+          el.style.setProperty('--y', `${y}px`);
+        });
+      });
+    </script>
+
+    <script data-aura-video-controller="true">
+      (function () {
+        function playVideo(video) {
+          var promise = video.play();
+          if (promise && typeof promise.catch === "function") {
+            promise.catch(function () {});
+          }
+        }
+
+        function setupVideo(video) {
+          if (video.__auraVideoReady === true) return;
+          video.__auraVideoReady = true;
+          video.removeAttribute("data-aura-video-ready");
+          video.removeAttribute("data-aura-video-played");
+          video.muted = true;
+          video.playsInline = true;
+
+          var preset = video.dataset.auraVideoPreset || "loop-in-view";
+          if (preset === "hover") {
+            video.addEventListener("mouseenter", function () {
+              playVideo(video);
+            });
+            video.addEventListener("mouseleave", function () {
+              video.pause();
+              video.currentTime = 0;
+            });
+            return;
+          }
+
+          if (!("IntersectionObserver" in window)) {
+            playVideo(video);
+            return;
+          }
+
+          var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+              if (entry.isIntersecting) {
+                if (preset === "play-once" && video.__auraVideoPlayed === true) {
+                  return;
+                }
+                playVideo(video);
+              } else {
+                video.pause();
+              }
+            });
+          }, { threshold: 0.35 });
+
+          if (preset === "play-once") {
+            video.addEventListener("ended", function () {
+              video.__auraVideoPlayed = true;
+            }, { once: true });
+          }
+
+          observer.observe(video);
+        }
+
+        function setupVideos() {
+          document
+            .querySelectorAll("video[data-aura-video-preset]")
+            .forEach(setupVideo);
+        }
+
+        if (document.readyState === "loading") {
+          document.addEventListener("DOMContentLoaded", setupVideos);
+        } else {
+          setupVideos();
+        }
+      })();
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+          setTimeout(() => {
+              if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+              gsap.to(".philo-bg-text", {
+                  scrollTrigger: {
+                      trigger: "#philosophy",
+                      start: "top bottom",
+                      end: "bottom top",
+                      scrub: true
+                  },
+                  yPercent: 20,
+                  opacity: 0.05,
+                  ease: "none"
+              });
+              gsap.utils.toArray(".philo-img-wrap").forEach(wrap => {
+                  let overlay = wrap.querySelector(".philo-img-overlay");
+                  let img = wrap.querySelector(".philo-img");
+                  if(overlay) {
+                      gsap.to(overlay, {
+                          height: 0,
+                          duration: 1.5,
+                          ease: "power4.inOut",
+                          scrollTrigger: {
+                              trigger: wrap,
+                              start: "top 80%"
+                          }
+                      });
+                  }
+                  if(img) {
+                      gsap.fromTo(img,
+                          { scale: 1.2, yPercent: 10 },
+                          {
+                              scale: 1,
+                              yPercent: -10,
+                              ease: "none",
+                              scrollTrigger: {
+                                  trigger: wrap,
+                                  start: "top bottom",
+                                  end: "bottom top",
+                                  scrub: true
+                              }
+                          }
+                      );
+                  }
+              });
+              gsap.utils.toArray(".philo-text-block").forEach(block => {
+                  gsap.fromTo(block.children,
+                      { y: 40, opacity: 0 },
+                      {
+                          y: 0,
+                          opacity: 1,
+                          duration: 1.2,
+                          stagger: 0.15,
+                          ease: "power3.out",
+                          scrollTrigger: {
+                              trigger: block,
+                              start: "top 85%"
+                          }
+                      }
+                  );
+              });
+          }, 500);
+      });
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+          setTimeout(() => {
+              if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+              const instructorSection = document.getElementById("instructors");
+              if(instructorSection) {
+                  const texts = gsap.utils.toArray(".instructor-text");
+                  const images = gsap.utils.toArray(".instructor-img-wrapper");
+                  const innerImgs = gsap.utils.toArray(".instructor-img");
+
+                  if(texts.length && images.length && innerImgs.length) {
+                      gsap.set(innerImgs.slice(1), { scale: 1.2 });
+                      gsap.set(texts.slice(1), { opacity: 0, y: 40 });
+
+                      gsap.set(images[0], { clipPath: "inset(100% 0% 0% 0%)" });
+                      gsap.set(innerImgs[0], { scale: 1.4 });
+                      gsap.set(texts[0], { opacity: 0, y: 40 });
+
+                      ScrollTrigger.create({
+                          trigger: instructorSection,
+                          start: "top 75%",
+                          onEnter: () => {
+                              gsap.to(images[0], { clipPath: "inset(0% 0% 0% 0%)", duration: 1.6, ease: "expo.inOut" });
+                              gsap.to(innerImgs[0], { scale: 1.05, duration: 2, ease: "expo.out" });
+                              gsap.to(texts[0], { opacity: 1, y: 0, duration: 1.2, ease: "power3.out", delay: 0.4 });
+                          }
+                      });
+
+                      const tl = gsap.timeline({
+                          scrollTrigger: {
+                              trigger: instructorSection,
+                              start: "top top",
+                              end: "bottom bottom",
+                              scrub: 1
+                          }
+                      });
+
+                      tl.fromTo(texts[0], { opacity: 1, y: 0 }, { opacity: 0, y: -40, duration: 1, ease: "power2.inOut" }, 0)
+                        .fromTo(images[0], { clipPath: "inset(0% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 100% 0%)", duration: 1, ease: "power2.inOut" }, 0)
+                        .to(texts[1], { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, 0)
+                        .to(innerImgs[1], { scale: 1.05, duration: 1, ease: "power2.out" }, 0);
+
+                      tl.to({}, { duration: 0.2 });
+
+                      tl.to(texts[1], { opacity: 0, y: -40, duration: 1, ease: "power2.inOut" })
+                        .to(images[1], { clipPath: "inset(0% 0% 100% 0%)", duration: 1, ease: "power2.inOut" }, "<")
+                        .to(texts[2], { opacity: 1, y: 0, duration: 1, ease: "power2.out" }, "<")
+                        .to(innerImgs[2], { scale: 1.05, duration: 1, ease: "power2.out" }, "<");
+
+                      tl.to({}, { duration: 0.2 });
+                  }
+              }
+          }, 600);
+      });
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+        setTimeout(() => {
+          if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+          const pricingSection = document.getElementById('pricing');
+          if(pricingSection) {
+            // Sticky text entrance animation
+            gsap.fromTo(".pricing-sticky-text > *:not(.pricing-nav)",
+              { y: 40, opacity: 0 },
+              {
+                y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: "power3.out",
+                scrollTrigger: { trigger: pricingSection, start: "top 70%" }
+              }
+            );
+            gsap.fromTo(".pricing-nav",
+              { opacity: 0, x: -20 },
+              {
+                 opacity: 1, x: 0, duration: 1, ease: "power2.out", delay: 0.5,
+                 scrollTrigger: { trigger: pricingSection, start: "top 70%" }
+              }
+            );
+
+            // Cards cinematic reveal
+            const cards = gsap.utils.toArray('.pricing-card');
+            const navItems = gsap.utils.toArray('.pricing-nav-item');
+            const indicator = document.querySelector('.pricing-indicator');
+
+            cards.forEach((card, i) => {
+              // Entrance
+              gsap.fromTo(card,
+                { y: 100, opacity: 0, scale: 0.95, rotateX: 5 },
+                {
+                  y: 0, opacity: 1, scale: 1, rotateX: 0, duration: 1.2, ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                  }
+                }
+              );
+
+              // Scroll-synced active state
+              ScrollTrigger.create({
+                trigger: card,
+                start: "top 50%",
+                end: "bottom 50%",
+                onEnter: () => activateNav(i),
+                onEnterBack: () => activateNav(i)
+              });
+
+              // Parallax subtle effect on cards
+              gsap.to(card, {
+                 yPercent: -5,
+                 ease: "none",
+                 scrollTrigger: {
+                    trigger: card,
+                    start: "top bottom",
+                    end: "bottom top",
+                    scrub: true
+                 }
+              });
+            });
+
+            let lastIndex = -1;
+            function activateNav(index) {
+              if (index === lastIndex) return;
+              lastIndex = index;
+              navItems.forEach((item, i) => {
+                 if(i === index) {
+                    item.classList.remove('text-[#9C9789]');
+                    item.classList.add('text-[#C17F59]', 'font-medium');
+                    gsap.to(item, { x: 8, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+                 } else {
+                    item.classList.remove('text-[#C17F59]', 'font-medium');
+                    item.classList.add('text-[#9C9789]');
+                    gsap.to(item, { x: 0, duration: 0.4, ease: "power2.out", overwrite: "auto" });
+                 }
+              });
+              if(indicator) {
+                 gsap.to(indicator, {
+                    top: `${(index) * 33.33}%`,
+                    duration: 0.5,
+                    ease: "power3.inOut",
+                    overwrite: "auto"
+                 });
+              }
+            }
+          }
+        }, 600);
+      });
+    </script>
+
+    <script>
+      window.addEventListener("load", () => {
+          const pricing = document.getElementById('pricing');
+          const testimonials = document.getElementById('testimonials');
+          if (pricing && testimonials) {
+              if (pricing.style.display !== 'none') {
+                  testimonials.style.display = '';
+                  gsap.set(testimonials, { autoAlpha: 1 });
+              } else {
+                  const observer = new MutationObserver((mutations) => {
+                      mutations.forEach((mutation) => {
+                          if (mutation.attributeName === 'style' && pricing.style.display !== 'none') {
+                              testimonials.style.display = '';
+                              gsap.to(testimonials, { autoAlpha: 1, duration: 1, overwrite: "auto" });
+                              observer.disconnect();
+                          }
+                      });
+                  });
+                  observer.observe(pricing, { attributes: true });
+              }
+          }
+
+          setTimeout(() => {
+              if(typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+              if(!testimonials) return;
+
+              const items = gsap.utils.toArray(".testi-item");
+              const progressBar = testimonials.querySelector(".testi-progress-bar");
+              const counter = testimonials.querySelector(".testi-counter");
+              const title = testimonials.querySelector(".testi-title");
+              const progressWrap = testimonials.querySelector(".testi-progress");
+              const bgGlow = testimonials.querySelector(".testi-bg-glow");
+
+              gsap.set(items, { opacity: 0, y: 60, scale: 0.95 });
+              gsap.set([title, progressWrap], { opacity: 0, y: 20 });
+
+              const tl = gsap.timeline({
+                  scrollTrigger: {
+                      trigger: testimonials,
+                      start: "top top",
+                      end: "+=3000",
+                      pin: true,
+                      scrub: 1,
+                  }
+              });
+
+              tl.to([title, progressWrap], { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0);
+
+              items.forEach((item, i) => {
+                  const isLast = i === items.length - 1;
+                  const quote = item.querySelector(".testi-quote");
+                  const author = item.querySelector(".testi-author");
+                  const icon = item.querySelector("iconify-icon");
+                  const bgColors = [
+                      'rgba(193,127,89,0.15)',
+                      'rgba(138,154,123,0.15)',
+                      'rgba(212,160,122,0.15)'
+                  ];
+
+                  const itemTl = gsap.timeline();
+
+                  itemTl.to(item, { opacity: 1, y: 0, scale: 1, duration: 1, ease: "power3.out" }, 0)
+                        .from(icon, { opacity: 0, scale: 0.5, rotation: -10, duration: 0.8, ease: "back.out(1.5)" }, 0.2)
+                        .from(quote, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" }, 0.3)
+                        .from(author, { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" }, 0.4);
+
+                  itemTl.to(progressBar, { width: `${((i + 1) / items.length) * 100}%`, duration: 1, ease: "none" }, 0);
+                  itemTl.add(() => {
+                      if (counter) counter.innerText = `0${i + 1} / 0${items.length}`;
+                      if (bgGlow) {
+                          gsap.to(bgGlow, {
+                              background: `radial-gradient(circle, ${bgColors[i]} 0%, transparent 70%)`,
+                              duration: 0.5
+                          });
+                      }
+                  }, 0.5);
+
+                  tl.add(itemTl);
+                  tl.to({}, { duration: 1.5 });
+
+                  if (!isLast) {
+                      tl.to(item, { opacity: 0, y: -40, scale: 1.05, duration: 1, ease: "power2.in" });
+                  }
+              });
+
+              tl.to([title, progressWrap], { opacity: 0, y: -20, duration: 0.5, ease: "power2.in" });
+
+          }, 600);
+      });
+    </script>
+  
+</body></html>

@@ -1,0 +1,855 @@
+<html lang="en" class="antialiased" itemscope="" itemtype="http://schema.org/WebPage"><head>
+<script>
+try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- PRIMARY SEO -->
+<title>AETHERIS | Scalable Layer 1 Blockchain &amp; DAG Protocol</title>
+<meta name="description" content="Aetheris is the next-generation Layer 1 blockchain using DAG consensus for infinite scalability, instant finality, and zero-knowledge privacy. The future of DeFi and Web3.">
+<meta name="keywords" content="Aetheris, Blockchain, Layer 1, DAG, Consensus, Crypto, Cryptocurrency, DeFi, Web3, Smart Contracts, EVM Compatible, ZK-Rollups, Staking, Validator Node, Infinite Scalability">
+<meta name="author" content="Aetheris Foundation">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://www.aetheris.io/">
+<!-- OPEN GRAPH / FACEBOOK -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://www.aetheris.io/">
+<meta property="og:title" content="AETHERIS | The Architect of Digital Value">
+<meta property="og:description" content="The world's first hybrid DAG-Blockchain architecture. Instant finality, zero-knowledge privacy, and quantum-resistant security.">
+<meta property="og:image" content="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop">
+<!-- TWITTER -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://www.aetheris.io/">
+<meta property="twitter:title" content="AETHERIS | Sovereign Chain Protocol">
+<meta property="twitter:description" content="Join the revolution of infinite scalability. Aetheris is the L1 blockchain for the next billion users.">
+<meta property="twitter:image" content="https://images.unsplash.com/photo-1639322537228-f710d846310a?q=80&amp;w=1200&amp;auto=format&amp;fit=crop">
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet">
+<!-- Config -->
+<script>
+tailwind.config = {
+theme: {
+extend: {
+colors: {
+'void': '#030303',
+'panel': '#080808',
+'mint': '#00ffa3',
+'mint-dark': '#00b372',
+'border': 'rgba(255, 255, 255, 0.08)',
+'border-strong': 'rgba(255, 255, 255, 0.15)',
+'sub': '#888888'
+},
+fontFamily: {
+'display': ['Inter', 'sans-serif'],
+'mono': ['JetBrains Mono', 'monospace'],
+'body': ['Inter', 'sans-serif'],
+},
+backgroundImage: {
+'tech-grid': "linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px)",
+},
+letterSpacing: {
+'tightest': '-0.04em',
+}
+}
+}
+}
+</script>
+<!-- SCHEMA.ORG STRUCTURED DATA -->
+<script type="application/ld+json">
+{
+"@context": "https://schema.org",
+"@graph": [
+{
+"@type": "Organization",
+"name": "Aetheris Foundation",
+"url": "https://www.aetheris.io",
+"logo": "https://www.aetheris.io/logo.png",
+"sameAs": [
+"https://twitter.com/aetheris",
+"https://discord.gg/aetheris",
+"https://github.com/aetheris-protocol"
+]
+},
+{
+"@type": "SoftwareApplication",
+"name": "Aetheris Protocol",
+"applicationCategory": "Blockchain",
+"operatingSystem": "Decentralized Network",
+"description": "A Layer 1 blockchain protocol utilizing DAG consensus for high throughput and low latency.",
+"offers": {
+"@type": "Offer",
+"price": "0",
+"priceCurrency": "USD"
+}
+},
+{
+"@type": "FAQPage",
+"mainEntity": [
+{
+"@type": "Question",
+"name": "How is Aetheris different from Solana?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "While Solana focuses on Proof of History, Aetheris utilizes a DAG (Directed Acyclic Graph) structure which allows for parallel block processing, theoretically offering infinite horizontal scalability."
+}
+},
+{
+"@type": "Question",
+"name": "Is the Mainnet live?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Yes, the Aetheris Mainnet Beta launched in Q4 2025. You can bridge assets now and start deploying smart contracts."
+}
+},
+{
+"@type": "Question",
+"name": "How do I run a validator node?",
+"acceptedAnswer": {
+"@type": "Answer",
+"text": "Running a node requires 32GB RAM and a 4-core CPU. You must stake a minimum of 50,000 ATH tokens."
+}
+}
+]
+}
+]
+}
+</script>
+<style>
+body { background-color: #030303; color: #e0e0e0; overflow-x: hidden; }
+/* Scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #030303; }
+::-webkit-scrollbar-thumb { background: #333; }
+::-webkit-scrollbar-thumb:hover { background: #00ffa3; }
+/* Utilities */
+.text-stroke { -webkit-text-stroke: 1px rgba(255, 255, 255, 0.25); color: transparent; }
+.text-stroke-hover:hover { -webkit-text-stroke: 1px #00ffa3; color: rgba(0, 255, 163, 0.1); }
+.grid-bg { background-size: 50px 50px; }
+/* Card Hover */
+.hover-card { transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+.hover-card:hover { background: rgba(255, 255, 255, 0.03); border-color: #00ffa3; }
+/* Loader */
+.preloader { position: fixed; inset: 0; background: #030303; z-index: 9999; display: flex; align-items: center; justify-content: center; }
+/* Scan Effect for Network Map */
+.scan-line {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 5px;
+background: linear-gradient(to right, transparent, #00ffa3, transparent);
+opacity: 0.5;
+box-shadow: 0 0 15px #00ffa3;
+animation: scan 4s linear infinite;
+}
+@keyframes scan {
+0% { top: 0; }
+100% { top: 100%; }
+}
+/* Tech Separator */
+.tech-separator {
+width: 100%;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+position: relative;
+margin: 0 auto;
+}
+.tech-separator::after {
+content: '';
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
+width: 50px;
+height: 3px;
+background: #00ffa3;
+box-shadow: 0 0 10px rgba(0, 255, 163, 0.5);
+}
+/* Digital Singularity Animation */
+.singularity-wrapper {
+perspective: 800px;
+width: 100%;
+height: 100%;
+position: absolute;
+top: 0; left: 0;
+overflow: hidden;
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.tunnel-ring {
+position: absolute;
+border-radius: 50%;
+border: 1px solid rgba(0, 255, 163, 0.15); /* Mint low opacity */
+box-shadow: 0 0 20px rgba(0, 255, 163, 0.05);
+animation: tunnelMove 6s linear infinite;
+opacity: 0;
+}
+.tunnel-ring:nth-child(even) {
+border-style: dashed;
+border-width: 1px;
+border-color: rgba(255, 255, 255, 0.1);
+}
+@keyframes tunnelMove {
+0% { transform: translateZ(-500px) scale(0); opacity: 0; }
+20% { opacity: 1; }
+100% { transform: translateZ(800px) scale(2); opacity: 0; }
+}
+.tunnel-ring:nth-child(1) { animation-delay: 0s; }
+.tunnel-ring:nth-child(2) { animation-delay: 0.5s; }
+.tunnel-ring:nth-child(3) { animation-delay: 1s; }
+.tunnel-ring:nth-child(4) { animation-delay: 1.5s; }
+.tunnel-ring:nth-child(5) { animation-delay: 2s; }
+.tunnel-ring:nth-child(6) { animation-delay: 2.5s; }
+.tunnel-ring:nth-child(7) { animation-delay: 3s; }
+.tunnel-ring:nth-child(8) { animation-delay: 3.5s; }
+.tunnel-ring:nth-child(9) { animation-delay: 4s; }
+.tunnel-ring:nth-child(10) { animation-delay: 4.5s; }
+.tunnel-ring:nth-child(11) { animation-delay: 5s; }
+.tunnel-ring:nth-child(12) { animation-delay: 5.5s; }
+</style></head>
+<body class="font-body bg-tech-grid grid-bg selection:bg-mint selection:text-void">
+
+    <!-- PRELOADER -->
+    
+
+    <!-- HUD OVERLAY -->
+    <div class="preloader" id="preloader" role="status" aria-label="Loading Website">
+        <div class="text-center px-6">
+            <div class="font-display text-3xl md:text-4xl font-semibold mb-2 tracking-tighter">INITIALIZING</div>
+            <div class="w-48 h-1 bg-gray-800 mx-auto overflow-hidden">
+                <div class="h-full bg-mint w-0" id="loader-bar"></div>
+            </div>
+            <div class="font-mono text-[10px] text-mint mt-2 tracking-widest">ESTABLISHING UPLINK...</div>
+        </div>
+    </div>
+    
+    <div class="fixed inset-0 pointer-events-none z-40 p-4 hidden md:block" aria-hidden="true">
+        <div class="absolute top-4 left-4 w-2 h-2 border-t border-l border-white/50"></div>
+        <div class="absolute top-4 right-4 w-2 h-2 border-t border-r border-white/50"></div>
+        <div class="absolute bottom-4 left-4 w-2 h-2 border-b border-l border-white/50"></div>
+        <div class="absolute bottom-4 right-4 w-2 h-2 border-b border-r border-white/50"></div>
+    </div>
+
+    <!-- NAV -->
+    <nav class="fixed w-full z-50 top-0 border-b border-border bg-void/90 backdrop-blur-xl" aria-label="Main Navigation">
+        <div class="flex h-16 max-w-[1920px] mx-auto px-6 md:px-12 items-center justify-between">
+            <a href="/home" class="flex items-center gap-2 group shrink-0" aria-label="Aetheris Homepage">
+                <span class="text-lg font-semibold tracking-tight font-display">AETHERIS</span>
+            </a>
+
+            <div class="hidden lg:flex items-center border-x border-border h-full px-8">
+                <a href="/about" class="uppercase text-sub hover:text-mint transition-colors text-xs font-semibold tracking-wide pt-2 pr-6 pb-2 pl-6">About</a>
+                <a href="/tokenomics" class="uppercase text-sub hover:text-mint transition-colors text-xs font-semibold tracking-wide pt-2 pr-6 pb-2 pl-6">Tokenomics</a>
+                <a href="/roadmap" class="uppercase text-sub hover:text-mint transition-colors text-xs font-semibold tracking-wide pt-2 pr-6 pb-2 pl-6">Roadmap</a>
+                <a href="/staking-dashboard" class="uppercase text-sub hover:text-mint transition-colors text-xs font-semibold tracking-wide pt-2 pr-6 pb-2 pl-6">Staking</a>
+                <a href="/blog-list" class="uppercase text-sub hover:text-mint transition-colors text-xs font-semibold tracking-wide pt-2 pr-6 pb-2 pl-6">Blog</a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex items-center gap-2 text-[10px] font-mono text-mint">
+                    <span class="w-1.5 h-1.5 bg-mint rounded-full animate-pulse"></span>
+                    GAS: 4 GWEI
+                </div>
+                <button class="bg-white text-void px-4 md:px-6 py-2 text-xs font-semibold uppercase hover:bg-mint transition-colors whitespace-nowrap">
+                    Connect
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <header class="relative w-full h-screen min-h-[600px] bg-void overflow-hidden flex flex-col items-center justify-end pb-24 md:pb-32">
+        
+        <!-- Top Visual: Unicorn Studio Background -->
+        <div class="absolute top-0 left-0 w-full h-[65vh] z-0 pointer-events-none">
+             <div data-us-project="7zydvovZReD8YsoiUwj3" style="width:100%; height: 100%;"></div>
+             <!-- Gradient mask to blend bottom of animation -->
+             <div class="absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-void via-void/80 to-transparent z-10"></div>
+        </div>
+        
+        <!-- Content -->
+        <div class="relative z-20 flex flex-col items-center w-full max-w-[1920px] px-6 text-center">
+            
+            <!-- Typography Title -->
+            <div class="flex flex-col items-center justify-center w-full">
+                <!-- Top Solid Text -->
+                <h1 class="font-display text-4xl md:text-7xl font-semibold text-white tracking-tightest leading-none relative z-20 mix-blend-lighten">
+                    INFINITE
+                </h1>
+                
+                <!-- Spacing -->
+                <div class="h-2 md:h-4"></div>
+
+                <!-- Bottom Transparent/Stroked Text -->
+                <div class="font-display text-[13vw] leading-[0.85] font-semibold tracking-tighter text-transparent z-10 select-none pointer-events-none text-stroke opacity-90 transition-opacity" aria-label="SCALABILITY">
+                    SCALABILITY
+                </div>
+            </div>
+
+            <!-- Description -->
+            <p class="max-w-xl text-center text-gray-400 text-sm md:text-lg font-medium leading-relaxed mt-6 mb-8 hero-anim opacity-0 translate-y-4">
+                The world's first hybrid DAG-Blockchain architecture. Instant finality, zero-knowledge privacy, and quantum-resistant security.
+            </p>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-col md:flex-row gap-4 w-full md:w-auto hero-anim opacity-0 translate-y-4">
+                <button class="group bg-mint text-void px-10 py-3 text-xs font-semibold uppercase tracking-wide hover:bg-white transition-all hover:scale-[1.02] min-w-[180px] text-center shadow-[0_0_20px_rgba(0,255,163,0.3)]">
+                    Start Building
+                </button>
+                <button class="group bg-void/50 backdrop-blur-md border border-white/20 text-white px-10 py-3 text-xs font-semibold uppercase tracking-wide hover:bg-white/10 transition-all hover:border-white/40 min-w-[180px] text-center">
+                    Read Whitepaper
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- PARTNERS -->
+    <section class="border-b border-border bg-void" aria-label="Trusted Partners">
+        <div class="max-w-[1920px] mx-auto grid grid-cols-2 md:grid-cols-6 divide-x divide-y md:divide-y-0 divide-border">
+            <div class="p-6 md:p-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100">
+                <span class="font-display font-semibold text-lg md:text-xl tracking-tight">BINANCE</span>
+            </div>
+            <div class="p-6 md:p-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100">
+                <span class="font-display font-semibold text-lg md:text-xl tracking-tight">COINBASE</span>
+            </div>
+            <div class="p-6 md:p-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100">
+                <span class="font-display font-semibold text-lg md:text-xl tracking-tight">SEQUOIA</span>
+            </div>
+            <div class="p-6 md:p-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100">
+                <span class="font-display font-semibold text-lg md:text-xl tracking-tight">a16z</span>
+            </div>
+            <div class="p-6 md:p-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100">
+                <span class="font-display font-semibold text-lg md:text-xl tracking-tight">POLYCHAIN</span>
+            </div>
+            <div class="p-6 md:p-10 flex items-center justify-center grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100">
+                <span class="font-display font-semibold text-lg md:text-xl tracking-tight">PANTERA</span>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- CORE FEATURES -->
+    <section id="features" class="py-16 md:py-24 relative" aria-label="Protocol Features">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-12 flex items-end justify-between reveal">
+                <div class="">
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-2 tracking-tight">Core Architecture</h2>
+                    <p class="text-sub text-sm md:text-base max-w-md">Built on the Trinity Protocol, combining speed, security, and scalability.</p>
+                </div>
+                <div class="hidden md:block text-right">
+                    <div class="font-mono text-[10px] text-mint">SYS_ARCH_V2</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-0 border border-border">
+                <article class="group border-b md:border-b-0 md:border-r border-border p-6 md:p-8 hover-card bg-panel reveal">
+                    <div class="w-10 h-10 bg-void border border-border flex items-center justify-center mb-6 text-mint">
+                        <iconify-icon icon="solar:bolt-linear" width="24" height="24"></iconify-icon>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3 tracking-tight">Hyper-Throughput</h3>
+                    <p class="text-sm md:text-base text-sub leading-relaxed mb-4">Parallel transaction processing via DAG structure allowing 150k+ TPS on mainnet.</p>
+                </article>
+                <article class="group border-b md:border-b-0 md:border-r border-border p-6 md:p-8 hover-card bg-panel reveal">
+                    <div class="w-10 h-10 bg-void border border-border flex items-center justify-center mb-6 text-mint">
+                        <iconify-icon icon="solar:shield-check-linear" width="24" height="24"></iconify-icon>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3 tracking-tight">ZK-Privacy Layer</h3>
+                    <p class="text-sm md:text-base text-sub leading-relaxed mb-4">Native Zero-Knowledge proofs for optional transactional privacy and compliance.</p>
+                </article>
+                <article class="group border-b md:border-b-0 border-border p-6 md:p-8 hover-card bg-panel reveal">
+                    <div class="w-10 h-10 bg-void border border-border flex items-center justify-center mb-6 text-mint">
+                        <iconify-icon icon="solar:global-linear" width="24" height="24"></iconify-icon>
+                    </div>
+                    <h3 class="font-display text-xl font-semibold mb-3 tracking-tight">Interoperability</h3>
+                    <p class="text-sm md:text-base text-sub leading-relaxed mb-4">Native bridges to Ethereum, Solana, and Cosmos via the Aetheris Nexus.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- TOKEN UTILITY (ANIMATED) -->
+    <section id="token" class="grid grid-cols-1 md:grid-cols-2" aria-label="Tokenomics">
+        <!-- Chart Area -->
+        <div class="bg-panel p-8 md:p-24 border-b md:border-b-0 md:border-r border-border flex flex-col justify-center items-center relative overflow-hidden reveal order-2 md:order-1">
+            <div class="relative w-56 h-56 md:w-64 md:h-64">
+                <svg viewBox="0 0 100 100" class="w-full h-full -rotate-90">
+                    <circle cx="50" cy="50" r="45" stroke="#1a1a1a" stroke-width="8" fill="none"></circle>
+                    <!-- Animated Circle -->
+                    <circle cx="50" cy="50" r="45" stroke="#00ffa3" stroke-width="8" fill="none" stroke-dasharray="283" stroke-dashoffset="283" class="token-chart-ring"></circle>
+                </svg>
+                <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span class="text-3xl md:text-4xl font-semibold text-white">1B</span>
+                    <span class="text-xs text-sub uppercase tracking-wider">Total Supply</span>
+                </div>
+            </div>
+            
+            <div class="mt-8 grid grid-cols-2 gap-8 text-center w-full max-w-sm">
+                <div class="">
+                    <div class="text-xl md:text-2xl font-semibold text-white">$<span class="token-stat-number" data-target="452">0</span>M</div>
+                    <div class="text-[10px] text-sub uppercase">Market Cap</div>
+                </div>
+                <div class="">
+                    <div class="text-xl md:text-2xl font-semibold text-mint"><span class="token-stat-number" data-target="12.5">0</span>%</div>
+                    <div class="text-[10px] text-sub uppercase">Staking APY</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Utility List -->
+        <div class="bg-void p-8 md:p-24 flex flex-col justify-center reveal order-1 md:order-2">
+            <h3 class="font-display text-2xl md:text-3xl font-semibold mb-8 tracking-tight">Token Utility ($ATH)</h3>
+            <div class="space-y-6">
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-mint font-semibold font-mono shrink-0">1</div>
+                    <div class="">
+                        <h4 class="font-semibold text-white text-lg">Network Fees</h4>
+                        <p class="text-sm md:text-base text-sub">Used to pay for transactions and smart contract execution across the mesh.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-mint font-semibold font-mono shrink-0">2</div>
+                    <div class="">
+                        <h4 class="font-semibold text-white text-lg">Governance</h4>
+                        <p class="text-sm md:text-base text-sub">Vote on protocol upgrades, treasury allocation, and parameter adjustments.</p>
+                    </div>
+                </div>
+                <div class="flex gap-4">
+                    <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-mint font-semibold font-mono shrink-0">3</div>
+                    <div class="">
+                        <h4 class="font-semibold text-white text-lg">Validator Staking</h4>
+                        <p class="text-sm md:text-base text-sub">Secure the network by delegating to validators and earning yield.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- ROADMAP -->
+    <section id="roadmap" class="py-16 md:py-24 bg-void" aria-label="Development Roadmap">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-12 md:gap-16">
+                <div class="md:w-1/3 reveal">
+                    <div class="inline-block px-3 py-1 border border-border bg-white/5 rounded-full mb-6">
+                        <span class="text-[10px] font-mono text-mint uppercase tracking-widest">Execution Log</span>
+                    </div>
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-4 tracking-tight">Strategic<br>Roadmap</h2>
+                    <p class="text-sub text-sm md:text-base leading-relaxed mb-8">
+                        Aetheris is deployed in sequential phases to ensure network stability and security. We are currently in Phase 2.
+                    </p>
+                </div>
+                <div class="md:w-2/3 space-y-0 relative border-l border-border ml-2 md:ml-0">
+                    <div class="relative pl-8 md:pl-10 pb-12 reveal group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-mint rounded-full shadow-[0_0_10px_#00ffa3]"></div>
+                        <div class="border border-border bg-panel/50 p-6 hover:bg-panel transition-colors">
+                            <h3 class="font-semibold text-lg text-white mb-2">Genesis &amp; Foundation</h3>
+                            <p class="text-xs text-sub">Mainnet Alpha, TGE, and Audits completed.</p>
+                        </div>
+                    </div>
+                    <div class="relative pl-8 md:pl-10 pb-12 reveal group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-white border-2 border-void"></div>
+                        <div class="absolute -left-[9px] top-1 w-4.5 h-4.5 border border-mint rounded-full animate-ping opacity-50"></div>
+                        <div class="border border-mint/30 bg-mint/5 p-6 relative overflow-hidden">
+                            <div class="flex justify-between items-start mb-2 relative z-10">
+                                <span class="font-mono text-xs text-white">PHASE 02 — IN PROGRESS</span>
+                                <span class="text-[9px] bg-mint text-void px-2 py-0.5 font-bold rounded">LIVE</span>
+                            </div>
+                            <h3 class="font-semibold text-lg text-white mb-4 relative z-10">Ecosystem Expansion</h3>
+                            <p class="text-xs text-white/70">Rolling out the Aetheris DEX, Mobile Wallet, and Governance DAO.</p>
+                        </div>
+                    </div>
+                    <div class="relative pl-8 md:pl-10 reveal group">
+                        <div class="absolute -left-[5px] top-2 w-2.5 h-2.5 bg-panel border border-sub"></div>
+                        <div class="border border-border border-dashed bg-transparent p-6 opacity-60 hover:opacity-100 transition-opacity">
+                            <h3 class="font-semibold text-lg text-gray-400 mb-2">Global Sovereignty</h3>
+                            <p class="text-xs text-sub">Full decentralization of the sequencer and satellite integration.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- NETWORK INFRASTRUCTURE -->
+    <section id="network" class="py-16 md:py-24 bg-void" aria-label="Global Network Statistics">
+        <div class="max-w-[1920px] mx-auto px-6">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Left: Cinematic Node Map -->
+                <div class="lg:col-span-8 border border-border bg-panel p-2 relative overflow-hidden reveal min-h-[400px] md:min-h-[500px]">
+                    
+                    <!-- Fixed Image: Deep Data Servers -->
+                    <div class="absolute inset-0 z-0">
+                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3e590790-e144-4deb-9989-37794b67c60e_1600w.webp" alt="Decentralized Global Validator Node Server Network" class="w-full h-full object-cover opacity-40 grayscale brightness-75 contrast-125">
+                    </div>
+
+                    <!-- CSS Radar Scan Overlay -->
+                    <div class="scan-line z-10 pointer-events-none"></div>
+                    
+                    <!-- Overlay UI -->
+                    <div class="relative z-20 p-6 md:p-8 flex flex-col justify-between h-full">
+                        <div class="flex justify-between items-start">
+                            <div class="bg-void/80 backdrop-blur-md p-4 border border-border">
+                                <h2 class="font-display text-xl md:text-2xl font-semibold mb-1 text-white tracking-tight">Live Topology</h2>
+                                <p class="text-sub text-[10px] font-mono">STATUS: SYNCHRONIZED</p>
+                            </div>
+                            <div class="flex gap-2">
+                                <div class="w-2 h-2 bg-mint rounded-full animate-pulse"></div>
+                                <div class="font-mono text-[10px] text-mint hidden md:block">UPLINK ACTIVE</div>
+                            </div>
+                        </div>
+
+                        <!-- Hotspots -->
+                        <div class="absolute top-[30%] left-[20%] w-20 h-20 md:w-32 md:h-32 border border-mint/20 rounded-full flex items-center justify-center animate-pulse">
+                            <div class="w-1 h-1 bg-mint rounded-full"></div>
+                        </div>
+                         <div class="absolute bottom-[20%] right-[30%] w-16 h-16 md:w-24 md:h-24 border border-mint/10 rounded-full flex items-center justify-center animate-pulse delay-700">
+                            <div class="w-1 h-1 bg-mint rounded-full"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Node Stats -->
+                <div class="lg:col-span-4 flex flex-col gap-6">
+                    <div class="bg-void border border-border p-6 reveal h-full flex flex-col justify-center">
+                        <h3 class="font-semibold text-white mb-6 text-sm uppercase flex items-center gap-2">
+                            <span class="w-2 h-2 bg-mint rounded-sm"></span>
+                            Network Health
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex justify-between items-center p-3 bg-panel border border-border">
+                                <span class="text-xs text-sub">Active Validators</span>
+                                <span class="font-mono text-white font-semibold">4,120</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-panel border border-border">
+                                <span class="text-xs text-sub">Global Latency</span>
+                                <span class="font-mono text-mint font-semibold">12ms</span>
+                            </div>
+                            <div class="flex justify-between items-center p-3 bg-panel border border-border">
+                                <span class="text-xs text-sub">Total Staked</span>
+                                <span class="font-mono text-white font-semibold">450M ATH</span>
+                            </div>
+                        </div>
+                        <div class="mt-8">
+                            <div class="text-[10px] text-sub mb-2 uppercase">Region Distribution</div>
+                            <div class="flex gap-1 h-2 w-full">
+                                <div class="h-full bg-mint w-[40%]"></div>
+                                <div class="h-full bg-mint/70 w-[30%]"></div>
+                                <div class="h-full bg-mint/40 w-[20%]"></div>
+                                <div class="h-full bg-mint/20 w-[10%]"></div>
+                            </div>
+                            <div class="flex justify-between text-[9px] text-gray-600 mt-1 font-mono">
+                                <span>NA</span>
+                                <span>EU</span>
+                                <span>ASIA</span>
+                                <span>SA</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- DIGITAL SINGULARITY -->
+    <section class="py-24 md:py-32 bg-panel relative overflow-hidden flex flex-col items-center justify-center h-[70vh] md:h-[90vh]" aria-label="Infinite Scalability Animation">
+        <div class="absolute inset-0 opacity-10 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/aa933a24-d4de-4c67-83f6-b8676b3bab35_1600w.webp)] bg-cover bg-center"></div>
+        
+        <div class="singularity-wrapper">
+            <div class="tunnel-ring w-[100px] h-[100px]"></div>
+            <div class="tunnel-ring w-[200px] h-[200px]"></div>
+            <div class="tunnel-ring w-[300px] h-[300px]"></div>
+            <div class="tunnel-ring w-[400px] h-[400px]"></div>
+            <div class="tunnel-ring w-[500px] h-[500px]"></div>
+            <div class="tunnel-ring w-[600px] h-[600px]"></div>
+            <div class="tunnel-ring w-[700px] h-[700px]"></div>
+            <div class="tunnel-ring w-[800px] h-[800px]"></div>
+            <div class="tunnel-ring w-[900px] h-[900px]"></div>
+            <div class="tunnel-ring w-[1000px] h-[1000px]"></div>
+            <div class="tunnel-ring w-[1200px] h-[1200px]"></div>
+        </div>
+
+        <div class="relative z-10 text-center reveal pointer-events-none px-6">
+            <span class="text-mint font-mono text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.5em] uppercase bg-black/50 backdrop-blur-md px-4 py-1 rounded-full border border-mint/20">The Singularity</span>
+            <h2 class="font-display text-4xl md:text-8xl font-bold mt-6 text-white mix-blend-difference tracking-tight">
+                INFINITE  SCALE
+            </h2>
+            <p class="text-gray-400 text-sm md:text-base max-w-md mx-auto mt-6 bg-black/30 backdrop-blur-sm p-4 rounded-lg border border-white/5">
+                A consensus mechanism that gets faster as the network grows. The more usage, the higher the throughput.
+            </p>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- PURPOSE & VISION -->
+    <section class="pt-16 md:pt-24 pb-16 md:pb-24" aria-label="Mission Statement" id="vision">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col md:flex-row gap-8 md:gap-12 mb-16 items-center">
+                <div class="md:w-1/2 reveal">
+                    <div class="inline-block px-3 py-1 border border-border bg-white/5 rounded-full mb-6">
+                        <span class="text-[10px] font-mono text-mint uppercase tracking-widest">Our Mandate</span>
+                    </div>
+                    <h2 class="font-display text-3xl md:text-4xl font-semibold mb-4 tracking-tight">Prophecy &amp; Purpose</h2>
+                    <p class="text-sub text-sm md:text-base leading-relaxed mb-6">
+                        Aetheris was born from a vision of true digital autonomy. We believe in a future where value is exchanged freely, securely, and without intermediaries, empowering individuals and fostering global innovation.
+                    </p>
+                    <p class="text-sub text-sm md:text-base leading-relaxed">
+                        Our protocol is not merely a technical advancement; it is a foundational layer for a new era of decentralized applications, digital identities, and sovereign economies.
+                    </p>
+                </div>
+                <div class="md:w-1/2 reveal">
+                    <!-- Fixed Image: Digital Neural Network -->
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa050e23-c777-40ee-aabe-cc76269a2e47_1600w.jpg" alt="Abstract digital neural network and blockchain mesh connectivity" class="w-full h-auto object-cover rounded-xl border border-border shadow-xl grayscale hover:grayscale-0 transition-all duration-500">
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 border border-border p-6 md:p-8 bg-panel reveal">
+                <div class="space-y-6 text-sub text-sm md:text-base leading-relaxed border-b md:border-b-0 md:border-r border-border pb-8 md:pb-0 md:pr-8">
+                    <p class="">
+                        The current internet infrastructure, while transformative, has become centralized and prone to data silos, censorship, and control by a few dominant entities. Our mission is to dismantle these barriers, building a new public good that is resilient, fair, and accessible to all. We are architects of digital freedom.
+                    </p>
+                    <ul class="space-y-2 pl-4 border-l border-mint/30">
+                        <li class="flex items-start gap-2 text-white"><span class="text-mint text-lg leading-none">•</span> **Decentralized Foundation:** No single point of failure, truly community-owned.</li>
+                        <li class="flex items-start gap-2 text-white"><span class="text-mint text-lg leading-none">•</span> **Inclusive Access:** Lowering barriers for developers and users globally.</li>
+                        <li class="flex items-start gap-2 text-white"><span class="text-mint text-lg leading-none">•</span> **Innovation Catalyst:** Providing tools for next-gen Web3 applications.</li>
+                    </ul>
+                </div>
+                <div class="space-y-6 text-sub text-sm md:text-base leading-relaxed md:pl-8">
+                    <!-- Fixed Image: Quantum Processor -->
+                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/89dadee1-b89d-415a-a6c9-b3d01200c4cd_1600w.jpg" alt="Quantum computing processor chip for cryptography" class="w-full h-auto object-cover rounded-md border border-border shadow-md grayscale hover:grayscale-0 transition-all duration-500">
+                    <p class="">
+                        Every line of code, every design decision, and every community initiative is guided by this overarching philosophy. We envision a future where Aetheris is not just a platform, but a global operating system for a more equitable and open digital world.
+                    </p>
+                    <a href="#" class="text-mint text-sm font-semibold uppercase tracking-widest flex items-center gap-2 hover:underline" rel="noopener">
+                        Explore Our Manifesto <span class="text-lg">→</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="tech-separator" aria-hidden="true"></div>
+
+    <!-- COMMUNITY CTA -->
+    <section class="overflow-hidden group pt-24 pb-24 md:pt-32 md:pb-32 relative" aria-label="Join Community">
+        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(0,255,163,0.15),_transparent_70%)] opacity-50"></div>
+        <div class="opacity-30 absolute top-0 right-0 bottom-0 left-0"></div>
+        
+        <div class="max-w-4xl mx-auto text-center px-6 relative z-10 reveal">
+            <h2 class="font-display text-4xl md:text-7xl font-bold uppercase tracking-tighter mb-8 text-white">
+                Join the  <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-mint">Revolution</span>
+            </h2>
+            
+            <p class="font-mono text-sm md:text-base text-gray-400 mb-10 max-w-lg mx-auto">
+                &gt; Governance is live.
+                &gt; Be part of the consensus.
+                &gt; Claim your sovereignty.
+            </p>
+            
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <button class="bg-mint text-void px-10 py-4 font-semibold uppercase hover:shadow-[0_0_20px_rgba(0,255,163,0.5)] transition-shadow">
+                    Join Discord
+                </button>
+                <button class="bg-transparent border border-white/20 text-white px-10 py-4 font-semibold uppercase hover:bg-white/10 transition-colors">
+                    Follow on X
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="border-border reveal border-t pt-16 md:pt-20 pb-10">
+    <div class="max-w-[1920px] mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12 mb-20">
+            <div class="col-span-2 md:col-span-1">
+                <div class="flex gap-2 mb-4 items-center">
+                    <span class="text-lg font-medium text-white font-display">Aetheris</span>
+                </div>
+                <p class="text-sub text-xs leading-relaxed max-w-xs">
+                    Architecting the invisible layer of trust for the next generation of decentralized applications.
+                </p>
+            </div>
+            
+            <div class="">
+                <h5 class="text-white font-medium text-sm mb-4">Ecosystem</h5>
+                <ul class="space-y-2.5 text-xs text-sub">
+                    <li class=""><a href="#" class="hover:text-mint transition-colors">Block Explorer</a></li>
+                    <li><a href="#" class="hover:text-mint transition-colors">Governance Forum</a></li>
+                </ul>
+            </div>
+
+            <div class="">
+                <h5 class="text-white font-medium text-sm mb-4">Developers</h5>
+                <ul class="space-y-2.5 text-xs text-sub">
+                    <li class=""><a href="#" class="hover:text-mint transition-colors">Documentation</a></li>
+                    <li class=""><a href="#" class="hover:text-mint transition-colors">Github</a></li>
+                </ul>
+            </div>
+
+            <div class="">
+                <h5 class="text-white font-medium text-sm mb-4">Social</h5>
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-sub hover:text-white transition-colors bg-surface rounded-full border border-white/5 hover:border-white/20">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" class=""></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-sub hover:text-white transition-colors bg-surface rounded-full border border-white/5 hover:border-white/20">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" class="w-8 h-8 flex items-center justify-center text-sub hover:text-white transition-colors bg-surface rounded-full border border-white/5 hover:border-white/20">
+                        <svg viewBox="0 0 24 24" fill="currentColor" class="w-4 h-4" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M20.317 4.37a19.791 19.791 0 00-4.885-1.515.074.074 0 00-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 00-5.487 0 12.64 12.64 0 00-.617-1.25.077.077 0 00-.079-.037A19.736 19.736 0 003.677 4.37a.07.07 0 00-.032.027C.533 9.046-.32 13.58.099 18.057a.082.082 0 00.031.057 19.9 19.9 0 005.993 3.03.078.078 0 00.084-.028 14.09 14.09 0 001.226-1.994.076.076 0 00-.041-.106 13.107 13.107 0 01-1.872-.892.077.077 0 01-.008-.128 10.2 10.2 0 00.372-.292.074.074 0 01.077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 01.078.01c.12.098.246.198.373.292a.077.077 0 01-.006.127 12.299 12.299 0 01-1.873.892.077.077 0 00-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 00.084.028 19.839 19.839 0 006.002-3.03.077.077 0 00.032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 00-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border">
+            <p class="text-[10px] text-sub uppercase tracking-wider">© 2024 Aetheris Foundation. All rights reserved.</p>
+            <div class="flex items-center gap-2 mt-4 md:mt-0">
+                <div class="w-1.5 h-1.5 rounded-full bg-mint shadow-[0_0_8px_rgba(102,224,163,0.8)] animate-pulse"></div>
+                <span class="font-mono text-[10px] text-mint uppercase tracking-widest">System Operational</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+    <!-- SCRIPTS -->
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.29/bundled/lenis.min.js"></script>
+    
+    <!-- Unicorn Studio Script -->
+    <script type="text/javascript">!function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.0.2/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();</script>
+
+    <script>
+        // --- 1. PRELOADER ---
+        const preloader = document.getElementById('preloader');
+        const loaderBar = document.getElementById('loader-bar');
+        
+        let width = 0;
+        const loadInterval = setInterval(() => {
+            width += Math.random() * 15;
+            if(width > 100) width = 100;
+            loaderBar.style.width = width + '%';
+            
+            if(width === 100) {
+                clearInterval(loadInterval);
+                gsap.to(preloader, {
+                    yPercent: -100,
+                    duration: 1,
+                    ease: "power4.inOut",
+                    delay: 0.5,
+                    onComplete: initSite
+                });
+            }
+        }, 100);
+
+        function initSite() {
+            initAnimations();
+        }
+
+        // --- 3. ANIMATIONS (GSAP) ---
+        function initAnimations() {
+            gsap.registerPlugin(ScrollTrigger);
+
+            // Hero Entrance
+            gsap.to('.hero-anim', {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: 0.1,
+                ease: "power3.out"
+            });
+
+            // Section Reveals (Play In / Play Out)
+            const reveals = document.querySelectorAll('.reveal');
+            reveals.forEach(el => {
+                gsap.fromTo(el, 
+                    { y: 50, opacity: 0 },
+                    {
+                        y: 0,
+                        opacity: 1,
+                        duration: 0.8,
+                        ease: "power2.out",
+                        scrollTrigger: {
+                            trigger: el,
+                            start: "top 90%",
+                            end: "bottom 10%",
+                            toggleActions: "play reverse play reverse"
+                        }
+                    }
+                );
+            });
+
+            // Token Chart Animation
+            const tokenRing = document.querySelector('.token-chart-ring');
+            if(tokenRing) {
+                gsap.to(tokenRing, {
+                    strokeDashoffset: 100, // Draw 2/3rds roughly
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: '#token',
+                        start: "top 70%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                });
+            }
+
+            // Token Numbers Count Up
+            const tokenStats = document.querySelectorAll('.token-stat-number');
+            tokenStats.forEach(stat => {
+                const target = parseFloat(stat.getAttribute('data-target'));
+                gsap.to(stat, {
+                    innerText: target,
+                    duration: 2,
+                    snap: { innerText: 0.1 },
+                    ease: "power1.out",
+                    scrollTrigger: {
+                        trigger: '#token',
+                        start: "top 70%",
+                        toggleActions: "play reverse play reverse"
+                    }
+                });
+            });
+        }
+
+        // --- 4. SMOOTH SCROLL ---
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smooth: true
+        });
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+    </script>
+
+
+</body></html>

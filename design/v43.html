@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"><head><script id="aura-preview-performance-controller">
+<html class="scroll-smooth" lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,15 +89,15 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AURA | VR Game Agency</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AURA | Агентство VR-игр</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&amp;display=swap" rel="stylesheet"/>
 <style>
 .clip-poly-1 { clip-path: polygon(0 0, 100% 0, 100% 80%, 80% 100%, 0 100%); }
 .clip-poly-2 { clip-path: polygon(20% 0, 100% 0, 100% 100%, 0 100%, 0 20%); }
@@ -115,19 +115,19 @@ setPaused(event.data.paused);
 @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
 .animate-marquee { display: inline-flex; animation: marquee 20s linear infinite; width: max-content; }
 </style>
-<meta name="aura-font-heading-class" content="font-dm-serif-display">
-<meta name="aura-font-body-class" content="font-dm-sans">
-<meta name="aura-font-heading-label" content="DM Serif Display">
-<meta name="aura-font-body-label" content="DM Sans">
-<meta name="disabled-font-classes" content="font-gloock,font-fraunces,font-libre-baskerville,font-dotgothic16,font-geist,font-league-gothic,font-kanit,font-gfs-didot,font-chewy,font-marcellus,font-aboreto,font-vt323,font-geist-mono,font-quicksand,font-montserrat,font-manrope,font-google-sans-flex,font-syne,font-urbanist,font-poppins,font-sora,font-anton,font-bebas-neue">
-<link id="all-fonts-link-font-archivo-black" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap"><style id="all-fonts-style-font-archivo-black">
+<meta content="font-dm-serif-display" name="aura-font-heading-class"/>
+<meta content="font-dm-sans" name="aura-font-body-class"/>
+<meta content="DM Serif Display" name="aura-font-heading-label"/>
+<meta content="DM Sans" name="aura-font-body-label"/>
+<meta content="font-gloock,font-fraunces,font-libre-baskerville,font-dotgothic16,font-geist,font-league-gothic,font-kanit,font-gfs-didot,font-chewy,font-marcellus,font-aboreto,font-vt323,font-geist-mono,font-quicksand,font-montserrat,font-manrope,font-google-sans-flex,font-syne,font-urbanist,font-poppins,font-sora,font-anton,font-bebas-neue" name="disabled-font-classes"/>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&amp;display=swap" id="all-fonts-link-font-archivo-black" rel="stylesheet"/><style id="all-fonts-style-font-archivo-black">
 .font-archivo-black { font-family: 'Archivo Black', sans-serif !important; }
-</style><link id="all-fonts-link-font-dm-serif-display" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&display=swap"><style id="all-fonts-style-font-dm-serif-display">
+</style><link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&amp;display=swap" id="all-fonts-link-font-dm-serif-display" rel="stylesheet"/><style id="all-fonts-style-font-dm-serif-display">
 .font-dm-serif-display { font-family: 'DM Serif Display', serif !important; }
-</style><link id="all-fonts-link-font-dm-sans" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&display=swap"><style id="all-fonts-style-font-dm-sans">
+</style><link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&amp;display=swap" id="all-fonts-link-font-dm-sans" rel="stylesheet"/><style id="all-fonts-style-font-dm-sans">
 .font-dm-sans { font-family: 'DM Sans', sans-serif !important; }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -135,374 +135,380 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="antialiased selection:bg-[#ff5a00] selection:text-white bg-[#f0eee9] text-[#111] overflow-x-hidden font-sans">
-    <canvas id="webgl-canvas" class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-0" width="3136" height="2042" style="width: 1568px; height: 1021px;"></canvas>
-
-    <nav class="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 z-50 mix-blend-difference text-white transition-opacity duration-500">
-      <button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-colors nav-elem">
-        <iconify-icon icon="solar:hamburger-menu-linear" width="24" class=""></iconify-icon>
-      </button>
-      <div class="text-xl md:text-2xl tracking-tighter uppercase nav-elem font-dm-serif-display font-normal">
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="antialiased selection:bg-[#ff5a00] selection:text-white bg-[#f0eee9] text-[#111] overflow-x-hidden font-sans">
+<canvas class="fixed inset-0 w-full h-full z-0 pointer-events-none opacity-0" height="2042" id="webgl-canvas" style="width: 1568px; height: 1021px;" width="3136"></canvas>
+<nav class="fixed top-0 left-0 w-full flex justify-between items-center p-6 md:p-8 z-50 mix-blend-difference text-white transition-opacity duration-500">
+<button class="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:bg-white hover:text-black transition-colors nav-elem">
+<iconify-icon class="" icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+</button>
+<div class="text-xl md:text-2xl tracking-tighter uppercase nav-elem font-dm-serif-display font-normal">
         AURA
       </div>
-      <div class="flex gap-4 md:gap-6 nav-elem">
-        <button class="hover:opacity-60 transition-opacity">
-          <iconify-icon icon="solar:magnifer-linear" width="24" class=""></iconify-icon>
-        </button>
-        <button class="hover:opacity-60 transition-opacity">
-          <iconify-icon icon="solar:bag-2-linear" width="24" class=""></iconify-icon>
-        </button>
-        <button class="hover:opacity-60 transition-opacity hidden md:block">
-          <iconify-icon icon="solar:user-linear" width="24"></iconify-icon>
-        </button>
-      </div>
-    </nav>
-
-    <main class="relative z-10 w-full max-w-[1920px] mx-auto">
-      <div style="height: 480vh;" class="" id="sticky-scene-container">
-        <!-- Sticky stage -->
-        <div class="sticky top-0 h-screen w-full overflow-hidden">
-          <!-- World layer -->
-          <div class="sticky h-dvh overflow-hidden flex flex-col md:px-12 hero-sticky-content w-full pt-32 pr-6 pb-24 pl-6 top-0 left-0 justify-center">
-            <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-  <div class="parallax-bg absolute inset-[-10%] w-[120%] h-[120%] bg-[url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ac518c-fcb9-4ae1-bda4-60e637756b84_3840w.webp')] bg-cover bg-center" style="position: relative; overflow: hidden; isolation: isolate; filter: blur(0.7508px);">
-    <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1780784779900-a666c03e-afbd-428c-bd3a-327e0fd182dd.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ac518c-fcb9-4ae1-bda4-60e637756b84_3840w.webp" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" data-aura-generated-video-bg="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
-  </div>
-  <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#f0eee9]/40 z-10"></div>
+<div class="flex gap-4 md:gap-6 nav-elem">
+<button class="hover:opacity-60 transition-opacity">
+<iconify-icon class="" icon="solar:magnifer-linear" width="24"></iconify-icon>
+</button>
+<button class="hover:opacity-60 transition-opacity">
+<iconify-icon class="" icon="solar:bag-2-linear" width="24"></iconify-icon>
+</button>
+<button class="hover:opacity-60 transition-opacity hidden md:block">
+<iconify-icon icon="solar:user-linear" width="24"></iconify-icon>
+</button>
 </div>
-
-            <div class="flex z-30 pointer-events-none w-full h-full absolute top-0 right-0 bottom-0 left-0 items-end justify-center">
-  <div class="relative z-10 w-[85vw] md:w-[45vw] h-[65vh] md:h-[85vh] mt-12 hero-image-container opacity-0 origin-bottom" style="filter: blur(10px);">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/23fcef47-21c4-4c35-b8af-100d72047bde_1600w.png" class="w-full h-full object-cover object-top" alt="Editorial Model">
-  </div>
-
-  <div class="z-20 landscape-fg origin-bottom opacity-0 w-full absolute right-0 left-0 gap-x-6 gap-y-6" style="filter: blur(15px);">
-    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d26ed1b-9f82-4f70-9b44-8015fb0e58f0_3840w.png" class="md:h-[55vh] object-top w-full h-full object-cover absolute bottom-0" alt="Surreal Mountain Landscape with Monolith Windows">
-    <div class="bg-gradient-to-t from-[#f0eee9] to-transparent w-full h-60 absolute right-0 bottom-0 left-0 gap-x-6 gap-y-6">
-    </div>
-  </div>
+</nav>
+<main class="relative z-10 w-full max-w-[1920px] mx-auto">
+<div class="" id="sticky-scene-container" style="height: 480vh;">
+<!-- Sticky stage -->
+<div class="sticky top-0 h-screen w-full overflow-hidden">
+<!-- World layer -->
+<div class="sticky h-dvh overflow-hidden flex flex-col md:px-12 hero-sticky-content w-full pt-32 pr-6 pb-24 pl-6 top-0 left-0 justify-center">
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="parallax-bg absolute inset-[-10%] w-[120%] h-[120%] bg-[url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ac518c-fcb9-4ae1-bda4-60e637756b84_3840w.webp')] bg-cover bg-center" style="position: relative; overflow: hidden; isolation: isolate; filter: blur(0.7508px);">
+<video data-aura-generated-video="true" data-aura-generated-video-bg="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07ac518c-fcb9-4ae1-bda4-60e637756b84_3840w.webp" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1780784779900-a666c03e-afbd-428c-bd3a-327e0fd182dd.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
 </div>
-
-            <div class="z-20 grid grid-cols-12 gap-6 md:gap-12 flex-grow hero-content-wrapper w-full h-full relative">
-  <div class="col-span-12 md:col-span-5 flex flex-col justify-between pt-12">
-    <div class="hero-text-group">
-      <h1 class="tracking-tight text-7xl font-normal uppercase leading-[0.86] text-white sm:text-8xl md:text-[8rem] lg:text-[11rem] xl:text-[13rem]" style="font-family: Didot, 'Bodoni 72', 'Bodoni MT', 'Playfair Display', serif">
-        Virtual
-        <br>
-                Worlds
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#f0eee9]/40 z-10"></div>
+</div>
+<div class="flex z-30 pointer-events-none w-full h-full absolute top-0 right-0 bottom-0 left-0 items-end justify-center">
+<div class="relative z-10 w-[85vw] md:w-[45vw] h-[65vh] md:h-[85vh] mt-12 hero-image-container opacity-0 origin-bottom" style="filter: blur(10px);">
+<img alt="Редакционная модель" class="w-full h-full object-cover object-top" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/23fcef47-21c4-4c35-b8af-100d72047bde_1600w.png"/>
+</div>
+<div class="z-20 landscape-fg origin-bottom opacity-0 w-full absolute right-0 left-0 gap-x-6 gap-y-6" style="filter: blur(15px);">
+<img alt="Сюрреалистичный горный пейзаж с окнами-монолитами" class="md:h-[55vh] object-top w-full h-full object-cover absolute bottom-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d26ed1b-9f82-4f70-9b44-8015fb0e58f0_3840w.png"/>
+<div class="bg-gradient-to-t from-[#f0eee9] to-transparent w-full h-60 absolute right-0 bottom-0 left-0 gap-x-6 gap-y-6">
+</div>
+</div>
+</div>
+<div class="z-20 grid grid-cols-12 gap-6 md:gap-12 flex-grow hero-content-wrapper w-full h-full relative">
+<div class="col-span-12 md:col-span-5 flex flex-col justify-between pt-12">
+<div class="hero-text-group">
+<h1 class="tracking-tight text-7xl font-normal uppercase leading-[0.86] text-white sm:text-8xl md:text-[8rem] lg:text-[11rem] xl:text-[13rem]" style="font-family: Didot, 'Bodoni 72', 'Bodoni MT', 'Playfair Display', serif">
+        Виртуальный
+        <br/>
+                Миры
       </h1>
-
-    </div>
-
-    <div class="mt-24 md:mt-auto pb-12 hero-desc-group">
-      <div class="text-xs font-thin tracking-widest uppercase text-gray-500 mb-8 overflow-hidden">
-        <span class="block translate-y-[100%] hero-fade-up">
-                    // IMMERSIVE VR
+</div>
+<div class="mt-24 md:mt-auto pb-12 hero-desc-group">
+<div class="text-xs font-thin tracking-widest uppercase text-gray-500 mb-8 overflow-hidden">
+<span class="block translate-y-[100%] hero-fade-up">
+                    // ИММЕРСИВНЫЙ VR
                   </span>
-      </div>
-      <p class="max-w-xs text-sm text-gray-600 font-thin leading-relaxed overflow-hidden">
-        <span class="block translate-y-[100%] hero-fade-up">
-                    Explore immersive environments, interactive mechanics and
-                    next-gen gaming thoughtfully constructed in one virtual
-                    destination.
+</div>
+<p class="max-w-xs text-sm text-gray-600 font-thin leading-relaxed overflow-hidden">
+<span class="block translate-y-[100%] hero-fade-up">
+                    Исследуйте иммерсивные окружения, интерактивные механики и
+                    игры нового поколения, продуманно собранные в одном виртуальном
+                    пространстве.
                   </span>
-      </p>
-    </div>
-  </div>
-
-  <div class="col-span-12 md:col-span-7 flex flex-col justify-between items-end text-right">
-    <div class="w-full flex justify-end mb-12 md:mb-0 hero-desc-group">
-      <div class="text-xs font-thin tracking-widest uppercase text-gray-500 overflow-hidden">
-        <span class="block translate-y-[100%] hero-fade-up">
-                    // BUILT FOR
-                    <br>
-                    IMMERSION.
+</p>
+</div>
+</div>
+<div class="col-span-12 md:col-span-7 flex flex-col justify-between items-end text-right">
+<div class="w-full flex justify-end mb-12 md:mb-0 hero-desc-group">
+<div class="text-xs font-thin tracking-widest uppercase text-gray-500 overflow-hidden">
+<span class="block translate-y-[100%] hero-fade-up">
+                    // СОЗДАНО ДЛЯ
+                    <br/>
+                    ПОГРУЖЕНИЯ.
                   </span>
-      </div>
-    </div>
-
-    <div class="w-full flex flex-col items-end justify-end mt-auto hero-text-group">
-      <h1 class="tracking-tight text-5xl font-medium uppercase leading-[0.86] text-white sm:text-7xl md:text-8xl lg:text-9xl" style="font-family: Didot, 'Bodoni 72', 'Bodoni MT', 'Playfair Display', serif">
-        Game
-        <br>
-                Play
+</div>
+</div>
+<div class="w-full flex flex-col items-end justify-end mt-auto hero-text-group">
+<h1 class="tracking-tight text-5xl font-medium uppercase leading-[0.86] text-white sm:text-7xl md:text-8xl lg:text-9xl" style="font-family: Didot, 'Bodoni 72', 'Bodoni MT', 'Playfair Display', serif">
+        Игра
+        <br/>
+                Играть
       </h1>
-
-
-      <div class="mt-16 md:mt-24 flex items-center gap-6 overflow-hidden bg-white/40 backdrop-blur-md p-4 rounded-full hero-stats opacity-0 border border-white/30 shadow-2xl" style="clip-path: polygon(0px 0px, 100% 0px, 100% 80%, 80% 100%, 0px 100%);">
-        <div class="flex -space-x-4">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4f5668c5-fc4a-44e0-bc5e-a664189d3c31_1600w.jpg" class="w-12 h-12 rounded-full border-2 border-[#f0eee9] object-cover" alt="Avatar">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eca707cc-a5b7-439a-b4fd-247f6106c2e1_1600w.jpg" class="w-12 h-12 rounded-full border-2 border-[#f0eee9] object-cover" alt="Avatar">
-          <div class="w-12 h-12 rounded-full border-2 border-[#f0eee9] bg-[#ff5a00] text-white flex items-center justify-center shadow-inner">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="plus" aria-hidden="true" class="lucide lucide-plus w-5 h-5"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
-          </div>
-        </div>
-        <div class="pr-4 text-left">
-          <div class="text-2xl tracking-tight font-thin" style="font-family: 'DM Serif Display', serif;">
+<div class="mt-16 md:mt-24 flex items-center gap-6 overflow-hidden bg-white/40 backdrop-blur-md p-4 rounded-full hero-stats opacity-0 border border-white/30 shadow-2xl" style="clip-path: polygon(0px 0px, 100% 0px, 100% 80%, 80% 100%, 0px 100%);">
+<div class="flex -space-x-4">
+<img alt="Аватар" class="w-12 h-12 rounded-full border-2 border-[#f0eee9] object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4f5668c5-fc4a-44e0-bc5e-a664189d3c31_1600w.jpg"/>
+<img alt="Аватар" class="w-12 h-12 rounded-full border-2 border-[#f0eee9] object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eca707cc-a5b7-439a-b4fd-247f6106c2e1_1600w.jpg"/>
+<div class="w-12 h-12 rounded-full border-2 border-[#f0eee9] bg-[#ff5a00] text-white flex items-center justify-center shadow-inner">
+<svg aria-hidden="true" class="lucide lucide-plus w-5 h-5" data-lucide="plus" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
+</div>
+</div>
+<div class="pr-4 text-left">
+<div class="text-2xl tracking-tight font-thin" style="font-family: 'DM Serif Display', serif;">
             1.2M
           </div>
-          <div class="text-xs font-thin uppercase tracking-widest text-gray-700">
-            Players Online
+<div class="text-xs font-thin uppercase tracking-widest text-gray-700">
+            Игроков онлайн
           </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="absolute top-[35%] left-[45%] scale-0 hero-accent hidden md:block w-4 h-4 before:absolute before:content-[''] before:w-full before:h-[0.0625rem] before:bg-[#111]/40 before:top-1/2 before:left-0 after:absolute after:content-[''] after:w-[0.0625rem] after:h-full after:bg-[#111]/40 after:left-1/2 after:top-0" style="bottom: 40px;"></div>
-  <div class="absolute bottom-[20%] right-[40%] scale-0 hero-accent w-4 h-4 before:absolute before:content-[''] before:w-full before:h-[0.0625rem] before:bg-[#111]/40 before:top-1/2 before:left-0 after:absolute after:content-[''] after:w-[0.0625rem] after:h-full after:bg-[#111]/40 after:left-1/2 after:top-0" style="bottom: 36px;"></div>
 </div>
-          </div>
-
-          <!-- Portal frame layer -->
-          <div class="absolute will-change-transform" style="inset: -10%; z-index: 10; transform-origin: 50% 45%;" id="portal">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/662883ed-49fa-4bd5-91bf-cb471bf4d8fe_3840w.png" alt="" class="w-full h-full object-cover" draggable="false">
-          </div>
-
-          <!-- Curtain left -->
-          <div class="absolute top-0 left-0 h-full will-change-transform" style="width: 94%; z-index: 20; transition: none;
-filter: blur(10px)" id="curtainL">
-  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e50de7d6-9edb-44b7-97b8-c16b51eac922_3840w.png" alt="" class="w-full h-full object-cover object-right" draggable="false">
 </div>
-
-          <!-- Curtain right -->
-          <div class="absolute top-0 right-0 h-full will-change-transform" style="width: 94%; z-index: 20; transition: none;
-filter: blur(10px)" id="curtainR">
-  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b39f632f-53b4-4507-8dee-c411a6d98d4f_3840w.png" alt="" class="w-full h-full object-cover object-left" draggable="false">
 </div>
-
-          <!-- ===================== Scene 1: Hero ===================== -->
-          
-
-          <!-- ===================== Scene 2: Forge Beyond ===================== -->
-          <div class="flex absolute top-0 right-0 bottom-0 left-0 items-end justify-center" style="z-index: 46; pointer-events: none;" id="cta">
-  <div class="text-center px-6">
-    <h2 class="text-9xl font-normal text-[#000000] tracking-tight font-dm-serif-display" style="font-family: 'Viaoda Libre', serif; font-size: clamp(2.375rem, 7vw, 4.875rem); letter-spacing: 0.03em; line-height: 1.05; text-shadow: 0 2px 20px rgba(0,0,0,0.4)">
-      Pixels &amp;
-      <br>
-                Presence
+</div>
+<div class="absolute top-[35%] left-[45%] scale-0 hero-accent hidden md:block w-4 h-4 before:absolute before:content-[''] before:w-full before:h-[0.0625rem] before:bg-[#111]/40 before:top-1/2 before:left-0 after:absolute after:content-[''] after:w-[0.0625rem] after:h-full after:bg-[#111]/40 after:left-1/2 after:top-0" style="bottom: 40px;"></div>
+<div class="absolute bottom-[20%] right-[40%] scale-0 hero-accent w-4 h-4 before:absolute before:content-[''] before:w-full before:h-[0.0625rem] before:bg-[#111]/40 before:top-1/2 before:left-0 after:absolute after:content-[''] after:w-[0.0625rem] after:h-full after:bg-[#111]/40 after:left-1/2 after:top-0" style="bottom: 36px;"></div>
+</div>
+</div>
+<!-- Portal frame layer -->
+<div class="absolute will-change-transform" id="portal" style="inset: -10%; z-index: 10; transform-origin: 50% 45%;">
+<img alt="" class="w-full h-full object-cover" draggable="false" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/662883ed-49fa-4bd5-91bf-cb471bf4d8fe_3840w.png"/>
+</div>
+<!-- Curtain left -->
+<div class="absolute top-0 left-0 h-full will-change-transform" id="curtainL" style="width: 94%; z-index: 20; transition: none;
+filter: blur(10px)">
+<img alt="" class="w-full h-full object-cover object-right" draggable="false" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e50de7d6-9edb-44b7-97b8-c16b51eac922_3840w.png"/>
+</div>
+<!-- Curtain right -->
+<div class="absolute top-0 right-0 h-full will-change-transform" id="curtainR" style="width: 94%; z-index: 20; transition: none;
+filter: blur(10px)">
+<img alt="" class="w-full h-full object-cover object-left" draggable="false" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b39f632f-53b4-4507-8dee-c411a6d98d4f_3840w.png"/>
+</div>
+<!-- ===================== Scene 1: Hero ===================== -->
+<!-- ===================== Scene 2: Forge Beyond ===================== -->
+<div class="flex absolute top-0 right-0 bottom-0 left-0 items-end justify-center" id="cta" style="z-index: 46; pointer-events: none;">
+<div class="text-center px-6">
+<h2 class="text-9xl font-normal text-[#000000] tracking-tight font-dm-serif-display" style="font-family: 'Viaoda Libre', serif; font-size: clamp(2.375rem, 7vw, 4.875rem); letter-spacing: 0.03em; line-height: 1.05; text-shadow: 0 2px 20px rgba(0,0,0,0.4)">
+      Пиксели и
+      <br/>
+                присутствие
     </h2>
-    <p class="max-w-xs text-sm text-gray-600 font-thin leading-relaxed overflow-hidden">
-      Master spatial computing and immersive environments in our
-      next-gen VR titles.
+<p class="max-w-xs text-sm text-gray-600 font-thin leading-relaxed overflow-hidden">
+      Освойте пространственные вычисления и иммерсивные окружения в наших
+      VR-играх нового поколения.
     </p>
-  </div>
 </div>
-
-          <!-- ===================== Navigation ===================== -->
-          
-        </div>
-      </div>
-
-      <div class="w-full bg-[#111] text-white py-5 overflow-hidden flex whitespace-nowrap border-y border-[#333]">
-        <div class="animate-marquee flex items-center gap-16 text-sm font-normal tracking-widest uppercase">
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:gamepad-linear" width="20"></iconify-icon>
-            Immersion
+</div>
+<!-- ===================== Navigation ===================== -->
+</div>
+</div>
+<div class="w-full bg-[#111] text-white py-5 overflow-hidden flex whitespace-nowrap border-y border-[#333]">
+<div class="animate-marquee flex items-center gap-16 text-sm font-normal tracking-widest uppercase">
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:gamepad-linear" width="20"></iconify-icon>
+            Погружение
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:headphones-linear" width="20"></iconify-icon>
-            Spatial Audio
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:headphones-linear" width="20"></iconify-icon>
+            Пространственный звук
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:hand-heart-linear" width="20"></iconify-icon>
-            Haptics
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:hand-heart-linear" width="20"></iconify-icon>
+            Хаптика
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:planet-linear" width="20"></iconify-icon>
-            Presence
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:planet-linear" width="20"></iconify-icon>
+            присутствие
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:gamepad-linear" width="20"></iconify-icon>
-            Immersion
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:gamepad-linear" width="20"></iconify-icon>
+            Погружение
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:headphones-linear" width="20"></iconify-icon>
-            Spatial Audio
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:headphones-linear" width="20"></iconify-icon>
+            Пространственный звук
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:hand-heart-linear" width="20"></iconify-icon>
-            Haptics
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:hand-heart-linear" width="20"></iconify-icon>
+            Хаптика
           </span>
-          <span class="flex items-center gap-3 font-dm-sans">
-            <iconify-icon icon="solar:planet-linear" width="20"></iconify-icon>
-            Presence
+<span class="flex items-center gap-3 font-dm-sans">
+<iconify-icon icon="solar:planet-linear" width="20"></iconify-icon>
+            присутствие
           </span>
-        </div>
-      </div>
-
-      
-      <section class="py-24 md:py-32 w-full relative bg-[#0a0a0c] text-[#a3a3a3] overflow-hidden z-20 font-sans" id="textile-engine">
-        <!-- Minimal Diagonal Texture Overlay -->
-        <div class="absolute inset-0" style="pointer-events: none; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.015) 10px, rgba(255,255,255,0.015) 11px); z-index: 0;"></div>
-        <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.03)_0%,transparent_70%)] pointer-events-none"></div>
-
-        <!-- Section Header -->
-        <div class="w-full max-w-[1400px] mx-auto px-6 md:px-12 mb-16 relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 gs-te-header">
-          <div class="">
-            <div class="text-xs font-normal text-white/50 tracking-tight mb-4 flex items-center gap-2 font-dm-sans">
-              <i data-lucide="headset" class="w-4 h-4 text-cyan-400"></i>
-              Aura VR Protocol
+</div>
+</div>
+<section class="py-24 md:py-32 w-full relative bg-[#0a0a0c] text-[#a3a3a3] overflow-hidden z-20 font-sans" id="textile-engine">
+<!-- Minimal Diagonal Texture Overlay -->
+<div class="absolute inset-0" style="pointer-events: none; background-image: repeating-linear-gradient(45deg, transparent, transparent 10px, rgba(255,255,255,0.015) 10px, rgba(255,255,255,0.015) 11px); z-index: 0;"></div>
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(34,211,238,0.03)_0%,transparent_70%)] pointer-events-none"></div>
+<!-- Section Header -->
+<div class="w-full max-w-[1400px] mx-auto px-6 md:px-12 mb-16 relative z-10 flex flex-col md:flex-row justify-between items-start md:items-end gap-8 gs-te-header">
+<div class="">
+<div class="text-xs font-normal text-white/50 tracking-tight mb-4 flex items-center gap-2 font-dm-sans">
+<i class="w-4 h-4 text-cyan-400" data-lucide="headset"></i>
+              Протокол Aura VR
             </div>
-            <h2 class="text-5xl md:text-7xl text-white tracking-tight leading-[0.9] font-dm-serif-display font-normal">
-              Simulate
-              <br>
-              <span class="text-white/40 font-dm-serif-display font-normal">
-                The Future
+<h2 class="text-5xl md:text-7xl text-white tracking-tight leading-[0.9] font-dm-serif-display font-normal">
+              Симулируйте
+              <br/>
+<span class="text-white/40 font-dm-serif-display font-normal">
+                будущее
               </span>
-            </h2>
-          </div>
-          <div class="text-xs font-normal text-white/50 tracking-tight text-right hidden md:block font-dm-sans">
-            VR Render Node
-            <br>
-            <span class="text-white font-dm-sans">Active</span>
-          </div>
-        </div>
-
-        <!-- Main Application Interface -->
-        <div class="w-full px-6 md:px-12 flex justify-center relative z-10">
-          <!-- Workspace Device Frame -->
-          <div id="te-device" class="relative w-full max-w-[1300px] h-[750px] md:h-[800px] bg-[#0f0f11] rounded border border-white/10 opacity-0 scale-95 overflow-hidden flex flex-col md:flex-row shadow-2xl">
-            <!-- Corner Brackets -->
-            <div class="absolute top-6 left-6 w-4 h-4 border-t border-l border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
-            <div class="absolute top-6 right-6 w-4 h-4 border-t border-r border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
-            <div class="absolute bottom-6 left-6 w-4 h-4 border-b border-l border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
-            <div class="absolute bottom-6 right-6 w-4 h-4 border-b border-r border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
-
-            <!-- Left Sidebar -->
-            <div class="w-full md:w-[300px] h-[300px] md:h-full border-b md:border-b-0 md:border-r border-white/10 flex flex-col z-20 relative shrink-0 bg-[#0f0f11]">
-              <!-- Upload Area -->
-              <div class="gs-te-sidebar-item flex flex-col gap-3 p-5 border-b border-white/10">
-                <div class="text-xs font-normal text-white/70 flex justify-between items-center font-dm-sans">
-                  Input Source
+</h2>
+</div>
+<div class="text-xs font-normal text-white/50 tracking-tight text-right hidden md:block font-dm-sans">
+            Узел VR-рендеринга
+            <br/>
+<span class="text-white font-dm-sans">Активен</span>
+</div>
+</div>
+<!-- Main Application Interface -->
+<div class="w-full px-6 md:px-12 flex justify-center relative z-10">
+<!-- Workspace Device Frame -->
+<div class="relative w-full max-w-[1300px] h-[750px] md:h-[800px] bg-[#0f0f11] rounded border border-white/10 opacity-0 scale-95 overflow-hidden flex flex-col md:flex-row shadow-2xl" id="te-device">
+<!-- Corner Brackets -->
+<div class="absolute top-6 left-6 w-4 h-4 border-t border-l border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
+<div class="absolute top-6 right-6 w-4 h-4 border-t border-r border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
+<div class="absolute bottom-6 left-6 w-4 h-4 border-b border-l border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
+<div class="absolute bottom-6 right-6 w-4 h-4 border-b border-r border-white/30 gs-te-corner opacity-0 z-30 pointer-events-none"></div>
+<!-- Left Sidebar -->
+<div class="w-full md:w-[300px] h-[300px] md:h-full border-b md:border-b-0 md:border-r border-white/10 flex flex-col z-20 relative shrink-0 bg-[#0f0f11]">
+<!-- Upload Area -->
+<div class="gs-te-sidebar-item flex flex-col gap-3 p-5 border-b border-white/10">
+<div class="text-xs font-normal text-white/70 flex justify-between items-center font-dm-sans">
+                  Источник ввода
                 </div>
-                <div class="w-full aspect-[4/3] border border-dashed border-white/20 rounded flex flex-col items-center justify-center bg-[#161618] hover:bg-[#1a1a1c] relative group cursor-pointer hover:border-cyan-400/50 transition-colors">
-                  <i data-lucide="image-plus" class="text-white/20 w-8 h-8 mb-3 group-hover:text-cyan-400/40 transition-colors"></i>
-                  <span class="text-xs font-normal text-white/50 text-center px-4 font-dm-sans">
-                    Update Asset
+<div class="w-full aspect-[4/3] border border-dashed border-white/20 rounded flex flex-col items-center justify-center bg-[#161618] hover:bg-[#1a1a1c] relative group cursor-pointer hover:border-cyan-400/50 transition-colors">
+<i class="text-white/20 w-8 h-8 mb-3 group-hover:text-cyan-400/40 transition-colors" data-lucide="image-plus"></i>
+<span class="text-xs font-normal text-white/50 text-center px-4 font-dm-sans">
+                    Обновить ассет
                   </span>
-                </div>
-              </div>
-
-              <!-- Material Library -->
-              <div class="flex-1 overflow-y-auto p-5 flex flex-col gap-6" style="scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.05) transparent;">
-                <h2 class="text-xs font-normal text-white/50 gs-te-sidebar-item tracking-tight font-dm-sans">
-                  Asset Library
+</div>
+</div>
+<!-- Material Library -->
+<div class="flex-1 overflow-y-auto p-5 flex flex-col gap-6" style="scrollbar-width: thin; scrollbar-color: rgba(255,255,255,0.05) transparent;">
+<h2 class="text-xs font-normal text-white/50 gs-te-sidebar-item tracking-tight font-dm-sans">
+                  Библиотека ассетов
                 </h2>
-
-                <div class="flex flex-col gap-4">
-                  <div class="flex items-center justify-between text-xs font-normal text-white gs-te-sidebar-item cursor-pointer">
-                    <span class="font-dm-sans">Environments</span>
-                    <i data-lucide="chevron-up" class="w-4 h-4 text-white/50"></i>
-                  </div>
-
-                  <!-- Scrollable List -->
-                  <div class="flex flex-col gap-2">
-                    <div class="gs-te-list-item p-2 rounded bg-[#161618] border border-white/5 hover:border-white/20 cursor-pointer flex items-center gap-3 transition-colors">
-                      <div class="w-2 h-2 rounded-full bg-gray-500"></div>
-                      <span class="text-xs font-normal text-white/70 font-dm-sans">
-                        Sci-Fi Corridors
+<div class="flex flex-col gap-4">
+<div class="flex items-center justify-between text-xs font-normal text-white gs-te-sidebar-item cursor-pointer">
+<span class="font-dm-sans">Окружения</span>
+<i class="w-4 h-4 text-white/50" data-lucide="chevron-up"></i>
+</div>
+<!-- Scrollable List -->
+<div class="flex flex-col gap-2">
+<div class="gs-te-list-item p-2 rounded bg-[#161618] border border-white/5 hover:border-white/20 cursor-pointer flex items-center gap-3 transition-colors">
+<div class="w-2 h-2 rounded-full bg-gray-500"></div>
+<span class="text-xs font-normal text-white/70 font-dm-sans">
+                        Научно-фантастические коридоры
                       </span>
-                    </div>
-                    <div class="gs-te-list-item p-2 rounded bg-[#161618] border border-white/5 hover:border-white/20 cursor-pointer flex items-center gap-3 transition-colors">
-                      <div class="w-2 h-2 rounded-full bg-zinc-600"></div>
-                      <span class="text-xs font-normal text-white/70 font-dm-sans">
-                        Fantasy Forests
+</div>
+<div class="gs-te-list-item p-2 rounded bg-[#161618] border border-white/5 hover:border-white/20 cursor-pointer flex items-center gap-3 transition-colors">
+<div class="w-2 h-2 rounded-full bg-zinc-600"></div>
+<span class="text-xs font-normal text-white/70 font-dm-sans">
+                        Фэнтезийные леса
                       </span>
-                    </div>
-                    <!-- Active Selection -->
-                    <div class="gs-te-list-item p-2 rounded bg-cyan-400/5 border border-cyan-400/30 cursor-pointer flex items-center gap-3 transition-colors">
-                      <div class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
-                      <span class="text-xs font-normal text-cyan-400 font-dm-sans">
-                        Cyberpunk Cities
+</div>
+<!-- Active Selection -->
+<div class="gs-te-list-item p-2 rounded bg-cyan-400/5 border border-cyan-400/30 cursor-pointer flex items-center gap-3 transition-colors">
+<div class="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(34,211,238,0.6)]"></div>
+<span class="text-xs font-normal text-cyan-400 font-dm-sans">
+                        Киберпанк-города
                       </span>
-                    </div>
-                  </div>
-
-                  <!-- Collapsed Categories -->
-                  <div class="flex items-center justify-between text-xs font-normal text-white/40 hover:text-white/80 cursor-pointer transition-colors mt-2 gs-te-sidebar-item">
-                    <span class="font-dm-sans">Props &amp; Items</span>
-                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                  </div>
-                  <div class="flex items-center justify-between text-xs font-normal text-white/40 hover:text-white/80 cursor-pointer transition-colors gs-te-sidebar-item">
-                    <span class="font-dm-sans">Characters &amp; NPCs</span>
-                    <i data-lucide="chevron-down" class="w-4 h-4"></i>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Bottom Generate Panel -->
-              <div class="p-5 border-t border-white/10 bg-[#0f0f11]">
-                <div class="flex justify-between items-center text-xs font-normal text-white/40 mb-4 px-1">
-                  <span class="font-dm-sans">Est. 45s</span>
-                  <span class="flex items-center gap-1.5 text-white font-dm-sans">
-                    <i data-lucide="coins" class="w-3 h-3 text-cyan-400"></i>
+</div>
+</div>
+<!-- Collapsed Categories -->
+<div class="flex items-center justify-between text-xs font-normal text-white/40 hover:text-white/80 cursor-pointer transition-colors mt-2 gs-te-sidebar-item">
+<span class="font-dm-sans">Пропсы и предметы</span>
+<i class="w-4 h-4" data-lucide="chevron-down"></i>
+</div>
+<div class="flex items-center justify-between text-xs font-normal text-white/40 hover:text-white/80 cursor-pointer transition-colors gs-te-sidebar-item">
+<span class="font-dm-sans">Персонажи и NPC</span>
+<i class="w-4 h-4" data-lucide="chevron-down"></i>
+</div>
+</div>
+</div>
+<!-- Bottom Generate Panel -->
+<div class="p-5 border-t border-white/10 bg-[#0f0f11]">
+<div class="flex justify-between items-center text-xs font-normal text-white/40 mb-4 px-1">
+<span class="font-dm-sans">Ок. 45 с</span>
+<span class="flex items-center gap-1.5 text-white font-dm-sans">
+<i class="w-3 h-3 text-cyan-400" data-lucide="coins"></i>
                     15
                   </span>
-                </div>
-                <button class="w-full relative group rounded p-[1px] block overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98] gs-te-cta" style="box-shadow: rgba(34, 211, 238, 0.184) 0px 0px 12.3853px;">
-                  <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 opacity-80 group-hover:opacity-100 transition-opacity"></div>
-                  <div class="relative w-full py-3 bg-[#0a0a0c] text-white font-normal text-xs flex items-center justify-center gap-2 rounded-[3px] group-hover:bg-transparent group-hover:text-black transition-colors tracking-tight font-dm-sans">
-                    <i data-lucide="wand-2" class="w-4 h-4"></i>
-                    Initialize Environment
+</div>
+<button class="w-full relative group rounded p-[1px] block overflow-hidden transition-transform hover:scale-[1.02] active:scale-[0.98] gs-te-cta" style="box-shadow: rgba(34, 211, 238, 0.184) 0px 0px 12.3853px;">
+<div class="absolute inset-0 bg-gradient-to-r from-cyan-400 via-blue-500 to-cyan-400 opacity-80 group-hover:opacity-100 transition-opacity"></div>
+<div class="relative w-full py-3 bg-[#0a0a0c] text-white font-normal text-xs flex items-center justify-center gap-2 rounded-[3px] group-hover:bg-transparent group-hover:text-black transition-colors tracking-tight font-dm-sans">
+<i class="w-4 h-4" data-lucide="wand-2"></i>
+                    Инициализировать окружение
                   </div>
-                </button>
-              </div>
-            </div>
-
-            <!-- Center Viewport -->
-            <div class="flex-1 flex flex-col overflow-hidden bg-[#0a0a0c] bg-cover bg-center z-0 relative items-center justify-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e9d6abf-fda2-4818-b6ad-3d55896004f6_3840w.png)]" style="position:relative; overflow:hidden; isolation:isolate"><video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1781947152338-fc31a6ab-23b1-4817-a166-332c89b30f46.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e9d6abf-fda2-4818-b6ad-3d55896004f6_3840w.png" data-aura-generated-video="true" data-aura-video-preset="play-once" muted="" playsinline="" preload="metadata" data-aura-generated-video-bg="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
-              <!-- WebGL Canvas Container -->
-              <div id="te-webgl-container" class="absolute inset-0 z-0 opacity-0 mix-blend-screen pointer-events-none"></div>
-
-              <!-- Top Left Stats -->
-              <div class="absolute top-8 left-8 z-10 flex flex-col gap-4 gs-te-tool hidden md:flex">
-                <div class="bg-[#161618]/80 backdrop-blur rounded p-3 text-xs font-normal text-white/60 grid grid-cols-2 gap-x-8 gap-y-2 border border-white/10 w-max">
-                  <span class="font-dm-sans">Topology</span>
-                  <span class="text-right text-white font-dm-sans">Quads</span>
-                  <span class="font-dm-sans">Polygons</span>
-                  <span class="text-right text-white font-dm-sans">
+</button>
+</div>
+</div>
+<!-- Center Viewport -->
+<div class="flex-1 flex flex-col overflow-hidden bg-[#0a0a0c] bg-cover bg-center z-0 relative items-center justify-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e9d6abf-fda2-4818-b6ad-3d55896004f6_3840w.png)]" style="position:relative; overflow:hidden; isolation:isolate"><video data-aura-generated-video="true" data-aura-generated-video-bg="true" data-aura-video-preset="play-once" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e9d6abf-fda2-4818-b6ad-3d55896004f6_3840w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1781947152338-fc31a6ab-23b1-4817-a166-332c89b30f46.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
+<!-- WebGL Canvas Container -->
+<div class="absolute inset-0 z-0 opacity-0 mix-blend-screen pointer-events-none" id="te-webgl-container"></div>
+<!-- Top Left Stats -->
+<div class="absolute top-8 left-8 z-10 flex flex-col gap-4 gs-te-tool hidden md:flex">
+<div class="bg-[#161618]/80 backdrop-blur rounded p-3 text-xs font-normal text-white/60 grid grid-cols-2 gap-x-8 gap-y-2 border border-white/10 w-max">
+<span class="font-dm-sans">Топология</span>
+<span class="text-right text-white font-dm-sans">Квады</span>
+<span class="font-dm-sans">Полигоны</span>
+<span class="text-right text-white font-dm-sans">
                     128,400
                   </span>
-                  <span class="font-dm-sans">Vertices</span>
-                  <span class="text-right text-white font-dm-sans">64,200</span>
-                </div>
-              </div>
-
-              <!-- Top Right Status -->
-              <div class="absolute top-8 right-8 z-10 flex items-center gap-2 px-3 py-1.5 rounded bg-[#161618]/80 backdrop-blur border border-white/10 gs-te-tool">
-                <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.6)]"></span>
-                <span class="text-xs font-normal text-white tracking-tight font-dm-sans">
-                  Neo-Tokyo
+<span class="font-dm-sans">Вершины</span>
+<span class="text-right text-white font-dm-sans">64,200</span>
+</div>
+</div>
+<!-- Top Right Status -->
+<div class="absolute top-8 right-8 z-10 flex items-center gap-2 px-3 py-1.5 rounded bg-[#161618]/80 backdrop-blur border border-white/10 gs-te-tool">
+<span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shadow-[0_0_8px_rgba(34,211,238,0.6)]"></span>
+<span class="text-xs font-normal text-white tracking-tight font-dm-sans">
+                  Нео-Токио
                 </span>
-              </div>
-
-              <!-- Bottom Floating Action Bar -->
-              <div class="absolute bottom-8 z-10 flex items-center bg-[#161618]/90 backdrop-blur p-2 rounded border border-white/10 shadow-xl gs-te-bottom">
-                <button class="flex items-center gap-2 px-4 py-2 rounded bg-[#1a1a1c] border border-white/5 text-white text-xs font-normal mr-2 hover:bg-[#222] hover:border-white/20 transition-colors font-dm-sans">
-                  <i data-lucide="maximize" class="w-3 h-3"></i>
-                  Pan Canvas
+</div>
+<!-- Bottom Floating Action Bar -->
+<div class="absolute bottom-8 z-10 flex items-center bg-[#161618]/90 backdrop-blur p-2 rounded border border-white/10 shadow-xl gs-te-bottom">
+<button class="flex items-center gap-2 px-4 py-2 rounded bg-[#1a1a1c] border border-white/5 text-white text-xs font-normal mr-2 hover:bg-[#222] hover:border-white/20 transition-colors font-dm-sans">
+<i class="w-3 h-3" data-lucide="maximize"></i>
+                  Перемещение холста
                 </button>
-                <div class="flex items-center gap-1 px-2 border-l border-white/10">
-                  <button class="w-8 h-8 rounded flex items-center justify-center text-white/40 hover:text-white hover:bg-[#1a1a1c] transition-all" title="Pigment">
-                    <i data-lucide="droplet" class="w-4 h-4"></i>
-                  </button>
-                  <button class="w-8 h-8 rounded flex items-center justify-center text-white/40 hover:text-white hover:bg-[#1a1a1c] transition-all" title="Sculpt">
-                    <i data-lucide="pen-tool" class="w-4 h-4"></i>
-                  </button>
-                  <button class="w-8 h-8 rounded flex items-center justify-center text-cyan-400 bg-cyan-400/10 transition-all" title="Texture">
-                    <i data-lucide="layers" class="w-4 h-4"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Inject Lucide Icons for Javascript elements -->
-        <script src="https://unpkg.com/lucide@latest" class=""></script>
-        <script>
+<div class="flex items-center gap-1 px-2 border-l border-white/10">
+<button class="w-8 h-8 rounded flex items-center justify-center text-white/40 hover:text-white hover:bg-[#1a1a1c] transition-all" title="Пигмент">
+<i class="w-4 h-4" data-lucide="droplet"></i>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-white/40 hover:text-white hover:bg-[#1a1a1c] transition-all" title="Скульптура">
+<i class="w-4 h-4" data-lucide="pen-tool"></i>
+</button>
+<button class="w-8 h-8 rounded flex items-center justify-center text-cyan-400 bg-cyan-400/10 transition-all" title="Текстура">
+<i class="w-4 h-4" data-lucide="layers"></i>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Inject Lucide Icons for Javascript elements -->
+<script class="" src="https://unpkg.com/lucide@latest"></script>
+<script>
           (function() {
               // Render Lucide Icons
               if (typeof lucide !== 'undefined') {
@@ -671,652 +677,605 @@ filter: blur(10px)" id="curtainR">
               }
           })();
         </script>
-      </section><section class="py-24 md:py-32 px-6 md:px-12 w-full relative">
-        <div class="grid grid-cols-12 gap-6 md:gap-12 relative z-10">
-          <div class="col-span-12 md:col-span-6 z-20">
-            <h2 class="text-large text-[#111] mb-12 gs-reveal tracking-tight font-dm-serif-display font-normal">
-              Immersive - realities
-              <br>
+</section><section class="py-24 md:py-32 px-6 md:px-12 w-full relative">
+<div class="grid grid-cols-12 gap-6 md:gap-12 relative z-10">
+<div class="col-span-12 md:col-span-6 z-20">
+<h2 class="text-large text-[#111] mb-12 gs-reveal tracking-tight font-dm-serif-display font-normal">
+              Иммерсивные - реальности
+              <br/>
               ©26
             </h2>
-
-            <div class="flex items-center gap-4 gs-reveal">
-              <div class="flex gap-2">
-                <div class="w-2 h-2 rounded-full bg-[#ff5a00]"></div>
-                <div class="w-2 h-2 rounded-full bg-gray-300"></div>
-              </div>
-              <button class="text-xs font-normal tracking-widest uppercase border border-[#111]/20 rounded-full px-6 py-3 flex items-center gap-2 hover:bg-[#111] hover:text-white hover:border-[#111] transition-all duration-300 font-dm-sans">
-                Explore Worlds
+<div class="flex items-center gap-4 gs-reveal">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-[#ff5a00]"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+</div>
+<button class="text-xs font-normal tracking-widest uppercase border border-[#111]/20 rounded-full px-6 py-3 flex items-center gap-2 hover:bg-[#111] hover:text-white hover:border-[#111] transition-all duration-300 font-dm-sans">
+                Исследовать миры
                 <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-              </button>
+</button>
+</div>
+</div>
+<div class="col-span-12 md:col-span-6 flex flex-col md:flex-row justify-end items-start gap-8 mt-12 md:mt-0 gs-reveal" style="filter: blur(0px);">
+<div class="text-xs text-gray-500 font-normal tracking-wide leading-relaxed max-w-[150px] font-dm-sans">
+              Где виртуальное встречается с реальностью Игры нового поколения Доступно
             </div>
-          </div>
-
-          <div class="col-span-12 md:col-span-6 flex flex-col md:flex-row justify-end items-start gap-8 mt-12 md:mt-0 gs-reveal" style="filter: blur(0px);">
-            <div class="text-xs text-gray-500 font-normal tracking-wide leading-relaxed max-w-[150px] font-dm-sans">
-              Where Virtual Meets Reality Next-Gen Gaming Accessible
-            </div>
-            <div class="flex gap-4 items-start">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e7ae8d5-8637-4c9f-8181-766ac72f2bc7_320w.webp" class="w-16 h-24 object-cover clip-poly-1">
-              <span class="text-2xl tracking-tight font-dm-serif-display font-normal">
+<div class="flex gap-4 items-start">
+<img class="w-16 h-24 object-cover clip-poly-1" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0e7ae8d5-8637-4c9f-8181-766ac72f2bc7_320w.webp"/>
+<span class="text-2xl tracking-tight font-dm-serif-display font-normal">
                 ($450)
               </span>
-            </div>
-          </div>
-
-          <div class="col-span-12 mt-24 relative min-h-[60vh]">
-            <div class="absolute top-0 left-[10%] md:left-[25%] w-[70vw] md:w-[35vw] h-[50vh] md:h-[70vh] z-10 gs-img-scale">
-  <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1781947249710-b13b2ca9-7b55-489a-b07d-f4fbee212fb8.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1108eb45-423e-4519-bb5d-1888a479f2a5_1600w.png" data-aura-generated-video="true" data-aura-video-preset="hover" muted="" playsinline="" preload="metadata" class="w-full h-full object-cover clip-poly-2 shadow-2xl shadow-black/5"></video>
 </div>
-
-            <div class="absolute top-[20%] right-[5%] md:right-[15%] w-[50vw] md:w-[25vw] h-[30vh] md:h-[40vh] z-20 gs-img-scale delay-100">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0daea904-baf4-4a31-9bb0-4145336112e7_1600w.png" class="w-full h-full object-cover clip-poly-1">
-              <div class="mt-4 text-xs font-normal tracking-widest text-gray-500 flex justify-between">
-                <span class="font-dm-sans">©Engine - unreal 5</span>
-                <span class="font-dm-sans">(60%)</span>
-              </div>
+</div>
+<div class="col-span-12 mt-24 relative min-h-[60vh]">
+<div class="absolute top-0 left-[10%] md:left-[25%] w-[70vw] md:w-[35vw] h-[50vh] md:h-[70vh] z-10 gs-img-scale">
+<video class="w-full h-full object-cover clip-poly-2 shadow-2xl shadow-black/5" data-aura-generated-video="true" data-aura-video-preset="hover" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1108eb45-423e-4519-bb5d-1888a479f2a5_1600w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1781947249710-b13b2ca9-7b55-489a-b07d-f4fbee212fb8.mp4"></video>
+</div>
+<div class="absolute top-[20%] right-[5%] md:right-[15%] w-[50vw] md:w-[25vw] h-[30vh] md:h-[40vh] z-20 gs-img-scale delay-100">
+<img class="w-full h-full object-cover clip-poly-1" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0daea904-baf4-4a31-9bb0-4145336112e7_1600w.png"/>
+<div class="mt-4 text-xs font-normal tracking-widest text-gray-500 flex justify-between">
+<span class="font-dm-sans">©Engine - unreal 5</span>
+<span class="font-dm-sans">(60%)</span>
+</div>
+</div>
+<div class="absolute top-[50%] left-0 w-[20%] thin-line-dashed z-0 hidden md:block"></div>
+<div class="absolute top-[48%] left-[5%] max-w-[200px] text-xs text-gray-600 font-light leading-relaxed bg-[#f0eee9] p-2 z-30 gs-reveal hidden md:block font-dm-sans">
+              Каждое виртуальное окружение несёт ритм за пределами пикселей — это
+              присутствие и смысл там, где живое взаимодействие встречается с дизайном.
             </div>
-
-            <div class="absolute top-[50%] left-0 w-[20%] thin-line-dashed z-0 hidden md:block"></div>
-            <div class="absolute top-[48%] left-[5%] max-w-[200px] text-xs text-gray-600 font-light leading-relaxed bg-[#f0eee9] p-2 z-30 gs-reveal hidden md:block font-dm-sans">
-              Every virtual environment carries rhythm beyond pixels—it's
-              presence and meaning where raw interaction meets design.
-            </div>
-          </div>
-
-          <div class="col-span-12 flex justify-end mt-24 md:mt-32 relative z-30">
-            <div class="w-full md:w-1/2 flex flex-col gap-2">
-              <div class="flex justify-between items-end pb-4 thin-line gs-list-item">
-                <div class="text-xs text-gray-400 mb-2 font-normal font-dm-sans">
-                  [CATEGORIES]
+</div>
+<div class="col-span-12 flex justify-end mt-24 md:mt-32 relative z-30">
+<div class="w-full md:w-1/2 flex flex-col gap-2">
+<div class="flex justify-between items-end pb-4 thin-line gs-list-item">
+<div class="text-xs text-gray-400 mb-2 font-normal font-dm-sans">
+                  [КАТЕГОРИИ]
                 </div>
-                <div class="flex-grow mx-4 thin-line-dashed mb-2 opacity-50"></div>
-              </div>
-
-              <div class="flex items-baseline justify-end gap-6 text-4xl md:text-6xl font-normal tracking-tight gs-list-item hover:text-[#ff5a00] transition-colors cursor-pointer group">
-                <span class="text-sm font-light text-gray-400 mb-auto transition-colors group-hover:text-[#ff5a00] font-dm-sans">
+<div class="flex-grow mx-4 thin-line-dashed mb-2 opacity-50"></div>
+</div>
+<div class="flex items-baseline justify-end gap-6 text-4xl md:text-6xl font-normal tracking-tight gs-list-item hover:text-[#ff5a00] transition-colors cursor-pointer group">
+<span class="text-sm font-light text-gray-400 mb-auto transition-colors group-hover:text-[#ff5a00] font-dm-sans">
                   [01]
                 </span>
-                <span class="font-dm-serif-display font-normal">
-                  Action VR (174)
+<span class="font-dm-serif-display font-normal">
+                  Экшен VR (174)
                 </span>
-              </div>
-              <div class="flex items-baseline justify-end gap-6 text-4xl md:text-6xl font-normal tracking-tight text-gray-400 gs-list-item hover:text-[#111] transition-colors cursor-pointer group">
-                <span class="text-sm font-light text-gray-300 mb-auto transition-colors group-hover:text-[#111] font-dm-sans">
+</div>
+<div class="flex items-baseline justify-end gap-6 text-4xl md:text-6xl font-normal tracking-tight text-gray-400 gs-list-item hover:text-[#111] transition-colors cursor-pointer group">
+<span class="text-sm font-light text-gray-300 mb-auto transition-colors group-hover:text-[#111] font-dm-sans">
                   [02]
                 </span>
-                <span class="font-dm-serif-display font-normal">
-                  Puzzle VR (361)
+<span class="font-dm-serif-display font-normal">
+                  Головоломки VR (361)
                 </span>
-              </div>
-              <div class="flex items-baseline justify-end gap-6 text-4xl md:text-6xl font-normal tracking-tight text-gray-400 gs-list-item hover:text-[#111] transition-colors cursor-pointer group">
-                <span class="text-sm font-light text-gray-300 mb-auto transition-colors group-hover:text-[#111] font-dm-sans">
+</div>
+<div class="flex items-baseline justify-end gap-6 text-4xl md:text-6xl font-normal tracking-tight text-gray-400 gs-list-item hover:text-[#111] transition-colors cursor-pointer group">
+<span class="text-sm font-light text-gray-300 mb-auto transition-colors group-hover:text-[#111] font-dm-sans">
                   [03]
                 </span>
-                <span class="font-dm-serif-display font-normal">
-                  Simulation (368)
+<span class="font-dm-serif-display font-normal">
+                  Симуляторы (368)
                 </span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="w-full thin-line mt-32 pt-6 flex justify-between text-xs font-normal uppercase tracking-widest text-gray-500 overflow-hidden">
-          <span class="font-dm-sans">Spatial Tracking</span>
-          <span class="font-dm-sans">+</span>
-          <span class="font-dm-sans">Haptic Feedback</span>
-          <span class="font-dm-sans">+</span>
-          <span class="font-dm-sans">Seamless Immersion</span>
-          <span class="font-dm-sans">+</span>
-          <span class="font-dm-sans">High Framerates</span>
-          <span class="font-dm-sans">+</span>
-          <span class="font-dm-sans">Unreal Engine</span>
-        </div>
-      </section><section class="py-24 md:py-32 px-6 md:px-12 w-full bg-[#050505] text-white relative">
-  <!-- Dither / Noise overlay -->
-  <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');"></div>
-  <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(255,90,0,0.05)_0%,transparent_60%)] pointer-events-none z-0"></div>
-
-  <div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 relative z-10">
-    <!-- Sticky Left -->
-    <div class="col-span-1 lg:col-span-4 relative z-20">
-      <div class="lg:sticky lg:top-32 flex flex-col gap-6 max-w-sm gs-reveal">
-        <div class="w-8 h-8 rounded-none border border-white/10 flex items-center justify-center mb-2 bg-[#0e0e0e]">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-4 h-4 text-[#ff5a00]"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"></path><path d="M21 16v2a4 4 0 0 1-4 4h-5"></path></svg>
-        </div>
-        <h2 class="text-4xl md:text-5xl lg:text-6xl tracking-tight font-light leading-[1.1] text-gray-100 font-dm-serif-display uppercase">
-          <span class="block">
-            Next-Gen
+</div>
+</div>
+</div>
+</div>
+<div class="w-full thin-line mt-32 pt-6 flex justify-between text-xs font-normal uppercase tracking-widest text-gray-500 overflow-hidden">
+<span class="font-dm-sans">Пространственный трекинг</span>
+<span class="font-dm-sans">+</span>
+<span class="font-dm-sans">Тактильная отдача</span>
+<span class="font-dm-sans">+</span>
+<span class="font-dm-sans">Бесшовное погружение</span>
+<span class="font-dm-sans">+</span>
+<span class="font-dm-sans">Высокая частота кадров</span>
+<span class="font-dm-sans">+</span>
+<span class="font-dm-sans">Unreal Engine</span>
+</div>
+</section><section class="py-24 md:py-32 px-6 md:px-12 w-full bg-[#050505] text-white relative">
+<!-- Dither / Noise overlay -->
+<div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E');"></div>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-[radial-gradient(circle_at_50%_-20%,rgba(255,90,0,0.05)_0%,transparent_60%)] pointer-events-none z-0"></div>
+<div class="max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 relative z-10">
+<!-- Sticky Left -->
+<div class="col-span-1 lg:col-span-4 relative z-20">
+<div class="lg:sticky lg:top-32 flex flex-col gap-6 max-w-sm gs-reveal">
+<div class="w-8 h-8 rounded-none border border-white/10 flex items-center justify-center mb-2 bg-[#0e0e0e]">
+<svg class="w-4 h-4 text-[#ff5a00]" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 11h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-5Zm0 0a9 9 0 1 1 18 0m0 0v5a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3Z"></path><path d="M21 16v2a4 4 0 0 1-4 4h-5"></path></svg>
+</div>
+<h2 class="text-4xl md:text-5xl lg:text-6xl tracking-tight font-light leading-[1.1] text-gray-100 font-dm-serif-display uppercase">
+<span class="block">
+            Некст-ген
             <span class="text-[#ff5a00] capitalize">
-              VR Games
+              VR-игры
             </span>
+</span>
+<span class="block">
+            На базе
           </span>
-          <span class="block">
-            Powered By
+<span class="block text-white">
+            пространственного AI.
           </span>
-          <span class="block text-white">
-            Spatial AI.
-          </span>
-        </h2>
-        <p class="text-sm text-gray-400 leading-relaxed mt-2 font-dm-sans font-light">
-          Discover how our agency blends artificial intelligence with spatial computing to craft breathtaking VR games and 3D experiences at unprecedented speeds.
+</h2>
+<p class="text-sm text-gray-400 leading-relaxed mt-2 font-dm-sans font-light">
+          Узнайте, как наше агентство сочетает искусственный интеллект с пространственными вычислениями, создавая захватывающие VR-игры и 3D-опыты с беспрецедентной скоростью.
         </p>
-      </div>
-    </div>
-
-    <!-- Scrollable Right Cards -->
-    <div class="col-span-1 lg:col-span-8 flex flex-col lg:items-end gap-12 lg:gap-16 lg:pt-0 w-full pt-12 items-center text-gray-400 bg-transparent">
-      
-      <!-- Card 1: AI Asset & World Creation -->
-      <article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
-        <div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
-          <div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10">
-            <span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
-              Generation
+</div>
+</div>
+<!-- Scrollable Right Cards -->
+<div class="col-span-1 lg:col-span-8 flex flex-col lg:items-end gap-12 lg:gap-16 lg:pt-0 w-full pt-12 items-center text-gray-400 bg-transparent">
+<!-- Card 1: AI Asset & World Creation -->
+<article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
+<div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10">
+<span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
+              Генерация
             </span>
-            <h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
-              AI Asset &amp; World Creation
+<h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
+              Создание AI-ассетов и миров
             </h3>
-            <p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
-              Instantly generate highly detailed 3D models, intricate environments, and immersive worlds from simple prompts. Rapidly populate your VR space.
+<p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
+              Мгновенно генерируйте детализированные 3D-модели, сложные окружения и иммерсивные миры из простых промптов. Быстро наполняйте своё VR-пространство.
             </p>
-          </div>
-          <div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-t lg:border-t-0 lg:border-l border-white/5 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
-            <div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
-              <p class="text-sm text-gray-200 font-dm-sans font-light">
-                &gt; Prompt: Cyberpunk alleyway, neon signs
+</div>
+<div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-t lg:border-t-0 lg:border-l border-white/5 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
+<div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
+<p class="text-sm text-gray-200 font-dm-sans font-light">
+                &gt; Промпт: киберпанк-переулок, неоновые вывески
               </p>
-              <div class="flex items-center gap-2 pt-3 border-t border-white/5">
-                <div class="flex items-center gap-1.5 bg-[#1a1a1a] border border-white/10 rounded-none px-2 py-1 text-xs text-gray-400 font-dm-sans font-light">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-3 h-3 text-gray-500"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg>
+<div class="flex items-center gap-2 pt-3 border-t border-white/5">
+<div class="flex items-center gap-1.5 bg-[#1a1a1a] border border-white/10 rounded-none px-2 py-1 text-xs text-gray-400 font-dm-sans font-light">
+<svg class="w-3 h-3 text-gray-500" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect height="16" rx="2" width="16" x="4" y="4"></rect><rect height="8" rx="1" width="8" x="8" y="8"></rect></svg>
                   WorldGen v2.1
                 </div>
-                <div class="flex-1"></div>
-                <span class="text-[10px] text-gray-500 font-dm-sans font-light">
-                  Polycount
+<div class="flex-1"></div>
+<span class="text-[10px] text-gray-500 font-dm-sans font-light">
+                  Полигонаж
                 </span>
-                <span class="bg-[#1a1a1a] border border-white/10 rounded-none text-[10px] px-2 py-0.5 text-gray-300 font-dm-sans font-light">
-                  Optimized
+<span class="bg-[#1a1a1a] border border-white/10 rounded-none text-[10px] px-2 py-0.5 text-gray-300 font-dm-sans font-light">
+                  Оптимизировано
                 </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 2: Character Design & Motion -->
-      <article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
-        <div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
-          <div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden order-2 lg:order-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
-            <div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
-              <div class="flex items-center gap-2 pb-3 border-b border-white/5">
-                <div class="w-1.5 h-1.5 rounded-full bg-[#ff5a00]/50 animate-pulse"></div>
-                <span class="text-[10px] text-gray-400 font-dm-sans font-light tracking-widest uppercase">Motion Sync Override</span>
-              </div>
-              <div class="space-y-3">
-                <p class="text-xs text-gray-500 font-dm-sans font-light">&gt; Analyzing skeletal mesh...</p>
-                <p class="text-xs text-[#ff5a00]/70 font-dm-sans font-light">&gt; Applying procedural IK...</p>
-                <p class="text-sm text-gray-200 font-dm-sans font-light pt-2 border-t border-white/5">&gt; Animation sequence baked.</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10 order-1 lg:order-2">
-            <span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
-              Animation
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 2: Character Design & Motion -->
+<article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
+<div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
+<div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden order-2 lg:order-1">
+<div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
+<div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
+<div class="flex items-center gap-2 pb-3 border-b border-white/5">
+<div class="w-1.5 h-1.5 rounded-full bg-[#ff5a00]/50 animate-pulse"></div>
+<span class="text-[10px] text-gray-400 font-dm-sans font-light tracking-widest uppercase">Переопределение синхронизации движения</span>
+</div>
+<div class="space-y-3">
+<p class="text-xs text-gray-500 font-dm-sans font-light">&gt; Анализ скелетной сетки...</p>
+<p class="text-xs text-[#ff5a00]/70 font-dm-sans font-light">&gt; Применение процедурного IK...</p>
+<p class="text-sm text-gray-200 font-dm-sans font-light pt-2 border-t border-white/5">&gt; Анимационная последовательность запечена.</p>
+</div>
+</div>
+</div>
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10 order-1 lg:order-2">
+<span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
+              Анимация
             </span>
-            <h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
-              Character Design &amp; Motion
+<h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
+              Дизайн персонажей и движение
             </h3>
-            <p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
-              Bring digital humans to life with AI-assisted rigging, fluid animations, and procedural motion capture that adapts dynamically to player interactions.
+<p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
+              Оживляйте цифровых людей с помощью AI-риггинга, плавных анимаций и процедурного захвата движения, динамически адаптирующегося к действиям игрока.
             </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 3: Rapid VR Prototyping -->
-      <article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
-        <div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
-          <div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10">
-            <span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
-              Acceleration
+</div>
+</div>
+</article>
+<!-- Card 3: Rapid VR Prototyping -->
+<article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
+<div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10">
+<span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
+              Ускорение
             </span>
-            <h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
-              Rapid VR Prototyping
+<h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
+              Быстрое VR-прототипирование
             </h3>
-            <p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
-              Move from concept to playable prototype in days, not months. We build optimized real-time rendering workflows using Unreal Engine and AI integration.
+<p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
+              Переходите от концепта к играбельному прототипу за дни, а не месяцы. Мы выстраиваем оптимизированные пайплайны рендеринга в реальном времени с использованием Unreal Engine и интеграции AI.
             </p>
-          </div>
-          <div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-t lg:border-t-0 lg:border-l border-white/5 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
-            <div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
-              <div class="space-y-3">
-                <div class="flex items-center justify-between border border-white/5 bg-white/[0.02] p-3">
-                  <span class="text-xs text-gray-400 font-dm-sans font-light">Concept &amp; Greybox</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-[#ff5a00]/70"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="flex items-center justify-between border border-white/5 bg-white/[0.02] p-3">
-                  <span class="text-xs text-gray-400 font-dm-sans font-light">Asset Generation</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-[#ff5a00]/70"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </div>
-                <div class="flex items-center justify-between border border-white/5 bg-white/[0.02] p-3">
-                  <span class="text-xs text-gray-400 font-dm-sans font-light">Engine Integration</span>
-                  <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" class="text-gray-600"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 4: AI-Assisted Texturing -->
-      <article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
-        <div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
-          <div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden order-2 lg:order-1">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
-            <div class="w-[160px] h-[160px] rounded-full border border-white/10 flex items-center justify-center relative z-10 group-hover:scale-105 transition-transform duration-700">
-              <div class="absolute inset-2 rounded-full border border-white/5 border-t-[#ff5a00]/30 animate-[spin_3s_linear_infinite]"></div>
-              <div class="absolute inset-6 rounded-full border border-white/5 border-l-[#ff5a00]/20 animate-[spin_4s_linear_infinite_reverse]"></div>
-              <div class="flex flex-col items-center justify-center bg-[#0a0a0a] w-[80px] h-[80px] rounded-full border border-white/10 shadow-2xl">
-                  <span class="text-white text-3xl font-light tracking-tighter font-dm-serif-display">16<span class="text-xs">K</span></span>
-                  <span class="text-[8px] text-gray-500 tracking-widest mt-0.5 font-dm-sans uppercase">Resolution</span>
-              </div>
-            </div>
-          </div>
-          <div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10 order-1 lg:order-2">
-            <span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
-              Fidelity
+</div>
+<div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-t lg:border-t-0 lg:border-l border-white/5 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
+<div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
+<div class="space-y-3">
+<div class="flex items-center justify-between border border-white/5 bg-white/[0.02] p-3">
+<span class="text-xs text-gray-400 font-dm-sans font-light">Концепт и грейбокс</span>
+<svg class="text-[#ff5a00]/70" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="flex items-center justify-between border border-white/5 bg-white/[0.02] p-3">
+<span class="text-xs text-gray-400 font-dm-sans font-light">Генерация ассетов</span>
+<svg class="text-[#ff5a00]/70" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><polyline points="20 6 9 17 4 12"></polyline></svg>
+</div>
+<div class="flex items-center justify-between border border-white/5 bg-white/[0.02] p-3">
+<span class="text-xs text-gray-400 font-dm-sans font-light">Интеграция с движком</span>
+<svg class="text-gray-600" fill="none" height="14" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="14" xmlns="http://www.w3.org/2000/svg"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<!-- Card 4: AI-Assisted Texturing -->
+<article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
+<div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
+<div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-b lg:border-b-0 lg:border-r border-white/5 overflow-hidden order-2 lg:order-1">
+<div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
+<div class="w-[160px] h-[160px] rounded-full border border-white/10 flex items-center justify-center relative z-10 group-hover:scale-105 transition-transform duration-700">
+<div class="absolute inset-2 rounded-full border border-white/5 border-t-[#ff5a00]/30 animate-[spin_3s_linear_infinite]"></div>
+<div class="absolute inset-6 rounded-full border border-white/5 border-l-[#ff5a00]/20 animate-[spin_4s_linear_infinite_reverse]"></div>
+<div class="flex flex-col items-center justify-center bg-[#0a0a0a] w-[80px] h-[80px] rounded-full border border-white/10 shadow-2xl">
+<span class="text-white text-3xl font-light tracking-tighter font-dm-serif-display">16<span class="text-xs">K</span></span>
+<span class="text-[8px] text-gray-500 tracking-widest mt-0.5 font-dm-sans uppercase">Разрешение</span>
+</div>
+</div>
+</div>
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10 order-1 lg:order-2">
+<span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
+              Детализация
             </span>
-            <h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
-              AI-Assisted Texturing
+<h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
+              Текстурирование с помощью AI
             </h3>
-            <p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
-              Automate the creation of PBR materials. AI upscales textures and generates infinite variations to achieve hyper-realistic surface details for VR headsets.
+<p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
+              Автоматизируйте создание PBR-материалов. AI повышает разрешение текстур и генерирует бесконечные вариации для гиперреалистичной детализации поверхностей в VR-гарнитурах.
             </p>
-          </div>
-        </div>
-      </article>
-
-      <!-- Card 5: Artist & AI Collaboration -->
-      <article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
-        <div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
-          <div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10">
-            <span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
-              Synergy
+</div>
+</div>
+</article>
+<!-- Card 5: Artist & AI Collaboration -->
+<article class="w-full max-w-[800px] rounded-none border border-white/5 p-2 bg-gradient-to-b from-white/[0.05] to-transparent gs-reveal relative group">
+<div class="flex flex-col lg:flex-row h-full rounded-none border border-white/5 bg-[#0e0e0e] overflow-hidden">
+<div class="flex-1 p-8 md:p-12 flex flex-col justify-center gap-6 z-10">
+<span class="text-[10px] tracking-[0.2em] font-light text-gray-400 border border-white/10 rounded-none px-3 py-1 w-fit uppercase bg-white/[0.02] font-dm-sans">
+              Синергия
             </span>
-            <h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
-              Artist &amp; AI Collaboration
+<h3 class="text-2xl md:text-3xl tracking-tight text-white uppercase font-dm-serif-display font-light">
+              Сотрудничество художника и AI
             </h3>
-            <p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
-              We don't replace artists; we supercharge them. Our workflows establish a seamless bridge between human creativity and machine generation for uncompromised vision.
+<p class="text-sm text-gray-400 leading-relaxed font-dm-sans font-light">
+              Мы не заменяем художников — мы усиливаем их. Наши процессы создают бесшовный мост между человеческим творчеством и машинной генерацией ради бескомпромиссного видения.
             </p>
-          </div>
-          <div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-t lg:border-t-0 lg:border-l border-white/5 overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
-            <div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
-              <div class="flex items-center justify-between pb-3 border-b border-white/5">
-                <span class="text-xs text-gray-400 font-dm-sans font-light uppercase tracking-widest">Pipeline Sync</span>
-                <div class="flex items-center gap-1.5 bg-[#ff5a00]/10 border border-[#ff5a00]/20 rounded-none px-2 py-0.5">
-                  <div class="w-1.5 h-1.5 rounded-full bg-[#ff5a00] animate-pulse"></div>
-                  <span class="text-[9px] text-[#ff5a00] font-dm-sans font-light uppercase tracking-wider">Active</span>
-                </div>
-              </div>
-              <div class="grid grid-cols-2 gap-2 mt-2">
-                <div class="border border-white/5 p-3 flex flex-col gap-1 bg-white/[0.02]">
-                  <span class="text-[10px] text-gray-500 font-dm-sans uppercase">Render Time</span>
-                  <span class="text-sm text-gray-200 font-dm-sans font-light">2.4ms</span>
-                </div>
-                <div class="border border-white/5 p-3 flex flex-col gap-1 bg-white/[0.02]">
-                  <span class="text-[10px] text-gray-500 font-dm-sans uppercase">Iteration</span>
-                  <span class="text-sm text-gray-200 font-dm-sans font-light">10x Faster</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
+</div>
+<div class="flex-1 bg-[#050505] p-6 md:p-10 flex flex-col items-center justify-center relative border-t lg:border-t-0 lg:border-l border-white/5 overflow-hidden">
+<div class="absolute inset-0 bg-gradient-to-br from-[#ff5a00]/5 to-transparent opacity-20 group-hover:opacity-50 transition-opacity duration-700"></div>
+<div class="w-full max-w-[300px] bg-[#0a0a0a] rounded-none border border-white/10 p-5 flex flex-col gap-4 shadow-2xl relative z-10 transform transition-transform duration-500 group-hover:-translate-y-1">
+<div class="flex items-center justify-between pb-3 border-b border-white/5">
+<span class="text-xs text-gray-400 font-dm-sans font-light uppercase tracking-widest">Синхронизация пайплайна</span>
+<div class="flex items-center gap-1.5 bg-[#ff5a00]/10 border border-[#ff5a00]/20 rounded-none px-2 py-0.5">
+<div class="w-1.5 h-1.5 rounded-full bg-[#ff5a00] animate-pulse"></div>
+<span class="text-[9px] text-[#ff5a00] font-dm-sans font-light uppercase tracking-wider">Активен</span>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-2 mt-2">
+<div class="border border-white/5 p-3 flex flex-col gap-1 bg-white/[0.02]">
+<span class="text-[10px] text-gray-500 font-dm-sans uppercase">Время рендера</span>
+<span class="text-sm text-gray-200 font-dm-sans font-light">2.4 мс</span>
+</div>
+<div class="border border-white/5 p-3 flex flex-col gap-1 bg-white/[0.02]">
+<span class="text-[10px] text-gray-500 font-dm-sans uppercase">Итерация</span>
+<span class="text-sm text-gray-200 font-dm-sans font-light">в 10 раз быстрее</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
 </section><section class="py-24 md:py-32 px-6 md:px-12 w-full relative">
-  <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 relative z-10">
-
-    <!-- Header -->
-    <div class="col-span-1 md:col-span-12 mb-8 md:mb-12">
-      <div class="flex items-center gap-4 mb-8">
-        <div class="flex gap-2">
-          <div class="w-2 h-2 rounded-full bg-[#ff5a00]"></div>
-          <div class="w-2 h-2 rounded-full bg-gray-300"></div>
-        </div>
-        <span class="text-xs uppercase tracking-widest text-gray-500 font-dm-sans font-light">Who We Are</span>
-      </div>
-      <h2 class="text-5xl md:text-7xl lg:text-8xl tracking-tight font-dm-serif-display font-normal text-[#111] leading-[0.9]">
-        Engineering <br class="hidden md:block">
-        <span class="text-gray-400">new dimensions.</span>
-      </h2>
-    </div>
-
-    <!-- Left Column: Image & Stats -->
-    <div class="col-span-1 md:col-span-5 flex flex-col gap-10">
-      <div class="w-full aspect-[4/5] relative overflow-hidden clip-poly-1 shadow-2xl shadow-black/5">
-        <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1781947377692-189164fd-37eb-456a-85f1-c34a19ab7597.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/913fa853-7d2f-4a27-a0b6-e3df37ae2dc1_1600w.png" data-aura-generated-video="true" data-aura-video-preset="hover" muted="" playsinline="" preload="metadata" aria-label="Company workspace abstract" class="w-full h-full object-cover"></video>
-      </div>
-
-      <div class="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-[#111]/10 pt-8">
-        <div class="flex flex-col gap-2">
-          <div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">10+</div>
-          <div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Years Active</div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">150</div>
-          <div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Virtual Worlds</div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">42</div>
-          <div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Global Awards</div>
-        </div>
-        <div class="flex flex-col gap-2">
-          <div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">99%</div>
-          <div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Immersion Rate</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column: Text & List -->
-    <div class="col-span-1 md:col-span-7 flex flex-col pt-4 md:pt-0">
-      <div class="max-w-2xl mb-16">
-        <p class="text-xl md:text-2xl text-gray-800 font-light leading-relaxed mb-8 font-dm-sans tracking-tight">
-          We are a collective of spatial computing pioneers, creative technologists, and narrative designers. Our
-          mission is to bridge the gap between imagination and tangible digital reality, crafting experiences that
-          resonate beyond the screen.
+<div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 relative z-10">
+<!-- Header -->
+<div class="col-span-1 md:col-span-12 mb-8 md:mb-12">
+<div class="flex items-center gap-4 mb-8">
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-full bg-[#ff5a00]"></div>
+<div class="w-2 h-2 rounded-full bg-gray-300"></div>
+</div>
+<span class="text-xs uppercase tracking-widest text-gray-500 font-dm-sans font-light">Кто мы</span>
+</div>
+<h2 class="text-5xl md:text-7xl lg:text-8xl tracking-tight font-dm-serif-display font-normal text-[#111] leading-[0.9]">
+        Инженерия <br class="hidden md:block"/>
+<span class="text-gray-400">новые измерения.</span>
+</h2>
+</div>
+<!-- Left Column: Image & Stats -->
+<div class="col-span-1 md:col-span-5 flex flex-col gap-10">
+<div class="w-full aspect-[4/5] relative overflow-hidden clip-poly-1 shadow-2xl shadow-black/5">
+<video aria-label="Абстракция рабочего пространства компании" class="w-full h-full object-cover" data-aura-generated-video="true" data-aura-video-preset="hover" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/913fa853-7d2f-4a27-a0b6-e3df37ae2dc1_1600w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1781947377692-189164fd-37eb-456a-85f1-c34a19ab7597.mp4"></video>
+</div>
+<div class="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-[#111]/10 pt-8">
+<div class="flex flex-col gap-2">
+<div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">10+</div>
+<div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Лет работы</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">150</div>
+<div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Виртуальных миров</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">42</div>
+<div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Международных наград</div>
+</div>
+<div class="flex flex-col gap-2">
+<div class="text-4xl md:text-5xl font-dm-serif-display font-normal tracking-tight text-[#111]">99%</div>
+<div class="text-xs text-gray-500 uppercase tracking-widest font-dm-sans font-light">Уровень погружения</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Text & List -->
+<div class="col-span-1 md:col-span-7 flex flex-col pt-4 md:pt-0">
+<div class="max-w-2xl mb-16">
+<p class="text-xl md:text-2xl text-gray-800 font-light leading-relaxed mb-8 font-dm-sans tracking-tight">
+          Мы — коллектив пионеров пространственных вычислений, креативных технологов и нарративных дизайнеров. Наша
+          миссия — соединить воображение и осязаемую цифровую реальность, создавая опыт, который
+          резонирует за пределами экрана.
         </p>
-        <p class="text-sm text-gray-500 leading-loose font-dm-sans font-light">
-          Founded in 2016, we recognized early that the future of human-computer interaction wouldn't be confined to
-          flat rectangles. By leveraging next-generation engines and relentless innovation in haptics and spatial
-          tracking, we build environments that feel as real as the physical world. Every project is an opportunity to
-          push the boundaries of what's technically possible and emotionally impactful.
+<p class="text-sm text-gray-500 leading-loose font-dm-sans font-light">
+          Основанные в 2016 году, мы рано поняли, что будущее взаимодействия человека и компьютера не будет ограничено
+          плоскими прямоугольниками. Используя движки нового поколения и непрерывные инновации в хаптике и пространственном
+          трекинге, мы создаём окружения, ощущающиеся такими же реальными, как физический мир. Каждый проект — это возможность
+          раздвинуть границы технически возможного и эмоционально воздействующего.
         </p>
-      </div>
-
-      <div class="mt-auto">
-        <div class="flex justify-between items-end pb-4 border-b border-[#111]/10">
-          <div class="text-xs text-gray-400 font-light font-dm-sans uppercase tracking-widest">
-            [ Core Principles ]
+</div>
+<div class="mt-auto">
+<div class="flex justify-between items-end pb-4 border-b border-[#111]/10">
+<div class="text-xs text-gray-400 font-light font-dm-sans uppercase tracking-widest">
+            [ Ключевые принципы ]
           </div>
-        </div>
-
-        <div class="flex flex-col group mt-2">
-          <div class="flex justify-between items-center py-8 border-b border-[#111]/5 hover:border-[#ff5a00] transition-all cursor-pointer group/item">
-            <div class="flex items-center gap-6 md:gap-12">
-              <span class="text-sm font-light text-gray-400 group-hover/item:text-[#ff5a00] transition-colors font-dm-sans">01</span>
-              <span class="text-3xl md:text-5xl tracking-tight font-dm-serif-display font-normal text-gray-400 group-hover/item:text-[#111] transition-colors">Radical Presence</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-8 h-8 text-[#ff5a00] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-4 translate-y-4 group-hover/item:translate-x-0 group-hover/item:translate-y-0 duration-300">
-              <path d="M7 7h10v10"></path>
-              <path d="M7 17 17 7"></path>
-            </svg>
-          </div>
-
-          <div class="flex justify-between items-center py-8 border-b border-[#111]/5 hover:border-[#ff5a00] transition-all cursor-pointer group/item">
-            <div class="flex items-center gap-6 md:gap-12">
-              <span class="text-sm font-light text-gray-400 group-hover/item:text-[#ff5a00] transition-colors font-dm-sans">02</span>
-              <span class="text-3xl md:text-5xl tracking-tight font-dm-serif-display font-normal text-gray-400 group-hover/item:text-[#111] transition-colors">Invisible Tech</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-8 h-8 text-[#ff5a00] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-4 translate-y-4 group-hover/item:translate-x-0 group-hover/item:translate-y-0 duration-300">
-              <path d="M7 7h10v10"></path>
-              <path d="M7 17 17 7"></path>
-            </svg>
-          </div>
-
-          <div class="flex justify-between items-center py-8 border-b border-[#111]/5 hover:border-[#ff5a00] transition-all cursor-pointer group/item">
-            <div class="flex items-center gap-6 md:gap-12">
-              <span class="text-sm font-light text-gray-400 group-hover/item:text-[#ff5a00] transition-colors font-dm-sans">03</span>
-              <span class="text-3xl md:text-5xl tracking-tight font-dm-serif-display font-normal text-gray-400 group-hover/item:text-[#111] transition-colors">Narrative Flow</span>
-            </div>
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-8 h-8 text-[#ff5a00] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-4 translate-y-4 group-hover/item:translate-x-0 group-hover/item:translate-y-0 duration-300">
-              <path d="M7 7h10v10"></path>
-              <path d="M7 17 17 7"></path>
-            </svg>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="w-full border-t border-[#111]/10 mt-24 md:mt-32 pt-6 flex flex-wrap md:flex-nowrap justify-between gap-4 text-xs font-light uppercase tracking-widest text-gray-500 overflow-hidden">
-    <span class="font-dm-sans whitespace-nowrap">Spatial Tracking</span>
-    <span class="font-dm-sans hidden md:block">+</span>
-    <span class="font-dm-sans whitespace-nowrap">Haptic Feedback</span>
-    <span class="font-dm-sans hidden md:block">+</span>
-    <span class="font-dm-sans whitespace-nowrap">Seamless Immersion</span>
-    <span class="font-dm-sans hidden md:block">+</span>
-    <span class="font-dm-sans whitespace-nowrap">High Framerates</span>
-    <span class="font-dm-sans hidden md:block">+</span>
-    <span class="font-dm-sans whitespace-nowrap">Unreal Engine</span>
-  </div>
+</div>
+<div class="flex flex-col group mt-2">
+<div class="flex justify-between items-center py-8 border-b border-[#111]/5 hover:border-[#ff5a00] transition-all cursor-pointer group/item">
+<div class="flex items-center gap-6 md:gap-12">
+<span class="text-sm font-light text-gray-400 group-hover/item:text-[#ff5a00] transition-colors font-dm-sans">01</span>
+<span class="text-3xl md:text-5xl tracking-tight font-dm-serif-display font-normal text-gray-400 group-hover/item:text-[#111] transition-colors">Радикальное присутствие</span>
+</div>
+<svg class="lucide lucide-arrow-up-right w-8 h-8 text-[#ff5a00] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-4 translate-y-4 group-hover/item:translate-x-0 group-hover/item:translate-y-0 duration-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+<div class="flex justify-between items-center py-8 border-b border-[#111]/5 hover:border-[#ff5a00] transition-all cursor-pointer group/item">
+<div class="flex items-center gap-6 md:gap-12">
+<span class="text-sm font-light text-gray-400 group-hover/item:text-[#ff5a00] transition-colors font-dm-sans">02</span>
+<span class="text-3xl md:text-5xl tracking-tight font-dm-serif-display font-normal text-gray-400 group-hover/item:text-[#111] transition-colors">Невидимые технологии</span>
+</div>
+<svg class="lucide lucide-arrow-up-right w-8 h-8 text-[#ff5a00] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-4 translate-y-4 group-hover/item:translate-x-0 group-hover/item:translate-y-0 duration-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+<div class="flex justify-between items-center py-8 border-b border-[#111]/5 hover:border-[#ff5a00] transition-all cursor-pointer group/item">
+<div class="flex items-center gap-6 md:gap-12">
+<span class="text-sm font-light text-gray-400 group-hover/item:text-[#ff5a00] transition-colors font-dm-sans">03</span>
+<span class="text-3xl md:text-5xl tracking-tight font-dm-serif-display font-normal text-gray-400 group-hover/item:text-[#111] transition-colors">Нарративный поток</span>
+</div>
+<svg class="lucide lucide-arrow-up-right w-8 h-8 text-[#ff5a00] opacity-0 group-hover/item:opacity-100 transition-all transform -translate-x-4 translate-y-4 group-hover/item:translate-x-0 group-hover/item:translate-y-0 duration-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full border-t border-[#111]/10 mt-24 md:mt-32 pt-6 flex flex-wrap md:flex-nowrap justify-between gap-4 text-xs font-light uppercase tracking-widest text-gray-500 overflow-hidden">
+<span class="font-dm-sans whitespace-nowrap">Пространственный трекинг</span>
+<span class="font-dm-sans hidden md:block">+</span>
+<span class="font-dm-sans whitespace-nowrap">Тактильная отдача</span>
+<span class="font-dm-sans hidden md:block">+</span>
+<span class="font-dm-sans whitespace-nowrap">Бесшовное погружение</span>
+<span class="font-dm-sans hidden md:block">+</span>
+<span class="font-dm-sans whitespace-nowrap">Высокая частота кадров</span>
+<span class="font-dm-sans hidden md:block">+</span>
+<span class="font-dm-sans whitespace-nowrap">Unreal Engine</span>
+</div>
 </section><section class="text-white bg-[#050505] w-full h-[400vh] pt-32 pb-32 relative" id="hScrollSection-emq">
-  <div class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center py-12 md:py-20">
-    <!-- Dither / Noise overlay -->
-    <div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); z-index: 1;">
-    </div>
-
-    <div class="md:px-12 md:mb-16 flex flex-col md:flex-row md:items-end gap-6 z-10 shrink-0 w-full mb-8 pr-6 pl-6 relative gap-x-6 gap-y-6 items-start justify-between">
-      <div class="flex flex-col gap-4">
-        <div class="text-xs font-thin tracking-widest uppercase text-white/50 flex items-center gap-3 font-dm-sans">
-          <span class="w-2 h-2 rounded-full bg-[#ff5a00]"></span>
-          [ Experiential Gallery ]
+<div class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center py-12 md:py-20">
+<!-- Dither / Noise overlay -->
+<div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); z-index: 1;">
+</div>
+<div class="md:px-12 md:mb-16 flex flex-col md:flex-row md:items-end gap-6 z-10 shrink-0 w-full mb-8 pr-6 pl-6 relative gap-x-6 gap-y-6 items-start justify-between">
+<div class="flex flex-col gap-4">
+<div class="text-xs font-thin tracking-widest uppercase text-white/50 flex items-center gap-3 font-dm-sans">
+<span class="w-2 h-2 rounded-full bg-[#ff5a00]"></span>
+          [ Галерея опыта ]
         </div>
-        <h2 class="text-5xl md:text-7xl lg:text-8xl tracking-tight font-dm-serif-display font-light text-white max-w-4xl leading-[0.9]">
-          In game, <br>
-          <span class="text-white/40">not in theory.</span>
-        </h2>
-      </div>
-      <div class="flex items-center gap-6 text-xs font-dm-sans font-thin uppercase tracking-widest text-white/40 bg-white/[0.03] border border-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
-        <div class="flex gap-2 items-center">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-mouse w-4 h-4">
-            <rect x="5" y="2" width="14" height="20" rx="7"></rect>
-            <path d="M12 6v4"></path>
-          </svg>
-          <span class="mono">Scroll down</span>
-        </div>
-        <div class="w-px h-4 bg-white/20"></div>
-        <span class="mono">6 Releases</span>
-      </div>
-    </div>
-
-    <div class="w-full relative z-10 flex-1 flex items-center">
-      <div class="w-full h-full flex items-center">
-        <div class="track flex gap-6 md:gap-12 md:px-12 transition-transform duration-100 ease-out will-change-transform w-max pr-6 pl-6 gap-x-6 gap-y-6" id="track-emq">
-
-          <!-- Frame 01 -->
-          <figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 clip-poly-1 cursor-pointer">
-  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/209e95ca-3a3d-472d-aba2-2a118159d77a_1600w.png" alt="Wood letterpress type sorted in a case" loading="eager" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
-  <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
-  </div>
-
-  <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
-    <div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
-      <span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
-                  Release
+<h2 class="text-5xl md:text-7xl lg:text-8xl tracking-tight font-dm-serif-display font-light text-white max-w-4xl leading-[0.9]">
+          В игре, <br/>
+<span class="text-white/40">а не в теории.</span>
+</h2>
+</div>
+<div class="flex items-center gap-6 text-xs font-dm-sans font-thin uppercase tracking-widest text-white/40 bg-white/[0.03] border border-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
+<div class="flex gap-2 items-center">
+<svg class="lucide lucide-mouse w-4 h-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<rect height="20" rx="7" width="14" x="5" y="2"></rect>
+<path d="M12 6v4"></path>
+</svg>
+<span class="mono">Листайте вниз</span>
+</div>
+<div class="w-px h-4 bg-white/20"></div>
+<span class="mono">6 релизов</span>
+</div>
+</div>
+<div class="w-full relative z-10 flex-1 flex items-center">
+<div class="w-full h-full flex items-center">
+<div class="track flex gap-6 md:gap-12 md:px-12 transition-transform duration-100 ease-out will-change-transform w-max pr-6 pl-6 gap-x-6 gap-y-6" id="track-emq">
+<!-- Frame 01 -->
+<figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 clip-poly-1 cursor-pointer">
+<img alt="Деревянные литеры высокой печати, разложенные в кассе" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="eager" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/209e95ca-3a3d-472d-aba2-2a118159d77a_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
+                  Релиз
                 </span>
-      <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white">
-          <path d="M7 7h10v10"></path>
-          <path d="M7 17 17 7"></path>
-        </svg>
-      </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-      <div class="flex flex-col gap-3">
-        <span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">01</span>
-        <figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
-          Nexus Studio, motion capture room
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">01</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
+          Nexus Studio, комната захвата движения
         </figcaption>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </figure>
-
-          <!-- Frame 02 -->
-          <figure class="frame w-[85vw] md:w-[50vw] lg:w-[35vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-24 clip-poly-1 cursor-pointer">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/73a2b092-3a30-457c-b3fe-b170bf276c61_1600w.png" alt="Poster wall" loading="lazy" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
-            </div>
-
-            <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
-              <div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
-                <span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
-                  Release
+<!-- Frame 02 -->
+<figure class="frame w-[85vw] md:w-[50vw] lg:w-[35vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-24 clip-poly-1 cursor-pointer">
+<img alt="Стена с постерами" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/73a2b092-3a30-457c-b3fe-b170bf276c61_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
+                  Релиз
                 </span>
-                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white">
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                <div class="flex flex-col gap-3">
-                  <span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">02</span>
-                  <figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
-                    Neon Cyberpunk, level design
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">02</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
+                    Neon Cyberpunk, дизайн уровней
                   </figcaption>
-                </div>
-              </div>
-            </div>
-          </figure>
-
-          <!-- Frame 03 -->
-          <figure class="frame w-[85vw] md:w-[45vw] lg:w-[30vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 clip-poly-1 cursor-pointer">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9d785976-3ca2-4921-b23d-c610cc232c55_1600w.png" alt="Stack of printed magazines" loading="lazy" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
-            </div>
-
-            <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
-              <div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
-                <span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
-                  Release
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 03 -->
+<figure class="frame w-[85vw] md:w-[45vw] lg:w-[30vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 clip-poly-1 cursor-pointer">
+<img alt="Стопка печатных журналов" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9d785976-3ca2-4921-b23d-c610cc232c55_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
+                  Релиз
                 </span>
-                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white">
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                <div class="flex flex-col gap-3">
-                  <span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">03</span>
-                  <figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
-                    Tactical Assault, alpha build
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">03</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
+                    Tactical Assault, альфа-версия
                   </figcaption>
-                </div>
-              </div>
-            </div>
-          </figure>
-
-          <!-- Frame 04 -->
-          <figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-16 clip-poly-1 cursor-pointer">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c5ad6aa3-deb8-4c1b-8615-6f87bd23dc01_1600w.png" alt="Neon sign typography" loading="lazy" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
-            </div>
-
-            <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
-              <div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
-                <span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
-                  Release
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 04 -->
+<figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-16 clip-poly-1 cursor-pointer">
+<img alt="Типографика неоновой вывески" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c5ad6aa3-deb8-4c1b-8615-6f87bd23dc01_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
+                  Релиз
                 </span>
-                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white">
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                <div class="flex flex-col gap-3">
-                  <span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">04</span>
-                  <figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
-                    Sci-Fi HUD, prototype
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">04</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
+                    Sci-Fi HUD, прототип
                   </figcaption>
-                </div>
-              </div>
-            </div>
-          </figure>
-
-          <!-- Frame 05 -->
-          <figure class="frame w-[85vw] md:w-[50vw] lg:w-[40vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] clip-poly-1 shrink-0 border border-white/10 cursor-pointer">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59a5f97c-0c0e-449f-bd9f-a0ee96e5c61b_1600w.png" alt="Open magazine editorial spread" loading="lazy" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
-            </div>
-
-            <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
-              <div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
-                <span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
-                  Release
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 05 -->
+<figure class="frame w-[85vw] md:w-[50vw] lg:w-[40vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] clip-poly-1 shrink-0 border border-white/10 cursor-pointer">
+<img alt="Открытый редакционный разворот журнала" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/59a5f97c-0c0e-449f-bd9f-a0ee96e5c61b_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
+                  Релиз
                 </span>
-                <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white">
-                    <path d="M7 7h10v10"></path>
-                    <path d="M7 17 17 7"></path>
-                  </svg>
-                </div>
-              </div>
-
-              <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-                <div class="flex flex-col gap-3">
-                  <span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">05</span>
-                  <figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
-                    Fantasy RPG, environment art
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">05</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
+                    Fantasy RPG, арт окружения
                   </figcaption>
-                </div>
-              </div>
-            </div>
-          </figure>
-
-          <!-- Frame 06 -->
-          <figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-24 clip-poly-1 cursor-pointer">
-  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d7626a20-b23f-42d3-8906-80514ee004da_1600w.png" alt="Letterpress print detail" loading="lazy" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]">
-  <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
-  </div>
-
-  <div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
-    <div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
-      <span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
-                  Release
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 06 -->
+<figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-24 clip-poly-1 cursor-pointer">
+<img alt="Деталь оттиска высокой печати" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d7626a20-b23f-42d3-8906-80514ee004da_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-extralight text-[#ff5a00] border border-[#ff5a00]/30 rounded-full px-4 py-2 uppercase bg-[#ff5a00]/10 backdrop-blur-md font-dm-sans">
+                  Релиз
                 </span>
-      <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-right w-4 h-4 text-white">
-          <path d="M7 7h10v10"></path>
-          <path d="M7 17 17 7"></path>
-        </svg>
-      </div>
-    </div>
-
-    <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
-      <div class="flex flex-col gap-3">
-        <span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">06</span>
-        <figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
-          VR Arcade, multiplayer setup
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-dm-serif-display font-extralight text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">06</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-dm-serif-display font-extralight text-white max-w-sm leading-[1.1]">
+          VR Arcade, мультиплеерная конфигурация
         </figcaption>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </figure>
-
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <script>
+</div>
+</div>
+</div>
+</div>
+<script>
     (function() {
       const initScroll = () => {
         const section = document.getElementById('hScrollSection-emq');
@@ -1360,192 +1319,175 @@ filter: blur(10px)" id="curtainR">
     })();
   </script>
 </section>
-      
-
-      <section class="py-24 px-6 md:px-12 w-full bg-[#e8e6e1]">
-        <div class="grid grid-cols-12 gap-6 items-center">
-          <div class="col-span-12 md:col-span-4 flex flex-col gap-12 gs-reveal">
-            <div class="flex items-baseline gap-2 text-5xl tracking-tight font-dm-serif-display font-normal">
+<section class="py-24 px-6 md:px-12 w-full bg-[#e8e6e1]">
+<div class="grid grid-cols-12 gap-6 items-center">
+<div class="col-span-12 md:col-span-4 flex flex-col gap-12 gs-reveal">
+<div class="flex items-baseline gap-2 text-5xl tracking-tight font-dm-serif-display font-normal">
               01
               <span class="text-xl text-gray-400 font-dm-serif-display font-normal">
                 /8
               </span>
-            </div>
-
-            <div class="">
-              <div class="text-sm font-normal tracking-tight font-dm-sans">
-                [Sarah Jenkins]
+</div>
+<div class="">
+<div class="text-sm font-normal tracking-tight font-dm-sans">
+                [Сара Дженкинс]
               </div>
-              <div class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-dm-sans">
+<div class="text-xs text-gray-500 mt-1 uppercase tracking-widest font-dm-sans">
                 VR Gaming Monthly
               </div>
+</div>
+<div class="w-3/4 aspect-square clip-poly-3 overflow-hidden">
+<img class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6dc9c198-a556-4dd3-b5b7-0e7e0d1828f4_3840w.png"/>
+</div>
+</div>
+<div class="col-span-12 md:col-span-8 flex flex-col justify-center gs-reveal">
+<div class="text-xs text-gray-400 uppercase tracking-widest mb-12 font-dm-sans">
+              [Отзыв]
             </div>
-
-            <div class="w-3/4 aspect-square clip-poly-3 overflow-hidden">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6dc9c198-a556-4dd3-b5b7-0e7e0d1828f4_3840w.png" class="w-full h-full object-cover grayscale mix-blend-multiply opacity-80">
-            </div>
-          </div>
-
-          <div class="col-span-12 md:col-span-8 flex flex-col justify-center gs-reveal">
-            <div class="text-xs text-gray-400 uppercase tracking-widest mb-12 font-dm-sans">
-              [Testimonial]
-            </div>
-
-            <div class="relative">
-              <div class="absolute -top-8 -left-8 text-6xl text-[#ff5a00] font-dm-serif-display font-normal">
+<div class="relative">
+<div class="absolute -top-8 -left-8 text-6xl text-[#ff5a00] font-dm-serif-display font-normal">
                 "
               </div>
-              <h3 class="text-3xl md:text-5xl tracking-tight leading-tight text-[#111] font-dm-serif-display font-normal">
-                The attention to spatial presence is absolutely perfect! From
-                the haptic feedback to the flawless geometry every interaction
-                feels premium. This agency has completely transformed my
-                approach to VR design.
+<h3 class="text-3xl md:text-5xl tracking-tight leading-tight text-[#111] font-dm-serif-display font-normal">
+                Внимание к пространственному присутствию абсолютно безупречно! От
+                тактильной отдачи до идеальной геометрии — каждое взаимодействие
+                ощущается премиально. Это агентство полностью изменило мой
+                подход к VR-дизайну.
               </h3>
-            </div>
-
-            <div class="mt-16 flex items-center gap-4">
-              <div class="flex text-[#ff5a00] gap-1">
-                <iconify-icon icon="solar:star-bold"></iconify-icon>
-                <iconify-icon icon="solar:star-bold"></iconify-icon>
-                <iconify-icon icon="solar:star-bold"></iconify-icon>
-                <iconify-icon icon="solar:star-bold"></iconify-icon>
-                <iconify-icon icon="solar:star-bold"></iconify-icon>
+</div>
+<div class="mt-16 flex items-center gap-4">
+<div class="flex text-[#ff5a00] gap-1">
+<iconify-icon icon="solar:star-bold"></iconify-icon>
+<iconify-icon icon="solar:star-bold"></iconify-icon>
+<iconify-icon icon="solar:star-bold"></iconify-icon>
+<iconify-icon icon="solar:star-bold"></iconify-icon>
+<iconify-icon icon="solar:star-bold"></iconify-icon>
+</div>
+<div class="text-xs font-normal font-dm-sans">
+                5.0 (49 отзывов)
               </div>
-              <div class="text-xs font-normal font-dm-sans">
-                5.0 (49 Reviews)
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 md:py-32 px-6 md:px-12 w-full bg-[#111] text-white relative z-20 overflow-hidden">
+<div class="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[#ff5a00]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
+<div class="grid grid-cols-12 gap-6 md:gap-12 relative z-10 max-w-[120rem] mx-auto">
+<div class="col-span-12 md:col-span-5 flex flex-col justify-between">
+<div class="">
+<div class="text-xs font-light tracking-widest uppercase text-white/50 mb-12 flex items-center gap-3 font-dm-sans">
+<span class="w-2 h-2 rounded-full bg-[#ff5a00]"></span>
+                [ Архитектура системы ]
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="py-24 md:py-32 px-6 md:px-12 w-full bg-[#111] text-white relative z-20 overflow-hidden">
-        <div class="absolute top-0 right-0 w-[50vw] h-[50vw] bg-[#ff5a00]/5 rounded-full blur-[120px] pointer-events-none translate-x-1/3 -translate-y-1/3"></div>
-
-        <div class="grid grid-cols-12 gap-6 md:gap-12 relative z-10 max-w-[120rem] mx-auto">
-          <div class="col-span-12 md:col-span-5 flex flex-col justify-between">
-            <div class="">
-              <div class="text-xs font-light tracking-widest uppercase text-white/50 mb-12 flex items-center gap-3 font-dm-sans">
-                <span class="w-2 h-2 rounded-full bg-[#ff5a00]"></span>
-                [ System Architecture ]
-              </div>
-              <h2 class="text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.9] font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif">
-                Engineered for
-                <br>
-                absolute immersion.
+<h2 class="text-5xl md:text-7xl lg:text-8xl tracking-tighter leading-[0.9] font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif">
+                Спроектировано для
+                <br/>
+                абсолютное погружение.
               </h2>
-              <p class="mt-8 text-sm md:text-base text-white/60 font-light leading-relaxed max-w-md font-dm-sans">
-                Our proprietary engine leverages hardware acceleration and
-                neural predictive rendering to achieve zero-latency sensory
-                feedback across all interconnected domains.
+<p class="mt-8 text-sm md:text-base text-white/60 font-light leading-relaxed max-w-md font-dm-sans">
+                Наш собственный движок использует аппаратное ускорение и
+                нейронный предиктивный рендеринг для сенсорной отдачи с нулевой
+                задержкой во всех связанных доменах.
               </p>
-            </div>
-
-            <div class="hidden md:flex flex-col mt-24 gap-6">
-              <div class="w-full h-px bg-white/10 relative">
-                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-[1px] bg-[#ff5a00]"></div>
-              </div>
-              <div class="flex justify-between items-center text-xs font-light tracking-widest text-white/40 uppercase">
-                <span class="font-dm-sans">Core Bandwidth</span>
-                <span class="text-white font-dm-sans">1.2 TB/s</span>
-              </div>
-
-              <div class="w-full h-px bg-white/10 relative mt-4">
-                <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[85%] h-[1px] bg-white"></div>
-              </div>
-              <div class="flex justify-between items-center text-xs font-light tracking-widest text-white/40 uppercase">
-                <span class="font-dm-sans">Server Uptime</span>
-                <span class="text-white font-dm-sans">99.99%</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="col-span-12 md:col-span-7 mt-16 md:mt-0 flex flex-col">
-            <div class="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden group rounded-sm bg-[#1a1a1a]">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/48bee0b9-ab9b-4a3c-83d9-f274e4e88063_3840w.png?w=800&q=80" alt="Hardware integration" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 ease-in-out">
-              <div class="absolute inset-0 border border-white/10 pointer-events-none mix-blend-overlay"></div>
-
-              <div class="absolute bottom-6 left-6 right-6 md:right-auto md:w-80 bg-black/80 backdrop-blur-xl border border-white/10 p-6 flex flex-col gap-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out">
-                <div class="flex justify-between items-center pb-4 border-b border-white/10">
-                  <span class="text-xs font-light uppercase tracking-widest text-white/50 flex items-center gap-2 font-dm-sans">
-                    <i data-lucide="zap" class="w-6 h-6 text-cyan-400"></i>
-                    System Link
+</div>
+<div class="hidden md:flex flex-col mt-24 gap-6">
+<div class="w-full h-px bg-white/10 relative">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-1/3 h-[1px] bg-[#ff5a00]"></div>
+</div>
+<div class="flex justify-between items-center text-xs font-light tracking-widest text-white/40 uppercase">
+<span class="font-dm-sans">Пропускная способность ядра</span>
+<span class="text-white font-dm-sans">1.2 ТБ/с</span>
+</div>
+<div class="w-full h-px bg-white/10 relative mt-4">
+<div class="absolute left-0 top-1/2 -translate-y-1/2 w-[85%] h-[1px] bg-white"></div>
+</div>
+<div class="flex justify-between items-center text-xs font-light tracking-widest text-white/40 uppercase">
+<span class="font-dm-sans">Аптайм серверов</span>
+<span class="text-white font-dm-sans">99.99%</span>
+</div>
+</div>
+</div>
+<div class="col-span-12 md:col-span-7 mt-16 md:mt-0 flex flex-col">
+<div class="relative w-full aspect-[4/3] md:aspect-[16/10] overflow-hidden group rounded-sm bg-[#1a1a1a]">
+<img alt="Аппаратная интеграция" class="w-full h-full object-cover grayscale opacity-50 group-hover:opacity-80 group-hover:scale-105 transition-all duration-1000 ease-in-out" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/48bee0b9-ab9b-4a3c-83d9-f274e4e88063_3840w.png?w=800&amp;q=80"/>
+<div class="absolute inset-0 border border-white/10 pointer-events-none mix-blend-overlay"></div>
+<div class="absolute bottom-6 left-6 right-6 md:right-auto md:w-80 bg-black/80 backdrop-blur-xl border border-white/10 p-6 flex flex-col gap-6 transform translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out">
+<div class="flex justify-between items-center pb-4 border-b border-white/10">
+<span class="text-xs font-light uppercase tracking-widest text-white/50 flex items-center gap-2 font-dm-sans">
+<i class="w-6 h-6 text-cyan-400" data-lucide="zap"></i>
+                    Системная связь
                   </span>
-                  <label class="relative inline-flex items-center cursor-pointer">
-                    <input type="checkbox" value="" class="sr-only peer" checked="">
-                    <div class="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#ff5a00]"></div>
-                  </label>
-                </div>
-
-                <div class="flex flex-col gap-3">
-                  <div class="flex items-center justify-between">
-                    <span class="text-xs font-light tracking-wide text-white/70 font-dm-sans">
-                      Overdrive Allocation
+<label class="relative inline-flex items-center cursor-pointer">
+<input checked="" class="sr-only peer" type="checkbox" value=""/>
+<div class="w-9 h-5 bg-white/10 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-white/10 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#ff5a00]"></div>
+</label>
+</div>
+<div class="flex flex-col gap-3">
+<div class="flex items-center justify-between">
+<span class="text-xs font-light tracking-wide text-white/70 font-dm-sans">
+                      Распределение овердрайва
                     </span>
-                    <span class="text-lg tracking-tighter font-light font-dm-sans" style="font-family: 'DM Serif Display', serif;">
+<span class="text-lg tracking-tighter font-light font-dm-sans" style="font-family: 'DM Serif Display', serif;">
                       84%
                     </span>
-                  </div>
-                  <div class="w-full h-[2px] bg-white/10 rounded-full overflow-hidden flex relative">
-                    <div class="h-full bg-[#ff5a00] w-[84%] relative">
-                      <div class="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-12 flex flex-col w-full border-t border-white/10">
-              <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors px-4 -mx-4 md:px-6 md:-mx-6">
-                <div class="flex items-center gap-8">
-                  <span class="text-xs font-thin text-white/30 group-hover:text-[#ff5a00] transition-colors w-6 font-dm-sans">
+</div>
+<div class="w-full h-[2px] bg-white/10 rounded-full overflow-hidden flex relative">
+<div class="h-full bg-[#ff5a00] w-[84%] relative">
+<div class="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-1.5 bg-white rounded-full shadow-[0_0_8px_rgba(255,255,255,0.8)]"></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-12 flex flex-col w-full border-t border-white/10">
+<div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors px-4 -mx-4 md:px-6 md:-mx-6">
+<div class="flex items-center gap-8">
+<span class="text-xs font-thin text-white/30 group-hover:text-[#ff5a00] transition-colors w-6 font-dm-sans">
                     01
                   </span>
-                  <h3 class="text-2xl md:text-4xl tracking-tighter text-white/80 group-hover:text-white transition-colors flex items-center gap-4 font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif;">
-                    Neural Rendering
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#ff5a00]"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-                  </h3>
+<h3 class="text-2xl md:text-4xl tracking-tighter text-white/80 group-hover:text-white transition-colors flex items-center gap-4 font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif;">
+                    Нейронный рендеринг
+                    <svg aria-hidden="true" class="lucide lucide-arrow-up-right w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#ff5a00]" data-lucide="arrow-up-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</h3>
+</div>
+<div class="mt-4 md:mt-0 ml-14 md:ml-0 text-sm text-white/40 font-light max-w-[16rem] transition-colors group-hover:text-white/70 font-dm-sans">
+                  AI-предсказание пикселей, обеспечивающее безупречный нативный вывод
+                  в 120FPS.
                 </div>
-                <div class="mt-4 md:mt-0 ml-14 md:ml-0 text-sm text-white/40 font-light max-w-[16rem] transition-colors group-hover:text-white/70 font-dm-sans">
-                  AI-driven pixel prediction ensuring flawless 120FPS native
-                  output.
-                </div>
-              </div>
-
-              <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors px-4 -mx-4 md:px-6 md:-mx-6">
-                <div class="flex items-center gap-8">
-                  <span class="text-xs font-thin text-white/30 group-hover:text-[#ff5a00] transition-colors w-6 font-dm-sans">
+</div>
+<div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors px-4 -mx-4 md:px-6 md:-mx-6">
+<div class="flex items-center gap-8">
+<span class="text-xs font-thin text-white/30 group-hover:text-[#ff5a00] transition-colors w-6 font-dm-sans">
                     02
                   </span>
-                  <h3 class="text-2xl md:text-4xl tracking-tighter text-white/80 group-hover:text-white transition-colors flex items-center gap-4 font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif;">
-                    Haptic Sub-systems
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#ff5a00]"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-                  </h3>
+<h3 class="text-2xl md:text-4xl tracking-tighter text-white/80 group-hover:text-white transition-colors flex items-center gap-4 font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif;">
+                    Хаптические подсистемы
+                    <svg aria-hidden="true" class="lucide lucide-arrow-up-right w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#ff5a00]" data-lucide="arrow-up-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</h3>
+</div>
+<div class="mt-4 md:mt-0 ml-14 md:ml-0 text-sm text-white/40 font-light max-w-[16rem] transition-colors group-hover:text-white/70 font-dm-sans">
+                  Картирование микровибраций, синхронизированное по 400+ сенсорным
+                  точкам.
                 </div>
-                <div class="mt-4 md:mt-0 ml-14 md:ml-0 text-sm text-white/40 font-light max-w-[16rem] transition-colors group-hover:text-white/70 font-dm-sans">
-                  Micro-vibration mapping synchronized across 400+ sensory
-                  points.
-                </div>
-              </div>
-
-              <div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors px-4 -mx-4 md:px-6 md:-mx-6">
-                <div class="flex items-center gap-8">
-                  <span class="text-xs font-thin text-white/30 group-hover:text-[#ff5a00] transition-colors w-6 font-dm-sans">
+</div>
+<div class="group flex flex-col md:flex-row md:items-center justify-between py-8 border-b border-white/10 cursor-pointer hover:bg-white/[0.02] transition-colors px-4 -mx-4 md:px-6 md:-mx-6">
+<div class="flex items-center gap-8">
+<span class="text-xs font-thin text-white/30 group-hover:text-[#ff5a00] transition-colors w-6 font-dm-sans">
                     03
                   </span>
-                  <h3 class="text-2xl md:text-4xl tracking-tighter text-white/80 group-hover:text-white transition-colors flex items-center gap-4 font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif;">
-                    Spatial Acoustics
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="arrow-up-right" aria-hidden="true" class="lucide lucide-arrow-up-right w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#ff5a00]"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
-                  </h3>
+<h3 class="text-2xl md:text-4xl tracking-tighter text-white/80 group-hover:text-white transition-colors flex items-center gap-4 font-dm-serif-display font-normal" style="font-family: 'DM Serif Display', serif;">
+                    Пространственная акустика
+                    <svg aria-hidden="true" class="lucide lucide-arrow-up-right w-6 h-6 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 text-[#ff5a00]" data-lucide="arrow-up-right" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 7h10v10"></path><path d="M7 17 17 7"></path></svg>
+</h3>
+</div>
+<div class="mt-4 md:mt-0 ml-14 md:ml-0 text-sm text-white/40 font-light max-w-[16rem] transition-colors group-hover:text-white/70 font-dm-sans">
+                  Звук с трассировкой лучей, динамически отражающийся от виртуальной геометрии.
                 </div>
-                <div class="mt-4 md:mt-0 ml-14 md:ml-0 text-sm text-white/40 font-light max-w-[16rem] transition-colors group-hover:text-white/70 font-dm-sans">
-                  Ray-traced audio dynamically rebounding off virtual geometry.
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <script>
+</div>
+</div>
+</div>
+</div>
+<script>
           if (typeof lucide !== 'undefined') {
             lucide.createIcons();
           } else {
@@ -1554,8 +1496,8 @@ filter: blur(10px)" id="curtainR">
             });
           }
         </script>
-      </section>
-      <script class="">
+</section>
+<script class="">
         (function() {
             // Initialize Three.js WebGL scene specific to this section
             const initNodeWebGL = () => {
@@ -1660,72 +1602,69 @@ filter: blur(10px)" id="curtainR">
             }
         })();
       </script>
-    </main>
-    <footer class="w-full bg-[#050505] text-white pt-24 pb-12 px-6 md:px-12 border-t border-white/5 relative z-20 overflow-hidden">
-      <div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-6 mb-24 relative z-10">
-        <div class="col-span-1 md:col-span-6 flex flex-col">
-          <div class="text-4xl tracking-tighter uppercase font-dm-serif-display font-normal mb-6">
+</main>
+<footer class="w-full bg-[#050505] text-white pt-24 pb-12 px-6 md:px-12 border-t border-white/5 relative z-20 overflow-hidden">
+<div class="max-w-[1920px] mx-auto grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-6 mb-24 relative z-10">
+<div class="col-span-1 md:col-span-6 flex flex-col">
+<div class="text-4xl tracking-tighter uppercase font-dm-serif-display font-normal mb-6">
             AURA
           </div>
-          <p class="text-white/50 text-sm max-w-sm font-dm-sans leading-relaxed">
-            Crafting next-generation virtual reality experiences. We build
-            immersive worlds where imagination meets cutting-edge technology.
+<p class="text-white/50 text-sm max-w-sm font-dm-sans leading-relaxed">
+            Создаём виртуальную реальность нового поколения. Мы строим
+            иммерсивные миры, где воображение встречается с передовыми технологиями.
           </p>
-        </div>
-        <div class="col-span-1 md:col-span-3 flex flex-col gap-4">
-          <h4 class="text-xs font-normal uppercase tracking-widest text-white/30 mb-2 font-dm-sans">
-            Navigation
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-col gap-4">
+<h4 class="text-xs font-normal uppercase tracking-widest text-white/30 mb-2 font-dm-sans">
+            Навигация
           </h4>
-          <a href="#" class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans">
-            Games
+<a class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans" href="#">
+            Игры
           </a>
-          <a href="#" class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans">
-            Studios
+<a class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans" href="#">
+            Студии
           </a>
-          <a href="#" class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans">
-            Tech
+<a class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans" href="#">
+            Технологии
           </a>
-          <a href="#" class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans">
-            Case Studies
+<a class="text-sm text-white/60 hover:text-white transition-colors font-dm-sans" href="#">
+            Кейсы
           </a>
-        </div>
-        <div class="col-span-1 md:col-span-3 flex flex-col gap-4">
-          <h4 class="text-xs font-normal uppercase tracking-widest text-white/30 mb-2 font-dm-sans">
-            Connect
+</div>
+<div class="col-span-1 md:col-span-3 flex flex-col gap-4">
+<h4 class="text-xs font-normal uppercase tracking-widest text-white/30 mb-2 font-dm-sans">
+            Подключение
           </h4>
-          <a href="#" class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans">
+<a class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans" href="#">
             Twitter / X
           </a>
-          <a href="#" class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans">
+<a class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans" href="#">
             Discord
           </a>
-          <a href="#" class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans">
+<a class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans" href="#">
             Instagram
           </a>
-          <a href="#" class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans">
-            Contact
+<a class="text-sm text-white/60 hover:text-cyan-400 transition-colors font-dm-sans" href="#">
+            Контакты
           </a>
-        </div>
-      </div>
-
-      <div class="max-w-[1920px] mx-auto flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 relative z-10">
-        <p class="text-xs text-white/40 font-dm-sans">
-          © 2024 Aura VR. All rights reserved.
+</div>
+</div>
+<div class="max-w-[1920px] mx-auto flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 relative z-10">
+<p class="text-xs text-white/40 font-dm-sans">
+          © 2024 Aura VR. Все права защищены.
         </p>
-        <div class="flex items-center gap-6 mt-4 md:mt-0">
-          <a href="#" class="text-xs text-white/40 hover:text-white transition-colors font-dm-sans">
-            Privacy Policy
+<div class="flex items-center gap-6 mt-4 md:mt-0">
+<a class="text-xs text-white/40 hover:text-white transition-colors font-dm-sans" href="#">
+            Политика конфиденциальности
           </a>
-          <a href="#" class="text-xs text-white/40 hover:text-white transition-colors font-dm-sans">
-            Terms of Service
+<a class="text-xs text-white/40 hover:text-white transition-colors font-dm-sans" href="#">
+            Условия использования
           </a>
-        </div>
-      </div>
-
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vw] bg-cyan-400/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2 z-0"></div>
-    </footer>
-
-    <script class="">
+</div>
+</div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[80vw] h-[40vw] bg-cyan-400/5 rounded-full blur-[120px] pointer-events-none translate-y-1/2 z-0"></div>
+</footer>
+<script class="">
       const initWebGL = () => {
           const canvas = document.getElementById('webgl-canvas');
           if(!canvas) return;
@@ -1908,9 +1847,7 @@ filter: blur(10px)" id="curtainR">
           }
       });
     </script>
-
-    
-    <script>
+<script>
       document.addEventListener("DOMContentLoaded", () => {
           if (typeof gsap === "undefined" || typeof ScrollTrigger === "undefined") return;
 
@@ -1948,7 +1885,6 @@ filter: blur(10px)" id="curtainR">
           }
       });
     </script>
-  
 <script data-aura-video-controller="true">
 (function () {
   function playVideo(video) {

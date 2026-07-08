@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,14 +89,14 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CIRON — C1 Performance Bicycle</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/gullying" rel="stylesheet">
-<link href="https://fonts.cdnfonts.com/css/santrio" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CIRON — Спортивный велосипед C1</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;family=JetBrains+Mono:wght@500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/gullying" rel="stylesheet"/>
+<link href="https://fonts.cdnfonts.com/css/santrio" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
@@ -1650,7 +1650,7 @@ height: 116vmin !important;
 }
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -1658,660 +1658,645 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="hero-stage-ready selection:bg-white selection:text-black">
-  <div id="loadOverlay" class="load-overlay video-loader" aria-hidden="true">
-    <div id="loaderPanel" class="loader-panel">
-      <div id="loaderMark" class="mono-loader-mark">
-        <span class="mark-piece mark-c"></span>
-        <span class="mark-piece mark-bar-a"></span>
-        <span class="mark-piece mark-bar-b"></span>
-        <span class="mark-piece mark-block"></span>
-        <span class="mark-piece mark-foot"></span>
-      </div>
-    </div>
-    <div id="loaderMicro" class="loader-micro">CIRON C1</div>
-    <div id="loaderCapsule" class="loader-capsule"></div>
-  </div>
-
-  <header class="fixed left-0 top-0 z-[100] w-full border-b border-white/10 bg-black/24 backdrop-blur-md">
-    <div class="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8 border-t border-white/5">
-      <a href="#" class="nav-brand blend-text" aria-label="CIRON home">
-        <span class="nav-logo-mark" aria-hidden="true">
-          <span class="mark-piece mark-c"></span>
-          <span class="mark-piece mark-bar-a"></span>
-          <span class="mark-piece mark-bar-b"></span>
-          <span class="mark-piece mark-block"></span>
-          <span class="mark-piece mark-foot"></span>
-        </span>
-        <span class="nav-wordmark">CIRON</span>
-      </a>
-
-      <nav class="hidden items-center gap-8 lg:flex">
-        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Technology</a>
-        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Engineering</a>
-        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Experience</a>
-        <a href="#" class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90">Configure</a>
-      </nav>
-
-      <button class="skeuomorphic-btn inline-flex h-9 items-center gap-3 px-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem]">
-        <span class="hidden sm:inline">Configure</span>
-        <i data-lucide="sliders-horizontal" class="h-3.5 w-3.5"></i>
-      </button>
-    </div>
-  </header>
-
-  <main>
-    <section id="reveal" class="relative h-[610vh] md:h-[690vh]">
-      <div id="stage" class="sticky top-0 h-screen overflow-hidden bg-black">
-        <div id="lightLayer" class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_40%,#1a1a1a_0%,#0a0a0a_44%,#000000_100%)]"></div>
-        <div id="darkLayer" class="absolute inset-0 z-[1] bg-[#030303] opacity-0"></div>
-        
-        <div class="absolute left-1/2 top-[55%] z-[2] h-[74vmin] w-[74vmin] -translate-x-1/2 -translate-y-1/2 rounded-none machined-border opacity-10"></div>
-        
-        <div class="noise pointer-events-none absolute inset-0 z-[60] opacity-[0.4]"></div>
-        <div id="grid" class="technical-grid pointer-events-none absolute inset-0 z-[4] opacity-30"></div>
-
-        <aside class="pointer-events-none absolute left-4 top-28 z-[70] hidden h-[64vh] flex-col justify-between sm:flex">
-          <div class="absolute left-0 top-0 h-full w-[3px] bg-black "></div>
-          <div id="railProgress" class="absolute left-0 top-0 w-[3px] bg-white " style="height: 0%"></div>
-
-          <div data-chapter="0" class="relative pl-6 transition-all duration-300">
-            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
-            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">01</p>
-            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Philosophy</p>
-          </div>
-          <div data-chapter="1" class="relative pl-6 transition-all duration-300 opacity-40">
-            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
-            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">02</p>
-            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Craft</p>
-          </div>
-          <div data-chapter="2" class="relative pl-6 transition-all duration-300 opacity-40">
-            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
-            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">03</p>
-            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Technology</p>
-          </div>
-          <div data-chapter="3" class="relative pl-6 transition-all duration-300 opacity-40">
-            <span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white "></span>
-            <p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">04</p>
-            <p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Evolution</p>
-          </div>
-        </aside>
-
-        <div id="productWrap" class="absolute left-1/2 top-1/2 z-20 h-[116vmin] w-[116vmin] will-change-transform drop-shadow-[0_40px_50px_rgba(0,0,0,0.9)]" style="transform-style: preserve-3d;">
-          <svg viewBox="0 0 1200 900" class="h-full w-full overflow-visible" aria-hidden="true">
-            <defs>
-              <radialGradient id="rimCarbon" cx="40%" cy="35%" r="67%">
-                <stop offset="0%" stop-color="#999"></stop>
-                <stop offset="15%" stop-color="#333"></stop>
-                <stop offset="20%" stop-color="#555"></stop>
-                <stop offset="40%" stop-color="#111"></stop>
-                <stop offset="70%" stop-color="#020202"></stop>
-                <stop offset="95%" stop-color="#2a2a2a"></stop>
-                <stop offset="100%" stop-color="#000"></stop>
-              </radialGradient>
-              <linearGradient id="edgeLight" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stop-color="#fff" stop-opacity="0.8"></stop>
-                <stop offset="22%" stop-color="#222" stop-opacity="0.95"></stop>
-                <stop offset="68%" stop-color="#000"></stop>
-                <stop offset="100%" stop-color="#fff" stop-opacity="0.6"></stop>
-              </linearGradient>
-              <filter id="heavyShadow" x="-30%" y="-30%" width="160%" height="160%">
-                <feDropShadow dx="10" dy="45" stdDeviation="25" flood-color="#000" flood-opacity="0.85"></feDropShadow>
-              </filter>
-              <filter id="bevel" x="-20%" y="-20%" width="140%" height="140%">
-                <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"></feGaussianBlur>
-                <feOffset dx="4" dy="4" result="offsetBlur"></feOffset>
-                <feComposite in="SourceGraphic" in2="offsetBlur" operator="over"></feComposite>
-              </filter>
-            </defs>
-
-            <g id="rearWheel" opacity="0" transform="translate(255 18) scale(.93)" filter="url(#heavyShadow)">
-              <circle cx="420" cy="455" r="284" fill="none" stroke="url(#rimCarbon)" stroke-width="38"></circle>
-              <circle cx="420" cy="455" r="265" fill="none" stroke="#000" stroke-width="12"></circle>
-              <circle cx="420" cy="455" r="303" fill="none" stroke="url(#edgeLight)" stroke-width="3" opacity=".9"></circle>
-              <g id="spokesRear" stroke="#333" stroke-width="2.5" opacity="1"></g>
-              <circle cx="420" cy="455" r="34" fill="#000" stroke="#333" stroke-width="2"></circle>
-              <circle cx="420" cy="455" r="15" fill="#444" stroke="#111" stroke-width="2"></circle>
-            </g>
-
-            <g id="bikeFrame" opacity="0" stroke="#111" stroke-linecap="square" stroke-linejoin="miter" filter="url(#heavyShadow)">
-              <path d="M417 455 L595 285 L760 455 L417 455 L545 455 L595 285" fill="none" stroke-width="18"></path>
-              <path d="M595 285 L645 216" stroke-width="14"></path>
-              <path d="M645 216 L714 216" stroke-width="12"></path>
-              <path d="M760 455 L706 282 L595 285" fill="none" stroke-width="12"></path>
-              <rect x="530" y="440" width="30" height="30" fill="#000" stroke="#333" stroke-width="2"></rect>
-            </g>
-
-            <g id="frontWheel" filter="url(#heavyShadow)">
-              <circle cx="420" cy="455" r="308" fill="none" stroke="url(#rimCarbon)" stroke-width="46" filter="url(#bevel)"></circle>
-              <circle cx="420" cy="455" r="285" fill="none" stroke="#000" stroke-width="14"></circle>
-              <circle cx="420" cy="455" r="331" fill="none" stroke="url(#edgeLight)" stroke-width="4" opacity="1"></circle>
-              <g id="spokesFront" stroke="#444" stroke-width="3" opacity="1"></g>
-
-              <g id="ribTech" opacity="0">
-                <path d="M150 455 C250 420 333 418 420 455 C505 491 590 490 690 455" fill="none" stroke="#111" stroke-width="8" opacity="1" filter="url(#bevel)"></path>
-                <path d="M178 398 C283 377 338 390 420 455 C498 520 560 532 660 512" fill="none" stroke="#111" stroke-width="6" opacity=".9"></path>
-                <path d="M178 512 C283 532 338 520 420 455 C498 390 560 377 660 398" fill="none" stroke="#111" stroke-width="6" opacity=".9"></path>
-              </g>
-
-              <circle cx="420" cy="455" r="48" fill="#000" stroke="#222" stroke-width="3"></circle>
-              <circle cx="420" cy="455" r="31" fill="#1a1a1a"></circle>
-              <circle cx="420" cy="455" r="14" fill="#666" stroke="#fff" stroke-width="1"></circle>
-              <path d="M393 455 h54" stroke="#888" stroke-width="6" stroke-linecap="square"></path>
-            </g>
-          </svg>
-        </div>
-
-        <div class="pointer-events-none absolute inset-0 z-40">
-          <section id="state0" data-state="" data-center="" class="absolute left-1/2 top-[24%] w-[min(42rem,86vw)] -translate-x-1/2 text-center text-white drop-shadow-[0_8px_26px_rgba(0,0,0,.55)]">
-            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.34rem] text-white/80">CIRON / C1</p></div>
-            <div class="mt-5 overflow-hidden"><h1 data-line="" class="state-line text-4xl font-extrabold leading-[0.92] tracking-[-0.02em] sm:text-6xl lg:text-7xl ">Engineered for the pursuit of speed.</h1></div>
-            <div class="mx-auto mt-6 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/70">A performance bicycle developed as one complete system, where carbon architecture, aerodynamics, and rider control work together.</p></div>
-            <div class="mt-8 flex justify-center overflow-hidden"><a data-line="" href="#system" class="pointer-events-auto state-line skeuomorphic-btn px-8 py-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem] text-[#111]">Explore Collection</a></div>
-          </section>
-
-          <section id="state1" data-state="" class="absolute right-[7%] top-[22%] w-[min(36rem,80vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:right-auto max-md:top-[15%]">
-            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Philosophy</p></div>
-            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">Performance should feel effortless</h2></div>
-            <div class="mt-5 max-w-sm overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">From geometry to carbon layup, every decision is made to deliver speed with confidence and control.</p></div>
-          </section>
-
-          <section id="state2" data-state="" data-center="" class="absolute left-1/2 top-[18%] w-[min(40rem,84vw)] -translate-x-1/2 text-center text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:top-[14%]">
-            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Craft</p></div>
-            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">Carbon architecture</h2></div>
-            <div class="mx-auto mt-5 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">Each carbon layer is positioned to balance stiffness, compliance, and efficiency under real riding conditions.</p></div>
-          </section>
-
-          <section id="state3" data-state="" class="absolute left-[7%] top-[31%] w-[min(38rem,82vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:top-[57%]">
-            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Innovation</p></div>
-            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">One integrated performance system</h2></div>
-            <div class="mt-6 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">Frame, wheels, cockpit, geometry, and rider position are developed together so every part supports the same riding experience.</p></div>
-          </section>
-
-          <section id="state4" data-state="" class="absolute left-[7%] top-[24%] w-[min(40rem,82vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:top-[56%]">
-            <div class="overflow-hidden"><p data-line="" class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70">Evolution</p></div>
-            <div class="mt-4 overflow-hidden"><h2 data-line="" class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl">CIRON C1</h2></div>
-            <div class="mt-6 max-w-md overflow-hidden"><p data-line="" class="state-line text-sm leading-6 text-white/60">A complete performance platform for riders who want speed, precision, and control without distraction.</p></div>
-            <div class="mt-8 overflow-hidden"><a data-line="" href="#models" class="pointer-events-auto state-line inline-flex skeuomorphic-btn px-8 py-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem] text-[#111]">Configure Yours</a></div>
-          </section>
-        </div>
-      </div>
-    </section>
-
-
-    <!-- Brand / performance section from the full landing page, rewritten for CIRON. -->
-<section id="system" class="relative z-30 bg-white py-24 sm:py-28 lg:py-36">
-      <div class="mx-auto grid max-w-[96rem] grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:px-8">
-        <div class="reveal-up">
-          <p class="section-kicker">// Integrated system</p>
-          <h2 class="mt-4 text-4xl font-extrabold leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-7xl">
-            Performance,
-            <span class="text-[#b9bbb7]">Engineered As One.</span>
-          </h2>
-          <p class="soft-copy mt-8 max-w-2xl">
-            CIRON develops rim profile, hub geometry, spoke tension, and tire volume as one complete system. The result is a wheelset that feels fast, quiet, and composed in real conditions.
+<div aria-hidden="true" class="load-overlay video-loader" id="loadOverlay">
+<div class="loader-panel" id="loaderPanel">
+<div class="mono-loader-mark" id="loaderMark">
+<span class="mark-piece mark-c"></span>
+<span class="mark-piece mark-bar-a"></span>
+<span class="mark-piece mark-bar-b"></span>
+<span class="mark-piece mark-block"></span>
+<span class="mark-piece mark-foot"></span>
+</div>
+</div>
+<div class="loader-micro" id="loaderMicro">CIRON C1</div>
+<div class="loader-capsule" id="loaderCapsule"></div>
+</div>
+<header class="fixed left-0 top-0 z-[100] w-full border-b border-white/10 bg-black/24 backdrop-blur-md">
+<div class="flex h-16 w-full items-center justify-between px-4 sm:px-6 lg:px-8 border-t border-white/5">
+<a aria-label="Главная CIRON" class="nav-brand blend-text" href="#">
+<span aria-hidden="true" class="nav-logo-mark">
+<span class="mark-piece mark-c"></span>
+<span class="mark-piece mark-bar-a"></span>
+<span class="mark-piece mark-bar-b"></span>
+<span class="mark-piece mark-block"></span>
+<span class="mark-piece mark-foot"></span>
+</span>
+<span class="nav-wordmark">CIRON</span>
+</a>
+<nav class="hidden items-center gap-8 lg:flex">
+<a class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90" href="#">Технологии</a>
+<a class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90" href="#">Инженерия</a>
+<a class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90" href="#">Программа</a>
+<a class="nav-link blend-text text-[0.65rem] font-bold uppercase tracking-[0.26rem] opacity-90" href="#">Настройка</a>
+</nav>
+<button class="skeuomorphic-btn inline-flex h-9 items-center gap-3 px-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem]">
+<span class="hidden sm:inline">Настройка</span>
+<i class="h-3.5 w-3.5" data-lucide="sliders-horizontal"></i>
+</button>
+</div>
+</header>
+<main>
+<section class="relative h-[610vh] md:h-[690vh]" id="reveal">
+<div class="sticky top-0 h-screen overflow-hidden bg-black" id="stage">
+<div class="absolute inset-0 z-0 bg-[radial-gradient(circle_at_50%_40%,#1a1a1a_0%,#0a0a0a_44%,#000000_100%)]" id="lightLayer"></div>
+<div class="absolute inset-0 z-[1] bg-[#030303] opacity-0" id="darkLayer"></div>
+<div class="absolute left-1/2 top-[55%] z-[2] h-[74vmin] w-[74vmin] -translate-x-1/2 -translate-y-1/2 rounded-none machined-border opacity-10"></div>
+<div class="noise pointer-events-none absolute inset-0 z-[60] opacity-[0.4]"></div>
+<div class="technical-grid pointer-events-none absolute inset-0 z-[4] opacity-30" id="grid"></div>
+<aside class="pointer-events-none absolute left-4 top-28 z-[70] hidden h-[64vh] flex-col justify-between sm:flex">
+<div class="absolute left-0 top-0 h-full w-[3px] bg-black"></div>
+<div class="absolute left-0 top-0 w-[3px] bg-white" id="railProgress" style="height: 0%"></div>
+<div class="relative pl-6 transition-all duration-300" data-chapter="0">
+<span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white"></span>
+<p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">01</p>
+<p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Философия</p>
+</div>
+<div class="relative pl-6 transition-all duration-300 opacity-40" data-chapter="1">
+<span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white"></span>
+<p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">02</p>
+<p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Мастерство</p>
+</div>
+<div class="relative pl-6 transition-all duration-300 opacity-40" data-chapter="2">
+<span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white"></span>
+<p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">03</p>
+<p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Технологии</p>
+</div>
+<div class="relative pl-6 transition-all duration-300 opacity-40" data-chapter="3">
+<span class="absolute left-[-3px] top-1.5 h-2 w-2 rounded-none bg-white"></span>
+<p class="text-[0.62rem] font-bold uppercase tracking-[0.22rem] text-white">04</p>
+<p class="mt-1 text-[0.65rem] font-bold uppercase tracking-[0.16rem] text-white/60">Эволюция</p>
+</div>
+</aside>
+<div class="absolute left-1/2 top-1/2 z-20 h-[116vmin] w-[116vmin] will-change-transform drop-shadow-[0_40px_50px_rgba(0,0,0,0.9)]" id="productWrap" style="transform-style: preserve-3d;">
+<svg aria-hidden="true" class="h-full w-full overflow-visible" viewbox="0 0 1200 900">
+<defs>
+<radialgradient cx="40%" cy="35%" id="rimCarbon" r="67%">
+<stop offset="0%" stop-color="#999"></stop>
+<stop offset="15%" stop-color="#333"></stop>
+<stop offset="20%" stop-color="#555"></stop>
+<stop offset="40%" stop-color="#111"></stop>
+<stop offset="70%" stop-color="#020202"></stop>
+<stop offset="95%" stop-color="#2a2a2a"></stop>
+<stop offset="100%" stop-color="#000"></stop>
+</radialgradient>
+<lineargradient id="edgeLight" x1="0%" x2="100%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#fff" stop-opacity="0.8"></stop>
+<stop offset="22%" stop-color="#222" stop-opacity="0.95"></stop>
+<stop offset="68%" stop-color="#000"></stop>
+<stop offset="100%" stop-color="#fff" stop-opacity="0.6"></stop>
+</lineargradient>
+<filter height="160%" id="heavyShadow" width="160%" x="-30%" y="-30%">
+<fedropshadow dx="10" dy="45" flood-color="#000" flood-opacity="0.85" stddeviation="25"></fedropshadow>
+</filter>
+<filter height="140%" id="bevel" width="140%" x="-20%" y="-20%">
+<fegaussianblur in="SourceAlpha" result="blur" stddeviation="4"></fegaussianblur>
+<feoffset dx="4" dy="4" result="offsetBlur"></feoffset>
+<fecomposite in="SourceGraphic" in2="offsetBlur" operator="over"></fecomposite>
+</filter>
+</defs>
+<g filter="url(#heavyShadow)" id="rearWheel" opacity="0" transform="translate(255 18) scale(.93)">
+<circle cx="420" cy="455" fill="none" r="284" stroke="url(#rimCarbon)" stroke-width="38"></circle>
+<circle cx="420" cy="455" fill="none" r="265" stroke="#000" stroke-width="12"></circle>
+<circle cx="420" cy="455" fill="none" opacity=".9" r="303" stroke="url(#edgeLight)" stroke-width="3"></circle>
+<g id="spokesRear" opacity="1" stroke="#333" stroke-width="2.5"></g>
+<circle cx="420" cy="455" fill="#000" r="34" stroke="#333" stroke-width="2"></circle>
+<circle cx="420" cy="455" fill="#444" r="15" stroke="#111" stroke-width="2"></circle>
+</g>
+<g filter="url(#heavyShadow)" id="bikeFrame" opacity="0" stroke="#111" stroke-linecap="square" stroke-linejoin="miter">
+<path d="M417 455 L595 285 L760 455 L417 455 L545 455 L595 285" fill="none" stroke-width="18"></path>
+<path d="M595 285 L645 216" stroke-width="14"></path>
+<path d="M645 216 L714 216" stroke-width="12"></path>
+<path d="M760 455 L706 282 L595 285" fill="none" stroke-width="12"></path>
+<rect fill="#000" height="30" stroke="#333" stroke-width="2" width="30" x="530" y="440"></rect>
+</g>
+<g filter="url(#heavyShadow)" id="frontWheel">
+<circle cx="420" cy="455" fill="none" filter="url(#bevel)" r="308" stroke="url(#rimCarbon)" stroke-width="46"></circle>
+<circle cx="420" cy="455" fill="none" r="285" stroke="#000" stroke-width="14"></circle>
+<circle cx="420" cy="455" fill="none" opacity="1" r="331" stroke="url(#edgeLight)" stroke-width="4"></circle>
+<g id="spokesFront" opacity="1" stroke="#444" stroke-width="3"></g>
+<g id="ribTech" opacity="0">
+<path d="M150 455 C250 420 333 418 420 455 C505 491 590 490 690 455" fill="none" filter="url(#bevel)" opacity="1" stroke="#111" stroke-width="8"></path>
+<path d="M178 398 C283 377 338 390 420 455 C498 520 560 532 660 512" fill="none" opacity=".9" stroke="#111" stroke-width="6"></path>
+<path d="M178 512 C283 532 338 520 420 455 C498 390 560 377 660 398" fill="none" opacity=".9" stroke="#111" stroke-width="6"></path>
+</g>
+<circle cx="420" cy="455" fill="#000" r="48" stroke="#222" stroke-width="3"></circle>
+<circle cx="420" cy="455" fill="#1a1a1a" r="31"></circle>
+<circle cx="420" cy="455" fill="#666" r="14" stroke="#fff" stroke-width="1"></circle>
+<path d="M393 455 h54" stroke="#888" stroke-linecap="square" stroke-width="6"></path>
+</g>
+</svg>
+</div>
+<div class="pointer-events-none absolute inset-0 z-40">
+<section class="absolute left-1/2 top-[24%] w-[min(42rem,86vw)] -translate-x-1/2 text-center text-white drop-shadow-[0_8px_26px_rgba(0,0,0,.55)]" data-center="" data-state="" id="state0">
+<div class="overflow-hidden"><p class="state-line text-[0.68rem] font-bold uppercase tracking-[0.34rem] text-white/80" data-line="">CIRON / C1</p></div>
+<div class="mt-5 overflow-hidden"><h1 class="state-line text-4xl font-extrabold leading-[0.92] tracking-[-0.02em] sm:text-6xl lg:text-7xl" data-line="">Создан для погони за скоростью.</h1></div>
+<div class="mx-auto mt-6 max-w-md overflow-hidden"><p class="state-line text-sm leading-6 text-white/70" data-line="">Спортивный велосипед, разработанный как единая система, в которой карбоновая архитектура, аэродинамика и контроль гонщика работают вместе.</p></div>
+<div class="mt-8 flex justify-center overflow-hidden"><a class="pointer-events-auto state-line skeuomorphic-btn px-8 py-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem] text-[#111]" data-line="" href="#system">Смотреть коллекцию</a></div>
+</section>
+<section class="absolute right-[7%] top-[22%] w-[min(36rem,80vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:right-auto max-md:top-[15%]" data-state="" id="state1">
+<div class="overflow-hidden"><p class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70" data-line="">Философия</p></div>
+<div class="mt-4 overflow-hidden"><h2 class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl" data-line="">Скорость должна ощущаться без усилий</h2></div>
+<div class="mt-5 max-w-sm overflow-hidden"><p class="state-line text-sm leading-6 text-white/60" data-line="">От геометрии до укладки карбона — каждое решение принято, чтобы обеспечить скорость с уверенностью и контролем.</p></div>
+</section>
+<section class="absolute left-1/2 top-[18%] w-[min(40rem,84vw)] -translate-x-1/2 text-center text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:top-[14%]" data-center="" data-state="" id="state2">
+<div class="overflow-hidden"><p class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70" data-line="">Мастерство</p></div>
+<div class="mt-4 overflow-hidden"><h2 class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl" data-line="">Карбоновая архитектура</h2></div>
+<div class="mx-auto mt-5 max-w-md overflow-hidden"><p class="state-line text-sm leading-6 text-white/60" data-line="">Каждый слой карбона расположен так, чтобы сбалансировать жёсткость, податливость и эффективность в реальных условиях езды.</p></div>
+</section>
+<section class="absolute left-[7%] top-[31%] w-[min(38rem,82vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:top-[57%]" data-state="" id="state3">
+<div class="overflow-hidden"><p class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70" data-line="">Инновации</p></div>
+<div class="mt-4 overflow-hidden"><h2 class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl" data-line="">Единая интегрированная система производительности</h2></div>
+<div class="mt-6 max-w-md overflow-hidden"><p class="state-line text-sm leading-6 text-white/60" data-line="">Рама, колёса, кокпит, геометрия и посадка гонщика разрабатываются вместе, чтобы каждая деталь поддерживала единое ощущение езды.</p></div>
+</section>
+<section class="absolute left-[7%] top-[24%] w-[min(40rem,82vw)] text-white opacity-0 drop-shadow-[0_8px_26px_rgba(0,0,0,.45)] max-md:left-6 max-md:top-[56%]" data-state="" id="state4">
+<div class="overflow-hidden"><p class="state-line text-[0.68rem] font-bold uppercase tracking-[0.32rem] text-white/70" data-line="">Эволюция</p></div>
+<div class="mt-4 overflow-hidden"><h2 class="state-line text-4xl font-extrabold leading-[0.9] tracking-[-0.02em] sm:text-6xl lg:text-7xl" data-line="">CIRON C1</h2></div>
+<div class="mt-6 max-w-md overflow-hidden"><p class="state-line text-sm leading-6 text-white/60" data-line="">Полноценная спортивная платформа для гонщиков, которым нужны скорость, точность и контроль без отвлекающих факторов.</p></div>
+<div class="mt-8 overflow-hidden"><a class="pointer-events-auto state-line inline-flex skeuomorphic-btn px-8 py-4 text-[0.65rem] font-bold uppercase tracking-[0.18rem] text-[#111]" data-line="" href="#models">Соберите свой</a></div>
+</section>
+</div>
+</div>
+</section>
+<!-- Brand / performance section from the full landing page, rewritten for CIRON. -->
+<section class="relative z-30 bg-white py-24 sm:py-28 lg:py-36" id="system">
+<div class="mx-auto grid max-w-[96rem] grid-cols-1 gap-14 px-4 sm:px-6 lg:grid-cols-[0.95fr_1.05fr] lg:gap-20 lg:px-8">
+<div class="reveal-up">
+<p class="section-kicker">// Интегрированная система</p>
+<h2 class="mt-4 text-4xl font-extrabold leading-[.98] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+            Производительность,
+            <span class="text-[#b9bbb7]">Спроектированная Как Единое Целое.</span>
+</h2>
+<p class="soft-copy mt-8 max-w-2xl">
+            CIRON разрабатывает профиль обода, геометрию втулки, натяжение спиц и объём покрышки как единую систему. Результат — колёса, которые ощущаются быстрыми, тихими и собранными в реальных условиях.
           </p>
-
-          <div class="mt-12 grid grid-cols-2 gap-5 border-t border-[#dcded9] pt-8 sm:grid-cols-4">
-            <div>
-              <p class="text-3xl font-extrabold tracking-tight">6.8 kg</p>
-              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Carbon frame</p>
-            </div>
-            <div>
-              <p class="text-3xl font-extrabold tracking-tight">50 mm</p>
-              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Wheel depth</p>
-            </div>
-            <div>
-              <p class="text-3xl font-extrabold tracking-tight">30 mm</p>
-              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Tire clearance</p>
-            </div>
-            <div>
-              <p class="text-3xl font-extrabold tracking-tight">100%</p>
-              <p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Integrated design</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="reveal-up relative min-h-[34rem] overflow-hidden rounded-2xl border border-[#e4e5e1] bg-white p-3">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4f84922c-dc90-4e11-8b18-b895a1e4d910_3840w.png" alt="CIRON performance bicycle" id="systemImage" class="h-full min-h-[32rem] w-full rounded-xl object-cover">
-          <div class="absolute inset-3 rounded-xl bg-gradient-to-t from-black/65 via-black/5 to-transparent"></div>
-          <div class="absolute bottom-8 left-8 max-w-sm text-white">
-            <p class="text-xs font-bold uppercase tracking-[.22em] text-white/60">CIRON control</p>
-            <h3 class="mt-3 text-3xl font-extrabold leading-none tracking-[-.04em]">Precision at every speed.</h3>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pinned range section from the second landing page. -->
-    <section id="range" class="scroll-dark-section relative bg-white py-24 sm:py-28 lg:min-h-screen lg:py-0">
-      <div class="dark-transition-label">CIRON RANGE</div>
-      <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
-        <div class="mb-12 max-w-5xl lg:pt-24 reveal-up">
-          <p class="section-kicker">// Performance range</p>
-          <h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-5xl lg:text-7xl">
-            Road, aero, all-road, and gravel performance.
-            <span class="text-[#b9bbb7]">One engineering language.</span>
-          </h2>
-        </div>
-
-        <div id="specialPin" class="grid min-h-[44rem] grid-cols-1 gap-10 pb-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16">
-          <div class="relative h-[26rem] overflow-hidden rounded-2xl bg-[#f7f7f7] sm:h-[34rem] lg:h-[42rem]">
-            <img class="special-img absolute inset-0 h-full w-full object-cover opacity-100" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0cac3195-8317-4b6e-81f4-8f046b0eeff4_3840w.png" alt="C1 RS">
-            <img class="special-img absolute inset-0 h-full w-full object-cover opacity-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/197dcfbd-d45f-4eb4-ba01-94cba3ee3256_3840w.png" alt="Road Bike">
-            <img class="special-img absolute inset-0 h-full w-full object-cover opacity-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3f45cfce-7d09-4592-a38d-a368ee8ec268_3840w.png" alt="City All-roadr">
-            <div class="absolute inset-0 ring-1 ring-inset ring-black/10"></div>
-          </div>
-
-          <div>
-            <div class="mb-10 flex items-end justify-between border-b border-[#d8dad5] pb-5">
-              <h3 class="text-3xl font-extrabold tracking-tight sm:text-4xl">CIRON lineup</h3>
-              <span id="specialNumber" class="text-3xl font-extrabold text-[#303833]">1</span>
-            </div>
-
-            <div class="space-y-7">
-              <div class="special-row opacity-100">
-                <div class="mb-3 flex items-center justify-between">
-                  <h4 class="text-lg font-extrabold">C1 RS</h4>
-                  <span class="text-sm text-[#9b9b9b]">01</span>
-                </div>
-                <p class="soft-copy">Pure race geometry, aero optimization, and a lightweight carbon structure for maximum response.</p>
-                <div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Designed for riders who want speed, precision, and confidence under pressure.</div>
-              </div>
-
-              <div class="special-row opacity-20">
-                <div class="mb-3 flex items-center justify-between">
-                  <h4 class="text-lg font-extrabold">C1 X</h4>
-                  <span class="text-sm text-[#9b9b9b]">02</span>
-                </div>
-                <p class="soft-copy">All-road clearance, tuned compliance, and confident handling for mixed surfaces.</p>
-                <div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Built to carry the CIRON ride feel beyond perfect pavement.</div>
-              </div>
-
-              <div class="special-row opacity-20">
-                <div class="mb-3 flex items-center justify-between">
-                  <h4 class="text-lg font-extrabold">C1 GR</h4>
-                  <span class="text-sm text-[#9b9b9b]">03</span>
-                </div>
-                <p class="soft-copy">A gravel-focused platform with endurance geometry, wider clearance, and durable carbon construction.</p>
-                <div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Created for riders who want speed, stability, and control across rougher terrain.</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-
-    <section id="signatures" class="relative bg-white py-24 sm:py-28 lg:py-36">
-      <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
-          <div class="reveal-up lg:sticky lg:top-24 lg:self-start">
-            <p class="section-kicker">// Performance collection</p>
-            <h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-5xl lg:text-7xl">
-              Three CIRON expressions.
-              <span class="text-[#b9bbb7]">One performance platform.</span>
-            </h2>
-            <p class="soft-copy mt-7 max-w-xl">
-              The C1 family is tuned for different riders and terrain while sharing the same carbon architecture, geometry logic, and precision-focused ride feel.
+<div class="mt-12 grid grid-cols-2 gap-5 border-t border-[#dcded9] pt-8 sm:grid-cols-4">
+<div>
+<p class="text-3xl font-extrabold tracking-tight">6,8 кг</p>
+<p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Карбоновая рама</p>
+</div>
+<div>
+<p class="text-3xl font-extrabold tracking-tight">50 мм</p>
+<p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Высота обода</p>
+</div>
+<div>
+<p class="text-3xl font-extrabold tracking-tight">30 мм</p>
+<p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Клиренс покрышек</p>
+</div>
+<div>
+<p class="text-3xl font-extrabold tracking-tight">100%</p>
+<p class="mt-2 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-[#969b97]">Интегрированный дизайн</p>
+</div>
+</div>
+</div>
+<div class="reveal-up relative min-h-[34rem] overflow-hidden rounded-2xl border border-[#e4e5e1] bg-white p-3">
+<img alt="Спортивный велосипед CIRON" class="h-full min-h-[32rem] w-full rounded-xl object-cover" id="systemImage" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4f84922c-dc90-4e11-8b18-b895a1e4d910_3840w.png"/>
+<div class="absolute inset-3 rounded-xl bg-gradient-to-t from-black/65 via-black/5 to-transparent"></div>
+<div class="absolute bottom-8 left-8 max-w-sm text-white">
+<p class="text-xs font-bold uppercase tracking-[.22em] text-white/60">Контроль CIRON</p>
+<h3 class="mt-3 text-3xl font-extrabold leading-none tracking-[-.04em]">Точность на любой скорости.</h3>
+</div>
+</div>
+</div>
+</section>
+<!-- Pinned range section from the second landing page. -->
+<section class="scroll-dark-section relative bg-white py-24 sm:py-28 lg:min-h-screen lg:py-0" id="range">
+<div class="dark-transition-label">ЛИНЕЙКА CIRON</div>
+<div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
+<div class="mb-12 max-w-5xl lg:pt-24 reveal-up">
+<p class="section-kicker">// Спортивная линейка</p>
+<h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+            Шоссе, аэро, олл-роуд и гревел.
+            <span class="text-[#b9bbb7]">Один инженерный язык.</span>
+</h2>
+</div>
+<div class="grid min-h-[44rem] grid-cols-1 gap-10 pb-24 lg:grid-cols-[1.1fr_0.9fr] lg:items-center lg:gap-16" id="specialPin">
+<div class="relative h-[26rem] overflow-hidden rounded-2xl bg-[#f7f7f7] sm:h-[34rem] lg:h-[42rem]">
+<img alt="C1 RS" class="special-img absolute inset-0 h-full w-full object-cover opacity-100" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0cac3195-8317-4b6e-81f4-8f046b0eeff4_3840w.png"/>
+<img alt="Шоссейный велосипед" class="special-img absolute inset-0 h-full w-full object-cover opacity-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/197dcfbd-d45f-4eb4-ba01-94cba3ee3256_3840w.png"/>
+<img alt="Городской олл-роуд" class="special-img absolute inset-0 h-full w-full object-cover opacity-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3f45cfce-7d09-4592-a38d-a368ee8ec268_3840w.png"/>
+<div class="absolute inset-0 ring-1 ring-inset ring-black/10"></div>
+</div>
+<div>
+<div class="mb-10 flex items-end justify-between border-b border-[#d8dad5] pb-5">
+<h3 class="text-3xl font-extrabold tracking-tight sm:text-4xl">Модельный ряд CIRON</h3>
+<span class="text-3xl font-extrabold text-[#303833]" id="specialNumber">1</span>
+</div>
+<div class="space-y-7">
+<div class="special-row opacity-100">
+<div class="mb-3 flex items-center justify-between">
+<h4 class="text-lg font-extrabold">C1 RS</h4>
+<span class="text-sm text-[#9b9b9b]">01</span>
+</div>
+<p class="soft-copy">Чистая гоночная геометрия, аэрооптимизация и лёгкая карбоновая конструкция для максимального отклика.</p>
+<div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Создан для гонщиков, которым нужны скорость, точность и уверенность под давлением.</div>
+</div>
+<div class="special-row opacity-20">
+<div class="mb-3 flex items-center justify-between">
+<h4 class="text-lg font-extrabold">C1 X</h4>
+<span class="text-sm text-[#9b9b9b]">02</span>
+</div>
+<p class="soft-copy">Олл-роуд-клиренс, настроенная податливость и уверенная управляемость на смешанных покрытиях.</p>
+<div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Создан, чтобы нести фирменное ощущение CIRON за пределы идеального асфальта.</div>
+</div>
+<div class="special-row opacity-20">
+<div class="mb-3 flex items-center justify-between">
+<h4 class="text-lg font-extrabold">C1 GR</h4>
+<span class="text-sm text-[#9b9b9b]">03</span>
+</div>
+<p class="soft-copy">Гревел-платформа с эндуранс-геометрией, увеличенным клиренсом и прочной карбоновой конструкцией.</p>
+<div class="mt-5 rounded-xl border border-[#e0e1dc] bg-white/70 p-5 text-base leading-7 text-[#6f746f]">Создан для гонщиков, которым нужны скорость, стабильность и контроль на более сложном рельефе.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative bg-white py-24 sm:py-28 lg:py-36" id="signatures">
+<div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 gap-12 lg:grid-cols-[0.72fr_1.28fr] lg:gap-16">
+<div class="reveal-up lg:sticky lg:top-24 lg:self-start">
+<p class="section-kicker">// Спортивная коллекция</p>
+<h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+              Три воплощения CIRON.
+              <span class="text-[#b9bbb7]">Одна спортивная платформа.</span>
+</h2>
+<p class="soft-copy mt-7 max-w-xl">
+              Семейство C1 настроено под разных гонщиков и рельеф, разделяя единую карбоновую архитектуру, логику геометрии и ощущение точности в езде.
             </p>
-          </div>
-
-          <div class="space-y-5 lg:space-y-8">
-            <article class="signature-card reveal-up">
-              <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
-                <div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
-                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/226eded1-e91c-4e5b-89f1-622052f4a769_3840w.png" alt="CIRON C1 RS" class="h-full w-full object-cover">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
-                </div>
-                <div class="p-6 sm:p-8 lg:p-9">
-                  <p class="process-index">01 / C1 RS</p>
-                  <h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">Race Focus</h3>
-                  <p class="soft-copy mt-4 max-w-lg">A race-focused setup shaped for speed, acceleration, and direct power transfer without sacrificing control.</p>
-                  <div class="mt-6 flex flex-wrap gap-3">
-                    <span class="spec-chip">Race geometry</span>
-                    <span class="spec-chip">Light carbon</span>
-                    <span class="spec-chip">fast response</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="signature-card reveal-up lg:top-32">
-              <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
-                <div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
-                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/45099db5-6a3b-4356-b4fe-c11c8376a080_1600w.png" alt="CIRON C1" class="h-full w-full object-cover">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
-                </div>
-                <div class="p-6 sm:p-8 lg:p-9">
-                  <p class="process-index">02 / C1</p>
-                  <h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">All-Round Performance</h3>
-                  <p class="soft-copy mt-4 max-w-lg">The core CIRON model: fast enough for race days, stable enough for daily rides, and refined enough for long distance.</p>
-                  <div class="mt-6 flex flex-wrap gap-3">
-                    <span class="spec-chip">All-round fit</span>
-                    <span class="spec-chip">balanced geometry</span>
-                    <span class="spec-chip">composed handling</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            <article class="signature-card reveal-up lg:top-40">
-              <div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
-                <div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
-                  <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/020b70c0-93a3-449c-a48f-0b6b909c0c5c_1600w.png" alt="CIRON C1 X" class="h-full w-full object-cover">
-                  <div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
-                </div>
-                <div class="p-6 sm:p-8 lg:p-9">
-                  <p class="process-index">03 / C1 X</p>
-                  <h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">All-Road Control</h3>
-                  <p class="soft-copy mt-4 max-w-lg">A deeper-profile build for riders who want more aero support, stronger visual presence, and the same calm CIRON ride character.</p>
-                  <div class="mt-6 flex flex-wrap gap-3">
-                    <span class="spec-chip">wider clearance</span>
-                    <span class="spec-chip">mixed terrain</span>
-                    <span class="spec-chip">stable control</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dark engineering system from CIRON, with the richer image/labels style from the second page. -->
-    <section id="engineering" class="scroll-dark-section relative overflow-hidden bg-white py-24 pb-32 text-[#303833] sm:py-28 sm:pb-36 lg:min-h-screen lg:py-0">
-      <div class="dark-transition-label">DARK ENGINEERING</div>
-      <div class="noise pointer-events-none absolute inset-0 opacity-[0.04]"></div>
-      <div id="engineeringPin" class="relative flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-28 text-center sm:px-6 sm:pb-32 lg:px-8 lg:pb-40">
-        <div id="engineeringText" class="engineering-text-card relative z-10 mx-auto max-w-4xl reveal-up rounded-2xl border border-transparent px-6 py-8 sm:px-10 sm:py-10">
-          <p class="section-kicker">// CIRON engineering</p>
-          <h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] text-[#111] sm:text-5xl lg:text-7xl">Inside Every CIRON.</h2>
-          <p class="mx-auto mt-6 max-w-3xl text-base leading-8 text-[#747a76] sm:text-lg">
-            Every carbon layer, tube profile, and junction is engineered to transfer power while maintaining predictable handling.
+</div>
+<div class="space-y-5 lg:space-y-8">
+<article class="signature-card reveal-up">
+<div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
+<div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
+<img alt="CIRON C1 RS" class="h-full w-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/226eded1-e91c-4e5b-89f1-622052f4a769_3840w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 sm:p-8 lg:p-9">
+<p class="process-index">01 / C1 RS</p>
+<h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">Гоночный фокус</h3>
+<p class="soft-copy mt-4 max-w-lg">Гоночная конфигурация, созданная для скорости, ускорения и прямой передачи мощности без потери контроля.</p>
+<div class="mt-6 flex flex-wrap gap-3">
+<span class="spec-chip">Гоночная геометрия</span>
+<span class="spec-chip">Лёгкий карбон</span>
+<span class="spec-chip">быстрый отклик</span>
+</div>
+</div>
+</div>
+</article>
+<article class="signature-card reveal-up lg:top-32">
+<div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
+<div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
+<img alt="CIRON C1" class="h-full w-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/45099db5-6a3b-4356-b4fe-c11c8376a080_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 sm:p-8 lg:p-9">
+<p class="process-index">02 / C1</p>
+<h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">Универсальная производительность</h3>
+<p class="soft-copy mt-4 max-w-lg">Базовая модель CIRON: достаточно быстрая для гонок, достаточно стабильная для ежедневных поездок и достаточно отточенная для длинных дистанций.</p>
+<div class="mt-6 flex flex-wrap gap-3">
+<span class="spec-chip">Универсальная посадка</span>
+<span class="spec-chip">сбалансированная геометрия</span>
+<span class="spec-chip">собранная управляемость</span>
+</div>
+</div>
+</div>
+</article>
+<article class="signature-card reveal-up lg:top-40">
+<div class="grid grid-cols-1 md:grid-cols-[0.9fr_1.1fr]">
+<div class="relative min-h-[18rem] overflow-hidden bg-[#f4f5f1]">
+<img alt="CIRON C1 X" class="h-full w-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/020b70c0-93a3-449c-a48f-0b6b909c0c5c_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/18 via-transparent to-transparent"></div>
+</div>
+<div class="p-6 sm:p-8 lg:p-9">
+<p class="process-index">03 / C1 X</p>
+<h3 class="mt-3 text-3xl font-extrabold tracking-[-.03em] sm:text-4xl">Контроль на олл-роуде</h3>
+<p class="soft-copy mt-4 max-w-lg">Сборка с более высоким профилем для гонщиков, которым нужны больше аэроподдержки, более выразительный вид и тот же спокойный характер езды CIRON.</p>
+<div class="mt-6 flex flex-wrap gap-3">
+<span class="spec-chip">увеличенный клиренс</span>
+<span class="spec-chip">смешанный рельеф</span>
+<span class="spec-chip">стабильный контроль</span>
+</div>
+</div>
+</div>
+</article>
+</div>
+</div>
+</div>
+</section>
+<!-- Dark engineering system from CIRON, with the richer image/labels style from the second page. -->
+<section class="scroll-dark-section relative overflow-hidden bg-white py-24 pb-32 text-[#303833] sm:py-28 sm:pb-36 lg:min-h-screen lg:py-0" id="engineering">
+<div class="dark-transition-label">ТЁМНАЯ ИНЖЕНЕРИЯ</div>
+<div class="noise pointer-events-none absolute inset-0 opacity-[0.04]"></div>
+<div class="relative flex min-h-screen flex-col items-center justify-center px-4 pt-24 pb-28 text-center sm:px-6 sm:pb-32 lg:px-8 lg:pb-40" id="engineeringPin">
+<div class="engineering-text-card relative z-10 mx-auto max-w-4xl reveal-up rounded-2xl border border-transparent px-6 py-8 sm:px-10 sm:py-10" id="engineeringText">
+<p class="section-kicker">// Инженерия CIRON</p>
+<h2 class="mt-4 text-4xl font-extrabold leading-[1] tracking-[-.045em] text-[#111] sm:text-5xl lg:text-7xl">Внутри каждого CIRON.</h2>
+<p class="mx-auto mt-6 max-w-3xl text-base leading-8 text-[#747a76] sm:text-lg">
+            Каждый слой карбона, профиль труб и узел спроектированы так, чтобы передавать мощность, сохраняя предсказуемую управляемость.
           </p>
-          <a href="#contact" class="engineering-cta mt-8 inline-flex rounded-full border border-[#303833]/18 bg-[#303833] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-black hover:text-white">Request a private fitting</a>
-        </div>
-
-        <div id="ctWrap" class="relative z-0 mt-12 w-full max-w-5xl">
-          <div class="label-chip absolute left-[3%] top-[18%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Wind tested</div>
-          <div class="label-chip absolute right-[4%] top-[22%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Carbon architecture</div>
-          <div class="label-chip absolute bottom-[28%] left-[10%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Load mapped</div>
-          <div class="label-chip absolute bottom-[24%] right-[10%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833]  backdrop-blur sm:text-sm">Integrated cockpit</div>
-          <img id="ctImage" class="mx-auto w-full max-w-3xl translate-y-20 scale-95 rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.12)]" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5372f55d-d6f7-47f9-8852-3311ee0bf24c_3840w.png" alt="Bike engineering">
-        </div>
-      </div>
-    </section>
-
-
-    <section class="signal-band">
-      <div id="signalTrack" class="signal-track">
-        <span class="signal-item">CIRON C1</span><span class="signal-dot">•</span>
-        <span class="signal-item">calm speed</span><span class="signal-dot">•</span>
-        <span class="signal-item">tuned carbon system</span><span class="signal-dot">•</span>
-        <span class="signal-item">precision geometry</span><span class="signal-dot">•</span>
-        <span class="signal-item">private fitting</span><span class="signal-dot">•</span>
-        <span class="signal-item">CIRON C1</span><span class="signal-dot">•</span>
-        <span class="signal-item">calm speed</span><span class="signal-dot">•</span>
-        <span class="signal-item">tuned carbon system</span><span class="signal-dot">•</span>
-        <span class="signal-item">precision geometry</span><span class="signal-dot">•</span>
-        <span class="signal-item">private fitting</span>
-      </div>
-    </section>
-
-    <section id="models" class="collection-v3 bg-white">
-      <div class="models-header mx-auto reveal-up">
-        <p class="section-kicker">// The collection</p>
-        <div class="mt-4 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
-          <h2 class="max-w-6xl text-4xl font-extrabold leading-[1.03] tracking-[-.045em] sm:text-5xl lg:text-7xl">
-            Four models, one performance language.
-            <span class="text-[#b9bbb7]">Tuned for different ways to ride.</span>
-          </h2>
-          <p class="soft-copy max-w-xl lg:justify-self-end">
-            Compare the CIRON range through fit, surface, weight, and ride intention. Each model shares the same carbon architecture but is tuned for a different rhythm on the road.
+<a class="engineering-cta mt-8 inline-flex rounded-full border border-[#303833]/18 bg-[#303833] px-6 py-3 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-black hover:text-white" href="#contact">Записаться на индивидуальную подгонку</a>
+</div>
+<div class="relative z-0 mt-12 w-full max-w-5xl" id="ctWrap">
+<div class="label-chip absolute left-[3%] top-[18%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833] backdrop-blur sm:text-sm">Испытан в аэротрубе</div>
+<div class="label-chip absolute right-[4%] top-[22%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833] backdrop-blur sm:text-sm">Карбоновая архитектура</div>
+<div class="label-chip absolute bottom-[28%] left-[10%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833] backdrop-blur sm:text-sm">Картирование нагрузок</div>
+<div class="label-chip absolute bottom-[24%] right-[10%] z-20 rounded-full border border-white/10 bg-white/90 px-4 py-2 text-xs font-bold text-[#303833] backdrop-blur sm:text-sm">Интегрированный кокпит</div>
+<img alt="Инженерия велосипеда" class="mx-auto w-full max-w-3xl translate-y-20 scale-95 rounded-2xl object-cover shadow-[0_20px_60px_rgba(0,0,0,0.12)]" id="ctImage" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5372f55d-d6f7-47f9-8852-3311ee0bf24c_3840w.png"/>
+</div>
+</div>
+</section>
+<section class="signal-band">
+<div class="signal-track" id="signalTrack">
+<span class="signal-item">CIRON C1</span><span class="signal-dot">•</span>
+<span class="signal-item">спокойная скорость</span><span class="signal-dot">•</span>
+<span class="signal-item">настроенная карбоновая система</span><span class="signal-dot">•</span>
+<span class="signal-item">точная геометрия</span><span class="signal-dot">•</span>
+<span class="signal-item">индивидуальная подгонка</span><span class="signal-dot">•</span>
+<span class="signal-item">CIRON C1</span><span class="signal-dot">•</span>
+<span class="signal-item">спокойная скорость</span><span class="signal-dot">•</span>
+<span class="signal-item">настроенная карбоновая система</span><span class="signal-dot">•</span>
+<span class="signal-item">точная геометрия</span><span class="signal-dot">•</span>
+<span class="signal-item">индивидуальная подгонка</span>
+</div>
+</section>
+<section class="collection-v3 bg-white" id="models">
+<div class="models-header mx-auto reveal-up">
+<p class="section-kicker">// Коллекция</p>
+<div class="mt-4 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end">
+<h2 class="max-w-6xl text-4xl font-extrabold leading-[1.03] tracking-[-.045em] sm:text-5xl lg:text-7xl">
+            Четыре модели, один язык производительности.
+            <span class="text-[#b9bbb7]">Настроены под разные стили езды.</span>
+</h2>
+<p class="soft-copy max-w-xl lg:justify-self-end">
+            Сравните линейку CIRON по посадке, покрытию, весу и назначению. Все модели разделяют единую карбоновую архитектуру, но каждая настроена под свой ритм на дороге.
           </p>
-        </div>
-      </div>
-
-      <div id="galleryPin" class="relative overflow-hidden">
-        <div id="galleryTrack" class="flex w-max">
-          <article class="model-panel">
-            <div class="model-copy">
-              <span class="model-number">1</span>
-              <div class="model-copy-main">
-                <p class="section-kicker">// Race platform</p>
-                <h3>C1 RS</h3>
-                <p class="soft-copy">A pure road race platform with aero tube profiles, integrated routing, and a responsive carbon chassis for explosive efforts and fast descents.</p>
-                <div class="model-detail-list"><span>Aero tube profiles</span><span>Race geometry</span><span>Integrated routing</span><span>Fast response</span></div>
-              </div>
-              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Built for race days</span></div>
-            </div>
-            <div class="model-media">
-              <div class="model-specs"><span>Race</span><span>6.8 kg</span><span>Carbon fiber</span></div>
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5e0a75e7-c063-4242-a8d9-1d10b4afe511_3840w.png" alt="CIRON C1 RS">
-            </div>
-          </article>
-
-          <article class="model-panel">
-            <div class="model-copy">
-              <span class="model-number">2</span>
-              <div class="model-copy-main">
-                <p class="section-kicker">// Daily speed</p>
-                <h3>C1</h3>
-                <p class="soft-copy">The balanced performance model for training, fast group rides, and long days at speed with a composed fit and clean integrated cockpit.</p>
-                <div class="model-detail-list"><span>Balanced handling</span><span>Endurance comfort</span><span>Clean cockpit</span><span>Fast group rides</span></div>
-              </div>
-              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Best all-rounder</span></div>
-            </div>
-            <div class="model-media">
-              <div class="model-specs"><span>Road</span><span>7.1 kg</span><span>Carbon</span></div>
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1680716-7180-4103-a953-b3fd97443d34_3840w.png" alt="CIRON C1">
-            </div>
-          </article>
-
-          <article class="model-panel">
-            <div class="model-copy">
-              <span class="model-number">3</span>
-              <div class="model-copy-main">
-                <p class="section-kicker">// Mixed surface</p>
-                <h3>C1 X</h3>
-                <p class="soft-copy">An all-road model with more clearance, stable geometry, and confident handling for riders who move between pavement, light gravel, and rougher routes.</p>
-                <div class="model-detail-list"><span>Wider clearance</span><span>Stable geometry</span><span>Mixed terrain</span><span>More control</span></div>
-              </div>
-              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Road plus freedom</span></div>
-            </div>
-            <div class="model-media">
-              <div class="model-specs"><span>All-road</span><span>7.6 kg</span><span>Carbon</span></div>
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3df9ba6b-ee09-48e4-be9f-fe0cfbe8f7d2_3840w.png" alt="CIRON C1 X">
-            </div>
-          </article>
-
-          <article class="model-panel">
-            <div class="model-copy">
-              <span class="model-number">4</span>
-              <div class="model-copy-main">
-                <p class="section-kicker">// Gravel endurance</p>
-                <h3>C1 GR</h3>
-                <p class="soft-copy">A gravel performance model with endurance geometry, wider tire clearance, and durable carbon construction for long distance control beyond perfect pavement.</p>
-                <div class="model-detail-list"><span>Endurance fit</span><span>Wider tire support</span><span>Durable carbon</span><span>Long distance control</span></div>
-              </div>
-              <div class="model-actions"><a href="#contact" class="model-btn">See more information</a><span class="model-note">Built for gravel</span></div>
-            </div>
-            <div class="model-media">
-              <div class="model-specs"><span>Gravel</span><span>8.1 kg</span><span>Carbon</span></div>
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ff43859-5ffa-4328-9d09-3f0e943662f9_3840w.png" alt="CIRON C1 GR">
-            </div>
-          </article>
-        </div>
-
-        <div class="mx-8 mt-14 h-px bg-[#d8dad5] sm:mx-10 lg:mx-16 xl:mx-20">
-          <div id="galleryProgress" class="h-px w-0 bg-[#303833]"></div>
-        </div>
-      </div>
-    </section>
-
-    <section id="process" class="scroll-dark-section relative overflow-hidden bg-white py-24 text-[#303833] sm:py-28 lg:py-36">
-      <div class="dark-transition-label">CIRON Studio</div>
-
-      <div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 gap-12 border-t border-[#dcded9] pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
-          <div class="reveal-up lg:sticky lg:top-28 lg:self-start">
-            <p class="section-kicker">// Private configuration</p>
-            <h2 class="mt-4 text-4xl font-extrabold leading-[0.94] tracking-[-.055em] sm:text-5xl lg:text-7xl">
-              Refine the ride,
-              <span class="text-[#b9bbb7]">down to the detail.</span>
-            </h2>
-            <p class="soft-copy mt-7 max-w-xl">
-              Every CIRON build is shaped around model, fit, terrain, and ride feel. The process stays simple, but every decision has a clear performance reason.
+</div>
+</div>
+<div class="relative overflow-hidden" id="galleryPin">
+<div class="flex w-max" id="galleryTrack">
+<article class="model-panel">
+<div class="model-copy">
+<span class="model-number">1</span>
+<div class="model-copy-main">
+<p class="section-kicker">// Гоночная платформа</p>
+<h3>C1 RS</h3>
+<p class="soft-copy">Чистая шоссейная гоночная платформа с аэропрофилями труб, интегрированной проводкой и отзывчивым карбоновым шасси для взрывных ускорений и быстрых спусков.</p>
+<div class="model-detail-list"><span>Аэропрофили труб</span><span>Гоночная геометрия</span><span>Интегрированная проводка</span><span>Быстрый отклик</span></div>
+</div>
+<div class="model-actions"><a class="model-btn" href="#contact">Узнать больше</a><span class="model-note">Создан для гоночных дней</span></div>
+</div>
+<div class="model-media">
+<div class="model-specs"><span>Гонка</span><span>6,8 кг</span><span>Карбоновое волокно</span></div>
+<img alt="CIRON C1 RS" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5e0a75e7-c063-4242-a8d9-1d10b4afe511_3840w.png"/>
+</div>
+</article>
+<article class="model-panel">
+<div class="model-copy">
+<span class="model-number">2</span>
+<div class="model-copy-main">
+<p class="section-kicker">// Ежедневная скорость</p>
+<h3>C1</h3>
+<p class="soft-copy">Сбалансированная спортивная модель для тренировок, быстрых групповых заездов и долгих дней на скорости — с собранной посадкой и чистым интегрированным кокпитом.</p>
+<div class="model-detail-list"><span>Сбалансированная управляемость</span><span>Комфорт на длинных дистанциях</span><span>Чистый кокпит</span><span>Быстрые групповые заезды</span></div>
+</div>
+<div class="model-actions"><a class="model-btn" href="#contact">Узнать больше</a><span class="model-note">Лучший универсал</span></div>
+</div>
+<div class="model-media">
+<div class="model-specs"><span>Шоссе</span><span>7,1 кг</span><span>Карбон</span></div>
+<img alt="CIRON C1" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1680716-7180-4103-a953-b3fd97443d34_3840w.png"/>
+</div>
+</article>
+<article class="model-panel">
+<div class="model-copy">
+<span class="model-number">3</span>
+<div class="model-copy-main">
+<p class="section-kicker">// Смешанное покрытие</p>
+<h3>C1 X</h3>
+<p class="soft-copy">Олл-роуд-модель с увеличенным клиренсом, стабильной геометрией и уверенной управляемостью для тех, кто перемещается между асфальтом, лёгким гравием и более сложными маршрутами.</p>
+<div class="model-detail-list"><span>Увеличенный клиренс</span><span>Стабильная геометрия</span><span>Смешанный рельеф</span><span>Больше контроля</span></div>
+</div>
+<div class="model-actions"><a class="model-btn" href="#contact">Узнать больше</a><span class="model-note">Шоссе плюс свобода</span></div>
+</div>
+<div class="model-media">
+<div class="model-specs"><span>Олл-роуд</span><span>7,6 кг</span><span>Карбон</span></div>
+<img alt="CIRON C1 X" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3df9ba6b-ee09-48e4-be9f-fe0cfbe8f7d2_3840w.png"/>
+</div>
+</article>
+<article class="model-panel">
+<div class="model-copy">
+<span class="model-number">4</span>
+<div class="model-copy-main">
+<p class="section-kicker">// Гревел-эндуранс</p>
+<h3>C1 GR</h3>
+<p class="soft-copy">Гревел-модель с эндуранс-геометрией, увеличенным клиренсом покрышек и прочной карбоновой конструкцией для контроля на длинных дистанциях за пределами идеального асфальта.</p>
+<div class="model-detail-list"><span>Эндуранс-посадка</span><span>Поддержка широких покрышек</span><span>Прочный карбон</span><span>Контроль на длинных дистанциях</span></div>
+</div>
+<div class="model-actions"><a class="model-btn" href="#contact">Узнать больше</a><span class="model-note">Создан для гравия</span></div>
+</div>
+<div class="model-media">
+<div class="model-specs"><span>Гревел</span><span>8,1 кг</span><span>Карбон</span></div>
+<img alt="CIRON C1 GR" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7ff43859-5ffa-4328-9d09-3f0e943662f9_3840w.png"/>
+</div>
+</article>
+</div>
+<div class="mx-8 mt-14 h-px bg-[#d8dad5] sm:mx-10 lg:mx-16 xl:mx-20">
+<div class="h-px w-0 bg-[#303833]" id="galleryProgress"></div>
+</div>
+</div>
+</section>
+<section class="scroll-dark-section relative overflow-hidden bg-white py-24 text-[#303833] sm:py-28 lg:py-36" id="process">
+<div class="dark-transition-label">CIRON Studio</div>
+<div class="mx-auto max-w-[96rem] px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 gap-12 border-t border-[#dcded9] pt-10 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
+<div class="reveal-up lg:sticky lg:top-28 lg:self-start">
+<p class="section-kicker">// Индивидуальная конфигурация</p>
+<h2 class="mt-4 text-4xl font-extrabold leading-[0.94] tracking-[-.055em] sm:text-5xl lg:text-7xl">
+              Отточите езду,
+              <span class="text-[#b9bbb7]">до мельчайшей детали.</span>
+</h2>
+<p class="soft-copy mt-7 max-w-xl">
+              Каждая сборка CIRON формируется вокруг модели, посадки, рельефа и ощущения езды. Процесс остаётся простым, но за каждым решением стоит ясная спортивная причина.
             </p>
-          </div>
-
-          <div class="reveal-up">
-            <div class="grid grid-cols-1 gap-0 border-t border-[#dcded9]">
-              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
-                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">01</p>
-                <div>
-                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Select model</h3>
-                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">C1 RS / C1 / C1 X / C1 GR</span>
-                  </div>
-                  <p class="soft-copy mt-4 max-w-3xl">
-                    Start with the platform that matches the ride: pure race, everyday performance, all-road versatility, or gravel endurance.
+</div>
+<div class="reveal-up">
+<div class="grid grid-cols-1 gap-0 border-t border-[#dcded9]">
+<article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+<p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">01</p>
+<div>
+<div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+<h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Выберите модель</h3>
+<span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">C1 RS / C1 / C1 X / C1 GR</span>
+</div>
+<p class="soft-copy mt-4 max-w-3xl">
+                    Начните с платформы, соответствующей вашей езде: чистая гонка, повседневная производительность, олл-роуд-универсальность или гревел-эндуранс.
                   </p>
-                </div>
-              </article>
-
-              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
-                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">02</p>
-                <div>
-                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Dial in fit</h3>
-                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Geometry / position / cockpit</span>
-                  </div>
-                  <p class="soft-copy mt-4 max-w-3xl">
-                    Frame size, cockpit length, saddle position, and reach are treated as part of the performance system, not an afterthought.
+</div>
+</article>
+<article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+<p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">02</p>
+<div>
+<div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+<h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Настройте посадку</h3>
+<span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Геометрия / положение / кокпит</span>
+</div>
+<p class="soft-copy mt-4 max-w-3xl">
+                    Размер рамы, длина кокпита, положение седла и вылет рассматриваются как часть спортивной системы, а не второстепенная деталь.
                   </p>
-                </div>
-              </article>
-
-              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
-                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">03</p>
-                <div>
-                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Tune the system</h3>
-                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Wheels / tires / finish</span>
-                  </div>
-                  <p class="soft-copy mt-4 max-w-3xl">
-                    Wheel depth, tire profile, carbon finish, and component package are selected to support the same ride character.
+</div>
+</article>
+<article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+<p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">03</p>
+<div>
+<div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+<h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Настройте систему</h3>
+<span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Колёса / покрышки / отделка</span>
+</div>
+<p class="soft-copy mt-4 max-w-3xl">
+                    Высота обода, профиль покрышек, отделка карбона и комплект компонентов подбираются так, чтобы поддерживать единый характер езды.
                   </p>
-                </div>
-              </article>
-
-              <article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
-                <p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">04</p>
-                <div>
-                  <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
-                    <h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Deliver the build</h3>
-                    <span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Final spec / service / support</span>
-                  </div>
-                  <p class="soft-copy mt-4 max-w-3xl">
-                    The final configuration includes fitting notes, service guidance, and a clear explanation behind every choice.
+</div>
+</article>
+<article class="group grid grid-cols-[4rem_1fr] gap-6 border-b border-[#dcded9] py-8 sm:grid-cols-[7rem_1fr]">
+<p class="text-sm font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">04</p>
+<div>
+<div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+<h3 class="text-3xl font-extrabold tracking-[-.045em] sm:text-4xl">Получите сборку</h3>
+<span class="text-[0.68rem] font-extrabold uppercase tracking-[.18em] text-[#9a9f9a]">Финальная спецификация / сервис / поддержка</span>
+</div>
+<p class="soft-copy mt-4 max-w-3xl">
+                    Финальная конфигурация включает заметки по подгонке, рекомендации по обслуживанию и ясное объяснение каждого выбора.
                   </p>
-                </div>
-              </article>
-            </div>
-
-            <div class="mt-10 flex flex-col justify-between gap-6 rounded-2xl border border-[#e2e4df] bg-[#f7f7f3] p-6 sm:flex-row sm:items-center">
-              <div>
-                <p class="text-[0.68rem] font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">Private fitting</p>
-                <p class="mt-2 max-w-2xl text-2xl font-extrabold tracking-[-.04em]">Precision, finished with restraint.</p>
-              </div>
-              <a href="#contact" class="pill-btn pill-accent shrink-0">Request fitting</a>
-            </div>
-          </div>
-        </div>
+</div>
+</article>
+</div>
+<div class="mt-10 flex flex-col justify-between gap-6 rounded-2xl border border-[#e2e4df] bg-[#f7f7f3] p-6 sm:flex-row sm:items-center">
+<div>
+<p class="text-[0.68rem] font-extrabold uppercase tracking-[.22em] text-[#9a9f9a]">Индивидуальная подгонка</p>
+<p class="mt-2 max-w-2xl text-2xl font-extrabold tracking-[-.04em]">Точность, завершённая сдержанностью.</p>
+</div>
+<a class="pill-btn pill-accent shrink-0" href="#contact">Записаться на подгонку</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden bg-white px-4 py-32 text-center sm:px-6 lg:px-8 lg:py-40" id="contact">
+<div class="pointer-events-none absolute left-1/2 top-8 w-full -translate-x-1/2 whitespace-nowrap text-center text-[clamp(4.5rem,13vw,13.5rem)] font-extrabold uppercase leading-[0.78] tracking-[-.075em] text-[#eceee9]" id="contactBgText">
+        Испытайте CIRON
       </div>
-    </section>
-
-    <section id="contact" class="relative overflow-hidden bg-white px-4 py-32 text-center sm:px-6 lg:px-8 lg:py-40">
-      <div id="contactBgText" class="pointer-events-none absolute left-1/2 top-8 w-full -translate-x-1/2 whitespace-nowrap text-center text-[clamp(4.5rem,13vw,13.5rem)] font-extrabold uppercase leading-[0.78] tracking-[-.075em] text-[#eceee9]">
-        Experience CIRON
-      </div>
-      <div class="relative z-10 mx-auto max-w-3xl pt-24 reveal-up sm:pt-28 lg:pt-32">
-        <p class="section-kicker">// Private fitting program</p>
-        <h2 class="mt-5 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-6xl lg:text-7xl">Experience CIRON.</h2>
-        <p class="soft-copy mx-auto mt-6 max-w-2xl">Choose your model, frame size, carbon finish, wheel system, and component package. CIRON recommends a complete configuration based on your goals and riding style.</p>
-        <div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
-          <a href="#" class="pill-btn pill-accent">Configure your C1</a>
-          <a href="#" class="pill-btn">Request spec sheet</a>
-        </div>
-      </div>
-    </section>
-
-    <footer class="bg-black px-4 pb-8 pt-20 text-white sm:px-6 lg:px-8">
-      <div class="mx-auto max-w-[96rem]">
-        <div class="border-b border-white/10 pb-20 text-center">
-          <p class="text-7xl font-extrabold uppercase tracking-[-.06em] text-white/18 sm:text-8xl lg:text-[11rem]">CIRON</p>
-        </div>
-
-        <div class="grid gap-10 border-b border-white/10 py-12 sm:grid-cols-2 lg:grid-cols-5">
-          <div>
-            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Collection</h3>
-            <ul class="mt-5 space-y-3 text-sm text-white/45">
-              <li>C1 RS</li>
-              <li>C1</li>
-              <li>C1 X</li>
-              <li>C1 GR</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Technology</h3>
-            <ul class="mt-5 space-y-3 text-sm text-white/45">
-              <li>Carbon architecture</li>
-              <li>Aero integration</li>
-              <li>Precision geometry</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Studio</h3>
-            <ul class="mt-5 space-y-3 text-sm text-white/45">
-              <li>Private fitting</li>
-              <li>Road validation</li>
-              <li>Service program</li>
-              <li>CIRON Studio</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Resources</h3>
-            <ul class="mt-5 space-y-3 text-sm text-white/45">
-              <li>Spec sheets</li>
-              <li>Service policy</li>
-              <li>Warranty</li>
-              <li>Dealer network</li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Contact</h3>
-            <p class="mt-5 text-sm leading-6 text-white/45">For private fittings, dealer appointments, or CIRON configuration questions.</p>
-            <a href="#" class="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.16rem] text-white">Request fitting</a>
-          </div>
-        </div>
-
-        <div class="flex flex-col items-center justify-between gap-6 pt-8 sm:flex-row">
-          <p class="text-xs text-white/35">© 2026 CIRON. Engineered for precision speed.</p>
-          <div class="flex items-center gap-5 text-white/45">
-            <i data-lucide="camera" class="h-4 w-4"></i>
-            <i data-lucide="play" class="h-4 w-4"></i>
-            <i data-lucide="mail" class="h-4 w-4"></i>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
+<div class="relative z-10 mx-auto max-w-3xl pt-24 reveal-up sm:pt-28 lg:pt-32">
+<p class="section-kicker">// Программа индивидуальной подгонки</p>
+<h2 class="mt-5 text-4xl font-extrabold leading-[1] tracking-[-.045em] sm:text-6xl lg:text-7xl">Испытайте CIRON.</h2>
+<p class="soft-copy mx-auto mt-6 max-w-2xl">Выберите модель, размер рамы, отделку карбона, колёсную систему и комплект компонентов. CIRON порекомендует полную конфигурацию на основе ваших целей и стиля езды.</p>
+<div class="mt-9 flex flex-col justify-center gap-3 sm:flex-row">
+<a class="pill-btn pill-accent" href="#">Соберите свой C1</a>
+<a class="pill-btn" href="#">Запросить спецификацию</a>
+</div>
+</div>
+</section>
+<footer class="bg-black px-4 pb-8 pt-20 text-white sm:px-6 lg:px-8">
+<div class="mx-auto max-w-[96rem]">
+<div class="border-b border-white/10 pb-20 text-center">
+<p class="text-7xl font-extrabold uppercase tracking-[-.06em] text-white/18 sm:text-8xl lg:text-[11rem]">CIRON</p>
+</div>
+<div class="grid gap-10 border-b border-white/10 py-12 sm:grid-cols-2 lg:grid-cols-5">
+<div>
+<h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Коллекционное</h3>
+<ul class="mt-5 space-y-3 text-sm text-white/45">
+<li>C1 RS</li>
+<li>C1</li>
+<li>C1 X</li>
+<li>C1 GR</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Технологии</h3>
+<ul class="mt-5 space-y-3 text-sm text-white/45">
+<li>Карбоновая архитектура</li>
+<li>Аэроинтеграция</li>
+<li>Точная геометрия</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Студия</h3>
+<ul class="mt-5 space-y-3 text-sm text-white/45">
+<li>Индивидуальная подгонка</li>
+<li>Дорожные испытания</li>
+<li>Сервисная программа</li>
+<li>CIRON Studio</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Ресурсы</h3>
+<ul class="mt-5 space-y-3 text-sm text-white/45">
+<li>Спецификации</li>
+<li>Сервисная политика</li>
+<li>Гарантия</li>
+<li>Дилерская сеть</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-bold tracking-[0.24rem] text-white/90">Контакты</h3>
+<p class="mt-5 text-sm leading-6 text-white/45">Для индивидуальных подгонок, записи к дилерам и вопросов по конфигурации CIRON.</p>
+<a class="mt-6 inline-flex rounded-full border border-white/15 px-5 py-3 text-xs font-bold uppercase tracking-[0.16rem] text-white" href="#">Записаться на подгонку</a>
+</div>
+</div>
+<div class="flex flex-col items-center justify-between gap-6 pt-8 sm:flex-row">
+<p class="text-xs text-white/35">© 2026 CIRON. Создан для точной скорости.</p>
+<div class="flex items-center gap-5 text-white/45">
+<i class="h-4 w-4" data-lucide="camera"></i>
+<i class="h-4 w-4" data-lucide="play"></i>
+<i class="h-4 w-4" data-lucide="mail"></i>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<script>
     lucide.createIcons({ attrs: { "stroke-width": 2 } });
     gsap.registerPlugin(ScrollTrigger);
 
@@ -2898,5 +2883,4 @@ gtag('config', 'G-2M6V79H761');
       ScrollTrigger.refresh();
     });
   </script>
-
 </body></html>

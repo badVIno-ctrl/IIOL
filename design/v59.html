@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="th" class="scroll-smooth">
+
+<html class="scroll-smooth" lang="ru">
 <head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Positiv+ | ดิจิทัลไร้รอยต่อ</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Positiv+ | Бесшовный диджитал</title>
 <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&family=Open+Sans:wght@300;400;500;600&family=Prompt:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&amp;family=Open+Sans:wght@300;400;500;600&amp;family=Prompt:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
 :root {
@@ -219,841 +220,806 @@ display: none;
 opacity: 0;
 transform: scale(0.95);
 }
+</style><style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
 </style></head>
 <body class="text-white selection:bg-[#007bff]/50 selection:text-white text-base">
-
-    <div id="cursor"></div>
-    <div class="noise-overlay"></div>
-
-    <!-- Liquid Background Layer -->
-    <div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
-        <div class="liquid-blob bg-[#007bff]" style="width: 500px; height: 500px; top: -100px; left: -100px; opacity: 0.2; animation-duration: 15s;"></div>
-        <div class="liquid-blob bg-purple-600" style="width: 400px; height: 400px; top: 40%; right: -100px; opacity: 0.15; animation-duration: 20s; animation-delay: -5s;"></div>
-        <div class="liquid-blob bg-cyan-600" style="width: 600px; height: 600px; bottom: -150px; left: 20%; opacity: 0.15; animation-duration: 25s; animation-delay: -10s;"></div>
-    </div>
-
-    <div id="preloader">
-        <div class="flex flex-col items-center gap-4">
-            <span class="font-heading tracking-[0.2em] text-xs uppercase text-white/50" id="loader-text">กำลังเริ่มต้นระบบลิควิด</span>
-            <div class="loader-bar">
-                <div class="loader-progress" id="loader-progress"></div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed w-full z-[60] top-0 transition-all duration-300 py-4">
-        <div class="max-w-7xl mx-auto px-4">
-            <!-- Glass Navbar Container -->
-            <div class="glass-panel rounded-full px-6 py-3 flex items-center justify-between">
-                <a href="#" class="cursor-hover group flex items-center gap-1.5">
-                    <span class="font-heading font-bold text-xl tracking-tighter text-white">POSITIV</span>
-                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#29C5F6] to-[#3a4b9f] flex items-center justify-center shadow-[0_4px_10px_rgba(41,197,246,0.3)] group-hover:scale-105 transition-transform duration-300">
-                        <span class="iconify text-white" data-icon="lucide:plus" data-width="20" data-stroke-width="4"></span>
-                    </div>
-                </a>
-                <div class="hidden md:flex items-center gap-8">
-                    <a href="#services" class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors">บริการ</a>
-                    <a href="#work" class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors">ผลงาน</a>
-                    <a href="#gallery" class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors">แกลเลอรี</a>
-                    <a href="#pricing" class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors">ราคา</a>
-                </div>
-                <div class="hidden md:block">
-                    <button class="cursor-hover px-5 py-2 border border-white/20 rounded-full text-[10px] font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-colors bg-white/5 backdrop-blur-sm">
-                        เมนู
+<div id="cursor"></div>
+<div class="noise-overlay"></div>
+<!-- Liquid Background Layer -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none z-[-1]">
+<div class="liquid-blob bg-[#007bff]" style="width: 500px; height: 500px; top: -100px; left: -100px; opacity: 0.2; animation-duration: 15s;"></div>
+<div class="liquid-blob bg-purple-600" style="width: 400px; height: 400px; top: 40%; right: -100px; opacity: 0.15; animation-duration: 20s; animation-delay: -5s;"></div>
+<div class="liquid-blob bg-cyan-600" style="width: 600px; height: 600px; bottom: -150px; left: 20%; opacity: 0.15; animation-duration: 25s; animation-delay: -10s;"></div>
+</div>
+<div id="preloader">
+<div class="flex flex-col items-center gap-4">
+<span class="font-heading tracking-[0.2em] text-xs uppercase text-white/50" id="loader-text">Инициализация ликвид-системы</span>
+<div class="loader-bar">
+<div class="loader-progress" id="loader-progress"></div>
+</div>
+</div>
+</div>
+ Навигация 
+<nav class="fixed w-full z-[60] top-0 transition-all duration-300 py-4">
+<div class="max-w-7xl mx-auto px-4">
+<!-- Glass Navbar Container -->
+<div class="glass-panel rounded-full px-6 py-3 flex items-center justify-between">
+<a class="cursor-hover group flex items-center gap-1.5" href="#">
+<span class="font-heading font-bold text-xl tracking-tighter text-white">POSITIV</span>
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#29C5F6] to-[#3a4b9f] flex items-center justify-center shadow-[0_4px_10px_rgba(41,197,246,0.3)] group-hover:scale-105 transition-transform duration-300">
+<span class="iconify text-white" data-icon="lucide:plus" data-stroke-width="4" data-width="20"></span>
+</div>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors" href="#services">Услуги</a>
+<a class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors" href="#work">Проекты</a>
+<a class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors" href="#gallery">Галерея</a>
+<a class="cursor-hover text-xs font-medium uppercase tracking-widest text-white/70 hover:text-white transition-colors" href="#pricing">Цены</a>
+</div>
+<div class="hidden md:block">
+<button class="cursor-hover px-5 py-2 border border-white/20 rounded-full text-[10px] font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-colors bg-white/5 backdrop-blur-sm">
+                        Меню
                     </button>
-                </div>
-                <button class="md:hidden text-white cursor-hover">
-                    <span class="iconify" data-icon="lucide:menu" data-width="24"></span>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO SECTION -->
-    <header id="hero" class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        <div class="absolute top-28 left-6 md:left-12 z-20 hidden md:block">
-             <span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 00. เริ่มต้น ]</span>
-        </div>
-
-        <!-- Parallax BG Wrapper -->
-        <div class="absolute inset-0 z-0 overflow-hidden">
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
-                 alt="Background" 
-                 class="parallax-element w-full h-[120%] object-cover opacity-20 grayscale contrast-125 will-change-transform mix-blend-overlay"
-                 data-parallax-speed="0.5">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050a14] via-[#050a14]/50 to-transparent"></div>
-        </div>
-
-        <div class="relative z-10 text-center px-6 w-full max-w-7xl mx-auto flex flex-col items-center">
-            <div class="reveal mb-8 opacity-0">
-                <div class="glass-panel inline-flex items-center gap-2 px-4 py-1.5 rounded-full">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#007bff] animate-pulse shadow-[0_0_10px_#007bff]"></span>
-                    <span class="text-[10px] uppercase tracking-[0.2em] text-gray-300">นวัตกรรมไร้รอยต่อ</span>
-                </div>
-            </div>
-
-            <h1 class="font-heading text-6xl md:text-8xl lg:text-9xl font-semibold leading-[0.85] tracking-tight text-white drop-shadow-2xl">
-                <span class="split-line"><span class="block">ANAKOT</span></span>
-                <span class="split-line"><span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/20" style="transition-delay: 100ms">LIQUID</span></span>
-            </h1>
-            <!-- Replaced Thai Text to maintain visual weight similar to original but in meaning: Future (Anakot) Liquid -->
-             <h1 class="absolute opacity-0 pointer-events-none">อนาคตที่ลื่นไหล</h1>
-
-            <p class="mt-8 text-lg md:text-xl text-gray-300/80 font-light max-w-lg mx-auto leading-relaxed reveal opacity-0 delay-200 backdrop-blur-sm rounded-lg p-2">
-                เปลี่ยนสิ่งที่จับต้องไม่ได้ให้เป็นความจริง เราสร้างสรรค์ประสบการณ์ดิจิทัลที่ <span class="text-white border-b border-[#007bff]/50 pb-0.5 cursor-hover hover:border-[#007bff] hover:text-[#007bff] transition-colors hover:shadow-[0_0_15px_rgba(0,123,255,0.4)]">ลื่นไหล</span> และปรับตัวได้
+</div>
+<button class="md:hidden text-white cursor-hover">
+<span class="iconify" data-icon="lucide:menu" data-width="24"></span>
+</button>
+</div>
+</div>
+</nav>
+<!-- HERO SECTION -->
+<header class="relative h-screen w-full flex items-center justify-center overflow-hidden" id="hero">
+<div class="absolute top-28 left-6 md:left-12 z-20 hidden md:block">
+<span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 00. Старт ]</span>
+</div>
+<!-- Parallax BG Wrapper -->
+<div class="absolute inset-0 z-0 overflow-hidden">
+<img alt="Фон" class="parallax-element w-full h-[120%] object-cover opacity-20 grayscale contrast-125 will-change-transform mix-blend-overlay" data-parallax-speed="0.5" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&amp;w=2072&amp;auto=format&amp;fit=crop"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050a14] via-[#050a14]/50 to-transparent"></div>
+</div>
+<div class="relative z-10 text-center px-6 w-full max-w-7xl mx-auto flex flex-col items-center">
+<div class="reveal mb-8 opacity-0">
+<div class="glass-panel inline-flex items-center gap-2 px-4 py-1.5 rounded-full">
+<span class="w-1.5 h-1.5 rounded-full bg-[#007bff] animate-pulse shadow-[0_0_10px_#007bff]"></span>
+<span class="text-[10px] uppercase tracking-[0.2em] text-gray-300">Бесшовные инновации</span>
+</div>
+</div>
+<h1 class="font-heading text-6xl md:text-8xl lg:text-9xl font-semibold leading-[0.85] tracking-tight text-white drop-shadow-2xl">
+<span class="split-line"><span class="block">ANAKOT</span></span>
+<span class="split-line"><span class="block text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-white/20" style="transition-delay: 100ms">LIQUID</span></span>
+</h1>
+<!-- Replaced Thai Text to maintain visual weight similar to original but in meaning: Future (Anakot) Liquid -->
+<h1 class="absolute opacity-0 pointer-events-none">Текучее будущее</h1>
+<p class="mt-8 text-lg md:text-xl text-gray-300/80 font-light max-w-lg mx-auto leading-relaxed reveal opacity-0 delay-200 backdrop-blur-sm rounded-lg p-2">
+                Превращаем неосязаемое в реальность. Мы создаём цифровой опыт, который <span class="text-white border-b border-[#007bff]/50 pb-0.5 cursor-hover hover:border-[#007bff] hover:text-[#007bff] transition-colors hover:shadow-[0_0_15px_rgba(0,123,255,0.4)]">течёт</span> и адаптируется
             </p>
-        </div>
-
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 reveal opacity-0 delay-500">
-            <span class="text-[10px] uppercase tracking-[0.2em] text-gray-500">เลื่อนลง</span>
-            <div class="glass-panel w-[1px] h-12 !bg-gradient-to-b from-[#007bff] to-transparent/10 !border-0"></div>
-        </div>
-    </header>
-
-    <!-- Services Section -->
-    <section id="services" class="py-32 relative z-10">
-        <div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-             <span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 01. ความสามารถ ]</span>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
-                <div class="reveal">
-                    <h2 class="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">ความเชี่ยวชาญ<br><span class="text-gray-500">ที่ชัดเจน</span></h2>
-                    <p class="text-gray-400 max-w-sm text-lg">กระบวนการโปร่งใส ผลลัพธ์ที่จับต้องได้</p>
-                </div>
-                
-                <div class="reveal flex p-1 glass-panel rounded-lg" id="service-tabs">
-                    <button data-tab="strategic" class="tab-btn cursor-hover px-6 py-2 text-xs font-semibold uppercase tracking-wide rounded bg-[#007bff]/80 backdrop-blur-md text-white shadow-lg shadow-blue-900/20 transition-all duration-300">กลยุทธ์</button>
-                    <button data-tab="creative" class="tab-btn cursor-hover px-6 py-2 text-xs font-semibold uppercase tracking-wide rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300">สร้างสรรค์</button>
-                    <button data-tab="technical" class="tab-btn cursor-hover px-6 py-2 text-xs font-semibold uppercase tracking-wide rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300">เทคนิค</button>
-                </div>
-            </div>
-
-            <!-- Dynamic Grids Container -->
-            <div id="services-grid-container" class="relative">
-                
-                <!-- Strategic Grid -->
-                <div id="grid-strategic" class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <!-- Card 1 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:search" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">SEO & การวิเคราะห์</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">ข้อมูลเชิงลึกช่วยเพิ่มการมองเห็นและเปลี่ยนกระแสผู้เข้าชมให้เป็นลูกค้าที่ภักดี</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:compass" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">กลยุทธ์ผลิตภัณฑ์</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">นำทางกระแสตลาดเพื่อค้นหาโอกาสใหม่สำหรับผลิตภัณฑ์ดิจิทัลของคุณ</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:bar-chart-2" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">วิทยาศาสตร์ข้อมูล</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">เปลี่ยนข้อมูลดิบให้เป็นข้อมูลเชิงลึกที่ใช้งานได้จริงเพื่อการเติบโต</p>
-                    </div>
-                </div>
-
-                <!-- Creative Grid -->
-                <div id="grid-creative" class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden opacity-0 transform translate-y-4">
-                    <!-- Card 1 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:palette" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">การออกแบบ UI/UX</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">อินเทอร์เฟซที่ให้ความรู้สึกเหมือนเป็นส่วนหนึ่งของความคิด ราบรื่น และใช้งานง่าย</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:film" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">โมชั่นกราฟิก</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">ใส่พลังงานจลน์ลงในทุกการโต้ตอบ ทำให้พิกเซลที่หยุดนิ่งกลับมีชีวิต</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:fingerprint" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">อัตลักษณ์แบรนด์</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">กลั่นกรองตัวตนของคุณให้เป็นภาษาภาพที่ลื่นไหลไปในทุกสื่อ</p>
-                    </div>
-                </div>
-
-                <!-- Technical Grid -->
-                <div id="grid-technical" class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden opacity-0 transform translate-y-4">
-                    <!-- Card 1 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:code-2" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">พัฒนาเว็บไซต์</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">โครงสร้างโค้ดที่แข็งแกร่งดั่งเพชรและความยืดหยุ่นที่ปรับขนาดได้ดั่งน้ำ</p>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:smartphone" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">พัฒนาแอปพลิเคชัน</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">แอปพลิเคชันที่ลื่นไหลและปรับตัวเข้ากับมือ อุปกรณ์ และบริบทของผู้ใช้ได้อย่างสมบูรณ์แบบ</p>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="glass-panel p-8 rounded-2xl cursor-hover group">
-                        <div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
-                            <span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
-                        </div>
-                        <div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
-                            <span class="iconify" data-icon="lucide:cloud" data-width="24" data-stroke-width="1.5"></span>
-                        </div>
-                        <h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">โครงสร้างพื้นฐานคลาวด์</h3>
-                        <p class="text-base text-gray-400 leading-relaxed mb-6">ระบบเบื้องหลังที่ขยายตัวได้อย่างไร้ขีดจำกัดตามความต้องการทางดิจิทัลของคุณ</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Work Carousel Section -->
-    <section id="work" class="py-32 relative overflow-hidden z-10 min-h-screen flex items-center">
-        <div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-             <span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 02. ภาพสะท้อน ]</span>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 w-full h-full">
-            <div class="flex flex-col lg:flex-row gap-12 items-center justify-between">
-                
-                <!-- Left Content: Description -->
-                <div class="flex-1 max-w-xl lg:pr-8 reveal">
-                    <div class="flex items-center space-x-2 mb-6">
-                        <div class="w-1.5 h-1.5 bg-[#007bff] rounded-full animate-pulse shadow-[0_0_10px_#007bff]"></div>
-                        <p class="text-[10px] uppercase tracking-[0.2em] text-white/60 font-medium">กรณีศึกษาที่คัดสรร</p>
-                    </div>
-                    
-                    <div class="mb-8">
-                        <h2 class="font-heading text-4xl lg:text-6xl font-medium leading-tight tracking-tight mb-6 text-white">
-                            <span class="block">การเปลี่ยนแปลง</span>
-                            <span class="block bg-clip-text text-transparent bg-gradient-to-r from-[#007bff] to-cyan-400">ที่ลื่นไหล</span>
-                        </h2>
-                        <p class="text-lg text-white/70 leading-relaxed max-w-md">
-                            เราไม่ได้แค่สร้างเว็บไซต์ แต่เราสร้างระบบนิเวศที่เป็นของเหลว เลื่อนดูความสำเร็จทางสถาปัตยกรรมดิจิทัลล่าสุดของเรา
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 reveal opacity-0 delay-500">
+<span class="text-[10px] uppercase tracking-[0.2em] text-gray-500">Листайте вниз</span>
+<div class="glass-panel w-[1px] h-12 !bg-gradient-to-b from-[#007bff] to-transparent/10 !border-0"></div>
+</div>
+</header>
+<!-- Services Section -->
+<section class="py-32 relative z-10" id="services">
+<div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
+<span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 01. Возможности ]</span>
+</div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-8">
+<div class="reveal">
+<h2 class="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">Экспертиза<br/><span class="text-gray-500">в чистом виде</span></h2>
+<p class="text-gray-400 max-w-sm text-lg">Прозрачный процесс. Осязаемый результат.</p>
+</div>
+<div class="reveal flex p-1 glass-panel rounded-lg" id="service-tabs">
+<button class="tab-btn cursor-hover px-6 py-2 text-xs font-semibold uppercase tracking-wide rounded bg-[#007bff]/80 backdrop-blur-md text-white shadow-lg shadow-blue-900/20 transition-all duration-300" data-tab="strategic">Стратегия</button>
+<button class="tab-btn cursor-hover px-6 py-2 text-xs font-semibold uppercase tracking-wide rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300" data-tab="creative">Креатив</button>
+<button class="tab-btn cursor-hover px-6 py-2 text-xs font-semibold uppercase tracking-wide rounded text-gray-400 hover:text-white hover:bg-white/5 transition-all duration-300" data-tab="technical">Технологии</button>
+</div>
+</div>
+<!-- Dynamic Grids Container -->
+<div class="relative" id="services-grid-container">
+<!-- Strategic Grid -->
+<div class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="grid-strategic">
+<!-- Card 1 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:search" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">SEO и аналитика</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Глубокая аналитика повышает видимость и превращает поток посетителей в лояльных клиентов</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:compass" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Продуктовая стратегия</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Навигируем по рыночным течениям в поисках новых возможностей для вашего цифрового продукта</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:bar-chart-2" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Наука о данных</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Превращаем сырые данные в практичные инсайты для роста</p>
+</div>
+</div>
+<!-- Creative Grid -->
+<div class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden opacity-0 transform translate-y-4" id="grid-creative">
+<!-- Card 1 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:palette" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Дизайн UI/UX</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Интерфейсы, которые ощущаются продолжением мысли — плавные и интуитивные</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:film" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Моушн-графика</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Вдыхаем кинетическую энергию в каждое взаимодействие, оживляя статичные пиксели</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:fingerprint" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Айдентика бренда</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Дистиллируем вашу суть в визуальный язык, который течёт сквозь все носители</p>
+</div>
+</div>
+<!-- Technical Grid -->
+<div class="service-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 hidden opacity-0 transform translate-y-4" id="grid-technical">
+<!-- Card 1 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:code-2" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Веб-разработка</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Код, прочный как алмаз, и гибкость, масштабируемая как вода</p>
+</div>
+<!-- Card 2 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:smartphone" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Разработка приложений</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Приложения, которые плавно адаптируются к руке, устройству и контексту пользователя</p>
+</div>
+<!-- Card 3 -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover group">
+<div class="absolute top-0 right-0 p-8 opacity-20 group-hover:opacity-100 transition-opacity duration-500">
+<span class="iconify text-white" data-icon="lucide:arrow-up-right" data-width="24"></span>
+</div>
+<div class="w-14 h-14 bg-gradient-to-br from-white/10 to-transparent border border-white/10 rounded-2xl flex items-center justify-center text-[#007bff] mb-6 shadow-inner">
+<span class="iconify" data-icon="lucide:cloud" data-stroke-width="1.5" data-width="24"></span>
+</div>
+<h3 class="font-heading text-xl font-medium mb-3 text-white tracking-tight">Облачная инфраструктура</h3>
+<p class="text-base text-gray-400 leading-relaxed mb-6">Бэкенд, который безгранично масштабируется под ваши цифровые потребности</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Work Carousel Section -->
+<section class="py-32 relative overflow-hidden z-10 min-h-screen flex items-center" id="work">
+<div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
+<span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 02. Отражения ]</span>
+</div>
+<div class="max-w-7xl mx-auto px-6 w-full h-full">
+<div class="flex flex-col lg:flex-row gap-12 items-center justify-between">
+<!-- Left Content: Description -->
+<div class="flex-1 max-w-xl lg:pr-8 reveal">
+<div class="flex items-center space-x-2 mb-6">
+<div class="w-1.5 h-1.5 bg-[#007bff] rounded-full animate-pulse shadow-[0_0_10px_#007bff]"></div>
+<p class="text-[10px] uppercase tracking-[0.2em] text-white/60 font-medium">Избранные кейсы</p>
+</div>
+<div class="mb-8">
+<h2 class="font-heading text-4xl lg:text-6xl font-medium leading-tight tracking-tight mb-6 text-white">
+<span class="block">Трансформации</span>
+<span class="block bg-clip-text text-transparent bg-gradient-to-r from-[#007bff] to-cyan-400">в потоке</span>
+</h2>
+<p class="text-lg text-white/70 leading-relaxed max-w-md">
+                            Мы не просто делаем сайты — мы строим жидкие экосистемы. Листайте наши последние достижения цифровой архитектуры
                         </p>
-                    </div>
-
-                    <!-- Stats -->
-                    <div class="space-y-4 text-base text-white/60 mb-12">
-                        <div class="glass-panel p-4 rounded-xl flex items-center justify-between">
-                            <span class="text-xs uppercase tracking-wider">ความพึงพอใจลูกค้า</span>
-                            <span class="font-semibold text-white">99.8%</span>
-                        </div>
-                        <div class="glass-panel p-4 rounded-xl flex items-center justify-between">
-                            <span class="text-xs uppercase tracking-wider">เวลาโหลดเฉลี่ย</span>
-                            <span class="font-semibold text-white">0.4s</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Navigation Dots -->
-                    <div class="flex space-x-4 items-center pl-1">
-                        <button id="dot-1" class="cursor-hover w-3 h-3 rounded-full bg-[#007bff] transition-all duration-300 scale-125 shadow-[0_0_10px_#007bff]"></button>
-                        <button id="dot-2" class="cursor-hover w-2 h-2 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300"></button>
-                        <button id="dot-3" class="cursor-hover w-2 h-2 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300"></button>
-                        <button id="dot-4" class="cursor-hover w-2 h-2 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300"></button>
-                    </div>
-                </div>
-
-                <!-- Right Side: Interactive Stack Carousel -->
-                <div class="flex flex-col space-y-8 items-center w-full lg:w-auto reveal delay-200">
-                    <div id="cards-container" class="stack-section card-1-active relative">
-                        
-                        <!-- Card 1: Fintech -->
-                        <div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
-                             <!-- Background Image/Gradient -->
-                            <div class="absolute inset-0 bg-gradient-to-br from-[#007bff]/20 to-purple-900/40 z-0"></div>
-                            
-                            <div class="relative z-10 h-full flex flex-col p-8">
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="iconify text-[#007bff]" data-icon="lucide:zap" data-width="16" data-stroke-width="1.5"></span>
-                                        <span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">ฟินเทค</span>
-                                    </div>
-                                    <span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2023</span>
-                                </div>
-                                
-                                <div class="flex-1 flex flex-col justify-center items-center text-center">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-[#007bff] to-blue-400 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
-                                        <span class="iconify text-white" data-icon="lucide:credit-card" data-width="32" data-stroke-width="1.5"></span>
-                                    </div>
-                                    <h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">Stripe</h3>
-                                    <p class="text-xs text-white/60 mb-8 uppercase tracking-widest">ออกแบบระบบชำระเงินระดับโลก</p>
-                                    
-                                    <div class="w-full space-y-3 mb-6">
-                                        <div class="flex justify-between text-xs text-gray-400">
-                                            <span>การแปลงผล</span>
-                                            <span class="text-white">+24%</span>
-                                        </div>
-                                        <div class="w-full bg-white/10 rounded-full h-1">
-                                            <div class="bg-[#007bff] h-1 rounded-full w-[84%]"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
-                                    ดูผลงาน <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 2: E-Commerce -->
-                        <div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
-                             <div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-900/40 z-0"></div>
-                            
-                            <div class="relative z-10 h-full flex flex-col p-8">
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="iconify text-purple-400" data-icon="lucide:shopping-bag" data-width="16" data-stroke-width="1.5"></span>
-                                        <span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">ค้าปลีก</span>
-                                    </div>
-                                    <span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2023</span>
-                                </div>
-                                
-                                <div class="flex-1 flex flex-col justify-center items-center text-center">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
-                                        <span class="iconify text-white" data-icon="lucide:shirt" data-width="32" data-stroke-width="1.5"></span>
-                                    </div>
-                                    <h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">Neon</h3>
-                                    <p class="text-xs text-white/60 mb-8 uppercase tracking-widest">แฟชั่นที่สมจริง</p>
-                                    
-                                    <div class="w-full space-y-3 mb-6">
-                                        <div class="flex justify-between text-xs text-gray-400">
-                                            <span>การรักษาลูกค้า</span>
-                                            <span class="text-white">+45%</span>
-                                        </div>
-                                        <div class="w-full bg-white/10 rounded-full h-1">
-                                            <div class="bg-purple-500 h-1 rounded-full w-[90%]"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
-                                    ดูผลงาน <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 3: Enterprise -->
-                        <div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
-                             <div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-teal-900/40 z-0"></div>
-                            
-                            <div class="relative z-10 h-full flex flex-col p-8">
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="iconify text-emerald-400" data-icon="lucide:database" data-width="16" data-stroke-width="1.5"></span>
-                                        <span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">ซอฟต์แวร์</span>
-                                    </div>
-                                    <span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2022</span>
-                                </div>
-                                
-                                <div class="flex-1 flex flex-col justify-center items-center text-center">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform duration-500">
-                                        <span class="iconify text-white" data-icon="lucide:bar-chart-2" data-width="32" data-stroke-width="1.5"></span>
-                                    </div>
-                                    <h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">Oracle</h3>
-                                    <p class="text-xs text-white/60 mb-8 uppercase tracking-widest">การแสดงผลข้อมูล</p>
-                                    
-                                    <div class="w-full space-y-3 mb-6">
-                                        <div class="flex justify-between text-xs text-gray-400">
-                                            <span>ความเร็ว</span>
-                                            <span class="text-white">10x</span>
-                                        </div>
-                                        <div class="w-full bg-white/10 rounded-full h-1">
-                                            <div class="bg-emerald-500 h-1 rounded-full w-[95%]"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
-                                    ดูผลงาน <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Card 4: AI -->
-                        <div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
-                             <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-gray-900/40 z-0"></div>
-                            
-                            <div class="relative z-10 h-full flex flex-col p-8">
-                                <div class="flex items-center justify-between mb-6">
-                                    <div class="flex items-center space-x-2">
-                                        <span class="iconify text-white" data-icon="lucide:cpu" data-width="16" data-stroke-width="1.5"></span>
-                                        <span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">เอไอ</span>
-                                    </div>
-                                    <span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2024</span>
-                                </div>
-                                
-                                <div class="flex-1 flex flex-col justify-center items-center text-center">
-                                    <div class="w-16 h-16 bg-gradient-to-br from-white to-gray-400 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-white/10 group-hover:scale-110 transition-transform duration-500">
-                                        <span class="iconify text-black" data-icon="lucide:bot" data-width="32" data-stroke-width="1.5"></span>
-                                    </div>
-                                    <h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">OpenAI</h3>
-                                    <p class="text-xs text-white/60 mb-8 uppercase tracking-widest">ตรรกะอินเทอร์เฟซ</p>
-                                    
-                                    <div class="w-full space-y-3 mb-6">
-                                        <div class="flex justify-between text-xs text-gray-400">
-                                            <span>ผู้ใช้</span>
-                                            <span class="text-white">100M+</span>
-                                        </div>
-                                        <div class="w-full bg-white/10 rounded-full h-1">
-                                            <div class="bg-white h-1 rounded-full w-[99%]"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
-                                    ดูผลงาน <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-                                </button>
-                            </div>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- PORTFOLIO GALLERY SECTION -->
-    <section id="gallery" class="py-32 relative z-10">
-        <div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-             <span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 03. นิทรรศการ ]</span>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="mb-16 reveal flex flex-col md:flex-row justify-between items-end gap-6">
-                <div>
-                    <h2 class="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">ผืนผ้าใบ<br><span class="text-gray-500">ดิจิทัล</span></h2>
-                    <p class="text-gray-400 max-w-md text-lg">หลากหลายรูปแบบ ตั้งแต่ความแม่นยำที่หยุดนิ่งไปจนถึงการเคลื่อนไหวที่ลื่นไหล</p>
-                </div>
-                <!-- UPDATED FILTER BAR -->
-                <div class="glass-panel p-1.5 rounded-full flex items-center gap-1 relative overflow-hidden" id="portfolio-filter">
-                    <button data-filter="all" class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-white bg-white/10 rounded-full shadow-inner transition-all duration-300 flex items-center gap-2">
-                        <span class="w-2 h-2 rounded-full bg-[#007bff] shadow-[0_0_10px_#007bff]"></span> ทุกรูปแบบ
+</div>
+<!-- Stats -->
+<div class="space-y-4 text-base text-white/60 mb-12">
+<div class="glass-panel p-4 rounded-xl flex items-center justify-between">
+<span class="text-xs uppercase tracking-wider">Довольных клиентов</span>
+<span class="font-semibold text-white">99.8%</span>
+</div>
+<div class="glass-panel p-4 rounded-xl flex items-center justify-between">
+<span class="text-xs uppercase tracking-wider">Среднее время загрузки</span>
+<span class="font-semibold text-white">0.4s</span>
+</div>
+</div>
+<!-- Navigation Dots -->
+<div class="flex space-x-4 items-center pl-1">
+<button class="cursor-hover w-3 h-3 rounded-full bg-[#007bff] transition-all duration-300 scale-125 shadow-[0_0_10px_#007bff]" id="dot-1"></button>
+<button class="cursor-hover w-2 h-2 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300" id="dot-2"></button>
+<button class="cursor-hover w-2 h-2 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300" id="dot-3"></button>
+<button class="cursor-hover w-2 h-2 rounded-full bg-white/20 hover:bg-white/50 transition-all duration-300" id="dot-4"></button>
+</div>
+</div>
+<!-- Right Side: Interactive Stack Carousel -->
+<div class="flex flex-col space-y-8 items-center w-full lg:w-auto reveal delay-200">
+<div class="stack-section card-1-active relative" id="cards-container">
+<!-- Card 1: Fintech -->
+<div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
+<!-- Background Image/Gradient -->
+<div class="absolute inset-0 bg-gradient-to-br from-[#007bff]/20 to-purple-900/40 z-0"></div>
+<div class="relative z-10 h-full flex flex-col p-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center space-x-2">
+<span class="iconify text-[#007bff]" data-icon="lucide:zap" data-stroke-width="1.5" data-width="16"></span>
+<span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">Финтех</span>
+</div>
+<span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2023</span>
+</div>
+<div class="flex-1 flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-[#007bff] to-blue-400 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-blue-500/20 group-hover:scale-110 transition-transform duration-500">
+<span class="iconify text-white" data-icon="lucide:credit-card" data-stroke-width="1.5" data-width="32"></span>
+</div>
+<h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">Stripe</h3>
+<p class="text-xs text-white/60 mb-8 uppercase tracking-widest">Дизайн платёжной системы мирового уровня</p>
+<div class="w-full space-y-3 mb-6">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Конверсия</span>
+<span class="text-white">+24%</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1">
+<div class="bg-[#007bff] h-1 rounded-full w-[84%]"></div>
+</div>
+</div>
+</div>
+<button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                                    Смотреть кейс <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+</button>
+</div>
+</div>
+<!-- Card 2: E-Commerce -->
+<div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-pink-900/40 z-0"></div>
+<div class="relative z-10 h-full flex flex-col p-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center space-x-2">
+<span class="iconify text-purple-400" data-icon="lucide:shopping-bag" data-stroke-width="1.5" data-width="16"></span>
+<span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">Ритейл</span>
+</div>
+<span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2023</span>
+</div>
+<div class="flex-1 flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/20 group-hover:scale-110 transition-transform duration-500">
+<span class="iconify text-white" data-icon="lucide:shirt" data-stroke-width="1.5" data-width="32"></span>
+</div>
+<h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">Neon</h3>
+<p class="text-xs text-white/60 mb-8 uppercase tracking-widest">Иммерсивная мода</p>
+<div class="w-full space-y-3 mb-6">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Удержание клиентов</span>
+<span class="text-white">+45%</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1">
+<div class="bg-purple-500 h-1 rounded-full w-[90%]"></div>
+</div>
+</div>
+</div>
+<button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                                    Смотреть кейс <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+</button>
+</div>
+</div>
+<!-- Card 3: Enterprise -->
+<div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-emerald-600/20 to-teal-900/40 z-0"></div>
+<div class="relative z-10 h-full flex flex-col p-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center space-x-2">
+<span class="iconify text-emerald-400" data-icon="lucide:database" data-stroke-width="1.5" data-width="16"></span>
+<span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">Софт</span>
+</div>
+<span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2022</span>
+</div>
+<div class="flex-1 flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-emerald-500/20 group-hover:scale-110 transition-transform duration-500">
+<span class="iconify text-white" data-icon="lucide:bar-chart-2" data-stroke-width="1.5" data-width="32"></span>
+</div>
+<h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">Oracle</h3>
+<p class="text-xs text-white/60 mb-8 uppercase tracking-widest">Визуализация данных</p>
+<div class="w-full space-y-3 mb-6">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Скорость</span>
+<span class="text-white">10x</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1">
+<div class="bg-emerald-500 h-1 rounded-full w-[95%]"></div>
+</div>
+</div>
+</div>
+<button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                                    Смотреть кейс <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+</button>
+</div>
+</div>
+<!-- Card 4: AI -->
+<div class="stack-card glass-panel rounded-2xl h-[30rem] md:h-[32rem] border border-white/10 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/10 to-gray-900/40 z-0"></div>
+<div class="relative z-10 h-full flex flex-col p-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center space-x-2">
+<span class="iconify text-white" data-icon="lucide:cpu" data-stroke-width="1.5" data-width="16"></span>
+<span class="text-[10px] font-semibold text-white/60 uppercase tracking-widest">ИИ</span>
+</div>
+<span class="glass-panel px-2 py-1 rounded text-[10px] text-white">2024</span>
+</div>
+<div class="flex-1 flex flex-col justify-center items-center text-center">
+<div class="w-16 h-16 bg-gradient-to-br from-white to-gray-400 rounded-xl flex items-center justify-center mb-6 shadow-lg shadow-white/10 group-hover:scale-110 transition-transform duration-500">
+<span class="iconify text-black" data-icon="lucide:bot" data-stroke-width="1.5" data-width="32"></span>
+</div>
+<h3 class="font-heading text-3xl font-semibold tracking-tight mb-2 text-white">OpenAI</h3>
+<p class="text-xs text-white/60 mb-8 uppercase tracking-widest">Логика интерфейса</p>
+<div class="w-full space-y-3 mb-6">
+<div class="flex justify-between text-xs text-gray-400">
+<span>Пользователи</span>
+<span class="text-white">100M+</span>
+</div>
+<div class="w-full bg-white/10 rounded-full h-1">
+<div class="bg-white h-1 rounded-full w-[99%]"></div>
+</div>
+</div>
+</div>
+<button class="cursor-hover w-full py-3 px-4 glass-panel rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black transition-all duration-300 flex items-center justify-center gap-2">
+                                    Смотреть кейс <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- PORTFOLIO GALLERY SECTION -->
+<section class="py-32 relative z-10" id="gallery">
+<div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
+<span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 03. Экспозиция ]</span>
+</div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16 reveal flex flex-col md:flex-row justify-between items-end gap-6">
+<div>
+<h2 class="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">Холст<br/><span class="text-gray-500">в цифре</span></h2>
+<p class="text-gray-400 max-w-md text-lg">Множество форматов — от застывшей точности до текучего движения</p>
+</div>
+<!-- UPDATED FILTER BAR -->
+<div class="glass-panel p-1.5 rounded-full flex items-center gap-1 relative overflow-hidden" id="portfolio-filter">
+<button class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-white bg-white/10 rounded-full shadow-inner transition-all duration-300 flex items-center gap-2" data-filter="all">
+<span class="w-2 h-2 rounded-full bg-[#007bff] shadow-[0_0_10px_#007bff]"></span> Все форматы
                     </button>
-                    <button data-filter="static" class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-all duration-300 rounded-full">ภาพนิ่ง</button>
-                    <button data-filter="shorts" class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-all duration-300 rounded-full">วิดีโอสั้น</button>
-                    <button data-filter="motion" class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-all duration-300 rounded-full">ภาพเคลื่อนไหว</button>
-                </div>
-            </div>
-
-            <!-- Bento Grid Gallery -->
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-6" id="gallery-grid">
-                
-                <!-- Item 1: Static Banner (Wide) -->
-                <div class="gallery-item md:col-span-2 lg:col-span-2 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group gallery-card-hover reveal delay-100" data-category="static">
-                    <div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-all duration-500"></div>
-                    <img src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover gallery-img transition-transform duration-700 filter grayscale group-hover:grayscale-0" alt="Static Banner">
-                    
-                    <!-- Overlay Info -->
-                    <div class="absolute inset-0 z-20 flex flex-col justify-end p-6 gallery-overlay opacity-0 transition-opacity duration-300">
-                        <span class="glass-panel w-fit px-2 py-1 rounded text-[10px] font-semibold uppercase tracking-widest text-white mb-2 backdrop-blur-md">แบนเนอร์ภาพนิ่ง</span>
-                        <h4 class="font-heading text-2xl font-bold text-white">สถาปัตยกรรมมินิมอล</h4>
-                        <p class="text-xs text-gray-300 mt-1">ภาพลักษณ์แบรนด์ความละเอียดสูง</p>
-                    </div>
-                </div>
-
-                <!-- Item 2: Short-form Video (Vertical) -->
-                <div class="gallery-item md:col-span-1 row-span-2 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-200 border border-white/10 relative" data-category="shorts">
-                    <!-- Fake Video UI Container -->
-                    <div class="absolute inset-0 z-0">
-                         <img src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&w=1974&auto=format&fit=crop" class="w-full h-full object-cover filter contrast-125 brightness-75" alt="Short Form">
-                         <!-- CSS Play Animation -->
-                         <div class="absolute inset-0 flex items-center justify-center">
-                             <div class="w-16 h-16 rounded-full glass-panel flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
-                                 <span class="iconify text-white" data-icon="lucide:play" data-width="24" data-fill="white"></span>
-                             </div>
-                         </div>
-                    </div>
-                    
-                    <!-- App UI Overlay -->
-                    <div class="absolute top-4 left-4 z-20 flex gap-2">
-                        <span class="bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded animate-pulse">สด</span>
-                    </div>
-                    <div class="absolute bottom-0 w-full p-6 z-20 bg-gradient-to-t from-black/90 to-transparent">
-                        <div class="flex items-center gap-2 mb-3">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#007bff] to-cyan-400"></div>
-                            <span class="text-sm font-semibold text-white">@positiv_agency</span>
-                        </div>
-                        <p class="text-xs text-gray-300 leading-snug mb-4">เบื้องหลังกระบวนการออกแบบอินเทอร์เฟซแบบลิควิดของเรา #webdesign #uiux</p>
-                        <div class="flex justify-between items-center text-white/80">
-                            <div class="flex gap-4">
-                                <div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:heart" data-width="20"></span><span class="text-[10px]">12k</span></div>
-                                <div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:message-circle" data-width="20"></span><span class="text-[10px]">342</span></div>
-                            </div>
-                            <span class="iconify animate-spin-slow" data-icon="lucide:disc" data-width="24"></span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3: Motion Banner (Standard) -->
-                <div class="gallery-item md:col-span-1 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-150 relative bg-[#050a14]" data-category="motion">
-                    <!-- CSS Motion Animation -->
-                    <div class="absolute inset-0 overflow-hidden flex items-center justify-center">
-                        <div class="absolute w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(0,123,255,0.2)_0%,transparent_70%)] motion-banner-anim"></div>
-                        <div class="absolute inset-0 grid grid-cols-6 gap-2 opacity-20 transform rotate-12 scale-150">
-                             <div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.1s"></div>
-                             <div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.3s"></div>
-                             <div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.5s"></div>
-                             <div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.7s"></div>
-                             <div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.9s"></div>
-                             <div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 1.1s"></div>
-                        </div>
-                        <div class="relative z-10 text-center">
-                            <span class="block text-4xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 tracking-tighter motion-banner-anim-rev">ลดราคา</span>
-                            <span class="text-[10px] uppercase tracking-[0.3em] text-[#007bff] block mt-2">โฆษณาเคลื่อนไหว</span>
-                        </div>
-                    </div>
-                    <div class="absolute bottom-4 right-4 z-20">
-                         <span class="glass-panel px-2 py-1 rounded text-[10px] font-semibold text-white/50 border border-white/10">HTML5</span>
-                    </div>
-                </div>
-
-                <!-- Item 4: Static Banner (Square) -->
-                <div class="gallery-item md:col-span-1 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group gallery-card-hover reveal delay-100" data-category="static">
-                    <img src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2000&auto=format&fit=crop" class="w-full h-full object-cover gallery-img transition-transform duration-700" alt="Static">
-                     <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                    <div class="absolute bottom-6 left-6 z-20">
-                        <span class="glass-panel px-2 py-1 rounded text-[10px] uppercase text-white mb-1 inline-block">การถ่ายภาพ</span>
-                        <h4 class="text-white font-medium">กระแสเมือง</h4>
-                    </div>
-                </div>
-
-                <!-- Item 5: Motion Banner (Wide) -->
-                <div class="gallery-item md:col-span-2 lg:col-span-2 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-300 relative bg-gradient-to-r from-indigo-900 to-purple-900 border border-white/10" data-category="motion">
-                    <!-- CSS Motion Elements -->
-                    <div class="absolute inset-0 flex items-center justify-between px-12 overflow-hidden">
-                        <div class="w-32 h-32 bg-purple-500 rounded-full blur-[60px] absolute -left-10 motion-banner-anim"></div>
-                        <div class="w-32 h-32 bg-cyan-500 rounded-full blur-[60px] absolute -right-10 motion-banner-anim-rev"></div>
-                        
-                        <div class="relative z-10 w-1/2">
-                            <h3 class="text-3xl font-heading font-bold text-white leading-none mb-2">พร้อมสู่ <br> อนาคต</h3>
-                            <button class="px-4 py-2 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-full hover:scale-105 transition-transform">ช้อปเลย</button>
-                        </div>
-                        <div class="relative z-10 w-1/2 flex justify-end">
-                            <!-- Simulated Product Float -->
-                            <div class="w-32 h-32 glass-panel rounded-xl border border-white/20 flex items-center justify-center transform rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-2xl">
-                                <span class="iconify text-white" data-icon="lucide:box" data-width="40"></span>
-                            </div>
-                        </div>
-                    </div>
-                     <div class="absolute top-4 right-4 z-20">
-                         <span class="glass-panel px-2 py-1 rounded text-[10px] font-semibold text-white/70 border border-white/10 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> ริชมีเดีย</span>
-                    </div>
-                </div>
-
-                <!-- Item 6: Short Form (Vertical) -->
-                <div class="gallery-item md:col-span-1 row-span-2 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-200 border border-white/10 relative" data-category="shorts">
-                     <div class="absolute inset-0 z-0">
-                         <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover filter brightness-75 sepia-[0.2]" alt="Short Form">
-                         <div class="absolute inset-0 flex items-center justify-center">
-                             <div class="w-16 h-16 rounded-full glass-panel flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
-                                 <span class="iconify text-white" data-icon="lucide:play" data-width="24" data-fill="white"></span>
-                             </div>
-                         </div>
-                    </div>
-                    <div class="absolute bottom-0 w-full p-6 z-20 bg-gradient-to-t from-black/90 to-transparent">
-                        <div class="flex items-center gap-2 mb-3">
-                            <div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
-                            <span class="text-sm font-semibold text-white">@tech_daily</span>
-                        </div>
-                        <p class="text-xs text-gray-300 leading-snug mb-4">ความงามแบบไซเบอร์พังค์ในการพัฒนาเว็บยุคใหม่ 🔮 #coding #aesthetic</p>
-                        <div class="flex justify-between items-center text-white/80">
-                            <div class="flex gap-4">
-                                <div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:heart" data-width="20"></span><span class="text-[10px]">8.5k</span></div>
-                                <div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:share-2" data-width="20"></span><span class="text-[10px]">แชร์</span></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Trust & Partners (Marquee) -->
-    <section class="py-24 relative z-10">
-        <!-- Background strip glass -->
-        <div class="absolute inset-0 bg-white/[0.02] backdrop-blur-sm border-y border-white/5 z-0"></div>
-        
-         <div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-             <span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 04. เครือข่าย ]</span>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-6 mb-16 text-center relative z-10">
-            <h4 class="reveal text-xs font-semibold uppercase tracking-widest text-gray-400 mb-12">ได้รับความไว้วางใจจากผู้นำระดับโลก</h4>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20">
-                <div class="reveal text-center"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="12">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">ปีประสบการณ์</span></div>
-                <div class="reveal text-center delay-100"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="250">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">โครงการที่ส่งมอบ</span></div>
-                <div class="reveal text-center delay-200"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="18">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">รางวัลที่ได้รับ</span></div>
-                <div class="reveal text-center delay-300"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="4">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">สาขาทั่วโลก</span></div>
-            </div>
-        </div>
-        <div class="marquee-container overflow-hidden whitespace-nowrap relative w-full z-10">
-            <div class="marquee-content gap-24 items-center opacity-50 hover:opacity-100 transition-opacity duration-500">
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">ADOBE</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">MICROSOFT</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">GOOGLE</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">SPOTIFY</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">NETFLIX</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">AMAZON</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">AIRBNB</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">ADOBE</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">MICROSOFT</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">GOOGLE</span>
-                <span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">SPOTIFY</span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-32 relative z-10">
-        <div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
-             <span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 05. การลงทุน ]</span>
-        </div>
-        
-        <!-- Subtle backing blob for pricing -->
-        <div class="liquid-blob bg-[#007bff]" style="width: 700px; height: 300px; top: 20%; left: 50%; transform: translateX(-50%); opacity: 0.08; filter: blur(100px);"></div>
-
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="text-center mb-20 reveal">
-                <h2 class="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">ความลื่นไหล<br><span class="text-gray-500">ที่ขยายขนาดได้</span></h2>
-                <p class="text-gray-400 max-w-md mx-auto text-lg">เลือกสถานะที่เหมาะสมกับการเติบโตของคุณ</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
-                
-                <!-- Option S: Solid -->
-                <div class="glass-panel p-8 rounded-2xl cursor-hover hover:border-white/20 group reveal delay-100 flex flex-col h-full relative overflow-hidden">
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-gray-400 mb-6 group-hover:scale-110 transition-transform duration-300">
-                             <span class="font-heading font-bold text-xl">S</span>
-                        </div>
-                        <h3 class="font-heading text-2xl font-semibold text-white mb-2">Solid (มั่นคง)</h3>
-                        <p class="text-sm text-gray-400 mb-6 h-10">รากฐานดิจิทัลสำหรับธุรกิจใหม่</p>
-                        <div class="flex items-baseline gap-1 mb-8">
-                            <span class="text-4xl font-heading font-bold text-white">฿9,900</span>
-                            <span class="text-xs text-gray-500 uppercase tracking-wider">/ เดือน</span>
-                        </div>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>สถาปัตยกรรมหน้าเดียว</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>SEO พื้นฐาน & การวิเคราะห์</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>รองรับมือถือ</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>แก้ไขงานได้ 1 ครั้ง</span>
-                            </li>
-                        </ul>
-                        <button class="cursor-hover w-full py-3 px-4 glass-panel border border-white/10 rounded-xl text-white/70 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-all duration-300">
-                            เริ่มต้นเล็กๆ
+<button class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-all duration-300 rounded-full" data-filter="static">Статика</button>
+<button class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-all duration-300 rounded-full" data-filter="shorts">Короткие видео</button>
+<button class="filter-btn cursor-pointer px-4 py-2 text-[10px] uppercase tracking-widest font-semibold text-gray-500 hover:text-white transition-all duration-300 rounded-full" data-filter="motion">Анимация</button>
+</div>
+</div>
+<!-- Bento Grid Gallery -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 auto-rows-[250px] gap-6" id="gallery-grid">
+<!-- Item 1: Static Banner (Wide) -->
+<div class="gallery-item md:col-span-2 lg:col-span-2 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group gallery-card-hover reveal delay-100" data-category="static">
+<div class="absolute inset-0 bg-black/40 z-10 group-hover:bg-black/20 transition-all duration-500"></div>
+<img alt="Статичный баннер" class="w-full h-full object-cover gallery-img transition-transform duration-700 filter grayscale group-hover:grayscale-0" src="https://images.unsplash.com/photo-1497215728101-856f4ea42174?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"/>
+<!-- Overlay Info -->
+<div class="absolute inset-0 z-20 flex flex-col justify-end p-6 gallery-overlay opacity-0 transition-opacity duration-300">
+<span class="glass-panel w-fit px-2 py-1 rounded text-[10px] font-semibold uppercase tracking-widest text-white mb-2 backdrop-blur-md">Статичный баннер</span>
+<h4 class="font-heading text-2xl font-bold text-white">Минималистичная архитектура</h4>
+<p class="text-xs text-gray-300 mt-1">Имидж бренда в высоком разрешении</p>
+</div>
+</div>
+<!-- Item 2: Short-form Video (Vertical) -->
+<div class="gallery-item md:col-span-1 row-span-2 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-200 border border-white/10 relative" data-category="shorts">
+<!-- Fake Video UI Container -->
+<div class="absolute inset-0 z-0">
+<img alt="Короткий формат" class="w-full h-full object-cover filter contrast-125 brightness-75" src="https://images.unsplash.com/photo-1616469829581-73993eb86b02?q=80&amp;w=1974&amp;auto=format&amp;fit=crop"/>
+<!-- CSS Play Animation -->
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full glass-panel flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
+<span class="iconify text-white" data-fill="white" data-icon="lucide:play" data-width="24"></span>
+</div>
+</div>
+</div>
+<!-- App UI Overlay -->
+<div class="absolute top-4 left-4 z-20 flex gap-2">
+<span class="bg-red-500/90 text-white text-[10px] font-bold px-2 py-0.5 rounded animate-pulse">В эфире</span>
+</div>
+<div class="absolute bottom-0 w-full p-6 z-20 bg-gradient-to-t from-black/90 to-transparent">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#007bff] to-cyan-400"></div>
+<span class="text-sm font-semibold text-white">@positiv_agency</span>
+</div>
+<p class="text-xs text-gray-300 leading-snug mb-4">За кулисами нашего процесса проектирования ликвидных интерфейсов #webdesign #uiux</p>
+<div class="flex justify-between items-center text-white/80">
+<div class="flex gap-4">
+<div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:heart" data-width="20"></span><span class="text-[10px]">12k</span></div>
+<div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:message-circle" data-width="20"></span><span class="text-[10px]">342</span></div>
+</div>
+<span class="iconify animate-spin-slow" data-icon="lucide:disc" data-width="24"></span>
+</div>
+</div>
+</div>
+<!-- Item 3: Motion Banner (Standard) -->
+<div class="gallery-item md:col-span-1 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-150 relative bg-[#050a14]" data-category="motion">
+<!-- CSS Motion Animation -->
+<div class="absolute inset-0 overflow-hidden flex items-center justify-center">
+<div class="absolute w-[200%] h-[200%] bg-[radial-gradient(circle,rgba(0,123,255,0.2)_0%,transparent_70%)] motion-banner-anim"></div>
+<div class="absolute inset-0 grid grid-cols-6 gap-2 opacity-20 transform rotate-12 scale-150">
+<div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.1s"></div>
+<div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.3s"></div>
+<div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.5s"></div>
+<div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.7s"></div>
+<div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 0.9s"></div>
+<div class="bg-white/10 h-full rounded-full motion-banner-anim" style="animation-delay: 1.1s"></div>
+</div>
+<div class="relative z-10 text-center">
+<span class="block text-4xl font-heading font-black text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500 tracking-tighter motion-banner-anim-rev">Скидки</span>
+<span class="text-[10px] uppercase tracking-[0.3em] text-[#007bff] block mt-2">Анимированная реклама</span>
+</div>
+</div>
+<div class="absolute bottom-4 right-4 z-20">
+<span class="glass-panel px-2 py-1 rounded text-[10px] font-semibold text-white/50 border border-white/10">HTML5</span>
+</div>
+</div>
+<!-- Item 4: Static Banner (Square) -->
+<div class="gallery-item md:col-span-1 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group gallery-card-hover reveal delay-100" data-category="static">
+<img alt="Статика" class="w-full h-full object-cover gallery-img transition-transform duration-700" src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&amp;w=2000&amp;auto=format&amp;fit=crop"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity"></div>
+<div class="absolute bottom-6 left-6 z-20">
+<span class="glass-panel px-2 py-1 rounded text-[10px] uppercase text-white mb-1 inline-block">Фотосъёмка</span>
+<h4 class="text-white font-medium">Городской поток</h4>
+</div>
+</div>
+<!-- Item 5: Motion Banner (Wide) -->
+<div class="gallery-item md:col-span-2 lg:col-span-2 row-span-1 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-300 relative bg-gradient-to-r from-indigo-900 to-purple-900 border border-white/10" data-category="motion">
+<!-- CSS Motion Elements -->
+<div class="absolute inset-0 flex items-center justify-between px-12 overflow-hidden">
+<div class="w-32 h-32 bg-purple-500 rounded-full blur-[60px] absolute -left-10 motion-banner-anim"></div>
+<div class="w-32 h-32 bg-cyan-500 rounded-full blur-[60px] absolute -right-10 motion-banner-anim-rev"></div>
+<div class="relative z-10 w-1/2">
+<h3 class="text-3xl font-heading font-bold text-white leading-none mb-2">Навстречу <br/> будущему</h3>
+<button class="px-4 py-2 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-full hover:scale-105 transition-transform">Купить</button>
+</div>
+<div class="relative z-10 w-1/2 flex justify-end">
+<!-- Simulated Product Float -->
+<div class="w-32 h-32 glass-panel rounded-xl border border-white/20 flex items-center justify-center transform rotate-12 group-hover:rotate-0 transition-transform duration-500 shadow-2xl">
+<span class="iconify text-white" data-icon="lucide:box" data-width="40"></span>
+</div>
+</div>
+</div>
+<div class="absolute top-4 right-4 z-20">
+<span class="glass-panel px-2 py-1 rounded text-[10px] font-semibold text-white/70 border border-white/10 flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse"></span> Рич-медиа</span>
+</div>
+</div>
+<!-- Item 6: Short Form (Vertical) -->
+<div class="gallery-item md:col-span-1 row-span-2 glass-panel rounded-2xl overflow-hidden cursor-hover group reveal delay-200 border border-white/10 relative" data-category="shorts">
+<div class="absolute inset-0 z-0">
+<img alt="Короткий формат" class="w-full h-full object-cover filter brightness-75 sepia-[0.2]" src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&amp;w=2070&amp;auto=format&amp;fit=crop"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<div class="w-16 h-16 rounded-full glass-panel flex items-center justify-center backdrop-blur-sm border border-white/20 group-hover:scale-110 transition-transform duration-300">
+<span class="iconify text-white" data-fill="white" data-icon="lucide:play" data-width="24"></span>
+</div>
+</div>
+</div>
+<div class="absolute bottom-0 w-full p-6 z-20 bg-gradient-to-t from-black/90 to-transparent">
+<div class="flex items-center gap-2 mb-3">
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-purple-500 to-pink-500"></div>
+<span class="text-sm font-semibold text-white">@tech_daily</span>
+</div>
+<p class="text-xs text-gray-300 leading-snug mb-4">Киберпанк-эстетика в современной веб-разработке 🔮 #coding #aesthetic</p>
+<div class="flex justify-between items-center text-white/80">
+<div class="flex gap-4">
+<div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:heart" data-width="20"></span><span class="text-[10px]">8.5k</span></div>
+<div class="flex flex-col items-center gap-1"><span class="iconify" data-icon="lucide:share-2" data-width="20"></span><span class="text-[10px]">Поделиться</span></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust & Partners (Marquee) -->
+<section class="py-24 relative z-10">
+<!-- Background strip glass -->
+<div class="absolute inset-0 bg-white/[0.02] backdrop-blur-sm border-y border-white/5 z-0"></div>
+<div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
+<span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 04. Сеть ]</span>
+</div>
+<div class="max-w-7xl mx-auto px-6 mb-16 text-center relative z-10">
+<h4 class="reveal text-xs font-semibold uppercase tracking-widest text-gray-400 mb-12">Нам доверяют мировые лидеры</h4>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 mb-20">
+<div class="reveal text-center"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="12">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Лет опыта</span></div>
+<div class="reveal text-center delay-100"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="250">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Сданных проектов</span></div>
+<div class="reveal text-center delay-200"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="18">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Наград</span></div>
+<div class="reveal text-center delay-300"><span class="block text-5xl font-heading font-medium text-white mb-2 counter drop-shadow-lg" data-target="4">0</span><span class="text-[10px] text-gray-500 uppercase tracking-widest">Офисов по миру</span></div>
+</div>
+</div>
+<div class="marquee-container overflow-hidden whitespace-nowrap relative w-full z-10">
+<div class="marquee-content gap-24 items-center opacity-50 hover:opacity-100 transition-opacity duration-500">
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">ADOBE</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">MICROSOFT</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">GOOGLE</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">SPOTIFY</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">NETFLIX</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">AMAZON</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">AIRBNB</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">ADOBE</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">MICROSOFT</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">GOOGLE</span>
+<span class="text-3xl font-heading font-semibold tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white/80 to-white/20">SPOTIFY</span>
+</div>
+</div>
+</section>
+ Секция цен 
+<section class="py-32 relative z-10" id="pricing">
+<div class="absolute top-0 left-6 md:left-12 z-20 hidden md:block -translate-y-1/2">
+<span class="glass-panel px-3 py-1 rounded text-[10px] font-mono uppercase tracking-widest text-gray-400 border border-white/5">[ 05. Инвестиции ]</span>
+</div>
+<!-- Subtle backing blob for pricing -->
+<div class="liquid-blob bg-[#007bff]" style="width: 700px; height: 300px; top: 20%; left: 50%; transform: translateX(-50%); opacity: 0.08; filter: blur(100px);"></div>
+<div class="max-w-7xl mx-auto px-6">
+<div class="text-center mb-20 reveal">
+<h2 class="font-heading text-4xl md:text-5xl font-medium tracking-tight mb-4 text-white">Текучесть<br/><span class="text-gray-500">в масштабе</span></h2>
+<p class="text-gray-400 max-w-md mx-auto text-lg">Выберите тариф, соответствующий вашему росту</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+<!-- Option S: Solid -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover hover:border-white/20 group reveal delay-100 flex flex-col h-full relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-gray-400 mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="font-heading font-bold text-xl">S</span>
+</div>
+<h3 class="font-heading text-2xl font-semibold text-white mb-2">Solid (надёжный)</h3>
+<p class="text-sm text-gray-400 mb-6 h-10">Цифровой фундамент для нового бизнеса</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="text-4xl font-heading font-bold text-white">9 900 ₽</span>
+<span class="text-xs text-gray-500 uppercase tracking-wider">/ месяц</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Одностраничная архитектура</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Базовое SEO и аналитика</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Мобильная адаптация</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>1 раунд правок</span>
+</li>
+</ul>
+<button class="cursor-hover w-full py-3 px-4 glass-panel border border-white/10 rounded-xl text-white/70 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                            Начать с малого
                         </button>
-                    </div>
-                </div>
-
-                <!-- Option M: Liquid (Highlighted) -->
-                <div class="glass-panel p-8 rounded-2xl cursor-hover border-[#007bff]/50 hover:border-[#007bff] group reveal delay-200 flex flex-col h-full relative overflow-hidden transform md:-translate-y-4 shadow-[0_0_40px_rgba(0,123,255,0.15)]">
-                    <!-- Highlight Gradient -->
-                    <div class="absolute inset-0 bg-gradient-to-b from-[#007bff]/10 to-transparent pointer-events-none"></div>
-                    
-                    <div class="absolute top-0 right-0 p-4">
-                        <span class="bg-[#007bff] text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded shadow-lg shadow-blue-500/20">ยอดนิยม</span>
-                    </div>
-
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-[#007bff] rounded-xl flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform duration-300">
-                             <span class="font-heading font-bold text-xl">M</span>
-                        </div>
-                        <h3 class="font-heading text-2xl font-semibold text-white mb-2">Liquid (ลื่นไหล)</h3>
-                        <p class="text-sm text-gray-400 mb-6 h-10">ระบบนิเวศที่ปรับตัวได้สำหรับแบรนด์ที่กำลังเติบโต</p>
-                        <div class="flex items-baseline gap-1 mb-8">
-                            <span class="text-4xl font-heading font-bold text-white">฿19,900</span>
-                            <span class="text-xs text-gray-500 uppercase tracking-wider">/ เดือน</span>
-                        </div>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>เว็บแอปพลิเคชันเต็มรูปแบบ</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>แอนิเมชัน & โมชั่นขั้นสูง</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>ระบบจัดการเนื้อหา (CMS)</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>แก้ไขงานได้ 3 ครั้ง</span>
-                            </li>
-                        </ul>
-                        <button class="cursor-hover w-full py-3 px-4 bg-[#007bff] rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-[#007bff] transition-all duration-300 shadow-lg shadow-blue-900/40">
-                            เลือกแบบลื่นไหล
+</div>
+</div>
+<!-- Option M: Liquid (Highlighted) -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover border-[#007bff]/50 hover:border-[#007bff] group reveal delay-200 flex flex-col h-full relative overflow-hidden transform md:-translate-y-4 shadow-[0_0_40px_rgba(0,123,255,0.15)]">
+<!-- Highlight Gradient -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#007bff]/10 to-transparent pointer-events-none"></div>
+<div class="absolute top-0 right-0 p-4">
+<span class="bg-[#007bff] text-white text-[10px] font-bold uppercase tracking-widest px-2 py-1 rounded shadow-lg shadow-blue-500/20">Популярный</span>
+</div>
+<div class="relative z-10">
+<div class="w-12 h-12 bg-[#007bff] rounded-xl flex items-center justify-center text-white mb-6 shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform duration-300">
+<span class="font-heading font-bold text-xl">M</span>
+</div>
+<h3 class="font-heading text-2xl font-semibold text-white mb-2">Liquid (текучий)</h3>
+<p class="text-sm text-gray-400 mb-6 h-10">Адаптивная экосистема для растущего бренда</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="text-4xl font-heading font-bold text-white">19 900 ₽</span>
+<span class="text-xs text-gray-500 uppercase tracking-wider">/ месяц</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Полноценное веб-приложение</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Продвинутая анимация и моушн</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Система управления контентом (CMS)</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-[#007bff] mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>3 раунда правок</span>
+</li>
+</ul>
+<button class="cursor-hover w-full py-3 px-4 bg-[#007bff] rounded-xl text-white text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-[#007bff] transition-all duration-300 shadow-lg shadow-blue-900/40">
+                            Выбрать «Поток»
                         </button>
-                    </div>
-                </div>
-
-                <!-- Option L: Gas -->
-                <div class="glass-panel p-8 rounded-2xl cursor-hover hover:border-white/20 group reveal delay-300 flex flex-col h-full relative overflow-hidden">
-                    <div class="relative z-10">
-                        <div class="w-12 h-12 bg-gradient-to-br from-white/20 to-transparent border border-white/10 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
-                             <span class="font-heading font-bold text-xl">L</span>
-                        </div>
-                        <h3 class="font-heading text-2xl font-semibold text-white mb-2">Ethereal (เหนือระดับ)</h3>
-                        <p class="text-sm text-gray-400 mb-6 h-10">โซลูชันที่ครอบคลุมสำหรับองค์กรขนาดใหญ่</p>
-                        <div class="flex items-baseline gap-1 mb-8">
-                            <span class="text-4xl font-heading font-bold text-white">฿29,900</span>
-                             <span class="text-xs text-gray-500 uppercase tracking-wider">/ เดือน</span>
-                        </div>
-                        <ul class="space-y-4 mb-8">
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>โครงสร้างพื้นฐานระดับโลก</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>การรวม AI & Machine Learning</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>สนับสนุน 24/7 ลำดับความสำคัญสูง</span>
-                            </li>
-                            <li class="flex items-start gap-3 text-sm text-gray-300">
-                                <span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
-                                <span>แก้ไขงานได้ไม่จำกัด</span>
-                            </li>
-                        </ul>
-                        <button class="cursor-hover w-full py-3 px-4 glass-panel border border-white/10 rounded-xl text-white/70 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-all duration-300">
-                            เลือกแบบเหนือระดับ
+</div>
+</div>
+<!-- Option L: Gas -->
+<div class="glass-panel p-8 rounded-2xl cursor-hover hover:border-white/20 group reveal delay-300 flex flex-col h-full relative overflow-hidden">
+<div class="relative z-10">
+<div class="w-12 h-12 bg-gradient-to-br from-white/20 to-transparent border border-white/10 rounded-xl flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform duration-300">
+<span class="font-heading font-bold text-xl">L</span>
+</div>
+<h3 class="font-heading text-2xl font-semibold text-white mb-2">Ethereal (высший уровень)</h3>
+<p class="text-sm text-gray-400 mb-6 h-10">Комплексное решение для крупных организаций</p>
+<div class="flex items-baseline gap-1 mb-8">
+<span class="text-4xl font-heading font-bold text-white">29 900 ₽</span>
+<span class="text-xs text-gray-500 uppercase tracking-wider">/ месяц</span>
+</div>
+<ul class="space-y-4 mb-8">
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Инфраструктура мирового уровня</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Интеграция AI и Machine Learning</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Приоритетная поддержка 24/7</span>
+</li>
+<li class="flex items-start gap-3 text-sm text-gray-300">
+<span class="iconify text-gray-500 mt-0.5" data-icon="lucide:check-circle" data-width="16"></span>
+<span>Безлимитные правки</span>
+</li>
+</ul>
+<button class="cursor-hover w-full py-3 px-4 glass-panel border border-white/10 rounded-xl text-white/70 text-xs font-semibold uppercase tracking-widest hover:bg-white hover:text-black hover:border-white transition-all duration-300">
+                            Выбрать «Премиум»
                         </button>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer id="contact" class="bg-black/80 backdrop-blur-xl pt-24 pb-12 border-t border-white/10 relative z-20">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
-                <div class="space-y-6">
-                    <div class="flex items-center gap-1.5 mb-6">
-                        <span class="font-heading font-bold text-2xl tracking-tighter text-white">POSITIV</span>
-                        <div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#29C5F6] to-[#3a4b9f] flex items-center justify-center shadow-[0_4px_10px_rgba(41,197,246,0.3)]">
-                            <span class="iconify text-white" data-icon="lucide:plus" data-width="20" data-stroke-width="4"></span>
-                        </div>
-                    </div>
-                    <p class="text-gray-500 text-base leading-relaxed">นิยามใหม่ของภูมิทัศน์ดิจิทัลด้วยความแม่นยำและความคิดสร้างสรรค์ มาร่วมสร้างอนาคตไปด้วยกัน</p>
-                    <div class="flex gap-4">
-                        <a href="#" class="cursor-hover w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#007bff] hover:text-white transition-colors border-0"><span class="iconify" data-icon="lucide:twitter" data-width="16"></span></a>
-                        <a href="#" class="cursor-hover w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#007bff] hover:text-white transition-colors border-0"><span class="iconify" data-icon="lucide:linkedin" data-width="16"></span></a>
-                        <a href="#" class="cursor-hover w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#007bff] hover:text-white transition-colors border-0"><span class="iconify" data-icon="lucide:instagram" data-width="16"></span></a>
-                    </div>
-                </div>
-                <div>
-                    <h5 class="font-heading font-medium text-white mb-6 text-base uppercase tracking-widest">บริษัท</h5>
-                    <ul class="space-y-4 text-base text-gray-500">
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">เกี่ยวกับเรา</a></li>
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">ร่วมงานกับเรา</a></li>
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">สื่อมวลชน</a></li>
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">ติดต่อเรา</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-heading font-medium text-white mb-6 text-base uppercase tracking-widest">บริการ</h5>
-                    <ul class="space-y-4 text-base text-gray-500">
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">พัฒนาเว็บไซต์</a></li>
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">ออกแบบ UI/UX</a></li>
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">การตลาด SEO</a></li>
-                        <li><a href="#" class="cursor-hover hover:text-white transition-colors">สร้างแบรนด์</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h5 class="font-heading font-medium text-white mb-6 text-base uppercase tracking-widest">ติดต่อเรา</h5>
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 mt-1">
-                                <span class="iconify text-[#007bff]" data-icon="lucide:phone" data-width="16"></span>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Tel</p>
-                                <a href="tel:0648714556" class="cursor-hover text-white text-lg font-mono hover:text-[#007bff] transition-colors block">064-871-4556</a>
-                            </div>
-                        </div>
-                        <div class="flex items-start gap-4">
-                            <div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 mt-1">
-                                <span class="iconify text-[#06C755]" data-icon="lucide:message-circle" data-width="16"></span>
-                            </div>
-                            <div>
-                                <p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Line</p>
-                                <a href="#" class="cursor-hover text-white text-lg font-mono hover:text-[#06C755] transition-colors block">@positivdigital</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-gray-600">
-                <p>&copy; 2023 Positiv+ Digital Agency. สงวนลิขสิทธิ์.</p>
-                <div class="flex gap-6">
-                    <a href="#" class="cursor-hover hover:text-white transition-colors">นโยบายความเป็นส่วนตัว</a>
-                    <a href="#" class="cursor-hover hover:text-white transition-colors">เงื่อนไขการให้บริการ</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-black/80 backdrop-blur-xl pt-24 pb-12 border-t border-white/10 relative z-20" id="contact">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+<div class="space-y-6">
+<div class="flex items-center gap-1.5 mb-6">
+<span class="font-heading font-bold text-2xl tracking-tighter text-white">POSITIV</span>
+<div class="w-8 h-8 rounded-full bg-gradient-to-br from-[#29C5F6] to-[#3a4b9f] flex items-center justify-center shadow-[0_4px_10px_rgba(41,197,246,0.3)]">
+<span class="iconify text-white" data-icon="lucide:plus" data-stroke-width="4" data-width="20"></span>
+</div>
+</div>
+<p class="text-gray-500 text-base leading-relaxed">Переосмысляем цифровой ландшафт с точностью и креативностью. Давайте строить будущее вместе</p>
+<div class="flex gap-4">
+<a class="cursor-hover w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#007bff] hover:text-white transition-colors border-0" href="#"><span class="iconify" data-icon="lucide:twitter" data-width="16"></span></a>
+<a class="cursor-hover w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#007bff] hover:text-white transition-colors border-0" href="#"><span class="iconify" data-icon="lucide:linkedin" data-width="16"></span></a>
+<a class="cursor-hover w-10 h-10 rounded-full glass-panel flex items-center justify-center text-white hover:bg-[#007bff] hover:text-white transition-colors border-0" href="#"><span class="iconify" data-icon="lucide:instagram" data-width="16"></span></a>
+</div>
+</div>
+<div>
+<h5 class="font-heading font-medium text-white mb-6 text-base uppercase tracking-widest">Компания</h5>
+<ul class="space-y-4 text-base text-gray-500">
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">О нас</a></li>
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">Карьера</a></li>
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">Пресса</a></li>
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">Контакты</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-heading font-medium text-white mb-6 text-base uppercase tracking-widest">Услуги</h5>
+<ul class="space-y-4 text-base text-gray-500">
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">Веб-разработка</a></li>
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">Дизайн UI/UX</a></li>
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">SEO-маркетинг</a></li>
+<li><a class="cursor-hover hover:text-white transition-colors" href="#">Брендинг</a></li>
+</ul>
+</div>
+<div>
+<h5 class="font-heading font-medium text-white mb-6 text-base uppercase tracking-widest">Контакты</h5>
+<div class="space-y-6">
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 mt-1">
+<span class="iconify text-[#007bff]" data-icon="lucide:phone" data-width="16"></span>
+</div>
+<div>
+<p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Тел.</p>
+<a class="cursor-hover text-white text-lg font-mono hover:text-[#007bff] transition-colors block" href="tel:0648714556">064-871-4556</a>
+</div>
+</div>
+<div class="flex items-start gap-4">
+<div class="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0 mt-1">
+<span class="iconify text-[#06C755]" data-icon="lucide:message-circle" data-width="16"></span>
+</div>
+<div>
+<p class="text-xs text-gray-500 uppercase tracking-wider mb-1">Line</p>
+<a class="cursor-hover text-white text-lg font-mono hover:text-[#06C755] transition-colors block" href="#">@positivdigital</a>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] uppercase tracking-widest text-gray-600">
+<p>© 2023 Positiv+ Digital Agency. Все права защищены.</p>
+<div class="flex gap-6">
+<a class="cursor-hover hover:text-white transition-colors" href="#">Политика конфиденциальности</a>
+<a class="cursor-hover hover:text-white transition-colors" href="#">Условия обслуживания</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
         // Custom Cursor Logic
         const cursor = document.getElementById('cursor');
         const hoverElements = document.querySelectorAll('.cursor-hover');

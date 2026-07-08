@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<html
-  lang="en"
-  class="bg-[#050505] text-[#eae4d8] selection:bg-[#c5a67c]/30 selection:text-white scroll-smooth"
->
-  <head><script id="aura-preview-performance-controller">
+<html class="bg-[#050505] text-[#eae4d8] selection:bg-[#c5a67c]/30 selection:text-white scroll-smooth" lang="ru">
+<head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -93,16 +90,13 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Sequra — Financial intelligence is our medium</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Sequra — Финансовый интеллект — наша стихия</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com" />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
-<link
-href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Inter:wght@200;300;400;500&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap"
-rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&amp;family=Inter:wght@200;300;400;500&amp;family=JetBrains+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -120,7 +114,7 @@ colors: { brand: { bg:'#050505', cream:'#eae4d8', gold:'#c5a67c', muted:'#7a7a7a
 .char{display:inline-block;will-change:transform,opacity,filter}
 .magnetic{will-change:transform}
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -128,1198 +122,753 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body
-    class="font-sans text-brand-cream antialiased font-light bg-brand-bg relative overflow-x-hidden"
-  >
-    <div id="scroll-progress"></div>
-    <canvas
-      id="ambient-canvas"
-      class="fixed inset-0 z-0 pointer-events-none opacity-40"
-    ></canvas>
-    <style>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="font-sans text-brand-cream antialiased font-light bg-brand-bg relative overflow-x-hidden">
+<div id="scroll-progress"></div>
+<canvas class="fixed inset-0 z-0 pointer-events-none opacity-40" id="ambient-canvas"></canvas>
+<style>
       @keyframes heroBeamFlow{from{stroke-dashoffset:100}to{stroke-dashoffset:0}}@keyframes heroBeamFadeIn{from{opacity:0}to{opacity:1}}.hero-beam{opacity:0;animation:heroBeamFadeIn .8s ease 2s forwards,heroBeamFlow 3.2s linear 2s infinite;will-change:stroke-dashoffset}
     </style>
-
-    <!-- NAV -->
-    <header
-      class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-brand-bg/60 border-b border-white/5"
-    >
-      <div
-        class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between"
-      >
-        <a href="#top" class="flex items-center gap-2 group">
-          <svg
-            width="26"
-            height="26"
-            viewBox="0 0 32 32"
-            fill="none"
-            class="transition-transform duration-500 group-hover:rotate-90"
-          >
-            <path
-              d="M16 2 L20 12 L30 16 L20 20 L16 30 L12 20 L2 16 L12 12 Z"
-              fill="#c5a67c"
-            ></path>
-          </svg>
-          <span class="text-sm tracking-[0.35em] font-medium uppercase">
+<!-- NAV -->
+<header class="fixed top-0 left-0 w-full z-50 backdrop-blur-md bg-brand-bg/60 border-b border-white/5">
+<div class="max-w-7xl mx-auto px-6 md:px-10 h-20 flex items-center justify-between">
+<a class="flex items-center gap-2 group" href="#top">
+<svg class="transition-transform duration-500 group-hover:rotate-90" fill="none" height="26" viewbox="0 0 32 32" width="26">
+<path d="M16 2 L20 12 L30 16 L20 20 L16 30 L12 20 L2 16 L12 12 Z" fill="#c5a67c"></path>
+</svg>
+<span class="text-sm tracking-[0.35em] font-medium uppercase">
             SEQURA
           </span>
-        </a>
-        <nav
-          class="hidden md:flex items-center gap-10 text-xs tracking-[0.2em] uppercase text-brand-muted"
-        >
-          <a href="#features" class="hover:text-brand-cream transition-colors">
-            Platform
+</a>
+<nav class="hidden md:flex items-center gap-10 text-xs tracking-[0.2em] uppercase text-brand-muted">
+<a class="hover:text-brand-cream transition-colors" href="#features">
+            Платформа
           </a>
-          <a href="#journey" class="hover:text-brand-cream transition-colors">
-            Journey
+<a class="hover:text-brand-cream transition-colors" href="#journey">
+            путешествие
           </a>
-          <a href="#pricing" class="hover:text-brand-cream transition-colors">
-            Pricing
+<a class="hover:text-brand-cream transition-colors" href="#pricing">
+            Цены
           </a>
-          <a href="#proof" class="hover:text-brand-cream transition-colors">
-            Customers
+<a class="hover:text-brand-cream transition-colors" href="#proof">
+            Клиенты
           </a>
-          <a href="#contact" class="hover:text-brand-cream transition-colors">
-            Contact
+<a class="hover:text-brand-cream transition-colors" href="#contact">
+            Контакты
           </a>
-        </nav>
-        <a
-          href="#contact"
-          class="group magnetic flex items-center gap-3 bg-brand-cream text-brand-bg px-5 py-3 hover:bg-white transition-colors"
-        >
-          <span class="text-xs tracking-[0.15em] font-medium uppercase">
-            Get Access
+</nav>
+<a class="group magnetic flex items-center gap-3 bg-brand-cream text-brand-bg px-5 py-3 hover:bg-white transition-colors" href="#contact">
+<span class="text-xs tracking-[0.15em] font-medium uppercase">
+            Получить доступ
           </span>
-          <iconify-icon
-            icon="solar:arrow-right-up-linear"
-            class="text-base transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-          ></iconify-icon>
-        </a>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <section id="top" class="relative h-screen w-full overflow-hidden">
-      <div class="absolute inset-0 z-0 flex justify-end overflow-hidden">
-        <video
-          src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052529386-823cbeff-27d2-461d-bab1-ba3ae5b5c1c7.mp4"
-          poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/225dd491-fdd9-474d-8947-f3c72f370d67/1600w.jpg"
-          data-aura-generated-video="true"
-          data-aura-video-preset="loop-in-view"
-          muted=""
-          playsinline=""
-          preload="metadata"
-          loop=""
-          class="gsap-bg-img w-[60%] h-full object-cover object-left opacity-60 mix-blend-luminosity"
-          style="filter: sepia(0.3) hue-rotate(-15deg) contrast(1.1);"
-        ></video>
-        <svg
-          class="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[20px_0_30px_rgba(0,0,0,0.9)]"
-          preserveAspectRatio="none"
-          viewBox="0 0 100 100"
-        >
-          <defs>
-            <linearGradient id="beamGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-              <stop offset="0%" stop-color="#c5a67c" stop-opacity="0"></stop>
-              <stop offset="50%" stop-color="#eae4d8" stop-opacity="1"></stop>
-              <stop offset="100%" stop-color="#c5a67c" stop-opacity="0"></stop>
-            </linearGradient>
-          </defs>
-          <path
-            class="gsap-curve"
-            d="M0,0 L0,100 L55,100 Q75,50 55,0 Z"
-            fill="#050505"
-          ></path>
-          <path
-            class="hero-beam"
-            d="M55,0 Q75,50 55,100"
-            fill="none"
-            stroke="url(#beamGrad)"
-            stroke-width="0.2"
-            stroke-linecap="round"
-            style="filter:drop-shadow(0 0 2px rgba(197,166,124,0.9));animation-delay:2s"
-            pathLength="100"
-            stroke-dasharray="22 78"
-          ></path>
-        </svg>
-      </div>
-
-      <div
-        class="relative z-10 h-full max-w-7xl mx-auto px-6 md:px-10 flex flex-col justify-center"
-      >
-        <div class="gsap-element flex items-center gap-3 mb-8">
-          <span
-            class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-          >
-            CAPITAL
+<iconify-icon class="text-base transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</header>
+<!-- HERO -->
+<section class="relative h-screen w-full overflow-hidden" id="top">
+<div class="absolute inset-0 z-0 flex justify-end overflow-hidden">
+<video class="gsap-bg-img w-[60%] h-full object-cover object-left opacity-60 mix-blend-luminosity" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/225dd491-fdd9-474d-8947-f3c72f370d67/1600w.jpg" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052529386-823cbeff-27d2-461d-bab1-ba3ae5b5c1c7.mp4" style="filter: sepia(0.3) hue-rotate(-15deg) contrast(1.1);"></video>
+<svg class="absolute inset-0 w-full h-full pointer-events-none drop-shadow-[20px_0_30px_rgba(0,0,0,0.9)]" preserveaspectratio="none" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="beamGrad" x1="0%" x2="0%" y1="0%" y2="100%">
+<stop offset="0%" stop-color="#c5a67c" stop-opacity="0"></stop>
+<stop offset="50%" stop-color="#eae4d8" stop-opacity="1"></stop>
+<stop offset="100%" stop-color="#c5a67c" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path class="gsap-curve" d="M0,0 L0,100 L55,100 Q75,50 55,0 Z" fill="#050505"></path>
+<path class="hero-beam" d="M55,0 Q75,50 55,100" fill="none" pathlength="100" stroke="url(#beamGrad)" stroke-dasharray="22 78" stroke-linecap="round" stroke-width="0.2" style="filter:drop-shadow(0 0 2px rgba(197,166,124,0.9));animation-delay:2s"></path>
+</svg>
+</div>
+<div class="relative z-10 h-full max-w-7xl mx-auto px-6 md:px-10 flex flex-col justify-center">
+<div class="gsap-element flex items-center gap-3 mb-8">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
+            КАПИТАЛ
           </span>
-          <iconify-icon
-            icon="solar:close-linear"
-            class="text-brand-muted text-xs"
-          ></iconify-icon>
-          <span
-            class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-          >
-            INTELLIGENCE
+<iconify-icon class="text-brand-muted text-xs" icon="solar:close-linear"></iconify-icon>
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
+            ИНТЕЛЛЕКТ
           </span>
-        </div>
-        <h1
-          class="font-serif tracking-tight text-[clamp(2.5rem,6.5vw,6rem)] leading-[0.9] text-brand-cream mb-10 select-none"
-        >
-          <div class="overflow-hidden py-1">
-            <span class="gsap-text inline-block">FINANCIAL CLARITY</span>
-          </div>
-          <div class="overflow-hidden py-1">
-            <span class="gsap-text inline-block">IS OUR</span>
-          </div>
-          <div class="overflow-hidden py-1">
-            <span class="gsap-text inline-block italic font-light">MEDIUM</span>
-          </div>
-        </h1>
-        <div class="gsap-element flex items-center gap-4 mb-8 w-64 opacity-50">
-          <div
-            class="h-px flex-1 bg-gradient-to-r from-brand-muted to-transparent"
-          ></div>
-          <iconify-icon
-            icon="solar:shield-check-linear"
-            class="text-brand-gold text-sm"
-          ></iconify-icon>
-          <div
-            class="h-px flex-1 bg-gradient-to-l from-brand-muted to-transparent"
-          ></div>
-        </div>
-        <p
-          class="gsap-element text-sm md:text-base text-brand-muted max-w-md leading-relaxed mb-12"
-        >
-          Sequra unifies treasury, payments, and forecasting into one
-          intelligent layer — so finance teams move capital with precision,
-          compliance, and confidence.
+</div>
+<h1 class="font-serif tracking-tight text-[clamp(2.5rem,6.5vw,6rem)] leading-[0.9] text-brand-cream mb-10 select-none">
+<div class="overflow-hidden py-1">
+<span class="gsap-text inline-block">ФИНАНСОВАЯ ЯСНОСТЬ</span>
+</div>
+<div class="overflow-hidden py-1">
+<span class="gsap-text inline-block">— НАША</span>
+</div>
+<div class="overflow-hidden py-1">
+<span class="gsap-text inline-block italic font-light">СТИХИЯ</span>
+</div>
+</h1>
+<div class="gsap-element flex items-center gap-4 mb-8 w-64 opacity-50">
+<div class="h-px flex-1 bg-gradient-to-r from-brand-muted to-transparent"></div>
+<iconify-icon class="text-brand-gold text-sm" icon="solar:shield-check-linear"></iconify-icon>
+<div class="h-px flex-1 bg-gradient-to-l from-brand-muted to-transparent"></div>
+</div>
+<p class="gsap-element text-sm md:text-base text-brand-muted max-w-md leading-relaxed mb-12">
+          Sequra объединяет казначейство, платежи и прогнозирование в один интеллектуальный слой — чтобы финансовые команды управляли капиталом точно, безопасно и уверенно.
         </p>
-        <div class="gsap-element flex flex-wrap items-center gap-8">
-          <a
-            href="#pricing"
-            class="relative group magnetic overflow-hidden bg-brand-cream text-brand-bg px-6 py-4 flex items-center gap-4 transition-all duration-300 hover:bg-white"
-          >
-            <span
-              class="text-xs tracking-[0.15em] font-medium uppercase relative z-10"
-            >
-              Start Free Trial
+<div class="gsap-element flex flex-wrap items-center gap-8">
+<a class="relative group magnetic overflow-hidden bg-brand-cream text-brand-bg px-6 py-4 flex items-center gap-4 transition-all duration-300 hover:bg-white" href="#pricing">
+<span class="text-xs tracking-[0.15em] font-medium uppercase relative z-10">
+              Начать бесплатный период
             </span>
-            <iconify-icon
-              icon="solar:arrow-right-up-linear"
-              class="text-lg relative z-10 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            ></iconify-icon>
-            <div
-              class="absolute inset-0 bg-gradient-to-tr from-brand-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"
-            ></div>
-          </a>
-          <a
-            href="#features"
-            class="group flex items-center gap-3 text-brand-muted hover:text-brand-cream transition-colors duration-300"
-          >
-            <span class="text-xs tracking-[0.15em] font-medium uppercase">
-              Explore Platform
+<iconify-icon class="text-lg relative z-10 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+<div class="absolute inset-0 bg-gradient-to-tr from-brand-gold/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0"></div>
+</a>
+<a class="group flex items-center gap-3 text-brand-muted hover:text-brand-cream transition-colors duration-300" href="#features">
+<span class="text-xs tracking-[0.15em] font-medium uppercase">
+              Изучить платформу
             </span>
-            <iconify-icon
-              icon="solar:arrow-right-up-linear"
-              class="text-lg transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            ></iconify-icon>
-          </a>
-        </div>
-      </div>
-
-      <div
-        class="gsap-element absolute bottom-10 left-0 right-0 z-10 max-w-7xl mx-auto px-6 md:px-10"
-      >
-        <div
-          class="flex flex-wrap items-end gap-12 md:gap-16 border-t border-white/5 pt-8 max-w-2xl"
-        >
-          <div class="flex flex-col gap-2">
-            <span
-              class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono"
-            >
-              PROCESSED
+<iconify-icon class="text-lg transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<div class="gsap-element absolute bottom-10 left-0 right-0 z-10 max-w-7xl mx-auto px-6 md:px-10">
+<div class="flex flex-wrap items-end gap-12 md:gap-16 border-t border-white/5 pt-8 max-w-2xl">
+<div class="flex flex-col gap-2">
+<span class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono">
+              ОБРАБОТАНО
             </span>
-            <div class="flex items-baseline gap-1">
-              <span
-                class="font-serif text-4xl text-brand-gold"
-                data-count="48"
-                data-prefix="$"
-                data-suffix=""
-              >
+<div class="flex items-baseline gap-1">
+<span class="font-serif text-4xl text-brand-gold" data-count="48" data-prefix="$" data-suffix="">
                 $48
               </span>
-              <span class="font-serif text-xl text-brand-gold">B+</span>
-            </div>
-            <div class="w-4 h-px bg-brand-muted mt-1"></div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span
-              class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono"
-            >
-              TEAMS
+<span class="font-serif text-xl text-brand-gold">B+</span>
+</div>
+<div class="w-4 h-px bg-brand-muted mt-1"></div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono">
+              КОМАНД
             </span>
-            <div class="flex items-baseline gap-1">
-              <span
-                class="font-serif text-4xl text-brand-gold"
-                data-count="3200"
-              >
+<div class="flex items-baseline gap-1">
+<span class="font-serif text-4xl text-brand-gold" data-count="3200">
                 3,200
               </span>
-              <span class="font-serif text-xl text-brand-gold">+</span>
-            </div>
-            <div class="w-4 h-px bg-brand-muted mt-1"></div>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span
-              class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono"
-            >
-              UPTIME
+<span class="font-serif text-xl text-brand-gold">+</span>
+</div>
+<div class="w-4 h-px bg-brand-muted mt-1"></div>
+</div>
+<div class="flex flex-col gap-2">
+<span class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono">
+              АПТАЙМ
             </span>
-            <div class="flex items-baseline gap-1">
-              <span
-                class="font-serif text-4xl text-brand-gold"
-                data-count="99.99"
-                data-decimals="2"
-              >
+<div class="flex items-baseline gap-1">
+<span class="font-serif text-4xl text-brand-gold" data-count="99.99" data-decimals="2">
                 99.99
               </span>
-              <span class="font-serif text-xl text-brand-gold">%</span>
-            </div>
-            <div class="w-4 h-px bg-brand-muted mt-1"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section
-      id="features"
-      class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36"
-      style="background-color: rgb(234, 228, 216); color: #111111;"
-    >
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span
-          class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-        >
+<span class="font-serif text-xl text-brand-gold">%</span>
+</div>
+<div class="w-4 h-px bg-brand-muted mt-1"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- FEATURES -->
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36" id="features" style="background-color: rgb(234, 228, 216); color: #111111;">
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
           / 01
         </span>
-        <span
-          class="text-xs tracking-[0.25em] text-[#7a6f5c] uppercase font-mono"
-        >
-          The Platform
+<span class="text-xs tracking-[0.25em] text-[#7a6f5c] uppercase font-mono">
+          Платформа
         </span>
-      </div>
-      <h2
-        class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl text-[#111111]"
-      >
-        Capabilities engineered into
-        <span class="italic text-brand-gold">measurable outcomes</span>
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl text-[#111111]">
+        Возможности, превращённые в
+        <span class="italic text-brand-gold">измеримые результаты</span>
         .
       </h2>
-      <div class="grid md:grid-cols-3 gap-px bg-black/5">
-        <div
-          class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]"
-        >
-          <iconify-icon
-            icon="solar:wallet-money-linear"
-            class="text-brand-gold text-3xl mb-6"
-          ></iconify-icon>
-          <h3
-            class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]"
-          >
-            Unified Treasury
+<div class="grid md:grid-cols-3 gap-px bg-black/5">
+<div class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]">
+<iconify-icon class="text-brand-gold text-3xl mb-6" icon="solar:wallet-money-linear"></iconify-icon>
+<h3 class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]">
+            Единое казначейство
           </h3>
-          <p class="text-sm text-[#5a5a5a] leading-relaxed">
-            See every account, currency, and balance in one live view. Reconcile
-            in minutes, not days.
+<p class="text-sm text-[#5a5a5a] leading-relaxed">
+            Все счета, валюты и балансы в одном живом представлении. Сверка за минуты, а не дни.
           </p>
-        </div>
-        <div
-          class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]"
-        >
-          <iconify-icon
-            icon="solar:graph-up-linear"
-            class="text-brand-gold text-3xl mb-6"
-          ></iconify-icon>
-          <h3
-            class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]"
-          >
-            AI Forecasting
+</div>
+<div class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]">
+<iconify-icon class="text-brand-gold text-3xl mb-6" icon="solar:graph-up-linear"></iconify-icon>
+<h3 class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]">
+            AI-прогнозирование
           </h3>
-          <p class="text-sm text-[#5a5a5a] leading-relaxed">
-            Predict cash flow with models trained on your transaction history —
-            accurate to the day.
+<p class="text-sm text-[#5a5a5a] leading-relaxed">
+            Прогнозируйте денежный поток с помощью моделей, обученных на вашей истории транзакций, — с точностью до дня.
           </p>
-        </div>
-        <div
-          class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]"
-        >
-          <iconify-icon
-            icon="solar:transfer-horizontal-linear"
-            class="text-brand-gold text-3xl mb-6"
-          ></iconify-icon>
-          <h3
-            class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]"
-          >
-            Instant Payments
+</div>
+<div class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]">
+<iconify-icon class="text-brand-gold text-3xl mb-6" icon="solar:transfer-horizontal-linear"></iconify-icon>
+<h3 class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]">
+            Мгновенные платежи
           </h3>
-          <p class="text-sm text-[#5a5a5a] leading-relaxed">
-            Move funds globally with automated approvals, FX optimization, and
-            full audit trails.
+<p class="text-sm text-[#5a5a5a] leading-relaxed">
+            Переводите средства по всему миру с автоматическими согласованиями, оптимизацией FX и полными журналами аудита.
           </p>
-        </div>
-        <div
-          class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]"
-        >
-          <iconify-icon
-            icon="solar:shield-keyhole-linear"
-            class="text-brand-gold text-3xl mb-6"
-          ></iconify-icon>
-          <h3
-            class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]"
-          >
-            Compliance Layer
+</div>
+<div class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]">
+<iconify-icon class="text-brand-gold text-3xl mb-6" icon="solar:shield-keyhole-linear"></iconify-icon>
+<h3 class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]">
+            Слой комплаенса
           </h3>
-          <p class="text-sm text-[#5a5a5a] leading-relaxed">
-            SOC 2, PCI-DSS, and regional controls enforced automatically on
-            every transaction.
+<p class="text-sm text-[#5a5a5a] leading-relaxed">
+            SOC 2, PCI-DSS и региональные требования применяются автоматически к каждой транзакции.
           </p>
-        </div>
-        <div
-          class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]"
-        >
-          <iconify-icon
-            icon="solar:widget-add-linear"
-            class="text-brand-gold text-3xl mb-6"
-          ></iconify-icon>
-          <h3
-            class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]"
-          >
-            Open API
+</div>
+<div class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]">
+<iconify-icon class="text-brand-gold text-3xl mb-6" icon="solar:widget-add-linear"></iconify-icon>
+<h3 class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]">
+            Открытый API
           </h3>
-          <p class="text-sm text-[#5a5a5a] leading-relaxed">
-            Embed Sequra anywhere with a clean REST and webhook layer your
-            engineers will love.
+<p class="text-sm text-[#5a5a5a] leading-relaxed">
+            Встраивайте Sequra куда угодно благодаря аккуратному слою REST и вебхуков, который полюбят ваши инженеры.
           </p>
-        </div>
-        <div
-          class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]"
-        >
-          <iconify-icon
-            icon="solar:users-group-rounded-linear"
-            class="text-brand-gold text-3xl mb-6"
-          ></iconify-icon>
-          <h3
-            class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]"
-          >
-            Role Controls
+</div>
+<div class="reveal group bg-[#f3efe6] p-8 transition-colors duration-500 hover:bg-[#ebe5d8]">
+<iconify-icon class="text-brand-gold text-3xl mb-6" icon="solar:users-group-rounded-linear"></iconify-icon>
+<h3 class="text-base tracking-wide uppercase font-medium mb-3 text-[#111111]">
+            Ролевой доступ
           </h3>
-          <p class="text-sm text-[#5a5a5a] leading-relaxed">
-            Granular permissions and dual-approval workflows that scale from
-            founder to enterprise.
+<p class="text-sm text-[#5a5a5a] leading-relaxed">
+            Гранулярные права и процессы двойного согласования, которые масштабируются от основателя до энтерпрайза.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- JOURNEY -->
-    <section
-      id="story"
-      class="relative z-10 w-full overflow-hidden py-28 md:py-36 story-section"
-    >
-      <div class="max-w-7xl mx-auto px-6 md:px-10">
-        <div class="reveal flex items-center gap-3 mb-6">
-          <span
-            class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-          >
+</div>
+</div>
+</section>
+<!-- JOURNEY -->
+<section class="relative z-10 w-full overflow-hidden py-28 md:py-36 story-section" id="story">
+<div class="max-w-7xl mx-auto px-6 md:px-10">
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
             / TV
           </span>
-          <span
-            class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono"
-          >
-            The Story
+<span class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono">
+            История
           </span>
-        </div>
-        <h2
-          class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl"
-        >
-          A story of capital, told frame by
-          <span class="italic text-brand-gold">frame</span>
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl">
+          История капитала, рассказанная кадр за
+          <span class="italic text-brand-gold">кадром</span>
           .
         </h2>
-      </div>
-      <div class="story-stage relative max-w-6xl mx-auto px-6 md:px-10">
-        <div
-          class="story-frame relative aspect-video w-full overflow-hidden border border-white/5 bg-brand-dark/40"
-        >
-          <video
-            src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052679196-74799af8-190a-4c26-81a4-3342cb4cdcf1.mp4"
-            poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ac322abb-e17f-4b31-84c1-ee910bdd61f8_3840w.png"
-            data-aura-generated-video="true"
-            data-aura-video-preset="loop-in-view"
-            muted=""
-            playsinline=""
-            preload="metadata"
-            loop=""
-            aria-label="Live financial dashboard"
-            class="story-img absolute inset-0 w-full h-full object-cover opacity-0"
-            style="filter: sepia(0.25) hue-rotate(-12deg) contrast(1.05);"
-          ></video>
-          <video
-            src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052786506-94963d94-8bbd-4f46-9eb7-8d5b6aa6c85a.mp4"
-            poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0ee0afe2-e108-42af-a584-d4ebcd1ec4a1_3840w.png"
-            data-aura-generated-video="true"
-            data-aura-video-preset="loop-in-view"
-            muted=""
-            playsinline=""
-            preload="metadata"
-            loop=""
-            aria-label="Global payment flows"
-            class="story-img absolute inset-0 w-full h-full object-cover opacity-0"
-            style="filter: sepia(0.25) hue-rotate(-12deg) contrast(1.05);"
-          ></video>
-          <video
-            src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052843634-1f1b6b0e-00c6-4102-9a7a-8ad2e082f096.mp4"
-            poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3d66cb76-2aa6-48fb-9749-d712e7e50420_3840w.png"
-            data-aura-generated-video="true"
-            data-aura-video-preset="loop-in-view"
-            muted=""
-            playsinline=""
-            preload="metadata"
-            loop=""
-            aria-label="Intelligent forecasting"
-            class="story-img absolute inset-0 w-full h-full object-cover opacity-0"
-            style="filter: sepia(0.25) hue-rotate(-12deg) contrast(1.05);"
-          ></video>
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-bg/10 to-transparent pointer-events-none"
-          ></div>
-          <div
-            class="absolute inset-0 ring-1 ring-inset ring-brand-gold/20 pointer-events-none"
-          ></div>
-          <div class="absolute top-5 left-5 flex items-center gap-2">
-            <span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
-            <span
-              class="text-[0.6rem] tracking-[0.25em] text-brand-cream uppercase font-mono"
-            >
+</div>
+<div class="story-stage relative max-w-6xl mx-auto px-6 md:px-10">
+<div class="story-frame relative aspect-video w-full overflow-hidden border border-white/5 bg-brand-dark/40">
+<video aria-label="Живой финансовый дашборд" class="story-img absolute inset-0 w-full h-full object-cover opacity-0" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ac322abb-e17f-4b31-84c1-ee910bdd61f8_3840w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052679196-74799af8-190a-4c26-81a4-3342cb4cdcf1.mp4" style="filter: sepia(0.25) hue-rotate(-12deg) contrast(1.05);"></video>
+<video aria-label="Глобальные платёжные потоки" class="story-img absolute inset-0 w-full h-full object-cover opacity-0" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0ee0afe2-e108-42af-a584-d4ebcd1ec4a1_3840w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052786506-94963d94-8bbd-4f46-9eb7-8d5b6aa6c85a.mp4" style="filter: sepia(0.25) hue-rotate(-12deg) contrast(1.05);"></video>
+<video aria-label="Интеллектуальное прогнозирование" class="story-img absolute inset-0 w-full h-full object-cover opacity-0" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3d66cb76-2aa6-48fb-9749-d712e7e50420_3840w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1780052843634-1f1b6b0e-00c6-4102-9a7a-8ad2e082f096.mp4" style="filter: sepia(0.25) hue-rotate(-12deg) contrast(1.05);"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-brand-bg via-brand-bg/10 to-transparent pointer-events-none"></div>
+<div class="absolute inset-0 ring-1 ring-inset ring-brand-gold/20 pointer-events-none"></div>
+<div class="absolute top-5 left-5 flex items-center gap-2">
+<span class="w-2 h-2 rounded-full bg-red-500 animate-pulse"></span>
+<span class="text-[0.6rem] tracking-[0.25em] text-brand-cream uppercase font-mono">
               LIVE
             </span>
-          </div>
-          <div
-            class="story-caption absolute bottom-6 left-6 right-6 md:left-10 md:right-10"
-          >
-            <p
-              class="story-line font-serif text-2xl md:text-3xl leading-snug text-brand-cream max-w-xl"
-            >
-              Watch your capital move with clarity — in real time.
+</div>
+<div class="story-caption absolute bottom-6 left-6 right-6 md:left-10 md:right-10">
+<p class="story-line font-serif text-2xl md:text-3xl leading-snug text-brand-cream max-w-xl">
+              Наблюдайте за движением капитала с полной ясностью — в реальном времени.
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section
-      id="journey"
-      class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36 journey-section"
-    >
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span
-          class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-        >
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36 journey-section" id="journey">
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
           / 02
         </span>
-        <span
-          class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono"
-        >
-          The Journey
+<span class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono">
+          Путь
         </span>
-      </div>
-      <h2
-        class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl"
-      >
-        From scattered spreadsheets to
-        <span class="italic text-brand-gold">a single source of truth</span>
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl">
+        От разрозненных таблиц к
+        <span class="italic text-brand-gold">единому источнику истины</span>
         .
       </h2>
-      <div
-        class="reveal journey-progress-wrap mb-12 h-10 relative"
-        aria-hidden="true"
-      >
-        <div
-          class="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-white/10"
-        ></div>
-        <div
-          class="journey-progress absolute left-0 top-1/2 h-px w-0 -translate-y-1/2 bg-gradient-to-r from-brand-gold to-brand-cream"
-        >
-          <span
-            class="absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 translate-x-1/2 rounded-full border border-brand-gold/60 bg-brand-bg shadow-[0_0_24px_rgba(197,166,124,0.75)]"
-          >
-            <span class="absolute inset-1 rounded-full bg-brand-gold"></span>
-            <span
-              class="absolute inset-0 rounded-full bg-brand-gold/30 animate-ping"
-            ></span>
-          </span>
-        </div>
-        <div
-          class="absolute -top-1 left-0 text-[0.6rem] tracking-[0.25em] text-brand-gold uppercase font-mono"
-        >
+<div aria-hidden="true" class="reveal journey-progress-wrap mb-12 h-10 relative">
+<div class="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-white/10"></div>
+<div class="journey-progress absolute left-0 top-1/2 h-px w-0 -translate-y-1/2 bg-gradient-to-r from-brand-gold to-brand-cream">
+<span class="absolute right-0 top-1/2 h-4 w-4 -translate-y-1/2 translate-x-1/2 rounded-full border border-brand-gold/60 bg-brand-bg shadow-[0_0_24px_rgba(197,166,124,0.75)]">
+<span class="absolute inset-1 rounded-full bg-brand-gold"></span>
+<span class="absolute inset-0 rounded-full bg-brand-gold/30 animate-ping"></span>
+</span>
+</div>
+<div class="absolute -top-1 left-0 text-[0.6rem] tracking-[0.25em] text-brand-gold uppercase font-mono">
           02
         </div>
-        <div
-          class="absolute -top-1 right-0 text-[0.6rem] tracking-[0.25em] text-brand-muted uppercase font-mono"
-        >
+<div class="absolute -top-1 right-0 text-[0.6rem] tracking-[0.25em] text-brand-muted uppercase font-mono">
           03
         </div>
-      </div>
-      <div class="grid md:grid-cols-4 gap-12 md:gap-8 journey-track">
-        <div class="reveal relative">
-          <span class="font-serif text-5xl text-brand-gold/30 block mb-4">
+</div>
+<div class="grid md:grid-cols-4 gap-12 md:gap-8 journey-track">
+<div class="reveal relative">
+<span class="font-serif text-5xl text-brand-gold/30 block mb-4">
             01
           </span>
-          <h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
-            Connect
+<h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
+            Подключение
           </h3>
-          <p class="text-sm text-brand-muted leading-relaxed">
-            Link every bank, card, and ledger in under ten minutes with secure
-            read-only access.
+<p class="text-sm text-brand-muted leading-relaxed">
+            Подключите все банки, карты и реестры менее чем за десять минут с безопасным доступом только на чтение.
           </p>
-        </div>
-        <div class="reveal relative">
-          <span class="font-serif text-5xl text-brand-gold/30 block mb-4">
+</div>
+<div class="reveal relative">
+<span class="font-serif text-5xl text-brand-gold/30 block mb-4">
             02
           </span>
-          <h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
-            Unify
+<h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
+            Объединяйте
           </h3>
-          <p class="text-sm text-brand-muted leading-relaxed">
-            Sequra normalizes transactions and surfaces your real-time financial
-            position.
+<p class="text-sm text-brand-muted leading-relaxed">
+            Sequra нормализует транзакции и показывает вашу финансовую позицию в реальном времени.
           </p>
-        </div>
-        <div class="reveal relative">
-          <span class="font-serif text-5xl text-brand-gold/30 block mb-4">
+</div>
+<div class="reveal relative">
+<span class="font-serif text-5xl text-brand-gold/30 block mb-4">
             03
           </span>
-          <h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
-            Forecast
+<h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
+            Прогнозируйте
           </h3>
-          <p class="text-sm text-brand-muted leading-relaxed">
-            AI models project runway and scenarios so you decide before you
-            spend.
+<p class="text-sm text-brand-muted leading-relaxed">
+            AI-модели рассчитывают ранвей и сценарии, чтобы вы принимали решения до того, как потратите.
           </p>
-        </div>
-        <div class="reveal relative">
-          <span class="font-serif text-5xl text-brand-gold/30 block mb-4">
+</div>
+<div class="reveal relative">
+<span class="font-serif text-5xl text-brand-gold/30 block mb-4">
             04
           </span>
-          <h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
-            Operate
+<h3 class="text-sm tracking-[0.15em] uppercase font-medium mb-3">
+            Управляйте
           </h3>
-          <p class="text-sm text-brand-muted leading-relaxed">
-            Pay, approve, and report with confidence on infrastructure that
-            never sleeps.
+<p class="text-sm text-brand-muted leading-relaxed">
+            Платите, согласовывайте и отчитывайтесь уверенно на инфраструктуре, которая никогда не спит.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROOF / TESTIMONIALS -->
-    <section
-      id="showcase"
-      class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36"
-    >
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span
-          class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-        >
+</div>
+</div>
+</section>
+<!-- PROOF / TESTIMONIALS -->
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36" id="showcase">
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
           / X
         </span>
-        <span
-          class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono"
-        >
-          In Motion
+<span class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono">
+          В движении
         </span>
-      </div>
-      <h2
-        class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl"
-      >
-        Capital, rendered as
-        <span class="italic text-brand-gold">living geometry</span>
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl">
+        Капитал, представленный как
+        <span class="italic text-brand-gold">живая геометрия</span>
         .
       </h2>
-      <div
-        class="reveal w-full rounded-2xl overflow-hidden relative"
-        style="aspect-ratio:16/9;background:linear-gradient(180deg,#151515 0%,#050505 100%);box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 30px 60px -20px rgba(0,0,0,.8);"
-      >
-        <div
-          class="pointer-events-none absolute inset-0 rounded-2xl z-20"
-          style="padding:1px;background:linear-gradient(135deg,rgba(197,166,124,.25),rgba(0,0,0,.2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;"
-        ></div>
-        <div
-          id="sq-fl1"
-          class="absolute top-1/4 left-1/4 w-[50%] h-[50%] rounded-full pointer-events-none mix-blend-screen z-0"
-          style="background:radial-gradient(circle,rgba(234,228,216,0.08) 0%,transparent 60%);filter:blur(40px);"
-        ></div>
-        <div
-          id="sq-fl2"
-          class="absolute bottom-1/4 right-1/4 w-[60%] h-[60%] rounded-full pointer-events-none mix-blend-screen z-0"
-          style="background:radial-gradient(circle,rgba(197,166,124,0.10) 0%,transparent 60%);filter:blur(50px);"
-        ></div>
-        <div
-          class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0"
-        >
-          <div
-            class="font-serif text-[clamp(3rem,9vw,9rem)] tracking-tight text-brand-cream/5"
-          >
+<div class="reveal w-full rounded-2xl overflow-hidden relative" style="aspect-ratio:16/9;background:linear-gradient(180deg,#151515 0%,#050505 100%);box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 30px 60px -20px rgba(0,0,0,.8);">
+<div class="pointer-events-none absolute inset-0 rounded-2xl z-20" style="padding:1px;background:linear-gradient(135deg,rgba(197,166,124,.25),rgba(0,0,0,.2));-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;"></div>
+<div class="absolute top-1/4 left-1/4 w-[50%] h-[50%] rounded-full pointer-events-none mix-blend-screen z-0" id="sq-fl1" style="background:radial-gradient(circle,rgba(234,228,216,0.08) 0%,transparent 60%);filter:blur(40px);"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[60%] h-[60%] rounded-full pointer-events-none mix-blend-screen z-0" id="sq-fl2" style="background:radial-gradient(circle,rgba(197,166,124,0.10) 0%,transparent 60%);filter:blur(50px);"></div>
+<div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none select-none z-0">
+<div class="font-serif text-[clamp(3rem,9vw,9rem)] tracking-tight text-brand-cream/5">
             SEQURA
           </div>
-        </div>
-        <canvas
-          id="sq-scene"
-          class="absolute inset-0 w-full h-full block z-10"
-        ></canvas>
-        <div class="absolute top-5 left-5 sm:top-7 sm:left-7 z-30">
-          <div
-            class="flex items-center gap-3 rounded-xl bg-brand-dark/80 backdrop-blur-md px-4 py-2.5 pr-5"
-            style="box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 8px 24px -10px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08);"
-          >
-            <span class="grid place-items-center w-6 h-6 text-brand-gold">
-              <iconify-icon
-                icon="solar:widget-5-linear"
-                width="18"
-                height="18"
-              ></iconify-icon>
-            </span>
-            <span
-              class="text-base sm:text-lg font-medium tracking-tight text-brand-cream"
-            >
+</div>
+<canvas class="absolute inset-0 w-full h-full block z-10" id="sq-scene"></canvas>
+<div class="absolute top-5 left-5 sm:top-7 sm:left-7 z-30">
+<div class="flex items-center gap-3 rounded-xl bg-brand-dark/80 backdrop-blur-md px-4 py-2.5 pr-5" style="box-shadow:0 1px 0 rgba(255,255,255,.08) inset,0 8px 24px -10px rgba(0,0,0,.6);border:1px solid rgba(255,255,255,.08);">
+<span class="grid place-items-center w-6 h-6 text-brand-gold">
+<iconify-icon height="18" icon="solar:widget-5-linear" width="18"></iconify-icon>
+</span>
+<span class="text-base sm:text-lg font-medium tracking-tight text-brand-cream">
               Sequra Engine
             </span>
-            <span
-              class="text-xs text-brand-muted tracking-widest font-mono pl-2"
-            >
+<span class="text-xs text-brand-muted tracking-widest font-mono pl-2">
               / 003
             </span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <script>
+</div>
+</div>
+</div>
+</section>
+<script>
       (function(){var canvas=document.getElementById('sq-scene');if(!canvas)return;var ctx=canvas.getContext('2d');var W,H,DPR;function resize(){DPR=Math.min(window.devicePixelRatio||1,2);var r=canvas.getBoundingClientRect();W=r.width;H=r.height;canvas.width=W*DPR;canvas.height=H*DPR;ctx.setTransform(DPR,0,0,DPR,0,0);}window.addEventListener('resize',resize);resize();function iso(x,y,z,scale,ox,oy){return{x:ox+(x-y)*scale*0.866,y:oy+(x+y)*scale*0.5-z*scale};}function drawLattice(scale,ox,oy,t){ctx.strokeStyle='rgba(197,166,124,0.10)';ctx.lineWidth=1;var N=18;var offset=(t*2.5)%1;for(var i=-6;i<=N;i++){var idx=i+offset;var a=iso(idx,-6,0,scale,ox,oy),b=iso(idx,N,0,scale,ox,oy);ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke();var c=iso(-6,idx,0,scale,ox,oy),d=iso(N,idx,0,scale,ox,oy);ctx.beginPath();ctx.moveTo(c.x,c.y);ctx.lineTo(d.x,d.y);ctx.stroke();}}function poly(pts){ctx.beginPath();ctx.moveTo(pts[0].x,pts[0].y);for(var i=1;i<pts.length;i++)ctx.lineTo(pts[i].x,pts[i].y);ctx.closePath();}function block(gx,gy,h,scale,ox,oy){var top=[iso(gx,gy,h,scale,ox,oy),iso(gx+1,gy,h,scale,ox,oy),iso(gx+1,gy+1,h,scale,ox,oy),iso(gx,gy+1,h,scale,ox,oy)];ctx.fillStyle='rgba(30,28,24,0.95)';poly(top);ctx.fill();ctx.strokeStyle='rgba(197,166,124,0.25)';poly(top);ctx.stroke();var left=[top[3],top[2],iso(gx+1,gy+1,0,scale,ox,oy),iso(gx,gy+1,0,scale,ox,oy)];ctx.fillStyle='rgba(20,18,16,0.95)';poly(left);ctx.fill();ctx.strokeStyle='rgba(197,166,124,0.12)';poly(left);ctx.stroke();var right=[top[1],top[2],iso(gx+1,gy+1,0,scale,ox,oy),iso(gx+1,gy,0,scale,ox,oy)];ctx.fillStyle='rgba(10,9,8,0.95)';poly(right);ctx.fill();ctx.strokeStyle='rgba(197,166,124,0.06)';poly(right);ctx.stroke();}function drawDiamond(cx,cy,size,t){ctx.strokeStyle='rgba(197,166,124,0.4)';ctx.lineWidth=1.5;ctx.setLineDash([4,5]);ctx.beginPath();ctx.moveTo(cx-size*2.2,cy+size*1.2);ctx.lineTo(cx-size*0.8,cy+size*0.4);ctx.stroke();ctx.setLineDash([]);var top={x:cx,y:cy-size*1.3};var bot={x:cx,y:cy+size*1.3};var l={x:cx-size*0.9,y:cy-size*0.05};var r={x:cx+size*0.9,y:cy-size*0.05};var f={x:cx,y:cy+size*0.25};ctx.fillStyle='#eae4d8';poly([top,l,f]);ctx.fill();ctx.fillStyle='#c5a67c';poly([top,r,f]);ctx.fill();ctx.fillStyle='#8a7355';poly([bot,l,f]);ctx.fill();ctx.fillStyle='#5a4d3a';poly([bot,r,f]);ctx.fill();ctx.strokeStyle='#eae4d8';ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(top.x,top.y);ctx.lineTo(l.x,l.y);ctx.lineTo(bot.x,bot.y);ctx.lineTo(r.x,r.y);ctx.closePath();ctx.moveTo(top.x,top.y);ctx.lineTo(f.x,f.y);ctx.moveTo(bot.x,bot.y);ctx.lineTo(f.x,f.y);ctx.moveTo(l.x,l.y);ctx.lineTo(f.x,f.y);ctx.lineTo(r.x,r.y);ctx.stroke();}var bars=[{x:1,y:8,h:1.2},{x:2,y:8,h:0.6},{x:3,y:7,h:1.8},{x:4,y:7,h:1.1},{x:5,y:6,h:2.2},{x:6,y:6,h:1.4},{x:7,y:6,h:2.6},{x:8,y:5,h:1.9},{x:9,y:5,h:3.0},{x:10,y:4,h:2.4},{x:11,y:4,h:3.4}];function frame(ts){var t=ts*0.001;ctx.clearRect(0,0,W,H);var scale=Math.max(W,520)/24;var ox=W*0.5;var oy=H*0.18;var fl1=document.getElementById('sq-fl1');var fl2=document.getElementById('sq-fl2');if(fl1)fl1.style.transform='translate('+(Math.sin(t)*15)+'%,'+(Math.cos(t*0.8)*15)+'%) scale('+(1+Math.sin(t*1.5)*0.2)+')';if(fl2)fl2.style.transform='translate('+(Math.cos(t*1.2)*15)+'%,'+(Math.sin(t*0.9)*15)+'%)';drawLattice(scale,ox,oy,t);var sorted=bars.slice().sort(function(a,b){return(a.x+a.y)-(b.x+b.y);});sorted.forEach(function(b){var animH=b.h+Math.sin(t*2.5+b.x*0.5+b.y*0.5)*0.8;block(b.x,b.y,Math.max(0.1,animH),scale,ox,oy);});var diamonds=[{bx:W*0.18,by:H*0.50,s:20},{bx:W*0.37,by:H*0.60,s:40},{bx:W*0.55,by:H*0.33,s:35},{bx:W*0.80,by:H*0.58,s:60},{bx:W*0.81,by:H*0.23,s:16}];diamonds.forEach(function(dm,i){var fy=Math.sin(t*1.1+i*1.3)*dm.s*0.18;drawDiamond(dm.bx,dm.by+fy,dm.s,t);});requestAnimationFrame(frame);}requestAnimationFrame(frame);})();
     </script>
-    <section
-      id="proof"
-      class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36 proof-section"
-      style="background-color: rgb(234, 228, 216); color: #111111;"
-    >
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span
-          class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-        >
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36 proof-section" id="proof" style="background-color: rgb(234, 228, 216); color: #111111;">
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
           / 03
         </span>
-        <span
-          class="text-xs tracking-[0.25em] text-[#7a6f5c] uppercase font-mono"
-        >
-          Trusted By
+<span class="text-xs tracking-[0.25em] text-[#7a6f5c] uppercase font-mono">
+          Нам доверяют
         </span>
-      </div>
-      <h2
-        class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl text-[#111111]"
-      >
-        Finance leaders who
-        <span class="italic text-brand-gold">stopped guessing</span>
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl text-[#111111]">
+        Финансовые лидеры, которые
+        <span class="italic text-brand-gold">перестали гадать</span>
         .
       </h2>
-      <div class="grid md:grid-cols-3 gap-px bg-black/5">
-        <figure class="reveal bg-[#f3efe6] p-8 flex flex-col justify-between">
-          <p class="font-serif text-xl leading-snug mb-8 text-[#111111]">
-            "Sequra cut our monthly close from nine days to two. The forecasting
-            is uncannily accurate."
+<div class="grid md:grid-cols-3 gap-px bg-black/5">
+<figure class="reveal bg-[#f3efe6] p-8 flex flex-col justify-between">
+<p class="font-serif text-xl leading-snug mb-8 text-[#111111]">
+            "Sequra сократила наше месячное закрытие с девяти дней до двух. Прогнозирование пугающе точное."
           </p>
-          <figcaption class="flex items-center gap-3">
-            <img
-              src="https://i.pravatar.cc/80?img=12"
-              class="w-10 h-10 rounded-full object-cover"
-              alt=""
-            />
-            <div>
-              <p class="text-sm text-[#111111]">Elena Marsh</p>
-              <p class="text-xs text-[#5a5a5a] font-mono">
+<figcaption class="flex items-center gap-3">
+<img alt="" class="w-10 h-10 rounded-full object-cover" src="https://i.pravatar.cc/80?img=12"/>
+<div>
+<p class="text-sm text-[#111111]">Элена Марш</p>
+<p class="text-xs text-[#5a5a5a] font-mono">
                 CFO, Northwind Labs
               </p>
-            </div>
-          </figcaption>
-        </figure>
-        <figure class="reveal bg-[#f3efe6] p-8 flex flex-col justify-between">
-          <p class="font-serif text-xl leading-snug mb-8 text-[#111111]">
-            "Global payments that used to take a team now run themselves with
-            full compliance baked in."
+</div>
+</figcaption>
+</figure>
+<figure class="reveal bg-[#f3efe6] p-8 flex flex-col justify-between">
+<p class="font-serif text-xl leading-snug mb-8 text-[#111111]">
+            "Глобальные платежи, которыми раньше занималась целая команда, теперь выполняются сами — с полностью встроенным комплаенсом."
           </p>
-          <figcaption class="flex items-center gap-3">
-            <img
-              src="https://i.pravatar.cc/80?img=33"
-              class="w-10 h-10 rounded-full object-cover"
-              alt=""
-            />
-            <div>
-              <p class="text-sm text-[#111111]">David Okoye</p>
-              <p class="text-xs text-[#5a5a5a] font-mono">
-                VP Finance, Atlas Pay
+<figcaption class="flex items-center gap-3">
+<img alt="" class="w-10 h-10 rounded-full object-cover" src="https://i.pravatar.cc/80?img=33"/>
+<div>
+<p class="text-sm text-[#111111]">Дэвид Окойе</p>
+<p class="text-xs text-[#5a5a5a] font-mono">
+                Вице-президент по финансам, Atlas Pay
               </p>
-            </div>
-          </figcaption>
-        </figure>
-        <figure class="reveal bg-[#f3efe6] p-8 flex flex-col justify-between">
-          <p class="font-serif text-xl leading-snug mb-8 text-[#111111]">
-            "The clearest view of our capital we've ever had. It feels like
-            operating with the lights on."
+</div>
+</figcaption>
+</figure>
+<figure class="reveal bg-[#f3efe6] p-8 flex flex-col justify-between">
+<p class="font-serif text-xl leading-snug mb-8 text-[#111111]">
+            "Самое ясное представление о нашем капитале за всё время. Это как работать при включённом свете."
           </p>
-          <figcaption class="flex items-center gap-3">
-            <img
-              src="https://i.pravatar.cc/80?img=47"
-              class="w-10 h-10 rounded-full object-cover"
-              alt=""
-            />
-            <div>
-              <p class="text-sm text-[#111111]">Mira Castellanos</p>
-              <p class="text-xs text-[#5a5a5a] font-mono">
-                Founder, Vela Health
+<figcaption class="flex items-center gap-3">
+<img alt="" class="w-10 h-10 rounded-full object-cover" src="https://i.pravatar.cc/80?img=47"/>
+<div>
+<p class="text-sm text-[#111111]">Мира Кастельянос</p>
+<p class="text-xs text-[#5a5a5a] font-mono">
+                Основатель, Vela Health
               </p>
-            </div>
-          </figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section
-      id="pricing"
-      class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36"
-    >
-      <div class="reveal flex items-center gap-3 mb-6">
-        <span
-          class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-        >
+</div>
+</figcaption>
+</figure>
+</div>
+</section>
+ ЦЕНЫ 
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36" id="pricing">
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
           / 04
         </span>
-        <span
-          class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono"
-        >
-          Pricing
+<span class="text-xs tracking-[0.25em] text-brand-muted uppercase font-mono">
+          Цены
         </span>
-      </div>
-      <h2
-        class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl"
-      >
-        Plans that
-        <span class="italic text-brand-gold">scale with your capital</span>
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-16 max-w-3xl">
+        Тарифы, которые
+        <span class="italic text-brand-gold">растут вместе с вашим капиталом</span>
         .
       </h2>
-      <div class="reveal grid md:grid-cols-3 gap-4">
-        <div class="rounded p-px bg-gradient-to-b from-white/10 to-transparent">
-          <div class="rounded-[3px] bg-brand-dark/40 p-8 flex flex-col h-full">
-            <span
-              class="text-[10px] tracking-[0.1em] uppercase font-sans text-brand-muted mb-6"
-            >
+<div class="reveal grid md:grid-cols-3 gap-4">
+<div class="rounded p-px bg-gradient-to-b from-white/10 to-transparent">
+<div class="rounded-[3px] bg-brand-dark/40 p-8 flex flex-col h-full">
+<span class="text-[10px] tracking-[0.1em] uppercase font-sans text-brand-muted mb-6">
               Starter
             </span>
-            <div class="flex items-baseline gap-1 mb-2">
-              <span
-                class="font-sans font-light text-5xl tracking-tight text-brand-cream"
-              >
+<div class="flex items-baseline gap-1 mb-2">
+<span class="font-sans font-light text-5xl tracking-tight text-brand-cream">
                 $0
               </span>
-              <span class="text-sm text-brand-muted">/mo</span>
-            </div>
-            <p class="text-[13px] leading-relaxed text-brand-muted mb-8">
-              For founders validating their financial stack.
+<span class="text-sm text-brand-muted">/мес</span>
+</div>
+<p class="text-[13px] leading-relaxed text-brand-muted mb-8">
+              Для основателей, которые тестируют свой финансовый стек.
             </p>
-            <ul class="flex flex-col gap-3 text-[13px] text-brand-muted mb-10">
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                3 connected accounts
+<ul class="flex flex-col gap-3 text-[13px] text-brand-muted mb-10">
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                3 подключённых счёта
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Real-time dashboard
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Дашборд в реальном времени
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Community support
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Поддержка сообщества
               </li>
-            </ul>
-            <a
-              href="#contact"
-              class="mt-auto group flex items-center justify-between rounded border border-white/10 px-5 py-3 hover:border-brand-gold/50 transition-all duration-300"
-            >
-              <span class="text-[13px] font-medium">Start Free</span>
-              <iconify-icon
-                icon="solar:arrow-right-up-linear"
-                class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              ></iconify-icon>
-            </a>
-          </div>
-        </div>
-        <div
-          class="rounded p-px bg-gradient-to-b from-brand-gold/40 via-brand-gold/10 to-transparent"
-          style="box-shadow:0 0 20px 0 rgba(197,166,124,0.3)"
-        >
-          <div
-            class="rounded-[3px] bg-brand-dark/60 p-8 flex flex-col h-full relative"
-          >
-            <span
-              class="absolute -top-3 left-8 rounded bg-brand-gold text-brand-bg text-[10px] tracking-[0.1em] uppercase font-sans px-3 py-1"
-            >
-              Most Popular
+</ul>
+<a class="mt-auto group flex items-center justify-between rounded border border-white/10 px-5 py-3 hover:border-brand-gold/50 transition-all duration-300" href="#contact">
+<span class="text-[13px] font-medium">Начать бесплатно</span>
+<iconify-icon class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<div class="rounded p-px bg-gradient-to-b from-brand-gold/40 via-brand-gold/10 to-transparent" style="box-shadow:0 0 20px 0 rgba(197,166,124,0.3)">
+<div class="rounded-[3px] bg-brand-dark/60 p-8 flex flex-col h-full relative">
+<span class="absolute -top-3 left-8 rounded bg-brand-gold text-brand-bg text-[10px] tracking-[0.1em] uppercase font-sans px-3 py-1">
+              Самый популярный
             </span>
-            <span
-              class="text-[10px] tracking-[0.1em] uppercase font-sans text-brand-gold mb-6"
-            >
+<span class="text-[10px] tracking-[0.1em] uppercase font-sans text-brand-gold mb-6">
               Growth
             </span>
-            <div class="flex items-baseline gap-1 mb-2">
-              <span
-                class="font-sans font-light text-5xl tracking-tight text-brand-cream"
-              >
+<div class="flex items-baseline gap-1 mb-2">
+<span class="font-sans font-light text-5xl tracking-tight text-brand-cream">
                 $249
               </span>
-              <span class="text-sm text-brand-muted">/mo</span>
-            </div>
-            <p class="text-[13px] leading-relaxed text-brand-muted mb-8">
-              For scaling teams that need forecasting and control.
+<span class="text-sm text-brand-muted">/мес</span>
+</div>
+<p class="text-[13px] leading-relaxed text-brand-muted mb-8">
+              Для растущих команд, которым нужны прогнозирование и контроль.
             </p>
-            <ul class="flex flex-col gap-3 text-[13px] text-brand-muted mb-10">
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Unlimited accounts
+<ul class="flex flex-col gap-3 text-[13px] text-brand-muted mb-10">
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Безлимитные счета
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                AI cash forecasting
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                AI-прогноз денежных потоков
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Approval workflows
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Процессы согласования
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Priority support
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Приоритетная поддержка
               </li>
-            </ul>
-            <a
-              href="#contact"
-              class="mt-auto group flex items-center justify-between rounded bg-brand-cream text-brand-bg px-5 py-3 hover:bg-white transition-all duration-300"
-            >
-              <span class="text-[13px] font-medium">Start Trial</span>
-              <iconify-icon
-                icon="solar:arrow-right-up-linear"
-                class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              ></iconify-icon>
-            </a>
-          </div>
-        </div>
-        <div class="rounded p-px bg-gradient-to-b from-white/10 to-transparent">
-          <div class="rounded-[3px] bg-brand-dark/40 p-8 flex flex-col h-full">
-            <span
-              class="text-[10px] tracking-[0.1em] uppercase font-sans text-brand-muted mb-6"
-            >
+</ul>
+<a class="mt-auto group flex items-center justify-between rounded bg-brand-cream text-brand-bg px-5 py-3 hover:bg-white transition-all duration-300" href="#contact">
+<span class="text-[13px] font-medium">Начать пробный период</span>
+<iconify-icon class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<div class="rounded p-px bg-gradient-to-b from-white/10 to-transparent">
+<div class="rounded-[3px] bg-brand-dark/40 p-8 flex flex-col h-full">
+<span class="text-[10px] tracking-[0.1em] uppercase font-sans text-brand-muted mb-6">
               Enterprise
             </span>
-            <div class="flex items-baseline gap-1 mb-2">
-              <span
-                class="font-sans font-light text-5xl tracking-tight text-brand-cream"
-              >
-                Custom
+<div class="flex items-baseline gap-1 mb-2">
+<span class="font-sans font-light text-5xl tracking-tight text-brand-cream">
+                Индивидуально
               </span>
-            </div>
-            <p class="text-[13px] leading-relaxed text-brand-muted mb-8">
-              For institutions with bespoke compliance needs.
+</div>
+<p class="text-[13px] leading-relaxed text-brand-muted mb-8">
+              Для организаций с индивидуальными требованиями к комплаенсу.
             </p>
-            <ul class="flex flex-col gap-3 text-[13px] text-brand-muted mb-10">
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Dedicated infrastructure
+<ul class="flex flex-col gap-3 text-[13px] text-brand-muted mb-10">
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Выделенная инфраструктура
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                Custom integrations
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                Индивидуальные интеграции
               </li>
-              <li class="flex items-center gap-3">
-                <iconify-icon
-                  icon="solar:check-circle-linear"
-                  class="text-brand-gold"
-                ></iconify-icon>
-                SLA &amp; dedicated lead
+<li class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:check-circle-linear"></iconify-icon>
+                SLA и персональный менеджер
               </li>
-            </ul>
-            <a
-              href="#contact"
-              class="mt-auto group flex items-center justify-between rounded border border-white/10 px-5 py-3 hover:border-brand-gold/50 transition-all duration-300"
-            >
-              <span class="text-[13px] font-medium">Contact Sales</span>
-              <iconify-icon
-                icon="solar:arrow-right-up-linear"
-                class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-              ></iconify-icon>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section
-      id="contact"
-      class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36"
-      style="background-color: rgb(234, 228, 216); color: #111111;"
-    >
-      <div class="grid md:grid-cols-2 gap-16 items-center">
-        <div>
-          <div class="reveal flex items-center gap-3 mb-6">
-            <span
-              class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono"
-            >
+</ul>
+<a class="mt-auto group flex items-center justify-between rounded border border-white/10 px-5 py-3 hover:border-brand-gold/50 transition-all duration-300" href="#contact">
+<span class="text-[13px] font-medium">Связаться с отделом продаж</span>
+<iconify-icon class="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</div>
+</div>
+</section>
+ КОНТАКТЫ 
+<section class="relative z-10 max-w-7xl mx-auto px-6 md:px-10 py-28 md:py-36" id="contact" style="background-color: rgb(234, 228, 216); color: #111111;">
+<div class="grid md:grid-cols-2 gap-16 items-center">
+<div>
+<div class="reveal flex items-center gap-3 mb-6">
+<span class="text-xs tracking-[0.3em] text-brand-gold uppercase font-mono">
               / 05
             </span>
-            <span
-              class="text-xs tracking-[0.25em] text-[#7a6f5c] uppercase font-mono"
-            >
-              Contact
+<span class="text-xs tracking-[0.25em] text-[#7a6f5c] uppercase font-mono">
+              Контакты
             </span>
-          </div>
-          <h2
-            class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-8 text-[#111111]"
-          >
-            Let's bring
-            <span class="italic text-brand-gold">clarity</span>
-            to your capital.
+</div>
+<h2 class="reveal font-serif tracking-tight text-[clamp(2rem,4.5vw,4rem)] leading-[1] mb-8 text-[#111111]">
+            Внесём
+            <span class="italic text-brand-gold">ясность</span>
+            в ваш капитал.
           </h2>
-          <p
-            class="reveal text-sm text-[#5a5a5a] leading-relaxed max-w-md mb-8"
-          >
-            Tell us about your stack and a finance specialist will reach out
-            within one business day. No pressure, no jargon.
+<p class="reveal text-sm text-[#5a5a5a] leading-relaxed max-w-md mb-8">
+            Расскажите о вашем стеке — финансовый специалист свяжется с вами в течение одного рабочего дня. Без давления и жаргона.
           </p>
-          <div class="reveal flex flex-col gap-3 text-sm text-[#5a5a5a]">
-            <div class="flex items-center gap-3">
-              <iconify-icon
-                icon="solar:letter-linear"
-                class="text-brand-gold"
-              ></iconify-icon>
+<div class="reveal flex flex-col gap-3 text-sm text-[#5a5a5a]">
+<div class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:letter-linear"></iconify-icon>
               hello@sequra.io
             </div>
-            <div class="flex items-center gap-3">
-              <iconify-icon
-                icon="solar:map-point-linear"
-                class="text-brand-gold"
-              ></iconify-icon>
-              New York · London · Singapore
+<div class="flex items-center gap-3">
+<iconify-icon class="text-brand-gold" icon="solar:map-point-linear"></iconify-icon>
+              Нью-Йорк · Лондон · Сингапур
             </div>
-          </div>
-        </div>
-        <form class="reveal flex flex-col gap-5" onsubmit="return false">
-          <input
-            type="text"
-            placeholder="Full name"
-            class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors"
-          />
-          <input
-            type="email"
-            placeholder="Work email"
-            class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors"
-          />
-          <input
-            type="text"
-            placeholder="Company"
-            class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors"
-          />
-          <textarea
-            rows="4"
-            placeholder="What are you trying to solve?"
-            class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors resize-none"
-          ></textarea>
-          <button
-            class="group magnetic flex items-center justify-center gap-4 bg-brand-cream text-brand-bg px-6 py-4 hover:bg-white transition-colors"
-          >
-            <span class="text-xs tracking-[0.15em] font-medium uppercase">
-              Request a Demo
+</div>
+</div>
+<form class="reveal flex flex-col gap-5" onsubmit="return false">
+<input class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors" placeholder="Полное имя" type="text"/>
+<input class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors" placeholder="Рабочий email" type="email"/>
+<input class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors" placeholder="Компания" type="text"/>
+<textarea class="bg-transparent border border-black/15 px-5 py-4 text-sm text-[#111111] placeholder:text-[#7a7a7a] focus:border-brand-gold/60 focus:outline-none transition-colors resize-none" placeholder="Какую задачу вы хотите решить?" rows="4"></textarea>
+<button class="group magnetic flex items-center justify-center gap-4 bg-brand-cream text-brand-bg px-6 py-4 hover:bg-white transition-colors">
+<span class="text-xs tracking-[0.15em] font-medium uppercase">
+              Запросить демо
             </span>
-            <iconify-icon
-              icon="solar:arrow-right-up-linear"
-              class="text-lg transition-transform group-hover:translate-x-1 group-hover:-translate-y-1"
-            ></iconify-icon>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="relative z-10 border-t border-white/5">
-      <div
-        class="max-w-7xl mx-auto px-6 md:px-10 py-16 grid md:grid-cols-4 gap-12"
-      >
-        <div class="md:col-span-1">
-          <div class="flex items-center gap-2 mb-5">
-            <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
-              <path
-                d="M16 2 L20 12 L30 16 L20 20 L16 30 L12 20 L2 16 L12 12 Z"
-                fill="#c5a67c"
-              ></path>
-            </svg>
-            <span class="text-sm tracking-[0.35em] font-medium uppercase">
+<iconify-icon class="text-lg transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" icon="solar:arrow-right-up-linear"></iconify-icon>
+</button>
+</form>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="relative z-10 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-6 md:px-10 py-16 grid md:grid-cols-4 gap-12">
+<div class="md:col-span-1">
+<div class="flex items-center gap-2 mb-5">
+<svg fill="none" height="22" viewbox="0 0 32 32" width="22">
+<path d="M16 2 L20 12 L30 16 L20 20 L16 30 L12 20 L2 16 L12 12 Z" fill="#c5a67c"></path>
+</svg>
+<span class="text-sm tracking-[0.35em] font-medium uppercase">
               SEQURA
             </span>
-          </div>
-          <p class="text-sm text-brand-muted leading-relaxed max-w-xs">
-            Financial intelligence infrastructure for modern teams. Est. MMXX.
+</div>
+<p class="text-sm text-brand-muted leading-relaxed max-w-xs">
+            Инфраструктура финансового интеллекта для современных команд. Осн. MMXX.
           </p>
-        </div>
-        <div>
-          <h4
-            class="text-[0.65rem] tracking-[0.2em] uppercase font-mono text-brand-muted mb-5"
-          >
-            Product
+</div>
+<div>
+<h4 class="text-[0.65rem] tracking-[0.2em] uppercase font-mono text-brand-muted mb-5">
+            Продукт
           </h4>
-          <ul class="flex flex-col gap-3 text-sm text-brand-muted">
-            <li>
-              <a
-                href="#features"
-                class="hover:text-brand-cream transition-colors"
-              >
-                Platform
+<ul class="flex flex-col gap-3 text-sm text-brand-muted">
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#features">
+                Платформа
               </a>
-            </li>
-            <li>
-              <a
-                href="#pricing"
-                class="hover:text-brand-cream transition-colors"
-              >
-                Pricing
+</li>
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#pricing">
+                Цены
               </a>
-            </li>
-            <li>
-              <a
-                href="#journey"
-                class="hover:text-brand-cream transition-colors"
-              >
-                How it works
+</li>
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#journey">
+                Как это работает
               </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4
-            class="text-[0.65rem] tracking-[0.2em] uppercase font-mono text-brand-muted mb-5"
-          >
-            Company
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-[0.65rem] tracking-[0.2em] uppercase font-mono text-brand-muted mb-5">
+            Компания
           </h4>
-          <ul class="flex flex-col gap-3 text-sm text-brand-muted">
-            <li>
-              <a href="#proof" class="hover:text-brand-cream transition-colors">
-                Customers
+<ul class="flex flex-col gap-3 text-sm text-brand-muted">
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#proof">
+                Клиенты
               </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                class="hover:text-brand-cream transition-colors"
-              >
-                Contact
+</li>
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#contact">
+                Контакты
               </a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-brand-cream transition-colors">
-                Careers
+</li>
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#">
+                Карьера
               </a>
-            </li>
-          </ul>
-        </div>
-        <div>
-          <h4
-            class="text-[0.65rem] tracking-[0.2em] uppercase font-mono text-brand-muted mb-5"
-          >
-            Legal
+</li>
+</ul>
+</div>
+<div>
+<h4 class="text-[0.65rem] tracking-[0.2em] uppercase font-mono text-brand-muted mb-5">
+            Правовая информация
           </h4>
-          <ul class="flex flex-col gap-3 text-sm text-brand-muted">
-            <li>
-              <a href="#" class="hover:text-brand-cream transition-colors">
-                Privacy
+<ul class="flex flex-col gap-3 text-sm text-brand-muted">
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#">
+                Конфиденциальность
               </a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-brand-cream transition-colors">
-                Terms
+</li>
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#">
+                Условия
               </a>
-            </li>
-            <li>
-              <a href="#" class="hover:text-brand-cream transition-colors">
-                Security
+</li>
+<li>
+<a class="hover:text-brand-cream transition-colors" href="#">
+                Безопасность
               </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div
-        class="max-w-7xl mx-auto px-6 md:px-10 py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4"
-      >
-        <span
-          class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono"
-        >
+</li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 md:px-10 py-6 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<span class="text-[0.65rem] tracking-[0.2em] text-brand-muted uppercase font-mono">
           © 2024 Sequra Inc.
         </span>
-        <div class="flex items-center gap-5 text-brand-muted">
-          <a href="#" class="hover:text-brand-cream transition-colors">
-            <iconify-icon
-              icon="solar:link-circle-linear"
-              class="text-lg"
-            ></iconify-icon>
-          </a>
-          <a href="#" class="hover:text-brand-cream transition-colors">
-            <iconify-icon
-              icon="solar:letter-linear"
-              class="text-lg"
-            ></iconify-icon>
-          </a>
-          <a href="#" class="hover:text-brand-cream transition-colors">
-            <iconify-icon
-              icon="solar:chat-round-line-linear"
-              class="text-lg"
-            ></iconify-icon>
-          </a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
+<div class="flex items-center gap-5 text-brand-muted">
+<a class="hover:text-brand-cream transition-colors" href="#">
+<iconify-icon class="text-lg" icon="solar:link-circle-linear"></iconify-icon>
+</a>
+<a class="hover:text-brand-cream transition-colors" href="#">
+<iconify-icon class="text-lg" icon="solar:letter-linear"></iconify-icon>
+</a>
+<a class="hover:text-brand-cream transition-colors" href="#">
+<iconify-icon class="text-lg" icon="solar:chat-round-line-linear"></iconify-icon>
+</a>
+</div>
+</div>
+</footer>
+<script>
       // Ambient particles
       const canvas = document.getElementById('ambient-canvas');
       const ctx = canvas.getContext('2d');
@@ -1339,8 +888,7 @@ gtag('config', 'G-2M6V79H761');
       window.addEventListener('resize',initCanvas);
       initCanvas();animateCanvas();
     </script>
-
-    <script>
+<script>
       document.addEventListener('DOMContentLoaded', function () {
         gsap.registerPlugin(ScrollTrigger);
         gsap.ticker.lagSmoothing(0);
@@ -1463,7 +1011,7 @@ gtag('config', 'G-2M6V79H761');
         ScrollTrigger.refresh();
       });
     </script>
-    <script>
+<script>
       // ===== Journey section scroll fix + progress =====
       document.addEventListener('DOMContentLoaded', function () {
         if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
@@ -1528,8 +1076,7 @@ gtag('config', 'G-2M6V79H761');
         ScrollTrigger.refresh();
       });
     </script>
-
-    <script>
+<script>
       // ===== Sticky cinematic story sequence =====
       document.addEventListener('DOMContentLoaded', function () {
         if (typeof gsap === 'undefined') return;
@@ -1572,8 +1119,7 @@ gtag('config', 'G-2M6V79H761');
         });
       });
     </script>
-
-    <script>
+<script>
       // ===== Word-by-word heading reveals =====
       document.addEventListener('DOMContentLoaded', function () {
         function splitWords(el) {
@@ -1608,8 +1154,7 @@ gtag('config', 'G-2M6V79H761');
         headings.forEach(function (h) { io.observe(h); });
       });
     </script>
-
-    <script data-aura-video-controller="true">
+<script data-aura-video-controller="true">
       (function () {
         function playVideo(video) {
           var promise = video.play();
@@ -1678,7 +1223,7 @@ gtag('config', 'G-2M6V79H761');
         }
       })();
     </script>
-    <script>
+<script>
       (function () {
         function initHeroLetterAnimation() {
           if (typeof gsap === 'undefined') return;
@@ -1756,5 +1301,5 @@ gtag('config', 'G-2M6V79H761');
         }
       })();
     </script>
-  </body>
+</body>
 </html>

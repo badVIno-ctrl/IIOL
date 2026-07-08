@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"><head><script id="aura-preview-performance-controller">
+<html class="scroll-smooth" lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,9 +89,9 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Offgrid Studio. | Brutalist Creative Agency</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Offgrid Studio. | Бруталистское креативное агентство</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -118,7 +118,7 @@ background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='ht
 /* Masking wrappers for text reveal */
 .mask-wrap { overflow: hidden; display: inline-block; vertical-align: top; }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -126,575 +126,580 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="antialiased selection:bg-white selection:text-black">
-    <div class="noise-bg"></div>
-
-    <!-- Navigation -->
-
-    <!-- Hero Section -->
-
-    <nav class="fixed top-0 left-0 w-full z-50 p-4 md:p-8 flex justify-between items-start text-xs uppercase tracking-widest font-medium blend-diff text-white pointer-events-none">
-      <div class="pointer-events-auto hover:italic cursor-pointer max-w-[9rem] leading-tight">
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="antialiased selection:bg-white selection:text-black">
+<div class="noise-bg"></div>
+ Навигация 
+ Hero-секция 
+<nav class="fixed top-0 left-0 w-full z-50 p-4 md:p-8 flex justify-between items-start text-xs uppercase tracking-widest font-medium blend-diff text-white pointer-events-none">
+<div class="pointer-events-auto hover:italic cursor-pointer max-w-[9rem] leading-tight">
         Offgrid Studio.
       </div>
-
-      <div class="hidden md:flex flex-col text-center pointer-events-auto">
-        <span class="">Headquarters</span>
-        <span class="opacity-50">[40.7128° N, 74.0060° W]</span>
-      </div>
-
-      <div class="flex flex-col md:flex-row items-end md:items-center gap-2 md:gap-8 pointer-events-auto text-right">
-        <a href="#about" class="hover:underline underline-offset-4">ABOUT</a>
-        <a href="#vectors-section" class="hover:underline underline-offset-4">
-          SERVICES
+<div class="hidden md:flex flex-col text-center pointer-events-auto">
+<span class="">Штаб-квартира</span>
+<span class="opacity-50">[40.7128° N, 74.0060° W]</span>
+</div>
+<div class="flex flex-col md:flex-row items-end md:items-center gap-2 md:gap-8 pointer-events-auto text-right">
+<a class="hover:underline underline-offset-4" href="#about">О НАС</a>
+<a class="hover:underline underline-offset-4" href="#vectors-section">
+          УСЛУГИ
         </a>
-        <a href="#works" class="hover:underline underline-offset-4">WORKS</a>
-        <a href="#contact" class="hover:underline underline-offset-4">
-          CONTACT
+<a class="hover:underline underline-offset-4" href="#works">РАБОТЫ</a>
+<a class="hover:underline underline-offset-4" href="#contact">
+          КОНТАКТЫ
         </a>
-      </div>
-    </nav>
-    <section class="relative min-h-[900px] md:min-h-[980px] bg-[#d4d4d4] flex flex-col justify-center overflow-hidden text-black pt-20">
-      <!-- Massive Background Text -->
-      <div class="absolute inset-0 flex flex-col justify-center items-center z-10 pointer-events-none w-full px-4 md:px-12 mix-blend-difference text-white">
-        <h1 class="text-[20vw] md:text-[18vw] leading-[0.75] uppercase font-semibold tracking-tighter w-full text-left hero-text" data-speed="0.8">
-          VISUAL
+</div>
+</nav>
+<section class="relative min-h-[900px] md:min-h-[980px] bg-[#d4d4d4] flex flex-col justify-center overflow-hidden text-black pt-20">
+<!-- Massive Background Text -->
+<div class="absolute inset-0 flex flex-col justify-center items-center z-10 pointer-events-none w-full px-4 md:px-12 mix-blend-difference text-white">
+<h1 class="text-[20vw] md:text-[18vw] leading-[0.75] uppercase font-semibold tracking-tighter w-full text-left hero-text" data-speed="0.8">
+          ВИЗУАЛЬНАЯ
         </h1>
-        <h1 class="text-[20vw] md:text-[18vw] leading-[0.75] uppercase font-semibold tracking-tighter w-full text-right hero-text pl-[10vw]" data-speed="1.2">
-          CULTURE
+<h1 class="text-[20vw] md:text-[18vw] leading-[0.75] uppercase font-semibold tracking-tighter w-full text-right hero-text pl-[10vw]" data-speed="1.2">
+          КУЛЬТУРА
         </h1>
-      </div>
-
-      <!-- Center Collage Block -->
-      <div class="relative z-0 mx-auto w-[90%] md:w-[45%] aspect-[4/5] md:aspect-square bg-black p-2 md:p-6 hero-image-block rotate-[-2deg]">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c0b4a738-6fcf-456b-a7e3-a7393e9125c9_1600w.webp" alt="Abstract Structure" class="w-full h-full object-cover grayscale contrast-125 opacity-80 hero-img">
-
-        <!-- Overlay elements inside collage -->
-        <div class="absolute inset-0 p-8 grid grid-cols-2 grid-rows-3 text-xs uppercase tracking-widest text-white/60 pointer-events-none">
-          <div class="border-t border-white/20 pt-2 w-1/2">Brand Identity</div>
-          <div class="border-t border-white/20 pt-2 text-right justify-self-end w-1/2">
-            Digital Products
+</div>
+<!-- Center Collage Block -->
+<div class="relative z-0 mx-auto w-[90%] md:w-[45%] aspect-[4/5] md:aspect-square bg-black p-2 md:p-6 hero-image-block rotate-[-2deg]">
+<img alt="Абстрактная структура" class="w-full h-full object-cover grayscale contrast-125 opacity-80 hero-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c0b4a738-6fcf-456b-a7e3-a7393e9125c9_1600w.webp"/>
+<!-- Overlay elements inside collage -->
+<div class="absolute inset-0 p-8 grid grid-cols-2 grid-rows-3 text-xs uppercase tracking-widest text-white/60 pointer-events-none">
+<div class="border-t border-white/20 pt-2 w-1/2">Айдентика бренда</div>
+<div class="border-t border-white/20 pt-2 text-right justify-self-end w-1/2">
+            Цифровые продукты
           </div>
-          <div class="col-span-2 self-center text-center opacity-30 text-base border-y border-white/10 py-4">
-            Defining modern visual systems
+<div class="col-span-2 self-center text-center opacity-30 text-base border-y border-white/10 py-4">
+            Определяем современные визуальные системы
           </div>
-          <div class="self-end border-b border-white/20 pb-2 w-1/2">
-            Motion Design
+<div class="self-end border-b border-white/20 pb-2 w-1/2">
+            Моушен-дизайн
           </div>
-          <div class="self-end text-right justify-self-end border-b border-white/20 pb-2 w-1/2">
-            Creative Direction
+<div class="self-end text-right justify-self-end border-b border-white/20 pb-2 w-1/2">
+            Креативное руководство
           </div>
+</div>
+</div>
+<!-- Bottom bar -->
+<div class="absolute bottom-8 left-0 w-full px-6 md:px-12 flex justify-between text-xs uppercase tracking-widest font-medium z-20 mix-blend-difference text-white">
+<div class="w-1/3 border-t border-white pt-2">
+          Отвергая посредственность, мы создаём культовые айдентики и цифровые
+          опыты.
         </div>
-      </div>
-
-      <!-- Bottom bar -->
-      <div class="absolute bottom-8 left-0 w-full px-6 md:px-12 flex justify-between text-xs uppercase tracking-widest font-medium z-20 mix-blend-difference text-white">
-        <div class="w-1/3 border-t border-white pt-2">
-          Rejecting mediocrity to build iconic brand identities and digital
-          experiences.
+<div class="w-1/3 text-right border-t border-white pt-2">
+          Индекс 01 — Студия
         </div>
-        <div class="w-1/3 text-right border-t border-white pt-2">
-          Index 01 — The Studio
-        </div>
-      </div>
-    </section>
-
-    <!-- Stats & Manifesto Section -->
-    <section class="bg-[#050505] text-white min-h-[900px] relative py-32 px-6 md:px-12 border-t border-white/20" id="about">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
-        <!-- Left: Stats Column -->
-        <div class="lg:col-span-4 flex flex-col gap-16">
-          <div class="stat-block border-t border-white/30 pt-4">
-            <div class="text-xs uppercase tracking-widest opacity-50 mb-2">
-              Client Impact
+</div>
+</section>
+<!-- Stats & Manifesto Section -->
+<section class="bg-[#050505] text-white min-h-[900px] relative py-32 px-6 md:px-12 border-t border-white/20" id="about">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8">
+<!-- Left: Stats Column -->
+<div class="lg:col-span-4 flex flex-col gap-16">
+<div class="stat-block border-t border-white/30 pt-4">
+<div class="text-xs uppercase tracking-widest opacity-50 mb-2">
+              Влияние на клиентов
             </div>
-            <h2 class="text-7xl md:text-8xl font-semibold tracking-tighter">
-              <span class="counter" data-target="99">0</span>
-              <span class="text-4xl text-white/50">.9%</span>
-            </h2>
-            <p class="mt-4 text-base uppercase tracking-tight w-4/5 opacity-80">
-              Transformative market presence achieved for global partners.
+<h2 class="text-7xl md:text-8xl font-semibold tracking-tighter">
+<span class="counter" data-target="99">0</span>
+<span class="text-4xl text-white/50">.9%</span>
+</h2>
+<p class="mt-4 text-base uppercase tracking-tight w-4/5 opacity-80">
+              Трансформирующее присутствие на рынке для глобальных партнёров.
             </p>
-          </div>
-          <div class="stat-block border-t border-white/30 pt-4">
-            <div class="text-xs uppercase tracking-widest opacity-50 mb-2">
-              Projects Shipped
+</div>
+<div class="stat-block border-t border-white/30 pt-4">
+<div class="text-xs uppercase tracking-widest opacity-50 mb-2">
+              Запущенные проекты
             </div>
-            <h2 class="text-7xl md:text-8xl font-semibold tracking-tighter">
-              <span class="counter" data-target="250">0</span>
-              <span class="text-4xl text-white/50">+</span>
-            </h2>
-            <p class="mt-4 text-base uppercase tracking-tight w-4/5 opacity-80">
-              Digital products and visual systems launched worldwide.
+<h2 class="text-7xl md:text-8xl font-semibold tracking-tighter">
+<span class="counter" data-target="250">0</span>
+<span class="text-4xl text-white/50">+</span>
+</h2>
+<p class="mt-4 text-base uppercase tracking-tight w-4/5 opacity-80">
+              Цифровые продукты и визуальные системы, запущенные по всему миру.
             </p>
-          </div>
-          <div class="stat-block border-t border-white/30 pt-4">
-            <div class="text-xs uppercase tracking-widest opacity-50 mb-2">
-              Partnerships
+</div>
+<div class="stat-block border-t border-white/30 pt-4">
+<div class="text-xs uppercase tracking-widest opacity-50 mb-2">
+              Партнёрства
             </div>
-            <h2 class="text-7xl md:text-8xl font-semibold tracking-tighter">
-              <span class="counter" data-target="100">0</span>
-              <span class="text-4xl text-white/50">+</span>
-            </h2>
-            <p class="mt-4 text-base uppercase tracking-tight w-4/5 opacity-80">
-              Collaborations with brands that refuse to blend in.
+<h2 class="text-7xl md:text-8xl font-semibold tracking-tighter">
+<span class="counter" data-target="100">0</span>
+<span class="text-4xl text-white/50">+</span>
+</h2>
+<p class="mt-4 text-base uppercase tracking-tight w-4/5 opacity-80">
+              Коллаборации с брендами, которые отказываются сливаться с фоном.
             </p>
+</div>
+</div>
+<!-- Right: Manifesto -->
+<div class="lg:col-span-8 flex flex-col pt-12 lg:pt-0">
+<div class="text-xs uppercase tracking-widest opacity-50 mb-8 border-b border-white/20 pb-4">
+            (001 - Философия)
           </div>
-        </div>
-
-        <!-- Right: Manifesto -->
-        <div class="lg:col-span-8 flex flex-col pt-12 lg:pt-0">
-          <div class="text-xs uppercase tracking-widest opacity-50 mb-8 border-b border-white/20 pb-4">
-            (001 - The Philosophy)
-          </div>
-
-          <h3 class="text-5xl md:text-7xl lg:text-[6.5vw] font-semibold tracking-tighter leading-[0.85] uppercase manifesto-title mb-16 mix-blend-exclusion text-gray-300">
-            <span class="mask-wrap mr-[1vw]">
-              <span class="inline-block manifesto-word">
-                WE SHAPE FORM, FUNCTION, AND CULTURE INTO BRANDS THAT REFUSE TO
-                BLEND IN.
+<h3 class="text-5xl md:text-7xl lg:text-[6.5vw] font-semibold tracking-tighter leading-[0.85] uppercase manifesto-title mb-16 mix-blend-exclusion text-gray-300">
+<span class="mask-wrap mr-[1vw]">
+<span class="inline-block manifesto-word">
+                МЫ ПРЕВРАЩАЕМ ФОРМУ, ФУНКЦИЮ И КУЛЬТУРУ В БРЕНДЫ, КОТОРЫЕ ОТКАЗЫВАЮТСЯ
+                СЛИВАТЬСЯ С ФОНОМ.
               </span>
-            </span>
-          </h3>
-
-          <div class="flex flex-col md:flex-row gap-8 items-start relative">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/724142aa-44a6-48d3-9cf3-761e00d05b78_1600w.jpg" class="w-full md:w-64 aspect-square object-cover grayscale contrast-150 filter-noise rotate-3" alt="Structure">
-
-            <div class="flex flex-col gap-8">
-              <p class="text-xl md:text-3xl font-medium tracking-tight uppercase leading-snug w-full md:w-4/5 manifesto-body">
-                We are digital brutalists, dismantling conventional design to
-                reveal raw, unadulterated brand truth. No fluff, only impact.
+</span>
+</h3>
+<div class="flex flex-col md:flex-row gap-8 items-start relative">
+<img alt="Структура" class="w-full md:w-64 aspect-square object-cover grayscale contrast-150 filter-noise rotate-3" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/724142aa-44a6-48d3-9cf3-761e00d05b78_1600w.jpg"/>
+<div class="flex flex-col gap-8">
+<p class="text-xl md:text-3xl font-medium tracking-tight uppercase leading-snug w-full md:w-4/5 manifesto-body">
+                Мы — цифровые бруталисты, демонтирующие конвенциональный дизайн, чтобы
+                обнажить сырую, неразбавленную правду бренда. Никакой воды, только эффект.
               </p>
-
-              <button class="w-32 h-32 rounded-full border border-white flex items-center justify-center text-xs uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-colors duration-500 group self-start md:absolute md:-bottom-16 md:right-12">
-                <span class="group-hover:scale-90 transition-transform">
-                  Explore
+<button class="w-32 h-32 rounded-full border border-white flex items-center justify-center text-xs uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-colors duration-500 group self-start md:absolute md:-bottom-16 md:right-12">
+<span class="group-hover:scale-90 transition-transform">
+                  Смотреть
                 </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Services / Vectors -->
-    <section class="bg-[#111] text-white min-h-[900px] py-32 relative overflow-hidden border-t border-white/10" id="vectors-section">
-      <!-- Distorted BG Text -->
-      <div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0 overflow-hidden">
-        <h1 class="text-[25vw] font-semibold tracking-tighter uppercase transform scale-y-[3] blur-sm bg-stripes bg-clip-text text-transparent bg-gradient-to-b from-white to-transparent distorted-bg">
-          SERVICES
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services / Vectors -->
+<section class="bg-[#111] text-white min-h-[900px] py-32 relative overflow-hidden border-t border-white/10" id="vectors-section">
+<!-- Distorted BG Text -->
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none opacity-[0.03] z-0 overflow-hidden">
+<h1 class="text-[25vw] font-semibold tracking-tighter uppercase transform scale-y-[3] blur-sm bg-stripes bg-clip-text text-transparent bg-gradient-to-b from-white to-transparent distorted-bg">
+          УСЛУГИ
         </h1>
-      </div>
-
-      <div class="px-6 md:px-12 relative z-10 flex flex-col h-full justify-between">
-        <div class="text-center mb-24 border-b border-white/20 pb-8">
-          <span class="text-xs uppercase tracking-widest opacity-50 block mb-4">
-            (002 - Core Capabilities)
+</div>
+<div class="px-6 md:px-12 relative z-10 flex flex-col h-full justify-between">
+<div class="text-center mb-24 border-b border-white/20 pb-8">
+<span class="text-xs uppercase tracking-widest opacity-50 block mb-4">
+            (002 - Ключевые компетенции)
           </span>
-          <h2 class="text-5xl md:text-7xl font-semibold tracking-tighter uppercase">
-            Creative Disciplines
+<h2 class="text-5xl md:text-7xl font-semibold tracking-tighter uppercase">
+            Креативные дисциплины
           </h2>
-        </div>
-
-        <div class="flex flex-col w-full list-container">
-          <!-- Item 1 -->
-          <div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item">
-            <span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest">
+</div>
+<div class="flex flex-col w-full list-container">
+<!-- Item 1 -->
+<div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item">
+<span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest">
               Srv.01
             </span>
-            <h3 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter uppercase md:w-7/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500">
-              Mobile App
+<h3 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter uppercase md:w-7/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500">
+              Мобильное приложение
             </h3>
-            <div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-3/12 opacity-70 group-hover:opacity-100 transition-opacity">
-              Architecting seamless and native mobile experiences.
+<div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-3/12 opacity-70 group-hover:opacity-100 transition-opacity">
+              Проектируем бесшовные нативные мобильные опыты.
             </div>
-            <i data-lucide="arrow-up-right" class="hidden md:block w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-2 group-hover:-translate-y-2"></i>
-          </div>
-
-          <!-- Item 2 -->
-          <div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item">
-            <span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest">
+<i class="hidden md:block w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-2 group-hover:-translate-y-2" data-lucide="arrow-up-right"></i>
+</div>
+<!-- Item 2 -->
+<div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item">
+<span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest">
               Srv.02
             </span>
-            <h3 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter uppercase md:w-7/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500">
+<h3 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter uppercase md:w-7/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500">
               UI/UX
-              <br>
-              Design
+              <br/>
+              Дизайн
             </h3>
-            <div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-3/12 opacity-70 group-hover:opacity-100 transition-opacity">
-              Crafting interfaces that demand user engagement.
+<div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-3/12 opacity-70 group-hover:opacity-100 transition-opacity">
+              Создаём интерфейсы, которые требуют вовлечённости пользователя.
             </div>
-            <i data-lucide="arrow-up-right" class="hidden md:block w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-2 group-hover:-translate-y-2"></i>
-          </div>
-
-          <!-- Item 3 -->
-          <div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item relative overflow-hidden">
-            <span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest z-10 relative">
+<i class="hidden md:block w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-2 group-hover:-translate-y-2" data-lucide="arrow-up-right"></i>
+</div>
+<!-- Item 3 -->
+<div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item relative overflow-hidden">
+<span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest z-10 relative">
               Srv.03
             </span>
-            <h3 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter uppercase md:w-7/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500 z-10 relative text-white mix-blend-difference">
-              Graphic
-              <br>
-              Design
+<h3 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tighter uppercase md:w-7/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500 z-10 relative text-white mix-blend-difference">
+              Графика
+              <br/>
+              Дизайн
             </h3>
-            <div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-3/12 opacity-70 group-hover:opacity-100 transition-opacity z-10 relative">
-              Visual communication that cuts through the noise.
+<div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-3/12 opacity-70 group-hover:opacity-100 transition-opacity z-10 relative">
+              Визуальная коммуникация, пробивающаяся сквозь шум.
             </div>
-
-            <!-- Bleeding image on hover for item 3 -->
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d98c7990-66a7-4e51-b746-3e37a1d353ba_1600w.webp" class="absolute inset-0 w-full h-full object-cover grayscale opacity-40 transition-opacity duration-700 pointer-events-none mix-blend-multiply" alt="Bg">
-          </div>
-          <div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between gap-0 md:gap-10 cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item">
-            <span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest shrink-0">
+<!-- Bleeding image on hover for item 3 -->
+<img alt="Фон" class="absolute inset-0 w-full h-full object-cover grayscale opacity-40 transition-opacity duration-700 pointer-events-none mix-blend-multiply" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d98c7990-66a7-4e51-b746-3e37a1d353ba_1600w.webp"/>
+</div>
+<div class="group border-b border-white/20 py-8 flex flex-col md:flex-row md:items-end justify-between gap-0 md:gap-10 cursor-pointer hover:bg-white hover:text-black transition-colors duration-500 px-4 -mx-4 service-item">
+<span class="text-xs opacity-50 mb-2 md:mb-0 md:w-1/12 uppercase tracking-widest shrink-0">
               Srv.04
             </span>
-
-            <h3 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tighter uppercase md:w-6/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500">
-              Web
-              <br>
-              Development
+<h3 class="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold tracking-tighter uppercase md:w-6/12 leading-none transform group-hover:translate-x-4 transition-transform duration-500">
+              Веб
+              <br/>
+              Разработка
             </h3>
-
-            <div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-4/12 opacity-70 group-hover:opacity-100 transition-opacity relative z-10">
-              Building robust, scalable digital environments.
+<div class="mt-4 md:mt-0 text-base md:text-lg tracking-tight uppercase md:w-4/12 opacity-70 group-hover:opacity-100 transition-opacity relative z-10">
+              Строим надёжные, масштабируемые цифровые среды.
             </div>
-
-            <i data-lucide="arrow-up-right" class="hidden md:block w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-2 group-hover:-translate-y-2 shrink-0"></i>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Works / Archives Section -->
-    <section class="bg-[#000] text-white py-20 relative overflow-hidden" id="works">
-      <div class="relative px-6 md:px-12 flex justify-between items-end border-b border-white/20 pb-8 mb-24 pt-10 uppercase tracking-tighter">
-        <span class="absolute top-0 left-6 md:left-12 text-xs tracking-widest opacity-50 block font-sans font-normal">
-          (003 - Selected Works)
+<i class="hidden md:block w-12 h-12 opacity-0 group-hover:opacity-100 transition-all duration-500 transform group-hover:translate-x-2 group-hover:-translate-y-2 shrink-0" data-lucide="arrow-up-right"></i>
+</div>
+</div>
+</div>
+</section>
+<!-- Works / Archives Section -->
+<section class="bg-[#000] text-white py-20 relative overflow-hidden" id="works">
+<div class="relative px-6 md:px-12 flex justify-between items-end border-b border-white/20 pb-8 mb-24 pt-10 uppercase tracking-tighter">
+<span class="absolute top-0 left-6 md:left-12 text-xs tracking-widest opacity-50 block font-sans font-normal">
+          (003 - Избранные работы)
         </span>
-        <h2 class="text-4xl md:text-6xl font-semibold">The Vision</h2>
-        <h2 class="text-4xl md:text-6xl font-semibold">The Result</h2>
-      </div>
-
-      <div class="relative w-full md:min-h-[1800px] px-6 md:px-12 archive-container">
-        <!-- Project 1 -->
-        <div class="relative md:absolute md:top-0 md:left-[5%] w-full md:w-[45%] group project-card mix-blend-lighten">
-          <div class="flex justify-between items-center mb-4 border-t border-white/30 pt-2 proj-header">
-            <span class="text-xs uppercase tracking-widest opacity-50">
-              Case 01
+<h2 class="text-4xl md:text-6xl font-semibold">Видение</h2>
+<h2 class="text-4xl md:text-6xl font-semibold">Результат</h2>
+</div>
+<div class="relative w-full md:min-h-[1800px] px-6 md:px-12 archive-container">
+ Проект 1 
+<div class="relative md:absolute md:top-0 md:left-[5%] w-full md:w-[45%] group project-card mix-blend-lighten">
+<div class="flex justify-between items-center mb-4 border-t border-white/30 pt-2 proj-header">
+<span class="text-xs uppercase tracking-widest opacity-50">
+              Кейс 01
             </span>
-            <span class="text-xs uppercase tracking-widest">E-Commerce</span>
-          </div>
-          <div class="relative aspect-[3/4] bg-[#1a1a1a] group">
-            <div class="absolute inset-0 overflow-hidden proj-img-mask" style="clip-path: inset(0%);">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a12886cd-d151-46ec-9b72-7bf5ae288307_1600w.webp" class="w-full h-full object-cover grayscale opacity-80 transform scale-110 group-hover:scale-100 transition-transform duration-1000 proj-img" alt="Project 1">
-            </div>
-            <h3 class="absolute top-1/2 -translate-y-1/2 left-4 md:-left-6 lg:-left-10 text-5xl md:text-7xl font-semibold tracking-tighter uppercase mix-blend-difference leading-none z-10 whitespace-nowrap group-hover:italic transition-all proj-title">
+<span class="text-xs uppercase tracking-widest">E-Commerce</span>
+</div>
+<div class="relative aspect-[3/4] bg-[#1a1a1a] group">
+<div class="absolute inset-0 overflow-hidden proj-img-mask" style="clip-path: inset(0%);">
+<img alt="Проект 1" class="w-full h-full object-cover grayscale opacity-80 transform scale-110 group-hover:scale-100 transition-transform duration-1000 proj-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a12886cd-d151-46ec-9b72-7bf5ae288307_1600w.webp"/>
+</div>
+<h3 class="absolute top-1/2 -translate-y-1/2 left-4 md:-left-6 lg:-left-10 text-5xl md:text-7xl font-semibold tracking-tighter uppercase mix-blend-difference leading-none z-10 whitespace-nowrap group-hover:italic transition-all proj-title">
               ATELIER
-              <br>
+              <br/>
               EDITION
             </h3>
-          </div>
-          <p class="mt-6 text-base tracking-tight uppercase opacity-80 w-3/4 ml-auto text-right proj-caption">
-            Redefining premium retail through aggressive visual storytelling.
+</div>
+<p class="mt-6 text-base tracking-tight uppercase opacity-80 w-3/4 ml-auto text-right proj-caption">
+            Переосмысляем премиальный ритейл через агрессивный визуальный сторителлинг.
           </p>
-        </div>
-
-        <!-- Project 2 -->
-        <div class="relative md:absolute md:top-[24%] md:right-[5%] w-full md:w-[38%] group project-card mix-blend-lighten mt-24 md:mt-0">
-          <div class="flex justify-between items-center mb-4 border-t border-white/30 pt-2 proj-header">
-            <span class="text-xs uppercase tracking-widest opacity-50">
-              Case 02
+</div>
+ Проект 2 
+<div class="relative md:absolute md:top-[24%] md:right-[5%] w-full md:w-[38%] group project-card mix-blend-lighten mt-24 md:mt-0">
+<div class="flex justify-between items-center mb-4 border-t border-white/30 pt-2 proj-header">
+<span class="text-xs uppercase tracking-widest opacity-50">
+              Кейс 02
             </span>
-            <span class="text-xs uppercase tracking-widest">Tech Platform</span>
-          </div>
-          <div class="relative aspect-square bg-[#1a1a1a] group">
-            <div class="absolute inset-0 overflow-hidden proj-img-mask" style="clip-path: inset(0%);">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6553c87d-98bb-4178-8a36-0e807a5ea183_1600w.jpg" class="w-full h-full object-cover grayscale contrast-150 transform scale-110 group-hover:scale-100 transition-transform duration-1000 proj-img" alt="Project 2">
-            </div>
-            <h3 class="absolute bottom-8 right-4 md:-right-4 lg:-right-8 text-5xl md:text-6xl font-semibold tracking-tighter uppercase mix-blend-difference leading-none text-right z-10 whitespace-nowrap group-hover:tracking-widest transition-all proj-title">
+<span class="text-xs uppercase tracking-widest">Технологическая платформа</span>
+</div>
+<div class="relative aspect-square bg-[#1a1a1a] group">
+<div class="absolute inset-0 overflow-hidden proj-img-mask" style="clip-path: inset(0%);">
+<img alt="Проект 2" class="w-full h-full object-cover grayscale contrast-150 transform scale-110 group-hover:scale-100 transition-transform duration-1000 proj-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6553c87d-98bb-4178-8a36-0e807a5ea183_1600w.jpg"/>
+</div>
+<h3 class="absolute bottom-8 right-4 md:-right-4 lg:-right-8 text-5xl md:text-6xl font-semibold tracking-tighter uppercase mix-blend-difference leading-none text-right z-10 whitespace-nowrap group-hover:tracking-widest transition-all proj-title">
               SIGNAL
-              <br>
+              <br/>
               GRID
             </h3>
-          </div>
-          <p class="mt-6 text-base tracking-tight uppercase opacity-80 w-3/4 proj-caption">
-            Transforming complex datasets into intuitive digital interfaces.
+</div>
+<p class="mt-6 text-base tracking-tight uppercase opacity-80 w-3/4 proj-caption">
+            Превращаем сложные массивы данных в интуитивные цифровые интерфейсы.
           </p>
-        </div>
-
-        <!-- Project 3 -->
-        <div class="relative md:absolute md:top-[68%] md:left-[20%] w-full md:w-[55%] group project-card mix-blend-lighten mt-24 md:mt-0">
-          <div class="flex justify-between items-center mb-4 border-t border-white/30 pt-2 proj-header">
-            <span class="text-xs uppercase tracking-widest opacity-50">
-              Case 03
+</div>
+ Проект 3 
+<div class="relative md:absolute md:top-[68%] md:left-[20%] w-full md:w-[55%] group project-card mix-blend-lighten mt-24 md:mt-0">
+<div class="flex justify-between items-center mb-4 border-t border-white/30 pt-2 proj-header">
+<span class="text-xs uppercase tracking-widest opacity-50">
+              Кейс 03
             </span>
-            <span class="text-xs uppercase tracking-widest">Automotive</span>
-          </div>
-          <div class="relative aspect-[16/9] bg-[#1a1a1a]">
-            <div class="absolute inset-0 overflow-hidden proj-img-mask" style="clip-path: inset(0%);">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a0d85cad-8b55-4110-bfcd-6e2ecb2542eb_1600w.jpg" class="w-full h-full object-cover grayscale opacity-70 transform scale-110 group-hover:scale-100 transition-transform duration-1000 proj-img" alt="Project 3">
-            </div>
-            <h3 class="absolute top-4 md:-top-4 left-4 md:left-[18%] lg:left-[22%] text-5xl md:text-8xl lg:text-9xl font-semibold tracking-tighter uppercase mix-blend-difference leading-none z-10 whitespace-nowrap group-hover:-translate-y-4 transition-transform proj-title">
+<span class="text-xs uppercase tracking-widest">Автомобильная индустрия</span>
+</div>
+<div class="relative aspect-[16/9] bg-[#1a1a1a]">
+<div class="absolute inset-0 overflow-hidden proj-img-mask" style="clip-path: inset(0%);">
+<img alt="Проект 3" class="w-full h-full object-cover grayscale opacity-70 transform scale-110 group-hover:scale-100 transition-transform duration-1000 proj-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a0d85cad-8b55-4110-bfcd-6e2ecb2542eb_1600w.jpg"/>
+</div>
+<h3 class="absolute top-4 md:-top-4 left-4 md:left-[18%] lg:left-[22%] text-5xl md:text-8xl lg:text-9xl font-semibold tracking-tighter uppercase mix-blend-difference leading-none z-10 whitespace-nowrap group-hover:-translate-y-4 transition-transform proj-title">
               APEX MOTOR
             </h3>
-          </div>
-          <p class="mt-6 text-base tracking-tight uppercase opacity-80 w-1/2 ml-auto proj-caption">
-            Digital showrooms engineered for high-performance automotive brands.
+</div>
+<p class="mt-6 text-base tracking-tight uppercase opacity-80 w-1/2 ml-auto proj-caption">
+            Цифровые шоурумы, спроектированные для высокопроизводительных автомобильных брендов.
           </p>
-        </div>
-      </div>
-    </section>
-    <section class="bg-[#050505] text-white py-32 px-6 md:px-12 border-t border-white/20 relative" data-element-id="testimonials-section">
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
-        <div class="lg:col-span-5 relative">
-          <div class="sticky top-32 flex flex-col gap-8 testimonial-sticky">
-            <span class="text-xs uppercase tracking-widest opacity-50">
-              (004 - Client Voices)
+</div>
+</div>
+</section>
+<section class="bg-[#050505] text-white py-32 px-6 md:px-12 border-t border-white/20 relative" data-element-id="testimonials-section">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-16">
+<div class="lg:col-span-5 relative">
+<div class="sticky top-32 flex flex-col gap-8 testimonial-sticky">
+<span class="text-xs uppercase tracking-widest opacity-50">
+              (004 - Голоса клиентов)
             </span>
-            <h2 class="text-5xl md:text-7xl font-semibold tracking-tighter uppercase leading-[0.85]">
-              The
-              <br>
-              Verdict
+<h2 class="text-5xl md:text-7xl font-semibold tracking-tighter uppercase leading-[0.85]">
+              Сам
+              <br/>
+              Вердикт
             </h2>
-            <p class="text-base uppercase tracking-tight opacity-70 w-4/5">
-              Words from partners who dared to disrupt their industries with us.
+<p class="text-base uppercase tracking-tight opacity-70 w-4/5">
+              Слова партнёров, которые решились взорвать свои индустрии вместе с нами.
             </p>
-          </div>
-        </div>
-        <div class="lg:col-span-7 grid testimonial-list pt-16 relative">
-          <div class="col-start-1 row-start-1 w-full flex flex-col gap-6 testimonial-card origin-top">
-            <p class="text-2xl md:text-4xl font-medium tracking-tight uppercase leading-snug">
-              "They stripped away all the corporate nonsense and gave us a brand
-              identity that actually commands attention. Completely ruthless and
-              brilliant."
+</div>
+</div>
+<div class="lg:col-span-7 grid testimonial-list pt-16 relative">
+<div class="col-start-1 row-start-1 w-full flex flex-col gap-6 testimonial-card origin-top">
+<p class="text-2xl md:text-4xl font-medium tracking-tight uppercase leading-snug">
+              "Они убрали всю корпоративную чепуху и дали нам айдентику,
+              которая действительно приковывает внимание. Абсолютно безжалостно и
+              блестяще."
             </p>
-            <div class="flex items-center gap-4 border-t border-white/20 pt-4">
-              <div class="text-xs uppercase tracking-widest">
-                <strong>Elena Rostova</strong>
-                <br>
-                <span class="opacity-50">CEO, Atelier Edition</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-start-1 row-start-1 w-full flex flex-col gap-6 testimonial-card origin-top">
-            <p class="text-2xl md:text-4xl font-medium tracking-tight uppercase leading-snug">
-              "We asked for a website. They delivered a digital weapon.
-              Conversion rates have doubled since launch."
+<div class="flex items-center gap-4 border-t border-white/20 pt-4">
+<div class="text-xs uppercase tracking-widest">
+<strong>Елена Ростова</strong>
+<br/>
+<span class="opacity-50">CEO, Atelier Edition</span>
+</div>
+</div>
+</div>
+<div class="col-start-1 row-start-1 w-full flex flex-col gap-6 testimonial-card origin-top">
+<p class="text-2xl md:text-4xl font-medium tracking-tight uppercase leading-snug">
+              "Мы попросили сайт. Они выдали цифровое оружие.
+              Конверсия удвоилась с момента запуска."
             </p>
-            <div class="flex items-center gap-4 border-t border-white/20 pt-4">
-              <div class="text-xs uppercase tracking-widest">
-                <strong>Marcus Chen</strong>
-                <br>
-                <span class="opacity-50">Founder, Signal Grid</span>
-              </div>
-            </div>
-          </div>
-          <div class="col-start-1 row-start-1 w-full flex flex-col gap-6 testimonial-card origin-top">
-            <p class="text-2xl md:text-4xl font-medium tracking-tight uppercase leading-snug">
-              "Uncompromising vision. They don't just design; they architect
-              culture."
+<div class="flex items-center gap-4 border-t border-white/20 pt-4">
+<div class="text-xs uppercase tracking-widest">
+<strong>Маркус Чен</strong>
+<br/>
+<span class="opacity-50">Основатель, Signal Grid</span>
+</div>
+</div>
+</div>
+<div class="col-start-1 row-start-1 w-full flex flex-col gap-6 testimonial-card origin-top">
+<p class="text-2xl md:text-4xl font-medium tracking-tight uppercase leading-snug">
+              "Бескомпромиссное видение. Они не просто занимаются дизайном — они
+              проектируют культуру."
             </p>
-            <div class="flex items-center gap-4 border-t border-white/20 pt-4">
-              <div class="text-xs uppercase tracking-widest">
-                <strong>Sarah Vance</strong>
-                <br>
-                <span class="opacity-50">CMO, Apex Motor</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="bg-[#111] text-white py-32 px-6 md:px-12 border-t border-white/20" id="faq-section">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-        <div class="flex flex-col justify-between static lg:sticky lg:top-32 h-fit">
-          <span class="text-xs uppercase tracking-widest opacity-50 mb-8">
+<div class="flex items-center gap-4 border-t border-white/20 pt-4">
+<div class="text-xs uppercase tracking-widest">
+<strong>Сара Вэнс</strong>
+<br/>
+<span class="opacity-50">CMO, Apex Motor</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-[#111] text-white py-32 px-6 md:px-12 border-t border-white/20" id="faq-section">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
+<div class="flex flex-col justify-between static lg:sticky lg:top-32 h-fit">
+<span class="text-xs uppercase tracking-widest opacity-50 mb-8">
             (005 - FAQ)
           </span>
-          <h2 class="text-6xl md:text-8xl font-semibold tracking-tighter uppercase leading-[0.85] mb-12">
-            Common
-            <br>
-            Inquiries
+<h2 class="text-6xl md:text-8xl font-semibold tracking-tighter uppercase leading-[0.85] mb-12">
+            Частые
+            <br/>
+            вопросы
           </h2>
-          <div class="relative w-full max-w-sm aspect-square p-4 border border-white/10 hidden md:block">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2f563338-39fa-47ea-9761-658d4f3f84db_1600w.jpg" class="w-full h-full object-cover grayscale contrast-125 mix-blend-screen" alt="Portrait">
-            <div class="absolute inset-0 border border-white/30 transform rotate-3 pointer-events-none"></div>
-          </div>
-          <p class="mt-12 text-xs tracking-widest uppercase opacity-50">
-            Reach us at
-            <a href="mailto:hello@offgridstudio.com" class="underline">
+<div class="relative w-full max-w-sm aspect-square p-4 border border-white/10 hidden md:block">
+<img alt="Портрет" class="w-full h-full object-cover grayscale contrast-125 mix-blend-screen" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2f563338-39fa-47ea-9761-658d4f3f84db_1600w.jpg"/>
+<div class="absolute inset-0 border border-white/30 transform rotate-3 pointer-events-none"></div>
+</div>
+<p class="mt-12 text-xs tracking-widest uppercase opacity-50">
+            Пишите нам на
+            <a class="underline" href="mailto:hello@offgridstudio.com">
               hello@offgridstudio.com
             </a>
-          </p>
-        </div>
-
-        <div class="flex flex-col border-t border-white/30 faq-list">
-          <div class="border-b border-white/30">
-            <button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
-              <span class="w-5/6 group-hover:pl-4 transition-all duration-300">
-                What defines your creative process?
+</p>
+</div>
+<div class="flex flex-col border-t border-white/30 faq-list">
+<div class="border-b border-white/30">
+<button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
+<span class="w-5/6 group-hover:pl-4 transition-all duration-300">
+                Что определяет ваш креативный процесс?
               </span>
-              <div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
-                <i data-lucide="plus" class="w-4 h-4"></i>
+<div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</div>
+</button>
+<div class="faq-content overflow-hidden h-0 opacity-0">
+<div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
+                Мы системно демонтируем раздутые концепции. Мы убираем
+                лишнюю эстетику, чтобы дать сырой, основанный на стратегии
+                опыт, который напрямую соединяет ваш бренд с его аудиторией.
               </div>
-            </button>
-            <div class="faq-content overflow-hidden h-0 opacity-0">
-              <div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
-                We systematically dismantle bloated concepts. We strip away
-                unnecessary aesthetics to deliver a raw, strategy-driven
-                experience that connects your brand directly to its audience.
-              </div>
-            </div>
-          </div>
-
-          <div class="border-b border-white/30">
-            <button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
-              <span class="w-5/6 group-hover:pl-4 transition-all duration-300">
-                Do you work with international clients?
+</div>
+</div>
+<div class="border-b border-white/30">
+<button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
+<span class="w-5/6 group-hover:pl-4 transition-all duration-300">
+                Вы работаете с международными клиентами?
               </span>
-              <div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
-                <i data-lucide="plus" class="w-4 h-4"></i>
+<div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</div>
+</button>
+<div class="faq-content overflow-hidden h-0 opacity-0">
+<div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
+                Наш охват глобален. Физическое местоположение не имеет значения в цифровом
+                творчестве. Мы сотрудничаем с амбициозными брендами во всех часовых
+                поясах.
               </div>
-            </button>
-            <div class="faq-content overflow-hidden h-0 opacity-0">
-              <div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
-                Our reach is global. Physical location is irrelevant in digital
-                creation. We collaborate with ambitious brands across all time
-                zones.
-              </div>
-            </div>
-          </div>
-
-          <div class="border-b border-white/30">
-            <button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
-              <span class="w-5/6 group-hover:pl-4 transition-all duration-300">
-                Why should we partner with you?
+</div>
+</div>
+<div class="border-b border-white/30">
+<button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
+<span class="w-5/6 group-hover:pl-4 transition-all duration-300">
+                Почему стоит сотрудничать именно с вами?
               </span>
-              <div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
-                <i data-lucide="plus" class="w-4 h-4"></i>
+<div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</div>
+</button>
+<div class="faq-content overflow-hidden h-0 opacity-0">
+<div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
+                Потому что комфорт ведёт к застою. Мы внедряем смелый,
+                выверенный дизайн, который заставляет вашу аудиторию обратить внимание. Если
+                вы хотите сливаться с фоном — мы не ваше агентство.
               </div>
-            </button>
-            <div class="faq-content overflow-hidden h-0 opacity-0">
-              <div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
-                Because comfort leads to stagnation. We introduce bold,
-                calculated design that forces your audience to pay attention. If
-                you seek to blend in, we are not the agency for you.
-              </div>
-            </div>
-          </div>
-
-          <div class="border-b border-white/30">
-            <button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
-              <span class="w-5/6 group-hover:pl-4 transition-all duration-300">
-                Do you offer long-term retainers?
+</div>
+</div>
+<div class="border-b border-white/30">
+<button class="w-full py-8 text-left flex justify-between items-center text-xl md:text-3xl font-medium tracking-tight uppercase faq-btn group">
+<span class="w-5/6 group-hover:pl-4 transition-all duration-300">
+                Вы предлагаете долгосрочные ретейнеры?
               </span>
-              <div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
-                <i data-lucide="plus" class="w-4 h-4"></i>
+<div class="w-8 h-8 rounded-full border border-white/50 flex items-center justify-center icon-wrap transition-transform duration-300">
+<i class="w-4 h-4" data-lucide="plus"></i>
+</div>
+</button>
+<div class="faq-content overflow-hidden h-0 opacity-0">
+<div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
+                Да. Мы обеспечиваем непрерывное креативное руководство и постепенное
+                масштабирование цифровых продуктов, чтобы присутствие вашего бренда оставалось острым
+                и актуальным.
               </div>
-            </button>
-            <div class="faq-content overflow-hidden h-0 opacity-0">
-              <div class="pb-8 pt-2 text-base md:text-lg uppercase tracking-tight opacity-70 w-5/6">
-                Yes. We provide continuous creative direction and progressive
-                scaling of digital products to keep your brand's presence sharp
-                and relevant.
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="bg-[#111] text-white py-32 px-6 md:px-12 border-t border-white/20 relative overflow-hidden contact-container" id="contact">
-      <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.08] overflow-hidden contact-bg-parallax">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4780cd9-2a3d-4bdc-9e5f-85a097b3a8bf_1600w.webp" class="w-full h-[120%] object-cover grayscale blur-sm" alt="Contact BG">
-      </div>
-      <div class="relative z-10 flex flex-col items-center text-center">
-        <span class="text-xs uppercase tracking-widest opacity-50 mb-8 block">
-          (006 - Contact Us)
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-[#111] text-white py-32 px-6 md:px-12 border-t border-white/20 relative overflow-hidden contact-container" id="contact">
+<div class="absolute inset-0 z-0 pointer-events-none opacity-[0.08] overflow-hidden contact-bg-parallax">
+<img alt="Фон блока контактов" class="w-full h-[120%] object-cover grayscale blur-sm" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4780cd9-2a3d-4bdc-9e5f-85a097b3a8bf_1600w.webp"/>
+</div>
+<div class="relative z-10 flex flex-col items-center text-center">
+<span class="text-xs uppercase tracking-widest opacity-50 mb-8 block">
+          (006 - Свяжитесь с нами)
         </span>
-        <h2 class="text-6xl md:text-9xl font-semibold tracking-tighter uppercase leading-[0.8] mb-16 mix-blend-difference contact-title">
-          Ready to go
-          <br>
+<h2 class="text-6xl md:text-9xl font-semibold tracking-tighter uppercase leading-[0.8] mb-16 mix-blend-difference contact-title">
+          Готовы уйти
+          <br/>
           offgrid?
         </h2>
-        <div class="w-full max-w-2xl mx-auto flex flex-col gap-12 contact-form-wrap">
-          <div class="flex flex-col md:flex-row gap-8">
-            <div class="w-full relative group">
-              <input type="text" placeholder="YOUR NAME" class="w-full bg-transparent border-b border-white/30 pb-4 outline-none uppercase text-sm tracking-widest placeholder:text-white/30 focus:border-white transition-colors peer relative z-10">
-              <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 peer-focus:w-full z-20"></span>
-            </div>
-            <div class="w-full relative group">
-              <input type="email" placeholder="YOUR EMAIL" class="w-full bg-transparent border-b border-white/30 pb-4 outline-none uppercase text-sm tracking-widest placeholder:text-white/30 focus:border-white transition-colors peer relative z-10">
-              <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 peer-focus:w-full z-20"></span>
-            </div>
-          </div>
-          <div class="w-full relative group">
-            <textarea placeholder="PROJECT DETAILS" rows="4" class="w-full bg-transparent border-b border-white/30 pb-4 outline-none uppercase text-sm tracking-widest placeholder:text-white/30 focus:border-white transition-colors resize-none peer relative z-10"></textarea>
-            <span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 peer-focus:w-full z-20"></span>
-          </div>
-          <button class="w-full md:w-auto self-center mt-4 px-16 py-5 border border-white text-xs uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-colors duration-500 rounded-full group">
-            <span class="inline-block transition-transform duration-300 group-hover:scale-95">
-              Start a project
+<div class="w-full max-w-2xl mx-auto flex flex-col gap-12 contact-form-wrap">
+<div class="flex flex-col md:flex-row gap-8">
+<div class="w-full relative group">
+<input class="w-full bg-transparent border-b border-white/30 pb-4 outline-none uppercase text-sm tracking-widest placeholder:text-white/30 focus:border-white transition-colors peer relative z-10" placeholder="ВАШЕ ИМЯ" type="text"/>
+<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 peer-focus:w-full z-20"></span>
+</div>
+<div class="w-full relative group">
+<input class="w-full bg-transparent border-b border-white/30 pb-4 outline-none uppercase text-sm tracking-widest placeholder:text-white/30 focus:border-white transition-colors peer relative z-10" placeholder="ВАШ EMAIL" type="email"/>
+<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 peer-focus:w-full z-20"></span>
+</div>
+</div>
+<div class="w-full relative group">
+<textarea class="w-full bg-transparent border-b border-white/30 pb-4 outline-none uppercase text-sm tracking-widest placeholder:text-white/30 focus:border-white transition-colors resize-none peer relative z-10" placeholder="ДЕТАЛИ ПРОЕКТА" rows="4"></textarea>
+<span class="absolute bottom-0 left-0 w-0 h-[1px] bg-white transition-all duration-500 peer-focus:w-full z-20"></span>
+</div>
+<button class="w-full md:w-auto self-center mt-4 px-16 py-5 border border-white text-xs uppercase tracking-widest font-bold hover:bg-white hover:text-black transition-colors duration-500 rounded-full group">
+<span class="inline-block transition-transform duration-300 group-hover:scale-95">
+              Начать проект
             </span>
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <!-- Interrogation (FAQ) Section -->
-
-    <!-- Footer -->
-    <footer class="bg-[#050505] text-white pt-32 pb-8 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden relative border-t border-white/30">
-      <div class="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none mix-blend-overlay">
-        <div class="w-px h-full bg-white absolute"></div>
-        <div class="h-px w-full bg-white absolute"></div>
-        <div class="w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] border border-white rounded-full absolute border-dashed"></div>
-      </div>
-
-      <div class="text-center z-10 w-full max-w-6xl flex flex-col items-center">
-        <h1 class="text-[12vw] md:text-[10vw] font-semibold tracking-tighter leading-[0.75] uppercase footer-title mix-blend-exclusion">
-          Start
-          <br>
-          <span class="italic font-light opacity-80 block mt-2">A Project</span>
-        </h1>
-
-        <div class="mt-16 mb-24 grid grid-cols-2 md:grid-cols-4 gap-8 w-full border-t border-b border-white/20 py-8 text-xs uppercase tracking-widest text-left">
-          <div class="flex flex-col gap-2">
-            <span class="opacity-50 mb-4">Nav</span>
-            <a href="#about" class="hover:italic">ABOUT</a>
-            <a href="#vectors-section" class="hover:italic">SERVICES</a>
-            <a href="#works" class="hover:italic">WORKS</a>
-            <a href="#faq-section" class="hover:italic">FAQ</a>
-            <a href="#contact" class="hover:italic">CONTACT</a>
-          </div>
-          <div class="flex flex-col gap-2">
-            <span class="opacity-50 mb-4">Comm</span>
-            <a href="#" class="hover:italic">Instagram</a>
-            <a href="#" class="hover:italic">X / Twitter</a>
-            <a href="#" class="hover:italic">LinkedIn</a>
-          </div>
-          <div class="flex flex-col gap-2 col-span-2 md:col-span-2">
-            <span class="opacity-50 mb-4">Newsletter</span>
-            <div class="flex border-b border-white pb-2">
-              <input type="email" placeholder="ENTER EMAIL ADDRESS" class="bg-transparent outline-none w-full placeholder:text-white/30 placeholder:uppercase">
-              <button class="hover:opacity-50">Submit</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="w-full flex flex-col md:flex-row justify-between items-end z-10 text-xs uppercase tracking-widest font-medium opacity-60">
-        <div class="flex gap-4 mb-4 md:mb-0">
-          <a href="#">Privacy</a>
-          <a href="#">Terms</a>
-        </div>
-        <div class="text-[15vw] md:text-[10vw] font-semibold tracking-tighter leading-none select-none mix-blend-difference mt-8 md:mt-0">
+</button>
+</div>
+</div>
+</section>
+<!-- Interrogation (FAQ) Section -->
+<!-- Footer -->
+<footer class="bg-[#050505] text-white pt-32 pb-8 px-6 md:px-12 flex flex-col items-center justify-center overflow-hidden relative border-t border-white/30">
+<div class="absolute inset-0 z-0 flex items-center justify-center opacity-10 pointer-events-none mix-blend-overlay">
+<div class="w-px h-full bg-white absolute"></div>
+<div class="h-px w-full bg-white absolute"></div>
+<div class="w-[80vw] h-[80vw] md:w-[50vw] md:h-[50vw] border border-white rounded-full absolute border-dashed"></div>
+</div>
+<div class="text-center z-10 w-full max-w-6xl flex flex-col items-center">
+<h1 class="text-[12vw] md:text-[10vw] font-semibold tracking-tighter leading-[0.75] uppercase footer-title mix-blend-exclusion">
+          Начать
+          <br/>
+<span class="italic font-light opacity-80 block mt-2">Проект</span>
+</h1>
+<div class="mt-16 mb-24 grid grid-cols-2 md:grid-cols-4 gap-8 w-full border-t border-b border-white/20 py-8 text-xs uppercase tracking-widest text-left">
+<div class="flex flex-col gap-2">
+<span class="opacity-50 mb-4">Навигация</span>
+<a class="hover:italic" href="#about">О НАС</a>
+<a class="hover:italic" href="#vectors-section">УСЛУГИ</a>
+<a class="hover:italic" href="#works">РАБОТЫ</a>
+<a class="hover:italic" href="#faq-section">FAQ</a>
+<a class="hover:italic" href="#contact">КОНТАКТЫ</a>
+</div>
+<div class="flex flex-col gap-2">
+<span class="opacity-50 mb-4">Связь</span>
+<a class="hover:italic" href="#">Instagram</a>
+<a class="hover:italic" href="#">X / Twitter</a>
+<a class="hover:italic" href="#">LinkedIn</a>
+</div>
+<div class="flex flex-col gap-2 col-span-2 md:col-span-2">
+<span class="opacity-50 mb-4">Рассылка</span>
+<div class="flex border-b border-white pb-2">
+<input class="bg-transparent outline-none w-full placeholder:text-white/30 placeholder:uppercase" placeholder="ВВЕДИТЕ АДРЕС EMAIL" type="email"/>
+<button class="hover:opacity-50">Отправить</button>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full flex flex-col md:flex-row justify-between items-end z-10 text-xs uppercase tracking-widest font-medium opacity-60">
+<div class="flex gap-4 mb-4 md:mb-0">
+<a href="#">Конфиденциальность</a>
+<a href="#">Условия</a>
+</div>
+<div class="text-[15vw] md:text-[10vw] font-semibold tracking-tighter leading-none select-none mix-blend-difference mt-8 md:mt-0">
           ©OFFGRIDSTUDIO
         </div>
-      </div>
-    </footer>
-
-    <script>
+</div>
+</footer>
+<script>
       // Initialize Icons
       lucide.createIcons({
           strokeWidth: 1.5
@@ -937,8 +942,7 @@ gtag('config', 'G-2M6V79H761');
           ease: "expo.out"
       });
     </script>
-
-    <script>
+<script>
       setTimeout(() => {
         if (window.gsap && window.ScrollTrigger) {
           const testSection = document.querySelector('[data-element-id="testimonials-section"]');
@@ -1033,8 +1037,7 @@ gtag('config', 'G-2M6V79H761');
         }
       }, 500);
     </script>
-
-    <script>
+<script>
       setTimeout(() => {
         if (window.gsap && window.ScrollTrigger) {
           const faqSection = document.getElementById('faq-section');
@@ -1061,5 +1064,4 @@ gtag('config', 'G-2M6V79H761');
         }
       }, 600);
     </script>
-  
 </body></html>

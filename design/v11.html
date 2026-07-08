@@ -1,4 +1,4 @@
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -87,11 +87,11 @@ if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
 setPaused(event.data.paused);
 });
 })();
-</script><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Suzuki Bangladesh — This Is Who You Are</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@300;400;600;700;900&amp;family=Barlow:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;display=swap" rel="stylesheet">
+</script><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Suzuki Bangladesh — Это то, кто ты есть</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Barlow+Condensed:wght@300;400;600;700;900&amp;family=Barlow:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;display=swap" rel="stylesheet"/>
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
@@ -1237,7 +1237,7 @@ max-width:600px;margin-bottom:60px;
 .d-flex-between{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;}
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -1245,769 +1245,793 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-
 <!-- CURSOR -->
 <div class="cursor" id="cursor"></div>
-
 <!-- NAV -->
 <nav id="navbar">
-  <a href="#" class="nav-logo">
-    <div class="logo-s"></div>
-    <span class="logo-text">SUZUKI</span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#bikes">Bikes</a></li>
-    <li><a href="#service">Service</a></li>
-    <li><a href="#deals">Offers</a></li>
-    <li><a href="#motogp">MotoGP</a></li>
-    <li><a href="#">Dealer Locator</a></li>
-    <li><a href="#news">News</a></li>
-  </ul>
-  <a href="#final-cta" class="nav-cta">Explore Bikes</a>
+<a class="nav-logo" href="#">
+<div class="logo-s"></div>
+<span class="logo-text">SUZUKI</span>
+</a>
+<ul class="nav-links">
+<li><a href="#bikes">Мотоциклы</a></li>
+<li><a href="#service">Сервис</a></li>
+<li><a href="#deals">Предложения</a></li>
+<li><a href="#motogp">MotoGP</a></li>
+<li><a href="#">Поиск дилера</a></li>
+<li><a href="#news">Новости</a></li>
+</ul>
+<a class="nav-cta" href="#final-cta">Смотреть мотоциклы</a>
 </nav>
-
 <!-- HERO -->
 <section id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-content">
-    <div class="section-label hero-label">SUZUKI GIXXER 250 — MotoGP EDITION · 2026</div>
-    <h1 class="hero-h1">
-      <span class="line1">THIS ISN'T JUST A BIKE.</span>
-      <span class="line2">THIS IS WHO YOU ARE.</span>
-    </h1>
-    <p class="hero-sub">250cc · Fuel Injected · Oil Cooled · MotoGP-Inspired</p>
-    <div class="hero-ctas">
-      <a href="#bikes" class="btn-primary">Explore Gixxer 250 →</a>
-      <a href="#engine" class="btn-ghost">
-        <span class="play-icon"></span>
-        Watch the Film
+<div class="hero-bg"></div>
+<div class="hero-overlay"></div>
+<div class="hero-content">
+<div class="section-label hero-label">SUZUKI GIXXER 250 — MotoGP EDITION · 2026</div>
+<h1 class="hero-h1">
+<span class="line1">ЭТО НЕ ПРОСТО МОТОЦИКЛ.</span>
+<span class="line2">ЭТО ТО, КТО ТЫ ЕСТЬ.</span>
+</h1>
+<p class="hero-sub">250 куб. см · Впрыск топлива · Масляное охлаждение · Вдохновлён MotoGP</p>
+<div class="hero-ctas">
+<a class="btn-primary" href="#bikes">Смотреть Gixxer 250 →</a>
+<a class="btn-ghost" href="#engine">
+<span class="play-icon"></span>
+        Смотреть фильм
       </a>
-    </div>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat">
-      <div class="hero-stat-num">250<span>cc</span></div>
-      <div class="hero-stat-label">Engine Displacement</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">ABS</div>
-      <div class="hero-stat-label">Dual-Channel</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">104<span>yrs</span></div>
-      <div class="hero-stat-label">Japanese Engineering</div>
-    </div>
-    <div class="hero-stat">
-      <div class="hero-stat-num">FI</div>
-      <div class="hero-stat-label">Fuel Injection</div>
-    </div>
-  </div>
-  <div class="scroll-hint">
-    <div class="scroll-line"></div>
-    <span>Scroll</span>
-  </div>
-  <div class="hero-ticker">
-    <div class="ticker-track" id="tickerTrack">
-      <span class="ticker-item">250CC</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">FUEL INJECTION</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">DUAL-CHANNEL ABS</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">SUZUKI OIL COOLING SYSTEM</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">6-SPEED GEARBOX</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">MotoGP DNA</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">JOAN MIR — 2020 WORLD CHAMPION</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">RANCON AUTHORIZED · HOTLINE 16638</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">250CC</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">FUEL INJECTION</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">DUAL-CHANNEL ABS</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">SUZUKI OIL COOLING SYSTEM</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">6-SPEED GEARBOX</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">MotoGP DNA</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">JOAN MIR — 2020 WORLD CHAMPION</span><span class="ticker-dot">●</span>
-      <span class="ticker-item">RANCON AUTHORIZED · HOTLINE 16638</span><span class="ticker-dot">●</span>
-    </div>
-  </div>
+</div>
+</div>
+<div class="hero-stats">
+<div class="hero-stat">
+<div class="hero-stat-num">250<span>куб. см</span></div>
+<div class="hero-stat-label">Рабочий объём двигателя</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">ABS</div>
+<div class="hero-stat-label">Двухканальная</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">104<span>лет</span></div>
+<div class="hero-stat-label">Японской инженерии</div>
+</div>
+<div class="hero-stat">
+<div class="hero-stat-num">FI</div>
+<div class="hero-stat-label">Впрыск топлива</div>
+</div>
+</div>
+<div class="scroll-hint">
+<div class="scroll-line"></div>
+<span>Листайте</span>
+</div>
+<div class="hero-ticker">
+<div class="ticker-track" id="tickerTrack">
+<span class="ticker-item">250 КУБ. СМ</span><span class="ticker-dot">●</span>
+<span class="ticker-item">ВПРЫСК ТОПЛИВА</span><span class="ticker-dot">●</span>
+<span class="ticker-item">ДВУХКАНАЛЬНАЯ ABS</span><span class="ticker-dot">●</span>
+<span class="ticker-item">СИСТЕМА МАСЛЯНОГО ОХЛАЖДЕНИЯ SUZUKI</span><span class="ticker-dot">●</span>
+<span class="ticker-item">6-СТУПЕНЧАТАЯ КОРОБКА ПЕРЕДАЧ</span><span class="ticker-dot">●</span>
+<span class="ticker-item">ДНК MotoGP</span><span class="ticker-dot">●</span>
+<span class="ticker-item">JOAN MIR — ЧЕМПИОН МИРА 2020</span><span class="ticker-dot">●</span>
+<span class="ticker-item">АВТОРИЗОВАНО RANCON · ГОРЯЧАЯ ЛИНИЯ 16638</span><span class="ticker-dot">●</span>
+<span class="ticker-item">250 КУБ. СМ</span><span class="ticker-dot">●</span>
+<span class="ticker-item">ВПРЫСК ТОПЛИВА</span><span class="ticker-dot">●</span>
+<span class="ticker-item">ДВУХКАНАЛЬНАЯ ABS</span><span class="ticker-dot">●</span>
+<span class="ticker-item">СИСТЕМА МАСЛЯНОГО ОХЛАЖДЕНИЯ SUZUKI</span><span class="ticker-dot">●</span>
+<span class="ticker-item">6-СТУПЕНЧАТАЯ КОРОБКА ПЕРЕДАЧ</span><span class="ticker-dot">●</span>
+<span class="ticker-item">ДНК MotoGP</span><span class="ticker-dot">●</span>
+<span class="ticker-item">JOAN MIR — ЧЕМПИОН МИРА 2020</span><span class="ticker-dot">●</span>
+<span class="ticker-item">АВТОРИЗОВАНО RANCON · ГОРЯЧАЯ ЛИНИЯ 16638</span><span class="ticker-dot">●</span>
+</div>
+</div>
 </section>
-
 <!-- DIFFERENCE -->
 <section id="difference">
-  <div class="diff-grid">
-    <div class="diff-left reveal">
-      <div class="section-label">THE SUZUKI DIFFERENCE</div>
-      <h2 class="section-h2">Not Every Bike Has <span class="red">104 Years</span> Behind It.</h2>
-      <p class="section-sub">On 15th March 1920, Michio Suzuki founded a company in Hamamatsu, Japan. One hundred and four years later, that same obsession with precision powers every Suzuki on Bangladesh's roads.</p>
-      <div class="diff-rider"></div>
-    </div>
-    <div class="diff-right">
-      <div class="pillar-card reveal">
-        <div class="pillar-num">01 / 04</div>
-        <div class="pillar-title">MotoGP Racing DNA</div>
-        <div class="pillar-sub">Proven at 300km/h. Engineered for your roads.</div>
-        <p class="pillar-body">In 2020, Joan Mir and Team Suzuki Ecstar claimed the MotoGP World Championship. Every aerodynamic insight, every fuel mapping advancement, every millisecond of chassis refinement from that campaign lives inside the Gixxer 250 you ride today.</p>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">02 / 04</div>
-        <div class="pillar-title">Japanese Precision Engineering</div>
-        <div class="pillar-sub">Hamamatsu-born. Bangladesh-proven.</div>
-        <p class="pillar-body">Suzuki's engineers treat zero-defect as a minimum standard, not a goal. The Gixxer 250's SOCS oil cooling system, precision-mapped FI, and diamond-frame geometry are all products of this uncompromising philosophy.</p>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">03 / 04</div>
-        <div class="pillar-title">Technology That Sets the Standard</div>
-        <div class="pillar-sub">Dual-Channel ABS. FI. SOCS. Standard.</div>
-        <p class="pillar-body">While others treat these as premium upgrades, Suzuki includes dual-channel ABS, fuel injection, and the Suzuki Oil Cooling System as standard. Because serious riders shouldn't pay extra for what every bike should have.</p>
-      </div>
-      <div class="pillar-card reveal">
-        <div class="pillar-num">04 / 04</div>
-        <div class="pillar-title">Rancon Motor Bikes — Bangladesh's Partner</div>
-        <div class="pillar-sub">Local commitment. Global standards.</div>
-        <p class="pillar-body">Distributed exclusively by Rancon Motor Bikes Ltd., Suzuki Bangladesh's network of authorized dealers, FI-certified service centers, and genuine parts availability ensures your Suzuki ownership experience matches the machine itself.</p>
-      </div>
-    </div>
-  </div>
+<div class="diff-grid">
+<div class="diff-left reveal">
+<div class="section-label">ОТЛИЧИЕ SUZUKI</div>
+<h2 class="section-h2">Не за каждым мотоциклом стоят <span class="red">104 года</span> истории.</h2>
+<p class="section-sub">15 марта 1920 года Митио Судзуки основал компанию в Хамамацу, Япония. Сто четыре года спустя та же одержимость точностью движет каждым Suzuki на дорогах Бангладеш.</p>
+<div class="diff-rider"></div>
+</div>
+<div class="diff-right">
+<div class="pillar-card reveal">
+<div class="pillar-num">01 / 04</div>
+<div class="pillar-title">Гоночная ДНК MotoGP</div>
+<div class="pillar-sub">Проверено на 300 км/ч. Спроектировано для твоих дорог.</div>
+<p class="pillar-body">В 2020 году Хоан Мир и Team Suzuki Ecstar завоевали титул чемпионов мира MotoGP. Каждое аэродинамическое решение, каждое улучшение топливных карт, каждая миллисекунда доводки шасси той кампании живёт в Gixxer 250, на котором ты ездишь сегодня.</p>
+</div>
+<div class="pillar-card reveal">
+<div class="pillar-num">02 / 04</div>
+<div class="pillar-title">Японская точная инженерия</div>
+<div class="pillar-sub">Рождён в Хамамацу. Проверен в Бангладеш.</div>
+<p class="pillar-body">Инженеры Suzuki считают ноль дефектов минимальным стандартом, а не целью. Система масляного охлаждения SOCS у Gixxer 250, точно откалиброванный впрыск FI и геометрия рамы Diamond — всё это плоды бескомпромиссной философии.</p>
+</div>
+<div class="pillar-card reveal">
+<div class="pillar-num">03 / 04</div>
+<div class="pillar-title">Технологии, задающие стандарт</div>
+<div class="pillar-sub">Двухканальная ABS. FI. SOCS. В базовой комплектации.</div>
+<p class="pillar-body">Пока другие считают это премиальными опциями, Suzuki включает двухканальную ABS, впрыск топлива и систему масляного охлаждения Suzuki в базовую комплектацию. Потому что серьёзные райдеры не должны доплачивать за то, что должно быть у каждого мотоцикла.</p>
+</div>
+<div class="pillar-card reveal">
+<div class="pillar-num">04 / 04</div>
+<div class="pillar-title">Rancon Motor Bikes — партнёр Бангладеш</div>
+<div class="pillar-sub">Локальная преданность. Глобальные стандарты.</div>
+<p class="pillar-body">Эксклюзивная дистрибуция — Rancon Motor Bikes Ltd. Сеть авторизованных дилеров Suzuki Bangladesh, FI-сертифицированные сервисные центры и доступность оригинальных запчастей гарантируют, что опыт владения Suzuki будет на уровне самой машины.</p>
+</div>
+</div>
+</div>
 </section>
-
 <!-- BIKES -->
 <section id="bikes">
-  <div class="container">
-    <div class="d-flex-between">
-      <div class="reveal">
-        <div class="section-label">THE SUZUKI RANGE</div>
-        <h2 class="section-h2">Every Rider Has a Machine.<br><span class="red">Find Yours.</span></h2>
-      </div>
-      <a href="#" class="btn-ghost reveal" style="height:fit-content">View All Bikes →</a>
-    </div>
-    <div class="filter-tabs reveal">
-      <button class="tab active" onclick="filterTab(this,'all')">All Bikes</button>
-      <button class="tab" onclick="filterTab(this,'sports')">Sports</button>
-      <button class="tab" onclick="filterTab(this,'performance')">Performance Sports</button>
-      <button class="tab" onclick="filterTab(this,'commuter')">Commuter</button>
-      <button class="tab" onclick="filterTab(this,'scooter')">Scooter</button>
-    </div>
-
-    <!-- Hero Bike Card -->
-    <div class="hero-bike-card reveal">
-      <div class="hero-bike-img">
-        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=900&amp;q=80" alt="Rider on Gixxer 250">
-        <div class="badge">NEW LAUNCH · MotoGP EDITION</div>
-      </div>
-      <div class="hero-bike-info">
-        <div class="bike-model">GIXXER 250</div>
-        <p class="bike-tagline">The naked truth about performance.</p>
-        <div class="spec-pills">
-          <span class="spec-pill">250cc</span>
-          <span class="spec-pill">SOCS</span>
-          <span class="spec-pill">FI</span>
-          <span class="spec-pill">Dual ABS</span>
-          <span class="spec-pill">6-Speed</span>
-          <span class="spec-pill">LED</span>
-        </div>
-        <div class="bike-price-label">Starting from</div>
-        <div class="bike-price">BDT 379,950</div>
-        <div class="color-dots">
-          <div class="color-dot active" style="background:#1a1a1a;border-color:#555" title="Matt Black"></div>
-          <div class="color-dot" style="background:#1A3278" title="Matt Blue"></div>
-          <div class="color-dot" style="background:#E2231A" title="MotoGP Edition"></div>
-          <div class="color-dot" style="background:#C8FF00" title="Nitro Neon"></div>
-        </div>
-        <a href="#" class="btn-primary">Explore the Gixxer 250 →</a>
-      </div>
-    </div>
-
-    <!-- Bike Grid -->
-    <div class="bike-grid mt-80">
-      <div class="bike-card reveal">
-        <div class="bike-card-img">
-          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&amp;q=80" alt="Gixxer SF 250">
-          <img class="rider-img" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80" alt="Rider on Gixxer SF 250">
-        </div>
-        <div class="bike-card-body">
-          <div class="bike-card-name">GIXXER SF 250</div>
-          <div class="bike-card-price">From BDT 429,950 · 5 Colors</div>
-          <a href="#" class="bike-card-link">Explore Bike</a>
-        </div>
-      </div>
-      <div class="bike-card reveal">
-        <div class="bike-card-img">
-          <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&amp;q=80" alt="GSX-R150">
-          <img class="rider-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Rider on GSX-R150">
-        </div>
-        <div class="bike-card-body">
-          <div class="bike-card-name">GSX-R150</div>
-          <div class="bike-card-price">From BDT 524,950 · 2 Colors</div>
-          <a href="#" class="bike-card-link">Explore Bike</a>
-        </div>
-      </div>
-      <div class="bike-card reveal">
-        <div class="bike-card-img">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&amp;q=80" alt="Gixxer SF">
-          <img class="rider-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&amp;q=80" alt="Rider">
-        </div>
-        <div class="bike-card-body">
-          <div class="bike-card-name">GIXXER SF</div>
-          <div class="bike-card-price">From BDT 329,950 · 3 Colors</div>
-          <a href="#" class="bike-card-link">Explore Bike</a>
-        </div>
-      </div>
-      <div class="bike-card reveal">
-        <div class="bike-card-img">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Gixxer">
-          <img class="rider-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" alt="Rider">
-        </div>
-        <div class="bike-card-body">
-          <div class="bike-card-name">GIXXER</div>
-          <div class="bike-card-price">From BDT 229,950 · 3 Colors</div>
-          <a href="#" class="bike-card-link">Explore Bike</a>
-        </div>
-      </div>
-      <div class="bike-card reveal">
-        <div class="bike-card-img">
-          <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80" alt="GSX 125">
-          <img class="rider-img" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&amp;q=80" alt="Rider">
-        </div>
-        <div class="bike-card-body">
-          <div class="bike-card-name">GSX 125</div>
-          <div class="bike-card-price">From BDT 141,950 · 3 Colors</div>
-          <a href="#" class="bike-card-link">Explore Bike</a>
-        </div>
-      </div>
-      <div class="bike-card reveal">
-        <div class="bike-card-img">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Hayate EP">
-          <img class="rider-img" src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&amp;q=80" alt="Rider">
-        </div>
-        <div class="bike-card-body">
-          <div class="bike-card-name">HAYATE EP</div>
-          <div class="bike-card-price">From BDT 118,000 · 4 Colors</div>
-          <a href="#" class="bike-card-link">Explore Bike</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="d-flex-between">
+<div class="reveal">
+<div class="section-label">МОДЕЛЬНЫЙ РЯД SUZUKI</div>
+<h2 class="section-h2">У каждого райдера есть своя машина.<br/><span class="red">Найди свою.</span></h2>
+</div>
+<a class="btn-ghost reveal" href="#" style="height:fit-content">Смотреть все мотоциклы →</a>
+</div>
+<div class="filter-tabs reveal">
+<button class="tab active" onclick="filterTab(this,'all')">Все мотоциклы</button>
+<button class="tab" onclick="filterTab(this,'sports')">Спорт</button>
+<button class="tab" onclick="filterTab(this,'performance')">Спорт высоких характеристик</button>
+<button class="tab" onclick="filterTab(this,'commuter')">Городские</button>
+<button class="tab" onclick="filterTab(this,'scooter')">Скутеры</button>
+</div>
+<!-- Hero Bike Card -->
+<div class="hero-bike-card reveal">
+<div class="hero-bike-img">
+<img alt="Райдер на Gixxer 250" src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=900&amp;q=80"/>
+<div class="badge">НОВИНКА · MotoGP EDITION</div>
+</div>
+<div class="hero-bike-info">
+<div class="bike-model">GIXXER 250</div>
+<p class="bike-tagline">Голая правда о производительности.</p>
+<div class="spec-pills">
+<span class="spec-pill">250 куб. см</span>
+<span class="spec-pill">SOCS</span>
+<span class="spec-pill">FI</span>
+<span class="spec-pill">Двухканальная ABS</span>
+<span class="spec-pill">6 передач</span>
+<span class="spec-pill">LED</span>
+</div>
+<div class="bike-price-label">Цена от</div>
+<div class="bike-price">BDT 379,950</div>
+<div class="color-dots">
+<div class="color-dot active" style="background:#1a1a1a;border-color:#555" title="Matt Black"></div>
+<div class="color-dot" style="background:#1A3278" title="Matt Blue"></div>
+<div class="color-dot" style="background:#E2231A" title="MotoGP Edition"></div>
+<div class="color-dot" style="background:#C8FF00" title="Nitro Neon"></div>
+</div>
+<a class="btn-primary" href="#">Смотреть Gixxer 250 →</a>
+</div>
+</div>
+<!-- Bike Grid -->
+<div class="bike-grid mt-80">
+<div class="bike-card reveal">
+<div class="bike-card-img">
+<img alt="Gixxer SF 250" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&amp;q=80"/>
+<img alt="Райдер на Gixxer SF 250" class="rider-img" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80"/>
+</div>
+<div class="bike-card-body">
+<div class="bike-card-name">GIXXER SF 250</div>
+<div class="bike-card-price">От BDT 429,950 · 5 цветов</div>
+<a class="bike-card-link" href="#">Смотреть мотоцикл</a>
+</div>
+</div>
+<div class="bike-card reveal">
+<div class="bike-card-img">
+<img alt="GSX-R150" src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=600&amp;q=80"/>
+<img alt="Райдер на GSX-R150" class="rider-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg"/>
+</div>
+<div class="bike-card-body">
+<div class="bike-card-name">GSX-R150</div>
+<div class="bike-card-price">От BDT 524,950 · 2 цвета</div>
+<a class="bike-card-link" href="#">Смотреть мотоцикл</a>
+</div>
+</div>
+<div class="bike-card reveal">
+<div class="bike-card-img">
+<img alt="Gixxer SF" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&amp;q=80"/>
+<img alt="Райдер" class="rider-img" src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&amp;q=80"/>
+</div>
+<div class="bike-card-body">
+<div class="bike-card-name">GIXXER SF</div>
+<div class="bike-card-price">От BDT 329,950 · 3 цвета</div>
+<a class="bike-card-link" href="#">Смотреть мотоцикл</a>
+</div>
+</div>
+<div class="bike-card reveal">
+<div class="bike-card-img">
+<img alt="Gixxer" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg"/>
+<img alt="Райдер" class="rider-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg"/>
+</div>
+<div class="bike-card-body">
+<div class="bike-card-name">GIXXER</div>
+<div class="bike-card-price">От BDT 229,950 · 3 цвета</div>
+<a class="bike-card-link" href="#">Смотреть мотоцикл</a>
+</div>
+</div>
+<div class="bike-card reveal">
+<div class="bike-card-img">
+<img alt="GSX 125" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80"/>
+<img alt="Райдер" class="rider-img" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=600&amp;q=80"/>
+</div>
+<div class="bike-card-body">
+<div class="bike-card-name">GSX 125</div>
+<div class="bike-card-price">От BDT 141,950 · 3 цвета</div>
+<a class="bike-card-link" href="#">Смотреть мотоцикл</a>
+</div>
+</div>
+<div class="bike-card reveal">
+<div class="bike-card-img">
+<img alt="Hayate EP" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg"/>
+<img alt="Райдер" class="rider-img" src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&amp;q=80"/>
+</div>
+<div class="bike-card-body">
+<div class="bike-card-name">HAYATE EP</div>
+<div class="bike-card-price">От BDT 118,000 · 4 цвета</div>
+<a class="bike-card-link" href="#">Смотреть мотоцикл</a>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- TECHNOLOGY -->
 <section id="technology">
-  <div class="tech-bg"></div>
-  <div class="tech-scan"></div>
-  <div class="container">
-    <div class="reveal" style="text-align:center">
-      <div class="section-label" style="justify-content:center">SUZUKI TECHNOLOGY</div>
-      <h2 class="section-h2" style="font-size:clamp(48px,6vw,88px)">The Science Behind<br><span class="red">Every Second.</span></h2>
-      <p class="section-sub" style="margin:0 auto 0">Every system on a Suzuki exists for one reason — to make you a better, faster, safer rider.</p>
-    </div>
-    <div class="tech-cards">
-      <div class="tech-card active reveal" onclick="setTech(this)">
-        <span class="tech-num">01</span>
-        <div class="tech-acronym">FI</div>
-        <div class="tech-name">Fuel Injection</div>
-        <p class="tech-desc">Delivers the precise air-fuel mix at every RPM. Instant throttle response. Cold starts to open highway — always on demand.</p>
-      </div>
-      <div class="tech-card reveal" onclick="setTech(this)">
-        <span class="tech-num">02</span>
-        <div class="tech-acronym">SOCS</div>
-        <div class="tech-name">Suzuki Oil Cooling System</div>
-        <p class="tech-desc">Superior thermal management under sustained high performance. Lighter than liquid cooling. More effective than air cooling.</p>
-      </div>
-      <div class="tech-card reveal" onclick="setTech(this)">
-        <span class="tech-num">03</span>
-        <div class="tech-acronym">ABS</div>
-        <div class="tech-name">Dual-Channel ABS</div>
-        <p class="tech-desc">Independent front and rear wheel braking management. Prevents lock-up. Keeps you in control when it matters most.</p>
-      </div>
-      <div class="tech-card reveal" onclick="setTech(this)">
-        <span class="tech-num">04</span>
-        <div class="tech-acronym">6-SPD</div>
-        <div class="tech-name">6-Speed Gearbox</div>
-        <p class="tech-desc">The right ratio for every situation — city traffic, open highway, or pushing hard through a corner. Smooth. Precise. Zero slop.</p>
-      </div>
-      <div class="tech-card reveal" onclick="setTech(this)">
-        <span class="tech-num">05</span>
-        <div class="tech-acronym">LED</div>
-        <div class="tech-name">Full LED + Digital Cluster</div>
-        <p class="tech-desc">Complete LED headlamp and tail lamp system. Fully digital instrument cluster. See everything. Be seen by everyone.</p>
-      </div>
-    </div>
-  </div>
+<div class="tech-bg"></div>
+<div class="tech-scan"></div>
+<div class="container">
+<div class="reveal" style="text-align:center">
+<div class="section-label" style="justify-content:center">ТЕХНОЛОГИИ SUZUKI</div>
+<h2 class="section-h2" style="font-size:clamp(48px,6vw,88px)">Наука, стоящая за<br/><span class="red">каждой секундой.</span></h2>
+<p class="section-sub" style="margin:0 auto 0">Каждая система в Suzuki существует ради одного — сделать тебя лучше, быстрее и безопаснее за рулём.</p>
+</div>
+<div class="tech-cards">
+<div class="tech-card active reveal" onclick="setTech(this)">
+<span class="tech-num">01</span>
+<div class="tech-acronym">FI</div>
+<div class="tech-name">Впрыск топлива</div>
+<p class="tech-desc">Обеспечивает точную топливо-воздушную смесь на любых оборотах. Мгновенный отклик на газ. От холодного запуска до свободного шоссе — всегда по требованию.</p>
+</div>
+<div class="tech-card reveal" onclick="setTech(this)">
+<span class="tech-num">02</span>
+<div class="tech-acronym">SOCS</div>
+<div class="tech-name">Система масляного охлаждения Suzuki</div>
+<p class="tech-desc">Превосходное управление теплом при длительной высокой нагрузке. Легче жидкостного охлаждения. Эффективнее воздушного.</p>
+</div>
+<div class="tech-card reveal" onclick="setTech(this)">
+<span class="tech-num">03</span>
+<div class="tech-acronym">ABS</div>
+<div class="tech-name">Двухканальная ABS</div>
+<p class="tech-desc">Независимое управление торможением переднего и заднего колёс. Предотвращает блокировку. Сохраняет контроль, когда это важнее всего.</p>
+</div>
+<div class="tech-card reveal" onclick="setTech(this)">
+<span class="tech-num">04</span>
+<div class="tech-acronym">6-СТ.</div>
+<div class="tech-name">6-ступенчатая коробка передач</div>
+<p class="tech-desc">Правильное передаточное число для любой ситуации — городской трафик, свободное шоссе или атака поворота. Плавно. Точно. Без люфтов.</p>
+</div>
+<div class="tech-card reveal" onclick="setTech(this)">
+<span class="tech-num">05</span>
+<div class="tech-acronym">LED</div>
+<div class="tech-name">Полностью LED + цифровая панель</div>
+<p class="tech-desc">Полностью светодиодная система фары и заднего фонаря. Полностью цифровая приборная панель. Видь всё. Будь заметен всем.</p>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ENGINE -->
 <section id="engine">
-  <div class="container">
-    <div class="engine-grid">
-      <div class="engine-visual reveal">
-        <div class="engine-img-wrap">
-          <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&amp;q=80" alt="Suzuki Engine">
-          <div class="engine-ring"></div>
-        </div>
-        <div class="engine-stats-grid">
-          <div class="e-stat"><div class="e-stat-val">250</div><div class="e-stat-key">CC</div></div>
-          <div class="e-stat"><div class="e-stat-val">FI</div><div class="e-stat-key">Injected</div></div>
-          <div class="e-stat"><div class="e-stat-val">SOCS</div><div class="e-stat-key">Oil Cooled</div></div>
-          <div class="e-stat"><div class="e-stat-val">6</div><div class="e-stat-key">Speed</div></div>
-        </div>
-      </div>
-      <div class="engine-right reveal">
-        <div class="section-label">THE HEART OF A SUZUKI</div>
-        <h2 class="section-h2">250cc.<br><span class="red">Zero</span> Compromise.</h2>
-        <p class="engine-desc">The Gixxer 250's SOCS engine performs at the same level on lap one of your morning commute as it does on kilometre 200 of a weekend run. This engine doesn't just produce power. It produces confidence.</p>
-        <div class="engine-features">
-          <div class="engine-feature">
-            <div class="ef-icon">FI</div>
-            <div><div class="ef-title">Fuel Injection System</div><div class="ef-val">Optimal power delivery and fuel efficiency at every RPM</div></div>
-          </div>
-          <div class="engine-feature">
-            <div class="ef-icon">SOCS</div>
-            <div><div class="ef-title">Oil Cooling System</div><div class="ef-val">Consistent performance even under high stress conditions</div></div>
-          </div>
-          <div class="engine-feature">
-            <div class="ef-icon">ABS</div>
-            <div><div class="ef-title">Dual-Channel ABS</div><div class="ef-val">Safety and stability under all road conditions</div></div>
-          </div>
-          <div class="engine-feature">
-            <div class="ef-icon">LED</div>
-            <div><div class="ef-title">Full LED System</div><div class="ef-val">LED headlamps, tail lamps &amp; digital instrument cluster</div></div>
-          </div>
-        </div>
-        <a href="#" class="btn-primary" style="margin-top:40px">Full Specifications →</a>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="engine-grid">
+<div class="engine-visual reveal">
+<div class="engine-img-wrap">
+<img alt="Двигатель Suzuki" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&amp;q=80"/>
+<div class="engine-ring"></div>
+</div>
+<div class="engine-stats-grid">
+<div class="e-stat"><div class="e-stat-val">250</div><div class="e-stat-key">КУБ. СМ</div></div>
+<div class="e-stat"><div class="e-stat-val">FI</div><div class="e-stat-key">С впрыском</div></div>
+<div class="e-stat"><div class="e-stat-val">SOCS</div><div class="e-stat-key">Масляное охлаждение</div></div>
+<div class="e-stat"><div class="e-stat-val">6</div><div class="e-stat-key">Скорость</div></div>
+</div>
+</div>
+<div class="engine-right reveal">
+<div class="section-label">СЕРДЦЕ SUZUKI</div>
+<h2 class="section-h2">250 куб. см.<br/><span class="red">Ноль</span> компромиссов.</h2>
+<p class="engine-desc">Двигатель SOCS у Gixxer 250 работает одинаково что на первом круге утренней поездки на работу, что на 200-м километре выходного маршрута. Этот двигатель производит не просто мощность. Он производит уверенность.</p>
+<div class="engine-features">
+<div class="engine-feature">
+<div class="ef-icon">FI</div>
+<div><div class="ef-title">Система впрыска топлива</div><div class="ef-val">Оптимальная отдача мощности и топливная экономичность на любых оборотах</div></div>
+</div>
+<div class="engine-feature">
+<div class="ef-icon">SOCS</div>
+<div><div class="ef-title">Система масляного охлаждения</div><div class="ef-val">Стабильная производительность даже в условиях высоких нагрузок</div></div>
+</div>
+<div class="engine-feature">
+<div class="ef-icon">ABS</div>
+<div><div class="ef-title">Двухканальная ABS</div><div class="ef-val">Безопасность и стабильность при любых дорожных условиях</div></div>
+</div>
+<div class="engine-feature">
+<div class="ef-icon">LED</div>
+<div><div class="ef-title">Полностью LED-система</div><div class="ef-val">LED-фары, задние фонари и цифровая приборная панель</div></div>
+</div>
+</div>
+<a class="btn-primary" href="#" style="margin-top:40px">Полные характеристики →</a>
+</div>
+</div>
+</div>
 </section>
-
 <!-- MotoGP -->
 <section id="motogp">
-  <div class="motogp-bg"></div>
-  <div class="particles" id="particles"></div>
-  <div class="container">
-    <div class="motogp-head reveal">
-      <div class="section-label" style="justify-content:center">MotoGP LEGACY</div>
-      <h2 class="section-h2">
-        Champions
-        <span class="line2" style="display:block">Built This Bike.</span>
-      </h2>
-      <div class="gold-rule"></div>
-      <p class="section-sub" style="margin:0 auto;text-align:center">Since 1920, Suzuki has engineered machines that win at the world's highest level. Every championship lesson shapes the bike in front of you.</p>
-    </div>
-    <div class="timeline reveal">
-      <div class="timeline-line"></div>
-      <div class="timeline-nodes">
-        <div class="t-node" onclick="setTimeline(this,0)">
-          <div class="t-dot"></div>
-          <div class="t-year">1920</div>
-          <div class="t-event">Suzuki Founded</div>
-        </div>
-        <div class="t-node" onclick="setTimeline(this,1)">
-          <div class="t-dot"></div>
-          <div class="t-year">1976</div>
-          <div class="t-event">500cc World Title</div>
-        </div>
-        <div class="t-node active" onclick="setTimeline(this,2)">
-          <div class="t-dot"></div>
-          <div class="t-year">2018</div>
-          <div class="t-event">Alex Rins Podium</div>
-        </div>
-        <div class="t-node" onclick="setTimeline(this,3)">
-          <div class="t-dot"></div>
-          <div class="t-year">2020</div>
-          <div class="t-event">World Champion</div>
-        </div>
-        <div class="t-node" onclick="setTimeline(this,4)">
-          <div class="t-dot"></div>
-          <div class="t-year">2020</div>
-          <div class="t-event">100th Anniversary</div>
-        </div>
-        <div class="t-node" onclick="setTimeline(this,5)">
-          <div class="t-dot"></div>
-          <div class="t-year">2024</div>
-          <div class="t-event">Gixxer 250 BD</div>
-        </div>
-      </div>
-      <div id="timelineDetails">
-        <div class="timeline-detail" data-index="0">
-          <div class="td-year">1920</div>
-          <div class="td-title">The Origin of Everything</div>
-          <p class="td-body">On 15th March 1920, Michio Suzuki founded the Suzuki Loom Manufacturing Co. in Hamamatsu, Japan. The founder's philosophy — "focusing on customers" — has driven every product and every engineering decision since that day.</p>
-        </div>
-        <div class="timeline-detail" data-index="1">
-          <div class="td-year">1976</div>
-          <div class="td-title">Barry Sheene — World Champion</div>
-          <p class="td-body">Barry Sheene claimed the 500cc World Championship riding a Suzuki RG500. It was the beginning of Suzuki's Grand Prix dominance — and the engineering lessons from that championship run echo in every Suzuki produced today.</p>
-        </div>
-        <div class="timeline-detail active" data-index="2">
-          <div class="td-year">2018</div>
-          <div class="td-title">Alex Rins — Japanese GP Podium</div>
-          <p class="td-body">At Twin Ring Motegi, before 55,000 passionate fans, Alex Rins fought his way to 3rd place for Team Suzuki Ecstar. "We did a great race," Rins said after. "It's fun to fight with the other riders." That fighting spirit defines every Suzuki.</p>
-        </div>
-        <div class="timeline-detail" data-index="3">
-          <div class="td-year">2020</div>
-          <div class="td-title">Joan Mir — MotoGP World Champion</div>
-          <p class="td-body">Joan Mir and Team Suzuki Ecstar claimed the 2020 MotoGP World Championship — the pinnacle of motorcycle racing. The aerodynamic and engineering principles that won that title are directly coded into the DNA of the Gixxer 250.</p>
-        </div>
-        <div class="timeline-detail" data-index="4">
-          <div class="td-year">2020</div>
-          <div class="td-title">Suzuki Celebrates 100 Years</div>
-          <p class="td-body">A century of engineering excellence. Suzuki Motor Corporation celebrated its 100th anniversary — reaffirming its commitment to customers and innovation. To mark the occasion in Bangladesh, a limited-edition 100th Anniversary Gixxer SF was released.</p>
-        </div>
-        <div class="timeline-detail" data-index="5">
-          <div class="td-year">2024</div>
-          <div class="td-title">Gixxer 250 Arrives in Bangladesh</div>
-          <p class="td-body">On December 1st, 2024, at Aloki, Tejgaon, Dhaka — Suzuki Bangladesh officially unveiled the Gixxer 250 and Gixxer SF 250. With brand ambassador Siam Ahmed present, Bangladesh's most powerful 250cc sports bikes entered the market.</p>
-        </div>
-      </div>
-    </div>
-    <div class="motogp-stats reveal">
-      <div class="mg-stat">
-        <div class="mg-stat-val">104</div>
-        <div class="mg-stat-label">Years of Engineering Excellence</div>
-      </div>
-      <div class="mg-stat">
-        <div class="mg-stat-val"><span class="red">2020</span></div>
-        <div class="mg-stat-label">MotoGP World Championship — Joan Mir</div>
-      </div>
-      <div class="mg-stat">
-        <div class="mg-stat-val">50<span class="red">+</span></div>
-        <div class="mg-stat-label">Years of Grand Prix Racing</div>
-      </div>
-    </div>
-  </div>
+<div class="motogp-bg"></div>
+<div class="particles" id="particles"></div>
+<div class="container">
+<div class="motogp-head reveal">
+<div class="section-label" style="justify-content:center">НАСЛЕДИЕ MotoGP</div>
+<h2 class="section-h2">
+        Этот мотоцикл
+        <span class="line2" style="display:block">создали чемпионы.</span>
+</h2>
+<div class="gold-rule"></div>
+<p class="section-sub" style="margin:0 auto;text-align:center">С 1920 года Suzuki проектирует машины, которые побеждают на высшем мировом уровне. Каждый чемпионский урок формирует мотоцикл перед тобой.</p>
+</div>
+<div class="timeline reveal">
+<div class="timeline-line"></div>
+<div class="timeline-nodes">
+<div class="t-node" onclick="setTimeline(this,0)">
+<div class="t-dot"></div>
+<div class="t-year">1920</div>
+<div class="t-event">Основание Suzuki</div>
+</div>
+<div class="t-node" onclick="setTimeline(this,1)">
+<div class="t-dot"></div>
+<div class="t-year">1976</div>
+<div class="t-event">Титул чемпиона мира в классе 500cc</div>
+</div>
+<div class="t-node active" onclick="setTimeline(this,2)">
+<div class="t-dot"></div>
+<div class="t-year">2018</div>
+<div class="t-event">Подиум Алекса Ринса</div>
+</div>
+<div class="t-node" onclick="setTimeline(this,3)">
+<div class="t-dot"></div>
+<div class="t-year">2020</div>
+<div class="t-event">Чемпион мира</div>
+</div>
+<div class="t-node" onclick="setTimeline(this,4)">
+<div class="t-dot"></div>
+<div class="t-year">2020</div>
+<div class="t-event">100-летний юбилей</div>
+</div>
+<div class="t-node" onclick="setTimeline(this,5)">
+<div class="t-dot"></div>
+<div class="t-year">2024</div>
+<div class="t-event">Gixxer 250 BD</div>
+</div>
+</div>
+<div id="timelineDetails">
+<div class="timeline-detail" data-index="0">
+<div class="td-year">1920</div>
+<div class="td-title">Начало всего</div>
+<p class="td-body">15 марта 1920 года Митио Судзуки основал компанию Suzuki Loom Manufacturing Co. в Хамамацу, Япония. Философия основателя — "фокус на клиентах" — с того дня определяет каждый продукт и каждое инженерное решение.</p>
+</div>
+<div class="timeline-detail" data-index="1">
+<div class="td-year">1976</div>
+<div class="td-title">Барри Шин — чемпион мира</div>
+<p class="td-body">Барри Шин завоевал титул чемпиона мира в классе 500cc на Suzuki RG500. Это стало началом доминирования Suzuki в Гран-при — и инженерные уроки той чемпионской кампании отзываются в каждом Suzuki, выпускаемом сегодня.</p>
+</div>
+<div class="timeline-detail active" data-index="2">
+<div class="td-year">2018</div>
+<div class="td-title">Алекс Ринс — подиум Гран-при Японии</div>
+<p class="td-body">На трассе Twin Ring Motegi, перед 55 000 страстных болельщиков, Алекс Ринс пробился на 3-е место за Team Suzuki Ecstar. "Мы провели отличную гонку, — сказал Ринс после. — Бороться с другими гонщиками — это кайф". Этот бойцовский дух определяет каждый Suzuki.</p>
+</div>
+<div class="timeline-detail" data-index="3">
+<div class="td-year">2020</div>
+<div class="td-title">Хоан Мир — чемпион мира MotoGP</div>
+<p class="td-body">Хоан Мир и Team Suzuki Ecstar завоевали титул чемпионов мира MotoGP 2020 — вершину мотогонок. Аэродинамические и инженерные принципы, принесшие тот титул, напрямую вписаны в ДНК Gixxer 250.</p>
+</div>
+<div class="timeline-detail" data-index="4">
+<div class="td-year">2020</div>
+<div class="td-title">Suzuki отмечает 100 лет</div>
+<p class="td-body">Век инженерного совершенства. Suzuki Motor Corporation отметила своё 100-летие, подтвердив приверженность клиентам и инновациям. В честь этого события в Бангладеш был выпущен лимитированный Gixxer SF «100th Anniversary».</p>
+</div>
+<div class="timeline-detail" data-index="5">
+<div class="td-year">2024</div>
+<div class="td-title">Gixxer 250 прибывает в Бангладеш</div>
+<p class="td-body">1 декабря 2024 года в Aloki, Теджгаон, Дакка, Suzuki Bangladesh официально представила Gixxer 250 и Gixxer SF 250. В присутствии амбассадора бренда Сиама Ахмеда самые мощные 250-кубовые спортбайки Бангладеш вышли на рынок.</p>
+</div>
+</div>
+</div>
+<div class="motogp-stats reveal">
+<div class="mg-stat">
+<div class="mg-stat-val">104</div>
+<div class="mg-stat-label">Лет инженерного совершенства</div>
+</div>
+<div class="mg-stat">
+<div class="mg-stat-val"><span class="red">2020</span></div>
+<div class="mg-stat-label">Чемпионат мира MotoGP — Хоан Мир</div>
+</div>
+<div class="mg-stat">
+<div class="mg-stat-val">50<span class="red">+</span></div>
+<div class="mg-stat-label">Лет гонок Гран-при</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- DEALS -->
 <section id="deals">
-  <div class="container">
-    <div class="d-flex-between reveal">
-      <div>
-        <div class="section-label">LIMITED TIME OFFERS</div>
-        <h2 class="section-h2">The Ride You Want.<br><span class="red">At a Price That Respects You.</span></h2>
-      </div>
-    </div>
-    <div class="deals-grid">
-      <div class="deal-card reveal">
-        <div class="deal-banner">Special Price — Limited Stock</div>
-        <div class="deal-img-wrap">
-          <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&amp;q=80" alt="Gixxer">
-        </div>
-        <div class="deal-body">
-          <div class="deal-name">GIXXER</div>
-          <div class="deal-was">MRP BDT 237,950</div>
-          <div class="deal-price">BDT 229,950</div>
-          <div class="deal-save">SAVE BDT 8,000</div>
-          <div class="deal-avail"><span class="blink-dot"></span>3 Colors Available</div>
-          <a href="#" class="deal-btn">Claim This Deal →</a>
-        </div>
-      </div>
-      <div class="deal-card reveal">
-        <div class="deal-banner">Special Price — 7 Colors</div>
-        <div class="deal-img-wrap">
-          <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=500&amp;q=80" alt="Gixxer Monotone">
-        </div>
-        <div class="deal-body">
-          <div class="deal-name">GIXXER MONOTONE</div>
-          <div class="deal-was">MRP BDT 205,950</div>
-          <div class="deal-price">BDT 199,950</div>
-          <div class="deal-save">SAVE BDT 6,000</div>
-          <div class="deal-avail"><span class="blink-dot"></span>7 Colors Available</div>
-          <a href="#" class="deal-btn">Claim This Deal →</a>
-        </div>
-      </div>
-      <div class="deal-card reveal">
-        <div class="deal-banner">Special Price — Classic Series</div>
-        <div class="deal-img-wrap">
-          <img src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500&amp;q=80" alt="Gixxer Classic Matt">
-        </div>
-        <div class="deal-body">
-          <div class="deal-name">GIXXER CLASSIC MATT</div>
-          <div class="deal-was">MRP BDT 208,950</div>
-          <div class="deal-price">BDT 202,950</div>
-          <div class="deal-save">SAVE BDT 6,000</div>
-          <div class="deal-avail"><span class="blink-dot"></span>2 Colors · Limited Availability</div>
-          <a href="#" class="deal-btn">Claim This Deal →</a>
-        </div>
-      </div>
-    </div>
-    <p style="text-align:center;font-size:12px;color:var(--dim);margin-top:24px;letter-spacing:.05em">All prices are MRP. Final pricing confirmed at authorized Suzuki dealers. Offer valid while stocks last. EMI available via partner banks — visit <a href="https://dhp.suzuki.com.bd" style="color:var(--red)">dhp.suzuki.com.bd</a></p>
-  </div>
+<div class="container">
+<div class="d-flex-between reveal">
+<div>
+<div class="section-label">ПРЕДЛОЖЕНИЯ ОГРАНИЧЕННОГО ВРЕМЕНИ</div>
+<h2 class="section-h2">Мотоцикл, который ты хочешь.<br/><span class="red">По цене, которая тебя уважает.</span></h2>
+</div>
+</div>
+<div class="deals-grid">
+<div class="deal-card reveal">
+<div class="deal-banner">Специальная цена — ограниченный запас</div>
+<div class="deal-img-wrap">
+<img alt="Gixxer" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=500&amp;q=80"/>
+</div>
+<div class="deal-body">
+<div class="deal-name">GIXXER</div>
+<div class="deal-was">MRP BDT 237,950</div>
+<div class="deal-price">BDT 229,950</div>
+<div class="deal-save">ЭКОНОМИЯ BDT 8,000</div>
+<div class="deal-avail"><span class="blink-dot"></span>Доступно 3 цвета</div>
+<a class="deal-btn" href="#">Забрать предложение →</a>
+</div>
+</div>
+<div class="deal-card reveal">
+<div class="deal-banner">Специальная цена — 7 цветов</div>
+<div class="deal-img-wrap">
+<img alt="Gixxer Monotone" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=500&amp;q=80"/>
+</div>
+<div class="deal-body">
+<div class="deal-name">GIXXER MONOTONE</div>
+<div class="deal-was">MRP BDT 205,950</div>
+<div class="deal-price">BDT 199,950</div>
+<div class="deal-save">ЭКОНОМИЯ BDT 6,000</div>
+<div class="deal-avail"><span class="blink-dot"></span>Доступно 7 цветов</div>
+<a class="deal-btn" href="#">Забрать предложение →</a>
+</div>
+</div>
+<div class="deal-card reveal">
+<div class="deal-banner">Специальная цена — серия Classic</div>
+<div class="deal-img-wrap">
+<img alt="Gixxer Classic Matt" src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?w=500&amp;q=80"/>
+</div>
+<div class="deal-body">
+<div class="deal-name">GIXXER CLASSIC MATT</div>
+<div class="deal-was">MRP BDT 208,950</div>
+<div class="deal-price">BDT 202,950</div>
+<div class="deal-save">ЭКОНОМИЯ BDT 6,000</div>
+<div class="deal-avail"><span class="blink-dot"></span>2 цвета · Ограниченное количество</div>
+<a class="deal-btn" href="#">Забрать предложение →</a>
+</div>
+</div>
+</div>
+<p style="text-align:center;font-size:12px;color:var(--dim);margin-top:24px;letter-spacing:.05em">Все цены — MRP. Итоговая цена подтверждается у авторизованных дилеров Suzuki. Предложение действует, пока есть товар в наличии. Доступна рассрочка (EMI) через банки-партнёры — посетите <a href="https://dhp.suzuki.com.bd" style="color:var(--red)">dhp.suzuki.com.bd</a></p>
+</div>
 </section>
-
 <!-- SAFETY -->
 <section id="safety">
-  <div class="container">
-    <div class="safety-grid">
-      <div class="safety-img reveal">
-        <div class="safety-img-inner">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" alt="Rider in safety gear">
-          <div class="safety-tag">RIDE WITH CONFIDENCE</div>
-        </div>
-      </div>
-      <div class="reveal">
-        <div class="section-label">RIDER SAFETY</div>
-        <h2 class="section-h2">Fast Enough to Thrill.<br><span class="red">Safe Enough</span> to Trust.</h2>
-        <p class="section-sub">At Suzuki, safety isn't an afterthought. Every feature is engineered — because the most exciting rides are the ones you come home from.</p>
-        <div class="safety-pillars">
-          <div class="safety-pillar">
-            <div class="sp-icon">ABS</div>
-            <div><div class="sp-title">Dual-Channel ABS — Standard</div><div class="sp-desc">Not optional. Not an upgrade. Every Gixxer 250 ships with dual-channel ABS — preventing wheel lock-up in emergency braking so you stop where you intend to.</div></div>
-            <div class="sp-arrow">→</div>
-          </div>
-          <div class="safety-pillar">
-            <div class="sp-icon">LED</div>
-            <div><div class="sp-title">Full LED Lighting System</div><div class="sp-desc">See more. Be seen more. Complete LED headlamp and tail lamp coverage — maximum visibility at dawn, dusk, rain, and deep night.</div></div>
-            <div class="sp-arrow">→</div>
-          </div>
-          <div class="safety-pillar">
-            <div class="sp-icon">FI</div>
-            <div><div class="sp-title">FI-Certified Service Centers</div><div class="sp-desc">Every Rancon authorized service center is equipped with FI cleaners and trained technicians. A well-maintained Suzuki is a safe Suzuki.</div></div>
-            <div class="sp-arrow">→</div>
-          </div>
-          <div class="safety-pillar">
-            <div class="sp-icon">ERG</div>
-            <div><div class="sp-title">Ergonomic Design</div><div class="sp-desc">Lightweight chassis designed for agility and stability. A balanced bike gives you control in traffic and confidence on open roads.</div></div>
-            <div class="sp-arrow">→</div>
-          </div>
-        </div>
-        <div class="safety-bottom">
-          <p>WEAR YOUR HELMET. WEAR YOUR GEAR. RIDE A SUZUKI.</p>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="safety-grid">
+<div class="safety-img reveal">
+<div class="safety-img-inner">
+<img alt="Райдер в защитной экипировке" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp"/>
+<div class="safety-tag">ЕЗДИ С УВЕРЕННОСТЬЮ</div>
+</div>
+</div>
+<div class="reveal">
+<div class="section-label">БЕЗОПАСНОСТЬ РАЙДЕРА</div>
+<h2 class="section-h2">Достаточно быстрый, чтобы восхищать.<br/><span class="red">Достаточно безопасный,</span> чтобы доверять.</h2>
+<p class="section-sub">В Suzuki безопасность не является второстепенной задачей. Каждая функция спроектирована — потому что самые захватывающие поездки — те, с которых возвращаются домой.</p>
+<div class="safety-pillars">
+<div class="safety-pillar">
+<div class="sp-icon">ABS</div>
+<div><div class="sp-title">Двухканальная ABS — в базовой комплектации</div><div class="sp-desc">Не опция. Не дополнение. Каждый Gixxer 250 поставляется с двухканальной ABS — предотвращает блокировку колеса при экстренном торможении, чтобы ты остановился там, где планировал.</div></div>
+<div class="sp-arrow">→</div>
+</div>
+<div class="safety-pillar">
+<div class="sp-icon">LED</div>
+<div><div class="sp-title">Полностью LED-система освещения</div><div class="sp-desc">Видь больше. Будь заметнее. Полное LED-покрытие фары и заднего фонаря — максимальная видимость на рассвете, сумерках, в дождь и тёмной ночью.</div></div>
+<div class="sp-arrow">→</div>
+</div>
+<div class="safety-pillar">
+<div class="sp-icon">FI</div>
+<div><div class="sp-title">Сервисные центры с FI-сертификацией</div><div class="sp-desc">Каждый авторизованный сервисный центр Rancon оснащён FI-очистителями и обученными техниками. Ухоженный Suzuki — безопасный Suzuki.</div></div>
+<div class="sp-arrow">→</div>
+</div>
+<div class="safety-pillar">
+<div class="sp-icon">ERG</div>
+<div><div class="sp-title">Эргономичный дизайн</div><div class="sp-desc">Лёгкая рама, спроектированная для манёвренности и стабильности. Сбалансированный мотоцикл даёт контроль в потоке и уверенность на открытой дороге.</div></div>
+<div class="sp-arrow">→</div>
+</div>
+</div>
+<div class="safety-bottom">
+<p>ОДЕВАЙ ШЛЕМ. ОДЕВАЙСЯ. ЕЗДИ НА SUZUKI.</p>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- STORIES -->
 <section id="stories">
-  <div class="container">
-    <div class="stories-head reveal">
-      <div class="section-label">RIDERS LIKE YOU</div>
-      <h2 class="section-h2">The Road Means Something<br>Different to Every Rider. <span class="red">Here's What It Means to Ours.</span></h2>
-    </div>
-    <div class="story-main reveal">
-      <div class="story-img">
-        <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=900&amp;q=80" alt="Rider Rafiq">
-      </div>
-      <div class="story-body">
-        <div class="story-loc">📍 Dhaka</div>
-        <div class="story-name">Rafiq Ahmed, 34</div>
-        <div class="story-bike">GIXXER 250 · Matt Blue</div>
-        <div class="story-quote">
-          <p>"I've been riding for 11 years across four different bikes. When the Gixxer 250 launched on December 1st, 2024, I was in the crowd at Aloki. I test-rode it the next morning. I bought it the day after. Eleven years in — this is the first bike that feels like it was built specifically for me."</p>
-        </div>
-      </div>
-    </div>
-    <div class="stories-grid">
-      <div class="story-small reveal">
-        <div class="story-loc">📍 Chittagong</div>
-        <div class="story-name">Tanvir Hossain, 29</div>
-        <div class="story-bike">GIXXER SF 250 · Nitro Neon Edition</div>
-        <div class="story-quote" style="margin-top:16px">
-          <p style="font-size:15px;line-height:1.75;color:var(--muted);font-style:italic">"Every Friday after Jummah, I point the SF 250 toward Cox's Bazar and just go. No plan. No itinerary. The SOCS engine doesn't care how far you push it. That's what I bought it for — that's freedom."</p>
-        </div>
-      </div>
-      <div class="story-small reveal">
-        <div class="story-loc">📍 Sylhet</div>
-        <div class="story-name">Nusrat Jahan, 27</div>
-        <div class="story-bike">GSX 125 → Gixxer 250</div>
-        <div class="story-quote" style="margin-top:16px">
-          <p style="font-size:15px;line-height:1.75;color:var(--muted);font-style:italic">"Started on the GSX 125. Two years later I walked into the showroom for the Gixxer 250. The upgrade wasn't just in the engine. It was in how I felt about myself as a rider. Suzuki grew with me."</p>
-        </div>
-      </div>
-    </div>
-    <div class="story-cta-wrap reveal">
-      <a href="#" class="btn-ghost">Share Your Suzuki Story →</a>
-    </div>
-  </div>
+<div class="container">
+<div class="stories-head reveal">
+<div class="section-label">РАЙДЕРЫ ТАКИЕ ЖЕ, КАК ТЫ</div>
+<h2 class="section-h2">Дорога значить что-то<br/>своё для каждого. <span class="red">Вот что она значит для наших.</span></h2>
+</div>
+<div class="story-main reveal">
+<div class="story-img">
+<img alt="Рафик-райдер" src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=900&amp;q=80"/>
+</div>
+<div class="story-body">
+<div class="story-loc">Дакка</div>
+<div class="story-name">Рафик Ахмед, 34 года</div>
+<div class="story-bike">GIXXER 250 · Matt Blue</div>
+<div class="story-quote">
+<p>"Я езжу 11 лет на четырёх разных мотоциклах. Когда 1 декабря 2024 года состоялся презентация Gixxer 250, я был в толпе в Aloki. Следующим утром прокатился на нём. Через день купил. Одиннадцать лет — это первый мотоцикл, который ощущается созданным специально для меня."</p>
+</div>
+</div>
+</div>
+<div class="stories-grid">
+<div class="story-small reveal">
+<div class="story-loc">Читтагонг</div>
+<div class="story-name">Танвир Хоссайн, 29 лет</div>
+<div class="story-bike">GIXXER SF 250 · Nitro Neon Edition</div>
+<div class="story-quote" style="margin-top:16px">
+<p style="font-size:15px;line-height:1.75;color:var(--muted);font-style:italic">"Каждую пятницу после джумы я направляю SF 250 в сторону Кокс Базара и еду. Без плана. Без маршрута. Двигатель SOCS не замечает, как далеко ты едешь. Именно за этим я его купил — это свобода."</p>
+</div>
+</div>
+<div class="story-small reveal">
+<div class="story-loc">Силхет</div>
+<div class="story-name">Нусрат Джахан, 27 лет</div>
+<div class="story-bike">GSX 125 → Gixxer 250</div>
+<div class="story-quote" style="margin-top:16px">
+<p style="font-size:15px;line-height:1.75;color:var(--muted);font-style:italic">"Начала с GSX 125. Два года спустя зашла в шоурум за Gixxer 250. Апгрейд был не только в двигателе. Изменилось то, как я ощущаю себя райдером. Suzuki рос вместе со мной."</p>
+</div>
+</div>
+</div>
+<div class="story-cta-wrap reveal">
+<a class="btn-ghost" href="#">Поделиться своей историей Suzuki →</a>
+</div>
+</div>
 </section>
-
 <!-- SERVICE -->
 <section id="service">
-  <div class="container">
-    <div class="service-grid">
-      <div class="service-img reveal">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&amp;q=80" alt="Suzuki Service">
-      </div>
-      <div class="reveal">
-        <div class="section-label">SUZUKI SERVICE</div>
-        <h2 class="section-h2">Your Ride Doesn't Stop.<br><span class="red">Neither Do We.</span></h2>
-        <p class="section-sub">Rancon Motor Bikes Ltd. has built Bangladesh's most capable motorcycle service network to ensure your Suzuki performs like new — every kilometre, every year.</p>
-        <div class="service-badges">
-          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">FI Certified Centers</div></div>
-          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Genuine Suzuki Parts</div></div>
-          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Ecstar Engine Oil</div></div>
-          <div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Trained Technicians</div></div>
-        </div>
-        <div class="accordion">
-          <div class="acc-item open">
-            <button class="acc-toggle" onclick="toggleAcc(this)">
-              <span class="acc-title">FI-Certified Service Centers</span>
-              <span class="acc-icon">+</span>
-            </button>
-            <div class="acc-body"><p>Every authorized Suzuki service center is equipped with dedicated FI cleaners and staffed by Suzuki-trained technicians. Whether your bike has 500km or 50,000km — it gets the same standard of care.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-toggle" onclick="toggleAcc(this)">
-              <span class="acc-title">Suzuki Genuine Parts</span>
-              <span class="acc-icon">+</span>
-            </button>
-            <div class="acc-body"><p>Don't compromise your machine. Suzuki Bangladesh stocks and distributes genuine Suzuki components through every authorized dealer — priced fairly and available nationally.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-toggle" onclick="toggleAcc(this)">
-              <span class="acc-title">Ecstar Engine Oil</span>
-              <span class="acc-icon">+</span>
-            </button>
-            <div class="acc-body"><p>Suzuki's own engine oil formula — developed alongside the MotoGP program for superior thermal protection and engine longevity. Available at every authorized Suzuki dealer.</p></div>
-          </div>
-          <div class="acc-item">
-            <button class="acc-toggle" onclick="toggleAcc(this)">
-              <span class="acc-title">Service Packages</span>
-              <span class="acc-icon">+</span>
-            </button>
-            <div class="acc-body"><p>Structured, transparent service packages designed to protect your investment and give you predictable costs. No surprise bills. No guesswork.</p></div>
-          </div>
-        </div>
-        <div class="service-ctas" style="margin-top:40px">
-          <a href="https://suzuki.com.bd/services" class="btn-primary">Choose Your Service Package →</a>
-          <a href="https://suzuki.com.bd/dealer" class="btn-ghost">Find Nearest Dealer →</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="service-grid">
+<div class="service-img reveal">
+<img alt="Сервис Suzuki" src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=700&amp;q=80"/>
+</div>
+<div class="reveal">
+<div class="section-label">СЕРВИС SUZUKI</div>
+<h2 class="section-h2">Твой путь не останавливается.<br/><span class="red">И мы — тоже.</span></h2>
+<p class="section-sub">Rancon Motor Bikes Ltd. создала самую мощную сервисную сеть для мотоциклов в Бангладеш, чтобы ваш Suzuki работал как новый — на каждом километре, каждый год.</p>
+<div class="service-badges">
+<div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">FI-сертифицированные центры</div></div>
+<div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Оригинальные запчасти Suzuki</div></div>
+<div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Ecstar моторное масло</div></div>
+<div class="svc-badge"><div class="svc-check">✓</div><div class="svc-badge-label">Обученные техники</div></div>
+</div>
+<div class="accordion">
+<div class="acc-item open">
+<button class="acc-toggle" onclick="toggleAcc(this)">
+<span class="acc-title">Сервисные центры с FI-сертификацией</span>
+<span class="acc-icon">+</span>
+</button>
+<div class="acc-body"><p>Каждый авторизованный сервисный центр Suzuki оснащён специальными FI-очистителями и укомплектован обученными техниками Suzuki. У вашего мотоцикла 500 км или 50 000 км — уход одинаковый.</p></div>
+</div>
+<div class="acc-item">
+<button class="acc-toggle" onclick="toggleAcc(this)">
+<span class="acc-title">Оригинальные запчасти Suzuki</span>
+<span class="acc-icon">+</span>
+</button>
+<div class="acc-body"><p>Не компромиссируйте свой мотоцикл. Suzuki Bangladesh хранит и доставляет оригинальные запчасти Suzuki через каждого авторизованного дилера — по справедливым ценам, доступно по всей стране.</p></div>
+</div>
+<div class="acc-item">
+<button class="acc-toggle" onclick="toggleAcc(this)">
+<span class="acc-title">Ecstar моторное масло</span>
+<span class="acc-icon">+</span>
+</button>
+<div class="acc-body"><p>Собственная формула моторного масла Suzuki — разработана совместно с программой MotoGP для превосходной тепловой защиты и долговечности двигателя. Доступно у каждого авторизованного дилера Suzuki.</p></div>
+</div>
+<div class="acc-item">
+<button class="acc-toggle" onclick="toggleAcc(this)">
+<span class="acc-title">Сервисные пакеты</span>
+<span class="acc-icon">+</span>
+</button>
+<div class="acc-body"><p>Структурированные, прозрачные сервисные пакеты для защиты ваших инвестиций и предсказуемых расходов. Никаких серпризов. Никаких догадок.</p></div>
+</div>
+</div>
+<div class="service-ctas" style="margin-top:40px">
+<a class="btn-primary" href="https://suzuki.com.bd/services">Выбрать сервисный пакет →</a>
+<a class="btn-ghost" href="https://suzuki.com.bd/dealer">Найти ближайшего дилера →</a>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- NEWS -->
 <section id="news">
-  <div class="container">
-    <div class="d-flex-between reveal">
-      <div>
-        <div class="section-label">FROM THE SUZUKI WORLD</div>
-        <h2 class="section-h2">Stay in the <span class="red">Fast Lane.</span></h2>
-      </div>
-      <a href="https://suzuki.com.bd/news" class="btn-ghost" style="height:fit-content">View All News →</a>
-    </div>
-    <div class="news-featured reveal">
-      <div class="news-feat-img">
-        <img src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1200&amp;q=80" alt="Gixxer 250 Launch">
-      </div>
-      <div class="news-feat-body">
-        <span class="news-cat">Latest · Launch</span>
-        <div class="news-date">December 2, 2024</div>
-        <div class="news-title">Suzuki Bangladesh Unveils MotoGP-Inspired Gixxer 250 &amp; Gixxer SF 250</div>
-        <p class="news-excerpt">Bangladesh's fastest 250cc bikes officially launched at Aloki, Tejgaon, Dhaka — with brand ambassador Siam Ahmed and top Rancon leadership present. The Gixxer 250 Series sets a new standard in performance and design.</p>
-        <a href="https://suzuki.com.bd/news/suzuki-bangladesh-unveils-motogp-inspired-fastest-250cc-bikes-the-suzuki-gixxer-250-and-gixxer-sf-250-qx80cbtw" class="news-link">Read More →</a>
-      </div>
-    </div>
-    <div class="news-grid">
-      <div class="news-card reveal">
-        <div class="news-card-img">
-          <img src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80" alt="Joan Mir">
-        </div>
-        <div class="news-card-body">
-          <span class="news-cat">MotoGP</span>
-          <div class="news-date" style="margin-top:12px">November 18, 2020</div>
-          <div class="news-title" style="font-size:22px;margin-bottom:12px">Joan Mir Becomes 2020 MotoGP World Champion</div>
-          <a href="https://suzuki.com.bd/news/joan-mir-becomes-2020-motogp-world-champion-23j0110e4h" class="news-link">Read More →</a>
-        </div>
-      </div>
-      <div class="news-card reveal">
-        <div class="news-card-img">
-          <img src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&amp;q=80" alt="Face of Suzuki">
-        </div>
-        <div class="news-card-body">
-          <span class="news-cat">Brand</span>
-          <div class="news-date" style="margin-top:12px">March 1, 2024</div>
-          <div class="news-title" style="font-size:22px;margin-bottom:12px">Siam Ahmed — The Face of Suzuki Bangladesh</div>
-          <a href="https://suzuki.com.bd/news/introducing-the-face-of-suzuki-fhkdb3g4h" class="news-link">Read More →</a>
-        </div>
-      </div>
-      <div class="news-card reveal">
-        <div class="news-card-img">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" alt="Suzuki Gixxer Fi Disc">
-        </div>
-        <div class="news-card-body">
-          <span class="news-cat">Launch</span>
-          <div class="news-date" style="margin-top:12px">March 30, 2024</div>
-          <div class="news-title" style="font-size:22px;margin-bottom:12px">New Suzuki Gixxer Fi Disc Series Launched in Bangladesh</div>
-          <a href="https://suzuki.com.bd/news/suzuki-bangladesh-has-launched-new-suzuki-gixxer-fi-disc-series-fggdi15em" class="news-link">Read More →</a>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="d-flex-between reveal">
+<div>
+<div class="section-label">ИЗ МИРА SUZUKI</div>
+<h2 class="section-h2">Оставайтесь в <span class="red">быстром потоке.</span></h2>
+</div>
+<a class="btn-ghost" href="https://suzuki.com.bd/news" style="height:fit-content">Смотреть все новости →</a>
+</div>
+<div class="news-featured reveal">
+<div class="news-feat-img">
+<img alt="Презентация Gixxer 250" src="https://images.unsplash.com/photo-1558981806-ec527fa84c39?w=1200&amp;q=80"/>
+</div>
+<div class="news-feat-body">
+<span class="news-cat">Последнее · Презентация</span>
+<div class="news-date">2 декабря 2024</div>
+<div class="news-title">Suzuki Bangladesh представляет вдохновлённый MotoGP Gixxer 250 и Gixxer SF 250</div>
+<p class="news-excerpt">Самые быстрые 250-кубовые мотоциклы Бангладеша официально представлены в Aloki, Теджгаон, Дакка — в присутствии амбассадора бренда Сиама Ахмеда и руководства Rancon. Серия Gixxer 250 задаёт новый стандарт производительности и дизайна.</p>
+<a class="news-link" href="https://suzuki.com.bd/news/suzuki-bangladesh-unveils-motogp-inspired-fastest-250cc-bikes-the-suzuki-gixxer-250-and-gixxer-sf-250-qx80cbtw">Читать дальше →</a>
+</div>
+</div>
+<div class="news-grid">
+<div class="news-card reveal">
+<div class="news-card-img">
+<img alt="Хоан Мир" src="https://images.unsplash.com/photo-1609630875171-b1321377ee65?w=600&amp;q=80"/>
+</div>
+<div class="news-card-body">
+<span class="news-cat">MotoGP</span>
+<div class="news-date" style="margin-top:12px">18 ноября 2020</div>
+<div class="news-title" style="font-size:22px;margin-bottom:12px">Хоан Мир становится чемпионом мира MotoGP 2020</div>
+<a class="news-link" href="https://suzuki.com.bd/news/joan-mir-becomes-2020-motogp-world-champion-23j0110e4h">Читать дальше →</a>
+</div>
+</div>
+<div class="news-card reveal">
+<div class="news-card-img">
+<img alt="Лицо Suzuki" src="https://images.unsplash.com/photo-1449426468159-d96dbf08f19f?w=600&amp;q=80"/>
+</div>
+<div class="news-card-body">
+<span class="news-cat">Бренд</span>
+<div class="news-date" style="margin-top:12px">1 марта 2024</div>
+<div class="news-title" style="font-size:22px;margin-bottom:12px">Сиам Ахмед — лицо Suzuki Bangladesh</div>
+<a class="news-link" href="https://suzuki.com.bd/news/introducing-the-face-of-suzuki-fhkdb3g4h">Читать дальше →</a>
+</div>
+</div>
+<div class="news-card reveal">
+<div class="news-card-img">
+<img alt="Suzuki Gixxer Fi Disc" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg"/>
+</div>
+<div class="news-card-body">
+<span class="news-cat">Запуск</span>
+<div class="news-date" style="margin-top:12px">30 марта 2024</div>
+<div class="news-title" style="font-size:22px;margin-bottom:12px">Запущен новый Suzuki Gixxer Fi Disc в Бангладеш</div>
+<a class="news-link" href="https://suzuki.com.bd/news/suzuki-bangladesh-has-launched-new-suzuki-gixxer-fi-disc-series-fggdi15em">Читать дальше →</a>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- FINAL CTA -->
 <section id="final-cta">
-  <div class="cta-bg"></div>
-  <div class="cta-vignette"></div>
-  <div class="cta-content reveal">
-    <div class="section-label" style="justify-content:center">YOUR NEXT RIDE</div>
-    <h2 class="cta-h">Your Next Ride<br><span class="red">Is Waiting.</span></h2>
-    <p class="cta-sub">Don't just read about it.<br>Sit on it. Feel it. Own it.</p>
-    <div class="cta-btns">
-      <a href="https://suzuki.com.bd/test-ride" class="btn-primary" style="font-size:15px;padding:18px 48px">Book a Free Test Ride →</a>
-      <a href="https://suzuki.com.bd/dealer" class="btn-ghost">Find a Dealer Near You →</a>
-      <div class="cta-hotline">📞 Hotline: <a href="tel:16638">16638</a></div>
-    </div>
-  </div>
+<div class="cta-bg"></div>
+<div class="cta-vignette"></div>
+<div class="cta-content reveal">
+<div class="section-label" style="justify-content:center">ТВОЯ СЛЕДУЮЩАЯ ПОЕЗДКА</div>
+<h2 class="cta-h">Твоя следующая поездка<br/><span class="red">ждёт.</span></h2>
+<p class="cta-sub">Не просто читай о нём.<br/>Сядь. Почувствуй. Владей.</p>
+<div class="cta-btns">
+<a class="btn-primary" href="https://suzuki.com.bd/test-ride" style="font-size:15px;padding:18px 48px">Записаться на бесплатный тест-райд →</a>
+<a class="btn-ghost" href="https://suzuki.com.bd/dealer">Найти дилера рядом →</a>
+<div class="cta-hotline">Горячая линия: <a href="tel:16638">16638</a></div>
+</div>
+</div>
 </section>
-
 <!-- FOOTER -->
 <footer>
-  <div class="container">
-    <div class="footer-main">
-      <div class="footer-brand">
-        <a href="#" class="nav-logo" style="margin-bottom:20px;display:flex">
-          <div class="logo-s"></div>
-          <span class="logo-text">SUZUKI</span>
-        </a>
-        <p class="footer-tagline">Founded in Japan, 1920. Proven in MotoGP. Distributed exclusively by Rancon Motor Bikes Ltd. — available at your nearest authorized dealer across Bangladesh.</p>
-        <div class="footer-hotline">HOTLINE: <span>16638</span></div>
-      </div>
-      <div class="footer-col">
-        <h4>Suzuki</h4>
-        <ul>
-          <li><a href="https://suzuki.com.bd/about">About</a></li>
-          <li><a href="https://suzuki.com.bd/bikes">All Bikes</a></li>
-          <li><a href="https://suzuki.com.bd/services">Services</a></li>
-          <li><a href="https://suzuki.com.bd/dealer">Dealer Locator</a></li>
-          <li><a href="https://suzuki.com.bd/offers">Offers</a></li>
-          <li><a href="https://suzuki.com.bd/contact">Contact</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="https://suzuki.com.bd/accessories">Accessories</a></li>
-          <li><a href="https://suzuki.com.bd/engine-oil">Ecstar Engine Oil</a></li>
-          <li><a href="https://suzuki.com.bd/genuine-parts">Genuine Parts</a></li>
-          <li><a href="https://dhp.suzuki.com.bd">Finance / EMI</a></li>
-        </ul>
-      </div>
-      <div class="footer-col">
-        <h4>Policy</h4>
-        <ul>
-          <li><a href="https://suzuki.com.bd/warranty-policy">Warranty Policy</a></li>
-          <li><a href="https://suzuki.com.bd/service-policy">Service Policy</a></li>
-          <li><a href="https://suzuki.com.bd/privacy-policy">Privacy Policy</a></li>
-          <li><a href="https://suzuki.com.bd/terms-condition">Terms &amp; Conditions</a></li>
-          <li><a href="https://suzuki.com.bd/sales-and-refunds">Sales &amp; Refunds</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <div class="footer-copy">© 2023–2026 RANCON MOTOR BIKES LTD. · suzuki.com.bd</div>
-      <div class="social-row">
-        <a href="#" class="soc-btn" title="Facebook">f</a>
-        <a href="#" class="soc-btn" title="Instagram">in</a>
-        <a href="#" class="soc-btn" title="YouTube">▶</a>
-        <a href="#" class="soc-btn" title="TikTok">tt</a>
-      </div>
-      <div class="rancon-badge">Distributed by Rancon Motor Bikes Ltd.</div>
-    </div>
-  </div>
+<div class="container">
+<div class="footer-main">
+<div class="footer-brand">
+<a class="nav-logo" href="#" style="margin-bottom:20px;display:flex">
+<div class="logo-s"></div>
+<span class="logo-text">SUZUKI</span>
+</a>
+<p class="footer-tagline">Основана в Японии, 1920. Проверена в MotoGP. Эксклюзивный дистрибьютор — Rancon Motor Bikes Ltd. — доступно в ближайшем авторизованном дилерском центре по всему Бангладешу.</p>
+<div class="footer-hotline">ГОРЯЧАЯ ЛИНИЯ: <span>16638</span></div>
+</div>
+<div class="footer-col">
+<h4>Suzuki</h4>
+<ul>
+<li><a href="https://suzuki.com.bd/about">О нас</a></li>
+<li><a href="https://suzuki.com.bd/bikes">Все мотоциклы</a></li>
+<li><a href="https://suzuki.com.bd/services">Услуги</a></li>
+<li><a href="https://suzuki.com.bd/dealer">Поиск дилера</a></li>
+<li><a href="https://suzuki.com.bd/offers">Предложения</a></li>
+<li><a href="https://suzuki.com.bd/contact">Контакты</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Магазин</h4>
+<ul>
+<li><a href="https://suzuki.com.bd/accessories">Аксессуары</a></li>
+<li><a href="https://suzuki.com.bd/engine-oil">Ecstar моторное масло</a></li>
+<li><a href="https://suzuki.com.bd/genuine-parts">Оригинальные запчасти</a></li>
+<li><a href="https://dhp.suzuki.com.bd">Рассрочка / EMI</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Политика</h4>
+<ul>
+<li><a href="https://suzuki.com.bd/warranty-policy">Гарантийная политика</a></li>
+<li><a href="https://suzuki.com.bd/service-policy">Сервисная политика</a></li>
+<li><a href="https://suzuki.com.bd/privacy-policy">Политика конфиденциальности</a></li>
+<li><a href="https://suzuki.com.bd/terms-condition">Условия и положения</a></li>
+<li><a href="https://suzuki.com.bd/sales-and-refunds">Продажи и возвраты</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<div class="footer-copy">© 2023–2026 RANCON MOTOR BIKES LTD. · suzuki.com.bd</div>
+<div class="social-row">
+<a class="soc-btn" href="#" title="Facebook">f</a>
+<a class="soc-btn" href="#" title="Instagram">in</a>
+<a class="soc-btn" href="#" title="YouTube">▶</a>
+<a class="soc-btn" href="#" title="TikTok">tt</a>
+</div>
+<div class="rancon-badge">Дистрибутор Rancon Motor Bikes Ltd.</div>
+</div>
+</div>
 </footer>
-
 <script>
 // CURSOR
 const cursor = document.getElementById('cursor');
@@ -2104,5 +2128,4 @@ document.querySelectorAll('.color-dot').forEach(dot => {
   });
 });
 </script>
-
 </body></html>

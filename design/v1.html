@@ -1,10 +1,10 @@
-<html lang="en"><head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>INK — Real-time fluid, rendered live</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet">
+<html lang="ru"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>INK — жидкость в реальном времени, рендер вживую</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
 color-scheme:dark;
@@ -335,194 +335,223 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-  <canvas id="c"></canvas>
-  <div id="vig"></div>
-  <div id="scrim"></div>
-  <div id="grain"></div>
-
-  <!-- progress + index -->
-  <div id="prog"></div>
-  <div id="idx"></div>
-
-  <!-- preloader -->
-  <div id="pre">
-    <div id="preCount">0</div>
-    <div id="preWord">Real-time<br>Rendered live</div>
-    <div id="preBar"><i></i></div>
-  </div>
-
-  <!-- nav -->
-  <nav>
-    <div class="brand">INK<span class="d">.</span></div>
-    <div class="navr">
-      <a href="#direct" class="h">Engine</a>
-      <a href="#spec" class="h">Specs</a>
-      <a href="#cta">Get INK</a>
-    </div>
-  </nav>
-
-  <main>
-
-    <!-- 01 · HERO -->
-    <section id="hero" data-idx="Hero" data-fluid="{&quot;CURL&quot;:16,&quot;SPLAT_FORCE&quot;:3600,&quot;BLOOM_INTENSITY&quot;:0.85,&quot;DENSITY_DISSIPATION&quot;:0.74,&quot;palette&quot;:&quot;ink&quot;}">
-      <div id="heroHud">
-        <span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
-      </div>
-      <div class="wrap">
-        <div class="eyebrow reveal">Real-time fluid engine</div>
-        <h1><span class="mask"><span data-stagger="">INK<span class="d">.</span></span></span></h1>
-        <div class="sub">
-          <div class="lede reveal">Not a video. Not a loop. A living surface of <em>physics</em>, solved on your GPU sixty times a second.</div>
-          <div class="reveal" style="display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
-            <span class="chip"><span class="live"></span> <span id="hudStatus">WebGL2 · live</span></span>
-            <div class="meta">One file · zero deps<br>v3.0 — 2026</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 01b · PRODUCT SHOWCASE (window + annotation components) -->
-    <section id="showcase" data-idx="Showcase" data-fluid="{&quot;CURL&quot;:15,&quot;SPLAT_FORCE&quot;:3400,&quot;BLOOM_INTENSITY&quot;:0.9,&quot;DENSITY_DISSIPATION&quot;:0.74,&quot;palette&quot;:&quot;ink&quot;}">
-      <div class="wrap">
-        <div class="secHead">
-          <div>
-            <div class="eyebrow reveal">The product</div>
-            <h2 class="reveal" style="font-weight:500;letter-spacing:-0.035em;font-size:clamp(30px,5vw,64px);">One canvas. <span class="big" style="font-size:inherit;"><span class="g">Infinite</span></span> motion.</h2>
-          </div>
-          <p class="lead reveal secHead-lead" style="color:var(--muted);max-width:34ch;">Everything below is the live engine — no screenshots. Drag anywhere to push the dye around.</p>
-        </div>
-        <div class="showStage">
-          <div class="window showWin reveal clipUp">
-            <div class="winbar"><span class="dotr" style="background:#ff5f57"></span><span class="dotr" style="background:#febc2e"></span><span class="dotr" style="background:#28c840"></span><span class="url">ink.app / live</span></div>
-            <div class="winbody">
-              <div class="scan"></div>
-              <div class="wgrid"></div>
-              <div class="wmark">INK<span class="d">.</span></div>
-              <div class="whud"><span class="wstat">192³ sim · 1024² dye · WebGL2</span><span class="chip liveTag"><span class="live"></span> 60 FPS</span></div>
-            </div>
-          </div>
-          <div class="annot a1 reveal"><div class="glass acard"><div class="k">Solver</div><div class="v">Navier–Stokes<small>Stable-fluids, 26 pressure iterations / frame</small></div></div></div>
-          <div class="annot a2 reveal"><div class="glass acard"><div class="k">Dye field</div><div class="v">1024 × 1024<small>Half-float, bloom + tone-mapped</small></div></div></div>
-          <div class="annot a3 reveal"><div class="glass acard"><div class="k">Footprint</div><div class="v">~48 KB<small>Single file, zero dependencies</small></div></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 01c · TRUE FOCUS band -->
-    <section id="focus" data-idx="Focus" data-fluid="{&quot;CURL&quot;:10,&quot;SPLAT_FORCE&quot;:2400,&quot;BLOOM_INTENSITY&quot;:0.5,&quot;DENSITY_DISSIPATION&quot;:0.82,&quot;palette&quot;:&quot;ash&quot;}">
-      <div class="wrap">
-        <div class="focus-container" id="trueFocus" data-words="Real-time. Reactive. Alive.">
-          <div class="focus-frame"><span class="corner tlc"></span><span class="corner trc"></span><span class="corner blc"></span><span class="corner brc"></span></div>
-        </div>
-        <div class="sublabel reveal">Three words. One engine.</div>
-      </div>
-    </section>
-
-    <!-- 02 · TENSION (pinned scrub) -->
-    <section id="tension" class="pin" data-idx="Idea" data-fluid="{&quot;CURL&quot;:7,&quot;SPLAT_FORCE&quot;:2400,&quot;BLOOM_INTENSITY&quot;:0.4,&quot;DENSITY_DISSIPATION&quot;:0.9,&quot;palette&quot;:&quot;ash&quot;}" style="height:280vh;">
-      <div class="pinStick">
-        <div class="wrap">
-          <div class="big" data-scrub-lines="">
-            <div class="ln"><span class="dim">Everything that ever moved</span></div>
-            <div class="ln"><span class="dim">across a screen</span></div>
-            <div class="ln">was a <span class="s">recording.</span></div>
-            <div class="ln" style="margin-top:0.4em">This <span class="g">is alive.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 03 · THE REVEAL — pipeline scrub -->
-    <section id="reveal" class="pin" data-idx="Physics" data-fluid="{&quot;CURL&quot;:22,&quot;SPLAT_FORCE&quot;:4200,&quot;BLOOM_INTENSITY&quot;:1.0,&quot;DENSITY_DISSIPATION&quot;:0.72,&quot;palette&quot;:&quot;ink&quot;}" style="height:520vh;">
-      <div class="pinStick">
-        <div id="pipeHead">
-          <div class="wrap">
-            <div class="eyebrow">The loop · 8 stages every frame</div>
-            <div class="big" style="font-size:clamp(28px,4.4vw,64px);">It’s <span class="g">physics.</span></div>
-          </div>
-        </div>
-        <div id="pipeTrack">
-          <div class="pstage"><div class="pn">STAGE 01</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 28 q0-7 7-7 q11 0 11 12 q0 15-18 15 q-22 0-22-23"></path><circle cx="28" cy="28" r="2.4" fill="currentColor" stroke="none"></circle></svg></div><div class="pt"><span class="g">Curl</span></div><div class="pd">Measure how fast the fluid spins at every point on the grid.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 02</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 32 a12 12 0 1 1 7 9"></path><path d="M23 41 l-7 2 l1.5-7.5"></path><path d="M40 24 a12 12 0 0 0-7-9" opacity="0.5"></path></svg></div><div class="pt"><span class="g">Vorticity</span></div><div class="pd">Feed energy back into those swirls so they stay wispy and never flatten out.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 03</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="28" r="2.6" fill="currentColor" stroke="none"></circle><path d="M28 22V12M28 12l-3 3M28 12l3 3"></path><path d="M28 34v10M28 44l-3-3M28 44l3-3"></path><path d="M22 28H12M12 28l3-3M12 28l3 3"></path><path d="M34 28h10M44 28l-3-3M44 28l3 3"></path></svg></div><div class="pt"><span class="g">Divergence</span></div><div class="pd">Find where the fluid is wrongly compressing or pulling apart.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 04</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="28" cy="28" r="4"></circle><circle cx="28" cy="28" r="11" opacity="0.7"></circle><circle cx="28" cy="28" r="18" opacity="0.4"></circle></svg></div><div class="pt"><span class="g">Pressure</span></div><div class="pd">Solve twenty-six times for the field that cancels that compression.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 05</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 34l8-6M10 34l9 1" opacity="0.5"></path><path d="M10 22h36M46 22l-5-4M46 22l-5 4"></path><path d="M10 34h28" opacity="0.5"></path></svg></div><div class="pt"><span class="g">Project</span></div><div class="pd">Subtract pressure from velocity. Now it is truly incompressible — a real fluid.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 06</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 22q9-9 18 0t18 0"></path><path d="M8 34q9-9 18 0t18 0" opacity="0.6"></path><path d="M44 22l1-6M44 22l5-2"></path></svg></div><div class="pt"><span class="g">Advect</span></div><div class="pd">Carry the motion forward along itself, tracing each point back in time.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 07</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M28 10c7 10 12 15 12 23a12 12 0 0 1-24 0c0-8 5-13 12-23z"></path><path d="M22 33a6 6 0 0 0 6 6" opacity="0.6"></path></svg></div><div class="pt"><span class="g">Dye</span></div><div class="pd">Push the color through the flow, then let it gently fade.</div><div class="pbar"></div></div>
-          <div class="pstage"><div class="pn">STAGE 08</div><div class="pdiag"><svg viewBox="0 0 56 56" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="13" width="38" height="26" rx="3"></rect><path d="M22 46h12M28 39v7"></path><path d="M34 22l1.6 3.4L39 27l-3.4 1.6L34 32l-1.6-3.4L29 27l3.4-1.6z" fill="currentColor" stroke="none"></path></svg></div><div class="pt"><span class="g">Render</span></div><div class="pd">Light it, bloom it, tone-map it, and paint it to your screen.</div><div class="pbar"></div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04 · SPEC MONTAGE -->
-    <section id="spec" data-idx="Specs" data-fluid="{&quot;CURL&quot;:15,&quot;SPLAT_FORCE&quot;:3200,&quot;BLOOM_INTENSITY&quot;:0.7,&quot;DENSITY_DISSIPATION&quot;:0.76,&quot;palette&quot;:&quot;steel&quot;}">
-      <div class="wrap">
-        <div class="eyebrow reveal" style="margin-bottom:40px;">Built different</div>
-        <div class="specGrid">
-          <div class="spec" style="--w:92%"><div class="num" data-count="60">0</div><div class="cap">Frames per second</div><div class="barwrap"><i></i></div></div>
-          <div class="spec" style="--w:100%"><div class="num" data-count="1">0</div><div class="cap">Single HTML file</div><div class="barwrap"><i></i></div></div>
-          <div class="spec" style="--w:10%"><div class="num" data-count="0">0</div><div class="cap">Dependencies</div><div class="barwrap"><i></i></div></div>
-          <div class="spec" style="--w:100%"><div class="num">∞</div><div class="cap">Frames, never repeating</div><div class="barwrap"><i></i></div></div>
-        </div>
-      </div>
-      <div class="marq" style="margin-top:0;">
-        <div class="track">
-          <span>Navier–Stokes <span class="o">·</span> GPU solver <span class="o">·</span> Vorticity confinement <span class="o">·</span> Jacobi pressure <span class="o">·</span> Semi-Lagrangian advection <span class="o">·</span> Bloom <span class="o">·</span> Half-float FBOs <span class="o">·</span> </span>
-          <span>Navier–Stokes <span class="o">·</span> GPU solver <span class="o">·</span> Vorticity confinement <span class="o">·</span> Jacobi pressure <span class="o">·</span> Semi-Lagrangian advection <span class="o">·</span> Bloom <span class="o">·</span> Half-float FBOs <span class="o">·</span> </span>
-        </div>
-      </div>
-    </section>
-
-    <!-- 04b · GLASS UI (frosted glass over the live fluid) -->
-    <section id="glass" data-idx="Glass" data-fluid="{&quot;CURL&quot;:13,&quot;SPLAT_FORCE&quot;:3000,&quot;BLOOM_INTENSITY&quot;:0.85,&quot;DENSITY_DISSIPATION&quot;:0.78,&quot;palette&quot;:&quot;steel&quot;}">
-      <div class="gstick">
-        <div class="glassCard reveal" id="glassCard">
-          <div class="eyebrow">Glass UI</div>
-          <h2>Your interface, floating on&nbsp;the&nbsp;<span class="big" style="font-size:inherit;"><span class="g">engine.</span></span></h2>
-          <p>Frosted panels, crisp type, living motion underneath. Layer real product UI straight over INK — menus, cards, pricing — and it stays perfectly legible while the fluid breathes behind it.</p>
-          <div class="gstats">
-            <div><div class="gn">AA</div><div class="gl">Contrast-safe text</div></div>
-            <div><div class="gn">60</div><div class="gl">FPS behind glass</div></div>
-            <div><div class="gn">0</div><div class="gl">Extra requests</div></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 05 · DIRECT IT (preset morph scrub) -->
-    <section id="direct" class="pin" data-idx="Engine" style="height:440vh;">
-      <div class="pinStick">
-        <div class="wrap" style="width:100%;">
-          <div class="eyebrow" style="margin-bottom:30px;">Direct the engine — with your scroll</div>
-          <div id="directLabels"><div class="dMask"><span id="directWord" class="g">Ink</span></div></div>
-          <div id="directDesc">Tight, vivid filaments over deep blue — the <span class="s">signature</span> look.</div>
-          <div id="directPanel" class="glass" style="padding:20px 22px;">
-            <div class="pr"><div class="top"><span>VORTICITY</span><span class="kv" id="m_curl">18</span></div><div class="bar"><i id="b_curl"></i></div></div>
-            <div class="pr"><div class="top"><span>SPLAT FORCE</span><span class="kv" id="m_force">3800</span></div><div class="bar"><i id="b_force"></i></div></div>
-            <div class="pr"><div class="top"><span>BLOOM</span><span class="kv" id="m_bloom">0.85</span></div><div class="bar"><i id="b_bloom"></i></div></div>
-            <div class="pr" style="margin-bottom:0;"><div class="top"><span>DYE FADE</span><span class="kv" id="m_fade">0.74</span></div><div class="bar"><i id="b_fade"></i></div></div>
-          </div>
-        </div>
-        <div id="directBar"><i></i></div>
-      </div>
-    </section>
-
-    <!-- 05b · EMBED (light, high-contrast) -->
-    <section id="embed" data-idx="Embed">
-      <div class="wrap">
-        <div class="secHead">
-          <div>
-            <div class="eyebrow reveal">Drop it anywhere</div>
-            <h2 class="reveal" style="font-weight:600;letter-spacing:-0.04em;line-height:0.96;font-size:clamp(36px,6.5vw,92px);">Two tags<br>and it’s alive.</h2>
-          </div>
-          <p class="lead2 reveal">No framework. No build step. Paste the canvas and the script into any page — a hero, a card, a full background.</p>
-        </div>
-        <div class="grid2">
-          <div class="editor reveal clipUp">
-            <div class="winbar"><span class="dotr" style="background:#ff5f57"></span><span class="dotr" style="background:#febc2e"></span><span class="dotr" style="background:#28c840"></span><span class="url" style="color:#7e88a8;background:rgba(255,255,255,0.06);">index.html</span></div>
-            <pre><code><span class="c-com">&lt;!-- drop the engine into any page --&gt;</span>
+<canvas id="c"></canvas>
+<div id="vig"></div>
+<div id="scrim"></div>
+<div id="grain"></div>
+<!-- progress + index -->
+<div id="prog"></div>
+<div id="idx"></div>
+<!-- preloader -->
+<div id="pre">
+<div id="preCount">0</div>
+<div id="preWord">В реальном времени<br/>Рендерится вживую</div>
+<div id="preBar"><i></i></div>
+</div>
+<!-- nav -->
+<nav>
+<div class="brand">INK<span class="d">.</span></div>
+<div class="navr">
+<a class="h" href="#direct">Движок</a>
+<a class="h" href="#spec">Характеристики</a>
+<a href="#cta">Получить INK</a>
+</div>
+</nav>
+<main>
+<!-- 01 · HERO -->
+<section data-fluid='{"CURL":16,"SPLAT_FORCE":3600,"BLOOM_INTENSITY":0.85,"DENSITY_DISSIPATION":0.74,"palette":"ink"}' data-idx="Hero" id="hero">
+<div id="heroHud">
+<span class="bracket tl"></span><span class="bracket tr"></span><span class="bracket bl"></span><span class="bracket br"></span>
+</div>
+<div class="wrap">
+<div class="eyebrow reveal">Движок жидкости в реальном времени</div>
+<h1><span class="mask"><span data-stagger="">INK<span class="d">.</span></span></span></h1>
+<div class="sub">
+<div class="lede reveal">Это не видео. Не зацикленный ролик. Живая поверхность <em>физики</em>, просчитываемая на вашем GPU шестьдесят раз в секунду.</div>
+<div class="reveal" style="display:flex;flex-direction:column;align-items:flex-end;gap:14px;">
+<span class="chip"><span class="live"></span> <span id="hudStatus">WebGL2 · вживую</span></span>
+<div class="meta">Один файл · ноль зависимостей<br/>v3.0 — 2026</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 01b · PRODUCT SHOWCASE (window + annotation components) -->
+<section data-fluid='{"CURL":15,"SPLAT_FORCE":3400,"BLOOM_INTENSITY":0.9,"DENSITY_DISSIPATION":0.74,"palette":"ink"}' data-idx="Showcase" id="showcase">
+<div class="wrap">
+<div class="secHead">
+<div>
+<div class="eyebrow reveal">Продукт</div>
+<h2 class="reveal" style="font-weight:500;letter-spacing:-0.035em;font-size:clamp(30px,5vw,64px);">Один холст. <span class="big" style="font-size:inherit;"><span class="g">Бесконечное</span></span> движение.</h2>
+</div>
+<p class="lead reveal secHead-lead" style="color:var(--muted);max-width:34ch;">Всё, что ниже, — это живой движок, никаких скриншотов. Потяните в любом месте, чтобы разогнать краску.</p>
+</div>
+<div class="showStage">
+<div class="window showWin reveal clipUp">
+<div class="winbar"><span class="dotr" style="background:#ff5f57"></span><span class="dotr" style="background:#febc2e"></span><span class="dotr" style="background:#28c840"></span><span class="url">ink.app / live</span></div>
+<div class="winbody">
+<div class="scan"></div>
+<div class="wgrid"></div>
+<div class="wmark">INK<span class="d">.</span></div>
+<div class="whud"><span class="wstat">192³ сим · 1024² краска · WebGL2</span><span class="chip liveTag"><span class="live"></span> 60 FPS</span></div>
+</div>
+</div>
+<div class="annot a1 reveal"><div class="glass acard"><div class="k">Солвер</div><div class="v">Навье–Стокс<small>Stable-fluids, 26 итераций давления / кадр</small></div></div></div>
+<div class="annot a2 reveal"><div class="glass acard"><div class="k">Поле краски</div><div class="v">1024 × 1024<small>Half-float, блум + тон-маппинг</small></div></div></div>
+<div class="annot a3 reveal"><div class="glass acard"><div class="k">Размер</div><div class="v">~48 КБ<small>Один файл, ноль зависимостей</small></div></div></div>
+</div>
+</div>
+</section>
+<!-- 01c · TRUE FOCUS band -->
+<section data-fluid='{"CURL":10,"SPLAT_FORCE":2400,"BLOOM_INTENSITY":0.5,"DENSITY_DISSIPATION":0.82,"palette":"ash"}' data-idx="Focus" id="focus">
+<div class="wrap">
+<div class="focus-container" data-words="Real-time. Reactive. Alive." id="trueFocus">
+<div class="focus-frame"><span class="corner tlc"></span><span class="corner trc"></span><span class="corner blc"></span><span class="corner brc"></span></div>
+</div>
+<div class="sublabel reveal">Три слова. Один движок.</div>
+</div>
+</section>
+<!-- 02 · TENSION (pinned scrub) -->
+<section class="pin" data-fluid='{"CURL":7,"SPLAT_FORCE":2400,"BLOOM_INTENSITY":0.4,"DENSITY_DISSIPATION":0.9,"palette":"ash"}' data-idx="Idea" id="tension" style="height:280vh;">
+<div class="pinStick">
+<div class="wrap">
+<div class="big" data-scrub-lines="">
+<div class="ln"><span class="dim">Всё, что когда-либо двигалось</span></div>
+<div class="ln"><span class="dim">по экрану</span></div>
+<div class="ln">было <span class="s">записью.</span></div>
+<div class="ln" style="margin-top:0.4em">Это <span class="g">живое.</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 03 · THE REVEAL — pipeline scrub -->
+<section class="pin" data-fluid='{"CURL":22,"SPLAT_FORCE":4200,"BLOOM_INTENSITY":1.0,"DENSITY_DISSIPATION":0.72,"palette":"ink"}' data-idx="Physics" id="reveal" style="height:520vh;">
+<div class="pinStick">
+<div id="pipeHead">
+<div class="wrap">
+<div class="eyebrow">Цикл · 8 стадий каждый кадр</div>
+<div class="big" style="font-size:clamp(28px,4.4vw,64px);">Это <span class="g">физика.</span></div>
+</div>
+</div>
+<div id="pipeTrack">
+<div class="pstage"><div class="pn">СТАДИЯ 01</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><path d="M28 28 q0-7 7-7 q11 0 11 12 q0 15-18 15 q-22 0-22-23"></path><circle cx="28" cy="28" fill="currentColor" r="2.4" stroke="none"></circle></svg></div><div class="pt"><span class="g">Ротор</span></div><div class="pd">Измеряем, насколько быстро жидкость вращается в каждой точке сетки.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 02</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><path d="M16 32 a12 12 0 1 1 7 9"></path><path d="M23 41 l-7 2 l1.5-7.5"></path><path d="M40 24 a12 12 0 0 0-7-9" opacity="0.5"></path></svg></div><div class="pt"><span class="g">Завихренность</span></div><div class="pd">Возвращаем энергию в эти вихри, чтобы они оставались тонкими и никогда не сглаживались.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 03</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><circle cx="28" cy="28" fill="currentColor" r="2.6" stroke="none"></circle><path d="M28 22V12M28 12l-3 3M28 12l3 3"></path><path d="M28 34v10M28 44l-3-3M28 44l3-3"></path><path d="M22 28H12M12 28l3-3M12 28l3 3"></path><path d="M34 28h10M44 28l-3-3M44 28l3 3"></path></svg></div><div class="pt"><span class="g">Дивергенция</span></div><div class="pd">Находим, где жидкость ошибочно сжимается или растягивается.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 04</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><circle cx="28" cy="28" r="4"></circle><circle cx="28" cy="28" opacity="0.7" r="11"></circle><circle cx="28" cy="28" opacity="0.4" r="18"></circle></svg></div><div class="pt"><span class="g">Давление</span></div><div class="pd">Двадцать шесть раз решаем уравнение для поля, которое гасит это сжатие.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 05</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><path d="M10 34l8-6M10 34l9 1" opacity="0.5"></path><path d="M10 22h36M46 22l-5-4M46 22l-5 4"></path><path d="M10 34h28" opacity="0.5"></path></svg></div><div class="pt"><span class="g">Проекция</span></div><div class="pd">Вычитаем давление из скорости. Теперь она по-настоящему несжимаема — настоящая жидкость.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 06</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><path d="M8 22q9-9 18 0t18 0"></path><path d="M8 34q9-9 18 0t18 0" opacity="0.6"></path><path d="M44 22l1-6M44 22l5-2"></path></svg></div><div class="pt"><span class="g">Адвекция</span></div><div class="pd">Переносим движение вперёд вдоль него самого, отслеживая каждую точку назад во времени.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 07</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><path d="M28 10c7 10 12 15 12 23a12 12 0 0 1-24 0c0-8 5-13 12-23z"></path><path d="M22 33a6 6 0 0 0 6 6" opacity="0.6"></path></svg></div><div class="pt"><span class="g">Краска</span></div><div class="pd">Проталкиваем цвет сквозь поток, а затем даём ему мягко угаснуть.</div><div class="pbar"></div></div>
+<div class="pstage"><div class="pn">СТАДИЯ 08</div><div class="pdiag"><svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 56 56"><rect height="26" rx="3" width="38" x="9" y="13"></rect><path d="M22 46h12M28 39v7"></path><path d="M34 22l1.6 3.4L39 27l-3.4 1.6L34 32l-1.6-3.4L29 27l3.4-1.6z" fill="currentColor" stroke="none"></path></svg></div><div class="pt"><span class="g">Рендер</span></div><div class="pd">Освещаем, добавляем блум, применяем тон-маппинг и выводим на ваш экран.</div><div class="pbar"></div></div>
+</div>
+</div>
+</section>
+<!-- 04 · SPEC MONTAGE -->
+<section data-fluid='{"CURL":15,"SPLAT_FORCE":3200,"BLOOM_INTENSITY":0.7,"DENSITY_DISSIPATION":0.76,"palette":"steel"}' data-idx="Specs" id="spec">
+<div class="wrap">
+<div class="eyebrow reveal" style="margin-bottom:40px;">Собран иначе</div>
+<div class="specGrid">
+<div class="spec" style="--w:92%"><div class="num" data-count="60">0</div><div class="cap">Кадров в секунду</div><div class="barwrap"><i></i></div></div>
+<div class="spec" style="--w:100%"><div class="num" data-count="1">0</div><div class="cap">Один HTML-файл</div><div class="barwrap"><i></i></div></div>
+<div class="spec" style="--w:10%"><div class="num" data-count="0">0</div><div class="cap">Зависимости</div><div class="barwrap"><i></i></div></div>
+<div class="spec" style="--w:100%"><div class="num">∞</div><div class="cap">Кадры, которые никогда не повторяются</div><div class="barwrap"><i></i></div></div>
+</div>
+</div>
+<div class="marq" style="margin-top:0;">
+<div class="track">
+<span>Навье–Стокс <span class="o">·</span> GPU-солвер <span class="o">·</span> Ограничение завихренности <span class="o">·</span> Давление по Якоби <span class="o">·</span> Полулагранжева адвекция <span class="o">·</span> Блум <span class="o">·</span> Half-float FBO <span class="o">·</span> </span>
+<span>Навье–Стокс <span class="o">·</span> GPU-солвер <span class="o">·</span> Ограничение завихренности <span class="o">·</span> Давление по Якоби <span class="o">·</span> Полулагранжева адвекция <span class="o">·</span> Блум <span class="o">·</span> Half-float FBO <span class="o">·</span> </span>
+</div>
+</div>
+</section>
+<!-- 04b · GLASS UI (frosted glass over the live fluid) -->
+<section data-fluid='{"CURL":13,"SPLAT_FORCE":3000,"BLOOM_INTENSITY":0.85,"DENSITY_DISSIPATION":0.78,"palette":"steel"}' data-idx="Glass" id="glass">
+<div class="gstick">
+<div class="glassCard reveal" id="glassCard">
+<div class="eyebrow">Стеклянный UI</div>
+<h2>Ваш интерфейс, парящий над <span class="big" style="font-size:inherit;"><span class="g">движком.</span></span></h2>
+<p>Матовые панели, чёткая типографика, живое движение под ними. Накладывайте настоящий продуктовый UI прямо поверх INK — меню, карточки, цены — и он останется идеально читаемым, пока жидкость дышит позади.</p>
+<div class="gstats">
+<div><div class="gn">AA</div><div class="gl">Текст с безопасным контрастом</div></div>
+<div><div class="gn">60</div><div class="gl">FPS за стеклом</div></div>
+<div><div class="gn">0</div><div class="gl">Дополнительных запросов</div></div>
+</div>
+</div>
+</div>
+</section>
+<!-- 05 · DIRECT IT (preset morph scrub) -->
+<section class="pin" data-idx="Engine" id="direct" style="height:440vh;">
+<div class="pinStick">
+<div class="wrap" style="width:100%;">
+<div class="eyebrow" style="margin-bottom:30px;">Управляйте движком — своим скроллом</div>
+<div id="directLabels"><div class="dMask"><span class="g" id="directWord">Ink</span></div></div>
+<div id="directDesc">Тонкие яркие нити на глубоком синем — тот самый <span class="s">фирменный</span> вид.</div>
+<div class="glass" id="directPanel" style="padding:20px 22px;">
+<div class="pr"><div class="top"><span>ЗАВИХРЕННОСТЬ</span><span class="kv" id="m_curl">18</span></div><div class="bar"><i id="b_curl"></i></div></div>
+<div class="pr"><div class="top"><span>СИЛА ВСПЛЕСКА</span><span class="kv" id="m_force">3800</span></div><div class="bar"><i id="b_force"></i></div></div>
+<div class="pr"><div class="top"><span>БЛУМ</span><span class="kv" id="m_bloom">0.85</span></div><div class="bar"><i id="b_bloom"></i></div></div>
+<div class="pr" style="margin-bottom:0;"><div class="top"><span>ЗАТУХАНИЕ КРАСКИ</span><span class="kv" id="m_fade">0.74</span></div><div class="bar"><i id="b_fade"></i></div></div>
+</div>
+</div>
+<div id="directBar"><i></i></div>
+</div>
+</section>
+<!-- 05b · EMBED (light, high-contrast) -->
+<section data-idx="Embed" id="embed">
+<div class="wrap">
+<div class="secHead">
+<div>
+<div class="eyebrow reveal">Вставьте куда угодно</div>
+<h2 class="reveal" style="font-weight:600;letter-spacing:-0.04em;line-height:0.96;font-size:clamp(36px,6.5vw,92px);">Два тега<br/>и всё оживает.</h2>
+</div>
+<p class="lead2 reveal">Никакого фреймворка. Никакой сборки. Вставьте canvas и скрипт на любую страницу — в hero-блок, карточку или фон на весь экран.</p>
+</div>
+<div class="grid2">
+<div class="editor reveal clipUp">
+<div class="winbar"><span class="dotr" style="background:#ff5f57"></span><span class="dotr" style="background:#febc2e"></span><span class="dotr" style="background:#28c840"></span><span class="url" style="color:#7e88a8;background:rgba(255,255,255,0.06);">index.html</span></div>
+<pre><code><span class="c-com">&lt;!-- вставьте движок на любую страницу --&gt;</span>
 <span class="c-tag">&lt;canvas</span> <span class="c-fn">id</span>=<span class="c-str">"ink"</span><span class="c-tag">&gt;&lt;/canvas&gt;</span>
 <span class="c-tag">&lt;script </span><span class="c-fn">src</span>=<span class="c-str">"ink.js"</span><span class="c-tag">&gt;&lt;/script&gt;</span>
 
@@ -533,72 +562,66 @@ gtag('config', 'G-2M6V79H761');
     bloom: <span class="c-tag">0.85</span>
   })
 <span class="c-tag">&lt;/script&gt;</span></code></pre>
-          </div>
-          <div class="device reveal">
-            <div class="frame">
-              <div class="demobar"><span class="dotr" style="background:#ff5f57"></span><span class="dotr" style="background:#febc2e"></span><span class="dotr" style="background:#28c840"></span></div>
-              <div class="demo" id="embedDemo"></div>
-            </div>
-            <div class="tagline">your-site.com — INK as a living background</div>
-          </div>
-        </div>
-        <div class="embed-cards">
-          <div class="ec reveal"><div class="n">&lt; 1<span style="font-size:0.5em;">min</span></div><div class="t">From paste to running</div></div>
-          <div class="ec reveal"><div class="n">0</div><div class="t">npm installs required</div></div>
-          <div class="ec reveal"><div class="n">100%</div><div class="t">Runs offline, on a phone</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 06 · TOUCH -->
-    <section id="touch" data-idx="Touch" data-fluid="{&quot;CURL&quot;:20,&quot;SPLAT_FORCE&quot;:4600,&quot;BLOOM_INTENSITY&quot;:1.05,&quot;DENSITY_DISSIPATION&quot;:0.7,&quot;palette&quot;:&quot;ink&quot;}">
-      <div class="center">
-        <div class="big reveal" style="text-align:center;">Now <span class="s g">touch</span> it.</div>
-        <div class="hint reveal">Move your cursor · drag to smear · click to burst</div>
-      </div>
-    </section>
-
-    <!-- 07 · MANIFESTO -->
-    <section id="manifesto" data-idx="Manifesto" data-fluid="{&quot;CURL&quot;:13,&quot;SPLAT_FORCE&quot;:2800,&quot;BLOOM_INTENSITY&quot;:0.62,&quot;DENSITY_DISSIPATION&quot;:0.8,&quot;palette&quot;:&quot;ember&quot;}">
-      <div class="wrap">
-        <div class="line"><span class="word"><i>Interfaces</i></span> <span class="word"><i>shouldn’t</i></span> <span class="word"><i>just</i></span> <span class="word"><i>sit</i></span> <span class="word"><i>there.</i></span></div>
-        <div class="line alt"><span class="word"><i>They’re</i></span> <span class="word"><i class="g">meant</i></span> <span class="word"><i class="g">to</i></span> <span class="word"><i class="g">breathe</i></span></div>
-        <div class="line"><span class="word"><i>— to react, to flow,</i></span></div>
-        <div class="line alt"><span class="word"><i>to feel</i></span> <span class="word"><i>genuinely</i></span> <span class="word"><i class="s">alive.</i></span></div>
-      </div>
-    </section>
-
-    <!-- 08 · CTA -->
-    <section id="cta" data-idx="Get INK" data-fluid="{&quot;CURL&quot;:24,&quot;SPLAT_FORCE&quot;:5000,&quot;BLOOM_INTENSITY&quot;:1.15,&quot;DENSITY_DISSIPATION&quot;:0.72,&quot;palette&quot;:&quot;ink&quot;}">
-      <div class="wrap">
-        <div class="eyebrow reveal" style="justify-content:center; margin-bottom:28px;">One file. Drop it anywhere.</div>
-        <h2><span class="mask"><span>Bring it</span></span><span class="mask"><span>to <span class="d">life.</span></span></span></h2>
-        <div class="btns reveal">
-          <a href="#" class="btn" data-magnetic=""><span>Get INK</span></a>
-          <a href="#" class="btn ghost" data-magnetic=""><span>Read the docs</span></a>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <footer data-idx="">
-    <div class="wrap">
-      <div class="top">
-        <div class="fmark">INK<span class="d">.</span></div>
-        <div class="cols">
-          <div class="col"><h4>Product</h4><a href="#hero">Overview</a><a href="#direct">The engine</a><a href="#spec">Specs</a><a href="#cta">Get INK</a></div>
-          <div class="col"><h4>Learn</h4><a href="#reveal">How it works</a><a href="#">Documentation</a><a href="#">Parameters</a></div>
-          <div class="col"><h4>Lineage</h4><a href="#">Jos Stam — Stable Fluids</a><a href="#">Pavel Dobryakov — WebGL Fluid</a></div>
-        </div>
-      </div>
-      <div class="base">
-        <span>© 2026 INK — Real-time fluid, rendered live.</span>
-        <span class="built"><span class="g"></span> Built with Claude Opus 4.8</span>
-      </div>
-    </div>
-  </footer>
-
+</div>
+<div class="device reveal">
+<div class="frame">
+<div class="demobar"><span class="dotr" style="background:#ff5f57"></span><span class="dotr" style="background:#febc2e"></span><span class="dotr" style="background:#28c840"></span></div>
+<div class="demo" id="embedDemo"></div>
+</div>
+<div class="tagline">your-site.com — INK как живой фон</div>
+</div>
+</div>
+<div class="embed-cards">
+<div class="ec reveal"><div class="n">&lt; 1<span style="font-size:0.5em;">мин</span></div><div class="t">От вставки до запуска</div></div>
+<div class="ec reveal"><div class="n">0</div><div class="t">npm-установок требуется</div></div>
+<div class="ec reveal"><div class="n">100%</div><div class="t">Работает офлайн, на телефоне</div></div>
+</div>
+</div>
+</section>
+<!-- 06 · TOUCH -->
+<section data-fluid='{"CURL":20,"SPLAT_FORCE":4600,"BLOOM_INTENSITY":1.05,"DENSITY_DISSIPATION":0.7,"palette":"ink"}' data-idx="Touch" id="touch">
+<div class="center">
+<div class="big reveal" style="text-align:center;">А теперь <span class="s g">коснитесь</span> его.</div>
+<div class="hint reveal">Двигайте курсором · тяните, чтобы размазать · кликните для всплеска</div>
+</div>
+</section>
+<!-- 07 · MANIFESTO -->
+<section data-fluid='{"CURL":13,"SPLAT_FORCE":2800,"BLOOM_INTENSITY":0.62,"DENSITY_DISSIPATION":0.8,"palette":"ember"}' data-idx="Manifesto" id="manifesto">
+<div class="wrap">
+<div class="line"><span class="word"><i>Интерфейсы</i></span> <span class="word"><i>не должны</i></span> <span class="word"><i>просто</i></span> <span class="word"><i>стоять</i></span> <span class="word"><i>на месте.</i></span></div>
+<div class="line alt"><span class="word"><i>Они</i></span> <span class="word"><i class="g">созданы</i></span> <span class="word"><i class="g">чтобы</i></span> <span class="word"><i class="g">дышать</i></span></div>
+<div class="line"><span class="word"><i>— реагировать, течь,</i></span></div>
+<div class="line alt"><span class="word"><i>ощущаться</i></span> <span class="word"><i>по-настоящему</i></span> <span class="word"><i class="s">живыми.</i></span></div>
+</div>
+</section>
+<!-- 08 · CTA -->
+<section data-fluid='{"CURL":24,"SPLAT_FORCE":5000,"BLOOM_INTENSITY":1.15,"DENSITY_DISSIPATION":0.72,"palette":"ink"}' data-idx="Get INK" id="cta">
+<div class="wrap">
+<div class="eyebrow reveal" style="justify-content:center; margin-bottom:28px;">Один файл. Вставьте куда угодно.</div>
+<h2><span class="mask"><span>Вдохните в него</span></span><span class="mask"><span>чтобы <span class="d">жизнь.</span></span></span></h2>
+<div class="btns reveal">
+<a class="btn" data-magnetic="" href="#"><span>Получить INK</span></a>
+<a class="btn ghost" data-magnetic="" href="#"><span>Читать документацию</span></a>
+</div>
+</div>
+</section>
+</main>
+<footer data-idx="">
+<div class="wrap">
+<div class="top">
+<div class="fmark">INK<span class="d">.</span></div>
+<div class="cols">
+<div class="col"><h4>Продукт</h4><a href="#hero">Обзор</a><a href="#direct">Движок</a><a href="#spec">Характеристики</a><a href="#cta">Получить INK</a></div>
+<div class="col"><h4>Изучить</h4><a href="#reveal">Как это работает</a><a href="#">Документация</a><a href="#">Параметры</a></div>
+<div class="col"><h4>Истоки</h4><a href="#">Jos Stam — Stable Fluids</a><a href="#">Pavel Dobryakov — WebGL Fluid</a></div>
+</div>
+</div>
+<div class="base">
+<span>© 2026 INK — жидкость в реальном времени, рендер вживую.</span>
+<span class="built"><span class="g"></span> Создано с помощью Claude Opus 4.8</span>
+</div>
+</div>
+</footer>
 <!-- =========================================================
      INK FLUID ENGINE — stable-fluids GPU solver with
      scroll-driven config + palette lerping.
@@ -830,7 +853,6 @@ gtag('config', 'G-2M6V79H761');
   };
 })();
 </script>
-
 <!-- =========================================================
      MOTION / EXPERIENCE LAYER — self-contained, no deps.
      ========================================================= -->
@@ -1078,7 +1100,4 @@ gtag('config', 'G-2M6V79H761');
   window.__inkReady=true;
 })();
 </script>
-
-
-
 </body></html>

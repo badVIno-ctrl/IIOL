@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Signalis — Real-Time Infrastructure Observability</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@200;300;400;500;600;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Signalis — наблюдаемость инфраструктуры в реальном времени</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200;12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&amp;family=Inter:wght@200;300;400;500;600;700&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400&amp;display=swap" rel="stylesheet"/>
 <style>
 /* ─────────────────────────────────────────
 DESIGN TOKENS
@@ -674,7 +674,7 @@ RESPONSIVE
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -682,818 +682,822 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-
 <!-- SVG Noise filter definition (hidden) -->
 <svg class="noise-filter" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <filter id="glass-noise">
-      <feTurbulence type="fractalNoise" baseFrequency="0.75" numOctaves="4" stitchTiles="stitch"/>
-      <feColorMatrix type="saturate" values="0"/>
-      <feBlend in="SourceGraphic" mode="overlay" result="blend"/>
-      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
-    </filter>
-  </defs>
+<defs>
+<filter id="glass-noise">
+<feturbulence basefrequency="0.75" numoctaves="4" stitchtiles="stitch" type="fractalNoise"></feturbulence>
+<fecolormatrix type="saturate" values="0"></fecolormatrix>
+<feblend in="SourceGraphic" mode="overlay" result="blend"></feblend>
+<fecomposite in="blend" in2="SourceGraphic" operator="in"></fecomposite>
+</filter>
+</defs>
 </svg>
-
 <!-- ═══════════════════════════════════════
      NAVBAR
 ════════════════════════════════════════ -->
 <nav class="nav" id="nav">
-  <div class="container">
-    <div class="nav__inner">
-      <a href="#" class="nav__logo">
+<div class="container">
+<div class="nav__inner">
+<a class="nav__logo" href="#">
         Signalis
       </a>
-      <ul class="nav__links">
-        <li><a href="#features" class="nav__link">Features</a></li>
-        <li><a href="#platform" class="nav__link">Platform</a></li>
-        <li><a href="#pricing" class="nav__link">Pricing</a></li>
-        <li><a href="#" class="nav__link">Docs</a></li>
-        <li><a href="#" class="nav__link">Blog</a></li>
-      </ul>
-      <div class="nav__cta">
-        <button class="btn btn-ghost">Sign in</button>
-        <button class="btn btn-primary">
-          Start Free
-          <svg class="btn-icon" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-      </div>
-      <button class="nav__toggle" id="navToggle" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </div>
+<ul class="nav__links">
+<li><a class="nav__link" href="#features">Возможности</a></li>
+<li><a class="nav__link" href="#platform">Платформа</a></li>
+<li><a class="nav__link" href="#pricing">Цены</a></li>
+<li><a class="nav__link" href="#">Документация</a></li>
+<li><a class="nav__link" href="#">Блог</a></li>
+</ul>
+<div class="nav__cta">
+<button class="btn btn-ghost">Войти</button>
+<button class="btn btn-primary">
+          Начать бесплатно
+          <svg class="btn-icon" fill="none" viewbox="0 0 18 18"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+</div>
+<button aria-expanded="false" aria-label="Меню" class="nav__toggle" id="navToggle">
+<span></span><span></span><span></span>
+</button>
+</div>
+</div>
 </nav>
-
 <!-- ═══════════════════════════════════════
      HERO
 ════════════════════════════════════════ -->
 <section class="hero" id="hero">
-  <!-- Unicorn Studio Background -->
-  <div class="hero__bg">
-    <div
-      data-us-project="lFqI94GW0JcxJNk1NH4n"
-      data-us-scale="1"
-      data-us-dpi="1.5"
-      data-us-fps="60"
-      data-us-lazyload="true"
-      data-us-production="true"
-      style="position:absolute;top:0;left:0;width:100%;height:100%;"
-    ></div>
-  </div>
-  <div class="hero__overlay"></div>
-
-  <!-- Floating orbs -->
-  <div class="orb orb--1"></div>
-  <div class="orb orb--2"></div>
-
-  <div class="hero__content reveal">
-    <div class="hero__badge">
-      <div class="glow-dot"></div>
-      <span class="hero__badge-new">New</span>
-      Real-time anomaly detection with AI &rarr;
+<!-- Unicorn Studio Background -->
+<div class="hero__bg">
+<div data-us-dpi="1.5" data-us-fps="60" data-us-lazyload="true" data-us-production="true" data-us-project="lFqI94GW0JcxJNk1NH4n" data-us-scale="1" style="position:absolute;top:0;left:0;width:100%;height:100%;"></div>
+</div>
+<div class="hero__overlay"></div>
+<!-- Floating orbs -->
+<div class="orb orb--1"></div>
+<div class="orb orb--2"></div>
+<div class="hero__content reveal">
+<div class="hero__badge">
+<div class="glow-dot"></div>
+<span class="hero__badge-new">Новое</span>
+      Обнаружение аномалий в реальном времени с AI →
     </div>
-    <h1 class="hero__title">
-      Find the signal through<br>
-      the <em>noise</em> — before it's too late
+<h1 class="hero__title">
+      Найдите сигнал сквозь<br/>
+      темп <em>шум,</em> — пока не стало слишком поздно
     </h1>
-    <p class="hero__sub">
-      Full-stack observability that thinks ahead. Spot failures before they cascade — and act in milliseconds.
+<p class="hero__sub">
+      Полная наблюдаемость, которая думает наперёд. Замечайте сбои до того, как они каскадируют, — и действуйте за миллисекунды.
     </p>
-    <div class="hero__actions">
-      <button class="btn-hero-primary">
-        Start for free
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <button class="btn-hero-ghost">
-        Watch demo
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-    </div>
-  </div>
-
-  <!-- Stats strip -->
-  <div class="hero__stats reveal" data-delay="4">
-    <div class="hero__stat">
-      <div class="hero__stat-value" data-count="99.99">0</div>
-      <div class="hero__stat-label">Uptime SLA</div>
-    </div>
-    <div class="hero__stat">
-      <div class="hero__stat-value"><span data-count="4">0</span>ms</div>
-      <div class="hero__stat-label">P99 Latency</div>
-    </div>
-    <div class="hero__stat">
-      <div class="hero__stat-value"><span data-count="850">0</span>B+</div>
-      <div class="hero__stat-label">Events / day</div>
-    </div>
-    <div class="hero__stat">
-      <div class="hero__stat-value"><span data-count="12">0</span>K+</div>
-      <div class="hero__stat-label">Engineers trust us</div>
-    </div>
-  </div>
+<div class="hero__actions">
+<button class="btn-hero-primary">
+        Начать бесплатно
+        <svg fill="none" height="16" viewbox="0 0 16 16" width="16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="btn-hero-ghost">
+        Смотреть демо
+        <svg fill="none" height="16" viewbox="0 0 16 16" width="16"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+</div>
+</div>
+<!-- Stats strip -->
+<div class="hero__stats reveal" data-delay="4">
+<div class="hero__stat">
+<div class="hero__stat-value" data-count="99.99">0</div>
+<div class="hero__stat-label">SLA по аптайму</div>
+</div>
+<div class="hero__stat">
+<div class="hero__stat-value"><span data-count="4">0</span>мс</div>
+<div class="hero__stat-label">Задержка P99</div>
+</div>
+<div class="hero__stat">
+<div class="hero__stat-value"><span data-count="850">0</span>B+</div>
+<div class="hero__stat-label">Событий / день</div>
+</div>
+<div class="hero__stat">
+<div class="hero__stat-value"><span data-count="12">0</span>K+</div>
+<div class="hero__stat-label">Инженеры доверяют нам</div>
+</div>
+</div>
 </section>
-
 <!-- ═══════════════════════════════════════
      LOGO STRIP
 ════════════════════════════════════════ -->
 <div class="logos">
-  <div class="logos__label">Trusted by engineering teams at</div>
-  <div style="overflow:hidden">
-    <div class="logos__track" id="logoTrack">
-      <span class="logos__item">Vercel</span>
-      <span class="logos__item">Stripe</span>
-      <span class="logos__item">Linear</span>
-      <span class="logos__item">Notion</span>
-      <span class="logos__item">Figma</span>
-      <span class="logos__item">Planetscale</span>
-      <span class="logos__item">Supabase</span>
-      <span class="logos__item">Railway</span>
-      <span class="logos__item">Fly.io</span>
-      <span class="logos__item">Turso</span>
-      <span class="logos__item">Neon</span>
-      <span class="logos__item">Render</span>
-      <!-- duplicate for infinite -->
-      <span class="logos__item">Vercel</span>
-      <span class="logos__item">Stripe</span>
-      <span class="logos__item">Linear</span>
-      <span class="logos__item">Notion</span>
-      <span class="logos__item">Figma</span>
-      <span class="logos__item">Planetscale</span>
-      <span class="logos__item">Supabase</span>
-      <span class="logos__item">Railway</span>
-      <span class="logos__item">Fly.io</span>
-      <span class="logos__item">Turso</span>
-      <span class="logos__item">Neon</span>
-      <span class="logos__item">Render</span>
-    </div>
-  </div>
+<div class="logos__label">Нам доверяют инженерные команды</div>
+<div style="overflow:hidden">
+<div class="logos__track" id="logoTrack">
+<span class="logos__item">Vercel</span>
+<span class="logos__item">Stripe</span>
+<span class="logos__item">Linear</span>
+<span class="logos__item">Notion</span>
+<span class="logos__item">Figma</span>
+<span class="logos__item">Planetscale</span>
+<span class="logos__item">Supabase</span>
+<span class="logos__item">Railway</span>
+<span class="logos__item">Fly.io</span>
+<span class="logos__item">Turso</span>
+<span class="logos__item">Neon</span>
+<span class="logos__item">Рендер</span>
+<!-- duplicate for infinite -->
+<span class="logos__item">Vercel</span>
+<span class="logos__item">Stripe</span>
+<span class="logos__item">Linear</span>
+<span class="logos__item">Notion</span>
+<span class="logos__item">Figma</span>
+<span class="logos__item">Planetscale</span>
+<span class="logos__item">Supabase</span>
+<span class="logos__item">Railway</span>
+<span class="logos__item">Fly.io</span>
+<span class="logos__item">Turso</span>
+<span class="logos__item">Neon</span>
+<span class="logos__item">Рендер</span>
 </div>
-
+</div>
+</div>
 <!-- ═══════════════════════════════════════
      FEATURES
 ════════════════════════════════════════ -->
 <section class="features" id="features">
-  <div class="particles" id="featureParticles"></div>
-  <div class="deco-grid deco-grid--dots" style="width:200px;height:200px;top:40px;right:40px;border-radius:16px"></div>
-  <div class="deco-grid deco-grid--dots" style="width:140px;height:140px;bottom:60px;left:20px;border-radius:12px"></div>
-  <div class="container">
-    <div class="features__header">
-      <div class="reveal">
-        <div class="section-tag"><span class="section-tag-dot"></span>Capabilities</div>
-      </div>
-      <h2 class="section-title text-gradient-h reveal" data-delay="1">
-        Everything your stack<br>tries to tell you
+<div class="particles" id="featureParticles"></div>
+<div class="deco-grid deco-grid--dots" style="width:200px;height:200px;top:40px;right:40px;border-radius:16px"></div>
+<div class="deco-grid deco-grid--dots" style="width:140px;height:140px;bottom:60px;left:20px;border-radius:12px"></div>
+<div class="container">
+<div class="features__header">
+<div class="reveal">
+<div class="section-tag"><span class="section-tag-dot"></span>Компетенции</div>
+</div>
+<h2 class="section-title text-gradient-h reveal" data-delay="1">
+        Всё, что ваш стек<br/>пытается вам сказать
       </h2>
-      <p class="section-sub reveal" data-delay="2">
-        One unified view of metrics, logs, traces, and events — correlated automatically so you never miss the signal in the noise.
+<p class="section-sub reveal" data-delay="2">
+        Единое представление метрик, логов, трейсов и событий — с автоматической корреляцией, чтобы вы никогда не упускали сигнал в шуме.
       </p>
-    </div>
-
-    <div class="features__grid stagger-scale">
-      <!-- Wide card: Real-time streams -->
-      <div class="feature-card feature-card--wide reveal-child">
-        <div class="feature-status"><span class="feature-status__dot"></span>847K evt/s</div>
-        <div class="feature-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
-        </div>
-        <div class="feature-card__title">Real-Time Signal Streaming</div>
-        <div class="feature-card__body">Ingest millions of events per second from any source — Kafka, Kinesis, HTTP, or our native SDKs. Zero-copy ingestion with sub-millisecond acknowledgement.</div>
-        <div class="feature-card__visual">
-          <div class="waveform" id="waveform">
-            <!-- JS generated -->
-          </div>
-          <div class="terminal" style="margin-top:16px">
-            <div class="terminal__bar">
-              <div class="terminal__dot terminal__dot--red"></div>
-              <div class="terminal__dot terminal__dot--yellow"></div>
-              <div class="terminal__dot terminal__dot--green"></div>
-            </div>
-            <div class="terminal__line"><span class="terminal__prompt">$</span><span class="terminal__cmd"> signalis ingest --stream production</span></div>
-            <div class="terminal__line terminal__out">✓ Connected to stream [production] · 847K events/s</div>
-            <div class="terminal__line terminal__out">✓ Anomaly model loaded · p99 latency: 2.1ms</div>
-            <div class="terminal__line terminal__out">⚡ Alert: CPU spike detected in api-gateway [3σ]</div>
-            <div class="terminal__line terminal__out">→ Root cause: upstream db connection pool exhausted</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card: Anomaly AI (tall — spans 2 rows) -->
-      <div class="feature-card feature-card--tall reveal-child">
-        <div class="feature-status feature-status--warn"><span class="feature-status__dot"></span>3 anomalies</div>
-        <div class="feature-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <div class="feature-card__title">AI Anomaly Detection</div>
-        <div class="feature-card__body">Adaptive ML models learn your baseline. Detect multi-variate anomalies across 1,000s of metrics with near-zero false positives.</div>
-        <div class="feature-card__visual" style="margin-top:20px;min-height:0">
-          <div class="grid-visual" id="gridVisual" style="height:100%"></div>
-        </div>
-        <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
-            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FF5F57;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">error-rate · payment-svc</span></div>
-            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(255,95,87,.7)">4.8σ</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
-            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FEBC2E;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">cpu-usage · api-gateway</span></div>
-            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">3.2σ</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
-            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FEBC2E;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">mem-alloc · worker-pool</span></div>
-            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">2.7σ</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
-            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#28C840;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">latency · db-replica</span></div>
-            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,64,.7)">resolved</span>
-          </div>
-          <div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
-            <div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#28C840;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">throughput · ingest-pipe</span></div>
-            <span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,64,.7)">resolved</span>
-          </div>
-        </div>
-        <!-- Model confidence bar -->
-        <div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
-          <div style="display:flex;justify-content:space-between;margin-bottom:6px">
-            <span style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace">Model confidence</span>
-            <span style="font-size:11px;color:var(--accent);font-family:'Space Mono',monospace">97.3%</span>
-          </div>
-          <div style="height:4px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden">
-            <div style="width:97.3%;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--accent))"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card: Distributed Tracing -->
-      <div class="feature-card reveal-child">
-        <div class="feature-status feature-status--info"><span class="feature-status__dot"></span>5 spans</div>
-        <div class="feature-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="12" cy="18" r="3"/><path d="M6 9v3m0 0c0 3.314 2.686 6 6 6m-6-6h12m0 0V9m0 3c0 3.314-2.686 6-6 6"/></svg>
-        </div>
-        <div class="feature-card__title">Distributed Tracing</div>
-        <div class="feature-card__body">End-to-end trace visualization across microservices. Pinpoint latency bottlenecks with flame graphs and critical path analysis.</div>
-        <div class="feature-card__visual" style="margin-top:20px">
-          <div class="trace-diagram" id="traceDiagram">
-            <div class="trace-row"><span class="trace-label">api-gw</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--api"></div></div><span class="trace-time">142ms</span></div>
-            <div class="trace-row"><span class="trace-label">auth</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--auth"></div></div><span class="trace-time">23ms</span></div>
-            <div class="trace-row"><span class="trace-label">db-read</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--db"></div></div><span class="trace-time">67ms</span></div>
-            <div class="trace-row"><span class="trace-label">cache</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--cache"></div></div><span class="trace-time">4ms</span></div>
-            <div class="trace-row"><span class="trace-label">render</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--render"></div></div><span class="trace-time">38ms</span></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card: Predictive Alerts -->
-      <div class="feature-card reveal-child">
-        <div class="feature-status feature-status--warn"><span class="feature-status__dot"></span>Alert in ~18m</div>
-        <div class="feature-card__icon">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        </div>
-        <div class="feature-card__title">Predictive Alerting</div>
-        <div class="feature-card__body">Get notified before thresholds breach. Forecasting models predict issues 15–30 minutes ahead using historical signal patterns.</div>
-        <div class="feature-card__visual" style="margin-top:20px">
-          <div class="forecast-chart">
-            <svg viewBox="0 0 300 100" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="forecastGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="rgba(99,102,241,.25)"/>
-                  <stop offset="100%" stop-color="rgba(99,102,241,0)"/>
-                </linearGradient>
-              </defs>
-              <!-- Threshold line -->
-              <line x1="0" y1="25" x2="300" y2="25" stroke="rgba(254,95,87,.2)" stroke-width="1" stroke-dasharray="4 4"/>
-              <text x="4" y="22" fill="rgba(254,95,87,.4)" font-size="8" font-family="Space Mono, monospace">THRESHOLD</text>
-              <!-- Historical area -->
-              <path class="forecast-area" d="M0,80 L30,75 60,70 90,65 120,55 150,50 180,42 180,100 0,100Z"/>
-              <!-- Historical line -->
-              <polyline class="forecast-line" points="0,80 30,75 60,70 90,65 120,55 150,50 180,42"/>
-              <!-- Prediction zone -->
-              <path class="forecast-zone" d="M180,42 L210,35 240,28 270,22 300,18 300,55 270,42 240,48 210,44 180,42Z"/>
-              <!-- Prediction line -->
-              <polyline class="forecast-pred" points="180,42 210,35 240,28 270,22 300,18"/>
-              <!-- Alert point -->
-              <circle class="forecast-alert" cx="258" cy="25" r="0"/>
-            </svg>
-          </div>
-          <div style="display:flex;justify-content:space-between;margin-top:6px">
-            <span style="font-size:10px;font-family:'Space Mono',monospace;color:var(--dim)">-30m</span>
-            <span style="font-size:10px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">breach ~18m</span>
-            <span style="font-size:10px;font-family:'Space Mono',monospace;color:var(--dim)">+30m</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Full-width card: Integrations -->
-      <div class="feature-card feature-card--full reveal-child">
-        <div>
-          <div class="feature-card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="7" height="7"/><rect x="15" y="3" width="7" height="7"/><rect x="2" y="14" width="7" height="7"/><rect x="15" y="14" width="7" height="7"/></svg>
-          </div>
-          <div class="feature-card__title">240+ Native Integrations</div>
-          <div class="feature-card__body">Connect in minutes with Kubernetes, Prometheus, Grafana, PagerDuty, Slack, AWS, GCP, and every tool in your stack. No vendor lock-in.</div>
-        </div>
-        <div class="feature-card__visual" style="display:flex;gap:8px;flex-wrap:wrap">
-          <!-- Integration badges -->
-          <script>
+</div>
+<div class="features__grid stagger-scale">
+<!-- Wide card: Real-time streams -->
+<div class="feature-card feature-card--wide reveal-child">
+<div class="feature-status"><span class="feature-status__dot"></span>847 тыс. соб./с</div>
+<div class="feature-card__icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+</div>
+<div class="feature-card__title">Потоковая передача сигналов в реальном времени</div>
+<div class="feature-card__body">Принимайте миллионы событий в секунду из любого источника — Kafka, Kinesis, HTTP или наши нативные SDK. Приём без копирования с подтверждением менее чем за миллисекунду.</div>
+<div class="feature-card__visual">
+<div class="waveform" id="waveform">
+<!-- JS generated -->
+</div>
+<div class="terminal" style="margin-top:16px">
+<div class="terminal__bar">
+<div class="terminal__dot terminal__dot--red"></div>
+<div class="terminal__dot terminal__dot--yellow"></div>
+<div class="terminal__dot terminal__dot--green"></div>
+</div>
+<div class="terminal__line"><span class="terminal__prompt">$</span><span class="terminal__cmd"> signalis ingest --stream production</span></div>
+<div class="terminal__line terminal__out">✓ Подключено к потоку [production] · 847 тыс. событий/с</div>
+<div class="terminal__line terminal__out">✓ Модель аномалий загружена · задержка p99: 2,1 мс</div>
+<div class="terminal__line terminal__out">⚡ Оповещение: скачок CPU в api-gateway [3σ]</div>
+<div class="terminal__line terminal__out">→ Первопричина: исчерпан пул соединений вышестоящей БД</div>
+</div>
+</div>
+</div>
+<!-- Card: Anomaly AI (tall — spans 2 rows) -->
+<div class="feature-card feature-card--tall reveal-child">
+<div class="feature-status feature-status--warn"><span class="feature-status__dot"></span>3 аномалии</div>
+<div class="feature-card__icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path></svg>
+</div>
+<div class="feature-card__title">AI-обнаружение аномалий</div>
+<div class="feature-card__body">Адаптивные ML-модели изучают ваш базовый уровень. Обнаруживайте многомерные аномалии среди тысяч метрик с почти нулевым числом ложных срабатываний.</div>
+<div class="feature-card__visual" style="margin-top:20px;min-height:0">
+<div class="grid-visual" id="gridVisual" style="height:100%"></div>
+</div>
+<div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FF5F57;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">error-rate · payment-svc</span></div>
+<span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(255,95,87,.7)">4.8σ</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FEBC2E;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">cpu-usage · api-gateway</span></div>
+<span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">3.2σ</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#FEBC2E;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">mem-alloc · worker-pool</span></div>
+<span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">2.7σ</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#28C840;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">latency · db-replica</span></div>
+<span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,64,.7)">решено</span>
+</div>
+<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 14px;border-radius:10px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06)">
+<div style="display:flex;align-items:center;gap:8px"><span style="width:6px;height:6px;border-radius:50%;background:#28C840;flex-shrink:0"></span><span style="font-size:13px;color:var(--muted)">throughput · ingest-pipe</span></div>
+<span style="font-size:11px;font-family:'Space Mono',monospace;color:rgba(40,200,64,.7)">решено</span>
+</div>
+</div>
+<!-- Model confidence bar -->
+<div style="margin-top:auto;padding-top:16px;border-top:1px solid rgba(255,255,255,.06)">
+<div style="display:flex;justify-content:space-between;margin-bottom:6px">
+<span style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace">Уверенность модели</span>
+<span style="font-size:11px;color:var(--accent);font-family:'Space Mono',monospace">97.3%</span>
+</div>
+<div style="height:4px;border-radius:2px;background:rgba(255,255,255,.06);overflow:hidden">
+<div style="width:97.3%;height:100%;border-radius:2px;background:linear-gradient(90deg,var(--primary),var(--accent))"></div>
+</div>
+</div>
+</div>
+<!-- Card: Distributed Tracing -->
+<div class="feature-card reveal-child">
+<div class="feature-status feature-status--info"><span class="feature-status__dot"></span>5 спанов</div>
+<div class="feature-card__icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><circle cx="6" cy="6" r="3"></circle><circle cx="18" cy="6" r="3"></circle><circle cx="12" cy="18" r="3"></circle><path d="M6 9v3m0 0c0 3.314 2.686 6 6 6m-6-6h12m0 0V9m0 3c0 3.314-2.686 6-6 6"></path></svg>
+</div>
+<div class="feature-card__title">Распределённая трассировка</div>
+<div class="feature-card__body">Сквозная визуализация трейсов по микросервисам. Находите узкие места задержек с помощью flame-графов и анализа критического пути.</div>
+<div class="feature-card__visual" style="margin-top:20px">
+<div class="trace-diagram" id="traceDiagram">
+<div class="trace-row"><span class="trace-label">api-gw</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--api"></div></div><span class="trace-time">142 мс</span></div>
+<div class="trace-row"><span class="trace-label">auth</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--auth"></div></div><span class="trace-time">23 мс</span></div>
+<div class="trace-row"><span class="trace-label">db-read</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--db"></div></div><span class="trace-time">67 мс</span></div>
+<div class="trace-row"><span class="trace-label">cache</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--cache"></div></div><span class="trace-time">4 мс</span></div>
+<div class="trace-row"><span class="trace-label">render</span><div class="trace-bar-wrap"><div class="trace-bar trace-bar--render"></div></div><span class="trace-time">38 мс</span></div>
+</div>
+</div>
+</div>
+<!-- Card: Predictive Alerts -->
+<div class="feature-card reveal-child">
+<div class="feature-status feature-status--warn"><span class="feature-status__dot"></span>Оповещение через ~18 мин</div>
+<div class="feature-card__icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
+</div>
+<div class="feature-card__title">Предиктивные оповещения</div>
+<div class="feature-card__body">Получайте уведомления до превышения порогов. Прогнозные модели предсказывают проблемы за 15–30 минут на основе исторических паттернов сигналов.</div>
+<div class="feature-card__visual" style="margin-top:20px">
+<div class="forecast-chart">
+<svg preserveaspectratio="none" viewbox="0 0 300 100">
+<defs>
+<lineargradient id="forecastGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="rgba(99,102,241,.25)"></stop>
+<stop offset="100%" stop-color="rgba(99,102,241,0)"></stop>
+</lineargradient>
+</defs>
+<!-- Threshold line -->
+<line stroke="rgba(254,95,87,.2)" stroke-dasharray="4 4" stroke-width="1" x1="0" x2="300" y1="25" y2="25"></line>
+<text fill="rgba(254,95,87,.4)" font-family="Space Mono, monospace" font-size="8" x="4" y="22">ПОРОГ</text>
+<!-- Historical area -->
+<path class="forecast-area" d="M0,80 L30,75 60,70 90,65 120,55 150,50 180,42 180,100 0,100Z"></path>
+<!-- Historical line -->
+<polyline class="forecast-line" points="0,80 30,75 60,70 90,65 120,55 150,50 180,42"></polyline>
+<!-- Prediction zone -->
+<path class="forecast-zone" d="M180,42 L210,35 240,28 270,22 300,18 300,55 270,42 240,48 210,44 180,42Z"></path>
+<!-- Prediction line -->
+<polyline class="forecast-pred" points="180,42 210,35 240,28 270,22 300,18"></polyline>
+<!-- Alert point -->
+<circle class="forecast-alert" cx="258" cy="25" r="0"></circle>
+</svg>
+</div>
+<div style="display:flex;justify-content:space-between;margin-top:6px">
+<span style="font-size:10px;font-family:'Space Mono',monospace;color:var(--dim)">-30m</span>
+<span style="font-size:10px;font-family:'Space Mono',monospace;color:rgba(254,188,46,.7)">превышение ~18 мин</span>
+<span style="font-size:10px;font-family:'Space Mono',monospace;color:var(--dim)">+30m</span>
+</div>
+</div>
+</div>
+<!-- Full-width card: Integrations -->
+<div class="feature-card feature-card--full reveal-child">
+<div>
+<div class="feature-card__icon">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><rect height="7" width="7" x="2" y="3"></rect><rect height="7" width="7" x="15" y="3"></rect><rect height="7" width="7" x="2" y="14"></rect><rect height="7" width="7" x="15" y="14"></rect></svg>
+</div>
+<div class="feature-card__title">240+ нативных интеграций</div>
+<div class="feature-card__body">Подключайтесь за минуты к Kubernetes, Prometheus, Grafana, PagerDuty, Slack, AWS, GCP и любому инструменту в вашем стеке. Без привязки к вендору.</div>
+</div>
+<div class="feature-card__visual" style="display:flex;gap:8px;flex-wrap:wrap">
+<!-- Integration badges -->
+<script>
             var integrations = ['Kubernetes','Prometheus','Kafka','AWS','GCP','Datadog','Grafana','PagerDuty','Slack','GitHub','Terraform','Helm'];
           </script>
-          <!-- rendered by JS -->
-          <div id="intBadges"></div>
-        </div>
-      </div>
-    </div>
-  </div>
+<!-- rendered by JS -->
+<div id="intBadges"></div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <div class="section-sep"></div>
-
 <!-- ═══════════════════════════════════════
      PLATFORM SECTION
 ════════════════════════════════════════ -->
 <section class="platform" id="platform">
-  <div class="container">
-    <div class="platform__grid">
-      <div>
-        <div class="reveal">
-          <div class="section-tag"><span class="section-tag-dot"></span>How it works</div>
-        </div>
-        <h2 class="section-title reveal" data-delay="1">
-          From signal to<br><span class="text-gradient">resolution in seconds</span>
-        </h2>
-        <p class="section-sub reveal" data-delay="2">
-          Signalis collapses the gap between detection and action. Our engine correlates, ranks, and routes every alert to the right team automatically.
+<div class="container">
+<div class="platform__grid">
+<div>
+<div class="reveal">
+<div class="section-tag"><span class="section-tag-dot"></span>Как это работает</div>
+</div>
+<h2 class="section-title reveal" data-delay="1">
+          От сигнала до<br/><span class="text-gradient">решения за секунды</span>
+</h2>
+<p class="section-sub reveal" data-delay="2">
+          Signalis сокращает разрыв между обнаружением и действием. Наш движок автоматически коррелирует, ранжирует и направляет каждое оповещение нужной команде.
         </p>
-        <div class="platform__steps stagger-left">
-          <div class="platform__step reveal-child">
-            <div class="platform__step-num">01</div>
-            <div>
-              <div class="platform__step-title">Ingest everything</div>
-              <div class="platform__step-body">Send metrics, logs, and traces via our SDKs, OpenTelemetry, or any open standard. No agents required.</div>
-              <div class="platform__step-badge">OpenTelemetry native</div>
-            </div>
-          </div>
-          <div class="platform__step reveal-child">
-            <div class="platform__step-num">02</div>
-            <div>
-              <div class="platform__step-title">Correlate automatically</div>
-              <div class="platform__step-body">Our engine maps signals to services, deploys, and commits — surfacing root cause instantly.</div>
-              <div class="platform__step-badge">ML-powered</div>
-            </div>
-          </div>
-          <div class="platform__step reveal-child">
-            <div class="platform__step-num">03</div>
-            <div>
-              <div class="platform__step-title">Alert intelligently</div>
-              <div class="platform__step-body">AI-deduped alerts routed to the right on-call engineer with full context — no noise, no alert fatigue.</div>
-              <div class="platform__step-badge">Zero false positives</div>
-            </div>
-          </div>
-          <div class="platform__step reveal-child">
-            <div class="platform__step-num">04</div>
-            <div>
-              <div class="platform__step-title">Resolve & learn</div>
-              <div class="platform__step-body">Incident timelines auto-generate postmortems. Your system gets smarter with every resolution.</div>
-              <div class="platform__step-badge">Auto-postmortem</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Dashboard mockup -->
-      <div class="reveal-right" data-delay="2">
-        <div class="dashboard spin-border">
-          <div class="dash__topbar">
-            <div class="dash__dot" style="background:#FF5F57"></div>
-            <div class="dash__dot" style="background:#FEBC2E"></div>
-            <div class="dash__dot" style="background:#28C840"></div>
-            <span style="margin-left:8px;font-family:'Space Mono',monospace;font-size:12px;color:var(--dim)">signalis · production</span>
-            <div class="glow-dot" style="margin-left:auto"></div>
-            <span style="font-size:12px;color:var(--accent);font-family:'Space Mono',monospace;margin-left:6px">LIVE</span>
-          </div>
-          <div class="dash__metrics">
-            <div class="dash__metric">
-              <div class="dash__metric-val text-gradient" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800">2.1ms</div>
-              <div class="dash__metric-label">P99 Latency</div>
-            </div>
-            <div class="dash__metric">
-              <div class="dash__metric-val" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:rgba(40,200,100,.9)">99.98%</div>
-              <div class="dash__metric-label">Uptime</div>
-            </div>
-            <div class="dash__metric">
-              <div class="dash__metric-val" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--accent)">0</div>
-              <div class="dash__metric-label">Open P1s</div>
-            </div>
-          </div>
-          <div class="dash__chart">
-            <div style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Request rate · 24h</div>
-            <div class="dash__chart-bars" id="dashBars"></div>
-          </div>
-          <div class="dash__alerts">
-            <div style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Recent signals</div>
-            <div class="dash__alert">
-              <div class="dash__alert-dot" style="background:rgba(40,200,100,.9)"></div>
-              <span class="dash__alert-text">api-gateway · latency normalized</span>
-              <span class="dash__alert-time">2m ago</span>
-            </div>
-            <div class="dash__alert">
-              <div class="dash__alert-dot" style="background:#FEBC2E"></div>
-              <span class="dash__alert-text">db-replica · connection pool at 82%</span>
-              <span class="dash__alert-time">8m ago</span>
-            </div>
-            <div class="dash__alert">
-              <div class="dash__alert-dot" style="background:rgba(99,102,241,.9)"></div>
-              <span class="dash__alert-text">worker-queue · throughput +340%</span>
-              <span class="dash__alert-time">14m ago</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="platform__steps stagger-left">
+<div class="platform__step reveal-child">
+<div class="platform__step-num">01</div>
+<div>
+<div class="platform__step-title">Принимайте всё</div>
+<div class="platform__step-body">Отправляйте метрики, логи и трейсы через наши SDK, OpenTelemetry или любой открытый стандарт. Агенты не требуются.</div>
+<div class="platform__step-badge">Нативная поддержка OpenTelemetry</div>
+</div>
+</div>
+<div class="platform__step reveal-child">
+<div class="platform__step-num">02</div>
+<div>
+<div class="platform__step-title">Автоматическая корреляция</div>
+<div class="platform__step-body">Наш движок сопоставляет сигналы с сервисами, деплоями и коммитами — мгновенно выявляя первопричину.</div>
+<div class="platform__step-badge">На базе ML</div>
+</div>
+</div>
+<div class="platform__step reveal-child">
+<div class="platform__step-num">03</div>
+<div>
+<div class="platform__step-title">Умные оповещения</div>
+<div class="platform__step-body">Оповещения с AI-дедупликацией направляются нужному дежурному инженеру с полным контекстом — без шума и усталости от алертов.</div>
+<div class="platform__step-badge">Ноль ложных срабатываний</div>
+</div>
+</div>
+<div class="platform__step reveal-child">
+<div class="platform__step-num">04</div>
+<div>
+<div class="platform__step-title">Решайте и учитесь</div>
+<div class="platform__step-body">Хронологии инцидентов автоматически генерируют постмортемы. Ваша система умнеет с каждым решением.</div>
+<div class="platform__step-badge">Автопостмортем</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Dashboard mockup -->
+<div class="reveal-right" data-delay="2">
+<div class="dashboard spin-border">
+<div class="dash__topbar">
+<div class="dash__dot" style="background:#FF5F57"></div>
+<div class="dash__dot" style="background:#FEBC2E"></div>
+<div class="dash__dot" style="background:#28C840"></div>
+<span style="margin-left:8px;font-family:'Space Mono',monospace;font-size:12px;color:var(--dim)">signalis · production</span>
+<div class="glow-dot" style="margin-left:auto"></div>
+<span style="font-size:12px;color:var(--accent);font-family:'Space Mono',monospace;margin-left:6px">LIVE</span>
+</div>
+<div class="dash__metrics">
+<div class="dash__metric">
+<div class="dash__metric-val text-gradient" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800">2,1 мс</div>
+<div class="dash__metric-label">Задержка P99</div>
+</div>
+<div class="dash__metric">
+<div class="dash__metric-val" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:rgba(40,200,100,.9)">99.98%</div>
+<div class="dash__metric-label">Аптайм</div>
+</div>
+<div class="dash__metric">
+<div class="dash__metric-val" style="font-family:'Bricolage Grotesque',sans-serif;font-size:22px;font-weight:800;color:var(--accent)">0</div>
+<div class="dash__metric-label">Открытые P1</div>
+</div>
+</div>
+<div class="dash__chart">
+<div style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em">Частота запросов · 24 ч</div>
+<div class="dash__chart-bars" id="dashBars"></div>
+</div>
+<div class="dash__alerts">
+<div style="font-size:11px;color:var(--dim);font-family:'Space Mono',monospace;margin-bottom:4px;text-transform:uppercase;letter-spacing:.06em">Недавние сигналы</div>
+<div class="dash__alert">
+<div class="dash__alert-dot" style="background:rgba(40,200,100,.9)"></div>
+<span class="dash__alert-text">api-gateway · задержка нормализована</span>
+<span class="dash__alert-time">2 мин назад</span>
+</div>
+<div class="dash__alert">
+<div class="dash__alert-dot" style="background:#FEBC2E"></div>
+<span class="dash__alert-text">db-replica · пул соединений на 82%</span>
+<span class="dash__alert-time">8 мин назад</span>
+</div>
+<div class="dash__alert">
+<div class="dash__alert-dot" style="background:rgba(99,102,241,.9)"></div>
+<span class="dash__alert-text">worker-queue · пропускная способность +340%</span>
+<span class="dash__alert-time">14 мин назад</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <div class="section-sep"></div>
-
 <!-- ═══════════════════════════════════════
      METRICS
 ════════════════════════════════════════ -->
 <section class="metrics" id="metrics">
-  <div class="container">
-    <div class="metrics__grid stagger-up">
-      <div class="metric reveal-child">
-        <div class="metric__value"><span class="counter" data-target="850">0</span>B<span class="metric__suffix">+</span></div>
-        <div class="metric__label">Events processed daily</div>
-        <div class="metric__sub">across all customer workloads</div>
-        <div class="metric__sparkline" id="spark1"></div>
-        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>+12% MoM</div>
-      </div>
-      <div class="metric reveal-child">
-        <div class="metric__value"><span class="counter" data-target="2">0</span>ms</div>
-        <div class="metric__label">Median detection time</div>
-        <div class="metric__sub">from event to alert</div>
-        <div class="metric__sparkline" id="spark2"></div>
-        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 3L5 7L9 3" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>-34% faster</div>
-      </div>
-      <div class="metric reveal-child">
-        <div class="metric__value"><span class="counter" data-target="99">0</span>.<span style="-webkit-text-fill-color:var(--accent)">99</span>%</div>
-        <div class="metric__label">Platform availability</div>
-        <div class="metric__sub">12-month rolling average</div>
-        <div class="metric__sparkline" id="spark3"></div>
-        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>99.99% last 30d</div>
-      </div>
-      <div class="metric reveal-child">
-        <div class="metric__value"><span class="counter" data-target="12">0</span>K+</div>
-        <div class="metric__label">Engineers on platform</div>
-        <div class="metric__sub">at 2,400+ companies</div>
-        <div class="metric__sparkline" id="spark4"></div>
-        <div class="metric__trend metric__trend--up"><svg width="10" height="10" viewBox="0 0 10 10" fill="none"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>+280 this week</div>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="metrics__grid stagger-up">
+<div class="metric reveal-child">
+<div class="metric__value"><span class="counter" data-target="850">0</span>B<span class="metric__suffix">+</span></div>
+<div class="metric__label">Событий обрабатывается ежедневно</div>
+<div class="metric__sub">по всем клиентским нагрузкам</div>
+<div class="metric__sparkline" id="spark1"></div>
+<div class="metric__trend metric__trend--up"><svg fill="none" height="10" viewbox="0 0 10 10" width="10"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>+12% м/м</div>
+</div>
+<div class="metric reveal-child">
+<div class="metric__value"><span class="counter" data-target="2">0</span>мс</div>
+<div class="metric__label">Медианное время обнаружения</div>
+<div class="metric__sub">от события до оповещения</div>
+<div class="metric__sparkline" id="spark2"></div>
+<div class="metric__trend metric__trend--up"><svg fill="none" height="10" viewbox="0 0 10 10" width="10"><path d="M1 3L5 7L9 3" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>-34% быстрее</div>
+</div>
+<div class="metric reveal-child">
+<div class="metric__value"><span class="counter" data-target="99">0</span>.<span style="-webkit-text-fill-color:var(--accent)">99</span>%</div>
+<div class="metric__label">Доступность платформы</div>
+<div class="metric__sub">Скользящее среднее за 12 месяцев</div>
+<div class="metric__sparkline" id="spark3"></div>
+<div class="metric__trend metric__trend--up"><svg fill="none" height="10" viewbox="0 0 10 10" width="10"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>99,99% за последние 30 дней</div>
+</div>
+<div class="metric reveal-child">
+<div class="metric__value"><span class="counter" data-target="12">0</span>K+</div>
+<div class="metric__label">Инженеров на платформе</div>
+<div class="metric__sub">в 2 400+ компаниях</div>
+<div class="metric__sparkline" id="spark4"></div>
+<div class="metric__trend metric__trend--up"><svg fill="none" height="10" viewbox="0 0 10 10" width="10"><path d="M1 7L5 3L9 7" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>+280 за эту неделю</div>
+</div>
+</div>
+</div>
 </section>
-
 <div class="section-sep"></div>
-
 <!-- ═══════════════════════════════════════
      PRICING
 ════════════════════════════════════════ -->
 <section class="pricing" id="pricing">
-  <div class="container">
-    <div class="pricing__header">
-      <div class="reveal">
-        <div class="section-tag"><span class="section-tag-dot"></span>Pricing</div>
-      </div>
-      <h2 class="section-title reveal" data-delay="1">
-        Transparent, <span class="text-gradient">usage-based</span> pricing
+<div class="container">
+<div class="pricing__header">
+<div class="reveal">
+<div class="section-tag"><span class="section-tag-dot"></span>Цены</div>
+</div>
+<h2 class="section-title reveal" data-delay="1">
+        Прозрачные, <span class="text-gradient">основанные на использовании</span> цены
       </h2>
-      <p class="section-sub reveal" data-delay="2">
-        No surprises. Pay for what you use. Scale from startup to enterprise on the same platform.
+<p class="section-sub reveal" data-delay="2">
+        Никаких сюрпризов. Платите за то, что используете. Масштабируйтесь от стартапа до корпорации на одной платформе.
       </p>
-      <div class="pricing__toggle reveal" data-delay="3">
-        <span>Monthly</span>
-        <div class="pricing__toggle-switch" id="billingToggle">
-          <div class="pricing__toggle-thumb"></div>
-        </div>
-        <span>Annual <span class="pricing__save">Save 20%</span></span>
-      </div>
-    </div>
-
-    <div class="pricing__cards stagger-scale">
-      <!-- Free -->
-      <div class="pricing-card pricing-card--free reveal-child">
-        <div class="pricing-card__topbar"></div>
-        <div class="pricing-card__name">Starter</div>
-        <div class="pricing-card__desc">For indie engineers and small projects just getting started.</div>
-        <div class="pricing-card__price">
-          <span class="pricing-card__amount">$0</span>
-          <span class="pricing-card__period">/ month</span>
-        </div>
-        <div class="pricing-card__divider"></div>
-        <div class="pricing-card__features">
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            10B events / month
+<div class="pricing__toggle reveal" data-delay="3">
+<span>Ежемесячно</span>
+<div class="pricing__toggle-switch" id="billingToggle">
+<div class="pricing__toggle-thumb"></div>
+</div>
+<span>Ежегодно <span class="pricing__save">Экономия 20%</span></span>
+</div>
+</div>
+<div class="pricing__cards stagger-scale">
+ Бесплатный 
+<div class="pricing-card pricing-card--free reveal-child">
+<div class="pricing-card__topbar"></div>
+<div class="pricing-card__name">Starter</div>
+<div class="pricing-card__desc">Для инди-инженеров и небольших проектов, которые только начинают.</div>
+<div class="pricing-card__price">
+<span class="pricing-card__amount">$0</span>
+<span class="pricing-card__period">/ месяц</span>
+</div>
+<div class="pricing-card__divider"></div>
+<div class="pricing-card__features">
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            10 млрд событий / месяц
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            3 services
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            3 сервиса
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            7-day data retention
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Хранение данных 7 дней
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--no" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M6 12l6-6M12 12L6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span style="color:var(--dim)">AI anomaly detection</span>
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--no" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M6 12l6-6M12 12L6 6" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>
+<span style="color:var(--dim)">AI-обнаружение аномалий</span>
+</div>
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--no" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M6 12l6-6M12 12L6 6" stroke="currentColor" stroke-linecap="round" stroke-width="1.5"></path></svg>
+<span style="color:var(--dim)">Гарантии SLA</span>
+</div>
+</div>
+<button class="btn-plan btn-plan-ghost">Начать бесплатно</button>
+</div>
+<!-- Pro (featured) -->
+<div class="pricing-card pricing-card--pro reveal-child">
+<div class="pricing-card__topbar"></div>
+<div class="pricing-card__badge">Самый популярный</div>
+<div class="pricing-card__name">Pro</div>
+<div class="pricing-card__desc">Для растущих команд, которым нужна наблюдаемость на базе AI в масштабе.</div>
+<div class="pricing-card__price">
+<span class="pricing-card__amount" id="proPrice">$89</span>
+<span class="pricing-card__period">/ место / мес</span>
+</div>
+<div class="pricing-card__divider"></div>
+<div class="pricing-card__features">
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Безлимитные события
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--no" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M6 12l6-6M12 12L6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
-            <span style="color:var(--dim)">SLA guarantees</span>
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Безлимитные сервисы
           </div>
-        </div>
-        <button class="btn-plan btn-plan-ghost">Get started free</button>
-      </div>
-
-      <!-- Pro (featured) -->
-      <div class="pricing-card pricing-card--pro reveal-child">
-        <div class="pricing-card__topbar"></div>
-        <div class="pricing-card__badge">Most Popular</div>
-        <div class="pricing-card__name">Pro</div>
-        <div class="pricing-card__desc">For growing teams who need AI-powered observability at scale.</div>
-        <div class="pricing-card__price">
-          <span class="pricing-card__amount" id="proPrice">$89</span>
-          <span class="pricing-card__period">/ seat / mo</span>
-        </div>
-        <div class="pricing-card__divider"></div>
-        <div class="pricing-card__features">
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Unlimited events
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Хранение 90 дней
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Unlimited services
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            AI-обнаружение аномалий
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            90-day retention
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Предиктивные оповещения
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            AI anomaly detection
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            SLA 99,99%
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Predictive alerts
+</div>
+<button class="btn-plan btn-plan-primary">Начать пробный период Pro</button>
+</div>
+<!-- Enterprise -->
+<div class="pricing-card pricing-card--ent reveal-child">
+<div class="pricing-card__topbar"></div>
+<div class="pricing-card__name">Enterprise</div>
+<div class="pricing-card__desc">Индивидуальная инфраструктура, выделенная поддержка и комплаенс.</div>
+<div class="pricing-card__price">
+<span class="pricing-card__amount" style="font-size:36px">Индивидуально</span>
+</div>
+<div class="pricing-card__divider"></div>
+<div class="pricing-card__features">
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Всё из Pro
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            99.99% SLA
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Выделенная инфраструктура
           </div>
-        </div>
-        <button class="btn-plan btn-plan-primary">Start Pro trial</button>
-      </div>
-
-      <!-- Enterprise -->
-      <div class="pricing-card pricing-card--ent reveal-child">
-        <div class="pricing-card__topbar"></div>
-        <div class="pricing-card__name">Enterprise</div>
-        <div class="pricing-card__desc">Custom infrastructure, dedicated support, and compliance.</div>
-        <div class="pricing-card__price">
-          <span class="pricing-card__amount" style="font-size:36px">Custom</span>
-        </div>
-        <div class="pricing-card__divider"></div>
-        <div class="pricing-card__features">
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Everything in Pro
-          </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Dedicated infra
-          </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
             SOC2 / HIPAA
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            24/7 dedicated support
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Выделенная поддержка 24/7
           </div>
-          <div class="pricing-card__feature">
-            <svg class="pricing-card__check pricing-card__check--ok" viewBox="0 0 18 18" fill="none"><circle cx="9" cy="9" r="8" stroke="currentColor" stroke-width="1.2" opacity="0.3"/><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-            Custom SLA
+<div class="pricing-card__feature">
+<svg class="pricing-card__check pricing-card__check--ok" fill="none" viewbox="0 0 18 18"><circle cx="9" cy="9" opacity="0.3" r="8" stroke="currentColor" stroke-width="1.2"></circle><path d="M5.5 9l2.5 2.5 4.5-5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+            Индивидуальный SLA
           </div>
-        </div>
-        <button class="btn-plan btn-plan-ghost">Talk to sales</button>
-      </div>
-    </div>
-  </div>
+</div>
+<button class="btn-plan btn-plan-ghost">Связаться с отделом продаж</button>
+</div>
+</div>
+</div>
 </section>
-
 <div class="section-sep"></div>
-
 <!-- ═══════════════════════════════════════
      TESTIMONIALS
 ════════════════════════════════════════ -->
 <section class="testimonials">
-  <div class="testimonials__header container">
-    <div class="reveal">
-      <div class="section-tag"><span class="section-tag-dot"></span>What teams say</div>
-    </div>
-    <h2 class="section-title reveal" data-delay="1">
-      Trusted by <span class="text-gradient">on-call engineers</span><br>at 2,400+ companies
+<div class="testimonials__header container">
+<div class="reveal">
+<div class="section-tag"><span class="section-tag-dot"></span>Что говорят команды</div>
+</div>
+<h2 class="section-title reveal" data-delay="1">
+      Нам доверяют <span class="text-gradient">дежурных инженеров</span><br/>в 2 400+ компаниях
     </h2>
-  </div>
-  <div style="overflow:hidden;position:relative;padding:20px 0">
-    <div style="position:absolute;top:0;bottom:0;left:0;width:120px;background:linear-gradient(to right,var(--bg),transparent);z-index:2;pointer-events:none"></div>
-    <div style="position:absolute;top:0;bottom:0;right:0;width:120px;background:linear-gradient(to left,var(--bg),transparent);z-index:2;pointer-events:none"></div>
-    <div class="testimonials__track" id="testimonialTrack">
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">Signalis cut our MTTR from 45 minutes to under 3. The AI root-cause analysis is genuinely magic — it spots patterns we'd never connect manually.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Sarah L.">
-          <div><div class="testimonial-card__name">Sarah L.</div><div class="testimonial-card__role">Staff SRE · Stripe</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">We migrated from Datadog in a weekend. Same coverage, 60% less cost, and the UX is miles ahead. Our on-call rotation actually enjoys using it now.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Marcus R.">
-          <div><div class="testimonial-card__name">Marcus R.</div><div class="testimonial-card__role">Platform Eng · Linear</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">The predictive alerts gave us a 20-minute heads-up before our biggest outage of the year. We fixed it silently. Customers never noticed.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Anika K.">
-          <div><div class="testimonial-card__name">Anika K.</div><div class="testimonial-card__role">VP Eng · Notion</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">I've evaluated every observability tool. Signalis is the first one that feels like it was built by engineers who actually do on-call. The signal-to-noise ratio is unmatched.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&h=96&fit=crop&crop=faces&auto=format" alt="James P.">
-          <div><div class="testimonial-card__name">James P.</div><div class="testimonial-card__role">Founding Eng · Vercel</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">OpenTelemetry support is first-class. We send data from 200+ microservices and the correlation engine just works. No config, no fiddling.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Tariq N.">
-          <div><div class="testimonial-card__name">Tariq N.</div><div class="testimonial-card__role">Infrastructure Lead · Railway</div></div>
-        </div>
-      </div>
-      <!-- Duplicate for loop -->
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">Signalis cut our MTTR from 45 minutes to under 3. The AI root-cause analysis is genuinely magic — it spots patterns we'd never connect manually.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Sarah L.">
-          <div><div class="testimonial-card__name">Sarah L.</div><div class="testimonial-card__role">Staff SRE · Stripe</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">We migrated from Datadog in a weekend. Same coverage, 60% less cost, and the UX is miles ahead. Our on-call rotation actually enjoys using it now.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Marcus R.">
-          <div><div class="testimonial-card__name">Marcus R.</div><div class="testimonial-card__role">Platform Eng · Linear</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">The predictive alerts gave us a 20-minute heads-up before our biggest outage of the year. We fixed it silently. Customers never noticed.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Anika K.">
-          <div><div class="testimonial-card__name">Anika K.</div><div class="testimonial-card__role">VP Eng · Notion</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">I've evaluated every observability tool. Signalis is the first one that feels like it was built by engineers who actually do on-call. The signal-to-noise ratio is unmatched.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&h=96&fit=crop&crop=faces&auto=format" alt="James P.">
-          <div><div class="testimonial-card__name">James P.</div><div class="testimonial-card__role">Founding Eng · Vercel</div></div>
-        </div>
-      </div>
-      <div class="testimonial-card">
-        <div class="testimonial-stars"><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span><span class="testimonial-star">&#9733;</span></div>
-        <div class="testimonial-card__text">OpenTelemetry support is first-class. We send data from 200+ microservices and the correlation engine just works. No config, no fiddling.</div>
-        <div class="testimonial-card__author">
-          <img class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=96&h=96&fit=crop&crop=faces&auto=format" alt="Tariq N.">
-          <div><div class="testimonial-card__name">Tariq N.</div><div class="testimonial-card__role">Infrastructure Lead · Railway</div></div>
-        </div>
-      </div>
-    </div>
-  </div>
+</div>
+<div style="overflow:hidden;position:relative;padding:20px 0">
+<div style="position:absolute;top:0;bottom:0;left:0;width:120px;background:linear-gradient(to right,var(--bg),transparent);z-index:2;pointer-events:none"></div>
+<div style="position:absolute;top:0;bottom:0;right:0;width:120px;background:linear-gradient(to left,var(--bg),transparent);z-index:2;pointer-events:none"></div>
+<div class="testimonials__track" id="testimonialTrack">
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Signalis сократил наш MTTR с 45 минут до менее чем 3. AI-анализ первопричин — это настоящая магия: он замечает закономерности, которые мы никогда не связали бы вручную.</div>
+<div class="testimonial-card__author">
+<img alt="Сара Л." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Сара Л.</div><div class="testimonial-card__role">Staff SRE · Stripe</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Мы мигрировали с Datadog за выходные. То же покрытие, на 60% меньше затрат, а UX на голову выше. Наши дежурные теперь действительно с удовольствием им пользуются.</div>
+<div class="testimonial-card__author">
+<img alt="Маркус Р." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Маркус Р.</div><div class="testimonial-card__role">Platform Eng · Linear</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Предиктивные оповещения предупредили нас за 20 минут до крупнейшего сбоя года. Мы починили всё незаметно. Клиенты ничего не заметили.</div>
+<div class="testimonial-card__author">
+<img alt="Аника К." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Аника К.</div><div class="testimonial-card__role">VP Eng · Notion</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Я оценивал каждый инструмент наблюдаемости. Signalis — первый, который ощущается созданным инженерами, которые сами дежурят. Соотношение сигнал/шум не имеет равных.</div>
+<div class="testimonial-card__author">
+<img alt="Джеймс П." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Джеймс П.</div><div class="testimonial-card__role">Founding Eng · Vercel</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Поддержка OpenTelemetry — первоклассная. Мы отправляем данные с 200+ микросервисов, и движок корреляции просто работает. Без конфигов и возни.</div>
+<div class="testimonial-card__author">
+<img alt="Тарик Н." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Тарик Н.</div><div class="testimonial-card__role">Infrastructure Lead · Railway</div></div>
+</div>
+</div>
+<!-- Duplicate for loop -->
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Signalis сократил наш MTTR с 45 минут до менее чем 3. AI-анализ первопричин — это настоящая магия: он замечает закономерности, которые мы никогда не связали бы вручную.</div>
+<div class="testimonial-card__author">
+<img alt="Сара Л." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Сара Л.</div><div class="testimonial-card__role">Staff SRE · Stripe</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Мы мигрировали с Datadog за выходные. То же покрытие, на 60% меньше затрат, а UX на голову выше. Наши дежурные теперь действительно с удовольствием им пользуются.</div>
+<div class="testimonial-card__author">
+<img alt="Маркус Р." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1531384441138-2736e62e0919?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Маркус Р.</div><div class="testimonial-card__role">Platform Eng · Linear</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Предиктивные оповещения предупредили нас за 20 минут до крупнейшего сбоя года. Мы починили всё незаметно. Клиенты ничего не заметили.</div>
+<div class="testimonial-card__author">
+<img alt="Аника К." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Аника К.</div><div class="testimonial-card__role">VP Eng · Notion</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Я оценивал каждый инструмент наблюдаемости. Signalis — первый, который ощущается созданным инженерами, которые сами дежурят. Соотношение сигнал/шум не имеет равных.</div>
+<div class="testimonial-card__author">
+<img alt="Джеймс П." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Джеймс П.</div><div class="testimonial-card__role">Founding Eng · Vercel</div></div>
+</div>
+</div>
+<div class="testimonial-card">
+<div class="testimonial-stars"><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span><span class="testimonial-star">★</span></div>
+<div class="testimonial-card__text">Поддержка OpenTelemetry — первоклассная. Мы отправляем данные с 200+ микросервисов, и движок корреляции просто работает. Без конфигов и возни.</div>
+<div class="testimonial-card__author">
+<img alt="Тарик Н." class="testimonial-card__avatar" src="https://images.unsplash.com/photo-1506277886164-e25aa3f4ef7f?w=96&amp;h=96&amp;fit=crop&amp;crop=faces&amp;auto=format"/>
+<div><div class="testimonial-card__name">Тарик Н.</div><div class="testimonial-card__role">Infrastructure Lead · Railway</div></div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <div class="section-sep"></div>
-
 <!-- ═══════════════════════════════════════
      CTA
 ════════════════════════════════════════ -->
 <section class="cta-section">
-  <div class="container-sm">
-    <div class="cta-panel noise-glass reveal-scale">
-      <div class="cta-ring cta-ring--1"></div>
-      <div class="cta-ring cta-ring--2"></div>
-      <div class="cta-ring cta-ring--3"></div>
-      <div class="particles" id="ctaParticles"></div>
-      <h2 class="cta-panel__title">
-        Your infrastructure is talking.<br>
-        <span class="text-gradient">Start listening.</span>
-      </h2>
-      <p class="cta-panel__sub">Start free in minutes. No credit card. No agent install. Just clarity.</p>
-      <div class="cta-panel__actions">
-        <button class="btn btn-primary btn-lg">
-          Start for free
-          <svg class="btn-icon" viewBox="0 0 18 18" fill="none"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <button class="btn btn-ghost btn-lg">Book a demo</button>
-      </div>
-      <div class="cta-panel__note">Free 14-day Pro trial included · No credit card required</div>
-    </div>
-  </div>
+<div class="container-sm">
+<div class="cta-panel noise-glass reveal-scale">
+<div class="cta-ring cta-ring--1"></div>
+<div class="cta-ring cta-ring--2"></div>
+<div class="cta-ring cta-ring--3"></div>
+<div class="particles" id="ctaParticles"></div>
+<h2 class="cta-panel__title">
+        Ваша инфраструктура говорит с вами.<br/>
+<span class="text-gradient">Начните слушать.</span>
+</h2>
+<p class="cta-panel__sub">Начните бесплатно за минуты. Без банковской карты. Без установки агентов. Только ясность.</p>
+<div class="cta-panel__actions">
+<button class="btn btn-primary btn-lg">
+          Начать бесплатно
+          <svg class="btn-icon" fill="none" viewbox="0 0 18 18"><path d="M4 9h10M10 5l4 4-4 4" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"></path></svg>
+</button>
+<button class="btn btn-ghost btn-lg">Записаться на демо</button>
+</div>
+<div class="cta-panel__note">Бесплатный 14-дневный период Pro включён · Банковская карта не требуется</div>
+</div>
+</div>
 </section>
-
 <!-- ═══════════════════════════════════════
      FOOTER
 ════════════════════════════════════════ -->
 <footer class="footer">
-  <div class="container">
-    <div class="footer__grid stagger-up">
-      <div class="footer__brand reveal-child">
-        <div class="footer__logo">
+<div class="container">
+<div class="footer__grid stagger-up">
+<div class="footer__brand reveal-child">
+<div class="footer__logo">
           Signalis
         </div>
-        <div class="footer__tagline">Full-stack observability for the teams who keep the internet running.</div>
-        <div class="footer__socials">
-          <a href="#" class="footer__social">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.857L1.204 2.25h6.717l4.258 5.626L18.244 2.25z"/></svg>
-          </a>
-          <a href="#" class="footer__social">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="#" class="footer__social">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"/></svg>
-          </a>
-        </div>
+<div class="footer__tagline">Полная наблюдаемость стека для команд, на которых держится интернет.</div>
+<div class="footer__socials">
+<a class="footer__social" href="#">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.744l7.737-8.857L1.204 2.25h6.717l4.258 5.626L18.244 2.25z"></path></svg>
+</a>
+<a class="footer__social" href="#">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M12 0C5.374 0 0 5.373 0 12c0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0 1 12 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.627-5.373-12-12-12z"></path></svg>
+</a>
+<a class="footer__social" href="#">
+<svg fill="currentColor" height="16" viewbox="0 0 24 24" width="16"><path d="M20.317 4.492c-1.53-.69-3.17-1.2-4.885-1.49a.075.075 0 0 0-.079.036c-.21.369-.444.85-.608 1.23a18.566 18.566 0 0 0-5.487 0 12.36 12.36 0 0 0-.617-1.23A.077.077 0 0 0 8.562 3c-1.714.29-3.354.8-4.885 1.491a.07.07 0 0 0-.032.027C.533 9.093-.32 13.555.099 17.961a.08.08 0 0 0 .031.055 20.03 20.03 0 0 0 5.993 2.98.078.078 0 0 0 .084-.026c.462-.62.874-1.275 1.226-1.963.021-.04.001-.088-.041-.104a13.201 13.201 0 0 1-1.872-.878.075.075 0 0 1-.008-.125c.126-.093.252-.19.372-.287a.075.075 0 0 1 .078-.01c3.927 1.764 8.18 1.764 12.061 0a.075.075 0 0 1 .079.009c.12.098.245.195.372.288a.075.075 0 0 1-.006.125c-.598.344-1.22.635-1.873.877a.075.075 0 0 0-.041.105c.36.687.772 1.341 1.225 1.962a.077.077 0 0 0 .084.028 19.963 19.963 0 0 0 6.002-2.981.076.076 0 0 0 .032-.054c.5-5.094-.838-9.52-3.549-13.442a.06.06 0 0 0-.031-.028z"></path></svg>
+</a>
+</div>
+</div>
+<div class="reveal-child">
+<div class="footer__col-title">Продукт</div>
+<ul class="footer__links">
+<li><a class="footer__link" href="#">Возможности</a></li>
+<li><a class="footer__link" href="#">Интеграции</a></li>
+<li><a class="footer__link" href="#">Список изменений</a></li>
+<li><a class="footer__link" href="#">Роадмап</a></li>
+<li><a class="footer__link" href="#">Статус</a></li>
+</ul>
+</div>
+<div class="reveal-child">
+<div class="footer__col-title">Компания</div>
+<ul class="footer__links">
+<li><a class="footer__link" href="#">О нас</a></li>
+<li><a class="footer__link" href="#">Блог</a></li>
+<li><a class="footer__link" href="#">Карьера</a></li>
+<li><a class="footer__link" href="#">Пресса</a></li>
+<li><a class="footer__link" href="#">Контакты</a></li>
+</ul>
+</div>
+<div class="reveal-child">
+<div class="footer__col-title">Разработчикам</div>
+<ul class="footer__links">
+<li><a class="footer__link" href="#">Документация</a></li>
+<li><a class="footer__link" href="#">Справочник API</a></li>
+<li><a class="footer__link" href="#">SDK</a></li>
+<li><a class="footer__link" href="#">Сообщество</a></li>
+<li><a class="footer__link" href="#">GitHub</a></li>
+</ul>
+</div>
+</div>
+<div class="footer__bottom reveal">
+<div class="footer__copy">© <span id="footerYear"></span> Signalis, Inc. Все права защищены.</div>
+<div class="footer__status">
+<div class="glow-dot" style="width:6px;height:6px"></div>
+        Все системы работают
       </div>
-      <div class="reveal-child">
-        <div class="footer__col-title">Product</div>
-        <ul class="footer__links">
-          <li><a href="#" class="footer__link">Features</a></li>
-          <li><a href="#" class="footer__link">Integrations</a></li>
-          <li><a href="#" class="footer__link">Changelog</a></li>
-          <li><a href="#" class="footer__link">Roadmap</a></li>
-          <li><a href="#" class="footer__link">Status</a></li>
-        </ul>
-      </div>
-      <div class="reveal-child">
-        <div class="footer__col-title">Company</div>
-        <ul class="footer__links">
-          <li><a href="#" class="footer__link">About</a></li>
-          <li><a href="#" class="footer__link">Blog</a></li>
-          <li><a href="#" class="footer__link">Careers</a></li>
-          <li><a href="#" class="footer__link">Press</a></li>
-          <li><a href="#" class="footer__link">Contact</a></li>
-        </ul>
-      </div>
-      <div class="reveal-child">
-        <div class="footer__col-title">Developers</div>
-        <ul class="footer__links">
-          <li><a href="#" class="footer__link">Documentation</a></li>
-          <li><a href="#" class="footer__link">API Reference</a></li>
-          <li><a href="#" class="footer__link">SDKs</a></li>
-          <li><a href="#" class="footer__link">Community</a></li>
-          <li><a href="#" class="footer__link">GitHub</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom reveal">
-      <div class="footer__copy">© <span id="footerYear"></span> Signalis, Inc. All rights reserved.</div>
-      <div class="footer__status">
-        <div class="glow-dot" style="width:6px;height:6px"></div>
-        All systems operational
-      </div>
-    </div>
-  </div>
+</div>
+</div>
 </footer>
-
 <!-- ═══════════════════════════════════════
      UNICORN STUDIO SDK
 ════════════════════════════════════════ -->
 <script>
 !function(){var u=window.UnicornStudio;if(u&&u.init){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){u.init()})}else{u.init()}}else{window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v2.1.0/dist/unicornStudio.umd.js",i.onload=function(){if(document.readyState==="loading"){document.addEventListener("DOMContentLoaded",function(){UnicornStudio.init()})}else{UnicornStudio.init()}},(document.head||document.body).appendChild(i)}}();
 </script>
-
 <script>
 // ─────────────────────────────────────────
 // DYNAMIC YEAR
@@ -1795,6 +1799,5 @@ gtag('config', 'G-2M6V79H761');
   });
 })();
 </script>
-
 </body>
 </html>

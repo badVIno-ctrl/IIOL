@@ -1,4 +1,4 @@
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -88,9 +88,9 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Vektor — Intelligence Infrastructure</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Vektor — инфраструктура интеллекта</title>
 <style>
 :root {
 --ink: #080808;
@@ -3149,7 +3149,7 @@ display: none !important;
 }
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -3157,2198 +3157,2197 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="">
-  <canvas id="particle-canvas" width="402" height="745"></canvas>
-  <div id="cursor" style="left: 376px; top: 279px;"></div>
-  <div id="cursor-ring" style="left: 0px; top: 0px;"></div>
-
-  <!-- NAV -->
-  <nav class="">
-    <a href="/home" class="nav-logo">
+<canvas height="745" id="particle-canvas" width="402"></canvas>
+<div id="cursor" style="left: 376px; top: 279px;"></div>
+<div id="cursor-ring" style="left: 0px; top: 0px;"></div>
+<!-- NAV -->
+<nav class="">
+<a class="nav-logo" href="/home">
       VEKT
       <span>◉</span>
       R
     </a>
-    <ul class="nav-links">
-      <li><a href="/platform">Platform</a></li>
-      <li><a href="/docs">Docs</a></li>
-      <li><a href="/pricing">Pricing</a></li>
-      <li><a href="/blog">Blog</a></li>
-    </ul>
-    <a href="/get-access" class="nav-cta">Get access</a>
-    <button id="burgerBtn" class="burger-btn" type="button" aria-label="Open menu" aria-controls="mobileMenu" aria-expanded="false" onclick="window.__toggleMobileMenu &amp;&amp; window.__toggleMobileMenu(event)">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
-  </nav>
-  <div id="mobileMenu" class="mobile-menu">
-    <button id="mobileMenuClose" class="mobile-menu-close" aria-label="Close menu" type="button" onclick="window.__closeMobileMenu &amp;&amp; window.__closeMobileMenu(event)">×</button>
-    <a href="/platform">Platform</a>
-    <a href="/docs">Docs</a>
-    <a href="/pricing">Pricing</a>
-    <a href="/blog">Blog</a>
-    <a href="/get-access" class="nav-cta">Get access</a>
-  </div>
-
-  <!-- HERO -->
-  <div id="hero-parallax-wrap" class="">
-    <section class="hero" id="hero">
-      <!-- Animated canvas background -->
-      <canvas id="hero-canvas" width="402" height="745"></canvas>
-      <div class="hero-vignette"></div>
-      <div class="hero-noise"></div>
-      <div id="hero-glow" style="left: 756px; top: 368.1px;"></div>
-
-      <!-- Floating data nodes -->
-      <div class="hero-nodes" id="heroNodes">
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<ul class="nav-links">
+<li><a href="/platform">Платформа</a></li>
+<li><a href="/docs">Документация</a></li>
+<li><a href="/pricing">Цены</a></li>
+<li><a href="/blog">Блог</a></li>
+</ul>
+<a class="nav-cta" href="/get-access">Получить доступ</a>
+<button aria-controls="mobileMenu" aria-expanded="false" aria-label="Открыть меню" class="burger-btn" id="burgerBtn" onclick="window.__toggleMobileMenu &amp;&amp; window.__toggleMobileMenu(event)" type="button">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+<button aria-label="Закрыть меню" class="mobile-menu-close" id="mobileMenuClose" onclick="window.__closeMobileMenu &amp;&amp; window.__closeMobileMenu(event)" type="button">×</button>
+<a href="/platform">Платформа</a>
+<a href="/docs">Документация</a>
+<a href="/pricing">Цены</a>
+<a href="/blog">Блог</a>
+<a class="nav-cta" href="/get-access">Получить доступ</a>
+</div>
+<!-- HERO -->
+<div class="" id="hero-parallax-wrap">
+<section class="hero" id="hero">
+<!-- Animated canvas background -->
+<canvas height="745" id="hero-canvas" width="402"></canvas>
+<div class="hero-vignette"></div>
+<div class="hero-noise"></div>
+<div id="hero-glow" style="left: 756px; top: 368.1px;"></div>
+<!-- Floating data nodes -->
+<div class="hero-nodes" id="heroNodes">
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 60.7466%; top: 25.7053%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 60.7466%; top: 25.7053%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 78.1258%; top: 55.0113%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 78.1258%; top: 55.0113%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 15.7297%; top: 65.7398%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 15.7297%; top: 65.7398%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 46.7825%; top: 11.1707%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 46.7825%; top: 11.1707%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 83.3599%; top: 9.65358%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 83.3599%; top: 9.65358%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 81.4059%; top: 13.3623%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 81.4059%; top: 13.3623%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 62.6787%; top: 30.6013%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 62.6787%; top: 30.6013%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 55.4624%; top: 9.28483%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 55.4624%; top: 9.28483%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 84.1767%; top: 59.2431%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 84.1767%; top: 59.2431%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           inference.edge.01
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           latency:11ms
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           model.router
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           token.budget
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           embedding.v3
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           stream.active
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           fallback:ready
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cache.hit:94%
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           region:us-east
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;">
-          <span class="hnode-dot"></span>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;">
+<span class="hnode-dot"></span>
           cost:$0.002
         </div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
-        <div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
-      </div>
-
-      <!-- Content -->
-      <div class="hero-content" id="heroContent">
-        <p class="hero-eyebrow" id="heroEyebrow">
-          Intelligence Infrastructure · v2.4
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>inference.edge.01</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>latency:11ms</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>model.router</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>token.budget</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>embedding.v3</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>stream.active</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>fallback:ready</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cache.hit:94%</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>region:us-east</div>
+<div class="hnode" style="left: 40.9132%; top: 76.6114%;"><span class="hnode-dot"></span>cost:$0.002</div>
+</div>
+ Контент 
+<div class="hero-content" id="heroContent">
+<p class="hero-eyebrow" id="heroEyebrow">
+          Инфраструктура интеллекта · v2.4
         </p>
-
-        <h1 class="hero-headline" id="heroHeadline">
-          <span class="hero-line" id="hline0">Build systems</span>
-          <br>
-          <span class="hero-line" id="hline1">
-              that
-              <em class="">think</em>
+<h1 class="hero-headline" id="heroHeadline">
+<span class="hero-line" id="hline0">Создавайте системы,</span>
+<br/>
+<span class="hero-line" id="hline1">
+              которые
+              <em class="">думают</em>
+</span>
+<br/>
+<span class="hero-line hero-line-ghost" id="hline2" style="color:rgba(242,237,230,.2);margin-left:4vw;display:block">
+              быстрее вас
             </span>
-          <br>
-          <span class="hero-line hero-line-ghost" id="hline2" style="color:rgba(242,237,230,.2);margin-left:4vw;display:block">
-              faster than you
-            </span>
-        </h1>
-
-        <p class="hero-sub" id="heroSub">
-          Vektor orchestrates your AI workflows at the infrastructure layer —
-          no glue code, no latency surprises. Ship in hours, not sprints.
+</h1>
+<p class="hero-sub" id="heroSub">
+          Vektor оркестрирует ваши AI-воркфлоу на уровне инфраструктуры —
+          без связующего кода и сюрпризов с задержками. Выпускайте за часы, а не за спринты.
         </p>
-
-        <div class="hero-actions" id="heroActions">
-          <a href="#" class="btn-primary">
-            Start building free
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" class="">
-              <path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"></path>
-            </svg>
-          </a>
-          <a href="#" class="btn-ghost">Watch demo →</a>
-        </div>
-
-        <div class="hero-stats" id="heroStats">
-          <div class="stat">
-            <div class="stat-num">
+<div class="hero-actions" id="heroActions">
+<a class="btn-primary" href="#">
+            Начать бесплатно
+            <svg class="" fill="none" height="14" viewbox="0 0 14 14" width="14">
+<path d="M3 7h8M8 4l3 3-3 3" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.2"></path>
+</svg>
+</a>
+<a class="btn-ghost" href="#">Смотреть демо →</a>
+</div>
+<div class="hero-stats" id="heroStats">
+<div class="stat">
+<div class="stat-num">
               4.2
               <span>B</span>
-            </div>
-            <div class="stat-label">API calls / month</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">
+</div>
+<div class="stat-label">API-вызовов / месяц</div>
+</div>
+<div class="stat">
+<div class="stat-num">
               99.
               <span>98</span>
-            </div>
-            <div class="stat-label">Uptime SLA</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">
-              <span>&lt;</span>
+</div>
+<div class="stat-label">SLA по аптайму</div>
+</div>
+<div class="stat">
+<div class="stat-num">
+<span>&lt;</span>
               12
             </div>
-            <div class="stat-label">ms p99 latency</div>
-          </div>
-          <div class="stat">
-            <div class="stat-num">
+<div class="stat-label">мс задержка p99</div>
+</div>
+<div class="stat">
+<div class="stat-num">
               380
               <span>+</span>
-            </div>
-            <div class="stat-label">Enterprise clients</div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- MARQUEE -->
-  <div class="marquee-section">
-    <div class="marquee-track">
-      <div class="marquee-item">
-        Realtime inference
+</div>
+<div class="stat-label">Корпоративных клиентов</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- MARQUEE -->
+<div class="marquee-section">
+<div class="marquee-track">
+<div class="marquee-item">
+        Инференс в реальном времени
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Vector embeddings
+</div>
+<div class="marquee-item">
+        Векторные эмбеддинги
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Model routing
+</div>
+<div class="marquee-item">
+        Маршрутизация моделей
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Auto-scaling pipelines
+</div>
+<div class="marquee-item">
+        Автомасштабируемые пайплайны
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Edge deployment
+</div>
+<div class="marquee-item">
+        Edge-развёртывание
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Observability layer
+</div>
+<div class="marquee-item">
+        Слой наблюдаемости
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Rate-limit controls
+</div>
+<div class="marquee-item">
+        Управление рейт-лимитами
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Multi-model orchestration
+</div>
+<div class="marquee-item">
+        Оркестрация нескольких моделей
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Realtime inference
+</div>
+<div class="marquee-item">
+        Инференс в реальном времени
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Vector embeddings
+</div>
+<div class="marquee-item">
+        Векторные эмбеддинги
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Model routing
+</div>
+<div class="marquee-item">
+        Маршрутизация моделей
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Auto-scaling pipelines
+</div>
+<div class="marquee-item">
+        Автомасштабируемые пайплайны
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Edge deployment
+</div>
+<div class="marquee-item">
+        Edge-развёртывание
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Observability layer
+</div>
+<div class="marquee-item">
+        Слой наблюдаемости
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Rate-limit controls
+</div>
+<div class="marquee-item">
+        Управление рейт-лимитами
         <span class="sep"></span>
-      </div>
-      <div class="marquee-item">
-        Multi-model orchestration
+</div>
+<div class="marquee-item">
+        Оркестрация нескольких моделей
         <span class="sep"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- FEATURES -->
-  <section class="features">
-    <p class="section-tag">Core platform</p>
-    <div class="feat-grid">
-      <div class="feat-card tall reveal" style="transition-delay: 0s;">
-        <div class="">
-          <div class="feat-num">01</div>
-          <div class="feat-icon-wrap">⚡</div>
-          <h3 class="feat-title">
-            Adaptive model
-            <br>
-              routing at scale
+</div>
+</div>
+</div>
+<!-- FEATURES -->
+<section class="features">
+<p class="section-tag">Ядро платформы</p>
+<div class="feat-grid">
+<div class="feat-card tall reveal" style="transition-delay: 0s;">
+<div class="">
+<div class="feat-num">01</div>
+<div class="feat-icon-wrap">⚡</div>
+<h3 class="feat-title">
+            Адаптивная маршрутизация
+            <br/>
+              моделей в масштабе
           </h3>
-          <p class="feat-body">
-            Route every request to the optimal model based on cost, latency,
-            and capability — automatically. No config files, no manual tuning.
+<p class="feat-body">
+            Направляйте каждый запрос к оптимальной модели по стоимости, задержке
+            и возможностям — автоматически. Никаких конфигов и ручной настройки.
           </p>
-        </div>
-        <div class="">
-          <p style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.25);margin-bottom:12px;" class="">
-            Live throughput
+</div>
+<div class="">
+<p class="" style="font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(242,237,230,.25);margin-bottom:12px;">
+            Живая пропускная способность
           </p>
-          <div class="feat-chart">
-            <div class="bar-c" style="height:35%;animation-delay:.1s"></div>
-            <div class="bar-c" style="height:55%;animation-delay:.15s"></div>
-            <div class="bar-c" style="height:42%;animation-delay:.2s"></div>
-            <div class="bar-c" style="height:78%;animation-delay:.25s"></div>
-            <div class="bar-c" style="height:62%;animation-delay:.3s"></div>
-            <div class="bar-c" style="height:90%;animation-delay:.35s"></div>
-            <div class="bar-c" style="height:70%;animation-delay:.4s"></div>
-            <div class="bar-c" style="height:85%;animation-delay:.45s;background:rgba(212,255,71,.3)"></div>
-          </div>
-        </div>
-      </div>
-      <div class="feat-card accent reveal" style="transition-delay: 0.1s;">
-        <div class="feat-num">02</div>
-        <div class="feat-icon-wrap">◎</div>
-        <h3 class="feat-title">
-          Sub-12ms
-          <br>
-            response
+<div class="feat-chart">
+<div class="bar-c" style="height:35%;animation-delay:.1s"></div>
+<div class="bar-c" style="height:55%;animation-delay:.15s"></div>
+<div class="bar-c" style="height:42%;animation-delay:.2s"></div>
+<div class="bar-c" style="height:78%;animation-delay:.25s"></div>
+<div class="bar-c" style="height:62%;animation-delay:.3s"></div>
+<div class="bar-c" style="height:90%;animation-delay:.35s"></div>
+<div class="bar-c" style="height:70%;animation-delay:.4s"></div>
+<div class="bar-c" style="height:85%;animation-delay:.45s;background:rgba(212,255,71,.3)"></div>
+</div>
+</div>
+</div>
+<div class="feat-card accent reveal" style="transition-delay: 0.1s;">
+<div class="feat-num">02</div>
+<div class="feat-icon-wrap">◎</div>
+<h3 class="feat-title">
+          Менее 12 мс
+          <br/>
+            на ответ
         </h3>
-        <div class="feat-donut">
-          <svg width="80" height="80" viewBox="0 0 80 80">
-            <circle class="donut-track" cx="40" cy="40" r="35"></circle>
-            <circle class="donut-fill" cx="40" cy="40" r="35"></circle>
-          </svg>
-          <div class="feat-donut-label">75%</div>
-        </div>
-        <p class="feat-body" style="font-size:11px;">
-          Faster than industry avg.
+<div class="feat-donut">
+<svg height="80" viewbox="0 0 80 80" width="80">
+<circle class="donut-track" cx="40" cy="40" r="35"></circle>
+<circle class="donut-fill" cx="40" cy="40" r="35"></circle>
+</svg>
+<div class="feat-donut-label">75%</div>
+</div>
+<p class="feat-body" style="font-size:11px;">
+          Быстрее среднего по индустрии.
         </p>
-      </div>
-      <div class="feat-card reveal" style="transition-delay: 0.2s;">
-        <div class="feat-num">03</div>
-        <div class="feat-icon-wrap">⟳</div>
-        <h3 class="feat-title">
-          Zero-downtime
-          <br>
-            deploys
+</div>
+<div class="feat-card reveal" style="transition-delay: 0.2s;">
+<div class="feat-num">03</div>
+<div class="feat-icon-wrap">⟳</div>
+<h3 class="feat-title">
+          Деплой без
+          <br/>
+            простоев
         </h3>
-        <div class="feat-flow">
-          <div class="flow-line"></div>
-          <div class="flow-line"></div>
-          <div class="flow-line"></div>
-        </div>
-        <p class="feat-body" style="font-size:11px;">
-          Blue-green deploys with instant rollback.
+<div class="feat-flow">
+<div class="flow-line"></div>
+<div class="flow-line"></div>
+<div class="flow-line"></div>
+</div>
+<p class="feat-body" style="font-size:11px;">
+          Blue-green деплой с мгновенным откатом.
         </p>
-      </div>
-      <div class="feat-card reveal" style="transition-delay: 0.3s;">
-        <div class="feat-num">04</div>
-        <div class="feat-icon-wrap">⊞</div>
-        <h3 class="feat-title">
-          Unified
-          <br>
-            observability
+</div>
+<div class="feat-card reveal" style="transition-delay: 0.3s;">
+<div class="feat-num">04</div>
+<div class="feat-icon-wrap">⊞</div>
+<h3 class="feat-title">
+          Единая
+          <br/>
+            наблюдаемость
         </h3>
-        <p class="feat-body" style="font-size:11px;margin-top:12px;">
-          Full traces, cost breakdowns, and anomaly detection in one
-          dashboard.
+<p class="feat-body" style="font-size:11px;margin-top:12px;">
+          Полные трейсы, разбивка затрат и обнаружение аномалий в одном
+          дашборде.
         </p>
-      </div>
-      <div class="feat-card reveal" style="background: rgba(168, 240, 232, 0.03); transition-delay: 0s;">
-        <div class="feat-num">05</div>
-        <div class="feat-icon-wrap" style="border-color:rgba(168,240,232,.2)">
+</div>
+<div class="feat-card reveal" style="background: rgba(168, 240, 232, 0.03); transition-delay: 0s;">
+<div class="feat-num">05</div>
+<div class="feat-icon-wrap" style="border-color:rgba(168,240,232,.2)">
           ⬡
         </div>
-        <h3 class="feat-title" style="color:var(--ice)">
-          Edge-native
-          <br>
-            everywhere
+<h3 class="feat-title" style="color:var(--ice)">
+          Edge-нативно
+          <br/>
+            везде
         </h3>
-        <p class="feat-body" style="font-size:11px;margin-top:12px;">
-          Deploy to 200+ PoPs. Your users never notice the latency cliff.
+<p class="feat-body" style="font-size:11px;margin-top:12px;">
+          Разворачивайтесь в 200+ PoP. Ваши пользователи никогда не заметят провала по задержке.
         </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── BENTO GRID ── -->
-  <section class="bento">
-    <p class="section-tag">In the wild</p>
-    <div class="bento-grid">
-      <div class="bento-cell b-big reveal" data-tilt="" style="transform-style: preserve-3d; transition-delay: 0.1s;">
-        <img class="bento-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4ca1e73a-69c6-49d2-b4d2-339c3a121dda_1600w.webp" alt="Server infrastructure" loading="lazy">
-        <div class="bento-tint"></div>
-        <div class="bento-scan"></div>
-        <div class="bento-arrow">→</div>
-        <div class="bento-meta">
-          <p class="bento-kicker">Infrastructure</p>
-          <h3 class="bento-title">Global edge network</h3>
-          <p class="bento-desc">
-            200+ points of presence routing every request to the nearest
-            available model endpoint, automatically.
+</div>
+</div>
+</section>
+<!-- ── BENTO GRID ── -->
+<section class="bento">
+<p class="section-tag">В реальных условиях</p>
+<div class="bento-grid">
+<div class="bento-cell b-big reveal" data-tilt="" style="transform-style: preserve-3d; transition-delay: 0.1s;">
+<img alt="Серверная инфраструктура" class="bento-img" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4ca1e73a-69c6-49d2-b4d2-339c3a121dda_1600w.webp"/>
+<div class="bento-tint"></div>
+<div class="bento-scan"></div>
+<div class="bento-arrow">→</div>
+<div class="bento-meta">
+<p class="bento-kicker">Инфраструктура</p>
+<h3 class="bento-title">Глобальная edge-сеть</h3>
+<p class="bento-desc">
+            200+ точек присутствия автоматически направляют каждый запрос к ближайшему
+            доступному эндпоинту модели.
           </p>
-        </div>
-      </div>
-
-      <div class="bento-cell b-stat reveal" style="transition-delay: 0.2s;">
-        <div class="">
-          <div class="b-stat-num">
+</div>
+</div>
+<div class="bento-cell b-stat reveal" style="transition-delay: 0.2s;">
+<div class="">
+<div class="b-stat-num">
             4.2
             <span>B</span>
-          </div>
-          <p class="b-stat-label">Requests / month</p>
-        </div>
-        <div class="b-stat-spark">
-          <div class="b-spark-bar" style="height:30%"></div>
-          <div class="b-spark-bar" style="height:45%"></div>
-          <div class="b-spark-bar" style="height:38%"></div>
-          <div class="b-spark-bar" style="height:62%"></div>
-          <div class="b-spark-bar" style="height:55%"></div>
-          <div class="b-spark-bar" style="height:78%"></div>
-          <div class="b-spark-bar" style="height:70%"></div>
-          <div class="b-spark-bar" style="height:92%"></div>
-        </div>
-      </div>
-
-      <div class="bento-cell reveal" data-tilt="" style="transition-delay: 0.3s; transform-style: preserve-3d;">
-        <img class="bento-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/62e25cf1-5808-4983-9437-ca7103967343_800w.webp" alt="Analytics dashboard" loading="lazy">
-        <div class="bento-tint"></div>
-        <div class="bento-scan"></div>
-        <div class="bento-arrow">→</div>
-        <div class="bento-meta">
-          <p class="bento-kicker">Observability</p>
-          <h3 class="bento-title">Live dashboards</h3>
-        </div>
-      </div>
-
-      <div class="bento-cell b-tall reveal" data-tilt="" style="transition-delay: 0s; transform-style: preserve-3d;">
-        <img class="bento-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d4f956e9-293c-4b43-92be-b44d11094308_800w.jpg" alt="Network cables" loading="lazy">
-        <div class="bento-tint"></div>
-        <div class="bento-scan"></div>
-        <div class="bento-arrow">→</div>
-        <div class="bento-meta">
-          <p class="bento-kicker">Security</p>
-          <h3 class="bento-title">SOC 2 Type II certified</h3>
-          <p class="bento-desc">
-            End-to-end encryption, zero data retention modes, and on-prem
-            deployment for regulated industries.
+</div>
+<p class="b-stat-label">Запросов / месяц</p>
+</div>
+<div class="b-stat-spark">
+<div class="b-spark-bar" style="height:30%"></div>
+<div class="b-spark-bar" style="height:45%"></div>
+<div class="b-spark-bar" style="height:38%"></div>
+<div class="b-spark-bar" style="height:62%"></div>
+<div class="b-spark-bar" style="height:55%"></div>
+<div class="b-spark-bar" style="height:78%"></div>
+<div class="b-spark-bar" style="height:70%"></div>
+<div class="b-spark-bar" style="height:92%"></div>
+</div>
+</div>
+<div class="bento-cell reveal" data-tilt="" style="transition-delay: 0.3s; transform-style: preserve-3d;">
+<img alt="Дашборд аналитики" class="bento-img" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/62e25cf1-5808-4983-9437-ca7103967343_800w.webp"/>
+<div class="bento-tint"></div>
+<div class="bento-scan"></div>
+<div class="bento-arrow">→</div>
+<div class="bento-meta">
+<p class="bento-kicker">Наблюдаемость</p>
+<h3 class="bento-title">Живые дашборды</h3>
+</div>
+</div>
+<div class="bento-cell b-tall reveal" data-tilt="" style="transition-delay: 0s; transform-style: preserve-3d;">
+<img alt="Сетевые кабели" class="bento-img" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d4f956e9-293c-4b43-92be-b44d11094308_800w.jpg"/>
+<div class="bento-tint"></div>
+<div class="bento-scan"></div>
+<div class="bento-arrow">→</div>
+<div class="bento-meta">
+<p class="bento-kicker">Безопасность</p>
+<h3 class="bento-title">Сертификация SOC 2 Type II</h3>
+<p class="bento-desc">
+            Сквозное шифрование, режимы нулевого хранения данных и on-prem
+            развёртывание для регулируемых отраслей.
           </p>
-        </div>
-      </div>
-
-      <div class="bento-cell b-quote reveal" style="transition-delay: 0.1s;">
-        <div class="b-quote-mark">"</div>
-        <p class="b-quote-text">
-          Vektor is the missing layer between our product and every AI
-          provider.
+</div>
+</div>
+<div class="bento-cell b-quote reveal" style="transition-delay: 0.1s;">
+<div class="b-quote-mark">"</div>
+<p class="b-quote-text">
+          Vektor — это недостающий слой между нашим продуктом и каждым
+          AI-провайдером.
         </p>
-        <p class="b-quote-who">CTO · Bastion AI</p>
-      </div>
-
-      <div class="bento-cell b-wide reveal" data-tilt="" style="transition-delay: 0.2s; transform-style: preserve-3d;">
-        <img class="bento-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg" alt="Code on screen" loading="lazy">
-        <div class="bento-tint"></div>
-        <div class="bento-scan"></div>
-        <div class="bento-arrow">→</div>
-        <div class="bento-meta">
-          <p class="bento-kicker">Developer experience</p>
-          <h3 class="bento-title">One SDK, every model</h3>
-          <p class="bento-desc">
-            Type-safe clients for TypeScript, Python, Go, and Rust. Switch
-            providers with a one-line change.
+<p class="b-quote-who">CTO · Bastion AI</p>
+</div>
+<div class="bento-cell b-wide reveal" data-tilt="" style="transition-delay: 0.2s; transform-style: preserve-3d;">
+<img alt="Код на экране" class="bento-img" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg"/>
+<div class="bento-tint"></div>
+<div class="bento-scan"></div>
+<div class="bento-arrow">→</div>
+<div class="bento-meta">
+<p class="bento-kicker">Опыт разработчика</p>
+<h3 class="bento-title">Один SDK, любая модель</h3>
+<p class="bento-desc">
+            Типобезопасные клиенты для TypeScript, Python, Go и Rust. Меняйте
+            провайдера правкой одной строки.
           </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ── HOW IT WORKS ── -->
+<section class="how">
+<div class="how-inner">
+<div class="how-left">
+<div class="section-tag reveal" style="transition-delay: 0.3s;">
+          Как это работает
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── HOW IT WORKS ── -->
-  <section class="how">
-    <div class="how-inner">
-      <div class="how-left">
-        <div class="section-tag reveal" style="transition-delay: 0.3s;">
-          How it works
-        </div>
-        <h2 class="how-big reveal" style="transition-delay: 0s;">
-          Simple
-          <br>
-            by
-          <em class="">design</em>
-        </h2>
-        <p class="how-desc reveal" style="transition-delay: 0.1s;">
-          Four steps from zero to production-grade AI infrastructure. No PhD
-          required.
+<h2 class="how-big reveal" style="transition-delay: 0s;">
+          Простота
+          <br/>
+            по
+          <em class="">замыслу</em>
+</h2>
+<p class="how-desc reveal" style="transition-delay: 0.1s;">
+          Четыре шага от нуля до AI-инфраструктуры production-уровня. PhD
+          не требуется.
         </p>
-      </div>
-      <div class="steps">
-        <div class="step reveal" style="transition-delay: 0.2s;">
-          <div class="step-idx">01</div>
-          <div class="step-content">
-            <p class="step-label">Connect</p>
-            <h3 class="step-title scramble" data-text="Install the SDK">
-              Install the SDK
+</div>
+<div class="steps">
+<div class="step reveal" style="transition-delay: 0.2s;">
+<div class="step-idx">01</div>
+<div class="step-content">
+<p class="step-label">Подключение</p>
+<h3 class="step-title scramble" data-text="Установите SDK">
+              Установите SDK
             </h3>
-            <p class="step-body">
-              One npm install. Our SDK auto-discovers your runtime and
-              configures itself. No YAML, no infra tickets.
+<p class="step-body">
+              Один npm install. Наш SDK сам обнаруживает ваш рантайм и
+              настраивается автоматически. Никакого YAML, никаких инфра-тикетов.
             </p>
-            <div class="step-bar"></div>
-          </div>
-        </div>
-        <div class="step reveal" style="transition-delay: 0.3s;">
-          <div class="step-idx">02</div>
-          <div class="step-content">
-            <p class="step-label">Configure</p>
-            <h3 class="step-title scramble" data-text="Define your models">
-              Define your models
+<div class="step-bar"></div>
+</div>
+</div>
+<div class="step reveal" style="transition-delay: 0.3s;">
+<div class="step-idx">02</div>
+<div class="step-content">
+<p class="step-label">Настройка</p>
+<h3 class="step-title scramble" data-text="Определите свои модели">
+              Определите свои модели
             </h3>
-            <p class="step-body">
-              Declare which models you want access to. We handle auth, rate
-              limiting, and fallback routing automatically.
+<p class="step-body">
+              Объявите, к каким моделям вам нужен доступ. Мы автоматически берём на себя
+              аутентификацию, рейт-лимиты и резервную маршрутизацию.
             </p>
-            <div class="step-bar"></div>
-          </div>
-        </div>
-        <div class="step reveal" style="transition-delay: 0s;">
-          <div class="step-idx">03</div>
-          <div class="step-content">
-            <p class="step-label">Ship</p>
-            <h3 class="step-title scramble" data-text="Deploy anywhere">
-              Deploy anywhere
+<div class="step-bar"></div>
+</div>
+</div>
+<div class="step reveal" style="transition-delay: 0s;">
+<div class="step-idx">03</div>
+<div class="step-content">
+<p class="step-label">Релиз</p>
+<h3 class="step-title scramble" data-text="Разворачивайте где угодно">
+              Разворачивайте где угодно
             </h3>
-            <p class="step-body">
-              Push to any cloud, edge runtime, or on-prem server. Vektor
-              follows your existing CI/CD pipeline.
+<p class="step-body">
+              Пушьте в любое облако, edge-рантайм или on-prem сервер. Vektor
+              следует вашему существующему CI/CD-пайплайну.
             </p>
-            <div class="step-bar"></div>
-          </div>
-        </div>
-        <div class="step reveal" style="transition-delay: 0.1s;">
-          <div class="step-idx">04</div>
-          <div class="step-content">
-            <p class="step-label">Observe</p>
-            <h3 class="step-title scramble" data-text="Monitor &amp; optimize">
-              Monitor &amp; optimize
+<div class="step-bar"></div>
+</div>
+</div>
+<div class="step reveal" style="transition-delay: 0.1s;">
+<div class="step-idx">04</div>
+<div class="step-content">
+<p class="step-label">Наблюдение</p>
+<h3 class="step-title scramble" data-text="Мониторинг и оптимизация">
+              Мониторинг и оптимизация
             </h3>
-            <p class="step-body">
-              Full cost attribution, latency heatmaps, and anomaly alerts.
-              Know exactly what your AI is spending and why.
+<p class="step-body">
+              Полная атрибуция затрат, тепловые карты задержек и алерты об аномалиях.
+              Точно знайте, сколько тратит ваш AI и почему.
             </p>
-            <div class="step-bar"></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── LOGOS TAPE ── -->
-  <div class="logos-section">
-    <p class="logos-label">Trusted by engineering teams at</p>
-    <div class="logos-tape">
-      <div class="logo-cell">
-        <span class="logo-name">Stripe</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Notion</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Linear</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Vercel</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Figma</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Loom</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Supabase</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Retool</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Codeium</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Runway</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Stripe</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Notion</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Linear</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Vercel</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Figma</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Loom</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Supabase</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Retool</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Codeium</span>
-        <span class="logo-dot"></span>
-      </div>
-      <div class="logo-cell">
-        <span class="logo-name">Runway</span>
-        <span class="logo-dot"></span>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── DIAGONAL SDK CALLOUT ── -->
-  <div class="diagonal-section">
-    <div class="diagonal-inner">
-      <div class="diagonal-text reveal" style="transition-delay: 0.2s;">
-        <h2 class="diagonal-headline">
-          One SDK.
-          <br>
-          <em>Infinite</em>
-          <br>
-            models.
+<div class="step-bar"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── LOGOS TAPE ── -->
+<div class="logos-section">
+<p class="logos-label">Нам доверяют инженерные команды</p>
+<div class="logos-tape">
+<div class="logo-cell">
+<span class="logo-name">Stripe</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Notion</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Linear</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Vercel</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Figma</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Loom</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Supabase</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Retool</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Codeium</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Runway</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Stripe</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Notion</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Linear</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Vercel</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Figma</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Loom</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Supabase</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Retool</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Codeium</span>
+<span class="logo-dot"></span>
+</div>
+<div class="logo-cell">
+<span class="logo-name">Runway</span>
+<span class="logo-dot"></span>
+</div>
+</div>
+</div>
+<!-- ── DIAGONAL SDK CALLOUT ── -->
+<div class="diagonal-section">
+<div class="diagonal-inner">
+<div class="diagonal-text reveal" style="transition-delay: 0.2s;">
+<h2 class="diagonal-headline">
+          Один SDK.
+          <br/>
+<em>Бесконечное</em>
+<br/>
+            моделей.
         </h2>
-        <p class="diagonal-body">
-          Stop rewriting integrations every time a new frontier model drops.
-          Vektor's unified SDK abstracts provider differences so you stay
-          focused on product — not plumbing.
+<p class="diagonal-body">
+          Хватит переписывать интеграции каждый раз, когда выходит новая передовая модель.
+          Единый SDK Vektor абстрагирует различия провайдеров, чтобы вы оставались
+          сосредоточены на продукте, а не на сантехнике.
         </p>
-        <a href="docs.html" class="btn-primary" style="margin-top:28px;display:inline-flex">
-          Read the docs →
+<a class="btn-primary" href="docs.html" style="margin-top:28px;display:inline-flex">
+          Читать документацию →
         </a>
-      </div>
-      <div class="terminal reveal" style="transition-delay: 0.3s;">
-        <div class="term-bar">
-          <div class="term-dot" style="background:#ff5f57"></div>
-          <div class="term-dot" style="background:#febc2e"></div>
-          <div class="term-dot" style="background:#28c840"></div>
-          <span style="font-size:11px;color:rgba(242,237,230,.2);margin-left:8px">
+</div>
+<div class="terminal reveal" style="transition-delay: 0.3s;">
+<div class="term-bar">
+<div class="term-dot" style="background:#ff5f57"></div>
+<div class="term-dot" style="background:#febc2e"></div>
+<div class="term-dot" style="background:#28c840"></div>
+<span style="font-size:11px;color:rgba(242,237,230,.2);margin-left:8px">
               vektor.init
             </span>
+</div>
+<div class="term-body">
+<div>
+<span class="term-prompt">$</span>
+<span class="term-cmd">npm install @vektor/sdk</span>
+</div>
+<div class="term-out">✓ Установлено за 0.4 с</div>
+<div style="margin-top:8px">
+<span class="term-prompt">›</span>
+<span class="term-cmd">import Vektor from '@vektor/sdk'</span>
+</div>
+<div>
+<span class="term-prompt">›</span>
+<span class="term-cmd">const vk = new Vektor({ key })</span>
+</div>
+<div style="margin-top:8px">
+<span class="term-prompt">›</span>
+<span class="term-cmd">await vk.run('gpt-4o', prompt)</span>
+</div>
+<div class="term-out">← { tokens: 412, ms: 11, cost: $0.002 }</div>
+<div style="margin-top:8px">
+<span class="term-prompt">›</span>
+<span class="term-cursor"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ── INTEGRATIONS — SVG PATH DRAW ── -->
+<section class="integrations">
+<div class="integ-inner">
+<div class="integ-text">
+<div class="section-tag reveal" style="transition-delay: 0s;">
+          Интеграции
         </div>
-        <div class="term-body">
-          <div>
-            <span class="term-prompt">$</span>
-            <span class="term-cmd">npm install @vektor/sdk</span>
-          </div>
-          <div class="term-out">✓ Installed in 0.4s</div>
-          <div style="margin-top:8px">
-            <span class="term-prompt">›</span>
-            <span class="term-cmd">import Vektor from '@vektor/sdk'</span>
-          </div>
-          <div>
-            <span class="term-prompt">›</span>
-            <span class="term-cmd">const vk = new Vektor({ key })</span>
-          </div>
-          <div style="margin-top:8px">
-            <span class="term-prompt">›</span>
-            <span class="term-cmd">await vk.run('gpt-4o', prompt)</span>
-          </div>
-          <div class="term-out">← { tokens: 412, ms: 11, cost: $0.002 }</div>
-          <div style="margin-top:8px">
-            <span class="term-prompt">›</span>
-            <span class="term-cursor"></span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── INTEGRATIONS — SVG PATH DRAW ── -->
-  <section class="integrations">
-    <div class="integ-inner">
-      <div class="integ-text">
-        <div class="section-tag reveal" style="transition-delay: 0s;">
-          Integrations
-        </div>
-        <h2 class="integ-headline reveal" style="transition-delay: 0.1s;">
-          Every model.
-          <br>
-          <em>One</em>
-          hub.
+<h2 class="integ-headline reveal" style="transition-delay: 0.1s;">
+          Каждая модель.
+          <br/>
+<em>Один</em>
+          хаб.
         </h2>
-        <p class="integ-body reveal" style="transition-delay: 0.2s;">
-          Connect to every major AI provider through a single endpoint. Switch
-          models mid-flight without touching your application code.
+<p class="integ-body reveal" style="transition-delay: 0.2s;">
+          Подключайтесь к каждому крупному AI-провайдеру через единый эндпоинт. Меняйте
+          модели на лету, не трогая код приложения.
         </p>
-        <div class="integ-chips reveal" style="transition-delay: 0.3s;">
-          <span class="chip">OpenAI</span>
-          <span class="chip">Anthropic</span>
-          <span class="chip">Gemini</span>
-          <span class="chip">Mistral</span>
-          <span class="chip">Llama 3</span>
-          <span class="chip">Cohere</span>
-          <span class="chip">Grok</span>
-          <span class="chip">Groq</span>
-          <span class="chip">+ 40 more</span>
-        </div>
-      </div>
-      <div class="integ-viz reveal" id="integViz" style="transition-delay: 0s;">
-        <svg class="integ-svg" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg" id="integSvg">
-          <!-- pulse rings on center -->
-          <circle class="pulse-ring" cx="200" cy="200" r="20"></circle>
-          <circle class="pulse-ring" cx="200" cy="200" r="20"></circle>
-          <circle class="pulse-ring" cx="200" cy="200" r="20"></circle>
-          <!-- paths from center to nodes - will be drawn in JS -->
-          <path class="node-path" id="np0" d="M200,200 L200,60"></path>
-          <path class="node-path" id="np1" d="M200,200 L318,130"></path>
-          <path class="node-path" id="np2" d="M200,200 L340,200"></path>
-          <path class="node-path" id="np3" d="M200,200 L318,270"></path>
-          <path class="node-path" id="np4" d="M200,200 L200,340"></path>
-          <path class="node-path" id="np5" d="M200,200 L82,270"></path>
-          <path class="node-path" id="np6" d="M200,200 L60,200"></path>
-          <path class="node-path" id="np7" d="M200,200 L82,130"></path>
-          <!-- outer nodes -->
-          <g class="node-group" data-label="OpenAI">
-            <circle class="node-circle" cx="200" cy="60" r="28"></circle>
-            <text class="node-label" x="200" y="60">OpenAI</text>
-          </g>
-          <g class="node-group" data-label="Gemini">
-            <circle class="node-circle" cx="318" cy="130" r="28"></circle>
-            <text class="node-label" x="318" y="130">Gemini</text>
-          </g>
-          <g class="node-group" data-label="Cohere">
-            <circle class="node-circle" cx="340" cy="200" r="28"></circle>
-            <text class="node-label" x="340" y="200">Cohere</text>
-          </g>
-          <g class="node-group" data-label="Llama">
-            <circle class="node-circle" cx="318" cy="270" r="28"></circle>
-            <text class="node-label" x="318" y="270">Llama</text>
-          </g>
-          <g class="node-group" data-label="Mistral">
-            <circle class="node-circle" cx="200" cy="340" r="28"></circle>
-            <text class="node-label" x="200" y="340">Mistral</text>
-          </g>
-          <g class="node-group" data-label="Groq">
-            <circle class="node-circle" cx="82" cy="270" r="28"></circle>
-            <text class="node-label" x="82" y="270">Groq</text>
-          </g>
-          <g class="node-group" data-label="Grok">
-            <circle class="node-circle" cx="60" cy="200" r="28"></circle>
-            <text class="node-label" x="60" y="200">Grok</text>
-          </g>
-          <g class="node-group" data-label="Claude">
-            <circle class="node-circle" cx="82" cy="130" r="28"></circle>
-            <text class="node-label" x="82" y="130">Claude</text>
-          </g>
-          <!-- center node -->
-          <circle cx="200" cy="200" r="32" class="node-center"></circle>
-          <text class="node-center-label" x="200" y="200">VEKTR</text>
-        </svg>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── METRICS COUNTER ── -->
-  <section class="metrics">
-    <div class="metrics-inner">
-      <div class="metric-cell reveal" style="transition-delay: 0.1s;">
-        <div class="metric-bg">01</div>
-        <span class="metric-n" data-target="4200000000" data-suffix="B+" data-display="4.2B+">
+<div class="integ-chips reveal" style="transition-delay: 0.3s;">
+<span class="chip">OpenAI</span>
+<span class="chip">Anthropic</span>
+<span class="chip">Gemini</span>
+<span class="chip">Mistral</span>
+<span class="chip">Llama 3</span>
+<span class="chip">Cohere</span>
+<span class="chip">Grok</span>
+<span class="chip">Groq</span>
+<span class="chip">+ ещё 40</span>
+</div>
+</div>
+<div class="integ-viz reveal" id="integViz" style="transition-delay: 0s;">
+<svg class="integ-svg" fill="none" id="integSvg" viewbox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+<!-- pulse rings on center -->
+<circle class="pulse-ring" cx="200" cy="200" r="20"></circle>
+<circle class="pulse-ring" cx="200" cy="200" r="20"></circle>
+<circle class="pulse-ring" cx="200" cy="200" r="20"></circle>
+<!-- paths from center to nodes - will be drawn in JS -->
+<path class="node-path" d="M200,200 L200,60" id="np0"></path>
+<path class="node-path" d="M200,200 L318,130" id="np1"></path>
+<path class="node-path" d="M200,200 L340,200" id="np2"></path>
+<path class="node-path" d="M200,200 L318,270" id="np3"></path>
+<path class="node-path" d="M200,200 L200,340" id="np4"></path>
+<path class="node-path" d="M200,200 L82,270" id="np5"></path>
+<path class="node-path" d="M200,200 L60,200" id="np6"></path>
+<path class="node-path" d="M200,200 L82,130" id="np7"></path>
+<!-- outer nodes -->
+<g class="node-group" data-label="OpenAI">
+<circle class="node-circle" cx="200" cy="60" r="28"></circle>
+<text class="node-label" x="200" y="60">OpenAI</text>
+</g>
+<g class="node-group" data-label="Gemini">
+<circle class="node-circle" cx="318" cy="130" r="28"></circle>
+<text class="node-label" x="318" y="130">Gemini</text>
+</g>
+<g class="node-group" data-label="Cohere">
+<circle class="node-circle" cx="340" cy="200" r="28"></circle>
+<text class="node-label" x="340" y="200">Cohere</text>
+</g>
+<g class="node-group" data-label="Llama">
+<circle class="node-circle" cx="318" cy="270" r="28"></circle>
+<text class="node-label" x="318" y="270">Llama</text>
+</g>
+<g class="node-group" data-label="Mistral">
+<circle class="node-circle" cx="200" cy="340" r="28"></circle>
+<text class="node-label" x="200" y="340">Mistral</text>
+</g>
+<g class="node-group" data-label="Groq">
+<circle class="node-circle" cx="82" cy="270" r="28"></circle>
+<text class="node-label" x="82" y="270">Groq</text>
+</g>
+<g class="node-group" data-label="Grok">
+<circle class="node-circle" cx="60" cy="200" r="28"></circle>
+<text class="node-label" x="60" y="200">Grok</text>
+</g>
+<g class="node-group" data-label="Claude">
+<circle class="node-circle" cx="82" cy="130" r="28"></circle>
+<text class="node-label" x="82" y="130">Claude</text>
+</g>
+<!-- center node -->
+<circle class="node-center" cx="200" cy="200" r="32"></circle>
+<text class="node-center-label" x="200" y="200">VEKTR</text>
+</svg>
+</div>
+</div>
+</section>
+<!-- ── METRICS COUNTER ── -->
+<section class="metrics">
+<div class="metrics-inner">
+<div class="metric-cell reveal" style="transition-delay: 0.1s;">
+<div class="metric-bg">01</div>
+<span class="metric-n" data-display="4.2B+" data-suffix="B+" data-target="4200000000">
             4.2B+
           </span>
-        <p class="metric-label">Requests served</p>
-        <p class="metric-sub">Last 30 days across all regions</p>
-      </div>
-      <div class="metric-cell reveal" style="transition-delay: 0.2s;">
-        <div class="metric-bg">02</div>
-        <span class="metric-n" data-target="99.98" data-suffix="%" data-display="99.98%">
+<p class="metric-label">Обслужено запросов</p>
+<p class="metric-sub">За последние 30 дней по всем регионам</p>
+</div>
+<div class="metric-cell reveal" style="transition-delay: 0.2s;">
+<div class="metric-bg">02</div>
+<span class="metric-n" data-display="99.98%" data-suffix="%" data-target="99.98">
             99.98%
           </span>
-        <p class="metric-label">Platform uptime</p>
-        <p class="metric-sub">12-month rolling average</p>
-      </div>
-      <div class="metric-cell reveal" style="transition-delay: 0.3s;">
-        <div class="metric-bg">03</div>
-        <span class="metric-n" data-target="11" data-suffix="ms" data-display="11ms">
-            <span class="metric-unit">&lt;</span>
-        11ms
+<p class="metric-label">Аптайм платформы</p>
+<p class="metric-sub">Скользящее среднее за 12 месяцев</p>
+</div>
+<div class="metric-cell reveal" style="transition-delay: 0.3s;">
+<div class="metric-bg">03</div>
+<span class="metric-n" data-display="11ms" data-suffix="ms" data-target="11">
+<span class="metric-unit">&lt;</span>
+        11 мс
         </span>
-        <p class="metric-label">Median latency</p>
-        <p class="metric-sub">p50 globally, edge-routed</p>
-      </div>
-      <div class="metric-cell reveal" style="transition-delay: 0s;">
-        <div class="metric-bg">04</div>
-        <span class="metric-n" data-target="380" data-suffix="+" data-display="380+">
+<p class="metric-label">Медианная задержка</p>
+<p class="metric-sub">p50 глобально, edge-маршрутизация</p>
+</div>
+<div class="metric-cell reveal" style="transition-delay: 0s;">
+<div class="metric-bg">04</div>
+<span class="metric-n" data-display="380+" data-suffix="+" data-target="380">
             380+
           </span>
-        <p class="metric-label">Enterprise teams</p>
-        <p class="metric-sub">From seed to Fortune 500</p>
+<p class="metric-label">Корпоративные команды</p>
+<p class="metric-sub">От сид-раунда до Fortune 500</p>
+</div>
+</div>
+</section>
+<!-- ── PROCESS — HORIZONTAL DRAG SCROLL ── -->
+<section class="process">
+<div class="process-header">
+<div class="section-tag reveal" style="transition-delay: 0.1s;">
+        Рабочий процесс
       </div>
-    </div>
-  </section>
-
-  <!-- ── PROCESS — HORIZONTAL DRAG SCROLL ── -->
-  <section class="process">
-    <div class="process-header">
-      <div class="section-tag reveal" style="transition-delay: 0.1s;">
-        The workflow
-      </div>
-      <h2 class="process-headline reveal" style="transition-delay: 0.2s;">
-        From idea to
-        <br>
-        <em class="">production</em>
-        fast
+<h2 class="process-headline reveal" style="transition-delay: 0.2s;">
+        От идеи до
+        <br/>
+<em class="">продакшена</em>
+        быстро
       </h2>
-    </div>
-    <div class="process-track-wrap" id="processTrack" style="cursor: grab;">
-      <div class="process-track">
-        <div class="process-card">
-          <div class="process-card-num">01</div>
-          <div class="process-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle class="pi-circle" cx="24" cy="24" r="20"></circle>
-              <path class="pi-arc" d="M24,4 A20,20 0 0,1 44,24"></path>
-            </svg>
-          </div>
-          <p class="process-card-step">Step one</p>
-          <h3 class="process-card-title">Architect your pipeline</h3>
-          <p class="process-card-body">
-            Map your AI use-cases to Vektor's pipeline primitives. Route,
-            chain, and parallelize model calls using a declarative graph
-            syntax.
+</div>
+<div class="process-track-wrap" id="processTrack" style="cursor: grab;">
+<div class="process-track">
+<div class="process-card">
+<div class="process-card-num">01</div>
+<div class="process-icon">
+<svg height="48" viewbox="0 0 48 48" width="48">
+<circle class="pi-circle" cx="24" cy="24" r="20"></circle>
+<path class="pi-arc" d="M24,4 A20,20 0 0,1 44,24"></path>
+</svg>
+</div>
+<p class="process-card-step">Шаг первый</p>
+<h3 class="process-card-title">Спроектируйте пайплайн</h3>
+<p class="process-card-body">
+            Сопоставьте ваши AI-сценарии с примитивами пайплайнов Vektor. Маршрутизируйте,
+            связывайте в цепочки и параллелизуйте вызовы моделей с помощью декларативного графового
+            синтаксиса.
           </p>
-        </div>
-        <div class="process-arrow">→</div>
-        <div class="process-card">
-          <div class="process-card-num">02</div>
-          <div class="process-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle class="pi-circle" cx="24" cy="24" r="20"></circle>
-              <path class="pi-arc" d="M24,4 A20,20 0 0,1 44,24 A20,20 0 0,1 24,44"></path>
-            </svg>
-          </div>
-          <p class="process-card-step">Step two</p>
-          <h3 class="process-card-title">Integrate in minutes</h3>
-          <p class="process-card-body">
-            Drop in our SDK and call
+</div>
+<div class="process-arrow">→</div>
+<div class="process-card">
+<div class="process-card-num">02</div>
+<div class="process-icon">
+<svg height="48" viewbox="0 0 48 48" width="48">
+<circle class="pi-circle" cx="24" cy="24" r="20"></circle>
+<path class="pi-arc" d="M24,4 A20,20 0 0,1 44,24 A20,20 0 0,1 24,44"></path>
+</svg>
+</div>
+<p class="process-card-step">Шаг второй</p>
+<h3 class="process-card-title">Интегрируйтесь за минуты</h3>
+<p class="process-card-body">
+            Подключите наш SDK и вызовите
             <code style="color:var(--acid);font-size:10px">vk.run()</code>
-            . Vektor handles auth, retries, and fallbacks across every
-            provider automatically.
+            . Vektor автоматически берёт на себя аутентификацию, ретраи и фолбэки у каждого
+            провайдера.
           </p>
-        </div>
-        <div class="process-arrow">→</div>
-        <div class="process-card">
-          <div class="process-card-num">03</div>
-          <div class="process-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle class="pi-circle" cx="24" cy="24" r="20"></circle>
-              <path class="pi-arc" d="M24,4 A20,20 0 1,1 23.9,4"></path>
-            </svg>
-          </div>
-          <p class="process-card-step">Step three</p>
-          <h3 class="process-card-title">Test with confidence</h3>
-          <p class="process-card-body">
-            Replay production traces in staging. Regression-test prompt
-            changes before they touch users. Catch quality drifts
-            automatically.
+</div>
+<div class="process-arrow">→</div>
+<div class="process-card">
+<div class="process-card-num">03</div>
+<div class="process-icon">
+<svg height="48" viewbox="0 0 48 48" width="48">
+<circle class="pi-circle" cx="24" cy="24" r="20"></circle>
+<path class="pi-arc" d="M24,4 A20,20 0 1,1 23.9,4"></path>
+</svg>
+</div>
+<p class="process-card-step">Шаг третий</p>
+<h3 class="process-card-title">Тестируйте уверенно</h3>
+<p class="process-card-body">
+            Проигрывайте production-трейсы в стейджинге. Проводите регрессионное тестирование изменений
+            промптов до того, как они коснутся пользователей. Автоматически ловите дрейф
+            качества.
           </p>
-        </div>
-        <div class="process-arrow">→</div>
-        <div class="process-card">
-          <div class="process-card-num">04</div>
-          <div class="process-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle class="pi-circle" cx="24" cy="24" r="20"></circle>
-              <path class="pi-arc" d="M4,24 A20,20 0 0,1 44,24"></path>
-            </svg>
-          </div>
-          <p class="process-card-step">Step four</p>
-          <h3 class="process-card-title">Deploy to the edge</h3>
-          <p class="process-card-body">
-            One command deploys your pipeline to 200+ global PoPs. Requests
-            automatically route to the closest available model endpoint.
+</div>
+<div class="process-arrow">→</div>
+<div class="process-card">
+<div class="process-card-num">04</div>
+<div class="process-icon">
+<svg height="48" viewbox="0 0 48 48" width="48">
+<circle class="pi-circle" cx="24" cy="24" r="20"></circle>
+<path class="pi-arc" d="M4,24 A20,20 0 0,1 44,24"></path>
+</svg>
+</div>
+<p class="process-card-step">Шаг четвёртый</p>
+<h3 class="process-card-title">Разверните на edge</h3>
+<p class="process-card-body">
+            Одна команда разворачивает ваш пайплайн в 200+ глобальных PoP. Запросы
+            автоматически маршрутизируются к ближайшему доступному эндпоинту модели.
           </p>
-        </div>
-        <div class="process-arrow">→</div>
-        <div class="process-card" style="background:rgba(212,255,71,.04)">
-          <div class="process-card-num">05</div>
-          <div class="process-icon">
-            <svg width="48" height="48" viewBox="0 0 48 48">
-              <circle class="pi-circle" cx="24" cy="24" r="20"></circle>
-              <path class="pi-arc" stroke="var(--acid)" d="M24,4 A20,20 0 1,1 24,44 A20,20 0 1,1 24,4"></path>
-            </svg>
-          </div>
-          <p class="process-card-step">Step five</p>
-          <h3 class="process-card-title">Observe everything</h3>
-          <p class="process-card-body">
-            Live dashboards show token spend, latency percentiles, and error
-            rates. Anomaly alerts fire before users notice anything is wrong.
+</div>
+<div class="process-arrow">→</div>
+<div class="process-card" style="background:rgba(212,255,71,.04)">
+<div class="process-card-num">05</div>
+<div class="process-icon">
+<svg height="48" viewbox="0 0 48 48" width="48">
+<circle class="pi-circle" cx="24" cy="24" r="20"></circle>
+<path class="pi-arc" d="M24,4 A20,20 0 1,1 24,44 A20,20 0 1,1 24,4" stroke="var(--acid)"></path>
+</svg>
+</div>
+<p class="process-card-step">Шаг пятый</p>
+<h3 class="process-card-title">Наблюдайте за всем</h3>
+<p class="process-card-body">
+            Живые дашборды показывают расход токенов, перцентили задержек и уровень
+            ошибок. Алерты об аномалиях срабатывают раньше, чем пользователи что-то заметят.
           </p>
-        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── TESTIMONIALS — DUAL AUTO-SCROLL COLUMNS ── -->
+<section class="testimonials">
+<div class="testi-header">
+<div class="section-tag font-medium" style="display:inline-flex;margin-bottom:16px">
+        Что говорят команды
       </div>
-    </div>
-  </section>
-
-  <!-- ── TESTIMONIALS — DUAL AUTO-SCROLL COLUMNS ── -->
-  <section class="testimonials">
-    <div class="testi-header">
-      <div class="section-tag font-medium" style="display:inline-flex;margin-bottom:16px">
-        What teams say
-      </div>
-      <h2 class="testi-headline tracking-tight font-medium">
-        Loved by
-        <br>
-        <em class="font-normal">builders</em>
-      </h2>
-    </div>
-    <div class="testi-cols" style="mask-image: linear-gradient(180deg, transparent, black 35%, black 60%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, black 35%, black 60%, transparent);">
-      <div class="testi-col testi-col-a" id="colA">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Vektor cut our model integration work from weeks to hours. We now ship AI features in
-            a single sprint."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Alicia Torres" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Alicia Torres</p>
-              <p class="testi-role">VP Eng · Runway</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"The routing intelligence is genuinely magic. We stopped overpaying for GPT-4 on tasks
-            that Haiku handles just fine."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="James Osei" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">James Osei</p>
-              <p class="testi-role">Staff Eng · Linear</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Finally, an AI infra layer that doesn't make me feel like I'm gluing 12 things
-            together with duct tape."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Yuna Park" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Yuna Park</p>
-              <p class="testi-role">CTO · Bastion AI</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"The observability alone is worth the price. We caught a prompt regression before it
-            hit 1% of users."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Marcus Webb" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Marcus Webb</p>
-              <p class="testi-role">Lead Eng · Notion</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Vektor cut our model integration work from weeks to hours. We now ship AI features in
-            a single sprint."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Alicia Torres" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Alicia Torres</p>
-              <p class="testi-role">VP Eng · Runway</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"The routing intelligence is genuinely magic. We stopped overpaying for GPT-4 on tasks
-            that Haiku handles just fine."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="James Osei" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">James Osei</p>
-              <p class="testi-role">Staff Eng · Linear</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Finally, an AI infra layer that doesn't make me feel like I'm gluing 12 things
-            together with duct tape."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Yuna Park" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Yuna Park</p>
-              <p class="testi-role">CTO · Bastion AI</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"The observability alone is worth the price. We caught a prompt regression before it
-            hit 1% of users."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Marcus Webb" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Marcus Webb</p>
-              <p class="testi-role">Lead Eng · Notion</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="testi-col testi-col-b" id="colB">
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Switched from rolling our own router to Vektor in an afternoon. Best afternoon of my
-            engineering career."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Priya Mehta" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Priya Mehta</p>
-              <p class="testi-role">Founding Eng · Codeium</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Edge routing means our EU customers stopped complaining about latency. That's worth
-            more than the subscription."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Felix Braun" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Felix Braun</p>
-              <p class="testi-role">Principal Eng · Loom</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"We A/B test prompt variants across models using Vektor's traffic splitting. The ROI
-            visibility is incredible."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Sofia Andrade" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Sofia Andrade</p>
-              <p class="testi-role">AI Eng · Retool</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"The zero-config fallback routing has saved us three times during OpenAI outages.
-            Customers never noticed."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Chen Wei" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Chen Wei</p>
-              <p class="testi-role">Platform Eng · Supabase</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Switched from rolling our own router to Vektor in an afternoon. Best afternoon of my
-            engineering career."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Priya Mehta" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Priya Mehta</p>
-              <p class="testi-role">Founding Eng · Codeium</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"Edge routing means our EU customers stopped complaining about latency. That's worth
-            more than the subscription."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Felix Braun" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Felix Braun</p>
-              <p class="testi-role">Principal Eng · Loom</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"We A/B test prompt variants across models using Vektor's traffic splitting. The ROI
-            visibility is incredible."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Sofia Andrade" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Sofia Andrade</p>
-              <p class="testi-role">AI Eng · Retool</p>
-            </div>
-          </div>
-        </div>
-        <div class="testi-card">
-          <div class="testi-stars">★★★★★</div>
-          <p class="testi-quote">"The zero-config fallback routing has saved us three times during OpenAI outages.
-            Customers never noticed."</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" alt="Chen Wei" style="width:100%;height:100%;object-fit:cover;">
-            </div>
-            <div>
-              <p class="testi-name">Chen Wei</p>
-              <p class="testi-role">Platform Eng · Supabase</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── PRICING — INTERACTIVE CALCULATOR ── -->
-  <section class="pricing" id="pricing">
-    <div class="section-tag">Simple pricing</div>
-
-    <h2 class="pricing-headline">
-      Build your
-      <br>
-      <em>perfect</em>
-      plan
+<h2 class="testi-headline tracking-tight font-medium">
+        Нас любят
+        <br/>
+<em class="font-normal">создатели</em>
+</h2>
+</div>
+<div class="testi-cols" style="mask-image: linear-gradient(180deg, transparent, black 35%, black 60%, transparent); -webkit-mask-image: linear-gradient(180deg, transparent, black 35%, black 60%, transparent);">
+<div class="testi-col testi-col-a" id="colA">
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Vektor сократил нашу работу по интеграции моделей с недель до часов. Теперь мы выпускаем AI-функции за
+            один спринт."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Alicia Torres" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Alicia Torres</p>
+<p class="testi-role">VP Eng · Runway</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Интеллектуальная маршрутизация — это настоящая магия. Мы перестали переплачивать за GPT-4 на задачах,
+            с которыми отлично справляется Haiku."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="James Osei" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">James Osei</p>
+<p class="testi-role">Staff Eng · Linear</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Наконец-то AI-инфраслой, из-за которого я не чувствую, что склеиваю 12 вещей
+            изолентой."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Yuna Park" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Yuna Park</p>
+<p class="testi-role">CTO · Bastion AI</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Одна только наблюдаемость стоит своих денег. Мы поймали регрессию промпта до того, как она
+            коснулась 1% пользователей."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Marcus Webb" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Marcus Webb</p>
+<p class="testi-role">Lead Eng · Notion</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Vektor сократил нашу работу по интеграции моделей с недель до часов. Теперь мы выпускаем AI-функции за
+            один спринт."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Alicia Torres" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Alicia Torres</p>
+<p class="testi-role">VP Eng · Runway</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Интеллектуальная маршрутизация — это настоящая магия. Мы перестали переплачивать за GPT-4 на задачах,
+            с которыми отлично справляется Haiku."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="James Osei" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">James Osei</p>
+<p class="testi-role">Staff Eng · Linear</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Наконец-то AI-инфраслой, из-за которого я не чувствую, что склеиваю 12 вещей
+            изолентой."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Yuna Park" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Yuna Park</p>
+<p class="testi-role">CTO · Bastion AI</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Одна только наблюдаемость стоит своих денег. Мы поймали регрессию промпта до того, как она
+            коснулась 1% пользователей."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Marcus Webb" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Marcus Webb</p>
+<p class="testi-role">Lead Eng · Notion</p>
+</div>
+</div>
+</div>
+</div>
+<div class="testi-col testi-col-b" id="colB">
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Перешли с самописного роутера на Vektor за один вечер. Лучший вечер в моей
+            инженерной карьере."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Priya Mehta" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Priya Mehta</p>
+<p class="testi-role">Founding Eng · Codeium</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Edge-маршрутизация означает, что наши европейские клиенты перестали жаловаться на задержки. Это стоит
+            больше, чем подписка."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Felix Braun" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Felix Braun</p>
+<p class="testi-role">Principal Eng · Loom</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Мы A/B-тестируем варианты промптов на разных моделях через разделение трафика Vektor. Видимость ROI
+            невероятная."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Sofia Andrade" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Sofia Andrade</p>
+<p class="testi-role">AI Eng · Retool</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Резервная маршрутизация без настройки трижды спасала нас во время сбоев OpenAI.
+            Клиенты ничего не заметили."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Chen Wei" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Chen Wei</p>
+<p class="testi-role">Platform Eng · Supabase</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Перешли с самописного роутера на Vektor за один вечер. Лучший вечер в моей
+            инженерной карьере."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Priya Mehta" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Priya Mehta</p>
+<p class="testi-role">Founding Eng · Codeium</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Edge-маршрутизация означает, что наши европейские клиенты перестали жаловаться на задержки. Это стоит
+            больше, чем подписка."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Felix Braun" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Felix Braun</p>
+<p class="testi-role">Principal Eng · Loom</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Мы A/B-тестируем варианты промптов на разных моделях через разделение трафика Vektor. Видимость ROI
+            невероятная."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Sofia Andrade" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Sofia Andrade</p>
+<p class="testi-role">AI Eng · Retool</p>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars">★★★★★</div>
+<p class="testi-quote">"Резервная маршрутизация без настройки трижды спасала нас во время сбоев OpenAI.
+            Клиенты ничего не заметили."</p>
+<div class="testi-author">
+<div class="testi-avatar" style="padding:0; overflow:hidden; border:none;"><img alt="Chen Wei" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" style="width:100%;height:100%;object-fit:cover;"/>
+</div>
+<div>
+<p class="testi-name">Chen Wei</p>
+<p class="testi-role">Platform Eng · Supabase</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── PRICING — INTERACTIVE CALCULATOR ── -->
+<section class="pricing" id="pricing">
+<div class="section-tag">Простые цены</div>
+<h2 class="pricing-headline">
+      Соберите свой
+      <br/>
+<em>идеальный</em>
+      план
     </h2>
-
-    <p class="pricing-sub">
-      Slide to estimate your usage. We pick the right tier. No surprises.
+<p class="pricing-sub">
+      Двигайте ползунок, чтобы оценить использование. Мы подберём нужный тариф. Никаких сюрпризов.
     </p>
-
-    <div class="pricing-toggle" id="pricingToggle">
-      Monthly
+<div class="pricing-toggle" id="pricingToggle">
+      Ежемесячно
       <div class="toggle-track" id="toggleTrack">
-        <div class="toggle-thumb"></div>
-      </div>
-      Annual
-      <span class="toggle-save">Save 20%</span>
-    </div>
-
-    <div class="pricing-layout" id="pricingLayout">
-      <canvas id="priceCanvas" width="354" height="963"></canvas>
-
-      <div class="price-cards-wrap">
-        <div class="price-cards-area" id="priceCardsArea" style="cursor: grab;">
-          <div class="price-cards-track">
-
-            <div class="price-card-v" id="row-starter" data-plan="starter">
-              <div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
-              <span class="pcv-badge">Recommended</span>
-              <p class="pcv-tier">Starter</p>
-              <div class="pcv-amt">
-                <span class="pcv-dollar">$</span>
-                <span id="p-starter">0</span>
-              </div>
-              <p class="pcv-period">free forever</p>
-              <div class="pcv-divider"></div>
-              <div class="pcv-features">
-                <div class="prf"><span class="prf-dot"></span>1M tokens / month</div>
-                <div class="prf"><span class="prf-dot"></span>3 model providers</div>
-                <div class="prf"><span class="prf-dot"></span>Community support</div>
-                <div class="prf prf-muted"><span class="prf-dot"></span>Edge deployment</div>
-              </div>
-              <a href="#" class="pcv-btn">Get started</a>
-            </div>
-
-            <div class="price-card-v active" id="row-pro" data-plan="pro">
-              <div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
-              <span class="pcv-badge">Recommended</span>
-              <p class="pcv-tier">Pro</p>
-              <div class="pcv-amt">
-                <span class="pcv-dollar">$</span>
-                <span id="p-pro" class="">49</span>
-              </div>
-              <p class="pcv-period" id="period-pro">per seat / mo</p>
-              <div class="pcv-divider"></div>
-              <div class="pcv-features">
-                <div class="prf"><span class="prf-dot"></span>50M tokens / month</div>
-                <div class="prf"><span class="prf-dot"></span>All model providers</div>
-                <div class="prf"><span class="prf-dot"></span>Priority support</div>
-                <div class="prf"><span class="prf-dot"></span>Edge deployment</div>
-              </div>
-              <a href="#" class="pcv-btn">Start trial</a>
-            </div>
-
-            <div class="price-card-v" id="row-team" data-plan="team">
-              <div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
-              <span class="pcv-badge">Recommended</span>
-              <p class="pcv-tier">Team</p>
-              <div class="pcv-amt">
-                <span class="pcv-dollar">$</span>
-                <span id="p-team">199</span>
-              </div>
-              <p class="pcv-period" id="period-team">up to 10 seats / mo</p>
-              <div class="pcv-divider"></div>
-              <div class="pcv-features">
-                <div class="prf"><span class="prf-dot"></span>200M tokens / month</div>
-                <div class="prf"><span class="prf-dot"></span>Shared workspace</div>
-                <div class="prf"><span class="prf-dot"></span>SSO + audit logs</div>
-                <div class="prf"><span class="prf-dot"></span>99.95% SLA</div>
-              </div>
-              <a href="#" class="pcv-btn">Start trial</a>
-            </div>
-
-            <div class="price-card-v enterprise" id="row-enterprise" data-plan="enterprise">
-              <div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
-              <span class="pcv-badge">Recommended</span>
-              <p class="pcv-tier">Enterprise</p>
-              <div class="pcv-amt">
-                <span id="p-enterprise">Custom</span>
-              </div>
-              <p class="pcv-period">volume pricing</p>
-              <div class="pcv-divider"></div>
-              <div class="pcv-features">
-                <div class="prf"><span class="prf-dot"></span>Unlimited tokens</div>
-                <div class="prf"><span class="prf-dot"></span>Dedicated infra + on-prem</div>
-                <div class="prf"><span class="prf-dot"></span>24/7 support + SLA</div>
-                <div class="prf"><span class="prf-dot"></span>Custom contracts</div>
-              </div>
-              <a href="#" class="pcv-btn">Talk to sales</a>
-            </div>
-
-          </div>
-        </div>
-
-        <div class="price-scroll-hint">
-          Drag or scroll
-          <svg width="14" height="10" viewBox="0 0 14 10" fill="none">
-            <path d="M1 5h11M9 1.5L12.5 5 9 8.5" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
-          </svg>
-        </div>
-      </div>
-
-      <div class="price-calc">
-        <p class="calc-title">Usage estimator</p>
-
-        <div>
-          <div class="calc-label">
-            Monthly tokens
+<div class="toggle-thumb"></div>
+</div>
+      Ежегодно
+      <span class="toggle-save">Экономия 20%</span>
+</div>
+<div class="pricing-layout" id="pricingLayout">
+<canvas height="963" id="priceCanvas" width="354"></canvas>
+<div class="price-cards-wrap">
+<div class="price-cards-area" id="priceCardsArea" style="cursor: grab;">
+<div class="price-cards-track">
+<div class="price-card-v" data-plan="starter" id="row-starter">
+<div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
+<span class="pcv-badge">Рекомендуем</span>
+<p class="pcv-tier">Starter</p>
+<div class="pcv-amt">
+<span class="pcv-dollar">$</span>
+<span id="p-starter">0</span>
+</div>
+<p class="pcv-period">бесплатно навсегда</p>
+<div class="pcv-divider"></div>
+<div class="pcv-features">
+<div class="prf"><span class="prf-dot"></span>1 млн токенов / месяц</div>
+<div class="prf"><span class="prf-dot"></span>3 провайдера моделей</div>
+<div class="prf"><span class="prf-dot"></span>Поддержка сообщества</div>
+<div class="prf prf-muted"><span class="prf-dot"></span>Edge-развёртывание</div>
+</div>
+<a class="pcv-btn" href="#">Начать</a>
+</div>
+<div class="price-card-v active" data-plan="pro" id="row-pro">
+<div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
+<span class="pcv-badge">Рекомендуем</span>
+<p class="pcv-tier">Pro</p>
+<div class="pcv-amt">
+<span class="pcv-dollar">$</span>
+<span class="" id="p-pro">49</span>
+</div>
+<p class="pcv-period" id="period-pro">за место / мес</p>
+<div class="pcv-divider"></div>
+<div class="pcv-features">
+<div class="prf"><span class="prf-dot"></span>50 млн токенов / месяц</div>
+<div class="prf"><span class="prf-dot"></span>Все провайдеры моделей</div>
+<div class="prf"><span class="prf-dot"></span>Приоритетная поддержка</div>
+<div class="prf"><span class="prf-dot"></span>Edge-развёртывание</div>
+</div>
+<a class="pcv-btn" href="#">Начать пробный период</a>
+</div>
+<div class="price-card-v" data-plan="team" id="row-team">
+<div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
+<span class="pcv-badge">Рекомендуем</span>
+<p class="pcv-tier">Team</p>
+<div class="pcv-amt">
+<span class="pcv-dollar">$</span>
+<span id="p-team">199</span>
+</div>
+<p class="pcv-period" id="period-team">до 10 мест / мес</p>
+<div class="pcv-divider"></div>
+<div class="pcv-features">
+<div class="prf"><span class="prf-dot"></span>200 млн токенов / месяц</div>
+<div class="prf"><span class="prf-dot"></span>Общее рабочее пространство</div>
+<div class="prf"><span class="prf-dot"></span>SSO + журналы аудита</div>
+<div class="prf"><span class="prf-dot"></span>SLA 99.95%</div>
+</div>
+<a class="pcv-btn" href="#">Начать пробный период</a>
+</div>
+<div class="price-card-v enterprise" data-plan="enterprise" id="row-enterprise">
+<div class="beam" style="animation: auto ease 0s 1 normal none running none;"></div>
+<span class="pcv-badge">Рекомендуем</span>
+<p class="pcv-tier">Enterprise</p>
+<div class="pcv-amt">
+<span id="p-enterprise">Индивидуально</span>
+</div>
+<p class="pcv-period">объёмные цены</p>
+<div class="pcv-divider"></div>
+<div class="pcv-features">
+<div class="prf"><span class="prf-dot"></span>Безлимитные токены</div>
+<div class="prf"><span class="prf-dot"></span>Выделенная инфраструктура + on-prem</div>
+<div class="prf"><span class="prf-dot"></span>Поддержка 24/7 + SLA</div>
+<div class="prf"><span class="prf-dot"></span>Индивидуальные контракты</div>
+</div>
+<a class="pcv-btn" href="#">Связаться с отделом продаж</a>
+</div>
+</div>
+</div>
+<div class="price-scroll-hint">
+          Тяните или листайте
+          <svg fill="none" height="10" viewbox="0 0 14 10" width="14">
+<path d="M1 5h11M9 1.5L12.5 5 9 8.5" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1"></path>
+</svg>
+</div>
+</div>
+<div class="price-calc">
+<p class="calc-title">Калькулятор использования</p>
+<div>
+<div class="calc-label">
+            Токенов в месяц
             <span class="calc-val" id="tokenVal">10M</span>
-          </div>
-          <input type="range" class="calc-range" id="tokenSlider" min="0" max="100" value="20">
-          <div class="calc-ticks">
-            <span class="calc-tick">1M</span>
-            <span class="calc-tick">50M</span>
-            <span class="calc-tick">500M</span>
-            <span class="calc-tick">∞</span>
-          </div>
-        </div>
-
-        <div>
-          <div class="calc-label">
-            Team seats
+</div>
+<input class="calc-range" id="tokenSlider" max="100" min="0" type="range" value="20"/>
+<div class="calc-ticks">
+<span class="calc-tick">1M</span>
+<span class="calc-tick">50M</span>
+<span class="calc-tick">500M</span>
+<span class="calc-tick">∞</span>
+</div>
+</div>
+<div>
+<div class="calc-label">
+            Мест в команде
             <span class="calc-val" id="seatVal">3</span>
-          </div>
-          <input type="range" class="calc-range" id="seatSlider" min="1" max="50" value="3">
-          <div class="calc-ticks">
-            <span class="calc-tick">1</span>
-            <span class="calc-tick">10</span>
-            <span class="calc-tick">25</span>
-            <span class="calc-tick">50+</span>
-          </div>
-        </div>
-
-        <div class="calc-result" id="calcResult">
-          <p class="calc-result-label">Estimated monthly</p>
-          <div class="calc-result-amt">
-            <span class="calc-result-currency">$</span>
-            <span id="calcPrice" class="rolling">147</span>
-          </div>
-          <p class="calc-result-per" id="calcPer">per month</p>
-          <div class="calc-plan-badge" id="calcBadge">Pro plan</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── CTA — CINEMATIC ── -->
-  <section class="cta-section">
-    <div class="cta-bg">
-      <div class="cta-orb"></div>
-      <div class="cta-orb"></div>
-      <div class="cta-orb"></div>
-    </div>
-    <div class="cta-scan"></div>
-    <div class="cta-ghost">SHIP</div>
-    <div class="cta-inner">
-      <div class="cta-tag">Now in public beta</div>
-      <h2 class="cta-big">
-        The last
-        <br>
-          AI infra
-        <br>
-          you'll
-        <em class="">ever</em>
-        need
+</div>
+<input class="calc-range" id="seatSlider" max="50" min="1" type="range" value="3"/>
+<div class="calc-ticks">
+<span class="calc-tick">1</span>
+<span class="calc-tick">10</span>
+<span class="calc-tick">25</span>
+<span class="calc-tick">50+</span>
+</div>
+</div>
+<div class="calc-result" id="calcResult">
+<p class="calc-result-label">Оценка за месяц</p>
+<div class="calc-result-amt">
+<span class="calc-result-currency">$</span>
+<span class="rolling" id="calcPrice">147</span>
+</div>
+<p class="calc-result-per" id="calcPer">в месяц</p>
+<div class="calc-plan-badge" id="calcBadge">Тариф Pro</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── CTA — CINEMATIC ── -->
+<section class="cta-section">
+<div class="cta-bg">
+<div class="cta-orb"></div>
+<div class="cta-orb"></div>
+<div class="cta-orb"></div>
+</div>
+<div class="cta-scan"></div>
+<div class="cta-ghost">ВЫПУСКАЙТЕ</div>
+<div class="cta-inner">
+<div class="cta-tag">Теперь в открытой бете</div>
+<h2 class="cta-big">
+        Последняя
+        <br/>
+          AI-инфра,
+        <br/>
+          которая
+        <em class="">вообще</em>
+        вам понадобится
       </h2>
-      <p class="cta-sub">
-        Join 380+ engineering teams who've standardized on Vektor. Start free,
-        scale without limits.
+<p class="cta-sub">
+        Присоединяйтесь к 380+ инженерным командам, которые выбрали Vektor стандартом. Начните бесплатно,
+        масштабируйтесь без ограничений.
       </p>
-      <div class="cta-actions">
-        <a href="#" class="btn-primary">Start for free — no credit card</a>
-        <a href="#" class="btn-draw">
-          <span class="edge-t"></span>
-          <span class="edge-b"></span>
-          Schedule a demo
+<div class="cta-actions">
+<a class="btn-primary" href="#">Начните бесплатно — без банковской карты</a>
+<a class="btn-draw" href="#">
+<span class="edge-t"></span>
+<span class="edge-b"></span>
+          Запланировать демо
         </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="">
-    <div class="foot-logo cursor-pointer" onclick="window.location.href='/home'" role="button">
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="">
+<div class="foot-logo cursor-pointer" onclick="window.location.href='/home'" role="button">
       VEKT
       <span class="">◉</span>
       R
     </div>
-    <p class="foot-copy">© 2025 Vektor Inc. All rights reserved.</p>
-    <ul class="foot-links">
-      <li class=""><a href="/privacy" class="">Privacy</a></li>
-      <li class=""><a href="/terms" class="">Terms</a></li>
-      <li class=""><a href="/status" class="">Status</a></li>
-      <li class="">
-        <a href="https://github.com" target="_blank" rel="noopener" class="">
+<p class="foot-copy">© 2025 Vektor Inc. Все права защищены.</p>
+<ul class="foot-links">
+<li class=""><a class="" href="/privacy">Конфиденциальность</a></li>
+<li class=""><a class="" href="/terms">Условия</a></li>
+<li class=""><a class="" href="/status">Статус</a></li>
+<li class="">
+<a class="" href="https://github.com" rel="noopener" target="_blank">
           GitHub
         </a>
-      </li>
-    </ul>
-  </footer>
-
-  <script>
+</li>
+</ul>
+</footer>
+<script>
     /* ── CURSOR ── */
       const cur=document.getElementById('cursor'),ring=document.getElementById('cursor-ring');
       let mx=0,my=0,rx=0,ry=0;
@@ -5868,8 +5867,7 @@ gtag('config', 'G-2M6V79H761');
         update();
       })();
   </script>
-
-  <script>
+<script>
     {
         const tList = [
           {q:"Vektor cut our model integration work from weeks to hours. We now ship AI features in a single sprint.",name:"Alicia Torres",role:"VP Eng · Runway",img:"https://randomuser.me/api/portraits/women/44.jpg",stars:5},
@@ -5893,8 +5891,7 @@ gtag('config', 'G-2M6V79H761');
         }
       }
   </script>
-
-  <script>
+<script>
     (function(){
         const btn = document.getElementById('burgerBtn');
         const menu = document.getElementById('mobileMenu');
@@ -5929,11 +5926,7 @@ gtag('config', 'G-2M6V79H761');
         }
       })();
   </script>
-
-
-
-
-  <script>
+<script>
     /* === HOME HEADER RESPONSIVE FIX: open/close mobile menu === */
 (function(){
   const burger = document.getElementById('burgerBtn');
@@ -5979,9 +5972,7 @@ gtag('config', 'G-2M6V79H761');
   });
 })();
   </script>
-
-
-  <script id="final-mobile-menu-js">
+<script id="final-mobile-menu-js">
     (function(){
   function getEls(){
     return {
@@ -6068,7 +6059,4 @@ gtag('config', 'G-2M6V79H761');
   }
 })();
   </script>
-
-
-
 </body></html>

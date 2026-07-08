@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html class="scroll-smooth" lang="ru">
 <head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Danlpet | Digital Agency</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Danlpet | Диджитал-агентство</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Custom Font Assignments */
 body { font-family: 'Plus Jakarta Sans', sans-serif; }
@@ -39,359 +39,372 @@ display: none;
 -ms-overflow-style: none;
 scrollbar-width: none;
 }
+</style><style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
 </style></head>
 <body class="bg-white text-slate-900 antialiased selection:bg-fuchsia-300 selection:text-fuchsia-900">
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 transition-all duration-300">
-        <div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-slate-100 rounded-full px-6 py-4 flex justify-between items-center shadow-sm">
-            <a href="#" class="text-2xl font-semibold tracking-tighter flex items-center gap-2 display-font">
-                <div class="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">D</div>
+ Навигация 
+<nav class="fixed top-0 left-0 w-full z-50 px-6 py-6 transition-all duration-300">
+<div class="max-w-7xl mx-auto bg-white/80 backdrop-blur-md border border-slate-100 rounded-full px-6 py-4 flex justify-between items-center shadow-sm">
+<a class="text-2xl font-semibold tracking-tighter flex items-center gap-2 display-font" href="#">
+<div class="w-8 h-8 bg-black rounded-full flex items-center justify-center text-white text-sm font-bold">D</div>
                 Danlpet
             </a>
-            
-            <div class="hidden md:flex gap-8 items-center">
-                <a href="#work" class="text-sm font-medium hover:text-fuchsia-600 transition-colors">Work</a>
-                <a href="#services" class="text-sm font-medium hover:text-fuchsia-600 transition-colors">Services</a>
-                <a href="#culture" class="text-sm font-medium hover:text-fuchsia-600 transition-colors">Culture</a>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-sm font-medium hover:text-fuchsia-600 transition-colors" href="#work">Работы</a>
+<a class="text-sm font-medium hover:text-fuchsia-600 transition-colors" href="#services">Услуги</a>
+<a class="text-sm font-medium hover:text-fuchsia-600 transition-colors" href="#culture">Культура</a>
+</div>
+<a class="hidden md:flex group relative px-6 py-2.5 bg-black text-white rounded-full text-sm font-medium overflow-hidden hover:scale-105 transition-transform" href="#contact">
+<span class="relative z-10">Давайте обсудим</span>
+<div class="absolute inset-0 bg-fuchsia-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
+</a>
+<!-- Mobile Menu Button -->
+<button class="md:hidden p-2">
+<i class="w-6 h-6" data-lucide="menu"></i>
+</button>
+</div>
+</nav>
+ Hero-секция 
+<header class="relative pt-40 pb-20 px-6 overflow-hidden">
+<!-- Background Blobs -->
+<div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[50vw] h-[50vw] bg-purple-200 rounded-full blur-3xl opacity-40 animate-pulse"></div>
+<div class="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[40vw] h-[40vw] bg-lime-200 rounded-full blur-3xl opacity-40"></div>
+<div class="max-w-7xl mx-auto relative z-10 text-center">
+<div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-xs font-semibold uppercase tracking-wide mb-8 hover:bg-orange-200 transition-colors cursor-default">
+<span class="w-2 h-2 rounded-full bg-orange-500 animate-bounce"></span>
+                Свежеиспечённый код
             </div>
-
-            <a href="#contact" class="hidden md:flex group relative px-6 py-2.5 bg-black text-white rounded-full text-sm font-medium overflow-hidden hover:scale-105 transition-transform">
-                <span class="relative z-10">Let's Talk</span>
-                <div class="absolute inset-0 bg-fuchsia-500 transform scale-x-0 origin-left group-hover:scale-x-100 transition-transform duration-300 ease-out"></div>
-            </a>
-
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden p-2">
-                <i data-lucide="menu" class="w-6 h-6"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="relative pt-40 pb-20 px-6 overflow-hidden">
-        <!-- Background Blobs -->
-        <div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[50vw] h-[50vw] bg-purple-200 rounded-full blur-3xl opacity-40 animate-pulse"></div>
-        <div class="absolute bottom-0 left-0 translate-y-1/4 -translate-x-1/4 w-[40vw] h-[40vw] bg-lime-200 rounded-full blur-3xl opacity-40"></div>
-
-        <div class="max-w-7xl mx-auto relative z-10 text-center">
-            <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-orange-100 text-orange-700 text-xs font-semibold uppercase tracking-wide mb-8 hover:bg-orange-200 transition-colors cursor-default">
-                <span class="w-2 h-2 rounded-full bg-orange-500 animate-bounce"></span>
-                Freshly Baked Code
-            </div>
-            
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tight leading-[0.9] mb-8 text-slate-900">
-                We craft <br>
-                <span class="bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text italic pr-4">digital joy.</span>
-            </h1>
-            
-            <p class="text-lg md:text-2xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12">
-                Danlpet is the creative agency for brands that refuse to be boring. We mix strategy with sparkles to build websites that pop.
+<h1 class="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tight leading-[0.9] mb-8 text-slate-900">
+                Мы создаём <br/>
+<span class="bg-gradient-to-r from-fuchsia-500 via-purple-500 to-indigo-500 text-transparent bg-clip-text italic pr-4">цифровую радость.</span>
+</h1>
+<p class="text-lg md:text-2xl text-slate-500 max-w-2xl mx-auto leading-relaxed mb-12">
+                Danlpet — креативное агентство для брендов, которые отказываются быть скучными. Мы смешиваем стратегию с блёстками и делаем сайты, которые цепляют.
             </p>
-
-            <div class="flex flex-col md:flex-row gap-4 justify-center items-center">
-                <button class="px-8 py-4 bg-slate-900 text-white rounded-full text-lg font-medium hover:bg-fuchsia-500 hover:scale-105 transition-all duration-300 shadow-xl shadow-fuchsia-500/20 flex items-center gap-2">
-                    Start a Project
-                    <i data-lucide="arrow-right" class="w-5 h-5"></i>
+<div class="flex flex-col md:flex-row gap-4 justify-center items-center">
+<button class="px-8 py-4 bg-slate-900 text-white rounded-full text-lg font-medium hover:bg-fuchsia-500 hover:scale-105 transition-all duration-300 shadow-xl shadow-fuchsia-500/20 flex items-center gap-2">
+                    Начать проект
+                    <i class="w-5 h-5" data-lucide="arrow-right"></i>
+</button>
+<button class="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-full text-lg font-medium hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center gap-2">
+<i class="w-5 h-5 text-slate-400" data-lucide="play-circle"></i>
+                    Шоурил
                 </button>
-                <button class="px-8 py-4 bg-white border border-slate-200 text-slate-900 rounded-full text-lg font-medium hover:bg-slate-50 hover:border-slate-300 transition-all flex items-center gap-2">
-                    <i data-lucide="play-circle" class="w-5 h-5 text-slate-400"></i>
-                    Showreel
-                </button>
-            </div>
-        </div>
-    </header>
-
-    <!-- Marquee -->
-    <div class="py-12 bg-lime-300 -rotate-1 overflow-hidden border-y-2 border-black">
-        <div class="whitespace-nowrap flex gap-8 animate-marquee">
-            <span class="text-4xl font-bold uppercase tracking-tight text-black flex items-center gap-8">
-                Strategy <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Branding <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Web Design <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Development <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Motion <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Strategy <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Branding <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Web Design <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Development <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-                Motion <i data-lucide="star" class="w-8 h-8 fill-black"></i>
-            </span>
-        </div>
-    </div>
-
-    <!-- Featured Work -->
-    <section id="work" class="py-24 px-6 bg-white">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex justify-between items-end mb-16">
-                <div>
-                    <h2 class="text-4xl md:text-6xl font-semibold tracking-tight mb-4">Selected Work</h2>
-                    <p class="text-slate-500 text-lg">Pixels with personality.</p>
-                </div>
-                <a href="#" class="hidden md:flex items-center gap-2 text-sm font-semibold uppercase tracking-wide border-b border-black pb-1 hover:text-fuchsia-600 hover:border-fuchsia-600 transition-colors">
-                    View All Projects
-                    <i data-lucide="arrow-up-right" class="w-4 h-4"></i>
-                </a>
-            </div>
-
-            <!-- Bento Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
-                <!-- Item 1 -->
-                <div class="lg:col-span-8 group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-[4/3] mb-6 hover-pop">
-                        <!-- Placeholder Art -->
-                        <div class="absolute inset-0 bg-[#E9E4DE] flex items-center justify-center p-12">
-                            <div class="w-full h-full bg-cover bg-center rounded-2xl shadow-lg border border-slate-200/50" style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&fit=crop&q=80&w=2000');"></div>
-                        </div>
-                        <div class="absolute top-8 left-8 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-semibold">Fintech</div>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-1">Nova Wallet</h3>
-                            <p class="text-slate-500">App Design & Branding</p>
-                        </div>
-                        <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                <div class="lg:col-span-4 group cursor-pointer mt-12 md:mt-0">
-                    <div class="relative overflow-hidden rounded-[2.5rem] bg-indigo-100 aspect-[3/4] mb-6 hover-pop">
-                         <div class="absolute inset-0 bg-indigo-500 flex items-center justify-center text-white">
-                            <i data-lucide="music" class="w-32 h-32 opacity-20 animate-pulse"></i>
-                            <span class="absolute text-8xl font-bold tracking-tighter opacity-10 rotate-90 top-10 -right-10">VIBE</span>
-                         </div>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-1">Soundbox</h3>
-                            <p class="text-slate-500">Web Experience</p>
-                        </div>
-                         <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 3 -->
-                <div class="lg:col-span-5 group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-[2.5rem] bg-rose-100 aspect-[1/1] mb-6 hover-pop">
-                        <div class="absolute inset-0 bg-[#FF6B6B] flex flex-col items-center justify-center p-8 text-white">
-                            <h4 class="text-5xl font-bold tracking-tighter text-center leading-none">YUMMY<br>GUMMY</h4>
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-1">Sweet Tooth</h3>
-                            <p class="text-slate-500">Packaging & 3D</p>
-                        </div>
-                         <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Item 4 -->
-                <div class="lg:col-span-7 group cursor-pointer">
-                    <div class="relative overflow-hidden rounded-[2.5rem] bg-teal-50 aspect-[16/10] mb-6 hover-pop">
-                         <div class="absolute inset-0 bg-slate-900 flex items-center justify-center">
-                             <div class="text-center">
-                                <div class="text-6xl mb-2">⚡️</div>
-                                <div class="text-white text-3xl font-semibold tracking-tight">Energy Reborn</div>
-                             </div>
-                         </div>
-                    </div>
-                    <div class="flex justify-between items-start">
-                        <div>
-                            <h3 class="text-2xl font-semibold mb-1">Bolt Energy</h3>
-                            <p class="text-slate-500">Corporate Identity</p>
-                        </div>
-                         <div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
-                            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services / Culture -->
-    <section id="services" class="py-24 px-6 bg-slate-50 rounded-[3rem] mx-4 mb-4">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center max-w-3xl mx-auto mb-20">
-                <span class="text-fuchsia-600 font-semibold tracking-widest uppercase text-xs mb-4 block">Our Expertise</span>
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">We don't just make it look good. We make it work.</h2>
-                <p class="text-slate-600 text-lg md:text-xl">Combining data-driven strategy with "whoa, that's cool" design.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <!-- Card 1 -->
-                <div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-shadow duration-300 group">
-                    <div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-blue-600 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="layers" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Product Design</h3>
-                    <p class="text-slate-500 leading-relaxed mb-8">
-                        UI/UX that feels intuitive. We design systems that scale and interfaces that delight users on every click.
+</div>
+</div>
+</header>
+<!-- Marquee -->
+<div class="py-12 bg-lime-300 -rotate-1 overflow-hidden border-y-2 border-black">
+<div class="whitespace-nowrap flex gap-8 animate-marquee">
+<span class="text-4xl font-bold uppercase tracking-tight text-black flex items-center gap-8">
+                Стратегия <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Брендинг <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Веб-дизайн <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Разработка <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Моушн <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Стратегия <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Брендинг <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Веб-дизайн <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Разработка <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+                Моушн <i class="w-8 h-8 fill-black" data-lucide="star"></i>
+</span>
+</div>
+</div>
+<!-- Featured Work -->
+<section class="py-24 px-6 bg-white" id="work">
+<div class="max-w-7xl mx-auto">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl md:text-6xl font-semibold tracking-tight mb-4">Избранные работы</h2>
+<p class="text-slate-500 text-lg">Пиксели с характером.</p>
+</div>
+<a class="hidden md:flex items-center gap-2 text-sm font-semibold uppercase tracking-wide border-b border-black pb-1 hover:text-fuchsia-600 hover:border-fuchsia-600 transition-colors" href="#">
+                    Все проекты
+                    <i class="w-4 h-4" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8">
+<!-- Item 1 -->
+<div class="lg:col-span-8 group cursor-pointer">
+<div class="relative overflow-hidden rounded-[2.5rem] bg-slate-100 aspect-[4/3] mb-6 hover-pop">
+<!-- Placeholder Art -->
+<div class="absolute inset-0 bg-[#E9E4DE] flex items-center justify-center p-12">
+<div class="w-full h-full bg-cover bg-center rounded-2xl shadow-lg border border-slate-200/50" style="background-image: url('https://images.unsplash.com/photo-1600607686527-6fb886090705?auto=format&amp;fit=crop&amp;q=80&amp;w=2000');"></div>
+</div>
+<div class="absolute top-8 left-8 bg-white/90 backdrop-blur px-4 py-2 rounded-full text-xs font-semibold">Финтех</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-semibold mb-1">Nova Wallet</h3>
+<p class="text-slate-500">Дизайн приложения и брендинг</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+<i class="w-5 h-5" data-lucide="arrow-right"></i>
+</div>
+</div>
+</div>
+<!-- Item 2 -->
+<div class="lg:col-span-4 group cursor-pointer mt-12 md:mt-0">
+<div class="relative overflow-hidden rounded-[2.5rem] bg-indigo-100 aspect-[3/4] mb-6 hover-pop">
+<div class="absolute inset-0 bg-indigo-500 flex items-center justify-center text-white">
+<i class="w-32 h-32 opacity-20 animate-pulse" data-lucide="music"></i>
+<span class="absolute text-8xl font-bold tracking-tighter opacity-10 rotate-90 top-10 -right-10">VIBE</span>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-semibold mb-1">Soundbox</h3>
+<p class="text-slate-500">Веб-опыт</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+<i class="w-5 h-5" data-lucide="arrow-right"></i>
+</div>
+</div>
+</div>
+<!-- Item 3 -->
+<div class="lg:col-span-5 group cursor-pointer">
+<div class="relative overflow-hidden rounded-[2.5rem] bg-rose-100 aspect-[1/1] mb-6 hover-pop">
+<div class="absolute inset-0 bg-[#FF6B6B] flex flex-col items-center justify-center p-8 text-white">
+<h4 class="text-5xl font-bold tracking-tighter text-center leading-none">YUMMY<br/>GUMMY</h4>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-semibold mb-1">Sweet Tooth</h3>
+<p class="text-slate-500">Упаковка и 3D</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+<i class="w-5 h-5" data-lucide="arrow-right"></i>
+</div>
+</div>
+</div>
+<!-- Item 4 -->
+<div class="lg:col-span-7 group cursor-pointer">
+<div class="relative overflow-hidden rounded-[2.5rem] bg-teal-50 aspect-[16/10] mb-6 hover-pop">
+<div class="absolute inset-0 bg-slate-900 flex items-center justify-center">
+<div class="text-center">
+<div class="text-6xl mb-2">⚡️</div>
+<div class="text-white text-3xl font-semibold tracking-tight">Энергия, рождённая заново</div>
+</div>
+</div>
+</div>
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-2xl font-semibold mb-1">Bolt Energy</h3>
+<p class="text-slate-500">Корпоративная айдентика</p>
+</div>
+<div class="w-10 h-10 rounded-full border border-slate-200 flex items-center justify-center group-hover:bg-black group-hover:text-white transition-colors">
+<i class="w-5 h-5" data-lucide="arrow-right"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Services / Culture -->
+<section class="py-24 px-6 bg-slate-50 rounded-[3rem] mx-4 mb-4" id="services">
+<div class="max-w-7xl mx-auto">
+<div class="text-center max-w-3xl mx-auto mb-20">
+<span class="text-fuchsia-600 font-semibold tracking-widest uppercase text-xs mb-4 block">Наша экспертиза</span>
+<h2 class="text-4xl md:text-5xl lg:text-6xl font-semibold tracking-tight mb-6">Мы не просто делаем красиво. Мы делаем так, чтобы это работало.</h2>
+<p class="text-slate-600 text-lg md:text-xl">Сочетаем стратегию на данных с дизайном из разряда "ого, как круто".</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+<div class="w-14 h-14 bg-blue-100 rounded-2xl flex items-center justify-center mb-8 text-blue-600 group-hover:scale-110 transition-transform duration-300">
+<i class="w-7 h-7" data-lucide="layers"></i>
+</div>
+<h3 class="text-2xl font-semibold mb-4">Продуктовый дизайн</h3>
+<p class="text-slate-500 leading-relaxed mb-8">
+                        UI/UX, который ощущается интуитивным. Мы проектируем масштабируемые системы и интерфейсы, радующие пользователей при каждом клике.
                     </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-700">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> Design Systems
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-sm font-medium text-slate-700">
+<i class="w-4 h-4 text-blue-500" data-lucide="check-circle-2"></i> Дизайн-системы
                         </li>
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-700">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-blue-500"></i> Prototyping
+<li class="flex items-center gap-3 text-sm font-medium text-slate-700">
+<i class="w-4 h-4 text-blue-500" data-lucide="check-circle-2"></i> Прототипирование
                         </li>
-                    </ul>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="bg-slate-900 text-white p-10 rounded-[2rem] shadow-xl transform md:-translate-y-4">
-                    <div class="w-14 h-14 bg-fuchsia-500/20 rounded-2xl flex items-center justify-center mb-8 text-fuchsia-400">
-                        <i data-lucide="code-2" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Development</h3>
-                    <p class="text-slate-400 leading-relaxed mb-8">
-                        Clean code, fast load times, and buttery smooth animations. We build with the latest tech stack.
+</ul>
+</div>
+<!-- Card 2 -->
+<div class="bg-slate-900 text-white p-10 rounded-[2rem] shadow-xl transform md:-translate-y-4">
+<div class="w-14 h-14 bg-fuchsia-500/20 rounded-2xl flex items-center justify-center mb-8 text-fuchsia-400">
+<i class="w-7 h-7" data-lucide="code-2"></i>
+</div>
+<h3 class="text-2xl font-semibold mb-4">Разработка</h3>
+<p class="text-slate-400 leading-relaxed mb-8">
+                        Чистый код, быстрая загрузка и плавные, как масло, анимации. Мы строим на новейшем стеке технологий.
                     </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-300">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-fuchsia-500"></i> React & Next.js
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-sm font-medium text-slate-300">
+<i class="w-4 h-4 text-fuchsia-500" data-lucide="check-circle-2"></i> React &amp; Next.js
                         </li>
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-300">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-fuchsia-500"></i> Creative Coding
+<li class="flex items-center gap-3 text-sm font-medium text-slate-300">
+<i class="w-4 h-4 text-fuchsia-500" data-lucide="check-circle-2"></i> Креативный кодинг
                         </li>
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-300">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-fuchsia-500"></i> Headless CMS
+<li class="flex items-center gap-3 text-sm font-medium text-slate-300">
+<i class="w-4 h-4 text-fuchsia-500" data-lucide="check-circle-2"></i> Headless CMS
                         </li>
-                    </ul>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-shadow duration-300 group">
-                    <div class="w-14 h-14 bg-lime-100 rounded-2xl flex items-center justify-center mb-8 text-lime-600 group-hover:scale-110 transition-transform duration-300">
-                        <i data-lucide="megaphone" class="w-7 h-7"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-4">Brand Strategy</h3>
-                    <p class="text-slate-500 leading-relaxed mb-8">
-                        Finding your voice in a crowded room. We craft identities that people remember and relate to.
+</ul>
+</div>
+<!-- Card 3 -->
+<div class="bg-white p-10 rounded-[2rem] shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+<div class="w-14 h-14 bg-lime-100 rounded-2xl flex items-center justify-center mb-8 text-lime-600 group-hover:scale-110 transition-transform duration-300">
+<i class="w-7 h-7" data-lucide="megaphone"></i>
+</div>
+<h3 class="text-2xl font-semibold mb-4">Бренд-стратегия</h3>
+<p class="text-slate-500 leading-relaxed mb-8">
+                        Помогаем найти свой голос в шумной комнате. Мы создаём айдентику, которую люди запоминают и с которой резонируют.
                     </p>
-                    <ul class="space-y-3">
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-700">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-lime-500"></i> Visual Identity
+<ul class="space-y-3">
+<li class="flex items-center gap-3 text-sm font-medium text-slate-700">
+<i class="w-4 h-4 text-lime-500" data-lucide="check-circle-2"></i> Визуальная айдентика
                         </li>
-                        <li class="flex items-center gap-3 text-sm font-medium text-slate-700">
-                            <i data-lucide="check-circle-2" class="w-4 h-4 text-lime-500"></i> Tone of Voice
+<li class="flex items-center gap-3 text-sm font-medium text-slate-700">
+<i class="w-4 h-4 text-lime-500" data-lucide="check-circle-2"></i> Тон коммуникации
                         </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Fun Stats Section -->
-    <section class="py-20 px-6">
-        <div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <div class="p-6">
-                <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-teal-400 mb-2 font-display">50+</div>
-                <div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Happy Clients</div>
-            </div>
-            <div class="p-6">
-                <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 to-pink-400 mb-2 font-display">12</div>
-                <div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Awards Won</div>
-            </div>
-            <div class="p-6">
-                <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-orange-400 to-yellow-400 mb-2 font-display">∞</div>
-                <div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Coffees Drunk</div>
-            </div>
-            <div class="p-6">
-                <div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-lime-400 to-green-400 mb-2 font-display">100%</div>
-                <div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Good Vibes</div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact / Footer -->
-    <footer id="contact" class="bg-black text-white py-24 px-6 rounded-t-[3rem] mt-12 relative overflow-hidden">
-        <!-- Footer Blob -->
-        <div class="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-indigo-900/50 rounded-full blur-[100px] pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto relative z-10">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
-                <div>
-                    <h2 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-none mb-8">
-                        Ready to <br> <span class="text-fuchsia-400">make magic?</span>
-                    </h2>
-                    <p class="text-xl text-slate-400 max-w-md mb-10">
-                        Got a crazy idea? We love crazy. Drop us a line and let's build something extraordinary together.
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Fun Stats Section -->
+<section class="py-20 px-6">
+<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<div class="p-6">
+<div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-blue-400 to-teal-400 mb-2 font-display">50+</div>
+<div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Довольных клиентов</div>
+</div>
+<div class="p-6">
+<div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-purple-400 to-pink-400 mb-2 font-display">12</div>
+<div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Наград получено</div>
+</div>
+<div class="p-6">
+<div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-orange-400 to-yellow-400 mb-2 font-display">∞</div>
+<div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Кофе выпито</div>
+</div>
+<div class="p-6">
+<div class="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-br from-lime-400 to-green-400 mb-2 font-display">100%</div>
+<div class="text-sm font-medium text-slate-500 uppercase tracking-wide">Хорошего вайба</div>
+</div>
+</div>
+</section>
+<!-- Contact / Footer -->
+<footer class="bg-black text-white py-24 px-6 rounded-t-[3rem] mt-12 relative overflow-hidden" id="contact">
+<!-- Footer Blob -->
+<div class="absolute bottom-0 right-0 w-[40rem] h-[40rem] bg-indigo-900/50 rounded-full blur-[100px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+<div>
+<h2 class="text-5xl md:text-7xl lg:text-8xl font-semibold tracking-tight leading-none mb-8">
+                        Готовы <br/> <span class="text-fuchsia-400">творить магию?</span>
+</h2>
+<p class="text-xl text-slate-400 max-w-md mb-10">
+                        Есть безумная идея? Мы обожаем безумные. Напишите нам — и создадим вместе нечто выдающееся.
                     </p>
-                    
-                    <a href="mailto:hello@danlpet.agency" class="inline-flex items-center gap-4 text-3xl font-medium border-b-2 border-white/20 pb-2 hover:border-fuchsia-400 hover:text-fuchsia-400 transition-all">
+<a class="inline-flex items-center gap-4 text-3xl font-medium border-b-2 border-white/20 pb-2 hover:border-fuchsia-400 hover:text-fuchsia-400 transition-all" href="mailto:hello@danlpet.agency">
                         hello@danlpet.agency
-                        <i data-lucide="send" class="w-8 h-8"></i>
-                    </a>
-                </div>
-
-                <div class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10">
-                    <form class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium text-slate-300 ml-2">Name</label>
-                                <input type="text" placeholder="John Doe" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all">
-                            </div>
-                            <div class="space-y-2">
-                                <label class="text-sm font-medium text-slate-300 ml-2">Email</label>
-                                <input type="email" placeholder="john@company.com" class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all">
-                            </div>
-                        </div>
-                        
-                        <div class="space-y-4">
-                            <label class="text-sm font-medium text-slate-300 ml-2">I'm interested in...</label>
-                            <div class="flex flex-wrap gap-3">
-                                <label class="cursor-pointer">
-                                    <input type="checkbox" class="peer sr-only">
-                                    <span class="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-medium text-slate-300 peer-checked:bg-fuchsia-500 peer-checked:text-white peer-checked:border-fuchsia-500 transition-all hover:bg-white/20">Web Design</span>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="checkbox" class="peer sr-only">
-                                    <span class="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-medium text-slate-300 peer-checked:bg-fuchsia-500 peer-checked:text-white peer-checked:border-fuchsia-500 transition-all hover:bg-white/20">Branding</span>
-                                </label>
-                                <label class="cursor-pointer">
-                                    <input type="checkbox" class="peer sr-only">
-                                    <span class="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-medium text-slate-300 peer-checked:bg-fuchsia-500 peer-checked:text-white peer-checked:border-fuchsia-500 transition-all hover:bg-white/20">Development</span>
-                                </label>
-                            </div>
-                        </div>
-
-                        <div class="space-y-2">
-                            <label class="text-sm font-medium text-slate-300 ml-2">Message</label>
-                            <textarea rows="4" placeholder="Tell us about your project..." class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all resize-none"></textarea>
-                        </div>
-
-                        <button class="w-full py-4 bg-white text-black rounded-xl font-bold hover:bg-fuchsia-400 transition-colors">
-                            Send Message
+                        <i class="w-8 h-8" data-lucide="send"></i>
+</a>
+</div>
+<div class="bg-white/5 backdrop-blur-sm p-8 rounded-[2rem] border border-white/10">
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-300 ml-2">Имя</label>
+<input class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all" placeholder="Иван Иванов" type="text"/>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-300 ml-2">Email</label>
+<input class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all" placeholder="john@company.com" type="email"/>
+</div>
+</div>
+<div class="space-y-4">
+<label class="text-sm font-medium text-slate-300 ml-2">Меня интересует...</label>
+<div class="flex flex-wrap gap-3">
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<span class="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-medium text-slate-300 peer-checked:bg-fuchsia-500 peer-checked:text-white peer-checked:border-fuchsia-500 transition-all hover:bg-white/20">Веб-дизайн</span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<span class="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-medium text-slate-300 peer-checked:bg-fuchsia-500 peer-checked:text-white peer-checked:border-fuchsia-500 transition-all hover:bg-white/20">Брендинг</span>
+</label>
+<label class="cursor-pointer">
+<input class="peer sr-only" type="checkbox"/>
+<span class="inline-block px-4 py-2 rounded-full bg-white/10 border border-white/10 text-sm font-medium text-slate-300 peer-checked:bg-fuchsia-500 peer-checked:text-white peer-checked:border-fuchsia-500 transition-all hover:bg-white/20">Разработка</span>
+</label>
+</div>
+</div>
+<div class="space-y-2">
+<label class="text-sm font-medium text-slate-300 ml-2">Сообщение</label>
+<textarea class="w-full bg-white/10 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition-all resize-none" placeholder="Расскажите о вашем проекте..." rows="4"></textarea>
+</div>
+<button class="w-full py-4 bg-white text-black rounded-xl font-bold hover:bg-fuchsia-400 transition-colors">
+                            Отправить сообщение
                         </button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-sm text-slate-500">
-                <div class="flex items-center gap-2 mb-4 md:mb-0">
-                    <div class="w-6 h-6 bg-white rounded-full flex items-center justify-center text-black text-xs font-bold">D</div>
-                    <span class="font-semibold text-white">Danlpet Agency © 2024</span>
-                </div>
-                <div class="flex gap-8">
-                    <a href="#" class="hover:text-white transition-colors">Instagram</a>
-                    <a href="#" class="hover:text-white transition-colors">Twitter</a>
-                    <a href="#" class="hover:text-white transition-colors">LinkedIn</a>
-                    <a href="#" class="hover:text-white transition-colors">Dribbble</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <script>
+</form>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/10 text-sm text-slate-500">
+<div class="flex items-center gap-2 mb-4 md:mb-0">
+<div class="w-6 h-6 bg-white rounded-full flex items-center justify-center text-black text-xs font-bold">D</div>
+<span class="font-semibold text-white">Danlpet Agency © 2024</span>
+</div>
+<div class="flex gap-8">
+<a class="hover:text-white transition-colors" href="#">Instagram</a>
+<a class="hover:text-white transition-colors" href="#">Twitter</a>
+<a class="hover:text-white transition-colors" href="#">LinkedIn</a>
+<a class="hover:text-white transition-colors" href="#">Dribbble</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
         // Initialize Icons
         lucide.createIcons();
 

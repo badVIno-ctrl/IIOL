@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth antialiased"><head><script id="aura-preview-performance-controller">
+<html class="scroll-smooth antialiased" lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,12 +89,12 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MenoMorph | Master the data behind the change.</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MenoMorph | Управляйте данными перемен.</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=JetBrains+Mono:wght@400;500;700&amp;family=Syne:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
@@ -234,7 +234,7 @@ transition: left 3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s ease;
 details > summary { list-style: none; }
 details > summary::-webkit-details-marker { display: none; }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -242,807 +242,732 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="antialiased selection:bg-[#e8734a] selection:text-[#0c0b10] relative">
-
-    <div class="noise-bg"></div>
-    
-    <!-- Canvas for WebGL-like Thermal Field -->
-    <canvas id="thermal-canvas" class="fixed inset-0 z-[-1] w-full h-full opacity-60"></canvas>
-    <!-- Fallback for mobile/performance -->
-    <div class="fixed inset-0 z-[-2] pointer-events-none md:hidden" style="background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(124,77,255,0.35) 0%, rgba(232,115,74,0.2) 45%, transparent 100%);"></div>
-
-    <!-- NAV -->
-    <nav class="fixed top-0 w-full z-40 bg-[#0c0b10]/70 backdrop-blur-[1rem] border-b border-[#f0edf8]/5 transition-all duration-300" id="navbar">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4 h-[4.5rem] flex items-center justify-between">
-            
-            <a href="#" class="flex items-center gap-[0.75rem] group">
-                <div class="relative w-[1.75rem] h-[1.75rem] ring-pulse">
-                    <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-[#f0edf8]">
-                        <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="60 10" stroke-linecap="round" class="transition-all duration-400 group-hover:stroke-[#e8734a]"></circle>
-                        <line x1="22" y1="12" x2="26" y2="12" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" class="text-[#e8734a]"></line>
-                    </svg>
-                </div>
-                <span class="font-syne font-bold text-[clamp(1.125rem,1.5vw,1.25rem)] tracking-[-0.02em] text-[#f0edf8]">MenoMorph</span>
+<div class="noise-bg"></div>
+<!-- Canvas for WebGL-like Thermal Field -->
+<canvas class="fixed inset-0 z-[-1] w-full h-full opacity-60" id="thermal-canvas"></canvas>
+<!-- Fallback for mobile/performance -->
+<div class="fixed inset-0 z-[-2] pointer-events-none md:hidden" style="background: radial-gradient(ellipse 80% 60% at 50% 40%, rgba(124,77,255,0.35) 0%, rgba(232,115,74,0.2) 45%, transparent 100%);"></div>
+<!-- NAV -->
+<nav class="fixed top-0 w-full z-40 bg-[#0c0b10]/70 backdrop-blur-[1rem] border-b border-[#f0edf8]/5 transition-all duration-300" id="navbar">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4 h-[4.5rem] flex items-center justify-between">
+<a class="flex items-center gap-[0.75rem] group" href="#">
+<div class="relative w-[1.75rem] h-[1.75rem] ring-pulse">
+<svg class="w-full h-full text-[#f0edf8]" fill="none" viewbox="0 0 24 24">
+<circle class="transition-all duration-400 group-hover:stroke-[#e8734a]" cx="12" cy="12" r="10" stroke="currentColor" stroke-dasharray="60 10" stroke-linecap="round" stroke-width="2.5"></circle>
+<line class="text-[#e8734a]" stroke="currentColor" stroke-linecap="round" stroke-width="2.5" x1="22" x2="26" y1="12" y2="12"></line>
+</svg>
+</div>
+<span class="font-syne font-bold text-[clamp(1.125rem,1.5vw,1.25rem)] tracking-[-0.02em] text-[#f0edf8]">MenoMorph</span>
+</a>
+<div class="hidden md:flex items-center gap-[clamp(1.5rem,2.5vw,2.5rem)] text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium text-[#8b85a0]">
+<a class="nav-link hover:text-[#f0edf8] transition-colors" href="#thermo">Thermo-Sync</a>
+<a class="nav-link hover:text-[#f0edf8] transition-colors" href="#nutrition">Питание</a>
+<a class="nav-link hover:text-[#f0edf8] transition-colors" href="#ai">Meno-GPT</a>
+<a class="nav-link hover:text-[#f0edf8] transition-colors" href="#proof">Исследования</a>
+<a class="nav-link hover:text-[#f0edf8] transition-colors" href="#pricing">Цены</a>
+</div>
+<a class="hidden md:flex items-center justify-center bg-[#e8734a] text-[#0c0b10] font-syne font-semibold text-[clamp(0.75rem,0.8vw,0.8125rem)] px-[1.25rem] py-[0.625rem] clip-para hover:bg-[#f5c97a] transition-colors" href="#pricing">
+                Получить кольцо
             </a>
-
-            <div class="hidden md:flex items-center gap-[clamp(1.5rem,2.5vw,2.5rem)] text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium text-[#8b85a0]">
-                <a href="#thermo" class="nav-link hover:text-[#f0edf8] transition-colors">Thermo-Sync</a>
-                <a href="#nutrition" class="nav-link hover:text-[#f0edf8] transition-colors">Nutrition</a>
-                <a href="#ai" class="nav-link hover:text-[#f0edf8] transition-colors">Meno-GPT</a>
-                <a href="#proof" class="nav-link hover:text-[#f0edf8] transition-colors">Research</a>
-                <a href="#pricing" class="nav-link hover:text-[#f0edf8] transition-colors">Pricing</a>
-            </div>
-
-            <a href="#pricing" class="hidden md:flex items-center justify-center bg-[#e8734a] text-[#0c0b10] font-syne font-semibold text-[clamp(0.75rem,0.8vw,0.8125rem)] px-[1.25rem] py-[0.625rem] clip-para hover:bg-[#f5c97a] transition-colors">
-                Get the Ring
-            </a>
-
-            <button class="md:hidden text-[#f0edf8]">
-                <iconify-icon icon="solar:hamburger-menu-linear" width="1.5rem" stroke-width="1.5"></iconify-icon>
-            </button>
-        </div>
-    </nav>
-
-    <!-- /000/ HERO -->
-    <section class="relative min-h-screen flex items-center pt-[6rem] pb-[clamp(5rem,10vw,8.75rem)] overflow-hidden">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4 w-full relative z-10 flex flex-col items-center text-center">
-            
-            <div class="animate-reveal opacity-0 translate-y-[1.75rem]">
-                <div class="inline-flex items-center gap-[0.5rem] bg-[#161420]/80 border border-[#f0edf8]/10 rounded-full px-[1rem] py-[0.375rem] backdrop-blur-sm mb-[2rem]">
-                    <div class="w-[0.375rem] h-[0.375rem] bg-[#e8734a] rounded-full live-dot"></div>
-                    <span class="font-mono-data tracking-[0.15em] text-[#e8734a] uppercase">Live Sync</span>
-                </div>
-            </div>
-
-            <h1 class="font-syne font-bold text-[clamp(3.25rem,6.5vw,6rem)] leading-[1.05] tracking-[-0.03em] max-w-[62rem] mx-auto animate-reveal opacity-0 translate-y-[1.75rem]" style="animation-delay: 90ms;">
-                Your Body's Running a Fever. We Track It First.
+<button class="md:hidden text-[#f0edf8]">
+<iconify-icon icon="solar:hamburger-menu-linear" stroke-width="1.5" width="1.5rem"></iconify-icon>
+</button>
+</div>
+</nav>
+<!-- /000/ HERO -->
+<section class="relative min-h-screen flex items-center pt-[6rem] pb-[clamp(5rem,10vw,8.75rem)] overflow-hidden">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4 w-full relative z-10 flex flex-col items-center text-center">
+<div class="animate-reveal opacity-0 translate-y-[1.75rem]">
+<div class="inline-flex items-center gap-[0.5rem] bg-[#161420]/80 border border-[#f0edf8]/10 rounded-full px-[1rem] py-[0.375rem] backdrop-blur-sm mb-[2rem]">
+<div class="w-[0.375rem] h-[0.375rem] bg-[#e8734a] rounded-full live-dot"></div>
+<span class="font-mono-data tracking-[0.15em] text-[#e8734a] uppercase">Живая синхронизация</span>
+</div>
+</div>
+<h1 class="font-syne font-bold text-[clamp(3.25rem,6.5vw,6rem)] leading-[1.05] tracking-[-0.03em] max-w-[62rem] mx-auto animate-reveal opacity-0 translate-y-[1.75rem]" style="animation-delay: 90ms;">
+                У вашего тела жар. Мы отслеживаем его первыми.
             </h1>
-
-            <p class="mt-[1.5rem] text-[clamp(1.125rem,1.5vw,1.375rem)] text-[#8b85a0] max-w-[38rem] mx-auto leading-[1.6] animate-reveal opacity-0 translate-y-[1.75rem]" style="animation-delay: 180ms;">
-                MenoMorph's Aura Ring detects hot flashes seconds before they hit — and stops them.
+<p class="mt-[1.5rem] text-[clamp(1.125rem,1.5vw,1.375rem)] text-[#8b85a0] max-w-[38rem] mx-auto leading-[1.6] animate-reveal opacity-0 translate-y-[1.75rem]" style="animation-delay: 180ms;">
+                Кольцо Aura от MenoMorph обнаруживает приливы за секунды до их начала — и останавливает их.
             </p>
-
-            <div class="mt-[2.5rem] flex flex-col sm:flex-row items-center gap-[1rem] sm:gap-[1.5rem] animate-reveal opacity-0 translate-y-[1.75rem]" style="animation-delay: 270ms;">
-                <a href="#pricing" class="bg-[#e8734a] text-[#0c0b10] font-syne font-semibold text-[clamp(0.9375rem,1vw,1rem)] px-[2rem] py-[1rem] clip-para hover:bg-[#f5c97a] transition-colors w-full sm:w-auto">
-                    Start Mastering Your Data
+<div class="mt-[2.5rem] flex flex-col sm:flex-row items-center gap-[1rem] sm:gap-[1.5rem] animate-reveal opacity-0 translate-y-[1.75rem]" style="animation-delay: 270ms;">
+<a class="bg-[#e8734a] text-[#0c0b10] font-syne font-semibold text-[clamp(0.9375rem,1vw,1rem)] px-[2rem] py-[1rem] clip-para hover:bg-[#f5c97a] transition-colors w-full sm:w-auto" href="#pricing">
+                    Начните управлять своими данными
                 </a>
-                <a href="#thermo" class="btn-ghost font-syne font-semibold text-[clamp(0.9375rem,1vw,1rem)] px-[2rem] py-[1rem] clip-para w-full sm:w-auto">
-                    See How It Works
+<a class="btn-ghost font-syne font-semibold text-[clamp(0.9375rem,1vw,1rem)] px-[2rem] py-[1rem] clip-para w-full sm:w-auto" href="#thermo">
+                    Как это работает
                 </a>
-            </div>
-
-            <div class="mt-[3.5rem] flex flex-wrap justify-center gap-[1.5rem] md:gap-[3rem] text-[#8b85a0] font-mono-data opacity-0 animate-reveal" style="animation-delay: 360ms;">
-                <div class="flex items-center gap-[0.5rem]"><span class="text-[#e8734a]">◉</span> FDA-Registered Sensor</div>
-                <div class="flex items-center gap-[0.5rem]"><iconify-icon icon="solar:lock-password-linear"></iconify-icon> HIPAA-Compliant AI</div>
-                <div class="flex items-center gap-[0.5rem]"><span class="text-[#f5c97a]">★</span> 4.9 / 3,200 Reviews</div>
-                <div class="flex items-center gap-[0.5rem]"><iconify-icon icon="solar:bolt-linear"></iconify-icon> Ships in 48h</div>
-            </div>
-
-            <!-- Floating Dashboard Mockup -->
-            <div class="absolute -bottom-[15%] -right-[5%] md:right-[5%] w-[clamp(18.75rem,25vw,22rem)] bento-card p-[1.5rem] bg-[#161420]/90 backdrop-blur-md hidden lg:block opacity-0 animate-reveal" style="animation-delay: 450ms; transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);" id="hero-parallax">
-                
-                <!-- Flash Alert Toast -->
-                <div class="absolute -top-[1.5rem] left-[10%] w-[80%] bg-[#e8734a] text-[#0c0b10] p-[0.75rem] rounded-[0.5rem] flex items-center justify-between shadow-lg flash-alert z-20">
-                    <div class="flex items-center gap-[0.5rem] font-syne font-semibold text-[0.875rem]">
-                        <iconify-icon icon="solar:thermometer-linear" stroke-width="2"></iconify-icon>
-                        +0.4°C detected
+</div>
+<div class="mt-[3.5rem] flex flex-wrap justify-center gap-[1.5rem] md:gap-[3rem] text-[#8b85a0] font-mono-data opacity-0 animate-reveal" style="animation-delay: 360ms;">
+<div class="flex items-center gap-[0.5rem]"><span class="text-[#e8734a]">◉</span> Датчик, зарегистрированный FDA</div>
+<div class="flex items-center gap-[0.5rem]"><iconify-icon icon="solar:lock-password-linear"></iconify-icon> HIPAA-совместимый AI</div>
+<div class="flex items-center gap-[0.5rem]"><span class="text-[#f5c97a]">★</span> 4,9 / 3 200 отзывов</div>
+<div class="flex items-center gap-[0.5rem]"><iconify-icon icon="solar:bolt-linear"></iconify-icon> Отправка за 48 ч</div>
+</div>
+<!-- Floating Dashboard Mockup -->
+<div class="absolute -bottom-[15%] -right-[5%] md:right-[5%] w-[clamp(18.75rem,25vw,22rem)] bento-card p-[1.5rem] bg-[#161420]/90 backdrop-blur-md hidden lg:block opacity-0 animate-reveal" id="hero-parallax" style="animation-delay: 450ms; transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);">
+<!-- Flash Alert Toast -->
+<div class="absolute -top-[1.5rem] left-[10%] w-[80%] bg-[#e8734a] text-[#0c0b10] p-[0.75rem] rounded-[0.5rem] flex items-center justify-between shadow-lg flash-alert z-20">
+<div class="flex items-center gap-[0.5rem] font-syne font-semibold text-[0.875rem]">
+<iconify-icon icon="solar:thermometer-linear" stroke-width="2"></iconify-icon>
+                        Обнаружено +0,4°C
                     </div>
-                    <span class="font-mono-data text-[#0c0b10]/70">NOW</span>
-                </div>
-
-                <div class="flex justify-between items-center mb-[1.5rem] border-b border-[#f0edf8]/10 pb-[1rem]">
-                    <div class="flex items-center gap-[0.75rem]">
-                        <div class="w-[2rem] h-[2rem] rounded-full bg-[#f0edf8]/10 flex items-center justify-center text-[0.75rem] font-syne">SM</div>
-                        <div>
-                            <div class="text-[0.875rem] font-medium text-[#f0edf8] leading-tight">Sarah M., 47</div>
-                            <div class="text-[0.6875rem] text-[#8b85a0] flex items-center gap-[0.25rem] mt-[0.125rem]">
-                                <div class="w-[0.25rem] h-[0.25rem] bg-[#e8734a] rounded-full"></div> Ring Connected
+<span class="font-mono-data text-[#0c0b10]/70">СЕЙЧАС</span>
+</div>
+<div class="flex justify-between items-center mb-[1.5rem] border-b border-[#f0edf8]/10 pb-[1rem]">
+<div class="flex items-center gap-[0.75rem]">
+<div class="w-[2rem] h-[2rem] rounded-full bg-[#f0edf8]/10 flex items-center justify-center text-[0.75rem] font-syne">SM</div>
+<div>
+<div class="text-[0.875rem] font-medium text-[#f0edf8] leading-tight">Sarah M., 47</div>
+<div class="text-[0.6875rem] text-[#8b85a0] flex items-center gap-[0.25rem] mt-[0.125rem]">
+<div class="w-[0.25rem] h-[0.25rem] bg-[#e8734a] rounded-full"></div> Кольцо подключено
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex gap-[1rem] text-[0.75rem] text-[#8b85a0] font-medium mb-[1.5rem] border-b border-[#f0edf8]/5 pb-[0.5rem]">
-                    <span class="text-[#f0edf8] border-b border-[#e8734a] pb-[0.5rem]">Today</span>
-                    <span>Cycle</span>
-                    <span>Nutrition</span>
-                </div>
-
-                <div class="space-y-[1.5rem]">
-                    <div>
-                        <div class="flex justify-between text-[0.75rem] mb-[0.5rem]">
-                            <span class="text-[#8b85a0]">Core Temp Variance</span>
-                            <span class="text-[#e8734a] font-mono-data">+0.4°</span>
-                        </div>
-                        <div class="h-[3rem] w-full relative flex items-end gap-[0.25rem]">
-                            <div class="w-full h-[30%] bg-[#f0edf8]/10 rounded-t-sm"></div>
-                            <div class="w-full h-[40%] bg-[#f0edf8]/10 rounded-t-sm"></div>
-                            <div class="w-full h-[35%] bg-[#f0edf8]/10 rounded-t-sm"></div>
-                            <div class="w-full h-[60%] bg-[#f0edf8]/10 rounded-t-sm"></div>
-                            <div class="w-full h-[50%] bg-[#f0edf8]/10 rounded-t-sm"></div>
-                            <div class="w-full h-[90%] bg-[#e8734a] rounded-t-sm relative">
-                                <div class="absolute -top-[0.25rem] left-1/2 -translate-x-1/2 w-[0.375rem] h-[0.375rem] bg-[#f0edf8] rounded-full shadow-[0_0_0_4px_rgba(232,115,74,0.3)]"></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-[0.75rem]">
-                        <div class="bg-[#0c0b10] p-[0.75rem] rounded-[0.5rem] border border-[#f0edf8]/5">
-                            <div class="text-[0.6875rem] text-[#8b85a0] mb-[0.25rem]">Next Predicted Flash</div>
-                            <div class="font-syne font-semibold text-[1rem] text-[#f0edf8]">~2h 14m</div>
-                        </div>
-                        <div class="bg-[#0c0b10] p-[0.75rem] rounded-[0.5rem] border border-[#f0edf8]/5">
-                            <div class="text-[0.6875rem] text-[#8b85a0] mb-[0.25rem]">Sleep Quality</div>
-                            <div class="font-syne font-semibold text-[1rem] text-[#f0edf8]">78%</div>
-                        </div>
-                    </div>
-                </div>
+</div>
+</div>
+</div>
+<div class="flex gap-[1rem] text-[0.75rem] text-[#8b85a0] font-medium mb-[1.5rem] border-b border-[#f0edf8]/5 pb-[0.5rem]">
+<span class="text-[#f0edf8] border-b border-[#e8734a] pb-[0.5rem]">Сегодня</span>
+<span>Цикл</span>
+<span>Питание</span>
+</div>
+<div class="space-y-[1.5rem]">
+<div>
+<div class="flex justify-between text-[0.75rem] mb-[0.5rem]">
+<span class="text-[#8b85a0]">Вариация базовой температуры</span>
+<span class="text-[#e8734a] font-mono-data">+0.4°</span>
+</div>
+<div class="h-[3rem] w-full relative flex items-end gap-[0.25rem]">
+<div class="w-full h-[30%] bg-[#f0edf8]/10 rounded-t-sm"></div>
+<div class="w-full h-[40%] bg-[#f0edf8]/10 rounded-t-sm"></div>
+<div class="w-full h-[35%] bg-[#f0edf8]/10 rounded-t-sm"></div>
+<div class="w-full h-[60%] bg-[#f0edf8]/10 rounded-t-sm"></div>
+<div class="w-full h-[50%] bg-[#f0edf8]/10 rounded-t-sm"></div>
+<div class="w-full h-[90%] bg-[#e8734a] rounded-t-sm relative">
+<div class="absolute -top-[0.25rem] left-1/2 -translate-x-1/2 w-[0.375rem] h-[0.375rem] bg-[#f0edf8] rounded-full shadow-[0_0_0_4px_rgba(232,115,74,0.3)]"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-[0.75rem]">
+<div class="bg-[#0c0b10] p-[0.75rem] rounded-[0.5rem] border border-[#f0edf8]/5">
+<div class="text-[0.6875rem] text-[#8b85a0] mb-[0.25rem]">Следующий прогнозируемый прилив</div>
+<div class="font-syne font-semibold text-[1rem] text-[#f0edf8]">~2h 14m</div>
+</div>
+<div class="bg-[#0c0b10] p-[0.75rem] rounded-[0.5rem] border border-[#f0edf8]/5">
+<div class="text-[0.6875rem] text-[#8b85a0] mb-[0.25rem]">Качество сна</div>
+<div class="font-syne font-semibold text-[1rem] text-[#f0edf8]">78%</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="thermal-hr trigger-in-view"></div>
+<!-- /001/ THE PROBLEM -->
+<section class="py-[clamp(5rem,10vw,8.75rem)] relative">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
+<div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
+                /001/ <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> ПРОБЛЕМА
             </div>
-
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="thermal-hr trigger-in-view"></div>
-
-    <!-- /001/ THE PROBLEM -->
-    <section class="py-[clamp(5rem,10vw,8.75rem)] relative">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
-            
-            <div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
-                /001/ <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> THE PROBLEM
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-[clamp(3rem,6vw,5rem)] items-center">
-                
-                <div class="trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                    <h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target relative pl-[1rem]">
-                        <svg class="absolute left-0 top-0 h-full w-[0.125rem]" preserveAspectRatio="none">
-                            <line x1="1" y1="0" x2="1" y2="100%" stroke="var(--accent)" stroke-width="2" class="draw-line" style="stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1s ease-out;"></line>
-                        </svg>
-                        84% of Women Go Through It Blind.
+<div class="grid lg:grid-cols-2 gap-[clamp(3rem,6vw,5rem)] items-center">
+<div class="trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
+<h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target relative pl-[1rem]">
+<svg class="absolute left-0 top-0 h-full w-[0.125rem]" preserveaspectratio="none">
+<line class="draw-line" stroke="var(--accent)" stroke-width="2" style="stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1s ease-out;" x1="1" x2="1" y1="0" y2="100%"></line>
+</svg>
+                        84% женщин проходят через это вслепую.
                     </h2>
-                    
-                    <p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6]">
-                        No data. No warning. No plan. Just waking up drenched at 3am and Googling 'is this normal?' for the fourth time this week. Your doctor gets 12 minutes per visit. You get a pamphlet. <span class="text-[#f0edf8] font-medium">MenoMorph ends the guessing.</span>
-                    </p>
-
-                    <div class="mt-[3rem] grid grid-cols-3 gap-[1.5rem] pt-[2rem] border-t border-[#f0edf8]/10">
-                        <div>
-                            <div class="font-syne font-bold text-[clamp(1.5rem,2vw,2rem)] text-[#f0edf8]"><span class="count-up" data-target="12">0</span> min</div>
-                            <div class="text-[clamp(0.75rem,0.8vw,0.8125rem)] text-[#8b85a0] mt-[0.25rem]">Avg doctor visit</div>
-                        </div>
-                        <div>
-                            <div class="font-syne font-bold text-[clamp(1.5rem,2vw,2rem)] text-[#f0edf8]"><span class="count-up" data-target="5.3" data-decimals="1">0</span> yrs</div>
-                            <div class="text-[clamp(0.75rem,0.8vw,0.8125rem)] text-[#8b85a0] mt-[0.25rem]">Avg duration</div>
-                        </div>
-                        <div>
-                            <div class="font-syne font-bold text-[clamp(1.5rem,2vw,2rem)] text-[#e8734a]">0</div>
-                            <div class="text-[clamp(0.75rem,0.8vw,0.8125rem)] text-[#8b85a0] mt-[0.25rem]">FDA predictors before us</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Heatmap -->
-                <div class="bento-card p-[clamp(1.5rem,3vw,2.5rem)] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                    <div class="flex justify-between items-end mb-[2rem]">
-                        <div class="font-syne font-semibold text-[1.125rem]">Symptom Frequency</div>
-                        <div class="flex items-center gap-[0.5rem] text-[0.6875rem] font-mono-data text-[#8b85a0]">
-                            <span>LOW</span>
-                            <div class="flex gap-[0.125rem]">
-                                <div class="w-[0.5rem] h-[0.5rem] bg-[#f0edf8]/5 rounded-sm"></div>
-                                <div class="w-[0.5rem] h-[0.5rem] bg-[#f0edf8]/20 rounded-sm"></div>
-                                <div class="w-[0.5rem] h-[0.5rem] bg-[#e8734a]/50 rounded-sm"></div>
-                                <div class="w-[0.5rem] h-[0.5rem] bg-[#e8734a] rounded-sm"></div>
-                            </div>
-                            <span>SEVERE</span>
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-7 gap-[clamp(0.25rem,0.5vw,0.5rem)]">
-                        <!-- Days Row -->
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">M</div>
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">T</div>
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">W</div>
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">T</div>
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">F</div>
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">S</div>
-                        <div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">S</div>
-                        
-                        <!-- Generated Cells (Simulated data) -->
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#e8734a]/50 rounded-sm"></div>
-                        <div class="aspect-square bg-[#e8734a] rounded-sm relative"><div class="absolute inset-0 bg-[#e8734a] rounded-sm animate-pulse opacity-50"></div></div>
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#e8734a] rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#e8734a]/50 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#e8734a] rounded-sm relative"><div class="absolute inset-0 bg-[#e8734a] rounded-sm animate-pulse opacity-50"></div></div>
-                        <div class="aspect-square bg-[#e8734a]/50 rounded-sm"></div>
-
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                        <div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="thermal-hr trigger-in-view"></div>
-
-    <!-- /002/ THERMO-SYNC -->
-    <section id="thermo" class="py-[clamp(5rem,10vw,8.75rem)] relative">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
-            
-            <div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
+<p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6]">
+                        Ни данных. Ни предупреждения. Ни плана. Только просыпаться в поту в 3 часа ночи и гуглить «это нормально?» четвёртый раз за неделю. У врача есть 12 минут на приём. У вас — брошюра. <span class="text-[#f0edf8] font-medium">MenoMorph кладёт конец догадкам.</span>
+</p>
+<div class="mt-[3rem] grid grid-cols-3 gap-[1.5rem] pt-[2rem] border-t border-[#f0edf8]/10">
+<div>
+<div class="font-syne font-bold text-[clamp(1.5rem,2vw,2rem)] text-[#f0edf8]"><span class="count-up" data-target="12">0</span> мин</div>
+<div class="text-[clamp(0.75rem,0.8vw,0.8125rem)] text-[#8b85a0] mt-[0.25rem]">Средний приём у врача</div>
+</div>
+<div>
+<div class="font-syne font-bold text-[clamp(1.5rem,2vw,2rem)] text-[#f0edf8]"><span class="count-up" data-decimals="1" data-target="5.3">0</span> лет</div>
+<div class="text-[clamp(0.75rem,0.8vw,0.8125rem)] text-[#8b85a0] mt-[0.25rem]">Средняя длительность</div>
+</div>
+<div>
+<div class="font-syne font-bold text-[clamp(1.5rem,2vw,2rem)] text-[#e8734a]">0</div>
+<div class="text-[clamp(0.75rem,0.8vw,0.8125rem)] text-[#8b85a0] mt-[0.25rem]">FDA-предикторов до нас</div>
+</div>
+</div>
+</div>
+<!-- Heatmap -->
+<div class="bento-card p-[clamp(1.5rem,3vw,2.5rem)] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
+<div class="flex justify-between items-end mb-[2rem]">
+<div class="font-syne font-semibold text-[1.125rem]">Частота симптомов</div>
+<div class="flex items-center gap-[0.5rem] text-[0.6875rem] font-mono-data text-[#8b85a0]">
+<span>НИЗКАЯ</span>
+<div class="flex gap-[0.125rem]">
+<div class="w-[0.5rem] h-[0.5rem] bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="w-[0.5rem] h-[0.5rem] bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="w-[0.5rem] h-[0.5rem] bg-[#e8734a]/50 rounded-sm"></div>
+<div class="w-[0.5rem] h-[0.5rem] bg-[#e8734a] rounded-sm"></div>
+</div>
+<span>ТЯЖЁЛАЯ</span>
+</div>
+</div>
+<div class="grid grid-cols-7 gap-[clamp(0.25rem,0.5vw,0.5rem)]">
+<!-- Days Row -->
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">M</div>
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">T</div>
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">W</div>
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">T</div>
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">F</div>
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">S</div>
+<div class="text-[0.6875rem] text-center text-[#8b85a0] mb-[0.5rem]">S</div>
+<!-- Generated Cells (Simulated data) -->
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#e8734a]/50 rounded-sm"></div>
+<div class="aspect-square bg-[#e8734a] rounded-sm relative"><div class="absolute inset-0 bg-[#e8734a] rounded-sm animate-pulse opacity-50"></div></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#e8734a] rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#e8734a]/50 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#e8734a] rounded-sm relative"><div class="absolute inset-0 bg-[#e8734a] rounded-sm animate-pulse opacity-50"></div></div>
+<div class="aspect-square bg-[#e8734a]/50 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/20 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+<div class="aspect-square bg-[#f0edf8]/5 rounded-sm"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="thermal-hr trigger-in-view"></div>
+<!-- /002/ THERMO-SYNC -->
+<section class="py-[clamp(5rem,10vw,8.75rem)] relative" id="thermo">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
+<div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
                 /002/ <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> THERMO-SYNC
             </div>
-
-            <!-- FlashGuard Timeline -->
-            <div class="mb-[clamp(4rem,8vw,6rem)] pt-[2rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100" id="timeline-container">
-                <h3 class="font-syne font-semibold text-[1.25rem] mb-[3rem] text-center">The FlashGuard Protocol</h3>
-                
-                <div class="relative max-w-[48rem] mx-auto">
-                    <!-- Line -->
-                    <div class="absolute top-[0.625rem] left-[10%] right-[10%] h-[0.125rem] bg-[#f0edf8]/10 rounded-full"></div>
-                    <!-- Animated fill line -->
-                    <div class="absolute top-[0.625rem] left-[10%] h-[0.125rem] bg-[#e8734a] rounded-full w-0 transition-all duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)]" id="timeline-fill"></div>
-                    <!-- Traveling dot -->
-                    <div class="absolute top-[0.375rem] left-[10%] w-[0.625rem] h-[0.625rem] bg-[#f0edf8] rounded-full shadow-[0_0_10px_rgba(232,115,74,0.8)] transition-all duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] z-10" id="timeline-dot"></div>
-
-                    <div class="flex justify-between relative z-10">
-                        <div class="flex flex-col items-center text-center w-[30%]">
-                            <div class="w-[1.375rem] h-[1.375rem] rounded-full bg-[#161420] border-2 border-[#e8734a] mb-[1rem]"></div>
-                            <div class="font-mono-data text-[#e8734a] mb-[0.25rem]">T-MINUS 180s</div>
-                            <div class="text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium">Spike Detected</div>
-                        </div>
-                        <div class="flex flex-col items-center text-center w-[30%]">
-                            <div class="w-[1.375rem] h-[1.375rem] rounded-full bg-[#161420] border-2 border-[#f0edf8]/30 mb-[1rem] timeline-node transition-colors duration-300 delay-[600ms]"></div>
-                            <div class="font-mono-data text-[#8b85a0] mb-[0.25rem]">T-MINUS 120s</div>
-                            <div class="text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium text-[#8b85a0]">Cooling Triggered</div>
-                        </div>
-                        <div class="flex flex-col items-center text-center w-[30%]">
-                            <div class="w-[1.375rem] h-[1.375rem] rounded-full bg-[#161420] border-2 border-[#f0edf8]/30 mb-[1rem] timeline-node transition-colors duration-300 delay-[1200ms]"></div>
-                            <div class="font-mono-data text-[#8b85a0] mb-[0.25rem]">T-ZERO</div>
-                            <div class="text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium text-[#8b85a0]">Flash Averted</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="grid lg:grid-cols-12 gap-[clamp(2rem,4vw,3rem)] items-start">
-                
-                <div class="lg:col-span-5 trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                    <h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target relative pl-[1rem]">
-                        <svg class="absolute left-0 top-0 h-full w-[0.125rem]" preserveAspectRatio="none">
-                            <line x1="1" y1="0" x2="1" y2="100%" stroke="var(--accent)" stroke-width="2" class="draw-line" style="stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1s ease-out;"></line>
-                        </svg>
-                        3 Seconds of Warning Changes Everything.
+<!-- FlashGuard Timeline -->
+<div class="mb-[clamp(4rem,8vw,6rem)] pt-[2rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100" id="timeline-container">
+<h3 class="font-syne font-semibold text-[1.25rem] mb-[3rem] text-center">Протокол FlashGuard</h3>
+<div class="relative max-w-[48rem] mx-auto">
+<!-- Line -->
+<div class="absolute top-[0.625rem] left-[10%] right-[10%] h-[0.125rem] bg-[#f0edf8]/10 rounded-full"></div>
+<!-- Animated fill line -->
+<div class="absolute top-[0.625rem] left-[10%] h-[0.125rem] bg-[#e8734a] rounded-full w-0 transition-all duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)]" id="timeline-fill"></div>
+<!-- Traveling dot -->
+<div class="absolute top-[0.375rem] left-[10%] w-[0.625rem] h-[0.625rem] bg-[#f0edf8] rounded-full shadow-[0_0_10px_rgba(232,115,74,0.8)] transition-all duration-[1.4s] ease-[cubic-bezier(0.16,1,0.3,1)] z-10" id="timeline-dot"></div>
+<div class="flex justify-between relative z-10">
+<div class="flex flex-col items-center text-center w-[30%]">
+<div class="w-[1.375rem] h-[1.375rem] rounded-full bg-[#161420] border-2 border-[#e8734a] mb-[1rem]"></div>
+<div class="font-mono-data text-[#e8734a] mb-[0.25rem]">T-МИНУС 180 с</div>
+<div class="text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium">Обнаружен скачок</div>
+</div>
+<div class="flex flex-col items-center text-center w-[30%]">
+<div class="w-[1.375rem] h-[1.375rem] rounded-full bg-[#161420] border-2 border-[#f0edf8]/30 mb-[1rem] timeline-node transition-colors duration-300 delay-[600ms]"></div>
+<div class="font-mono-data text-[#8b85a0] mb-[0.25rem]">T-МИНУС 120 с</div>
+<div class="text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium text-[#8b85a0]">Запущено охлаждение</div>
+</div>
+<div class="flex flex-col items-center text-center w-[30%]">
+<div class="w-[1.375rem] h-[1.375rem] rounded-full bg-[#161420] border-2 border-[#f0edf8]/30 mb-[1rem] timeline-node transition-colors duration-300 delay-[1200ms]"></div>
+<div class="font-mono-data text-[#8b85a0] mb-[0.25rem]">T-НОЛЬ</div>
+<div class="text-[clamp(0.8125rem,0.9vw,0.875rem)] font-medium text-[#8b85a0]">Прилив предотвращён</div>
+</div>
+</div>
+</div>
+</div>
+<div class="grid lg:grid-cols-12 gap-[clamp(2rem,4vw,3rem)] items-start">
+<div class="lg:col-span-5 trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
+<h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target relative pl-[1rem]">
+<svg class="absolute left-0 top-0 h-full w-[0.125rem]" preserveaspectratio="none">
+<line class="draw-line" stroke="var(--accent)" stroke-width="2" style="stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1s ease-out;" x1="1" x2="1" y1="0" y2="100%"></line>
+</svg>
+                        3 секунды предупреждения меняют всё.
                     </h2>
-                    
-                    <p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6]">
-                        Our skin-contact sensor reads core temperature shifts imperceptible to you — a 0.4°C rise that precedes every flash. Thermo-Sync triggers your paired cooling device or delivers haptic breathing prompts before the wave hits. Not after.
+<p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6]">
+                        Наш контактный датчик считывает незаметные для вас сдвиги базовой температуры — рост на 0,4°C, предшествующий каждому приливу. Thermo-Sync запускает подключённое охлаждающее устройство или подаёт тактильные дыхательные подсказки до того, как накатит волна. Не после.
                     </p>
-                </div>
-
-                <div class="lg:col-span-7 grid sm:grid-cols-2 gap-[1rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-300">
-                    
-                    <!-- Feature Cards -->
-                    <div class="bento-card p-[1.5rem] hover-shake sm:col-span-2 relative overflow-hidden group">
-                        <div class="absolute -right-4 -top-4 w-32 h-32 bg-[#e8734a]/10 rounded-full blur-2xl group-hover:bg-[#e8734a]/20 transition-colors duration-700"></div>
-                        <iconify-icon icon="solar:radar-linear" width="2rem" class="text-[#e8734a] mb-[1rem]"></iconify-icon>
-                        <h4 class="font-syne font-semibold text-[1.125rem] text-[#f0edf8] mb-[0.5rem]">Sensor reads every 200ms</h4>
-                        <p class="text-[0.875rem] text-[#8b85a0]">Continuous bioscan mapping your unique thermal topography. Data point generation count: <span class="font-mono-data text-[#f0edf8] tick-up" data-target="432000">0</span>/day.</p>
-                    </div>
-
-                    <div class="bento-card p-[1.5rem] hover-shake">
-                        <iconify-icon icon="solar:devices-linear" width="2rem" class="text-[#f0edf8] mb-[1rem]"></iconify-icon>
-                        <h4 class="font-syne font-semibold text-[1.125rem] text-[#f0edf8] mb-[0.5rem]">Cooling Integration</h4>
-                        <p class="text-[0.875rem] text-[#8b85a0]">Pairs seamlessly via Bluetooth LE with Embr Wave &amp; BioSelf wearables.</p>
-                    </div>
-
-                    <div class="bento-card p-[1.5rem] hover-shake">
-                        <iconify-icon icon="solar:lungs-linear" width="2rem" class="text-[#f0edf8] mb-[1rem]"></iconify-icon>
-                        <h4 class="font-syne font-semibold text-[1.125rem] text-[#f0edf8] mb-[0.5rem]">Haptic Breath Prompts</h4>
-                        <p class="text-[0.875rem] text-[#8b85a0]">Vibrates in a 4-7-8 rhythm to activate parasympathetic cooling down-regulation.</p>
-                    </div>
-
-                </div>
+</div>
+<div class="lg:col-span-7 grid sm:grid-cols-2 gap-[1rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-300">
+<!-- Feature Cards -->
+<div class="bento-card p-[1.5rem] hover-shake sm:col-span-2 relative overflow-hidden group">
+<div class="absolute -right-4 -top-4 w-32 h-32 bg-[#e8734a]/10 rounded-full blur-2xl group-hover:bg-[#e8734a]/20 transition-colors duration-700"></div>
+<iconify-icon class="text-[#e8734a] mb-[1rem]" icon="solar:radar-linear" width="2rem"></iconify-icon>
+<h4 class="font-syne font-semibold text-[1.125rem] text-[#f0edf8] mb-[0.5rem]">Датчик считывает каждые 200 мс</h4>
+<p class="text-[0.875rem] text-[#8b85a0]">Непрерывное биосканирование строит вашу уникальную тепловую карту. Количество точек данных: <span class="font-mono-data text-[#f0edf8] tick-up" data-target="432000">0</span>/день.</p>
+</div>
+<div class="bento-card p-[1.5rem] hover-shake">
+<iconify-icon class="text-[#f0edf8] mb-[1rem]" icon="solar:devices-linear" width="2rem"></iconify-icon>
+<h4 class="font-syne font-semibold text-[1.125rem] text-[#f0edf8] mb-[0.5rem]">Интеграция охлаждения</h4>
+<p class="text-[0.875rem] text-[#8b85a0]">Бесшовно сопрягается по Bluetooth LE с носимыми устройствами Embr Wave и BioSelf.</p>
+</div>
+<div class="bento-card p-[1.5rem] hover-shake">
+<iconify-icon class="text-[#f0edf8] mb-[1rem]" icon="solar:lungs-linear" width="2rem"></iconify-icon>
+<h4 class="font-syne font-semibold text-[1.125rem] text-[#f0edf8] mb-[0.5rem]">Тактильные дыхательные подсказки</h4>
+<p class="text-[0.875rem] text-[#8b85a0]">Вибрирует в ритме 4-7-8, активируя парасимпатическое охлаждающее торможение.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="thermal-hr trigger-in-view"></div>
+<!-- /003/ NUTRITION -->
+<section class="py-[clamp(5rem,10vw,8.75rem)] relative bg-[#161420]/30" id="nutrition">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
+<div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
+                /003/ <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> ПИТАНИЕ ПО ГОРМОНАЛЬНОЙ КАРТЕ
             </div>
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="thermal-hr trigger-in-view"></div>
-
-    <!-- /003/ NUTRITION -->
-    <section id="nutrition" class="py-[clamp(5rem,10vw,8.75rem)] relative bg-[#161420]/30">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
-            
-            <div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
-                /003/ <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> HORMONE-MAPPED NUTRITION
-            </div>
-
-            <div class="grid lg:grid-cols-2 gap-[clamp(3rem,6vw,5rem)] items-center">
-                
-                <!-- Mockup Left -->
-                <div class="order-2 lg:order-1 bento-card p-[clamp(1.5rem,3vw,2.5rem)] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                    <div class="flex justify-between items-center mb-[2rem]">
-                        <div class="font-syne font-semibold text-[1.25rem]">Today's Stack</div>
-                        <div class="text-[0.6875rem] font-mono-data bg-[#f0edf8]/10 px-[0.5rem] py-[0.25rem] rounded-sm">OCT 14</div>
-                    </div>
-
-                    <div class="p-[1rem] bg-[#0c0b10] rounded-[0.5rem] border border-[#e8734a]/30 mb-[1.5rem]">
-                        <div class="text-[0.75rem] text-[#e8734a] font-mono-data mb-[0.25rem]">RATIONALE</div>
-                        <div class="text-[0.875rem] text-[#f0edf8]">Adjusted based on your 3-night sleep dip and cortisol elevation pattern.</div>
-                    </div>
-
-                    <div class="space-y-[1rem]">
-                        <div class="flex items-center justify-between p-[1rem] bg-[#f0edf8]/5 rounded-[0.5rem] hover-shake cursor-default">
-                            <div class="flex items-center gap-[1rem]">
-                                <iconify-icon icon="solar:pills-linear" width="1.5rem" class="text-[#f0edf8]"></iconify-icon>
-                                <div>
-                                    <div class="font-medium text-[#f0edf8] text-[0.9375rem]">Magnesium Glycinate</div>
-                                    <div class="text-[0.75rem] text-[#8b85a0]">Nervous system support</div>
-                                </div>
-                            </div>
-                            <div class="font-mono-data text-[#f0edf8]">320mg</div>
-                        </div>
-
-                        <div class="flex items-center justify-between p-[1rem] bg-[#f0edf8]/5 rounded-[0.5rem] hover-shake cursor-default">
-                            <div class="flex items-center gap-[1rem]">
-                                <iconify-icon icon="solar:leaf-linear" width="1.5rem" class="text-[#f0edf8]"></iconify-icon>
-                                <div>
-                                    <div class="font-medium text-[#f0edf8] text-[0.9375rem]">Black Cohosh</div>
-                                    <div class="text-[0.75rem] text-[#8b85a0]">Vasomotor regulation</div>
-                                </div>
-                            </div>
-                            <div class="font-mono-data text-[#f0edf8]">40mg</div>
-                        </div>
-
-                        <div class="flex items-center justify-between p-[1rem] bg-[#f0edf8]/5 rounded-[0.5rem] hover-shake cursor-default">
-                            <div class="flex items-center gap-[1rem]">
-                                <iconify-icon icon="solar:sun-linear" width="1.5rem" class="text-[#f0edf8]"></iconify-icon>
-                                <div>
-                                    <div class="font-medium text-[#f0edf8] text-[0.9375rem]">Vitamin D3</div>
-                                    <div class="text-[0.75rem] text-[#8b85a0]">Bone density preservation</div>
-                                </div>
-                            </div>
-                            <div class="font-mono-data text-[#f0edf8]">2000IU</div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Copy Right -->
-                <div class="order-1 lg:order-2 trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                    <h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target relative pl-[1rem]">
-                        <svg class="absolute left-0 top-0 h-full w-[0.125rem]" preserveAspectRatio="none">
-                            <line x1="1" y1="0" x2="1" y2="100%" stroke="var(--accent)" stroke-width="2" class="draw-line" style="stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1s ease-out;"></line>
-                        </svg>
-                        Your Supplements, Decided by Your Data.
+<div class="grid lg:grid-cols-2 gap-[clamp(3rem,6vw,5rem)] items-center">
+<!-- Mockup Left -->
+<div class="order-2 lg:order-1 bento-card p-[clamp(1.5rem,3vw,2.5rem)] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
+<div class="flex justify-between items-center mb-[2rem]">
+<div class="font-syne font-semibold text-[1.25rem]">Сегодняшний набор</div>
+<div class="text-[0.6875rem] font-mono-data bg-[#f0edf8]/10 px-[0.5rem] py-[0.25rem] rounded-sm">14 ОКТ</div>
+</div>
+<div class="p-[1rem] bg-[#0c0b10] rounded-[0.5rem] border border-[#e8734a]/30 mb-[1.5rem]">
+<div class="text-[0.75rem] text-[#e8734a] font-mono-data mb-[0.25rem]">ОБОСНОВАНИЕ</div>
+<div class="text-[0.875rem] text-[#f0edf8]">Скорректировано с учётом вашего трёхдневного провала сна и паттерна повышенного кортизола.</div>
+</div>
+<div class="space-y-[1rem]">
+<div class="flex items-center justify-between p-[1rem] bg-[#f0edf8]/5 rounded-[0.5rem] hover-shake cursor-default">
+<div class="flex items-center gap-[1rem]">
+<iconify-icon class="text-[#f0edf8]" icon="solar:pills-linear" width="1.5rem"></iconify-icon>
+<div>
+<div class="font-medium text-[#f0edf8] text-[0.9375rem]">Глицинат магния</div>
+<div class="text-[0.75rem] text-[#8b85a0]">Поддержка нервной системы</div>
+</div>
+</div>
+<div class="font-mono-data text-[#f0edf8]">320 мг</div>
+</div>
+<div class="flex items-center justify-between p-[1rem] bg-[#f0edf8]/5 rounded-[0.5rem] hover-shake cursor-default">
+<div class="flex items-center gap-[1rem]">
+<iconify-icon class="text-[#f0edf8]" icon="solar:leaf-linear" width="1.5rem"></iconify-icon>
+<div>
+<div class="font-medium text-[#f0edf8] text-[0.9375rem]">Клопогон кистевидный</div>
+<div class="text-[0.75rem] text-[#8b85a0]">Вазомоторная регуляция</div>
+</div>
+</div>
+<div class="font-mono-data text-[#f0edf8]">40 мг</div>
+</div>
+<div class="flex items-center justify-between p-[1rem] bg-[#f0edf8]/5 rounded-[0.5rem] hover-shake cursor-default">
+<div class="flex items-center gap-[1rem]">
+<iconify-icon class="text-[#f0edf8]" icon="solar:sun-linear" width="1.5rem"></iconify-icon>
+<div>
+<div class="font-medium text-[#f0edf8] text-[0.9375rem]">Витамин D3</div>
+<div class="text-[0.75rem] text-[#8b85a0]">Сохранение плотности костей</div>
+</div>
+</div>
+<div class="font-mono-data text-[#f0edf8]">2000 МЕ</div>
+</div>
+</div>
+</div>
+<!-- Copy Right -->
+<div class="order-1 lg:order-2 trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
+<h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target relative pl-[1rem]">
+<svg class="absolute left-0 top-0 h-full w-[0.125rem]" preserveaspectratio="none">
+<line class="draw-line" stroke="var(--accent)" stroke-width="2" style="stroke-dasharray: 100; stroke-dashoffset: 100; transition: stroke-dashoffset 1s ease-out;" x1="1" x2="1" y1="0" y2="100%"></line>
+</svg>
+                        Ваши добавки — по решению ваших данных.
                     </h2>
-                    
-                    <p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6]">
-                        Not a generic women's multivitamin. Your ring's sleep + temperature data maps to specific micronutrient gaps each day. Meno-Pro ships exactly what your body needs, when it needs it.
+<p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6]">
+                        Не универсальный женский мультивитамин. Данные сна и температуры с вашего кольца ежедневно сопоставляются с конкретными дефицитами микронутриентов. Meno-Pro доставляет ровно то, что нужно вашему телу, и тогда, когда это нужно.
                     </p>
-
-                    <ul class="mt-[2rem] space-y-[1rem] text-[#f0edf8] font-medium text-[clamp(0.9375rem,1vw,1rem)]">
-                        <li class="flex items-center gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#e8734a]"></iconify-icon> Formulated by endocrinologists.</li>
-                        <li class="flex items-center gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#e8734a]"></iconify-icon> Adjusted weekly based on biosync.</li>
-                        <li class="flex items-center gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#e8734a]"></iconify-icon> Zero subscription lock-in.</li>
-                    </ul>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Divider -->
-    <div class="thermal-hr trigger-in-view"></div>
-
-    <!-- /004/ MENO-GPT -->
-    <section id="ai" class="py-[clamp(5rem,10vw,8.75rem)] relative">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4 text-center">
-            
-            <div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center justify-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
-                <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> /004/ MENO-GPT <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div>
-            </div>
-
-            <h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target max-w-[48rem] mx-auto trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                An Endocrinologist in Your Pocket. Private. Always On.
+<ul class="mt-[2rem] space-y-[1rem] text-[#f0edf8] font-medium text-[clamp(0.9375rem,1vw,1rem)]">
+<li class="flex items-center gap-[0.75rem]"><iconify-icon class="text-[#e8734a]" icon="solar:check-circle-linear"></iconify-icon> Разработано эндокринологами.</li>
+<li class="flex items-center gap-[0.75rem]"><iconify-icon class="text-[#e8734a]" icon="solar:check-circle-linear"></iconify-icon> Корректируется еженедельно на основе биосинхронизации.</li>
+<li class="flex items-center gap-[0.75rem]"><iconify-icon class="text-[#e8734a]" icon="solar:check-circle-linear"></iconify-icon> Никакой подписочной кабалы.</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- Divider -->
+<div class="thermal-hr trigger-in-view"></div>
+<!-- /004/ MENO-GPT -->
+<section class="py-[clamp(5rem,10vw,8.75rem)] relative" id="ai">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4 text-center">
+<div class="font-mono-data text-[#e8734a] mb-[1.5rem] flex items-center justify-center gap-[1rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
+<div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div> /004/ MENO-GPT <div class="h-[0.0625rem] w-[2rem] bg-[#e8734a]"></div>
+</div>
+<h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#8b85a0] thermal-target max-w-[48rem] mx-auto trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
+                Эндокринолог у вас в кармане. Приватно. Всегда на связи.
             </h2>
-            
-            <p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6] max-w-[42rem] mx-auto trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                Trained on 14,000+ peer-reviewed studies and the latest NAMS, BHRT, and WHI research. Generate a data report your doctor will actually use.
+<p class="mt-[2rem] text-[clamp(1.0625rem,1.2vw,1.1875rem)] text-[#8b85a0] leading-[1.6] max-w-[42rem] mx-auto trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
+                Обучен на 14 000+ рецензируемых исследованиях и новейших материалах NAMS, BHRT и WHI. Сформируйте отчёт по данным, которым ваш врач действительно воспользуется.
             </p>
-
-            <div class="mt-[4rem] max-w-[48rem] mx-auto bento-card p-[clamp(1rem,2vw,2rem)] text-left flex flex-col h-[28rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-300 relative">
-                
-                <div class="flex-1 overflow-hidden flex flex-col gap-[1.5rem] p-[1rem]">
-                    <div class="self-end max-w-[80%] bg-[#f0edf8]/10 text-[#f0edf8] p-[1rem] rounded-[1rem] rounded-tr-sm text-[0.9375rem]">
-                        Is bioidentical HRT safer than synthetic options? My doctor mentioned Premarin.
+<div class="mt-[4rem] max-w-[48rem] mx-auto bento-card p-[clamp(1rem,2vw,2rem)] text-left flex flex-col h-[28rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-300 relative">
+<div class="flex-1 overflow-hidden flex flex-col gap-[1.5rem] p-[1rem]">
+<div class="self-end max-w-[80%] bg-[#f0edf8]/10 text-[#f0edf8] p-[1rem] rounded-[1rem] rounded-tr-sm text-[0.9375rem]">
+                        Безопаснее ли биоидентичная ЗГТ, чем синтетические варианты? Мой врач упоминал Premarin.
                     </div>
-                    <div class="self-start max-w-[90%] bg-[#0c0b10] border border-[#f0edf8]/10 text-[#f0edf8] p-[1rem] rounded-[1rem] rounded-tl-sm text-[0.9375rem]">
-                        <div class="flex items-center gap-[0.5rem] mb-[0.5rem] text-[#e8734a] font-syne font-semibold text-[0.8125rem]">
-                            <iconify-icon icon="solar:magic-stick-3-linear"></iconify-icon> Meno-GPT
+<div class="self-start max-w-[90%] bg-[#0c0b10] border border-[#f0edf8]/10 text-[#f0edf8] p-[1rem] rounded-[1rem] rounded-tl-sm text-[0.9375rem]">
+<div class="flex items-center gap-[0.5rem] mb-[0.5rem] text-[#e8734a] font-syne font-semibold text-[0.8125rem]">
+<iconify-icon icon="solar:magic-stick-3-linear"></iconify-icon> Meno-GPT
                         </div>
-                        Based on the 2024 NAMS guidelines, transdermal bioidentical estradiol carries a lower risk profile for VTE (blood clots) compared to oral synthetic estrogens like Premarin. Let's look at how this applies to your recent sleep data...
+                        Согласно рекомендациям NAMS 2024 года, трансдермальный биоидентичный эстрадиол несёт меньший риск ВТЭ (тромбов) по сравнению с пероральными синтетическими эстрогенами вроде Premarin. Давайте посмотрим, как это соотносится с вашими недавними данными сна...
                         <div class="mt-[1rem] flex gap-[0.5rem]">
-                            <span class="text-[0.6875rem] font-mono-data bg-[#f0edf8]/5 px-[0.5rem] py-[0.25rem] text-[#8b85a0] border border-[#f0edf8]/10">[Ref: NAMS 2024]</span>
-                            <span class="text-[0.6875rem] font-mono-data bg-[#f0edf8]/5 px-[0.5rem] py-[0.25rem] text-[#8b85a0] border border-[#f0edf8]/10">[Ref: WHI Follow-up]</span>
+<span class="text-[0.6875rem] font-mono-data bg-[#f0edf8]/5 px-[0.5rem] py-[0.25rem] text-[#8b85a0] border border-[#f0edf8]/10">[Реф: NAMS 2024]</span>
+<span class="text-[0.6875rem] font-mono-data bg-[#f0edf8]/5 px-[0.5rem] py-[0.25rem] text-[#8b85a0] border border-[#f0edf8]/10">[Реф: WHI Follow-up]</span>
+</div>
+</div>
+</div>
+<div class="mt-auto pt-[1rem] border-t border-[#f0edf8]/10">
+<div class="flex items-center gap-[1rem] bg-[#0c0b10] rounded-full p-[0.5rem] pl-[1.5rem] border border-[#f0edf8]/20 focus-within:border-[#e8734a] transition-colors">
+<input class="bg-transparent border-none outline-none flex-1 text-[#f0edf8] text-[0.9375rem] placeholder-[#8b85a0]" disabled="" placeholder="Спросите MenoGPT..." type="text"/>
+<button class="w-[2.5rem] h-[2.5rem] rounded-full bg-[#e8734a] text-[#0c0b10] flex items-center justify-center hover:bg-[#f5c97a] transition-colors">
+<iconify-icon icon="solar:arrow-up-linear" width="1.25rem"></iconify-icon>
+</button>
+</div>
+</div>
+<!-- Trust Pillars Absolute on Desktop -->
+<div class="hidden lg:flex absolute top-1/2 -left-[14rem] -translate-y-1/2 flex-col gap-[1rem]">
+<div class="bg-[#161420] border border-[#f0edf8]/10 px-[1rem] py-[0.5rem] rounded-full text-[0.75rem] font-mono-data text-[#8b85a0] flex items-center gap-[0.5rem] shadow-lg"><iconify-icon class="text-[#e8734a]" icon="solar:lock-password-linear"></iconify-icon> HIPAA-совместимость</div>
+<div class="bg-[#161420] border border-[#f0edf8]/10 px-[1rem] py-[0.5rem] rounded-full text-[0.75rem] font-mono-data text-[#8b85a0] flex items-center gap-[0.5rem] shadow-lg"><iconify-icon class="text-[#e8734a]" icon="solar:shield-warning-linear"></iconify-icon> Ноль проданных данных</div>
+</div>
+<div class="hidden lg:flex absolute top-1/2 -right-[14rem] -translate-y-1/2 flex-col gap-[1rem]">
+<div class="bg-[#161420] border border-[#f0edf8]/10 px-[1rem] py-[0.5rem] rounded-full text-[0.75rem] font-mono-data text-[#8b85a0] flex items-center gap-[0.5rem] shadow-lg"><iconify-icon class="text-[#e8734a]" icon="solar:stethoscope-linear"></iconify-icon> Эскалация к NP менее чем за 4 ч</div>
+</div>
+</div>
+</div>
+</section>
+<!-- /005/ SOCIAL PROOF -->
+<section class="py-[clamp(4rem,8vw,6rem)] border-y border-[#f0edf8]/5 bg-[#161420]/30 overflow-hidden" id="proof">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
+<!-- Metrics -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-[3rem] text-center mb-[4rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700">
+<div>
+<div class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] text-[#f0edf8] tracking-tight"><span class="count-up" data-target="127000">0</span></div>
+<div class="text-[0.875rem] text-[#8b85a0] mt-[0.5rem]">Женщин отслеживают ежедневно</div>
+</div>
+<div>
+<div class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] text-[#e8734a] tracking-tight"><span class="count-up" data-target="91">0</span>%</div>
+<div class="text-[0.875rem] text-[#8b85a0] mt-[0.5rem]">Снижение тяжести приливов за 30 дней</div>
+</div>
+<div>
+<div class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] text-[#f0edf8] tracking-tight"><span class="count-up" data-decimals="1" data-target="4.9">0</span>★</div>
+<div class="text-[0.875rem] text-[#8b85a0] mt-[0.5rem]">Средний рейтинг в магазинах приложений</div>
+</div>
+</div>
+<!-- Quotes Strip -->
+<div class="relative w-[100vw] left-1/2 -translate-x-1/2 mb-[4rem]">
+<!-- Fade masks -->
+<div class="absolute left-0 top-0 bottom-0 w-[10vw] bg-gradient-to-r from-[#0c0b10] to-transparent z-10 pointer-events-none"></div>
+<div class="absolute right-0 top-0 bottom-0 w-[10vw] bg-gradient-to-l from-[#0c0b10] to-transparent z-10 pointer-events-none"></div>
+<div class="flex gap-[1.5rem] w-max animate-scroll hover:[animation-play-state:paused] px-[10vw]">
+<!-- Card 1 -->
+<div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
+<div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"Я перестала просыпаться в панике. Я просыпаюсь с графиком. Это разница между ощущением, что ты сломана, и ощущением, что ты информирована."</div>
+<div class="flex items-center gap-[1rem]">
+<div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">SM</div>
+<div>
+<div class="text-[0.875rem] text-[#f0edf8] font-medium">Sarah M., 47</div>
+<div class="text-[0.75rem] text-[#8b85a0] font-mono-data mt-[0.125rem]">ОСТИН, ТЕХАС</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
+<div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"Мои пациентки приносят отчёты MenoMorph. Хотела бы я, чтобы каждый инструмент работал так. Он даёт мне данные, необходимые для точного назначения лечения."</div>
+<div class="flex items-center gap-[1rem]">
+<div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">PN</div>
+<div>
+<div class="text-[0.875rem] text-[#f0edf8] font-medium">Д-р Priya N.</div>
+<div class="text-[0.75rem] text-[#e8734a] font-mono-data mt-[0.125rem]">Акушер-гинеколог</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
+<div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"Доставка добавок на основе моих провалов сна полностью изменила мой уровень энергии. Это похоже на магию, но это просто математика."</div>
+<div class="flex items-center gap-[1rem]">
+<div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">JL</div>
+<div>
+<div class="text-[0.875rem] text-[#f0edf8] font-medium">Jessica L., 51</div>
+<div class="text-[0.75rem] text-[#8b85a0] font-mono-data mt-[0.125rem]">СИЭТЛ, ШТАТ ВАШИНГТОН</div>
+</div>
+</div>
+</div>
+<!-- Duplicate for infinite scroll -->
+<div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
+<div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"Я перестала просыпаться в панике. Я просыпаюсь с графиком. Это разница между ощущением, что ты сломана, и ощущением, что ты информирована."</div>
+<div class="flex items-center gap-[1rem]">
+<div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">SM</div>
+<div>
+<div class="text-[0.875rem] text-[#f0edf8] font-medium">Sarah M., 47</div>
+<div class="text-[0.75rem] text-[#8b85a0] font-mono-data mt-[0.125rem]">ОСТИН, ТЕХАС</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ Пресса 
+<div class="flex flex-wrap justify-center items-center gap-[clamp(2rem,4vw,4rem)] opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+<span class="font-syne font-bold text-[1.25rem] tracking-tight">VOGUE</span>
+<span class="font-syne font-bold text-[1.25rem] tracking-tight">Well+Good</span>
+<span class="font-syne font-bold text-[1.25rem] tracking-tight">STAT</span>
+<span class="font-syne font-bold text-[1.25rem] tracking-tight">Forbes</span>
+<span class="font-syne font-bold text-[1.25rem] tracking-tight">NYT Well</span>
+</div>
+</div>
+</section>
+ /006/ ЦЕНЫ 
+<section class="py-[clamp(5rem,10vw,8.75rem)] relative" id="pricing">
+<div class="max-w-[clamp(21.25rem,88vw,60rem)] mx-auto px-4">
+<div class="text-center mb-[4rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700">
+<div class="font-mono-data text-[#e8734a] mb-[1rem]">/006/ ЦЕНЫ</div>
+<h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#f0edf8]">Выберите свой уровень контроля.</h2>
+<div class="mt-[2rem] flex items-center justify-center gap-[1rem] text-[0.875rem]">
+<span class="text-[#8b85a0] font-medium" id="label-monthly">Ежемесячно</span>
+<button aria-pressed="false" class="w-[3rem] h-[1.5rem] bg-[#161420] border border-[#f0edf8]/20 rounded-full relative transition-colors duration-300" id="billing-toggle">
+<div class="w-[1.125rem] h-[1.125rem] bg-[#e8734a] rounded-full absolute top-[0.125rem] left-[0.1875rem] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
+</button>
+<span class="text-[#f0edf8] font-medium" id="label-annual">Ежегодно <span class="text-[#e8734a] text-[0.6875rem] font-mono-data ml-[0.25rem]">СКИДКА 20%</span></span>
+</div>
+</div>
+<div class="grid md:grid-cols-2 gap-[1.5rem] items-stretch">
+<!-- Hardware Only -->
+<div class="bento-card p-[clamp(1.5rem,3vw,2.5rem)] flex flex-col trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
+<h3 class="font-syne font-semibold text-[1.5rem] mb-[0.5rem]">Оборудование</h3>
+<div class="text-[0.875rem] text-[#8b85a0] mb-[2rem]">Базовый сенсорный слой.</div>
+<div class="font-syne font-bold text-[3rem] text-[#f0edf8] mb-[2rem] leading-none">$149 <span class="text-[1rem] font-inter text-[#8b85a0] font-normal">единоразово</span></div>
+<ul class="space-y-[1rem] mb-[3rem] flex-1 text-[0.9375rem]">
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#f0edf8] mt-[0.25rem]" icon="solar:check-circle-linear"></iconify-icon> <span class="text-[#8b85a0]">Кольцо Aura</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#f0edf8] mt-[0.25rem]" icon="solar:check-circle-linear"></iconify-icon> <span class="text-[#8b85a0]">Оповещения Thermo-Sync в реальном времени</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#f0edf8] mt-[0.25rem]" icon="solar:check-circle-linear"></iconify-icon> <span class="text-[#8b85a0]">Базовое отслеживание в приложении</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#f0edf8] mt-[0.25rem]" icon="solar:check-circle-linear"></iconify-icon> <span class="text-[#8b85a0]">Бесплатная доставка</span></li>
+</ul>
+<button class="w-full btn-ghost font-syne font-semibold text-[1rem] py-[1rem] clip-para">Получить кольцо</button>
+</div>
+<!-- Meno-Pro -->
+<div class="bento-card p-[clamp(1.5rem,3vw,2.5rem)] flex flex-col border-[#e8734a]/40 relative trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
+<div class="absolute -top-[0.75rem] left-1/2 -translate-x-1/2 bg-[#e8734a] text-[#0c0b10] font-mono-data text-[0.6875rem] px-[1rem] py-[0.25rem] rounded-full font-bold">САМЫЙ ПОПУЛЯРНЫЙ</div>
+<h3 class="font-syne font-semibold text-[1.5rem] mb-[0.5rem] text-[#e8734a]">Meno-Pro</h3>
+<div class="text-[0.875rem] text-[#8b85a0] mb-[2rem]">Полная экосистема данных и клинической поддержки.</div>
+<div class="font-syne font-bold text-[3rem] text-[#f0edf8] mb-[2rem] leading-none flex items-baseline">
+                        $<span id="price-pro">15</span> <span class="text-[1rem] font-inter text-[#8b85a0] font-normal ml-[0.5rem]">/мес</span>
+<span class="text-[0.75rem] font-inter text-[#8b85a0] ml-auto">+ кольцо за $149</span>
+</div>
+<ul class="space-y-[1rem] mb-[3rem] flex-1 text-[0.9375rem]">
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#e8734a] mt-[0.25rem]" icon="solar:check-circle-bold"></iconify-icon> <span class="text-[#f0edf8]">Всё из Hardware</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#e8734a] mt-[0.25rem]" icon="solar:check-circle-bold"></iconify-icon> <span class="text-[#f0edf8]">Персонализированная доставка добавок</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#e8734a] mt-[0.25rem]" icon="solar:check-circle-bold"></iconify-icon> <span class="text-[#f0edf8]">Доступ к практикующей медсестре 24/7</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#e8734a] mt-[0.25rem]" icon="solar:check-circle-bold"></iconify-icon> <span class="text-[#f0edf8]">Неограниченные запросы к Meno-GPT</span></li>
+<li class="flex items-start gap-[0.75rem]"><iconify-icon class="text-[#e8734a] mt-[0.25rem]" icon="solar:check-circle-bold"></iconify-icon> <span class="text-[#f0edf8]">Ежемесячный PDF для врача</span></li>
+</ul>
+<button class="w-full bg-[#e8734a] text-[#0c0b10] font-syne font-semibold text-[1rem] py-[1rem] clip-para hover:bg-[#f5c97a] transition-colors">Начать Meno-Pro</button>
+</div>
+</div>
+</div>
+</section>
+<!-- /007/ FAQ -->
+<section class="py-[clamp(5rem,10vw,8.75rem)] relative border-t border-[#f0edf8]/5">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
+<div class="grid lg:grid-cols-12 gap-[clamp(3rem,6vw,5rem)] items-start">
+<div class="lg:col-span-5 trigger-in-view opacity-0 translate-y-8 transition-all duration-700">
+<div class="font-mono-data text-[#e8734a] mb-[1rem]">/007/ ВОЗРАЖЕНИЯ</div>
+<h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#f0edf8]">У вас вопросы. У нас данные.</h2>
+</div>
+<div class="lg:col-span-7 space-y-[1rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
+<details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden" open="">
+<summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
+                            Есть ли медицинская валидация?
+                            <iconify-icon class="text-[#e8734a] group-open:hidden" icon="solar:add-linear"></iconify-icon>
+<iconify-icon class="text-[#e8734a] hidden group-open:block" icon="solar:minus-linear"></iconify-icon>
+</summary>
+<div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
+                            Точность датчика независимо подтверждена с разрешением 0,1°C. Клиническое исследование эффективности прогнозирования вазомоторных симптомов опубликовано в Q1 2025.
                         </div>
-                    </div>
-                </div>
-
-                <div class="mt-auto pt-[1rem] border-t border-[#f0edf8]/10">
-                    <div class="flex items-center gap-[1rem] bg-[#0c0b10] rounded-full p-[0.5rem] pl-[1.5rem] border border-[#f0edf8]/20 focus-within:border-[#e8734a] transition-colors">
-                        <input type="text" placeholder="Ask MenoGPT..." class="bg-transparent border-none outline-none flex-1 text-[#f0edf8] text-[0.9375rem] placeholder-[#8b85a0]" disabled="">
-                        <button class="w-[2.5rem] h-[2.5rem] rounded-full bg-[#e8734a] text-[#0c0b10] flex items-center justify-center hover:bg-[#f5c97a] transition-colors">
-                            <iconify-icon icon="solar:arrow-up-linear" width="1.25rem"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Trust Pillars Absolute on Desktop -->
-                <div class="hidden lg:flex absolute top-1/2 -left-[14rem] -translate-y-1/2 flex-col gap-[1rem]">
-                    <div class="bg-[#161420] border border-[#f0edf8]/10 px-[1rem] py-[0.5rem] rounded-full text-[0.75rem] font-mono-data text-[#8b85a0] flex items-center gap-[0.5rem] shadow-lg"><iconify-icon icon="solar:lock-password-linear" class="text-[#e8734a]"></iconify-icon> HIPAA-Compliant</div>
-                    <div class="bg-[#161420] border border-[#f0edf8]/10 px-[1rem] py-[0.5rem] rounded-full text-[0.75rem] font-mono-data text-[#8b85a0] flex items-center gap-[0.5rem] shadow-lg"><iconify-icon icon="solar:shield-warning-linear" class="text-[#e8734a]"></iconify-icon> Zero data sold</div>
-                </div>
-                <div class="hidden lg:flex absolute top-1/2 -right-[14rem] -translate-y-1/2 flex-col gap-[1rem]">
-                    <div class="bg-[#161420] border border-[#f0edf8]/10 px-[1rem] py-[0.5rem] rounded-full text-[0.75rem] font-mono-data text-[#8b85a0] flex items-center gap-[0.5rem] shadow-lg"><iconify-icon icon="solar:stethoscope-linear" class="text-[#e8734a]"></iconify-icon> NP escalation in &lt;4h</div>
-                </div>
-
-            </div>
-
-        </div>
-    </section>
-
-    <!-- /005/ SOCIAL PROOF -->
-    <section id="proof" class="py-[clamp(4rem,8vw,6rem)] border-y border-[#f0edf8]/5 bg-[#161420]/30 overflow-hidden">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
-            
-            <!-- Metrics -->
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-[3rem] text-center mb-[4rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700">
-                <div>
-                    <div class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] text-[#f0edf8] tracking-tight"><span class="count-up" data-target="127000">0</span></div>
-                    <div class="text-[0.875rem] text-[#8b85a0] mt-[0.5rem]">Women tracking daily</div>
-                </div>
-                <div>
-                    <div class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] text-[#e8734a] tracking-tight"><span class="count-up" data-target="91">0</span>%</div>
-                    <div class="text-[0.875rem] text-[#8b85a0] mt-[0.5rem]">Reduced flash severity in 30 days</div>
-                </div>
-                <div>
-                    <div class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] text-[#f0edf8] tracking-tight"><span class="count-up" data-target="4.9" data-decimals="1">0</span>★</div>
-                    <div class="text-[0.875rem] text-[#8b85a0] mt-[0.5rem]">Average app store rating</div>
-                </div>
-            </div>
-
-            <!-- Quotes Strip -->
-            <div class="relative w-[100vw] left-1/2 -translate-x-1/2 mb-[4rem]">
-                <!-- Fade masks -->
-                <div class="absolute left-0 top-0 bottom-0 w-[10vw] bg-gradient-to-r from-[#0c0b10] to-transparent z-10 pointer-events-none"></div>
-                <div class="absolute right-0 top-0 bottom-0 w-[10vw] bg-gradient-to-l from-[#0c0b10] to-transparent z-10 pointer-events-none"></div>
-                
-                <div class="flex gap-[1.5rem] w-max animate-scroll hover:[animation-play-state:paused] px-[10vw]">
-                    <!-- Card 1 -->
-                    <div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
-                        <div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"I stopped waking up in a panic. I wake up with a graph. It's the difference between feeling broken and feeling informed."</div>
-                        <div class="flex items-center gap-[1rem]">
-                            <div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">SM</div>
-                            <div>
-                                <div class="text-[0.875rem] text-[#f0edf8] font-medium">Sarah M., 47</div>
-                                <div class="text-[0.75rem] text-[#8b85a0] font-mono-data mt-[0.125rem]">AUSTIN, TX</div>
-                            </div>
+</details>
+<details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
+<summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
+                            А если мне подходит ЗГТ?
+                            <iconify-icon class="text-[#e8734a] group-open:hidden" icon="solar:add-linear"></iconify-icon>
+<iconify-icon class="text-[#e8734a] hidden group-open:block" icon="solar:minus-linear"></iconify-icon>
+</summary>
+<div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
+                            Meno-GPT помогает подготовить именно этот разговор. Мы поддерживаем любой путь лечения. Наши данные часто помогают врачам точнее титровать дозы ЗГТ.
                         </div>
-                    </div>
-                    <!-- Card 2 -->
-                    <div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
-                        <div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"My patients bring in MenoMorph reports. I wish every tool worked this way. It gives me the data I need to prescribe accurately."</div>
-                        <div class="flex items-center gap-[1rem]">
-                            <div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">PN</div>
-                            <div>
-                                <div class="text-[0.875rem] text-[#f0edf8] font-medium">Dr. Priya N.</div>
-                                <div class="text-[0.75rem] text-[#e8734a] font-mono-data mt-[0.125rem]">OB-GYN</div>
-                            </div>
+</details>
+<details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
+<summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
+                            У меня уже есть Apple Watch.
+                            <iconify-icon class="text-[#e8734a] group-open:hidden" icon="solar:add-linear"></iconify-icon>
+<iconify-icon class="text-[#e8734a] hidden group-open:block" icon="solar:minus-linear"></iconify-icon>
+</summary>
+<div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
+                            Apple Watch измеряет пульс и ретроспективные средние ночные температуры. Мы измеряем непрерывную терморегуляцию на уровне гормонального триггера в реальном времени. Они говорят, как вы спали; мы говорим, когда придёт прилив.
                         </div>
-                    </div>
-                    <!-- Card 3 -->
-                    <div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
-                        <div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"The supplement delivery based on my sleep dips completely changed my energy levels. It feels like magic, but it's just math."</div>
-                        <div class="flex items-center gap-[1rem]">
-                            <div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">JL</div>
-                            <div>
-                                <div class="text-[0.875rem] text-[#f0edf8] font-medium">Jessica L., 51</div>
-                                <div class="text-[0.75rem] text-[#8b85a0] font-mono-data mt-[0.125rem]">SEATTLE, WA</div>
-                            </div>
+</details>
+<details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
+<summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
+                            А как насчёт приватности?
+                            <iconify-icon class="text-[#e8734a] group-open:hidden" icon="solar:add-linear"></iconify-icon>
+<iconify-icon class="text-[#e8734a] hidden group-open:block" icon="solar:minus-linear"></iconify-icon>
+</summary>
+<div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
+                            HIPAA-совместимость, сертификация SOC 2 Type II. Ваши данные шифруются сквозным образом и никогда не продаются третьим лицам. Никогда.
                         </div>
-                    </div>
-                    <!-- Duplicate for infinite scroll -->
-                    <div class="w-[24rem] bento-card p-[1.5rem] flex-shrink-0">
-                        <div class="text-[#f0edf8] text-[1rem] leading-[1.6] mb-[1.5rem]">"I stopped waking up in a panic. I wake up with a graph. It's the difference between feeling broken and feeling informed."</div>
-                        <div class="flex items-center gap-[1rem]">
-                            <div class="w-[2.5rem] h-[2.5rem] bg-[#f0edf8]/10 rounded-full flex items-center justify-center font-syne text-[#8b85a0]">SM</div>
-                            <div>
-                                <div class="text-[0.875rem] text-[#f0edf8] font-medium">Sarah M., 47</div>
-                                <div class="text-[0.75rem] text-[#8b85a0] font-mono-data mt-[0.125rem]">AUSTIN, TX</div>
-                            </div>
+</details>
+<details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
+<summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
+                            А если это не сработает?
+                            <iconify-icon class="text-[#e8734a] group-open:hidden" icon="solar:add-linear"></iconify-icon>
+<iconify-icon class="text-[#e8734a] hidden group-open:block" icon="solar:minus-linear"></iconify-icon>
+</summary>
+<div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
+                            Полный возврат в течение 30 дней. Без вопросов и без платы за обратную доставку. Мы хотим, чтобы вы сами почувствовали разницу.
                         </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Press -->
-            <div class="flex flex-wrap justify-center items-center gap-[clamp(2rem,4vw,4rem)] opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
-                <span class="font-syne font-bold text-[1.25rem] tracking-tight">VOGUE</span>
-                <span class="font-syne font-bold text-[1.25rem] tracking-tight">Well+Good</span>
-                <span class="font-syne font-bold text-[1.25rem] tracking-tight">STAT</span>
-                <span class="font-syne font-bold text-[1.25rem] tracking-tight">Forbes</span>
-                <span class="font-syne font-bold text-[1.25rem] tracking-tight">NYT Well</span>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- /006/ PRICING -->
-    <section id="pricing" class="py-[clamp(5rem,10vw,8.75rem)] relative">
-        <div class="max-w-[clamp(21.25rem,88vw,60rem)] mx-auto px-4">
-            
-            <div class="text-center mb-[4rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700">
-                <div class="font-mono-data text-[#e8734a] mb-[1rem]">/006/ PRICING</div>
-                <h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#f0edf8]">Pick Your Level of Control.</h2>
-                
-                <div class="mt-[2rem] flex items-center justify-center gap-[1rem] text-[0.875rem]">
-                    <span class="text-[#8b85a0] font-medium" id="label-monthly">Monthly</span>
-                    <button class="w-[3rem] h-[1.5rem] bg-[#161420] border border-[#f0edf8]/20 rounded-full relative transition-colors duration-300" id="billing-toggle" aria-pressed="false">
-                        <div class="w-[1.125rem] h-[1.125rem] bg-[#e8734a] rounded-full absolute top-[0.125rem] left-[0.1875rem] transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]"></div>
-                    </button>
-                    <span class="text-[#f0edf8] font-medium" id="label-annual">Annual <span class="text-[#e8734a] text-[0.6875rem] font-mono-data ml-[0.25rem]">SAVE 20%</span></span>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 gap-[1.5rem] items-stretch">
-                
-                <!-- Hardware Only -->
-                <div class="bento-card p-[clamp(1.5rem,3vw,2.5rem)] flex flex-col trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                    <h3 class="font-syne font-semibold text-[1.5rem] mb-[0.5rem]">Hardware</h3>
-                    <div class="text-[0.875rem] text-[#8b85a0] mb-[2rem]">The essential sensor layer.</div>
-                    
-                    <div class="font-syne font-bold text-[3rem] text-[#f0edf8] mb-[2rem] leading-none">$149 <span class="text-[1rem] font-inter text-[#8b85a0] font-normal">one-time</span></div>
-                    
-                    <ul class="space-y-[1rem] mb-[3rem] flex-1 text-[0.9375rem]">
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#f0edf8] mt-[0.25rem]"></iconify-icon> <span class="text-[#8b85a0]">Aura Ring Band</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#f0edf8] mt-[0.25rem]"></iconify-icon> <span class="text-[#8b85a0]">Thermo-Sync real-time alerts</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#f0edf8] mt-[0.25rem]"></iconify-icon> <span class="text-[#8b85a0]">Basic app tracking</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-linear" class="text-[#f0edf8] mt-[0.25rem]"></iconify-icon> <span class="text-[#8b85a0]">Free shipping</span></li>
-                    </ul>
-
-                    <button class="w-full btn-ghost font-syne font-semibold text-[1rem] py-[1rem] clip-para">Get the Ring</button>
-                </div>
-
-                <!-- Meno-Pro -->
-                <div class="bento-card p-[clamp(1.5rem,3vw,2.5rem)] flex flex-col border-[#e8734a]/40 relative trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                    <div class="absolute -top-[0.75rem] left-1/2 -translate-x-1/2 bg-[#e8734a] text-[#0c0b10] font-mono-data text-[0.6875rem] px-[1rem] py-[0.25rem] rounded-full font-bold">MOST POPULAR</div>
-                    
-                    <h3 class="font-syne font-semibold text-[1.5rem] mb-[0.5rem] text-[#e8734a]">Meno-Pro</h3>
-                    <div class="text-[0.875rem] text-[#8b85a0] mb-[2rem]">The complete data &amp; clinical ecosystem.</div>
-                    
-                    <div class="font-syne font-bold text-[3rem] text-[#f0edf8] mb-[2rem] leading-none flex items-baseline">
-                        $<span id="price-pro">15</span> <span class="text-[1rem] font-inter text-[#8b85a0] font-normal ml-[0.5rem]">/mo</span>
-                        <span class="text-[0.75rem] font-inter text-[#8b85a0] ml-auto">+ $149 Ring</span>
-                    </div>
-                    
-                    <ul class="space-y-[1rem] mb-[3rem] flex-1 text-[0.9375rem]">
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-bold" class="text-[#e8734a] mt-[0.25rem]"></iconify-icon> <span class="text-[#f0edf8]">Everything in Hardware</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-bold" class="text-[#e8734a] mt-[0.25rem]"></iconify-icon> <span class="text-[#f0edf8]">Personalized supplement delivery</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-bold" class="text-[#e8734a] mt-[0.25rem]"></iconify-icon> <span class="text-[#f0edf8]">24/7 Nurse Practitioner access</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-bold" class="text-[#e8734a] mt-[0.25rem]"></iconify-icon> <span class="text-[#f0edf8]">Meno-GPT unlimited queries</span></li>
-                        <li class="flex items-start gap-[0.75rem]"><iconify-icon icon="solar:check-circle-bold" class="text-[#e8734a] mt-[0.25rem]"></iconify-icon> <span class="text-[#f0edf8]">Monthly doctor-ready PDF</span></li>
-                    </ul>
-
-                    <button class="w-full bg-[#e8734a] text-[#0c0b10] font-syne font-semibold text-[1rem] py-[1rem] clip-para hover:bg-[#f5c97a] transition-colors">Start Meno-Pro</button>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- /007/ FAQ -->
-    <section class="py-[clamp(5rem,10vw,8.75rem)] relative border-t border-[#f0edf8]/5">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
-            
-            <div class="grid lg:grid-cols-12 gap-[clamp(3rem,6vw,5rem)] items-start">
-                <div class="lg:col-span-5 trigger-in-view opacity-0 translate-y-8 transition-all duration-700">
-                    <div class="font-mono-data text-[#e8734a] mb-[1rem]">/007/ OBJECTIONS</div>
-                    <h2 class="font-syne font-bold text-[clamp(2.5rem,4vw,3.5rem)] leading-[1.1] text-[#f0edf8]">You Have Questions. We Have Data.</h2>
-                </div>
-
-                <div class="lg:col-span-7 space-y-[1rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                    
-                    <details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden" open="">
-                        <summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
-                            Is it medically validated?
-                            <iconify-icon icon="solar:add-linear" class="text-[#e8734a] group-open:hidden"></iconify-icon>
-                            <iconify-icon icon="solar:minus-linear" class="text-[#e8734a] hidden group-open:block"></iconify-icon>
-                        </summary>
-                        <div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
-                            Sensor accuracy independently verified at 0.1°C resolution. Clinical study analyzing efficacy in vasomotor symptom prediction published Q1 2025.
-                        </div>
-                    </details>
-
-                    <details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
-                        <summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
-                            What if HRT is right for me?
-                            <iconify-icon icon="solar:add-linear" class="text-[#e8734a] group-open:hidden"></iconify-icon>
-                            <iconify-icon icon="solar:minus-linear" class="text-[#e8734a] hidden group-open:block"></iconify-icon>
-                        </summary>
-                        <div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
-                            Meno-GPT helps you prepare that exact conversation. We support every treatment path. Our data often helps physicians titrate HRT doses more accurately.
-                        </div>
-                    </details>
-
-                    <details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
-                        <summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
-                            I already have an Apple Watch.
-                            <iconify-icon icon="solar:add-linear" class="text-[#e8734a] group-open:hidden"></iconify-icon>
-                            <iconify-icon icon="solar:minus-linear" class="text-[#e8734a] hidden group-open:block"></iconify-icon>
-                        </summary>
-                        <div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
-                            Apple Watch measures heart rate and retrospective nightly temperature averages. We measure continuous thermoregulation at the hormonal trigger layer in real-time. They tell you how you slept; we tell you when a flash is coming.
-                        </div>
-                    </details>
-
-                    <details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
-                        <summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
-                            What about my privacy?
-                            <iconify-icon icon="solar:add-linear" class="text-[#e8734a] group-open:hidden"></iconify-icon>
-                            <iconify-icon icon="solar:minus-linear" class="text-[#e8734a] hidden group-open:block"></iconify-icon>
-                        </summary>
-                        <div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
-                            HIPAA-compliant, SOC 2 Type II certified. Your data is encrypted end-to-end and never sold to third parties. Ever.
-                        </div>
-                    </details>
-
-                    <details class="group bg-[#161420] border border-[#f0edf8]/10 rounded-[1rem] overflow-hidden">
-                        <summary class="flex justify-between items-center p-[1.5rem] cursor-pointer font-syne font-semibold text-[1.125rem] text-[#f0edf8]">
-                            What if it doesn't work?
-                            <iconify-icon icon="solar:add-linear" class="text-[#e8734a] group-open:hidden"></iconify-icon>
-                            <iconify-icon icon="solar:minus-linear" class="text-[#e8734a] hidden group-open:block"></iconify-icon>
-                        </summary>
-                        <div class="px-[1.5rem] pb-[1.5rem] text-[#8b85a0] text-[0.9375rem] leading-[1.6]">
-                            30-day full refund. No questions asked, no return shipping fee. We want you to feel the difference yourself.
-                        </div>
-                    </details>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- /008/ FINAL CTA -->
-    <section class="py-[clamp(6rem,12vw,10rem)] relative overflow-hidden flex items-center justify-center">
-        <!-- Intense glow for final section -->
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(232,115,74,0.1)_0%,transparent_70%)] pointer-events-none"></div>
-
-        <div class="max-w-[clamp(21.25rem,88vw,48rem)] mx-auto px-4 text-center relative z-10">
-            
-            <div class="inline-flex items-center gap-[0.5rem] bg-[#e8734a]/10 border border-[#e8734a]/30 rounded-full px-[1rem] py-[0.375rem] mb-[2rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
-                <div class="w-[0.375rem] h-[0.375rem] bg-[#e8734a] rounded-full live-dot"></div>
-                <span class="font-mono-data tracking-[0.05em] text-[#e8734a] uppercase">LIMITED: First 500 Meno-Pro Members Lock $12/mo Forever</span>
-            </div>
-
-            <h2 class="font-syne font-bold text-[clamp(3rem,5vw,4.5rem)] leading-[1.05] text-[#f0edf8] mb-[1.5rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
-                Don't Just Survive the Change.
+</details>
+</div>
+</div>
+</div>
+</section>
+<!-- /008/ FINAL CTA -->
+<section class="py-[clamp(6rem,12vw,10rem)] relative overflow-hidden flex items-center justify-center">
+<!-- Intense glow for final section -->
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(232,115,74,0.1)_0%,transparent_70%)] pointer-events-none"></div>
+<div class="max-w-[clamp(21.25rem,88vw,48rem)] mx-auto px-4 text-center relative z-10">
+<div class="inline-flex items-center gap-[0.5rem] bg-[#e8734a]/10 border border-[#e8734a]/30 rounded-full px-[1rem] py-[0.375rem] mb-[2rem] trigger-in-view opacity-0 translate-y-4 transition-all duration-700">
+<div class="w-[0.375rem] h-[0.375rem] bg-[#e8734a] rounded-full live-dot"></div>
+<span class="font-mono-data tracking-[0.05em] text-[#e8734a] uppercase">ОГРАНИЧЕНО: первые 500 участников Meno-Pro фиксируют $12/мес навсегда</span>
+</div>
+<h2 class="font-syne font-bold text-[clamp(3rem,5vw,4.5rem)] leading-[1.05] text-[#f0edf8] mb-[1.5rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-100">
+                Не просто переживайте перемены.
             </h2>
-            
-            <p class="text-[clamp(1.125rem,1.5vw,1.375rem)] text-[#8b85a0] mb-[3rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
-                Join 127,000 women who stopped guessing and started knowing.
+<p class="text-[clamp(1.125rem,1.5vw,1.375rem)] text-[#8b85a0] mb-[3rem] trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-200">
+                Присоединяйтесь к 127 000 женщин, которые перестали гадать и начали знать.
             </p>
-
-            <div class="trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-300">
-                <button class="bg-[#e8734a] text-[#0c0b10] font-syne font-bold text-[clamp(1.125rem,1.5vw,1.25rem)] px-[3rem] py-[1.25rem] clip-para hover:bg-[#f5c97a] hover:scale-105 transition-all duration-300 shadow-[0_0_2rem_rgba(232,115,74,0.3)]">
-                    Get Your Aura Ring
+<div class="trigger-in-view opacity-0 translate-y-8 transition-all duration-700 delay-300">
+<button class="bg-[#e8734a] text-[#0c0b10] font-syne font-bold text-[clamp(1.125rem,1.5vw,1.25rem)] px-[3rem] py-[1.25rem] clip-para hover:bg-[#f5c97a] hover:scale-105 transition-all duration-300 shadow-[0_0_2rem_rgba(232,115,74,0.3)]">
+                    Получите своё кольцо Aura
                 </button>
-            </div>
-
-            <div class="mt-[2rem] flex flex-wrap justify-center gap-[1.5rem] text-[#8b85a0] text-[0.75rem] trigger-in-view opacity-0 transition-all duration-700 delay-500">
-                <span>Free shipping</span> • <span>30-day guarantee</span> • <span>Ships in 48h</span> • <span>HIPAA-compliant</span>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="border-t border-[#f0edf8]/10 bg-[#0c0b10] pt-[clamp(4rem,8vw,6rem)] pb-[2rem]">
-        <div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
-            
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-[3rem] mb-[4rem]">
-                <!-- Col 1 -->
-                <div class="md:col-span-1">
-                    <a href="#" class="flex items-center gap-[0.75rem] mb-[1rem]">
-                        <div class="relative w-[1.5rem] h-[1.5rem]">
-                            <svg viewBox="0 0 24 24" fill="none" class="w-full h-full text-[#f0edf8]">
-                                <circle cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5" stroke-dasharray="60 10"></circle>
-                                <line x1="22" y1="12" x2="26" y2="12" stroke="currentColor" stroke-width="2.5" class="text-[#e8734a]"></line>
-                            </svg>
-                        </div>
-                        <span class="font-syne font-bold text-[1.125rem] tracking-[-0.02em] text-[#f0edf8]">MenoMorph</span>
-                    </a>
-                    <p class="text-[0.875rem] text-[#8b85a0] mb-[1.5rem]">Master the data behind the change.</p>
-                    <div class="flex gap-[1rem] text-[#8b85a0]">
-                        <a href="#" class="hover:text-[#e8734a] transition-colors"><iconify-icon icon="solar:twitter-linear" width="1.25rem"></iconify-icon></a>
-                        <a href="#" class="hover:text-[#e8734a] transition-colors"><iconify-icon icon="solar:instagram-linear" width="1.25rem"></iconify-icon></a>
-                    </div>
-                </div>
-
-                <!-- Col 2 -->
-                <div>
-                    <h4 class="font-syne font-semibold text-[#f0edf8] mb-[1rem]">Product</h4>
-                    <ul class="space-y-[0.75rem] text-[0.875rem] text-[#8b85a0]">
-                        <li><a href="#thermo" class="hover:text-[#f0edf8] transition-colors">Thermo-Sync</a></li>
-                        <li><a href="#nutrition" class="hover:text-[#f0edf8] transition-colors">Nutrition</a></li>
-                        <li><a href="#ai" class="hover:text-[#f0edf8] transition-colors">Meno-GPT</a></li>
-                        <li><a href="#pricing" class="hover:text-[#f0edf8] transition-colors">Pricing</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 3 -->
-                <div>
-                    <h4 class="font-syne font-semibold text-[#f0edf8] mb-[1rem]">Company</h4>
-                    <ul class="space-y-[0.75rem] text-[0.875rem] text-[#8b85a0]">
-                        <li><a href="#" class="hover:text-[#f0edf8] transition-colors">Research</a></li>
-                        <li><a href="#" class="hover:text-[#f0edf8] transition-colors">About</a></li>
-                        <li><a href="#" class="hover:text-[#f0edf8] transition-colors">Press</a></li>
-                        <li><a href="#" class="hover:text-[#f0edf8] transition-colors">HIPAA Policy</a></li>
-                    </ul>
-                </div>
-
-                <!-- Col 4 -->
-                <div>
-                    <h4 class="font-syne font-semibold text-[#f0edf8] mb-[1rem]">Newsletter</h4>
-                    <p class="text-[0.875rem] text-[#8b85a0] mb-[1rem]">Weekly insights on hormones, data, and your body.</p>
-                    <form class="flex" onsubmit="event.preventDefault();">
-                        <input type="email" placeholder="Email address" class="bg-[#161420] border border-[#f0edf8]/10 text-[#f0edf8] text-[0.875rem] px-[1rem] py-[0.5rem] outline-none focus:border-[#e8734a] w-full" required="">
-                        <button type="submit" class="bg-[#e8734a] text-[#0c0b10] px-[1rem] flex items-center justify-center clip-para -ml-[0.5rem] hover:bg-[#f5c97a] transition-colors">
-                            <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="pt-[2rem] border-t border-[#f0edf8]/10 flex flex-col md:flex-row justify-between items-center gap-[1rem] text-[0.75rem] text-[#8b85a0]">
-                <div>© 2025 MenoMorph Inc. Built by women, for the transition.</div>
-                <div class="flex gap-[1rem] font-mono-data">
-                    <span class="px-[0.5rem] py-[0.125rem] bg-[#161420] rounded-sm">SOC 2 TYPE II</span>
-                    <span class="px-[0.5rem] py-[0.125rem] bg-[#161420] rounded-sm">HIPAA COMPLIANT</span>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
-    <script>
+</div>
+<div class="mt-[2rem] flex flex-wrap justify-center gap-[1.5rem] text-[#8b85a0] text-[0.75rem] trigger-in-view opacity-0 transition-all duration-700 delay-500">
+<span>Бесплатная доставка</span> • <span>30-дневная гарантия</span> • <span>Отправка за 48 ч</span> • <span>HIPAA-совместимость</span>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="border-t border-[#f0edf8]/10 bg-[#0c0b10] pt-[clamp(4rem,8vw,6rem)] pb-[2rem]">
+<div class="max-w-[clamp(21.25rem,88vw,77.5rem)] mx-auto px-4">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-[3rem] mb-[4rem]">
+<!-- Col 1 -->
+<div class="md:col-span-1">
+<a class="flex items-center gap-[0.75rem] mb-[1rem]" href="#">
+<div class="relative w-[1.5rem] h-[1.5rem]">
+<svg class="w-full h-full text-[#f0edf8]" fill="none" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="10" stroke="currentColor" stroke-dasharray="60 10" stroke-width="2.5"></circle>
+<line class="text-[#e8734a]" stroke="currentColor" stroke-width="2.5" x1="22" x2="26" y1="12" y2="12"></line>
+</svg>
+</div>
+<span class="font-syne font-bold text-[1.125rem] tracking-[-0.02em] text-[#f0edf8]">MenoMorph</span>
+</a>
+<p class="text-[0.875rem] text-[#8b85a0] mb-[1.5rem]">Управляйте данными перемен.</p>
+<div class="flex gap-[1rem] text-[#8b85a0]">
+<a class="hover:text-[#e8734a] transition-colors" href="#"><iconify-icon icon="solar:twitter-linear" width="1.25rem"></iconify-icon></a>
+<a class="hover:text-[#e8734a] transition-colors" href="#"><iconify-icon icon="solar:instagram-linear" width="1.25rem"></iconify-icon></a>
+</div>
+</div>
+<!-- Col 2 -->
+<div>
+<h4 class="font-syne font-semibold text-[#f0edf8] mb-[1rem]">Продукт</h4>
+<ul class="space-y-[0.75rem] text-[0.875rem] text-[#8b85a0]">
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#thermo">Thermo-Sync</a></li>
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#nutrition">Питание</a></li>
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#ai">Meno-GPT</a></li>
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#pricing">Цены</a></li>
+</ul>
+</div>
+<!-- Col 3 -->
+<div>
+<h4 class="font-syne font-semibold text-[#f0edf8] mb-[1rem]">Компания</h4>
+<ul class="space-y-[0.75rem] text-[0.875rem] text-[#8b85a0]">
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#">Исследования</a></li>
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#">О нас</a></li>
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#">Пресса</a></li>
+<li><a class="hover:text-[#f0edf8] transition-colors" href="#">Политика HIPAA</a></li>
+</ul>
+</div>
+<!-- Col 4 -->
+<div>
+<h4 class="font-syne font-semibold text-[#f0edf8] mb-[1rem]">Рассылка</h4>
+<p class="text-[0.875rem] text-[#8b85a0] mb-[1rem]">Еженедельные инсайты о гормонах, данных и вашем теле.</p>
+<form class="flex" onsubmit="event.preventDefault();">
+<input class="bg-[#161420] border border-[#f0edf8]/10 text-[#f0edf8] text-[0.875rem] px-[1rem] py-[0.5rem] outline-none focus:border-[#e8734a] w-full" placeholder="Адрес эл. почты" required="" type="email"/>
+<button class="bg-[#e8734a] text-[#0c0b10] px-[1rem] flex items-center justify-center clip-para -ml-[0.5rem] hover:bg-[#f5c97a] transition-colors" type="submit">
+<iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+</button>
+</form>
+</div>
+</div>
+<div class="pt-[2rem] border-t border-[#f0edf8]/10 flex flex-col md:flex-row justify-between items-center gap-[1rem] text-[0.75rem] text-[#8b85a0]">
+<div>© 2025 MenoMorph Inc. Создано женщинами — для перехода.</div>
+<div class="flex gap-[1rem] font-mono-data">
+<span class="px-[0.5rem] py-[0.125rem] bg-[#161420] rounded-sm">SOC 2 TYPE II</span>
+<span class="px-[0.5rem] py-[0.125rem] bg-[#161420] rounded-sm">СООТВЕТСТВИЕ HIPAA</span>
+</div>
+</div>
+</div>
+</footer>
+<script>
         // === Core Interactions ===
 
         // 1. Reveal on Scroll
@@ -1341,5 +1266,4 @@ gtag('config', 'G-2M6V79H761');
         }
 
     </script>
-
 </body></html>

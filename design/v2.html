@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
@@ -90,17 +90,17 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Axisform® — Independent Design Studio</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Axisform® — независимая дизайн-студия</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.20/dist/lenis.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
 --bg: #060706;
@@ -404,7 +404,7 @@ transform: none !important;
 }
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -412,532 +412,507 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-  <div class="noise" aria-hidden="true"></div>
-  <div class="grid-veil" aria-hidden="true"></div>
-  <div class="page-rail" aria-hidden="true">Launch OS / Axisform</div>
-
-  <div id="ax-loader" class="ax-loader" aria-hidden="true">
-    <div class="ax-loader__inner">
-      <div class="ax-loader__brand">
-        <span>Axisform</span><sup>®</sup><span class="ax-dot"></span>
-      </div>
-      <div class="ax-loader__track">
-        <div class="ax-loader__bar"></div>
-      </div>
-      <div class="ax-loader__meta">
-        <span class="ax-loader__pct">000</span>
-        <span>Launch OS / Axisform</span>
-      </div>
-    </div>
-  </div>
-
-  <header class="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8 lg:px-12">
-    <a href="#home" class="text-lg font-semibold tracking-[-0.055em] text-[#f3f0e8] md:text-xl">
+<div aria-hidden="true" class="noise"></div>
+<div aria-hidden="true" class="grid-veil"></div>
+<div aria-hidden="true" class="page-rail">Launch OS / Axisform</div>
+<div aria-hidden="true" class="ax-loader" id="ax-loader">
+<div class="ax-loader__inner">
+<div class="ax-loader__brand">
+<span>Axisform</span><sup>®</sup><span class="ax-dot"></span>
+</div>
+<div class="ax-loader__track">
+<div class="ax-loader__bar"></div>
+</div>
+<div class="ax-loader__meta">
+<span class="ax-loader__pct">000</span>
+<span>Launch OS / Axisform</span>
+</div>
+</div>
+</div>
+<header class="fixed inset-x-0 top-0 z-50 flex items-center justify-between px-5 py-5 md:px-8 lg:px-12">
+<a class="text-lg font-semibold tracking-[-0.055em] text-[#f3f0e8] md:text-xl" href="#home">
       Axisform<sup class="ml-0.5 text-[10px]">®</sup>
-    </a>
-
-    <nav class="hidden items-center gap-11 text-xs font-bold text-[#f3f0e8]/82 md:flex">
-      <a href="#work" class="nav-link"><span class="mr-5 inline-block h-1.5 w-1.5 rounded-full bg-[#ff5a1f] align-middle"></span>Systems</a>
-      <a href="#studio" class="nav-link">Signals</a>
-      <a href="#pricing" class="nav-link">Engage</a>
-      <a href="#contact" class="nav-link">Brief</a>
-    </nav>
-
-    <button class="glass flex h-10 w-10 items-center justify-center rounded-full md:hidden" aria-label="Open menu">
-      <i data-lucide="menu" class="h-4 w-4"></i>
-    </button>
-  </header>
-
-  <main id="home" class="relative z-10 overflow-hidden">
-
-    <!-- HERO -->
-    <section class="hero-section relative flex min-h-screen items-center overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <div class="hero-copy relative z-20 max-w-[360px]">
-        <p class="section-label mb-10">Axisform® Studio</p>
-        <p class="max-w-[340px] text-[21px] font-medium leading-[1.45] tracking-[-0.045em] text-[#f3f0e8]/76 md:text-[25px]">
-          <span class="text-[#f3f0e8]">Axisform®</span> builds launch operating systems for founders, product teams, and cultural projects that need a sharper public signal before the next move.
+</a>
+<nav class="hidden items-center gap-11 text-xs font-bold text-[#f3f0e8]/82 md:flex">
+<a class="nav-link" href="#work"><span class="mr-5 inline-block h-1.5 w-1.5 rounded-full bg-[#ff5a1f] align-middle"></span>Системы</a>
+<a class="nav-link" href="#studio">Сигналы</a>
+<a class="nav-link" href="#pricing">Связаться</a>
+<a class="nav-link" href="#contact">Бриф</a>
+</nav>
+<button aria-label="Открыть меню" class="glass flex h-10 w-10 items-center justify-center rounded-full md:hidden">
+<i class="h-4 w-4" data-lucide="menu"></i>
+</button>
+</header>
+<main class="relative z-10 overflow-hidden" id="home">
+<!-- HERO -->
+<section class="hero-section relative flex min-h-screen items-center overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+<div class="hero-copy relative z-20 max-w-[360px]">
+<p class="section-label mb-10">Axisform® Studio</p>
+<p class="max-w-[340px] text-[21px] font-medium leading-[1.45] tracking-[-0.045em] text-[#f3f0e8]/76 md:text-[25px]">
+<span class="text-[#f3f0e8]">Axisform®</span> создаёт операционные системы запуска для фаундеров, продуктовых команд и культурных проектов, которым нужен более чёткий публичный сигнал перед следующим шагом.
         </p>
-
-        <a href="#work" class="magnetic-button mt-14 inline-flex items-center gap-5 rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-[#f3f0e8]">
-          View Selected Work
+<a class="magnetic-button mt-14 inline-flex items-center gap-5 rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.18em] text-[#f3f0e8]" href="#work">
+          Смотреть избранные работы
           <span class="flex h-8 w-8 items-center justify-center rounded-full bg-[#ff5a1f] text-[#060706]">
-            <i data-lucide="arrow-right" class="h-4 w-4"></i>
-          </span>
-        </a>
-      </div>
-
-      <div class="hero-stack absolute left-1/2 top-[48%] z-10 h-[430px] w-[310px] -translate-x-1/2 -translate-y-1/2 md:h-[560px] md:w-[430px] lg:h-[620px] lg:w-[480px]">
-        <div class="hero-card absolute inset-0 -translate-x-20 translate-y-12 -rotate-[17deg] rounded-[20px] bg-[#151713]">
-          <div class="h-full w-full rounded-[20px] bg-gradient-to-br from-[#ff5a1f]/30 via-transparent to-black"></div>
-        </div>
-
-        <div class="hero-card absolute inset-0 translate-x-20 translate-y-10 rotate-[13deg] rounded-[20px] bg-[#d8cbb5]">
-          <div class="absolute right-10 top-24 font-serif text-[110px] text-[#ff5a1f]/80">A</div>
-          <div class="absolute bottom-12 left-10 h-32 w-32 rounded-full border border-black/20"></div>
-        </div>
-
-        <div class="hero-card absolute inset-0 translate-x-32 translate-y-20 rotate-[18deg] rounded-[20px] bg-[#080808]">
-          <div class="h-full w-full rounded-[20px] bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_45%)]"></div>
-        </div>
-
-        <div class="hero-card absolute inset-0 rotate-[4deg] overflow-hidden rounded-[20px] bg-[#201714]">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1be70dfc-949c-405c-893d-614e400fb2ca_1600w.png" alt="Editorial studio portrait" class="h-full w-full object-cover saturate-125">
-          <div class="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-orange-950/10"></div>
-          <div class="absolute inset-0 bg-[#ff5a1f]/10 mix-blend-overlay"></div>
-        </div>
-
-        <button class="hero-cta absolute right-[-22px] top-1/2 z-20 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white shadow-2xl backdrop-blur transition duration-300 hover:scale-110 hover:bg-[#ff5a1f]" aria-label="Explore">
-          <i data-lucide="arrow-right" class="h-7 w-7"></i>
-        </button>
-      </div>
-
-      <h1 class="hero-wordmark wordmark pointer-events-none absolute -bottom-5 left-2 z-0 select-none text-[23vw] font-black leading-none text-[#e8e0d4] md:-bottom-12 lg:left-6 lg:text-[20vw]">
+<i class="h-4 w-4" data-lucide="arrow-right"></i>
+</span>
+</a>
+</div>
+<div class="hero-stack absolute left-1/2 top-[48%] z-10 h-[430px] w-[310px] -translate-x-1/2 -translate-y-1/2 md:h-[560px] md:w-[430px] lg:h-[620px] lg:w-[480px]">
+<div class="hero-card absolute inset-0 -translate-x-20 translate-y-12 -rotate-[17deg] rounded-[20px] bg-[#151713]">
+<div class="h-full w-full rounded-[20px] bg-gradient-to-br from-[#ff5a1f]/30 via-transparent to-black"></div>
+</div>
+<div class="hero-card absolute inset-0 translate-x-20 translate-y-10 rotate-[13deg] rounded-[20px] bg-[#d8cbb5]">
+<div class="absolute right-10 top-24 font-serif text-[110px] text-[#ff5a1f]/80">A</div>
+<div class="absolute bottom-12 left-10 h-32 w-32 rounded-full border border-black/20"></div>
+</div>
+<div class="hero-card absolute inset-0 translate-x-32 translate-y-20 rotate-[18deg] rounded-[20px] bg-[#080808]">
+<div class="h-full w-full rounded-[20px] bg-[linear-gradient(135deg,rgba(255,255,255,.16),transparent_45%)]"></div>
+</div>
+<div class="hero-card absolute inset-0 rotate-[4deg] overflow-hidden rounded-[20px] bg-[#201714]">
+<img alt="Редакционный портрет студии" class="h-full w-full object-cover saturate-125" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1be70dfc-949c-405c-893d-614e400fb2ca_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/48 via-transparent to-orange-950/10"></div>
+<div class="absolute inset-0 bg-[#ff5a1f]/10 mix-blend-overlay"></div>
+</div>
+<button aria-label="Смотреть" class="hero-cta absolute right-[-22px] top-1/2 z-20 flex h-16 w-16 -translate-y-1/2 items-center justify-center rounded-full border border-white/20 bg-black/80 text-white shadow-2xl backdrop-blur transition duration-300 hover:scale-110 hover:bg-[#ff5a1f]">
+<i class="h-7 w-7" data-lucide="arrow-right"></i>
+</button>
+</div>
+<h1 class="hero-wordmark wordmark pointer-events-none absolute -bottom-5 left-2 z-0 select-none text-[23vw] font-black leading-none text-[#e8e0d4] md:-bottom-12 lg:left-6 lg:text-[20vw]">
         Axisform
       </h1>
-
-      <div class="hero-meta glass absolute bottom-10 right-5 z-20 hidden w-[270px] rounded-[24px] p-6 md:right-8 lg:block">
-        <div class="mb-8 text-2xl text-[#ff5a1f]">✳</div>
-        <p class="text-[19px] leading-[1.25] tracking-[-0.04em]">
-          Branding, digital experiences, and motion systems.
+<div class="hero-meta glass absolute bottom-10 right-5 z-20 hidden w-[270px] rounded-[24px] p-6 md:right-8 lg:block">
+<div class="mb-8 text-2xl text-[#ff5a1f]">✳</div>
+<p class="text-[19px] leading-[1.25] tracking-[-0.04em]">
+          Брендинг, цифровой опыт и моушн-системы.
         </p>
-        <div class="mt-10 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/45">
-          <span>Global Studio</span>
-          <span class="h-1 w-1 rounded-full bg-[#ff5a1f]"></span>
-          <span>Field 04 / 2026</span>
-        </div>
-      </div>
-    </section>
-
-    <!-- STUDIO -->
-    <section id="studio" class="brand-section relative flex min-h-screen items-center overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <h2 class="brand-drift wordmark pointer-events-none absolute -top-16 left-0 text-[6rem] font-black leading-none text-[#f3f0e8]/10 sm:text-[9rem] md:text-[13rem] lg:text-[18rem]">
+<div class="mt-10 flex items-center justify-between text-[10px] font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/45">
+<span>Глобальная студия</span>
+<span class="h-1 w-1 rounded-full bg-[#ff5a1f]"></span>
+<span>Поле 04 / 2026</span>
+</div>
+</div>
+</section>
+<!-- STUDIO -->
+<section class="brand-section relative flex min-h-screen items-center overflow-hidden px-5 py-24 md:px-8 lg:px-12" id="studio">
+<h2 class="brand-drift wordmark pointer-events-none absolute -top-16 left-0 text-[6rem] font-black leading-none text-[#f3f0e8]/10 sm:text-[9rem] md:text-[13rem] lg:text-[18rem]">
         Axisform®
       </h2>
-
-      <div class="mx-auto grid w-full max-w-6xl gap-12 md:grid-cols-12">
-        <div class="md:col-span-4">
-          <p class="section-label">Studio Method</p>
-          <p data-reveal class="mt-8 max-w-sm text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            The studio works in loops: read the field, reduce the noise, ship the system, then sharpen what survives contact.
+<div class="mx-auto grid w-full max-w-6xl gap-12 md:grid-cols-12">
+<div class="md:col-span-4">
+<p class="section-label">Метод студии</p>
+<p class="mt-8 max-w-sm text-sm font-medium leading-[1.7] text-[#f3f0e8]/56" data-reveal="">
+            Студия работает циклами: считать поле, убрать шум, выпустить систему, затем отточить то, что пережило контакт.
           </p>
-        </div>
-
-        <div class="brand-words grid gap-6 md:col-span-7 md:col-start-6">
-          <p class="brand-word text-6xl font-semibold tracking-[-0.08em] md:text-8xl">observe</p>
-          <p class="brand-word text-right text-6xl font-semibold tracking-[-0.08em] md:text-8xl">compress</p>
-          <p class="brand-word text-6xl font-semibold tracking-[-0.08em] md:text-8xl">prototype.</p>
-          <p class="brand-word text-right text-6xl font-semibold tracking-[-0.08em] md:text-8xl">publish</p>
-          <p class="brand-word text-6xl font-semibold tracking-[-0.08em] md:text-8xl">repeat</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SERVICES -->
-    <section class="services-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <div class="absolute left-1/2 top-0 h-[360px] w-[78%] -translate-x-1/2 overflow-hidden rounded-b-[32px] border-x border-b border-[#f3f0e8]/10 md:h-[480px] lg:h-[620px]">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3b2725ca-5b05-49fe-b2ff-9de382bf26ef_1600w.webp" alt="Green atmospheric strip" class="strip-image h-full w-full object-cover object-center opacity-70">
-      </div>
-
-      <div class="grid min-h-screen items-center gap-14 md:grid-cols-12">
-        <div data-reveal class="md:col-span-3">
-          <p class="section-label mb-20">Operating Stack</p>
-          <p class="max-w-60 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            For teams preparing a launch, funding round, product shift, or public repositioning.
+</div>
+<div class="brand-words grid gap-6 md:col-span-7 md:col-start-6">
+<p class="brand-word text-6xl font-semibold tracking-[-0.08em] md:text-8xl">наблюдать</p>
+<p class="brand-word text-right text-6xl font-semibold tracking-[-0.08em] md:text-8xl">сжимать</p>
+<p class="brand-word text-6xl font-semibold tracking-[-0.08em] md:text-8xl">прототипировать.</p>
+<p class="brand-word text-right text-6xl font-semibold tracking-[-0.08em] md:text-8xl">публиковать</p>
+<p class="brand-word text-6xl font-semibold tracking-[-0.08em] md:text-8xl">повторять</p>
+</div>
+</div>
+</section>
+ УСЛУГИ 
+<section class="services-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+<div class="absolute left-1/2 top-0 h-[360px] w-[78%] -translate-x-1/2 overflow-hidden rounded-b-[32px] border-x border-b border-[#f3f0e8]/10 md:h-[480px] lg:h-[620px]">
+<img alt="Зелёная атмосферная полоса" class="strip-image h-full w-full object-cover object-center opacity-70" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/3b2725ca-5b05-49fe-b2ff-9de382bf26ef_1600w.webp"/>
+</div>
+<div class="grid min-h-screen items-center gap-14 md:grid-cols-12">
+<div class="md:col-span-3" data-reveal="">
+<p class="section-label mb-20">Операционный стек</p>
+<p class="max-w-60 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+            Для команд, готовящих запуск, раунд финансирования, смену продукта или публичное репозиционирование.
           </p>
-        </div>
-
-        <div class="md:col-span-6 md:col-start-4">
-          <p class="services-copy text-4xl font-semibold leading-[0.95] tracking-[-0.07em] md:text-6xl lg:text-7xl">
-            We design the launch layer around a product.
+</div>
+<div class="md:col-span-6 md:col-start-4">
+<p class="services-copy text-4xl font-semibold leading-[0.95] tracking-[-0.07em] md:text-6xl lg:text-7xl">
+            Мы проектируем слой запуска вокруг продукта.
           </p>
-
-          <div class="mt-10 grid gap-3 sm:grid-cols-2">
-            <div class="service-card glass rounded-[28px] p-6">
-              <p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">01</p>
-              <h3 class="text-2xl font-semibold tracking-[-0.05em]">Signal Audit</h3>
-              <p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Find where the story is unclear and what the market should remember.</p>
-            </div>
-            <div class="service-card glass rounded-[28px] p-6">
-              <p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">02</p>
-              <h3 class="text-2xl font-semibold tracking-[-0.05em]">Narrative Kernel</h3>
-              <p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Compress positioning into a clear structure your team can reuse.</p>
-            </div>
-            <div class="service-card glass rounded-[28px] p-6">
-              <p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">03</p>
-              <h3 class="text-2xl font-semibold tracking-[-0.05em]">Launch Interface</h3>
-              <p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Build pages, decks, and product surfaces with one visual logic.</p>
-            </div>
-            <div class="service-card glass rounded-[28px] p-6">
-              <p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">04</p>
-              <h3 class="text-2xl font-semibold tracking-[-0.05em]">Operator Kit</h3>
-              <p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Transfer motion rules, components, and launch material to your team.</p>
-            </div>
-          </div>
-        </div>
-
-        <div data-reveal class="md:col-span-2 md:col-start-11">
-          <p class="mb-6 text-xs font-bold uppercase tracking-[0.12em]">Open Intake <span aria-hidden="true">→</span></p>
-          <p class="max-w-60 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            The output is not a moodboard. It is a working kit for launch decisions.
+<div class="mt-10 grid gap-3 sm:grid-cols-2">
+<div class="service-card glass rounded-[28px] p-6">
+<p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">01</p>
+<h3 class="text-2xl font-semibold tracking-[-0.05em]">Аудит сигнала</h3>
+<p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Находим, где история неясна и что рынок должен запомнить.</p>
+</div>
+<div class="service-card glass rounded-[28px] p-6">
+<p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">02</p>
+<h3 class="text-2xl font-semibold tracking-[-0.05em]">Ядро нарратива</h3>
+<p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Сжимаем позиционирование в чёткую структуру, которую ваша команда сможет переиспользовать.</p>
+</div>
+<div class="service-card glass rounded-[28px] p-6">
+<p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">03</p>
+<h3 class="text-2xl font-semibold tracking-[-0.05em]">Интерфейс запуска</h3>
+<p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Собираем страницы, презентации и продуктовые поверхности с единой визуальной логикой.</p>
+</div>
+<div class="service-card glass rounded-[28px] p-6">
+<p class="mb-14 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44">04</p>
+<h3 class="text-2xl font-semibold tracking-[-0.05em]">Комплект оператора</h3>
+<p class="mt-4 text-sm leading-[1.6] text-[#f3f0e8]/54">Передаём вашей команде правила моушна, компоненты и материалы запуска.</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-2 md:col-start-11" data-reveal="">
+<p class="mb-6 text-xs font-bold uppercase tracking-[0.12em]">Открытый приём заявок <span aria-hidden="true">→</span></p>
+<p class="max-w-60 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+            Результат — не мудборд. Это рабочий комплект для решений о запуске.
           </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- TELEMETRY -->
-    <section class="numbers-intro relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <figure class="parallax-image parallax-slow pointer-events-none right-4 top-32 h-28 w-40 rotate-[7deg] md:right-8 md:top-28 md:h-48 md:w-72">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07705938-ccca-4133-9f21-1b3f01af3463_3840w.png" alt="Abstract architecture detail">
-      </figure>
-
-      <figure class="parallax-image parallax-fast pointer-events-none bottom-24 left-4 h-24 w-36 rotate-[-9deg] md:bottom-20 md:left-10 md:h-40 md:w-60">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b07ad449-1292-4c6b-aff4-6ce345d9fa12_3840w.png" alt="Landscape color field">
-      </figure>
-
-      <div class="grid min-h-screen items-center gap-12 md:grid-cols-12">
-        <div data-reveal class="md:col-span-3">
-          <p class="section-label mb-8">Launch Telemetry</p>
-          <p class="max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            The public layer should reduce explanation time.
+</div>
+</div>
+</section>
+<!-- TELEMETRY -->
+<section class="numbers-intro relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+<figure class="parallax-image parallax-slow pointer-events-none right-4 top-32 h-28 w-40 rotate-[7deg] md:right-8 md:top-28 md:h-48 md:w-72">
+<img alt="Деталь абстрактной архитектуры" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07705938-ccca-4133-9f21-1b3f01af3463_3840w.png"/>
+</figure>
+<figure class="parallax-image parallax-fast pointer-events-none bottom-24 left-4 h-24 w-36 rotate-[-9deg] md:bottom-20 md:left-10 md:h-40 md:w-60">
+<img alt="Пейзажное цветовое поле" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b07ad449-1292-4c6b-aff4-6ce345d9fa12_3840w.png"/>
+</figure>
+<div class="grid min-h-screen items-center gap-12 md:grid-cols-12">
+<div class="md:col-span-3" data-reveal="">
+<p class="section-label mb-8">Телеметрия запуска</p>
+<p class="max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+            Публичный слой должен сокращать время на объяснения.
           </p>
-          <a href="#contact" class="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em]">Send the brief <i data-lucide="arrow-right" class="h-4 w-4"></i></a>
-        </div>
-
-        <div data-reveal class="md:col-span-5 md:col-start-5">
-          <h2 class="text-6xl font-semibold leading-[0.92] tracking-[-0.08em] md:text-8xl lg:text-9xl">Launch<br>Telemetry</h2>
-        </div>
-
-        <div class="stat-grid md:col-span-3 md:col-start-10">
-          <div class="grid grid-cols-2 gap-4">
-            <div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">04</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">operating loops</p></div>
-            <div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">21</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">launch windows</p></div>
-            <div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">06</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">week cycles</p></div>
-            <div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">90</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">day adoption map</p></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIELD ARCHIVE SCROLL -->
-    <section class="archive-scroll-section relative overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-12">
-        <div class="md:col-span-3">
-          <p class="section-label">Field Archive</p>
-          <p class="mt-8 max-w-64 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            Visual fragments from launch systems, product surfaces, and studio research.
+<a class="mt-8 inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.12em]" href="#contact">Отправить бриф <i class="h-4 w-4" data-lucide="arrow-right"></i></a>
+</div>
+<div class="md:col-span-5 md:col-start-5" data-reveal="">
+<h2 class="text-6xl font-semibold leading-[0.92] tracking-[-0.08em] md:text-8xl lg:text-9xl">Запуск<br/>Телеметрия</h2>
+</div>
+<div class="stat-grid md:col-span-3 md:col-start-10">
+<div class="grid grid-cols-2 gap-4">
+<div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">04</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">операционных циклов</p></div>
+<div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">21</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">окон запуска</p></div>
+<div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">06</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">недельных циклов</p></div>
+<div class="note-card glass rounded-[24px] p-5"><p class="text-5xl font-semibold tracking-[-0.06em]">90</p><p class="mt-6 text-xs font-medium text-[#f3f0e8]/50">дневная карта адаптации</p></div>
+</div>
+</div>
+</div>
+</section>
+<!-- FIELD ARCHIVE SCROLL -->
+<section class="archive-scroll-section relative overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+<div class="mx-auto grid max-w-6xl gap-12 md:grid-cols-12">
+<div class="md:col-span-3">
+<p class="section-label">Архив поля</p>
+<p class="mt-8 max-w-64 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+            Визуальные фрагменты из систем запуска, продуктовых поверхностей и исследований студии.
           </p>
-        </div>
-
-        <div class="md:col-span-8 md:col-start-5">
-          <h2 class="archive-title text-[54px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[86px] lg:text-[112px]">
-            Signals collected before the system takes shape.
+</div>
+<div class="md:col-span-8 md:col-start-5">
+<h2 class="archive-title text-[54px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[86px] lg:text-[112px]">
+            Сигналы, собранные до того, как система обретает форму.
           </h2>
-        </div>
-      </div>
-
-      <div class="archive-gallery mt-20 flex gap-5 will-change-transform">
-        <figure class="archive-card h-[420px] w-[320px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[560px] md:w-[420px]">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07705938-ccca-4133-9f21-1b3f01af3463_3840w.png" alt="Archive image" class="h-full w-full object-cover opacity-75">
-        </figure>
-
-        <figure class="archive-card mt-20 h-[360px] w-[300px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[460px] md:w-[360px]">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b07ad449-1292-4c6b-aff4-6ce345d9fa12_3840w.png" alt="Archive image" class="h-full w-full object-cover opacity-75">
-        </figure>
-
-        <figure class="archive-card h-[420px] w-[320px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[560px] md:w-[420px]">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/79e4228e-37c5-45bc-a352-ae8b41b6d71b_3840w.png" alt="Archive image" class="h-full w-full object-cover opacity-75">
-        </figure>
-
-        <figure class="archive-card mt-28 h-[360px] w-[300px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[460px] md:w-[360px]">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92ae1957-bb5d-4fef-b4fe-26a43ca6c254_3840w.png" alt="Archive image" class="h-full w-full object-cover opacity-75">
-        </figure>
-
-        <figure class="archive-card h-[420px] w-[320px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[560px] md:w-[420px]">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e1f39209-cbcc-4857-bc13-744562e16d78_3840w.png" alt="Archive image" class="h-full w-full object-cover opacity-75">
-        </figure>
-      </div>
-    </section>
-
-    <!-- WORK -->
-    <section id="work" class="work-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <div class="grid min-h-screen items-center gap-12 md:grid-cols-12">
-        <div class="work-copy md:col-span-3">
-          <p class="section-label mb-8">Systems</p>
-          <h2 class="text-5xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-6xl">04 Operating Loops</h2>
-          <p class="mt-6 max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            The work is organized as a repeatable loop: signal, frame, interface, deploy. Each loop leaves a usable artifact behind.
+</div>
+</div>
+<div class="archive-gallery mt-20 flex gap-5 will-change-transform">
+<figure class="archive-card h-[420px] w-[320px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[560px] md:w-[420px]">
+<img alt="Архивное изображение" class="h-full w-full object-cover opacity-75" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/07705938-ccca-4133-9f21-1b3f01af3463_3840w.png"/>
+</figure>
+<figure class="archive-card mt-20 h-[360px] w-[300px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[460px] md:w-[360px]">
+<img alt="Архивное изображение" class="h-full w-full object-cover opacity-75" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b07ad449-1292-4c6b-aff4-6ce345d9fa12_3840w.png"/>
+</figure>
+<figure class="archive-card h-[420px] w-[320px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[560px] md:w-[420px]">
+<img alt="Архивное изображение" class="h-full w-full object-cover opacity-75" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/79e4228e-37c5-45bc-a352-ae8b41b6d71b_3840w.png"/>
+</figure>
+<figure class="archive-card mt-28 h-[360px] w-[300px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[460px] md:w-[360px]">
+<img alt="Архивное изображение" class="h-full w-full object-cover opacity-75" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92ae1957-bb5d-4fef-b4fe-26a43ca6c254_3840w.png"/>
+</figure>
+<figure class="archive-card h-[420px] w-[320px] shrink-0 overflow-hidden rounded-[34px] border border-[#f3f0e8]/10 bg-[#101310] md:h-[560px] md:w-[420px]">
+<img alt="Архивное изображение" class="h-full w-full object-cover opacity-75" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e1f39209-cbcc-4857-bc13-744562e16d78_3840w.png"/>
+</figure>
+</div>
+</section>
+<!-- WORK -->
+<section class="work-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12" id="work">
+<div class="grid min-h-screen items-center gap-12 md:grid-cols-12">
+<div class="work-copy md:col-span-3">
+<p class="section-label mb-8">Системы</p>
+<h2 class="text-5xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-6xl">04 Операционные циклы</h2>
+<p class="mt-6 max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+            Работа организована как повторяемый цикл: сигнал, рамка, интерфейс, деплой. Каждый цикл оставляет после себя полезный артефакт.
           </p>
-          <a href="#contact" class="magnetic-button mt-8 inline-flex rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]">Study the Loop</a>
-        </div>
-
-        <div class="relative md:col-span-7 md:col-start-4">
-          <div class="relative flex min-h-[520px] items-center justify-center">
-            <span class="masked-number text-[13rem] font-black leading-none tracking-[-0.09em] md:text-[24rem] lg:text-[29rem]" style="--number-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1600&q=90')">04</span>
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bf697fb6-c82a-4c34-95ec-cbfc47b8622f_3840w.png" alt="Project preview one" class="project-card absolute left-0 top-14 hidden h-44 w-72 rotate-[-14deg] rounded-[18px] border border-[#f3f0e8]/10 object-cover md:block">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/095918f0-0508-4c1f-867f-ec46e9f0720d_3840w.png" alt="Project preview two" class="project-card absolute right-4 top-6 hidden h-44 w-72 rotate-[10deg] rounded-[18px] border border-[#f3f0e8]/10 object-cover md:block">
-          </div>
-        </div>
-
-        <div data-reveal class="md:col-span-2">
-          <p class="text-xs font-bold uppercase tracking-[0.12em] text-[#f3f0e8]/62">Loop Archive</p>
-          <p class="mt-8 text-sm font-medium leading-[1.7] text-[#f3f0e8]/50">Narrative Systems, Product Surfaces, Founder Material</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- FIELD NOTES -->
-    <section class="partners-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <h2 class="partners-heading pointer-events-none absolute left-5 top-16 text-[18vw] font-black leading-none tracking-[-0.1em] text-[#f3f0e8]/[0.055] md:left-8 md:top-10 md:text-[15vw]">
-        Field Notes
+<a class="magnetic-button mt-8 inline-flex rounded-full border border-[#f3f0e8]/12 px-5 py-3 text-xs font-bold uppercase tracking-[0.12em]" href="#contact">Изучить цикл</a>
+</div>
+<div class="relative md:col-span-7 md:col-start-4">
+<div class="relative flex min-h-[520px] items-center justify-center">
+<span class="masked-number text-[13rem] font-black leading-none tracking-[-0.09em] md:text-[24rem] lg:text-[29rem]" style="--number-image: url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&amp;fit=crop&amp;w=1600&amp;q=90')">04</span>
+<img alt="Превью проекта один" class="project-card absolute left-0 top-14 hidden h-44 w-72 rotate-[-14deg] rounded-[18px] border border-[#f3f0e8]/10 object-cover md:block" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bf697fb6-c82a-4c34-95ec-cbfc47b8622f_3840w.png"/>
+<img alt="Превью проекта два" class="project-card absolute right-4 top-6 hidden h-44 w-72 rotate-[10deg] rounded-[18px] border border-[#f3f0e8]/10 object-cover md:block" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/095918f0-0508-4c1f-867f-ec46e9f0720d_3840w.png"/>
+</div>
+</div>
+<div class="md:col-span-2" data-reveal="">
+<p class="text-xs font-bold uppercase tracking-[0.12em] text-[#f3f0e8]/62">Архив циклов</p>
+<p class="mt-8 text-sm font-medium leading-[1.7] text-[#f3f0e8]/50">Нарративные системы, продуктовые поверхности, материалы для фаундеров</p>
+</div>
+</div>
+</section>
+<!-- FIELD NOTES -->
+<section class="partners-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+<h2 class="partners-heading pointer-events-none absolute left-5 top-16 text-[18vw] font-black leading-none tracking-[-0.1em] text-[#f3f0e8]/[0.055] md:left-8 md:top-10 md:text-[15vw]">
+        Полевые заметки
       </h2>
-
-      <figure class="parallax-image parallax-slow pointer-events-none absolute right-5 top-28 hidden h-44 w-72 rotate-[5deg] overflow-hidden rounded-[28px] border border-[#f3f0e8]/10 md:block lg:right-14 lg:h-56 lg:w-96">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92ae1957-bb5d-4fef-b4fe-26a43ca6c254_3840w.png" alt="Studio workspace detail" class="h-full w-full object-cover">
-      </figure>
-
-      <div class="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center">
-        <div class="mb-16 grid gap-8 md:grid-cols-12">
-          <div class="md:col-span-3">
-            <p class="section-label">Field Notes</p>
-          </div>
-
-          <div class="md:col-span-7 md:col-start-5">
-            <h2 class="text-[52px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[84px] lg:text-[104px]">
-              Five rules for making a launch easier to understand.
+<figure class="parallax-image parallax-slow pointer-events-none absolute right-5 top-28 hidden h-44 w-72 rotate-[5deg] overflow-hidden rounded-[28px] border border-[#f3f0e8]/10 md:block lg:right-14 lg:h-56 lg:w-96">
+<img alt="Деталь рабочего пространства студии" class="h-full w-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92ae1957-bb5d-4fef-b4fe-26a43ca6c254_3840w.png"/>
+</figure>
+<div class="relative z-10 mx-auto flex min-h-screen w-full max-w-6xl flex-col justify-center">
+<div class="mb-16 grid gap-8 md:grid-cols-12">
+<div class="md:col-span-3">
+<p class="section-label">Полевые заметки</p>
+</div>
+<div class="md:col-span-7 md:col-start-5">
+<h2 class="text-[52px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[84px] lg:text-[104px]">
+              Пять правил, которые делают запуск понятнее.
             </h2>
-          </div>
-        </div>
-
-        <div class="partner-logos grid grid-cols-1 gap-5 md:grid-cols-12">
-          <article class="note-card group relative min-h-[430px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#f3f0e8] p-8 text-[#060706] md:col-span-5">
-            <div class="absolute -right-6 -top-8 text-[180px] font-black leading-none tracking-[-0.12em] text-[#060706]/[0.06]">01</div>
-            <div class="relative z-10 flex h-full flex-col justify-between">
-              <div>
-                <p class="text-xs font-black uppercase tracking-[0.18em] text-[#060706]/45">01 / Signal</p>
-                <h3 class="mt-12 max-w-sm text-[50px] font-black leading-[0.88] tracking-[-0.08em] md:text-[64px]">Make the story repeatable.</h3>
-              </div>
-              <p class="max-w-sm text-base font-semibold leading-[1.55] text-[#060706]/62">Reduce the story to what buyers, investors, and users can repeat.</p>
-            </div>
-          </article>
-
-          <article class="note-card group relative min-h-[430px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#111612] md:col-span-4">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/79e4228e-37c5-45bc-a352-ae8b41b6d71b_3840w.png" alt="Structural facade detail" class="h-full w-full object-cover opacity-70 transition duration-700 group-hover:scale-105 group-hover:opacity-90">
-            <div class="absolute inset-0 bg-gradient-to-t from-[#060706] via-[#060706]/25 to-transparent"></div>
-            <div class="absolute bottom-7 left-7 right-7">
-              <p class="text-xs font-black uppercase tracking-[0.18em] text-[#f3f0e8]/50">02 / Interface</p>
-              <h3 class="mt-5 text-[34px] font-black leading-[0.92] tracking-[-0.07em] text-[#f3f0e8]">The first screen should explain less.</h3>
-            </div>
-          </article>
-
-          <article class="note-card relative min-h-[430px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-white/[0.035] p-7 md:col-span-3">
-            <p class="text-xs font-black uppercase tracking-[0.18em] text-[#f3f0e8]/42">Index</p>
-            <div class="mt-10 space-y-5">
-              <div class="border-b border-[#f3f0e8]/10 pb-5"><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#f3f0e8]/32">03</p><p class="mt-2 text-2xl font-black tracking-[-0.06em]">Motion</p></div>
-              <div class="border-b border-[#f3f0e8]/10 pb-5"><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#f3f0e8]/32">04</p><p class="mt-2 text-2xl font-black tracking-[-0.06em]">Handoff</p></div>
-              <div><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#f3f0e8]/32">05</p><p class="mt-2 text-2xl font-black tracking-[-0.06em]">Adoption</p></div>
-            </div>
-            <div class="absolute bottom-7 left-7 right-7">
-              <p class="text-sm font-medium leading-[1.65] text-[#f3f0e8]/56">Movement, handoff, and adoption are treated as one system.</p>
-            </div>
-          </article>
-
-          <article class="note-card group relative overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#0c0f0c] p-8 md:col-span-7">
-            <div class="absolute right-8 top-8 h-24 w-24 rounded-full border border-[#f3f0e8]/10"></div>
-            <div class="absolute right-14 top-14 h-12 w-12 rounded-full border border-[#f3f0e8]/10"></div>
-            <div class="relative z-10 grid gap-8 md:grid-cols-12">
-              <div class="md:col-span-4">
-                <p class="text-xs font-black uppercase tracking-[0.18em] text-[#f3f0e8]/42">04 / Handoff</p>
-              </div>
-              <div class="md:col-span-8">
-                <h3 class="max-w-2xl text-[44px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[64px]">Build once. Reuse after launch.</h3>
-                <p class="mt-7 max-w-lg text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Give teams reusable material, not fragile one-off compositions.</p>
-              </div>
-            </div>
-          </article>
-
-          <article class="note-card relative overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#ff5a1f] p-8 text-[#060706] md:col-span-5">
-            <div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#060706]/10"></div>
-            <p class="text-xs font-black uppercase tracking-[0.18em] text-[#060706]/50">05 / Adoption</p>
-            <h3 class="mt-12 max-w-sm text-[42px] font-black leading-[0.9] tracking-[-0.08em] md:text-[58px]">Design past the launch day.</h3>
-            <p class="mt-8 max-w-sm text-sm font-semibold leading-[1.65] text-[#060706]/62">Design for the first ninety days after launch.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="process-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <figure class="parallax-image parallax-slow pointer-events-none right-4 top-24 h-28 w-44 rotate-[4deg] md:right-8 md:top-20 md:h-56 md:w-80">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e1f39209-cbcc-4857-bc13-744562e16d78_3840w.png" alt="Collaborative planning table">
-      </figure>
-
-      <div data-reveal class="mb-16 max-w-2xl">
-        <p class="section-label mb-8">Operating Loop</p>
-        <h2 class="text-6xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-8xl">Operating Loop</h2>
-        <p class="mt-6 max-w-md text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-          A compact sequence for turning early product complexity into a public system.
+</div>
+</div>
+<div class="partner-logos grid grid-cols-1 gap-5 md:grid-cols-12">
+<article class="note-card group relative min-h-[430px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#f3f0e8] p-8 text-[#060706] md:col-span-5">
+<div class="absolute -right-6 -top-8 text-[180px] font-black leading-none tracking-[-0.12em] text-[#060706]/[0.06]">01</div>
+<div class="relative z-10 flex h-full flex-col justify-between">
+<div>
+<p class="text-xs font-black uppercase tracking-[0.18em] text-[#060706]/45">01 / Сигнал</p>
+<h3 class="mt-12 max-w-sm text-[50px] font-black leading-[0.88] tracking-[-0.08em] md:text-[64px]">Сделайте историю повторяемой.</h3>
+</div>
+<p class="max-w-sm text-base font-semibold leading-[1.55] text-[#060706]/62">Сожмите историю до того, что покупатели, инвесторы и пользователи смогут повторить.</p>
+</div>
+</article>
+<article class="note-card group relative min-h-[430px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#111612] md:col-span-4">
+<img alt="Деталь структурного фасада" class="h-full w-full object-cover opacity-70 transition duration-700 group-hover:scale-105 group-hover:opacity-90" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/79e4228e-37c5-45bc-a352-ae8b41b6d71b_3840w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#060706] via-[#060706]/25 to-transparent"></div>
+<div class="absolute bottom-7 left-7 right-7">
+<p class="text-xs font-black uppercase tracking-[0.18em] text-[#f3f0e8]/50">02 / Интерфейс</p>
+<h3 class="mt-5 text-[34px] font-black leading-[0.92] tracking-[-0.07em] text-[#f3f0e8]">Первый экран должен объяснять меньше.</h3>
+</div>
+</article>
+<article class="note-card relative min-h-[430px] overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-white/[0.035] p-7 md:col-span-3">
+<p class="text-xs font-black uppercase tracking-[0.18em] text-[#f3f0e8]/42">Индекс</p>
+<div class="mt-10 space-y-5">
+<div class="border-b border-[#f3f0e8]/10 pb-5"><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#f3f0e8]/32">03</p><p class="mt-2 text-2xl font-black tracking-[-0.06em]">Моушн</p></div>
+<div class="border-b border-[#f3f0e8]/10 pb-5"><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#f3f0e8]/32">04</p><p class="mt-2 text-2xl font-black tracking-[-0.06em]">Передача</p></div>
+<div><p class="text-[11px] font-bold uppercase tracking-[0.16em] text-[#f3f0e8]/32">05</p><p class="mt-2 text-2xl font-black tracking-[-0.06em]">Адаптация</p></div>
+</div>
+<div class="absolute bottom-7 left-7 right-7">
+<p class="text-sm font-medium leading-[1.65] text-[#f3f0e8]/56">Движение, передача и адаптация рассматриваются как одна система.</p>
+</div>
+</article>
+<article class="note-card group relative overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#0c0f0c] p-8 md:col-span-7">
+<div class="absolute right-8 top-8 h-24 w-24 rounded-full border border-[#f3f0e8]/10"></div>
+<div class="absolute right-14 top-14 h-12 w-12 rounded-full border border-[#f3f0e8]/10"></div>
+<div class="relative z-10 grid gap-8 md:grid-cols-12">
+<div class="md:col-span-4">
+<p class="text-xs font-black uppercase tracking-[0.18em] text-[#f3f0e8]/42">04 / Передача</p>
+</div>
+<div class="md:col-span-8">
+<h3 class="max-w-2xl text-[44px] font-black leading-[0.9] tracking-[-0.08em] text-[#f3f0e8] md:text-[64px]">Соберите один раз. Переиспользуйте после запуска.</h3>
+<p class="mt-7 max-w-lg text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Давайте командам переиспользуемые материалы, а не хрупкие разовые композиции.</p>
+</div>
+</div>
+</article>
+<article class="note-card relative overflow-hidden rounded-[38px] border border-[#f3f0e8]/10 bg-[#ff5a1f] p-8 text-[#060706] md:col-span-5">
+<div class="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#060706]/10"></div>
+<p class="text-xs font-black uppercase tracking-[0.18em] text-[#060706]/50">05 / Адаптация</p>
+<h3 class="mt-12 max-w-sm text-[42px] font-black leading-[0.9] tracking-[-0.08em] md:text-[58px]">Проектируйте дальше дня запуска.</h3>
+<p class="mt-8 max-w-sm text-sm font-semibold leading-[1.65] text-[#060706]/62">Проектируйте с расчётом на первые девяносто дней после запуска.</p>
+</article>
+</div>
+</div>
+</section>
+<!-- PROCESS -->
+<section class="process-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
+<figure class="parallax-image parallax-slow pointer-events-none right-4 top-24 h-28 w-44 rotate-[4deg] md:right-8 md:top-20 md:h-56 md:w-80">
+<img alt="Стол совместного планирования" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e1f39209-cbcc-4857-bc13-744562e16d78_3840w.png"/>
+</figure>
+<div class="mb-16 max-w-2xl" data-reveal="">
+<p class="section-label mb-8">Операционный цикл</p>
+<h2 class="text-6xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-8xl">Операционный цикл</h2>
+<p class="mt-6 max-w-md text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+          Компактная последовательность, превращающая раннюю сложность продукта в публичную систему.
         </p>
-      </div>
-
-      <div class="relative h-72 overflow-hidden rounded-[32px] border border-[#f3f0e8]/10 bg-white/[0.025]">
-        <div class="timeline-bar absolute left-0 top-10 h-7 w-1/4 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Read</span></div>
-        <div class="timeline-bar absolute left-[18%] top-24 h-7 w-1/4 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Frame</span></div>
-        <div class="timeline-bar absolute left-[36%] top-[9.5rem] h-7 w-1/3 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Build</span></div>
-        <div class="timeline-bar absolute left-[62%] top-52 h-7 w-1/3 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Transfer</span></div>
-        <div class="grid h-full grid-cols-4 divide-x divide-[#f3f0e8]/10"></div>
-      </div>
-
-      <div class="process-columns mt-8 grid gap-4 md:grid-cols-4">
-        <div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Read</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">We study the product, audience, category pressure, and the points where confusion slows momentum.</p></div>
-        <div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Frame</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">We create a narrative kernel, visual direction, and structural rules for every launch surface.</p></div>
-        <div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Build</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">We assemble pages, decks, motion cues, components, and source files into one coherent kit.</p></div>
-        <div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Transfer</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">We document the system so your team can reuse it without asking what belongs where.</p></div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section id="pricing" class="pricing-section relative min-h-screen px-5 py-24 md:px-8 lg:px-12">
-      <div class="grid gap-12 md:grid-cols-12">
-        <div class="pricing-copy md:col-span-4">
-          <p class="section-label mb-8">Engage</p>
-          <h2 class="text-6xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-8xl">Engage</h2>
-          <p class="mt-6 max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
-            Choose the depth of the operating system: a tight signal sprint or a full launch loop.
+</div>
+<div class="relative h-72 overflow-hidden rounded-[32px] border border-[#f3f0e8]/10 bg-white/[0.025]">
+<div class="timeline-bar absolute left-0 top-10 h-7 w-1/4 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Чтение</span></div>
+<div class="timeline-bar absolute left-[18%] top-24 h-7 w-1/4 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Рамка</span></div>
+<div class="timeline-bar absolute left-[36%] top-[9.5rem] h-7 w-1/3 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Сборка</span></div>
+<div class="timeline-bar absolute left-[62%] top-52 h-7 w-1/3 rounded-r-full text-[#060706]"><span class="ml-4 text-xs font-bold leading-7">Передача</span></div>
+<div class="grid h-full grid-cols-4 divide-x divide-[#f3f0e8]/10"></div>
+</div>
+<div class="process-columns mt-8 grid gap-4 md:grid-cols-4">
+<div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Чтение</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">Мы изучаем продукт, аудиторию, давление категории и точки, где непонимание тормозит импульс.</p></div>
+<div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Рамка</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">Мы создаём ядро нарратива, визуальное направление и структурные правила для каждой поверхности запуска.</p></div>
+<div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Сборка</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">Мы собираем страницы, презентации, моушн-акценты, компоненты и исходники в один целостный комплект.</p></div>
+<div class="glass rounded-[28px] p-6"><h3 class="text-2xl font-semibold tracking-[-0.05em]">Передача</h3><p class="mt-5 text-sm leading-[1.65] text-[#f3f0e8]/56">Мы документируем систему, чтобы ваша команда могла переиспользовать её, не спрашивая, что куда относится.</p></div>
+</div>
+</section>
+ ЦЕНЫ 
+<section class="pricing-section relative min-h-screen px-5 py-24 md:px-8 lg:px-12" id="pricing">
+<div class="grid gap-12 md:grid-cols-12">
+<div class="pricing-copy md:col-span-4">
+<p class="section-label mb-8">Связаться</p>
+<h2 class="text-6xl font-semibold leading-[0.95] tracking-[-0.08em] md:text-8xl">Связаться</h2>
+<p class="mt-6 max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">
+            Выберите глубину операционной системы: короткий сигнальный спринт или полный цикл запуска.
           </p>
-        </div>
-
-        <div class="pricing-list grid gap-5 md:col-span-7 md:col-start-6">
-          <div class="pricing-card glass rounded-[36px] p-8">
-            <div class="mb-10 flex flex-wrap gap-2">
-              <span class="rounded-full border border-[#f3f0e8]/12 px-3 py-1 text-xs font-medium text-[#f3f0e8]/66">Monthly</span>
-              <span class="rounded-full bg-[#ff5a1f] px-3 py-1 text-xs font-bold text-[#060706]">Yearly -15%</span>
-            </div>
-            <div class="flex items-baseline gap-3"><p class="text-4xl font-semibold tracking-[-0.06em]">$4,800</p><p class="text-xl font-semibold tracking-tight text-[#f3f0e8]/38">/sprint</p><p class="text-sm font-semibold text-[#f3f0e8]/34 line-through">$6,000</p></div>
-            <h3 class="mt-12 text-4xl font-semibold tracking-[-0.07em] md:text-6xl">Signal Sprint</h3>
-            <div class="mt-8 grid gap-4 md:grid-cols-2">
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Positioning map</p>
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Visual direction</p>
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Landing page concept</p>
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Launch checklist</p>
-            </div>
-          </div>
-
-          <div class="pricing-card glass rounded-[36px] p-8">
-            <div class="flex items-baseline gap-3"><p class="text-4xl font-semibold tracking-[-0.06em]">$9,600</p><p class="text-xl font-semibold tracking-tight text-[#f3f0e8]/38">/cycle</p><p class="text-sm font-semibold text-[#f3f0e8]/34 line-through">$12,000</p></div>
-            <h3 class="mt-12 text-4xl font-semibold tracking-[-0.07em] md:text-6xl">Launch System</h3>
-            <div class="mt-8 grid gap-4 md:grid-cols-2">
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Identity system</p>
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Motion toolkit</p>
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Web direction</p>
-              <p class="flex items-center gap-2 text-sm font-medium"><i data-lucide="check" class="h-4 w-4 text-[#ff5a1f]"></i> Team handoff</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="contact-section relative min-h-screen px-5 py-24 md:px-8 lg:px-12">
-      <div class="grid gap-14 md:grid-cols-12">
-        <div class="contact-form md:col-span-4">
-          <p class="section-label mb-10">Brief</p>
-          <div class="glass mb-5 flex w-full max-w-sm items-center justify-between rounded-[22px] px-5 py-4 text-sm font-medium text-[#f3f0e8]/58">Select a Launch Window <i data-lucide="chevron-down" class="h-4 w-4"></i></div>
-          <div class="mb-5 w-full max-w-sm border-b border-[#f3f0e8]/10 py-5 text-sm font-medium text-[#f3f0e8]/58">Reach me at <span class="text-[#f3f0e8]">Email *</span></div>
-          <div class="mb-10 w-full max-w-sm border-b border-[#f3f0e8]/10 py-5 text-sm font-medium text-[#f3f0e8]/58">Tell us what needs to become clearer.</div>
-          <p class="mb-8 max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Ready to turn a scattered launch into a working system?</p>
-          <a href="#footer" class="magnetic-button inline-flex items-center gap-4 rounded-full border border-[#f3f0e8]/12 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em]">
-            Begin <span class="rounded-full bg-[#ff5a1f] px-5 py-3 text-[#060706]">Send Brief</span>
-          </a>
-        </div>
-
-        <div class="faq-list md:col-span-7 md:col-start-6">
-          <p class="mb-6 text-xs font-bold uppercase tracking-[0.14em]">Brief notes. <span class="float-right">×</span></p>
-          <div class="faq-row border-t border-[#f3f0e8]/10 py-9"><h2 class="text-4xl font-semibold tracking-[-0.07em] md:text-6xl">What happens after the first call?</h2><p class="mt-5 max-w-2xl text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">We define the launch problem, collect existing material, and return with a focused scope that names the exact system we should build.</p></div>
-          <div class="faq-row border-t border-[#f3f0e8]/10 py-9"><h3 class="text-3xl font-semibold tracking-[-0.06em]">How fast can a sprint move?</h3><p class="mt-5 max-w-2xl text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Most focused sprints run in two to four weeks. Full launch systems usually need six to nine weeks depending on content and approvals.</p></div>
-          <div class="faq-row border-t border-[#f3f0e8]/10 py-9"><h3 class="text-3xl font-semibold tracking-[-0.06em]">Can this support an internal team?</h3><p class="mt-5 max-w-2xl text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Yes. We build assets, rules, and examples so founders, marketers, and product teams can keep using the system after handoff.</p></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer id="footer" class="footer-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12">
-      <div class="grid gap-12 md:grid-cols-12">
-        <div class="md:col-span-3"><p class="section-label">Axisform®</p></div>
-        <div class="md:col-span-9"><h2 class="footer-wordmark wordmark text-[5rem] font-black leading-none sm:text-[8rem] md:text-[11rem] lg:text-[14rem]">Axisform®</h2></div>
-      </div>
-
-      <div class="absolute right-5 top-28 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 md:right-8">© 2020–26</div>
-
-      <div class="footer-links absolute bottom-16 left-5 right-5 grid gap-10 border-t border-[#f3f0e8]/12 pt-10 md:left-8 md:right-8 md:grid-cols-12">
-        <div class="md:col-span-5">
-          <p class="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Independent Design Studio / 2026</p>
-          <h3 class="max-w-xl text-[42px] font-black leading-[0.92] tracking-[-0.07em] text-[#f3f0e8] md:text-[64px] lg:text-[76px]">
-            Building public systems for the next launch.
+</div>
+<div class="pricing-list grid gap-5 md:col-span-7 md:col-start-6">
+<div class="pricing-card glass rounded-[36px] p-8">
+<div class="mb-10 flex flex-wrap gap-2">
+<span class="rounded-full border border-[#f3f0e8]/12 px-3 py-1 text-xs font-medium text-[#f3f0e8]/66">Ежемесячно</span>
+<span class="rounded-full bg-[#ff5a1f] px-3 py-1 text-xs font-bold text-[#060706]">Ежегодно -15%</span>
+</div>
+<div class="flex items-baseline gap-3"><p class="text-4xl font-semibold tracking-[-0.06em]">$4,800</p><p class="text-xl font-semibold tracking-tight text-[#f3f0e8]/38">/спринт</p><p class="text-sm font-semibold text-[#f3f0e8]/34 line-through">$6,000</p></div>
+<h3 class="mt-12 text-4xl font-semibold tracking-[-0.07em] md:text-6xl">Сигнальный спринт</h3>
+<div class="mt-8 grid gap-4 md:grid-cols-2">
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Карта позиционирования</p>
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Визуальное направление</p>
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Концепция лендинга</p>
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Чек-лист запуска</p>
+</div>
+</div>
+<div class="pricing-card glass rounded-[36px] p-8">
+<div class="flex items-baseline gap-3"><p class="text-4xl font-semibold tracking-[-0.06em]">$9,600</p><p class="text-xl font-semibold tracking-tight text-[#f3f0e8]/38">/цикл</p><p class="text-sm font-semibold text-[#f3f0e8]/34 line-through">$12,000</p></div>
+<h3 class="mt-12 text-4xl font-semibold tracking-[-0.07em] md:text-6xl">Система запуска</h3>
+<div class="mt-8 grid gap-4 md:grid-cols-2">
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Система айдентики</p>
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Моушн-инструментарий</p>
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Веб-направление</p>
+<p class="flex items-center gap-2 text-sm font-medium"><i class="h-4 w-4 text-[#ff5a1f]" data-lucide="check"></i> Передача команде</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+ КОНТАКТЫ 
+<section class="contact-section relative min-h-screen px-5 py-24 md:px-8 lg:px-12" id="contact">
+<div class="grid gap-14 md:grid-cols-12">
+<div class="contact-form md:col-span-4">
+<p class="section-label mb-10">Бриф</p>
+<div class="glass mb-5 flex w-full max-w-sm items-center justify-between rounded-[22px] px-5 py-4 text-sm font-medium text-[#f3f0e8]/58">Выбрать окно запуска <i class="h-4 w-4" data-lucide="chevron-down"></i></div>
+<div class="mb-5 w-full max-w-sm border-b border-[#f3f0e8]/10 py-5 text-sm font-medium text-[#f3f0e8]/58">Пишите мне на <span class="text-[#f3f0e8]">Email *</span></div>
+<div class="mb-10 w-full max-w-sm border-b border-[#f3f0e8]/10 py-5 text-sm font-medium text-[#f3f0e8]/58">Расскажите, что должно стать понятнее.</div>
+<p class="mb-8 max-w-72 text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Готовы превратить разрозненный запуск в работающую систему?</p>
+<a class="magnetic-button inline-flex items-center gap-4 rounded-full border border-[#f3f0e8]/12 px-4 py-3 text-xs font-bold uppercase tracking-[0.12em]" href="#footer">
+            Начать <span class="rounded-full bg-[#ff5a1f] px-5 py-3 text-[#060706]">Отправить бриф</span>
+</a>
+</div>
+<div class="faq-list md:col-span-7 md:col-start-6">
+<p class="mb-6 text-xs font-bold uppercase tracking-[0.14em]">Заметки к брифу. <span class="float-right">×</span></p>
+<div class="faq-row border-t border-[#f3f0e8]/10 py-9"><h2 class="text-4xl font-semibold tracking-[-0.07em] md:text-6xl">Что происходит после первого созвона?</h2><p class="mt-5 max-w-2xl text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Мы определяем проблему запуска, собираем существующие материалы и возвращаемся со сфокусированным скоупом, который называет точную систему, которую нужно построить.</p></div>
+<div class="faq-row border-t border-[#f3f0e8]/10 py-9"><h3 class="text-3xl font-semibold tracking-[-0.06em]">Насколько быстро может идти спринт?</h3><p class="mt-5 max-w-2xl text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Большинство сфокусированных спринтов занимают от двух до четырёх недель. Полные системы запуска обычно требуют от шести до девяти недель в зависимости от контента и согласований.</p></div>
+<div class="faq-row border-t border-[#f3f0e8]/10 py-9"><h3 class="text-3xl font-semibold tracking-[-0.06em]">Подойдёт ли это внутренней команде?</h3><p class="mt-5 max-w-2xl text-sm font-medium leading-[1.7] text-[#f3f0e8]/56">Да. Мы создаём ассеты, правила и примеры, чтобы фаундеры, маркетологи и продуктовые команды могли продолжать пользоваться системой после передачи.</p></div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="footer-section relative min-h-screen overflow-hidden px-5 py-24 md:px-8 lg:px-12" id="footer">
+<div class="grid gap-12 md:grid-cols-12">
+<div class="md:col-span-3"><p class="section-label">Axisform®</p></div>
+<div class="md:col-span-9"><h2 class="footer-wordmark wordmark text-[5rem] font-black leading-none sm:text-[8rem] md:text-[11rem] lg:text-[14rem]">Axisform®</h2></div>
+</div>
+<div class="absolute right-5 top-28 text-xs font-bold uppercase tracking-[0.14em] text-[#f3f0e8]/44 md:right-8">© 2020–26</div>
+<div class="footer-links absolute bottom-16 left-5 right-5 grid gap-10 border-t border-[#f3f0e8]/12 pt-10 md:left-8 md:right-8 md:grid-cols-12">
+<div class="md:col-span-5">
+<p class="mb-5 text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Независимая дизайн-студия / 2026</p>
+<h3 class="max-w-xl text-[42px] font-black leading-[0.92] tracking-[-0.07em] text-[#f3f0e8] md:text-[64px] lg:text-[76px]">
+            Строим публичные системы для следующего запуска.
           </h3>
-
-          <div class="mt-10 grid max-w-lg grid-cols-2 border-y border-[#f3f0e8]/12 py-5">
-            <div>
-              <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#f3f0e8]/34">Studio</p>
-              <p class="mt-2 text-sm font-semibold text-[#f3f0e8]/78">Axisform®</p>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#f3f0e8]/34">Field</p>
-              <p class="mt-2 text-sm font-semibold text-[#f3f0e8]/78">Launch OS / 04</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-span-3 md:col-start-7">
-          <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Notes</p>
-          <p class="mt-6 text-sm font-medium leading-[1.75] text-[#f3f0e8]/58">
-            We build identity systems, launch pages, and compact brand infrastructure for teams who need their next chapter to feel deliberate.
+<div class="mt-10 grid max-w-lg grid-cols-2 border-y border-[#f3f0e8]/12 py-5">
+<div>
+<p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#f3f0e8]/34">Студия</p>
+<p class="mt-2 text-sm font-semibold text-[#f3f0e8]/78">Axisform®</p>
+</div>
+<div>
+<p class="text-[10px] font-bold uppercase tracking-[0.18em] text-[#f3f0e8]/34">Поле</p>
+<p class="mt-2 text-sm font-semibold text-[#f3f0e8]/78">Launch OS / 04</p>
+</div>
+</div>
+</div>
+<div class="md:col-span-3 md:col-start-7">
+<p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Заметки</p>
+<p class="mt-6 text-sm font-medium leading-[1.75] text-[#f3f0e8]/58">
+            Мы создаём системы айдентики, страницы запуска и компактную бренд-инфраструктуру для команд, которым нужно, чтобы их следующая глава ощущалась осознанной.
           </p>
-
-          <a href="#contact" class="group mt-9 flex items-center justify-between border-b border-[#f3f0e8]/14 pb-4 text-sm font-bold text-[#f3f0e8] transition hover:border-[#f3f0e8]/40">
-            Send the brief
+<a class="group mt-9 flex items-center justify-between border-b border-[#f3f0e8]/14 pb-4 text-sm font-bold text-[#f3f0e8] transition hover:border-[#f3f0e8]/40" href="#contact">
+            Отправить бриф
             <span class="transition duration-300 group-hover:translate-x-2">→</span>
-          </a>
-
-          <a href="#" class="group mt-4 flex items-center justify-between border-b border-[#f3f0e8]/14 pb-4 text-sm font-bold text-[#f3f0e8]/62 transition hover:border-[#f3f0e8]/40 hover:text-[#f3f0e8]">
-            Get studio notes
+</a>
+<a class="group mt-4 flex items-center justify-between border-b border-[#f3f0e8]/14 pb-4 text-sm font-bold text-[#f3f0e8]/62 transition hover:border-[#f3f0e8]/40 hover:text-[#f3f0e8]" href="#">
+            Получать заметки студии
             <span class="transition duration-300 group-hover:translate-x-2">→</span>
-          </a>
-        </div>
-
-        <div class="grid gap-10 md:col-span-2 md:col-start-11">
-          <div>
-            <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Social</p>
-            <div class="mt-6 space-y-4 text-sm font-bold text-[#f3f0e8]/72">
-              <a href="#" class="group flex items-center justify-between transition hover:text-[#f3f0e8]">LinkedIn <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">↗</span></a>
-              <a href="#" class="group flex items-center justify-between transition hover:text-[#f3f0e8]">X / Twitter <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">↗</span></a>
-              <a href="#" class="group flex items-center justify-between transition hover:text-[#f3f0e8]">Instagram <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">↗</span></a>
-            </div>
-          </div>
-
-          <div>
-            <p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Legal</p>
-            <div class="mt-6 space-y-3 text-sm font-semibold text-[#f3f0e8]/50">
-              <a href="#" class="block transition hover:text-[#f3f0e8]">Privacy Policy</a>
-              <a href="#" class="block transition hover:text-[#f3f0e8]">Terms of Service</a>
-              <a href="#" class="block transition hover:text-[#f3f0e8]">404</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="md:col-span-12">
-          <div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[#f3f0e8]/12 pt-5">
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f3f0e8]/34">© 2020-2026 Axisform®</p>
-            <p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f3f0e8]/34">Montréal / Global Studio / Field 04</p>
-          </div>
-        </div>
-      </div>
-    </footer>
-  </main>
-
-  <script>
+</a>
+</div>
+<div class="grid gap-10 md:col-span-2 md:col-start-11">
+<div>
+<p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Соцсети</p>
+<div class="mt-6 space-y-4 text-sm font-bold text-[#f3f0e8]/72">
+<a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#">LinkedIn <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">↗</span></a>
+<a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#">X / Twitter <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">↗</span></a>
+<a class="group flex items-center justify-between transition hover:text-[#f3f0e8]" href="#">Instagram <span class="text-[#f3f0e8]/28 transition group-hover:translate-x-1 group-hover:text-[#f3f0e8]">↗</span></a>
+</div>
+</div>
+<div>
+<p class="text-xs font-bold uppercase tracking-[0.22em] text-[#f3f0e8]/36">Правовая информация</p>
+<div class="mt-6 space-y-3 text-sm font-semibold text-[#f3f0e8]/50">
+<a class="block transition hover:text-[#f3f0e8]" href="#">Политика конфиденциальности</a>
+<a class="block transition hover:text-[#f3f0e8]" href="#">Условия использования</a>
+<a class="block transition hover:text-[#f3f0e8]" href="#">404</a>
+</div>
+</div>
+</div>
+<div class="md:col-span-12">
+<div class="mt-10 flex flex-wrap items-center justify-between gap-4 border-t border-[#f3f0e8]/12 pt-5">
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f3f0e8]/34">© 2020-2026 Axisform®</p>
+<p class="text-[10px] font-bold uppercase tracking-[0.2em] text-[#f3f0e8]/34">Монреаль / Глобальная студия / Поле 04</p>
+</div>
+</div>
+</div>
+</footer>
+</main>
+<script>
     lucide.createIcons({ attrs: { "stroke-width": 1.5 } });
 
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;

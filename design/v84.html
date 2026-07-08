@@ -1,0 +1,1221 @@
+<!DOCTYPE html>
+<html lang="ru"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ØDE Atelier — Архитектура сдержанности</title>
+<meta content="ØDE Atelier — архитектурная студия сдержанности. Мы строим из того, что остаётся, когда убрано всё лишнее: бетон, известь, свет. Осло / Цюрих." name="description"/>
+<meta content="#16161A" name="theme-color"/>
+<!-- Inline SVG favicon — the Ø monogram, no external file needed -->
+<link href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2316161A'/%3E%3Ccircle cx='50' cy='50' r='25' fill='none' stroke='%23E8E6E1' stroke-width='7'/%3E%3Cline x1='32' y1='68' x2='68' y2='32' stroke='%236B7480' stroke-width='7'/%3E%3C/svg%3E" rel="icon"/>
+<!-- Open Graph / Twitter — URLs are placeholders for the fictional studio -->
+<meta content="website" property="og:type"/>
+<meta content="ØDE Atelier" property="og:site_name"/>
+<meta content="ØDE Atelier — Архитектура сдержанности" property="og:title"/>
+<meta content="Мы строим из того, что остаётся, когда убрано всё лишнее: бетон, известь, свет. Осло / Цюрих." property="og:description"/>
+<meta content="https://images.unsplash.com/photo-1529421308418-eab98863cee4?q=80&amp;w=1200&amp;h=630&amp;fit=crop&amp;auto=format&amp;sat=-100" property="og:image"/>
+<meta content="https://ode-atelier.com/" property="og:url"/>
+<meta content="summary_large_image" name="twitter:card"/>
+<meta content="ØDE Atelier — Архитектура сдержанности" name="twitter:title"/>
+<meta content="Бетон, известь, свет — и ничего больше. Архитектурная студия сдержанности. Осло / Цюрих." name="twitter:description"/>
+<meta content="https://images.unsplash.com/photo-1529421308418-eab98863cee4?q=80&amp;w=1200&amp;h=630&amp;fit=crop&amp;auto=format&amp;sat=-100" name="twitter:image"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<!-- ░░ Component styles — the catalogue hover-reveal + cinematic plates need
+real pseudo-class selectors (group-hover-dim) that Tailwind can't express ░░ -->
+<style>
+/* single source of truth for the accent — recolor the whole site here */
+:root { --accent: #6B7480; }
+/* visible keyboard focus (cursor:none hides the pointer, so this matters) */
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; border-radius: 1px; }
+/* ── THE CATALOGUE — cursor-following preview + hover image swap ── */
+.cat-list { list-style: none; }
+.cat-row {
+position: relative; display: grid;
+grid-template-columns: 4rem 1fr auto; align-items: baseline; gap: 2vw;
+padding: 1.6rem 0; border-bottom: 1px solid rgba(22,22,26,.15); cursor: pointer;
+text-decoration: none; color: inherit;
+}
+.cat-no   { color: var(--accent); font-family: 'IBM Plex Mono', monospace; font-size: .75rem; letter-spacing: .2em; }
+.cat-name {
+font-family: 'Inter Tight', sans-serif; font-weight: 500; letter-spacing: -.02em;
+font-size: clamp(1.8rem, 5vw, 4rem); line-height: 1; color: #16161A;
+transition: letter-spacing .6s cubic-bezier(.33,1,.68,1), color .5s ease, transform .6s cubic-bezier(.33,1,.68,1);
+}
+.cat-meta { font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .2em; text-transform: uppercase; color: rgba(22,22,26,.5); }
+.cat-thumb { display: none; }
+@media (hover: hover) {
+.cat-row { transition: opacity .5s ease; }
+.cat-list:hover .cat-row:not(:hover) { opacity: .3; }
+.cat-row:hover .cat-name { letter-spacing: .06em; color: var(--accent); transform: translateX(1.25rem); }
+}
+.cat-preview {
+position: fixed; top: 0; left: 0; z-index: 55; pointer-events: none;
+width: clamp(200px, 20vw, 320px); aspect-ratio: 4 / 5;
+background-size: cover; background-position: center;
+filter: contrast(1.05);
+opacity: 0; will-change: transform;
+/* transform is driven entirely by GSAP — never CSS-transition it, or the
+per-frame position updates fight the transition and stutter */
+}
+@media (max-width: 767px) {
+.cat-row { grid-template-columns: 2.5rem 1fr auto; gap: 1rem; align-items: center; }
+.cat-meta { display: none; }
+.cat-thumb { display: block; width: 3.5rem; height: 4.5rem; background-size: cover; background-position: }
+.cat-preview { display: none; }
+}
+/* ── THE PLATES — pinned full-bleed cinematic cross-dissolve ── */
+.plates { position: relative; height: 100svh; overflow: hidden; background: #16161A; }
+.plates-frames { position: absolute; inset: 0; }
+.plate-frame { position: absolute; inset: 0; opacity: 0; }
+.plate-frame:first-child { opacity: 1; }
+.plate-img {
+width: 100%; height: 100%; background-size: cover; background-position: center;
+transform-origin: center; will-change: transform;
+}
+.plates-scrim {
+position: absolute; inset: 0; pointer-events: none;
+background: linear-gradient(180deg, rgba(22,22,26,.45) 0%, transparent 28%, rgba(22,22,26,.6) 100%);
+}
+/* label + counter sit below the fixed header so the glass nav never covers them */
+.plates-label, .plates-count {
+position: absolute; top: 5rem; z-index: 2; color: rgba(232,230,225,.5);
+font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .25em; text-transform: uppercase;
+}
+.plates-label { left: 1.5rem; } .plates-count { right: 1.5rem; }
+.plates-count b { color: #E8E6E1; font-weight: 400; }
+/* captions anchored from the TOP so every title starts at the same y */
+.plates-caps { position: absolute; left: 1.5rem; right: 1.5rem; bottom: 3rem; z-index: 2; min-height: 7em; }
+.plate-cap {
+position: absolute; left: 0; top: 0; right: 0;
+display: flex; flex-direction: column;
+opacity: 0; transform: translateY(14px);
+transition: opacity .5s ease, transform .6s cubic-bezier(.33,1,.68,1);
+}
+.plate-cap.is-on { opacity: 1; transform: none; }
+.cap-title {
+font-family: 'Inter Tight', sans-serif; font-weight: 500; letter-spacing: -.01em;
+font-size: clamp(1.5rem, 3.4vw, 2.6rem); line-height: 1.1; color: #E8E6E1;
+}
+.cap-desc {
+margin-top: .7rem; max-width: 46ch;
+font-family: 'IBM Plex Mono', monospace; font-size: .8rem; line-height: 1.55;
+letter-spacing: .02em; color: rgba(232,230,225,.6);
+}
+@media (min-width: 768px) {
+.plates-label { top: 6.5rem; left: 3rem; } .plates-count { top: 6.5rem; right: 3rem; }
+.plates-caps { left: 3rem; right: 3rem; bottom: 4rem; }
+}
+/* reduced-motion fallback: stack the frames, no pin, all captions shown */
+.plates.is-reduced { height: auto; }
+.plates.is-reduced .plates-frames { position: relative; }
+.plates.is-reduced .plate-frame { position: relative; opacity: 1; height: 70svh; }
+.plates.is-reduced .plate-cap { position: static; opacity: 1; transform: none; margin-bottom: 1.5rem; }
+/* ── TEAM — pointer-tracked 3D tilt cards ── */
+.team-grid { perspective: 1100px; }
+.tilt-card { position: relative; transform-style: preserve-3d; will-change: transform; }
+.tilt-media { position: relative; overflow: hidden; }
+.tilt-media img { transform: scale(1.05); filter: contrast(1.03);
+transition: filter .6s ease, transform .8s cubic-bezier(.22,1,.36,1); }
+.tilt-sheen { position: absolute; inset: 0; pointer-events: none; opacity: 0; mix-blend-mode: soft-light;
+background: radial-gradient(circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.30), transparent 45%);
+transition: opacity .4s ease; }
+.tilt-no { position: absolute; top: 1rem; left: 1rem; z-index: 2; transform: translateZ(60px);
+font-family: 'IBM Plex Mono', monospace; font-size: .7rem; letter-spacing: .2em; color: rgba(232,230,225,.85); }
+.tilt-meta { transform: translateZ(35px); }
+@media (hover: hover) {
+.tilt-card:hover .tilt-media img { filter: grayscale(1) contrast(1.06) brightness(1.05); transform: scale(1.1); }
+.tilt-card:hover .tilt-sheen { opacity: 1; }
+}
+/* ── HEADER — frosted glass that fades in once you leave the top ── */
+#site-header { transition: background-color .5s ease, backdrop-filter .5s ease, border-color .5s ease; border-bottom: 1px solid transparent; }
+#site-header.is-scrolled {
+background-color: rgba(232,230,225,.72);
+-webkit-backdrop-filter: blur(14px) saturate(1.1);
+backdrop-filter: blur(14px) saturate(1.1);
+border-bottom-color: rgba(22,22,26,.08);
+}
+/* active-tab indicator — set by the scroll-spy */
+#site-header nav a { position: relative; }
+#site-header nav a.nav-active { color: var(--accent); opacity: 1; }
+#site-header nav a.nav-active::after {
+content: ''; position: absolute; left: 0; right: 0; bottom: -7px; height: 1px; background: var(--accent);
+}
+/* ── FOOTER CTA — accent underline that draws in under "better" ── */
+.cta-better { position: relative; white-space: nowrap; }
+.cta-underline {
+position: absolute; left: 0; right: 0; bottom: .04em; height: .05em;
+background: var(--accent); transform: scaleX(0); transform-origin: left center;
+}
+</style><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="bg-[#E8E6E1] text-[#16161A] antialiased overflow-x-hidden selection:bg-[var(--accent)] selection:text-[#E8E6E1]" style="font-family:'Inter Tight',sans-serif">
+<!-- ░░ GRAIN OVERLAY — opacity tuned in CONFIG.grainOpacity ░░ -->
+<div class="fixed inset-0 z-[90] pointer-events-none" id="grain" style="opacity:.05;background-image:url(&quot;data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E&quot;)"></div>
+<!-- ░░ SCROLL PROGRESS — thin clay line, driven by Lenis.progress ░░ -->
+<div class="fixed top-0 inset-x-0 z-[97] h-px bg-[#16161A]/10 pointer-events-none">
+<div class="h-full bg-[var(--accent)]" id="progress" style="transform:scaleX(0);transform-origin:left center"></div>
+</div>
+<!-- ░░ CUSTOM CURSOR — thin crosshair ring ░░ -->
+<div class="fixed top-0 left-0 z-[95] pointer-events-none hidden md:flex items-center justify-center" id="cursor" style="width:2.25rem;height:2.25rem;margin-left:-1.125rem;margin-top:-1.125rem">
+<div class="absolute inset-0 rounded-full border border-[#16161A]/70" style="transition:transform .35s cubic-bezier(.22,1,.36,1)"></div>
+<div class="w-1 h-1 bg-[var(--accent)] rounded-full"></div>
+</div>
+<!-- ░░ LOADER — thin counter on a baseline, then a clean cut upward ░░ -->
+<div class="fixed inset-0 z-[99] bg-[#16161A] text-[#E8E6E1] flex flex-col justify-end" id="loader">
+<div class="px-6 md:px-12 pb-10 md:pb-14 flex items-end justify-between border-t border-[#E8E6E1]/15 pt-6 mx-6 md:mx-12">
+<p class="text-xs uppercase tracking-[0.25em] text-[#E8E6E1]/50" style="font-family:'IBM Plex Mono',monospace">ØDE — Ателье · Осло / Цюрих</p>
+<p class="text-5xl md:text-7xl font-light tracking-tight tabular-nums leading-none" id="counter">000</p>
+</div>
+</div>
+<!-- Fail-safe: if a CDN/script never boots or the intro errors, lift the loader
+     and unlock scrolling after 6s so the page can never get trapped. Standalone
+     so it runs even when GSAP/Lenis fail to load. -->
+<script>
+  window.__odeIntroDone = false;
+  setTimeout(function () {
+    if (!window.__odeIntroDone) {
+      var l = document.getElementById('loader');
+      if (l) l.style.display = 'none';
+      document.body.style.overflow = '';
+      console.warn('[ØDE] intro did not complete — revealed page via fail-safe.');
+    }
+  }, 6000);
+</script>
+<!-- ░░ HEADER ░░ -->
+<header class="fixed top-0 inset-x-0 z-[60] text-[#16161A]" id="site-header">
+<div class="flex items-center justify-between px-6 md:px-12 h-16 md:h-20">
+<a class="text-sm font-medium tracking-[-0.05em]" href="#">ØDE<span class="text-[var(--accent)]">—</span></a>
+<nav class="hidden md:flex items-center gap-10 text-xs uppercase tracking-[0.2em] opacity-70" style="font-family:'IBM Plex Mono',monospace">
+<a class="hover:opacity-100" href="#works">Работы</a>
+<a class="hover:opacity-100" href="#catalogue">Индекс</a>
+<a class="hover:opacity-100" href="#process">Процесс</a>
+<a class="hover:opacity-100" href="#studio">Студия</a>
+<a class="hover:opacity-100" href="#contact">Контакты</a>
+</nav>
+<div class="flex items-center gap-5">
+<a class="hidden md:flex text-xs uppercase tracking-[0.2em] items-center gap-2" href="#contact" style="font-family:'IBM Plex Mono',monospace">Запрос <iconify-icon icon="solar:arrow-right-up-linear" stroke-width="1.5" width="14"></iconify-icon></a>
+<button aria-controls="mobile-menu" aria-expanded="false" aria-label="Открыть меню" class="md:hidden flex items-center justify-center w-10 h-10 -mr-2" id="menu-btn">
+<iconify-icon icon="solar:hamburger-menu-linear" stroke-width="1.5" width="26"></iconify-icon>
+</button>
+</div>
+</div>
+</header>
+<!-- ░░ MOBILE MENU — full-screen overlay (md:hidden) ░░ -->
+<div class="fixed inset-0 z-[98] bg-[#16161A] text-[#E8E6E1] hidden flex-col px-6 py-6" id="mobile-menu" style="visibility:hidden">
+<div class="flex items-center justify-between h-10">
+<span class="text-sm font-medium tracking-[-0.05em]">ØDE<span style="color:var(--accent)">—</span></span>
+<button aria-label="Закрыть меню" class="flex items-center justify-center w-10 h-10 -mr-2" id="menu-close">
+<iconify-icon icon="solar:close-circle-linear" stroke-width="1.5" width="28"></iconify-icon>
+</button>
+</div>
+<nav class="flex-1 flex flex-col justify-center gap-2">
+<a class="mobile-link text-5xl font-medium tracking-tight" href="#works">Работы</a>
+<a class="mobile-link text-5xl font-medium tracking-tight" href="#catalogue">Индекс</a>
+<a class="mobile-link text-5xl font-medium tracking-tight" href="#process">Процесс</a>
+<a class="mobile-link text-5xl font-medium tracking-tight" href="#studio">Студия</a>
+<a class="mobile-link text-5xl font-medium tracking-tight" href="#contact">Контакты</a>
+</nav>
+<div class="flex items-center justify-between text-xs uppercase tracking-[0.2em] text-[#E8E6E1]/40" style="font-family:'IBM Plex Mono',monospace">
+<span>Осло / Цюрих</span>
+<a class="mobile-link hover:text-[#E8E6E1] transition-colors" href="mailto:studio@ode-atelier.com">studio@ode-atelier.com</a>
+</div>
+</div>
+<!-- ░░ HERO — type leads, shader is atmosphere only ░░ -->
+<section class="relative min-h-[100svh] flex flex-col justify-end overflow-hidden">
+<!-- structural grid lines -->
+<div class="absolute inset-y-0 left-6 md:left-12 w-px bg-[#16161A]/10"></div>
+<div class="absolute inset-y-0 right-6 md:right-12 w-px bg-[#16161A]/10"></div>
+<div class="absolute left-1/2 inset-y-0 w-px bg-[#16161A]/[0.06] hidden md:block"></div>
+<div class="relative px-6 md:px-12 pb-10 md:pb-16">
+<p class="hero-sub text-xs uppercase tracking-[0.3em] text-[#16161A]/50 mb-6 md:mb-10" style="font-family:'IBM Plex Mono',monospace">Архитектура сдержанности — осн. 2014</p>
+<h1 class="leading-[0.86] tracking-tight font-medium">
+<span class="hero-line block text-[21vw] md:text-[17vw]">ØDE</span>
+<span class="hero-line block text-[21vw] md:text-[17vw]"><span class="text-[var(--accent)]">—</span>ATELIER</span>
+</h1>
+<div class="hero-sub mt-8 md:mt-12 flex flex-col md:flex-row md:items-end justify-between gap-6 border-t border-[#16161A]/15 pt-6">
+<p class="max-w-md text-sm md:text-base font-normal text-[#16161A]/70 leading-relaxed">Мы строим из того, что остаётся, когда убрано всё лишнее. Бетон, известь, свет — и ничего больше.</p>
+<p class="text-xs uppercase tracking-[0.25em] text-[#16161A]/40 flex items-center gap-3" style="font-family:'IBM Plex Mono',monospace">Листайте <iconify-icon icon="solar:arrow-down-linear" stroke-width="1.5" width="14"></iconify-icon> 001</p>
+</div>
+</div>
+</section>
+<!-- ░░ PINNED SELECTED WORK — image holds, caption assembles line by line ░░ -->
+<section class="relative" id="works">
+<div class="h-[100svh] relative overflow-hidden" id="pin-stage">
+<img alt="Дом-монолит" class="absolute inset-0 w-full h-full object-cover" decoding="async" id="pin-img" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/45f84e4c-bdc3-4feb-8f25-24c49463007a/3840w.png?w=800&amp;q=80" style="transform:scale(1.08)"/>
+<div class="absolute inset-0 bg-[#16161A]/35"></div>
+<div class="absolute inset-x-0 bottom-0 px-6 md:px-12 pb-10 md:pb-16 text-[#E8E6E1]">
+<div class="overflow-hidden"><p class="pin-line text-xs uppercase tracking-[0.3em] text-[#E8E6E1]/60 mb-4" style="font-family:'IBM Plex Mono',monospace">Избранная работа — 001</p></div>
+<div class="overflow-hidden"><h2 class="pin-line text-5xl md:text-8xl font-medium tracking-tight leading-[0.95]">Дом-монолит</h2></div>
+<div class="overflow-hidden"><p class="pin-line mt-4 text-sm md:text-base text-[#E8E6E1]/70" style="font-family:'IBM Plex Mono',monospace">2021 · Лофотены, Норвегия · 240 м²</p></div>
+<div class="overflow-hidden"><p class="pin-line mt-2 text-xs text-[var(--accent)] uppercase tracking-[0.25em]" style="font-family:'IBM Plex Mono',monospace">Отлит за одну заливку</p></div>
+</div>
+</div>
+</section>
+<!-- ░░ STATS — numbers count up on enter (echoes the loader counter) ░░ -->
+<section class="px-6 md:px-12 py-24 md:py-36 border-t border-[#16161A]/10">
+<p class="text-xs uppercase tracking-[0.3em] text-[#16161A]/40 mb-12 md:mb-16" style="font-family:'IBM Plex Mono',monospace">Практика — в цифрах</p>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-y-12 gap-x-8">
+<div class="border-t border-[#16161A]/15 pt-5">
+<p class="text-5xl md:text-7xl font-light tracking-tight tabular-nums leading-none"><span data-count="11" data-suffix="">0</span></p>
+<p class="mt-3 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Лет практики</p>
+</div>
+<div class="border-t border-[#16161A]/15 pt-5">
+<p class="text-5xl md:text-7xl font-light tracking-tight tabular-nums leading-none"><span data-count="24" data-suffix="">0</span></p>
+<p class="mt-3 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Построенных зданий</p>
+</div>
+<div class="border-t border-[#16161A]/15 pt-5">
+<p class="text-5xl md:text-7xl font-light tracking-tight tabular-nums leading-none"><span data-count="8400" data-suffix=" m²">0</span></p>
+<p class="mt-3 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Залито бетона</p>
+</div>
+<div class="border-t border-[#16161A]/15 pt-5">
+<p class="text-5xl md:text-7xl font-light tracking-tight tabular-nums leading-none"><span data-count="2" data-suffix="">0</span></p>
+<p class="mt-3 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Ателье · Осло / Цюрих</p>
+</div>
+</div>
+</section>
+<!-- ░░ PROJECTS — clip-path wipes + subtle parallax + velocity skew ░░ -->
+<section class="px-6 md:px-12 py-24 md:py-40 space-y-28 md:space-y-48">
+<!-- project 01 -->
+<article class="grid md:grid-cols-12 gap-8 items-end" id="work-hein">
+<div class="md:col-span-7 reveal-wrap overflow-hidden" style="clip-path:inset(100% 0 0 0)">
+<img alt="Дом Хейн" class="reveal-img skewable w-full aspect-[4/5] md:aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/99ba349f-6119-4d26-b759-12862567fbc0_3840w.webp?w=800&amp;q=80" style="transform:scale(1.15)"/>
+</div>
+<div class="md:col-span-5 md:pl-8">
+<p class="text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4" style="font-family:'IBM Plex Mono',monospace">01</p>
+<h3 class="text-3xl md:text-5xl font-medium tracking-tight leading-tight">Дом Хейн</h3>
+<p class="mt-3 text-sm text-[#16161A]/60" style="font-family:'IBM Plex Mono',monospace">2023 · Побережье Ярен, NO</p>
+<p class="mt-6 text-sm md:text-base text-[#16161A]/70 leading-relaxed max-w-sm border-t border-[#16161A]/15 pt-6">Единственная бетонная стена против ветра Северного моря. Всё остальное — стекло и тишина.</p>
+</div>
+</article>
+<!-- project 02 -->
+<article class="grid md:grid-cols-12 gap-8 items-end" id="work-kalk">
+<div class="md:col-span-5 md:order-1 order-2 md:pr-8 md:text-right">
+<p class="text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4" style="font-family:'IBM Plex Mono',monospace">02</p>
+<h3 class="text-3xl md:text-5xl font-medium tracking-tight leading-tight">Павильон Kalk</h3>
+<p class="mt-3 text-sm text-[#16161A]/60" style="font-family:'IBM Plex Mono',monospace">2022 · Готланд, SE</p>
+<p class="mt-6 text-sm md:text-base text-[#16161A]/70 leading-relaxed max-w-sm md:ml-auto border-t border-[#16161A]/15 pt-6">Известняк, добытый в тридцати метрах от участка. Здание всегда было здесь — мы лишь убрали то, что его скрывало.</p>
+</div>
+<div class="md:col-span-7 md:order-2 order-1 reveal-wrap overflow-hidden" style="clip-path:inset(100% 0 0 0)">
+<img alt="Павильон Kalk" class="reveal-img skewable w-full aspect-[4/5] md:aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d3741b9d-7e0b-4ea3-9166-401eb8c2696e_3840w.png?w=800&amp;q=80" style="transform:scale(1.15)"/>
+</div>
+</article>
+<!-- project 03 -->
+<article class="grid md:grid-cols-12 gap-8 items-end" id="work-tarn">
+<div class="md:col-span-7 reveal-wrap overflow-hidden" style="clip-path:inset(100% 0 0 0)">
+<img alt="Часовня Тарн" class="reveal-img skewable w-full aspect-[4/5] md:aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/273dc6bd-240c-4edf-91a5-3c01b1a41dea_3840w.png?w=800&amp;q=80" style="transform:scale(1.15)"/>
+</div>
+<div class="md:col-span-5 md:pl-8">
+<p class="text-xs uppercase tracking-[0.3em] text-[var(--accent)] mb-4" style="font-family:'IBM Plex Mono',monospace">03</p>
+<h3 class="text-3xl md:text-5xl font-medium tracking-tight leading-tight">Часовня Тарн</h3>
+<p class="mt-3 text-sm text-[#16161A]/60" style="font-family:'IBM Plex Mono',monospace">2024 · Граубюнден, CH</p>
+<p class="mt-6 text-sm md:text-base text-[#16161A]/70 leading-relaxed max-w-sm border-t border-[#16161A]/15 pt-6">Одна комната, один проём, один час прямого света в день. Достаточно.</p>
+</div>
+</article>
+</section>
+<!-- ░░ VELOCITY MARQUEE — direction flips with scroll, speed tracks Lenis velocity ░░ -->
+<section aria-hidden="true" class="py-6 md:py-8 border-y border-[#16161A]/10 overflow-hidden select-none">
+<div class="flex whitespace-nowrap will-change-transform" id="marquee">
+<div class="marquee-track flex items-center shrink-0 text-5xl md:text-8xl font-medium tracking-tight uppercase">
+<span class="px-8">Бетон</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Известь</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Светлая</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Тишина</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Сдержанность</span><span class="text-[var(--accent)] px-2">—</span>
+</div>
+<div aria-hidden="true" class="marquee-track flex items-center shrink-0 text-5xl md:text-8xl font-medium tracking-tight uppercase">
+<span class="px-8">Бетон</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Известь</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Светлая</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Тишина</span><span class="text-[var(--accent)] px-2">—</span>
+<span class="px-8">Сдержанность</span><span class="text-[var(--accent)] px-2">—</span>
+</div>
+</div>
+</section>
+<!-- ░░ PROCESS — horizontal pinned gallery, scrubbed sideways ░░ -->
+<section class="relative" id="process">
+<div class="h-[100svh] overflow-hidden flex flex-col justify-center" id="h-stage">
+<div class="px-6 md:px-12 pb-8 md:pb-12 flex items-end justify-between">
+<div>
+<p class="text-xs uppercase tracking-[0.3em] text-[#16161A]/40 mb-3" style="font-family:'IBM Plex Mono',monospace">Процесс — в работе</p>
+<h2 class="text-4xl md:text-7xl font-medium tracking-tight leading-none">От карьера до комнаты</h2>
+</div>
+<p class="hidden md:flex items-center gap-3 text-xs uppercase tracking-[0.25em] text-[#16161A]/40" style="font-family:'IBM Plex Mono',monospace">Листайте <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" width="14"></iconify-icon></p>
+</div>
+<div class="flex gap-5 md:gap-8 px-6 md:px-12 w-max items-stretch" id="h-track">
+<figure class="h-track-panel w-[78vw] md:w-[42vw] shrink-0">
+<div class="overflow-hidden"><img alt="Карьер" class="w-full aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bac20a44-07fa-43d9-a5bb-0966668c282d_3840w.png?w=800&amp;q=80"/></div>
+<figcaption class="mt-4 flex items-baseline justify-between" style="font-family:'IBM Plex Mono',monospace">
+<span class="text-xs uppercase tracking-[0.25em] text-[#16161A]/60">01 — Карьер</span>
+<span class="text-xs text-[var(--accent)]">·</span>
+</figcaption>
+<p class="mt-1 text-sm text-[#16161A]/60 max-w-xs">Камень, прочитанный в земле и взятый лишь там, где этого просит здание.</p>
+</figure>
+<figure class="h-track-panel w-[78vw] md:w-[42vw] shrink-0">
+<div class="overflow-hidden"><img alt="Опалубка" class="w-full aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/aa8665af-487a-4205-9b38-d674e89177bd_3840w.webp?w=800&amp;q=80"/></div>
+<figcaption class="mt-4 flex items-baseline justify-between" style="font-family:'IBM Plex Mono',monospace">
+<span class="text-xs uppercase tracking-[0.25em] text-[#16161A]/60">02 — Опалубка</span>
+<span class="text-xs text-[var(--accent)]">·</span>
+</figcaption>
+<p class="mt-1 text-sm text-[#16161A]/60 max-w-xs">Деревянные формы, выструганные вручную, которые бетон запомнит.</p>
+</figure>
+<figure class="h-track-panel w-[78vw] md:w-[42vw] shrink-0">
+<div class="overflow-hidden"><img alt="Заливка" class="w-full aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/31837b6f-c5fa-4cd6-aa28-3c4305c39c3c_3840w.jpg?w=800&amp;q=80"/></div>
+<figcaption class="mt-4 flex items-baseline justify-between" style="font-family:'IBM Plex Mono',monospace">
+<span class="text-xs uppercase tracking-[0.25em] text-[#16161A]/60">03 — Заливка</span>
+<span class="text-xs text-[var(--accent)]">·</span>
+</figcaption>
+<p class="mt-1 text-sm text-[#16161A]/60 max-w-xs">Одна непрерывная заливка. Без швов, без второго шанса.</p>
+</figure>
+<figure class="h-track-panel w-[78vw] md:w-[42vw] shrink-0">
+<div class="overflow-hidden"><img alt="Выдержка" class="w-full aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f92dd6fc-3b2d-4bcf-bb45-675be4292206_3840w.png?w=800&amp;q=80"/></div>
+<figcaption class="mt-4 flex items-baseline justify-between" style="font-family:'IBM Plex Mono',monospace">
+<span class="text-xs uppercase tracking-[0.25em] text-[#16161A]/60">04 — Выдержка</span>
+<span class="text-xs text-[var(--accent)]">·</span>
+</figcaption>
+<p class="mt-1 text-sm text-[#16161A]/60 max-w-xs">Двадцать восемь дней терпения. Стена застывает в камень.</p>
+</figure>
+<figure class="h-track-panel w-[78vw] md:w-[42vw] shrink-0">
+<div class="overflow-hidden"><img alt="Распалубка" class="w-full aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7db93f8b-6470-4dd8-b03c-a60772428822_3840w.jpg?w=800&amp;q=80"/></div>
+<figcaption class="mt-4 flex items-baseline justify-between" style="font-family:'IBM Plex Mono',monospace">
+<span class="text-xs uppercase tracking-[0.25em] text-[#16161A]/60">05 — Распалубка</span>
+<span class="text-xs text-[var(--accent)]">·</span>
+</figcaption>
+<p class="mt-1 text-sm text-[#16161A]/60 max-w-xs">Опалубка спадает. Стена впервые встречает свет.</p>
+</figure>
+<figure class="h-track-panel w-[78vw] md:w-[42vw] shrink-0">
+<div class="overflow-hidden"><img alt="Комната" class="w-full aspect-[4/3] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/854506b0-b59f-4537-bad0-68fd03d74239_3840w.webp?w=800&amp;q=80"/></div>
+<figcaption class="mt-4 flex items-baseline justify-between" style="font-family:'IBM Plex Mono',monospace">
+<span class="text-xs uppercase tracking-[0.25em] text-[#16161A]/60">06 — Комната</span>
+<span class="text-xs text-[var(--accent)]">·</span>
+</figcaption>
+<p class="mt-1 text-sm text-[#16161A]/60 max-w-xs">Что остаётся: пространство, свет и застывший час дня.</p>
+</figure>
+</div>
+</div>
+</section>
+<!-- ░░ ARCHIVE — image grid, staggered reveal on enter ░░ -->
+<section class="px-6 md:px-12 py-24 md:py-40 border-t border-[#16161A]/10">
+<div class="flex items-end justify-between mb-12 md:mb-16">
+<p class="text-xs uppercase tracking-[0.3em] text-[#16161A]/40" style="font-family:'IBM Plex Mono',monospace">Архив — фрагменты</p>
+<p class="text-xs uppercase tracking-[0.2em] text-[#16161A]/40" style="font-family:'IBM Plex Mono',monospace">2014 — 2025</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6" id="archive">
+<div class="archive-item overflow-hidden md:row-span-2"><img alt="" class="skewable w-full h-full object-cover aspect-[3/4] md:aspect-auto" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/070e6114-9d13-44d5-9ee2-7a14f9c97490_3840w.webp?w=800&amp;q=80"/></div>
+<div class="archive-item overflow-hidden"><img alt="" class="skewable w-full object-cover aspect-square" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d166bdaf-f206-4604-9c90-3c031b7e9f00_3840w.webp?w=800&amp;q=80"/></div>
+<div class="archive-item overflow-hidden"><img alt="" class="skewable w-full object-cover aspect-square" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6bc08382-b2cf-4ee3-b841-fe41b9ec059b_3840w.jpg?w=800&amp;q=80"/></div>
+<div class="archive-item overflow-hidden md:row-span-2"><img alt="" class="skewable w-full h-full object-cover aspect-[3/4] md:aspect-auto" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/23ab02a6-aaa9-45ba-9ae6-3f44f55da490_3840w.webp?w=800&amp;q=80"/></div>
+<div class="archive-item overflow-hidden"><img alt="" class="skewable w-full object-cover aspect-square" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/08efc9bf-5aeb-4790-b4d1-06829b5a7cdc_3840w.webp?w=800&amp;q=80"/></div>
+<div class="archive-item overflow-hidden"><img alt="" class="skewable w-full object-cover aspect-square" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/48979401-7b39-44d8-bb2a-84f08c6544b3_3840w.jpg?w=800&amp;q=80"/></div>
+</div>
+</section>
+<!-- ░░ THE CATALOGUE — hover-reveal index; a preview follows the cursor ░░ -->
+<section class="px-6 md:px-12 py-24 md:py-40 border-t border-[#16161A]/10" id="catalogue">
+<div class="mb-12 md:mb-20">
+<p class="text-xs uppercase tracking-[0.3em] text-[#16161A]/40 mb-4" style="font-family:'IBM Plex Mono',monospace">Избранные работы — 2014 / 2025</p>
+<h2 class="text-4xl md:text-7xl font-medium tracking-tight leading-none">Каталог.</h2>
+</div>
+<ul class="cat-list border-t border-[#16161A]/15">
+<li><a class="cat-row" data-img="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0d027890-5feb-4b01-9d9b-8ce98a43758d_3840w.jpg" href="#works">
+<span class="cat-no">00</span><span class="cat-name">Дом-монолит</span>
+<span aria-hidden="true" class="cat-thumb"></span>
+<span class="cat-meta">Лофотены, NO · 2021</span>
+</a></li>
+<li><a class="cat-row" data-img="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a594314d-8761-4bcd-ac76-eb13a73f71a8_3840w.jpg" href="#work-hein">
+<span class="cat-no">01</span><span class="cat-name">Дом Хейн</span>
+<span aria-hidden="true" class="cat-thumb"></span>
+<span class="cat-meta">Побережье Ярен, NO · 2023</span>
+</a></li>
+<li><a class="cat-row" data-img="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/8427c02d-a940-469b-8ba1-28abaf7c54c0/3840w.jpg" href="#work-kalk">
+<span class="cat-no">02</span><span class="cat-name">Павильон Kalk</span>
+<span aria-hidden="true" class="cat-thumb"></span>
+<span class="cat-meta">Готланд, SE · 2022</span>
+</a></li>
+<li><a class="cat-row" data-img="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/93ddf5b6-cabf-47a3-815e-95e6bb429ca2_3840w.webp" href="#work-tarn">
+<span class="cat-no">03</span><span class="cat-name">Часовня Тарн</span>
+<span aria-hidden="true" class="cat-thumb"></span>
+<span class="cat-meta">Граубюнден, CH · 2024</span>
+</a></li>
+<li><a class="cat-row" data-img="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/db4d2216-86d7-487e-8383-fcfae62042bb/3840w.png" href="#works">
+<span class="cat-no">04</span><span class="cat-name">Терминус</span>
+<span aria-hidden="true" class="cat-thumb"></span>
+<span class="cat-meta">Цюрих, CH · 2020</span>
+</a></li>
+<li><a class="cat-row" data-img="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5f7c96e3-1d89-444e-98f2-539355f47b1c_3840w.webp" href="#works">
+<span class="cat-no">05</span><span class="cat-name">Тихий дом</span>
+<span aria-hidden="true" class="cat-thumb"></span>
+<span class="cat-meta">Готланд, SE · 2019</span>
+</a></li>
+</ul>
+<div aria-hidden="true" class="cat-preview"></div>
+</section>
+<!-- ░░ THE PLATES — pinned full-bleed cinematic cross-dissolve ░░ -->
+<section class="plates" id="plates">
+<div aria-hidden="true" class="plates-frames">
+<div class="plate-frame"><div class="plate-img" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e723befe-bea7-48c6-bc18-fc7e1bf3de02_3840w.jpg')"></div></div>
+<div class="plate-frame"><div class="plate-img" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4a82ca5b-ffa7-4e34-81d1-7b20a0bbd06d_3840w.webp')"></div></div>
+<div class="plate-frame"><div class="plate-img" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7a057df0-bf92-44f7-8166-01c41876609d_3840w.jpg')"></div></div>
+<div class="plate-frame"><div class="plate-img" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e8f58e4b-4eb6-4d63-b766-a57b706412db_3840w.jpg')"></div></div>
+</div>
+<div aria-hidden="true" class="plates-scrim"></div>
+<span class="plates-label">Работа — мимоходом</span>
+<span class="plates-count"><b class="pl-now">01</b> / 04</span>
+<div class="plates-caps">
+<div class="plate-cap is-on">
+<span class="cap-title">Внутренняя комната</span>
+<span class="cap-desc">Комната, затаившая дыхание, — бетон, тень и единственный шов дневного света.</span>
+</div>
+<div class="plate-cap">
+<span class="cap-title">Залитый свет</span>
+<span class="cap-desc">Свет, залитый и оставленный застывать в фактуре стены.</span>
+</div>
+<div class="plate-cap">
+<span class="cap-title">Длинный коридор</span>
+<span class="cap-desc">Проход, забывающий собственную длину между двумя далёкими проёмами.</span>
+</div>
+<div class="plate-cap">
+<span class="cap-title">Тихая масса</span>
+<span class="cap-desc">Бетон, приученный нести свой вес, никогда не заявляя о нём.</span>
+</div>
+</div>
+</section>
+<!-- ░░ PRINCIPLES — scrub-linked word fill, tied to scroll position ░░ -->
+<section class="px-6 md:px-12 py-28 md:py-48 border-t border-[#16161A]/10" id="principles">
+<div class="grid md:grid-cols-12 gap-8">
+<p class="md:col-span-3 text-xs uppercase tracking-[0.3em] text-[#16161A]/40" style="font-family:'IBM Plex Mono',monospace">Принципы / Читать медленно</p>
+<p class="fill-text md:col-span-9 text-3xl md:text-[2.85rem] font-normal tracking-tight leading-[1.28] max-w-4xl">Сдержанность — это не отсутствие. Это дисциплина удаления всего, что не несёт веса, пока оставшееся не сможет простоять век без оправданий — бетон, помнящий руку, которая его заливала, и свет, приходящий раз в день, которого достаточно.</p>
+</div>
+</section>
+<!-- ░░ TEAM — pointer-tracked 3D tilt cards ░░ -->
+<section class="px-6 md:px-12 py-24 md:py-40 border-t border-[#16161A]/10" id="team">
+<div class="mb-12 md:mb-20 grid md:grid-cols-12 gap-8 items-end">
+<div class="md:col-span-8">
+<p class="text-xs uppercase tracking-[0.3em] text-[#16161A]/40 mb-4" style="font-family:'IBM Plex Mono',monospace">Студия / Люди</p>
+<h2 class="text-4xl md:text-7xl font-medium tracking-tight leading-none">Руки, стоящие за этим.</h2>
+</div>
+<p class="md:col-span-4 text-sm md:text-base text-[#16161A]/60 leading-relaxed">Четыре партнёра, одна позиция — убирать, пока не появится здание. Работаем между Осло и Цюрихом.</p>
+</div>
+<div class="team-grid grid grid-cols-2 md:grid-cols-4 gap-5 md:gap-8">
+<article class="tilt-card">
+<span class="tilt-no">01</span>
+<div class="tilt-media"><img alt="Ингрид Халворсен" class="w-full aspect-[3/4] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/24f664fd-07a7-45e6-9553-ed03aa0c764f_3840w.jpg?w=800&amp;q=80"/><div class="tilt-sheen"></div></div>
+<div class="tilt-meta mt-5">
+<h3 class="text-lg md:text-2xl font-medium tracking-tight">Ингрид Халворсен</h3>
+<p class="mt-1 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Партнёр-основатель</p>
+</div>
+</article>
+<article class="tilt-card">
+<span class="tilt-no">02</span>
+<div class="tilt-media"><img alt="Андерс Вик" class="w-full aspect-[3/4] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bd0dc97c-a094-49ac-8265-f47f1efa3939_3840w.webp?w=800&amp;q=80"/><div class="tilt-sheen"></div></div>
+<div class="tilt-meta mt-5">
+<h3 class="text-lg md:text-2xl font-medium tracking-tight">Андерс Вик</h3>
+<p class="mt-1 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Партнёр · Тектоника</p>
+</div>
+</article>
+<article class="tilt-card">
+<span class="tilt-no">03</span>
+<div class="tilt-media"><img alt="София Келлер" class="w-full aspect-[3/4] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b868b942-246c-46ca-812c-31b49fd61a16_3840w.jpg?w=800&amp;q=80"/><div class="tilt-sheen"></div></div>
+<div class="tilt-meta mt-5">
+<h3 class="text-lg md:text-2xl font-medium tracking-tight">София Келлер</h3>
+<p class="mt-1 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Партнёр · Свет и пространство</p>
+</div>
+</article>
+<article class="tilt-card">
+<span class="tilt-no">04</span>
+<div class="tilt-media"><img alt="Юхан Рейн" class="w-full aspect-[3/4] object-cover" decoding="async" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6ea7ac2f-7ea9-4840-8d43-e76983fb1059_3840w.jpg?w=800&amp;q=80"/><div class="tilt-sheen"></div></div>
+<div class="tilt-meta mt-5">
+<h3 class="text-lg md:text-2xl font-medium tracking-tight">Юхан Рейн</h3>
+<p class="mt-1 text-xs uppercase tracking-[0.2em] text-[#16161A]/50" style="font-family:'IBM Plex Mono',monospace">Ассоциированный партнёр · Материалы</p>
+</div>
+</article>
+</div>
+</section>
+<!-- ░░ MANIFESTO — dark, full-bleed, with a parallax image behind the text ░░ -->
+<section class="relative overflow-hidden border-t border-[#16161A]/10 text-[#E8E6E1]" id="studio">
+<!-- parallax backdrop: scaled so it never gaps as it drifts -->
+<img alt="" class="absolute inset-0 w-full h-full object-cover" decoding="async" id="studio-bg" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c6d37ca6-fb0b-46ad-b74e-42124ae12b4f_3840w.webp?w=800&amp;q=80" style="transform:scale(1.25)"/>
+<div class="absolute inset-0 bg-[#16161A]/72"></div>
+<div class="relative px-6 md:px-12 py-32 md:py-56 grid md:grid-cols-12 gap-8">
+<p class="md:col-span-3 text-xs uppercase tracking-[0.3em] text-[#E8E6E1]/50" style="font-family:'IBM Plex Mono',monospace">Студия / Позиция</p>
+<p class="manifesto md:col-span-9 text-2xl md:text-5xl font-normal tracking-tight leading-[1.15] max-w-4xl">Мы не декорируем. Мы не смягчаем. Стена — это решение, удерживаемое сто лет, — <span class="text-[var(--accent)]">мы принимаем мало решений, медленно.</span></p>
+</div>
+</section>
+<!-- ░░ FOOTER — magnetic enquire ░░ -->
+<footer class="relative z-[91] bg-[#16161A] text-[#E8E6E1] overflow-hidden" id="contact">
+<!-- top: call-to-action (left) + structured contact (right) -->
+<div class="relative px-6 md:px-12 pt-24 md:pt-40 pb-16 md:pb-24 grid md:grid-cols-12 gap-y-14 gap-x-8 items-start">
+<div class="md:col-span-7">
+<p class="text-xs uppercase tracking-[0.3em] text-[#E8E6E1]/40 mb-8" style="font-family:'IBM Plex Mono',monospace">Заказы 2025 — 2027</p>
+<h2 class="footer-cta text-5xl md:text-8xl font-medium tracking-tight leading-[0.92]">
+<span class="block overflow-hidden pb-[0.05em]"><span class="cta-line inline-block">Строить меньше.</span></span>
+<span class="block overflow-hidden pb-[0.05em]"><span class="cta-line inline-block">Сборка <span class="cta-better">лучше<span class="cta-underline"></span></span>.</span></span>
+</h2>
+<div class="mt-12 md:mt-16">
+<a class="group inline-flex items-center justify-center gap-4 rounded-full border border-[#E8E6E1]/25 hover:border-[var(--accent)] px-10 h-16 md:h-20 transition-colors duration-500" href="mailto:studio@ode-atelier.com" id="magnet">
+<span class="text-lg md:text-2xl font-medium tracking-tight">Оставить запрос</span>
+<iconify-icon class="text-[var(--accent)]" icon="solar:arrow-right-up-linear" stroke-width="1.5" width="22"></iconify-icon>
+</a>
+</div>
+</div>
+<div class="md:col-span-5 md:pl-8 grid grid-cols-2 gap-8 text-sm" style="font-family:'IBM Plex Mono',monospace">
+<div>
+<p class="text-[10px] uppercase tracking-[0.25em] text-[#E8E6E1]/35 mb-5">Студии</p>
+<p class="text-[#E8E6E1]/80 leading-relaxed">Skippergata 14<br/>0152 Осло, NO</p>
+<p class="mt-5 text-[#E8E6E1]/80 leading-relaxed">Limmatstrasse 9<br/>8005 Цюрих, CH</p>
+</div>
+<div>
+<p class="text-[10px] uppercase tracking-[0.25em] text-[#E8E6E1]/35 mb-5">Контакты</p>
+<a class="block text-[#E8E6E1]/80 hover:text-[#E8E6E1] transition-colors" href="mailto:studio@ode-atelier.com">studio@ode-atelier.com</a>
+<a class="block mt-2 text-[#E8E6E1]/80 hover:text-[#E8E6E1] transition-colors" href="tel:+4722000000">+47 22 00 00 00</a>
+<p class="text-[10px] uppercase tracking-[0.25em] text-[#E8E6E1]/35 mt-8 mb-5">Подписаться</p>
+<a class="block text-[#E8E6E1]/80 hover:text-[#E8E6E1] transition-colors" href="#">Instagram</a>
+<a class="block mt-2 text-[#E8E6E1]/80 hover:text-[#E8E6E1] transition-colors" href="#">LinkedIn</a>
+</div>
+</div>
+</div>
+<!-- faint oversized signature wordmark -->
+<div class="px-6 md:px-12 select-none pointer-events-none">
+<h2 class="font-medium tracking-tight leading-[0.8] text-[20vw] text-[#E8E6E1]/[0.05] whitespace-nowrap">ØDE<span style="color:var(--accent);opacity:.3">—</span>ATELIER</h2>
+</div>
+<!-- bottom meta -->
+<div class="px-6 md:px-12 py-8 border-t border-[#E8E6E1]/10 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between text-xs uppercase tracking-[0.2em] text-[#E8E6E1]/40" style="font-family:'IBM Plex Mono',monospace">
+<p>ØDE<span class="text-[var(--accent)]">—</span>Ателье © 2025 · Вымысел</p>
+<p class="text-[#E8E6E1]/55" id="footer-clock">Осло / Цюрих · —:— CET</p>
+<p>Архитектура сдержанности</p>
+</div>
+</footer>
+<script>
+/* ═══════════════════════════════════════════════════════════════
+   TUNING — adjust everything from here
+   ═══════════════════════════════════════════════════════════════ */
+const CONFIG = {
+  scrollLerp: 0.12,        // Lenis smoothing — lower = floatier, higher = tighter
+  ease: 'power3.out',      // single easing personality, everywhere
+  grainOpacity: 0.05,      // film grain strength
+  revealDuration: 1.1,     // clip-path image-reveal timing (seconds)
+  loaderDuration: 2.0,     // counter 0 → 100 duration
+  marqueeDuration: 24,     // base seconds for one marquee loop (idle speed)
+  skewMax: 2.5,            // max skewY (deg) at peak scroll velocity — subtle lean, not a wave
+  skewFactor: 0.14         // how strongly velocity maps to skew
+};
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+document.getElementById('grain').style.opacity = CONFIG.grainOpacity;
+
+/* ═══════════════════════════════════════════════════════════════
+   LENIS ↔ SCROLLTRIGGER SYNC
+   One scroll position, one clock: Lenis is driven by GSAP's
+   ticker, and ScrollTrigger.update() fires on every Lenis scroll.
+   lagSmoothing(0) prevents the two from drifting apart.
+   ═══════════════════════════════════════════════════════════════ */
+const lenis = new Lenis({ lerp: CONFIG.scrollLerp });
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((t) => lenis.raf(t * 1000));
+gsap.ticker.lagSmoothing(0);
+
+/* ═══════════════════════════════════════════════════════════════
+   LENIS-DRIVEN GLOBALS — one scroll handler feeds three readers:
+   • progress bar  (lenis.progress 0→1)
+   • velocity skew (lenis.velocity → skewY on .skewable)
+   • marquee       (lenis.direction flips it, velocity speeds it)
+   ═══════════════════════════════════════════════════════════════ */
+const progressEl = document.getElementById('progress');
+const headerEl = document.getElementById('site-header');
+const setSkew = reduceMotion ? null
+  : gsap.quickTo('.skewable', 'skewY', { duration: 0.7, ease: 'power3.out' });
+const clampSkew = gsap.utils.clamp(-CONFIG.skewMax, CONFIG.skewMax);
+
+let marqueeTl = null;
+const marqueeTrack = document.querySelector('#marquee');
+if (marqueeTrack && !reduceMotion) {
+  marqueeTl = gsap.to('.marquee-track', {
+    xPercent: -100, repeat: -1, duration: CONFIG.marqueeDuration, ease: 'none'
+  });
+}
+
+lenis.on('scroll', (e) => {
+  // progress bar
+  progressEl.style.transform = `scaleX(${e.progress || 0})`;
+  // header: frosted glass once we leave the very top
+  headerEl.classList.toggle('is-scrolled', (e.scroll || 0) > 40);
+  if (reduceMotion) return;
+  // velocity → skew (settles back to 0 as velocity decays)
+  if (setSkew) setSkew(clampSkew((e.velocity || 0) * CONFIG.skewFactor));
+  // marquee direction + a touch of velocity-driven speed
+  if (marqueeTl) {
+    const dir = e.direction || 1;
+    const boost = 1 + Math.min(Math.abs(e.velocity || 0) * 0.06, 4);
+    marqueeTl.timeScale(dir * boost);
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV — animated smooth-scroll to sections (Lenis)
+   Intercept in-page anchors so a tab glides to its target instead
+   of jumping — Lenis animates the whole travel, naturally up or
+   down. Offset by the header height so the section clears the nav.
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+  a.addEventListener('click', (e) => {
+    const href = a.getAttribute('href');
+    e.preventDefault();
+    if (href === '#') { lenis.scrollTo(0, { duration: 1.2, immediate: reduceMotion }); return; }
+    const target = document.querySelector(href);
+    if (!target) return;
+    const headerH = headerEl ? headerEl.offsetHeight : 80;
+    lenis.scrollTo(target, {
+      offset: -headerH,
+      duration: 1.5,
+      easing: (t) => 1 - Math.pow(1 - t, 3), // easeOutCubic — weighted glide
+      immediate: reduceMotion
+    });
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   MOBILE MENU — full-screen overlay (the nav is hidden on phones)
+   Opens/closes with a fade + staggered link rise. Link clicks are
+   already smooth-scrolled by the handler above, so we just close.
+   ═══════════════════════════════════════════════════════════════ */
+{
+  const menu = document.getElementById('mobile-menu');
+  const btn = document.getElementById('menu-btn');
+  const closeBtn = document.getElementById('menu-close');
+  if (menu && btn && closeBtn) {
+    const open = () => {
+      btn.setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+      menu.classList.remove('hidden'); menu.classList.add('flex');
+      gsap.set(menu, { visibility: 'visible' });
+      gsap.fromTo(menu, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.4, ease: 'power2.out' });
+      gsap.fromTo('#mobile-menu .mobile-link', { y: 24, autoAlpha: 0 },
+        { y: 0, autoAlpha: 1, duration: 0.5, stagger: 0.05, ease: 'power3.out', delay: 0.05 });
+    };
+    const close = () => {
+      btn.setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+      gsap.to(menu, { autoAlpha: 0, duration: 0.3, ease: 'power2.in',
+        onComplete: () => { menu.classList.add('hidden'); menu.classList.remove('flex'); } });
+    };
+    btn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    menu.querySelectorAll('a').forEach((a) => a.addEventListener('click', close));
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   NAV — active-tab scroll-spy
+   Each nav target marks its tab active while that section owns the
+   viewport centre, so the header always reflects where you are.
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('#site-header nav a[href^="#"]').forEach((link) => {
+  const sec = document.querySelector(link.getAttribute('href'));
+  if (!sec) return;
+  ScrollTrigger.create({
+    trigger: sec, start: 'top center', end: 'bottom center',
+    onToggle: (self) => link.classList.toggle('nav-active', self.isActive)
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   LOADER → HERO TIMELINE
+   1. Counter ticks to 100 on the baseline (no fade flourish)
+   2. Loader cuts upward — a clean wipe
+   3. Hero headline assembles via SplitText, chars rising
+   ═══════════════════════════════════════════════════════════════ */
+const counter = { v: 0 };
+const counterEl = document.getElementById('counter');
+
+// lock scroll immediately (loader covers the screen); the rest waits for fonts
+// so SplitText measures final glyph metrics and the headline never reflows.
+if (!reduceMotion) document.body.style.overflow = 'hidden';
+
+document.fonts.ready.then(() => {
+  const split1 = new SplitText('.hero-line', { type: 'chars', charsClass: 'inline-block' });
+  gsap.set('.hero-line', { overflow: 'hidden' });
+
+  if (reduceMotion) {
+    // Instant states — no choreography
+    document.getElementById('loader').style.display = 'none';
+    gsap.set('.reveal-wrap', { clipPath: 'inset(0% 0 0 0)' });
+    gsap.set('.reveal-img', { scale: 1 });
+    window.__odeIntroDone = true;
+  } else {
+    const intro = gsap.timeline({
+      defaults: { ease: CONFIG.ease },
+      onComplete: () => { document.body.style.overflow = ''; window.__odeIntroDone = true; }
+    });
+    intro
+      .to(counter, {
+        v: 100, duration: CONFIG.loaderDuration, ease: 'power2.inOut',
+        onUpdate: () => counterEl.textContent = String(Math.round(counter.v)).padStart(3, '0')
+      })
+      .to('#loader', { yPercent: -100, duration: 0.9, ease: 'power3.inOut' }, '+=0.15')
+      .from(split1.chars, { yPercent: 110, duration: 1.1, stagger: 0.028 }, '-=0.45')
+      .from('.hero-sub', { y: 24, autoAlpha: 0, duration: 0.9, stagger: 0.12 }, '-=0.7');
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   PINNED SELECTED-WORK SECTION
+   The stage pins for 150% of viewport scroll. While held:
+   image settles from 1.08 → 1, caption lines rise one by one
+   (each wrapped in overflow-hidden), then scrolling resumes.
+   Scrubbed — tied directly to scroll position, no drift.
+   ═══════════════════════════════════════════════════════════════ */
+if (!reduceMotion) {
+  gsap.timeline({
+    defaults: { ease: 'none' },
+    scrollTrigger: {
+      trigger: '#pin-stage',
+      start: 'top top',
+      end: '+=150%',
+      pin: true,
+      scrub: 0.6
+    }
+  })
+  .to('#pin-img', { scale: 1, duration: 2 }, 0)
+  .from('.pin-line', { yPercent: 110, duration: 1, stagger: 0.35 }, 0.2);
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   STATS — count up on enter, once. Uses the same padded/locale
+   formatting as the loader so the motif rhymes.
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('[data-count]').forEach((el) => {
+  const target = +el.dataset.count;
+  const suffix = el.dataset.suffix || '';
+  const render = (n) => el.textContent = Math.round(n).toLocaleString('en-US') + suffix;
+  if (reduceMotion) { render(target); return; }
+  const obj = { v: 0 };
+  ScrollTrigger.create({
+    trigger: el, start: 'top 88%', once: true,
+    onEnter: () => gsap.to(obj, {
+      v: target, duration: 1.8, ease: 'power2.out', onUpdate: () => render(obj.v)
+    })
+  });
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   PROCESS — HORIZONTAL PINNED GALLERY
+   The stage pins, and the track translates left by exactly its
+   overflow width. end is computed from that width so the last
+   panel lands flush; invalidateOnRefresh recomputes on resize.
+   ═══════════════════════════════════════════════════════════════ */
+const hStage = document.getElementById('h-stage');
+const hTrack = document.getElementById('h-track');
+if (hTrack) {
+  const overflow = () => Math.max(0, hTrack.scrollWidth - window.innerWidth);
+  if (reduceMotion) {
+    // Fallback: let it scroll horizontally by hand, no pin
+    hStage.style.height = 'auto';
+    hStage.style.overflowX = 'auto';
+  } else {
+    gsap.to(hTrack, {
+      x: () => -overflow(),
+      ease: 'none',
+      scrollTrigger: {
+        trigger: hStage,
+        start: 'top top',
+        end: () => '+=' + overflow(),
+        pin: true,
+        scrub: 0.6,
+        invalidateOnRefresh: true
+      }
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   CLIP-PATH IMAGE REVEALS
+   Wrapper starts as inset(100% 0 0 0) — fully masked from the
+   bottom — and unmasks to inset(0%): a crisp wipe, never a fade.
+   The inner image counter-scales 1.15 → 1 for weight.
+   Subtle parallax: the image drifts -6% across its scroll range.
+   ═══════════════════════════════════════════════════════════════ */
+document.querySelectorAll('.reveal-wrap').forEach((wrap) => {
+  const img = wrap.querySelector('.reveal-img');
+  if (!reduceMotion) {
+    gsap.timeline({
+      defaults: { ease: CONFIG.ease, duration: CONFIG.revealDuration },
+      scrollTrigger: { trigger: wrap, start: 'top 78%' }
+    })
+    .to(wrap, { clipPath: 'inset(0% 0 0 0)' })
+    .to(img, { scale: 1.05 }, 0);
+    // very subtle parallax, scrubbed
+    gsap.to(img, {
+      yPercent: -6, ease: 'none',
+      scrollTrigger: { trigger: wrap, start: 'top bottom', end: 'bottom top', scrub: true }
+    });
+  }
+});
+
+/* ═══════════════════════════════════════════════════════════════
+   ARCHIVE GRID — staggered rise on enter
+   ═══════════════════════════════════════════════════════════════ */
+if (!reduceMotion) {
+  gsap.from('#archive .archive-item', {
+    y: 60, autoAlpha: 0, duration: 1, stagger: 0.1, ease: CONFIG.ease,
+    scrollTrigger: { trigger: '#archive', start: 'top 75%' }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THE CATALOGUE — hover-reveal index
+   A monochrome preview floats at the cursor (positioned by one
+   quickTo pair) and swaps to the hovered row's photo; CSS handles
+   dimming the other rows and shifting the hovered name. On touch
+   there's no hover, so each row's inline thumbnail carries the
+   image instead. Reproduced from VOLUM's .index-list.
+   ═══════════════════════════════════════════════════════════════ */
+{
+  const rows = gsap.utils.toArray('.cat-row');
+  const preview = document.querySelector('.cat-preview');
+
+  // touch / no-hover: wire each row's inline thumbnail
+  rows.forEach((row) => {
+    const thumb = row.querySelector('.cat-thumb');
+    if (thumb) thumb.style.backgroundImage = `url('${row.dataset.img}')`;
+  });
+
+  if (!reduceMotion) {
+    gsap.from('.cat-row', {
+      autoAlpha: 0, y: 24, duration: 0.9, stagger: 0.08,
+      clearProps: 'opacity,visibility,transform', // let the CSS hover-dim take over after
+      scrollTrigger: { trigger: '.cat-list', start: 'top 82%' }
+    });
+  }
+
+  // desktop: preview follows the cursor, image swaps per hovered row
+  if (preview && window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduceMotion) {
+    // GSAP owns the transform (position + scale + fade) so it never fights CSS.
+    gsap.set(preview, { xPercent: -50, yPercent: -50, scale: 0.9, autoAlpha: 0 });
+    const px = gsap.quickTo(preview, 'x', { duration: 0.55, ease: 'power3' });
+    const py = gsap.quickTo(preview, 'y', { duration: 0.55, ease: 'power3' });
+    const list = document.querySelector('.cat-list');
+
+    // snap to the cursor the moment we enter, so the first reveal doesn't
+    // glide in from the corner; smooth quickTo glide for every move after.
+    list.addEventListener('mouseenter', (e) => gsap.set(preview, { x: e.clientX, y: e.clientY }));
+    list.addEventListener('mousemove', (e) => { px(e.clientX); py(e.clientY); });
+
+    rows.forEach((row) => row.addEventListener('mouseenter', () => {
+      preview.style.backgroundImage = `url('${row.dataset.img}')`;
+      gsap.to(preview, { autoAlpha: 1, scale: 1, duration: 0.5, ease: 'power3' });
+    }));
+    list.addEventListener('mouseleave', () =>
+      gsap.to(preview, { autoAlpha: 0, scale: 0.9, duration: 0.4, ease: 'power3' }));
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   THE PLATES — pinned full-bleed cinematic cross-dissolve
+   The section pins for n·90% of viewport. Each frame's opacity is
+   max(0, 1 − |p − i|) as scrubbed progress p sweeps 0 → n−1, so
+   adjacent frames cross-fade over a slow collective zoom-out
+   (1.12 → 1.00). Counter + caption track the rounded index.
+   Reproduced from VOLUM's .plates.
+   ═══════════════════════════════════════════════════════════════ */
+{
+  const platesEl = document.querySelector('.plates');
+  const frames = gsap.utils.toArray('.plate-frame');
+  const imgs = gsap.utils.toArray('.plate-img');
+  const caps = gsap.utils.toArray('.plate-cap');
+  const nowEl = document.querySelector('.pl-now');
+  const n = frames.length;
+
+  if (n && reduceMotion) {
+    platesEl.classList.add('is-reduced'); // stacked fallback, no pin
+  } else if (n) {
+    gsap.set(frames, { opacity: (i) => (i === 0 ? 1 : 0) });
+    ScrollTrigger.create({
+      trigger: '.plates', start: 'top top', end: '+=' + (n * 90) + '%',
+      pin: true, scrub: 1, anticipatePin: 1, // 1s catch-up → controlled dissolve speed even on fast scroll
+      onUpdate: (self) => {
+        const p = self.progress * (n - 1);   // 0 … n−1
+        const idx = Math.round(p);
+        frames.forEach((f, i) => gsap.set(f, { opacity: Math.max(0, 1 - Math.abs(p - i)) }));
+        gsap.set(imgs, { scale: 1.12 - 0.12 * self.progress }); // slow collective drift
+        caps.forEach((c, i) => c.classList.toggle('is-on', i === idx));
+        if (nowEl) nowEl.textContent = String(idx + 1).padStart(2, '0');
+      }
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   PRINCIPLES — SCRUB-LINKED WORD FILL
+   Each word starts ink-faded and fills to solid as a function of
+   scroll position (scrub:true). Different from the rise-on-enter
+   manifesto below — this one is welded to the scrollbar.
+   ═══════════════════════════════════════════════════════════════ */
+const fillEl = document.querySelector('.fill-text');
+if (fillEl) {
+  const fillSplit = new SplitText(fillEl, { type: 'words', wordsClass: 'inline-block' });
+  if (reduceMotion) {
+    gsap.set(fillSplit.words, { opacity: 1 });
+  } else {
+    gsap.set(fillSplit.words, { opacity: 0.15 });
+    gsap.to(fillSplit.words, {
+      opacity: 1, ease: 'none', stagger: 0.5,
+      scrollTrigger: { trigger: fillEl, start: 'top 80%', end: 'bottom 55%', scrub: true }
+    });
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   TEAM — pointer-tracked 3D tilt cards
+   Each card rotates toward the cursor in real 3D (parent supplies
+   perspective; quickTo drives rotationX/Y for a weighted glide).
+   The name floats on its own Z-plane and a soft light-sheen tracks
+   the pointer via CSS vars. Desktop hover only; cards stay flat on
+   touch and reduced-motion.
+   ═══════════════════════════════════════════════════════════════ */
+if (window.matchMedia('(hover:hover) and (pointer:fine)').matches && !reduceMotion) {
+  document.querySelectorAll('.tilt-card').forEach((card) => {
+    const rxTo = gsap.quickTo(card, 'rotationX', { duration: 0.5, ease: 'power3' });
+    const ryTo = gsap.quickTo(card, 'rotationY', { duration: 0.5, ease: 'power3' });
+    card.addEventListener('mousemove', (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;   // -0.5 … 0.5
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      ryTo(px * 10); rxTo(-py * 10);                       // ±10° tilt
+      card.style.setProperty('--mx', (px + 0.5) * 100 + '%');
+      card.style.setProperty('--my', (py + 0.5) * 100 + '%');
+    });
+    card.addEventListener('mouseleave', () => { rxTo(0); ryTo(0); });
+  });
+}
+if (!reduceMotion) {
+  gsap.from('.tilt-card', {
+    y: 60, autoAlpha: 0, duration: 1, stagger: 0.12, ease: CONFIG.ease,
+    scrollTrigger: { trigger: '#team', start: 'top 75%' }
+  });
+}
+
+/* Manifesto — quiet line rise + scrubbed parallax on the backdrop image.
+   The image is scaled 1.25, so a ±7% drift never exposes an edge. */
+if (!reduceMotion) {
+  gsap.from('.manifesto', {
+    y: 40, autoAlpha: 0, duration: 1.2, ease: CONFIG.ease,
+    scrollTrigger: { trigger: '.manifesto', start: 'top 80%' }
+  });
+  gsap.fromTo('#studio-bg', { yPercent: -7 }, {
+    yPercent: 7, ease: 'none',
+    scrollTrigger: { trigger: '#studio', start: 'top bottom', end: 'bottom top', scrub: true }
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   FOOTER CTA — "Build less. / Build better."
+   Each line rises out of its own clip in sequence, then a thin
+   accent underline draws in under "better" to land the line.
+   ═══════════════════════════════════════════════════════════════ */
+if (reduceMotion) {
+  gsap.set('.cta-underline', { scaleX: 1 });
+} else {
+  gsap.timeline({ scrollTrigger: { trigger: '.footer-cta', start: 'top 82%' } })
+    .from('.footer-cta .cta-line', { yPercent: 115, duration: 1, stagger: 0.18, ease: CONFIG.ease })
+    .to('.cta-underline', { scaleX: 1, duration: 0.7, ease: CONFIG.ease }, '-=0.15');
+}
+
+/* ═══════════════════════════════════════════════════════════════
+   MAGNETIC BUTTON — footer "Enquire"
+   Pulls toward the pointer at 35% strength, releases with the
+   same weighted ease. Desktop only.
+   ═══════════════════════════════════════════════════════════════ */
+const magnet = document.getElementById('magnet');
+if (window.matchMedia('(pointer:fine)').matches && !reduceMotion) {
+  magnet.addEventListener('mousemove', (e) => {
+    const r = magnet.getBoundingClientRect();
+    gsap.to(magnet, {
+      x: (e.clientX - r.left - r.width / 2) * 0.35,
+      y: (e.clientY - r.top - r.height / 2) * 0.35,
+      duration: 0.6, ease: CONFIG.ease
+    });
+  });
+  magnet.addEventListener('mouseleave', () =>
+    gsap.to(magnet, { x: 0, y: 0, duration: 0.8, ease: CONFIG.ease }));
+}
+
+/* ═══ FOOTER — live local time (Oslo & Zürich share the same zone) ═══ */
+const clockEl = document.getElementById('footer-clock');
+if (clockEl) {
+  const tick = () => {
+    const parts = new Intl.DateTimeFormat('en-GB', {
+      timeZone: 'Europe/Oslo', hour: '2-digit', minute: '2-digit', hour12: false,
+      timeZoneName: 'short'
+    }).formatToParts(new Date());
+    const hm = parts.filter(p => p.type === 'hour' || p.type === 'minute' || p.type === 'literal')
+                    .map(p => p.value).join('');
+    const zone = (parts.find(p => p.type === 'timeZoneName') || {}).value || 'CET';
+    clockEl.textContent = `Oslo / Zürich · ${hm} ${zone}`;
+  };
+  tick(); setInterval(tick, 30000);
+}
+
+/* ═══ CUSTOM CURSOR — crosshair ring via quickTo (no rAF jitter) ═══ */
+if (window.matchMedia('(pointer:fine)').matches) {
+  document.body.style.cursor = 'none';
+  document.querySelectorAll('a').forEach(a => a.style.cursor = 'none');
+  const cur = document.getElementById('cursor');
+  const xTo = gsap.quickTo(cur, 'x', { duration: 0.18, ease: 'power3.out' });
+  const yTo = gsap.quickTo(cur, 'y', { duration: 0.18, ease: 'power3.out' });
+  window.addEventListener('mousemove', (e) => { xTo(e.clientX); yTo(e.clientY); });
+  document.querySelectorAll('a').forEach(a => {
+    a.addEventListener('mouseenter', () => cur.firstElementChild.style.transform = 'scale(1.6)');
+    a.addEventListener('mouseleave', () => cur.firstElementChild.style.transform = 'scale(1)');
+  });
+}
+
+/* (WebGL hero shader removed — the hero is now clean flat bone) */
+
+/* Recompute pin/horizontal measurements once images have loaded */
+window.addEventListener('load', () => ScrollTrigger.refresh());
+</script>
+</body></html>

@@ -1,13 +1,13 @@
-<html lang="en"><head>
+<html lang="ru"><head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Modern Fire Hero</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Современная огненная hero-секция</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <script>
 tailwind.config = {
 theme: {
@@ -61,104 +61,139 @@ background-clip: text;
 -webkit-text-fill-color: transparent;
 filter: brightness(1.3);
 }
+</style><style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
 </style></head>
 <body class="bg-black text-white font-inter selection:bg-red-600/30">
-    <canvas id="shaderCanvas"></canvas>
-    
-    <!-- Navigation -->
-    <nav class="container mx-auto px-6 py-6 relative z-10">
-        <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <div class="text-red-500 flex items-center justify-center">
-                    <iconify-icon icon="solar:bonfire-linear" width="32" height="32" stroke-width="1.5"></iconify-icon>
-                </div>
-                <span class="text-xl font-jakarta font-semibold tracking-tight">Ignite</span>
-            </div>
-            <div class="hidden md:flex space-x-10 text-base font-inter text-gray-300">
-                <a href="#" class="hover:text-red-400 transition-colors">Platform</a>
-                <a href="#" class="hover:text-red-400 transition-colors">Solutions</a>
-                <a href="#" class="hover:text-red-400 transition-colors">Developers</a>
-                <a href="#" class="hover:text-red-400 transition-colors">Pricing</a>
-            </div>
-            <div>
-                <button class="text-sm font-inter glass rounded-md px-4 py-2 hover:bg-red-900/20 hover:border-red-500/30 text-gray-200 transition-all flex items-center gap-2">
-                    <span>Login</span>
-                    <iconify-icon icon="solar:arrow-right-linear" width="16" height="16"></iconify-icon>
-                </button>
-            </div>
-        </div>
-    </nav>
-
-    <div class="h-px glass-divider relative z-10"></div>
-
-    <div class="relative overflow-hidden">
-        <!-- Hero content -->
-        <div class="container mx-auto px-6 py-16 md:py-24 relative z-10">
-            <div class="flex flex-col items-center text-center">
-                <!-- Text content -->
-                <div class="max-w-4xl mb-12">
-                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-red-500/20 mb-8">
-                        <span class="flex h-2 w-2 rounded-full bg-red-600 animate-pulse"></span>
-                        <span class="text-xs font-medium text-red-200 uppercase tracking-wider">v2.0 Now Available</span>
-                    </div>
-                    
-                    <h1 class="text-6xl md:text-7xl lg:text-8xl font-jakarta font-semibold tracking-tight mb-6 leading-tight">
-                        <span class="fire-gradient-text">Ignite</span>
-                        your creative potential
+<canvas id="shaderCanvas"></canvas>
+ Навигация 
+<nav class="container mx-auto px-6 py-6 relative z-10">
+<div class="flex items-center justify-between">
+<div class="flex items-center gap-2">
+<div class="text-red-500 flex items-center justify-center">
+<iconify-icon height="32" icon="solar:bonfire-linear" stroke-width="1.5" width="32"></iconify-icon>
+</div>
+<span class="text-xl font-jakarta font-semibold tracking-tight">Ignite</span>
+</div>
+<div class="hidden md:flex space-x-10 text-base font-inter text-gray-300">
+<a class="hover:text-red-400 transition-colors" href="#">Платформа</a>
+<a class="hover:text-red-400 transition-colors" href="#">Решения</a>
+<a class="hover:text-red-400 transition-colors" href="#">Разработчикам</a>
+<a class="hover:text-red-400 transition-colors" href="#">Цены</a>
+</div>
+<div>
+<button class="text-sm font-inter glass rounded-md px-4 py-2 hover:bg-red-900/20 hover:border-red-500/30 text-gray-200 transition-all flex items-center gap-2">
+<span>Вход</span>
+<iconify-icon height="16" icon="solar:arrow-right-linear" width="16"></iconify-icon>
+</button>
+</div>
+</div>
+</nav>
+<div class="h-px glass-divider relative z-10"></div>
+<div class="relative overflow-hidden">
+<!-- Hero content -->
+<div class="container mx-auto px-6 py-16 md:py-24 relative z-10">
+<div class="flex flex-col items-center text-center">
+<!-- Text content -->
+<div class="max-w-4xl mb-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full glass border border-red-500/20 mb-8">
+<span class="flex h-2 w-2 rounded-full bg-red-600 animate-pulse"></span>
+<span class="text-xs font-medium text-red-200 uppercase tracking-wider">v2.0 уже доступна</span>
+</div>
+<h1 class="text-6xl md:text-7xl lg:text-8xl font-jakarta font-semibold tracking-tight mb-6 leading-tight">
+<span class="fire-gradient-text">Ignite</span>
+                        ваш творческий потенциал
                     </h1>
-                    <p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto font-inter font-light tracking-normal leading-relaxed">
-                        Scale your infrastructure with a platform forged for speed. Experience the heat of real-time performance.
+<p class="text-gray-300 text-lg md:text-xl mb-8 max-w-2xl mx-auto font-inter font-light tracking-normal leading-relaxed">
+                        Масштабируйте инфраструктуру с платформой, выкованной для скорости. Ощутите жар производительности в реальном времени.
                     </p>
-                    <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                        <button class="bg-gradient-to-r from-red-700 to-orange-600 text-white font-inter font-medium text-base rounded-md px-8 py-4 hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-900/20">
-                            <iconify-icon icon="solar:rocket-linear" width="20" height="20"></iconify-icon>
-                            Start Building
+<div class="flex flex-col sm:flex-row gap-4 justify-center">
+<button class="bg-gradient-to-r from-red-700 to-orange-600 text-white font-inter font-medium text-base rounded-md px-8 py-4 hover:shadow-[0_0_30px_rgba(220,38,38,0.4)] transition-all flex items-center justify-center gap-2 shadow-lg shadow-red-900/20">
+<iconify-icon height="20" icon="solar:rocket-linear" width="20"></iconify-icon>
+                            Начать создавать
                         </button>
-                        <button class="glass font-inter text-base rounded-md px-8 py-4 hover:bg-white/5 transition-all flex items-center justify-center gap-2">
-                            <iconify-icon icon="solar:play-circle-linear" width="20" height="20"></iconify-icon>
-                            Live Demo
+<button class="glass font-inter text-base rounded-md px-8 py-4 hover:bg-white/5 transition-all flex items-center justify-center gap-2">
+<iconify-icon height="20" icon="solar:play-circle-linear" width="20"></iconify-icon>
+                            Живое демо
                         </button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="h-px glass-divider my-16 opacity-50"></div>
-
-            <!-- Stats -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-                <div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
-                    <div class="mb-3 flex justify-center text-red-400">
-                        <iconify-icon icon="solar:bolt-circle-linear" width="32" height="32"></iconify-icon>
-                    </div>
-                    <p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">100ms</p>
-                    <p class="text-gray-400 font-inter text-sm font-light">Latency</p>
-                </div>
-                <div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
-                    <div class="mb-3 flex justify-center text-red-400">
-                        <iconify-icon icon="solar:users-group-rounded-linear" width="32" height="32"></iconify-icon>
-                    </div>
-                    <p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">50k+</p>
-                    <p class="text-gray-400 font-inter text-sm font-light">Active Teams</p>
-                </div>
-                <div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
-                    <div class="mb-3 flex justify-center text-red-400">
-                        <iconify-icon icon="solar:shield-check-linear" width="32" height="32"></iconify-icon>
-                    </div>
-                    <p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">Secure</p>
-                    <p class="text-gray-400 font-inter text-sm font-light">End-to-End</p>
-                </div>
-                <div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
-                    <div class="mb-3 flex justify-center text-red-400">
-                        <iconify-icon icon="solar:globe-linear" width="32" height="32"></iconify-icon>
-                    </div>
-                    <p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">Global</p>
-                    <p class="text-gray-400 font-inter text-sm font-light">Availability</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
+</div>
+</div>
+</div>
+<div class="h-px glass-divider my-16 opacity-50"></div>
+<!-- Stats -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
+<div class="mb-3 flex justify-center text-red-400">
+<iconify-icon height="32" icon="solar:bolt-circle-linear" width="32"></iconify-icon>
+</div>
+<p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">100 мс</p>
+<p class="text-gray-400 font-inter text-sm font-light">Задержка</p>
+</div>
+<div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
+<div class="mb-3 flex justify-center text-red-400">
+<iconify-icon height="32" icon="solar:users-group-rounded-linear" width="32"></iconify-icon>
+</div>
+<p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">50k+</p>
+<p class="text-gray-400 font-inter text-sm font-light">Активные команды</p>
+</div>
+<div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
+<div class="mb-3 flex justify-center text-red-400">
+<iconify-icon height="32" icon="solar:shield-check-linear" width="32"></iconify-icon>
+</div>
+<p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">Безопасно</p>
+<p class="text-gray-400 font-inter text-sm font-light">Сквозная защита</p>
+</div>
+<div class="glass rounded-lg p-6 text-center group hover:border-red-500/30 transition-colors">
+<div class="mb-3 flex justify-center text-red-400">
+<iconify-icon height="32" icon="solar:globe-linear" width="32"></iconify-icon>
+</div>
+<p class="text-3xl font-jakarta font-semibold mb-1 tracking-tight text-white">Глобально</p>
+<p class="text-gray-400 font-inter text-sm font-light">Доступность</p>
+</div>
+</div>
+</div>
+</div>
+<script>
         // Shader background
         const shaderCanvas = document.getElementById('shaderCanvas');
         const gl = shaderCanvas.getContext('webgl');
@@ -304,5 +339,4 @@ filter: brightness(1.3);
         
         requestAnimationFrame(render);
     </script>
-
 </body></html>

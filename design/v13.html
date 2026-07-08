@@ -1,4 +1,4 @@
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -88,17 +88,17 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Auralis - Creative Ecosystems</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Auralis - Креативные экосистемы</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@200;300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
 --dark: #020617;
@@ -140,7 +140,7 @@ mask-composite: exclude;
 pointer-events: none;
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -148,32 +148,63 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="antialiased scroll-smooth bg-[#020617] text-[#FFFFFF] overflow-x-hidden selection:bg-[#F97316] selection:text-[#020617] font-['Geist',sans-serif]">
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="antialiased scroll-smooth bg-[#020617] text-[#FFFFFF] overflow-x-hidden selection:bg-[#F97316] selection:text-[#020617] font-['Geist',sans-serif]">
 <!-- Background (component) added by Aura -->
 <div class="aura-background-component fixed top-0 w-full h-screen -z-10" data-alpha-mask="80" style="mask-image: linear-gradient(transparent, black 0%, black 80%, transparent);">
-    
-    
-    <title class="">CogStream | Optimize Your Focus</title>
-
-    <!-- Fonts -->
-    
-    
-    
-
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-
-    <!-- Iconify -->
-    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js" class=""></script>
-
-    <!-- GSAP -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js" class=""></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js" class=""></script>
-
-    <!-- Import Map for Three.js ES Modules -->
-    <script type="importmap">
+<title class="">CogStream | Оптимизируйте свой фокус</title>
+<!-- Fonts -->
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Iconify -->
+<script class="" src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<!-- GSAP -->
+<script class="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+<script class="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+<!-- Import Map for Three.js ES Modules -->
+<script type="importmap">
         {
         "imports": {
           "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
@@ -181,8 +212,7 @@ gtag('config', 'G-2M6V79H761');
         }
       }
     </script>
-
-    <script>
+<script>
         tailwind.config = {
             theme: {
                 extend: {
@@ -199,29 +229,20 @@ gtag('config', 'G-2M6V79H761');
             }
         }
     </script>
-
-
-
-
-    <!-- Background Image -->
-    <div class="fixed inset-0 z-0 pointer-events-none">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9aea64b5-bfda-4948-bf88-d4e5d45762fa_3840w.jpg" alt="Background Portrait" class="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity scale-105 transform origin-center transition-transform duration-1000">
-        <!-- Gradients to ensure text readability -->
-        <div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
-        <div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/40 to-transparent md:w-3/4"></div>
-    </div>
-
-    <!-- Diagonal Texture Overlay -->
-    <div class="fixed inset-0 z-0 pointer-events-none opacity-[0.03]" style="background-image: repeating-linear-gradient(-45deg, #ffffff, #ffffff 1px, transparent 1px, transparent 12px);">
-    </div>
-
-    <!-- WebGL Canvas for Trail Animation -->
-    <canvas id="webgl-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-70 mix-blend-screen" data-engine="three.js r160" width="2352" height="1531" style="width: 1568px; height: 1021px;"></canvas>
-
-
-
-    <!-- GSAP Script -->
-    <script>
+<!-- Background Image -->
+<div class="fixed inset-0 z-0 pointer-events-none">
+<img alt="Фоновый портрет" class="w-full h-full object-cover object-center opacity-40 mix-blend-luminosity scale-105 transform origin-center transition-transform duration-1000" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9aea64b5-bfda-4948-bf88-d4e5d45762fa_3840w.jpg"/>
+<!-- Gradients to ensure text readability -->
+<div class="absolute inset-0 bg-gradient-to-t from-zinc-950 via-zinc-950/60 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-zinc-950/90 via-zinc-950/40 to-transparent md:w-3/4"></div>
+</div>
+<!-- Diagonal Texture Overlay -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-[0.03]" style="background-image: repeating-linear-gradient(-45deg, #ffffff, #ffffff 1px, transparent 1px, transparent 12px);">
+</div>
+<!-- WebGL Canvas for Trail Animation -->
+<canvas class="fixed inset-0 z-0 pointer-events-none opacity-70 mix-blend-screen" data-engine="three.js r160" height="1531" id="webgl-canvas" style="width: 1568px; height: 1021px;" width="2352"></canvas>
+<!-- GSAP Script -->
+<script>
         document.addEventListener("DOMContentLoaded", (event) => {
             gsap.registerPlugin(ScrollTrigger);
 
@@ -259,9 +280,8 @@ gtag('config', 'G-2M6V79H761');
             });
         });
     </script>
-
-    <!-- Three.js Trail Background Module -->
-    <script type="module">
+<!-- Three.js Trail Background Module -->
+<script type="module">
         import * as THREE from 'three';
         import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
         import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
@@ -615,643 +635,589 @@ gtag('config', 'G-2M6V79H761');
             composer.render();
         }
     </script>
-
-
-
 </div>
-    <section class="min-h-[130vh] flex flex-col overflow-hidden w-full pt-8 relative items-center" id="hero">
-      <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none z-0 opacity-20">
-        <h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">
-          GLOBAL
+<section class="min-h-[130vh] flex flex-col overflow-hidden w-full pt-8 relative items-center" id="hero">
+<div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none z-0 opacity-20">
+<h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">
+          ГЛОБАЛЬНО
         </h1>
-        <h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">
+<h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">
           NEXUS
         </h1>
-      </div>
-
-      <nav class="w-full max-w-[95%] mx-auto flex justify-between items-center z-20 relative gs-nav">
-        <div class="text-xl font-medium tracking-tight uppercase">AURALIS.</div>
-
-        <div class="hidden md:flex items-center gap-8 bg-[#080808]/80 backdrop-blur-md rounded-full px-6 py-2 border border-[#262626]">
-          <a href="#" class="flex items-center gap-2 text-sm font-light text-[#F97316]">
-            <span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
-            Retreat
+</div>
+<nav class="w-full max-w-[95%] mx-auto flex justify-between items-center z-20 relative gs-nav">
+<div class="text-xl font-medium tracking-tight uppercase">AURALIS.</div>
+<div class="hidden md:flex items-center gap-8 bg-[#080808]/80 backdrop-blur-md rounded-full px-6 py-2 border border-[#262626]">
+<a class="flex items-center gap-2 text-sm font-light text-[#F97316]" href="#">
+<span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
+            Ретрит
           </a>
-          <a href="#" class="text-sm font-light text-white/70 hover:text-white transition-colors">
+<a class="text-sm font-light text-white/70 hover:text-white transition-colors" href="#">
             Enterprise
           </a>
-          <a href="#" class="text-sm font-light text-white/70 hover:text-white transition-colors">
-            Syndicate
+<a class="text-sm font-light text-white/70 hover:text-white transition-colors" href="#">
+            Синдикат
           </a>
-        </div>
-
-        <a href="#" class="bg-white text-[#020617] px-5 py-2 rounded-full text-sm font-normal flex items-center gap-2 hover:bg-[#D4D4D4] transition-colors">
-          Book now
+</div>
+<a class="bg-white text-[#020617] px-5 py-2 rounded-full text-sm font-normal flex items-center gap-2 hover:bg-[#D4D4D4] transition-colors" href="#">
+          Забронировать
           <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
-        </a>
-      </nav>
-
-      <div class="w-full max-w-[90%] mx-auto mt-20 relative z-10 flex flex-col items-center">
-        <div class="w-full flex justify-between absolute top-[10%] text-xs font-light text-white/50 uppercase tracking-widest hidden lg:flex gs-hero-text">
-          <div class="max-w-[200px]">
-            Auralis Is For Visionaries And Driven Innovators. Anyone That Dares
-            To Build The Future From Scratch.
+</a>
+</nav>
+<div class="w-full max-w-[90%] mx-auto mt-20 relative z-10 flex flex-col items-center">
+<div class="w-full flex justify-between absolute top-[10%] text-xs font-light text-white/50 uppercase tracking-widest hidden lg:flex gs-hero-text">
+<div class="max-w-[200px]">
+            Auralis — для визионеров и целеустремлённых новаторов. Для всех, кто дерзает строить будущее с нуля.
           </div>
-          <div class="text-right flex flex-col gap-1">
-            <span>Innovation //</span>
-            <span>Fluidity //</span>
-            <span>Sustainability //</span>
-          </div>
-        </div>
-
-        <div class="text-center relative gs-title mt-12 md:mt-0">
-          <div class="absolute -left-10 md:-left-32 top-1/2 -translate-y-1/2 gs-hero-btn">
-            <a href="#" class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-normal flex items-center gap-2 hover:bg-white/20 transition-all">
-              Reserve Access
+<div class="text-right flex flex-col gap-1">
+<span>Инновации //</span>
+<span>Гибкость //</span>
+<span>Устойчивость //</span>
+</div>
+</div>
+<div class="text-center relative gs-title mt-12 md:mt-0">
+<div class="absolute -left-10 md:-left-32 top-1/2 -translate-y-1/2 gs-hero-btn">
+<a class="bg-white/10 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-normal flex items-center gap-2 hover:bg-white/20 transition-all" href="#">
+              Зарезервировать доступ
               <span class="w-6 h-6 rounded-full text-[#020617] flex items-center justify-center bg-[#F97316]">
-                <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-              </span>
-            </a>
-          </div>
-          <h1 class="text-[12vw] md:text-[9vw] leading-[0.85] font-medium tracking-tight uppercase text-white drop-shadow-2xl z-20 relative">
-            <span class="block overflow-hidden">
-              <span class="block gs-title-line">WHERE</span>
-            </span>
-            <span class="block overflow-hidden">
-              <span class="block gs-title-line">VISION</span>
-            </span>
-            <span class="block overflow-hidden text-transparent clip-text-image">
-              <span class="block gs-title-line">MEETS</span>
-            </span>
-          </h1>
-        </div>
+<iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+</span>
+</a>
+</div>
+<h1 class="text-[12vw] md:text-[9vw] leading-[0.85] font-medium tracking-tight uppercase text-white drop-shadow-2xl z-20 relative">
+<span class="block overflow-hidden">
+<span class="block gs-title-line">ТАМ, ГДЕ</span>
+</span>
+<span class="block overflow-hidden">
+<span class="block gs-title-line">ВИДЕНИЕ</span>
+</span>
+<span class="block overflow-hidden text-transparent clip-text-image">
+<span class="block gs-title-line">ВСТРЕЧАЕТ</span>
+</span>
+</h1>
+</div>
+</div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] w-[90%] md:w-[70%] h-[50vh] md:h-[60vh] rounded-3xl overflow-hidden z-30 gs-hero-img shadow-2xl">
+<div class="w-full h-full bg-black/20 absolute inset-0 z-10"></div>
+<img alt="Современное здание" class="w-full h-full object-cover scale-110" id="hero-img-inner" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c69b0daa-dea4-4516-9b14-b46c6f05101c_1600w.webp"/>
+</div>
+</section>
+<section class="md:px-12 text-white z-20 pt-[30vh] pr-6 pb-24 pl-6 relative bg-[#080808]" id="villas">
+<div class="absolute bottom-10 right-10 text-[18vw] font-medium tracking-tight text-white/40 uppercase leading-none pointer-events-none gs-fade-up">
+        ТОКИО.
       </div>
-
-      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] w-[90%] md:w-[70%] h-[50vh] md:h-[60vh] rounded-3xl overflow-hidden z-30 gs-hero-img shadow-2xl">
-        <div class="w-full h-full bg-black/20 absolute inset-0 z-10"></div>
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c69b0daa-dea4-4516-9b14-b46c6f05101c_1600w.webp" alt="Modern Structure" class="w-full h-full object-cover scale-110" id="hero-img-inner">
-      </div>
-    </section>
-
-    <section class="md:px-12 text-white z-20 pt-[30vh] pr-6 pb-24 pl-6 relative bg-[#080808]" id="villas">
-      <div class="absolute bottom-10 right-10 text-[18vw] font-medium tracking-tight text-white/40 uppercase leading-none pointer-events-none gs-fade-up">
-        TOKYO.
-      </div>
-
-      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
-        <div class="flex flex-col justify-center">
-          <h2 class="text-6xl md:text-[6vw] leading-[0.9] font-medium tracking-tight text-white uppercase gs-fade-up">
-            9 STUDIOS
-            <br>
-            IN THE
-            <br>
-            HEART OF
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 relative z-10">
+<div class="flex flex-col justify-center">
+<h2 class="text-6xl md:text-[6vw] leading-[0.9] font-medium tracking-tight text-white uppercase gs-fade-up">
+            9 СТУДИЙ
+            <br/>
+            В САМОМ
+            <br/>
+            СЕРДЦЕ
           </h2>
-
-          <div class="mt-12 space-y-4 text-sm font-light gs-fade-up border-l-2 border-white/30 pl-6">
-            <div class="flex items-center gap-4 text-white">
-              <span class="text-xs opacity-70 font-mono">// 01</span>
-              <span class="text-base font-normal">
-                Studios In The Heart Of Tokyo
+<div class="mt-12 space-y-4 text-sm font-light gs-fade-up border-l-2 border-white/30 pl-6">
+<div class="flex items-center gap-4 text-white">
+<span class="text-xs opacity-70 font-mono">// 01</span>
+<span class="text-base font-normal">
+                Студии в самом сердце Токио
               </span>
+</div>
+<div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
+              Приватные капсулы
             </div>
-            <div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
-              Private Pods
+<div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
+              Коллаборативные хабы
             </div>
-            <div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
-              Collaborative Hubs
+<div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
+              2 VR-капсулы
             </div>
-            <div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
-              2 VR Pods
+<div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
+              Полная интеграция
             </div>
-            <div class="text-[#D4D4D4] hover:text-[#FFFFFF] transition-colors cursor-pointer">
-              Fully Integrated
-            </div>
+</div>
+<div class="mt-12 flex gap-4 gs-fade-up">
+<button class="w-16 h-16 rounded-full border border-[#262626] flex items-center justify-center hover:bg-[#F97316] hover:text-[#020617] transition-all">
+<iconify-icon class="" icon="solar:arrow-left-linear" width="24"></iconify-icon>
+</button>
+<button class="flex hover:bg-[#F97316] hover:text-[#020617] transition-all text-[#FFFFFF] bg-[#262626] w-16 h-16 rounded-full items-center justify-center">
+<iconify-icon class="" icon="solar:arrow-right-linear" width="24"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="relative h-[400px] md:h-[600px] w-full lg:w-[120%] lg:-ml-[10%] rounded-3xl overflow-hidden gs-fade-up shadow-2xl">
+<img alt="Стеклянный офис" class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7f78131e-65e9-49b2-aa1f-ccc33e28df9f_1600w.webp"/>
+</div>
+</div>
+</section>
+<section class="bg-[#020617] py-24 px-6 md:px-12 relative" id="hotel-intro">
+<div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
+<div class="flex flex-col items-start gs-fade-up">
+<div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-light uppercase tracking-wider mb-6">
+            Премиальные ресурсы
           </div>
-
-          <div class="mt-12 flex gap-4 gs-fade-up">
-            <button class="w-16 h-16 rounded-full border border-[#262626] flex items-center justify-center hover:bg-[#F97316] hover:text-[#020617] transition-all">
-              <iconify-icon icon="solar:arrow-left-linear" width="24" class=""></iconify-icon>
-            </button>
-            <button class="flex hover:bg-[#F97316] hover:text-[#020617] transition-all text-[#FFFFFF] bg-[#262626] w-16 h-16 rounded-full items-center justify-center">
-              <iconify-icon icon="solar:arrow-right-linear" width="24" class=""></iconify-icon>
-            </button>
-          </div>
-        </div>
-
-        <div class="relative h-[400px] md:h-[600px] w-full lg:w-[120%] lg:-ml-[10%] rounded-3xl overflow-hidden gs-fade-up shadow-2xl">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7f78131e-65e9-49b2-aa1f-ccc33e28df9f_1600w.webp" alt="Glass Office" class="w-full h-full object-cover">
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-[#020617] py-24 px-6 md:px-12 relative" id="hotel-intro">
-      <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16">
-        <div class="flex flex-col items-start gs-fade-up">
-          <div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-light uppercase tracking-wider mb-6">
-            Premium Assets
-          </div>
-          <h2 class="text-7xl md:text-[8vw] leading-[0.9] font-medium tracking-tight uppercase mb-8">
-            A SANCTUARY
+<h2 class="text-7xl md:text-[8vw] leading-[0.9] font-medium tracking-tight uppercase mb-8">
+            СВЯТИЛИЩЕ
           </h2>
-          <p class="text-white/50 text-sm font-light max-w-sm mb-12">
-            Auralis Is For Visionaries And Driven Innovators. Anyone That Dares
-            To Build The Future From Scratch. And It Is For The Bold. Auralis Is
-            For Thinkers And Creators. Anyone That Dares To Build.
+<p class="text-white/50 text-sm font-light max-w-sm mb-12">
+            Auralis — для визионеров и целеустремлённых новаторов. Для всех, кто дерзает строить будущее с нуля. И для смелых. Auralis — для мыслителей и созидателей. Для всех, кто дерзает творить.
           </p>
-
-          <div class="flex items-center gap-6 text-xs font-light text-white/40 uppercase tracking-widest">
-            <span class="">// Coordinates</span>
-            <div class="flex gap-2">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_320w.jpg" class="w-12 h-8 object-cover rounded-sm grayscale opacity-50">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fb6415fd-bf4d-4ccf-8e9d-7ab445e99207_800w.jpg" class="w-12 h-8 object-cover rounded-sm grayscale opacity-50">
-            </div>
-          </div>
-
-          <div class="mt-12 ml-12">
-            <a href="#" class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-2.5 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 transition-all">
-              Reserve Access
+<div class="flex items-center gap-6 text-xs font-light text-white/40 uppercase tracking-widest">
+<span class="">// Координаты</span>
+<div class="flex gap-2">
+<img class="w-12 h-8 object-cover rounded-sm grayscale opacity-50" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_320w.jpg"/>
+<img class="w-12 h-8 object-cover rounded-sm grayscale opacity-50" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fb6415fd-bf4d-4ccf-8e9d-7ab445e99207_800w.jpg"/>
+</div>
+</div>
+<div class="mt-12 ml-12">
+<a class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-2.5 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 transition-all" href="#">
+              Зарезервировать доступ
               <span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
-            </a>
-          </div>
-        </div>
-
-        <div class="flex flex-col gap-6 gs-fade-up lg:mt-24 relative">
-          <div class="flex justify-between items-end mb-4">
-            <h3 class="text-xl font-medium uppercase tracking-tight">
-              A SANCTUARY
+</a>
+</div>
+</div>
+<div class="flex flex-col gap-6 gs-fade-up lg:mt-24 relative">
+<div class="flex justify-between items-end mb-4">
+<h3 class="text-xl font-medium uppercase tracking-tight">
+              СВЯТИЛИЩЕ
             </h3>
-            <button class="w-8 h-8 rounded-full text-[#020617] flex items-center justify-center bg-[#F97316]">
-              <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
-            </button>
-          </div>
-          <div class="w-full h-[250px] rounded-2xl overflow-hidden">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_1600w.jpg" class="w-full h-full object-cover">
-          </div>
-
-          <div class="space-y-4 mt-8 border-t border-white/10 pt-6">
-            <div class="flex justify-between items-center group cursor-pointer">
-              <span class="text-sm font-normal uppercase tracking-wider group-hover:text-[#F97316] transition-colors">
-                A STAGE FOR KEYNOTES
+<button class="w-8 h-8 rounded-full text-[#020617] flex items-center justify-center bg-[#F97316]">
+<iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+</button>
+</div>
+<div class="w-full h-[250px] rounded-2xl overflow-hidden">
+<img class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_1600w.jpg"/>
+</div>
+<div class="space-y-4 mt-8 border-t border-white/10 pt-6">
+<div class="flex justify-between items-center group cursor-pointer">
+<span class="text-sm font-normal uppercase tracking-wider group-hover:text-[#F97316] transition-colors">
+                СЦЕНА ДЛЯ ВЫСТУПЛЕНИЙ
               </span>
-              <iconify-icon icon="solar:arrow-right-linear" class="text-white/50 group-hover:text-[#F97316] transition-colors"></iconify-icon>
-            </div>
-            <div class="flex justify-between items-center group cursor-pointer">
-              <span class="text-sm font-normal uppercase tracking-wider group-hover:text-[#F97316] transition-colors">
-                AN ELITE SYNDICATE
+<iconify-icon class="text-white/50 group-hover:text-[#F97316] transition-colors" icon="solar:arrow-right-linear"></iconify-icon>
+</div>
+<div class="flex justify-between items-center group cursor-pointer">
+<span class="text-sm font-normal uppercase tracking-wider group-hover:text-[#F97316] transition-colors">
+                ЭЛИТНЫЙ СИНДИКАТ
               </span>
-              <iconify-icon icon="solar:arrow-right-linear" class="text-white/50 group-hover:text-[#F97316] transition-colors"></iconify-icon>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-[#020617] py-12 px-6 md:px-12 relative overflow-hidden" id="hotel-grid">
-      <h2 class="text-[12vw] leading-none font-medium tracking-tight text-white/5 uppercase text-center absolute top-10 left-0 w-full pointer-events-none select-none gs-bg-text">
-        THE RETREAT
+<iconify-icon class="text-white/50 group-hover:text-[#F97316] transition-colors" icon="solar:arrow-right-linear"></iconify-icon>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-[#020617] py-12 px-6 md:px-12 relative overflow-hidden" id="hotel-grid">
+<h2 class="text-[12vw] leading-none font-medium tracking-tight text-white/5 uppercase text-center absolute top-10 left-0 w-full pointer-events-none select-none gs-bg-text">
+        РЕТРИТ
       </h2>
-
-      <div class="max-w-7xl mx-auto relative z-10">
-        <div class="flex flex-col md:flex-row items-end justify-between mb-12 gs-fade-up">
-          <p class="text-xs font-light text-white/50 max-w-xs uppercase tracking-widest leading-relaxed">
-            Auralis Is For Visionaries And Driven Innovators. Anyone That Dares
-            To Build The Future From Scratch. And It Is For The Bold.
+<div class="max-w-7xl mx-auto relative z-10">
+<div class="flex flex-col md:flex-row items-end justify-between mb-12 gs-fade-up">
+<p class="text-xs font-light text-white/50 max-w-xs uppercase tracking-widest leading-relaxed">
+            Auralis — для визионеров и целеустремлённых новаторов. Для всех, кто дерзает строить будущее с нуля. И для смелых.
           </p>
-
-          <a href="#" class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-2.5 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 transition-all mt-6 md:mt-0">
-            Reserve Access
+<a class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-2.5 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 transition-all mt-6 md:mt-0" href="#">
+            Зарезервировать доступ
             <span class="w-2 h-2 rounded-full bg-[#F97316]"></span>
-          </a>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
-          <div class="h-[200px] rounded-2xl overflow-hidden gs-fade-up hidden md:block">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/aff37414-fc5d-452c-8f73-d57ceff4f1c5_800w.webp" class="w-full h-full object-cover">
-          </div>
-          <div class="md:col-span-2 h-[350px] md:h-[450px] rounded-2xl overflow-hidden gs-fade-up">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bfef5098-c30f-4cd9-b4ac-04b2673ab943_1600w.jpg" class="w-full h-full object-cover">
-          </div>
-          <div class="h-[200px] rounded-2xl overflow-hidden gs-fade-up">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eb6b5223-2641-4ade-9b9d-aae1c300146a_800w.webp" class="w-full h-full object-cover">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="bg-[#020617] py-24 relative overflow-hidden" id="corporations">
-      <div class="max-w-[95%] mx-auto px-6 md:px-12 mb-12 gs-fade-up">
-        <h2 class="text-sm font-light text-white/50 uppercase tracking-widest mb-4">
-          Tailored For
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 items-center">
+<div class="h-[200px] rounded-2xl overflow-hidden gs-fade-up hidden md:block">
+<img class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/aff37414-fc5d-452c-8f73-d57ceff4f1c5_800w.webp"/>
+</div>
+<div class="md:col-span-2 h-[350px] md:h-[450px] rounded-2xl overflow-hidden gs-fade-up">
+<img class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bfef5098-c30f-4cd9-b4ac-04b2673ab943_1600w.jpg"/>
+</div>
+<div class="h-[200px] rounded-2xl overflow-hidden gs-fade-up">
+<img class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eb6b5223-2641-4ade-9b9d-aae1c300146a_800w.webp"/>
+</div>
+</div>
+</div>
+</section>
+<section class="bg-[#020617] py-24 relative overflow-hidden" id="corporations">
+<div class="max-w-[95%] mx-auto px-6 md:px-12 mb-12 gs-fade-up">
+<h2 class="text-sm font-light text-white/50 uppercase tracking-widest mb-4">
+          Создано для
         </h2>
-        <h1 class="text-5xl md:text-[7vw] leading-[0.85] font-medium tracking-tight uppercase mb-8">
-          INNOVATORS
+<h1 class="text-5xl md:text-[7vw] leading-[0.85] font-medium tracking-tight uppercase mb-8">
+          НОВАТОРОВ
         </h1>
-
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
-          <p class="text-xs font-light text-white/50 max-w-sm uppercase tracking-widest leading-relaxed">
-            Auralis Is For Visionaries And Driven Innovators. Anyone That Dares
-            To Build The Future From Scratch. And It Is For The Bold Auralis Is
-            For Thinkers.
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-6">
+<p class="text-xs font-light text-white/50 max-w-sm uppercase tracking-widest leading-relaxed">
+            Auralis — для визионеров и целеустремлённых новаторов. Для всех, кто дерзает строить будущее с нуля. И для смелых. Auralis — для мыслителей.
           </p>
-          <a href="#" class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-2.5 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 transition-all">
-            Reserve Access
+<a class="bg-white/5 backdrop-blur-md border border-white/10 text-white px-5 py-2.5 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 transition-all" href="#">
+            Зарезервировать доступ
             <span class="w-6 h-6 rounded-full text-[#020617] flex items-center justify-center bg-[#F97316]">
-              <iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
-            </span>
-          </a>
-        </div>
-      </div>
-
-      <div class="w-full h-[60vh] md:h-[80vh] relative gs-fade-up">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4b853ee7-0035-47f0-a177-608832b1214c_3840w.webp" class="w-full h-full object-cover object-top">
-
-        <div class="absolute inset-0 max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between pointer-events-none">
-          <button class="w-14 h-14 rounded-full bg-white/10 backdrop-blur border border-[#262626] text-white flex items-center justify-center pointer-events-auto hover:bg-[#F97316] hover:text-[#020617] transition-all">
-            <iconify-icon icon="solar:arrow-left-linear" width="20"></iconify-icon>
-          </button>
-          <button class="w-14 h-14 rounded-full text-[#020617] flex items-center justify-center pointer-events-auto hover:bg-white transition-all bg-[#F97316]">
-            <iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
-          </button>
-        </div>
-
-        <div class="absolute bottom-10 right-10 md:right-[10%] bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-xs">
-          <p class="text-xs font-light text-white/70 uppercase tracking-widest mb-2">
-            Engineered For
+<iconify-icon icon="solar:arrow-right-up-linear"></iconify-icon>
+</span>
+</a>
+</div>
+</div>
+<div class="w-full h-[60vh] md:h-[80vh] relative gs-fade-up">
+<img class="w-full h-full object-cover object-top" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4b853ee7-0035-47f0-a177-608832b1214c_3840w.webp"/>
+<div class="absolute inset-0 max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between pointer-events-none">
+<button class="w-14 h-14 rounded-full bg-white/10 backdrop-blur border border-[#262626] text-white flex items-center justify-center pointer-events-auto hover:bg-[#F97316] hover:text-[#020617] transition-all">
+<iconify-icon icon="solar:arrow-left-linear" width="20"></iconify-icon>
+</button>
+<button class="w-14 h-14 rounded-full text-[#020617] flex items-center justify-center pointer-events-auto hover:bg-white transition-all bg-[#F97316]">
+<iconify-icon icon="solar:arrow-right-linear" width="20"></iconify-icon>
+</button>
+</div>
+<div class="absolute bottom-10 right-10 md:right-[10%] bg-black/40 backdrop-blur-md p-6 rounded-2xl border border-white/10 max-w-xs">
+<p class="text-xs font-light text-white/70 uppercase tracking-widest mb-2">
+            Спроектировано для
           </p>
-          <h3 class="text-xl font-medium tracking-tight uppercase">
-            Global Networking
+<h3 class="text-xl font-medium tracking-tight uppercase">
+            Глобального нетворкинга
           </h3>
-        </div>
-      </div>
-
-      <div class="border-y border-[#262626] py-4 mt-10 bg-[#020617] marquee-container relative z-10">
-        <div class="marquee-content text-2xl md:text-3xl font-normal tracking-tight uppercase text-white/20 flex gap-8">
-          <span class="">INNOVATION • FLUIDITY • SUSTAINABILITY •</span>
-          <span>INNOVATION • FLUIDITY • SUSTAINABILITY •</span>
-          <span>INNOVATION • FLUIDITY • SUSTAINABILITY •</span>
-          <span>INNOVATION • FLUIDITY • SUSTAINABILITY •</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="text-white py-24 px-6 md:px-12 bg-[#080808]" id="membership">
-      <div class="max-w-7xl mx-auto gs-fade-up">
-        <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-          <div class="">
-            <div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-medium uppercase tracking-wider mb-6 inline-block">
-              Unparalleled Tier Value
+</div>
+</div>
+<div class="border-y border-[#262626] py-4 mt-10 bg-[#020617] marquee-container relative z-10">
+<div class="marquee-content text-2xl md:text-3xl font-normal tracking-tight uppercase text-white/20 flex gap-8">
+<span class="">ИННОВАЦИИ • ГИБКОСТЬ • УСТОЙЧИВОСТЬ •</span>
+<span>ИННОВАЦИИ • ГИБКОСТЬ • УСТОЙЧИВОСТЬ •</span>
+<span>ИННОВАЦИИ • ГИБКОСТЬ • УСТОЙЧИВОСТЬ •</span>
+<span>ИННОВАЦИИ • ГИБКОСТЬ • УСТОЙЧИВОСТЬ •</span>
+</div>
+</div>
+</section>
+<section class="text-white py-24 px-6 md:px-12 bg-[#080808]" id="membership">
+<div class="max-w-7xl mx-auto gs-fade-up">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+<div class="">
+<div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-medium uppercase tracking-wider mb-6 inline-block">
+              Непревзойдённая ценность уровней
             </div>
-            <h2 class="text-[8vw] md:text-7xl leading-[0.9] font-medium tracking-tight text-white uppercase">
-              AN
-              <br>
-              EXCLUSIVE
-              <br>
-              SYNDICATE
+<h2 class="text-[8vw] md:text-7xl leading-[0.9] font-medium tracking-tight text-white uppercase">
+              ПОИСТИНЕ
+              <br/>
+              ЭКСКЛЮЗИВНЫЙ
+              <br/>
+              СИНДИКАТ
             </h2>
-          </div>
-
-          <div class="max-w-md mt-12 md:mt-0 flex flex-col items-end text-right">
-            <p class="text-sm font-light opacity-80 mb-8 text-left md:text-right">
-              Auralis delivers unprecedented access to creative environments
-              designed for the bold. We integrate seamless technology with
-              stunning aesthetics to foster connections, enabling our members to
-              thrive.
+</div>
+<div class="max-w-md mt-12 md:mt-0 flex flex-col items-end text-right">
+<p class="text-sm font-light opacity-80 mb-8 text-left md:text-right">
+              Auralis открывает беспрецедентный доступ к креативным пространствам, созданным для смелых. Мы объединяем бесшовные технологии с потрясающей эстетикой, чтобы укреплять связи и помогать нашим участникам процветать.
             </p>
-            <a href="#" class="bg-white text-[#020617] px-5 py-2 rounded-full text-xs font-medium uppercase flex items-center gap-3 hover:bg-[#D4D4D4] transition-all shadow-sm">
-              Reserve Access
+<a class="bg-white text-[#020617] px-5 py-2 rounded-full text-xs font-medium uppercase flex items-center gap-3 hover:bg-[#D4D4D4] transition-all shadow-sm" href="#">
+              Зарезервировать доступ
               <span class="w-5 h-5 rounded-full bg-[#020617] text-white flex items-center justify-center">
-                <iconify-icon icon="solar:arrow-right-up-linear" width="12"></iconify-icon>
-              </span>
-            </a>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 md:grid-cols-6 border-t border-[#262626]">
-          <div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer">
-            <div class="flex justify-between items-start">
-              <iconify-icon icon="solar:bed-linear" width="24" class="text-[#979797] group-hover:text-[#F97316]"></iconify-icon>
-              <span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
+<iconify-icon icon="solar:arrow-right-up-linear" width="12"></iconify-icon>
+</span>
+</a>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-6 border-t border-[#262626]">
+<div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-[#979797] group-hover:text-[#F97316]" icon="solar:bed-linear" width="24"></iconify-icon>
+<span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
                 01
               </span>
-            </div>
-            <div class="">
-              <span class="text-xs font-light opacity-50 block mb-1">//</span>
-              <h4 class="font-medium uppercase text-sm group-hover:text-white">
-                PRIME
-                <br>
-                REST
+</div>
+<div class="">
+<span class="text-xs font-light opacity-50 block mb-1">//</span>
+<h4 class="font-medium uppercase text-sm group-hover:text-white">
+                ПЕРВОКЛАССНЫЙ
+                <br/>
+                ОТДЫХ
               </h4>
-            </div>
-          </div>
-          <div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer">
-            <div class="flex justify-between items-start">
-              <iconify-icon icon="solar:cup-hot-linear" width="24" class="text-[#979797] group-hover:text-[#F97316]"></iconify-icon>
-              <span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
+</div>
+</div>
+<div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-[#979797] group-hover:text-[#F97316]" icon="solar:cup-hot-linear" width="24"></iconify-icon>
+<span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
                 02
               </span>
-            </div>
-            <div class="">
-              <span class="text-xs font-light opacity-50 block mb-1">//</span>
-              <h4 class="font-medium uppercase text-sm group-hover:text-white">
-                ARTISAN
-                <br>
-                ROASTS
+</div>
+<div class="">
+<span class="text-xs font-light opacity-50 block mb-1">//</span>
+<h4 class="font-medium uppercase text-sm group-hover:text-white">
+                КРАФТОВАЯ
+                <br/>
+                ОБЖАРКА
               </h4>
-            </div>
-          </div>
-          <div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
-            <div class="flex justify-between items-start">
-              <iconify-icon icon="solar:dumbbell-linear" width="24" class="text-[#979797] group-hover:text-[#F97316]"></iconify-icon>
-              <span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
+</div>
+</div>
+<div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-[#979797] group-hover:text-[#F97316]" icon="solar:dumbbell-linear" width="24"></iconify-icon>
+<span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
                 03
               </span>
-            </div>
-            <div class="">
-              <span class="text-xs font-light opacity-50 block mb-1">//</span>
-              <h4 class="font-medium uppercase text-sm group-hover:text-white">
-                KINETIC
-                <br>
-                ZONES
+</div>
+<div class="">
+<span class="text-xs font-light opacity-50 block mb-1">//</span>
+<h4 class="font-medium uppercase text-sm group-hover:text-white">
+                КИНЕТИЧЕСКИЕ
+                <br/>
+                ЗОНЫ
               </h4>
-            </div>
-          </div>
-          <div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
-            <div class="flex justify-between items-start">
-              <iconify-icon icon="solar:camera-linear" width="24" class="text-[#979797] group-hover:text-[#F97316]"></iconify-icon>
-              <span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
+</div>
+</div>
+<div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-[#979797] group-hover:text-[#F97316]" icon="solar:camera-linear" width="24"></iconify-icon>
+<span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
                 04
               </span>
-            </div>
-            <div>
-              <span class="text-xs font-light opacity-50 block mb-1">//</span>
-              <h4 class="font-medium uppercase text-sm group-hover:text-white">
-                MEDIA
-                <br>
-                LABS
+</div>
+<div>
+<span class="text-xs font-light opacity-50 block mb-1">//</span>
+<h4 class="font-medium uppercase text-sm group-hover:text-white">
+                МЕДИА
+                <br/>
+                ЛАБОРАТОРИИ
               </h4>
-            </div>
-          </div>
-          <div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
-            <div class="flex justify-between items-start">
-              <iconify-icon icon="solar:wineglass-linear" width="24" class="text-[#979797] group-hover:text-[#F97316]"></iconify-icon>
-              <span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
+</div>
+</div>
+<div class="border-r border-[#262626] p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-[#979797] group-hover:text-[#F97316]" icon="solar:wineglass-linear" width="24"></iconify-icon>
+<span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
                 05
               </span>
-            </div>
-            <div>
-              <span class="text-xs font-light opacity-50 block mb-1">//</span>
-              <h4 class="font-medium uppercase text-sm group-hover:text-white">
-                EVENING
-                <br>
-                MIXERS
+</div>
+<div>
+<span class="text-xs font-light opacity-50 block mb-1">//</span>
+<h4 class="font-medium uppercase text-sm group-hover:text-white">
+                ВЕЧЕРНИЕ
+                <br/>
+                ВСТРЕЧИ
               </h4>
-            </div>
-          </div>
-          <div class="p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
-            <div class="flex justify-between items-start">
-              <iconify-icon icon="solar:medal-star-linear" width="24" class="text-[#979797] group-hover:text-[#F97316]"></iconify-icon>
-              <span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
+</div>
+</div>
+<div class="p-6 flex flex-col gap-8 group hover:bg-[#141414] hover:text-[#F97316] transition-colors cursor-pointer hidden md:flex">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-[#979797] group-hover:text-[#F97316]" icon="solar:medal-star-linear" width="24"></iconify-icon>
+<span class="text-3xl font-extralight opacity-20 group-hover:opacity-100 transition-opacity font-mono">
                 06
               </span>
-            </div>
-            <div>
-              <span class="text-xs font-light opacity-50 block mb-1">//</span>
-              <h4 class="font-medium uppercase text-sm group-hover:text-white">
-                ELITE
-                <br>
-                ACCESS
+</div>
+<div>
+<span class="text-xs font-light opacity-50 block mb-1">//</span>
+<h4 class="font-medium uppercase text-sm group-hover:text-white">
+                ЭЛИТНЫЙ
+                <br/>
+                ДОСТУП
               </h4>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="md:px-12 text-white pt-12 pb-24 relative bg-[#020617] border-t border-[#262626]" id="who-for">
+<div class="gs-fade-up max-w-7xl mr-auto ml-auto">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
+<div class="">
+<div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-medium uppercase tracking-wider mb-6 inline-block">
+              Стратегический вход
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="md:px-12 text-white pt-12 pb-24 relative bg-[#020617] border-t border-[#262626]" id="who-for">
-      <div class="gs-fade-up max-w-7xl mr-auto ml-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16">
-          <div class="">
-            <div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-medium uppercase tracking-wider mb-6 inline-block">
-              Strategic Entry
-            </div>
-            <h2 class="text-5xl md:text-7xl leading-[0.9] font-medium tracking-tight text-white uppercase">
-              WHO IS
-              <br>
+<h2 class="text-5xl md:text-7xl leading-[0.9] font-medium tracking-tight text-white uppercase">
+              ДЛЯ КОГО
+              <br/>
               AURALIS
-              <br>
-              FOR?
+              <br/>
+              СОЗДАН?
             </h2>
-
-            <div class="mt-12 flex items-start gap-4">
-              <span class="text-xs font-mono opacity-50 mt-1 font-light">
+<div class="mt-12 flex items-start gap-4">
+<span class="text-xs font-mono opacity-50 mt-1 font-light">
                 // 01
               </span>
-              <div class="">
-                <h4 class="font-medium uppercase text-sm mb-1">
-                  UNPARALLELED
-                  <br>
-                  TIER VALUE
+<div class="">
+<h4 class="font-medium uppercase text-sm mb-1">
+                  НЕПРЕВЗОЙДЁННАЯ
+                  <br/>
+                  ЦЕННОСТЬ УРОВНЕЙ
                 </h4>
-              </div>
-            </div>
-          </div>
-
-          <div class="max-w-sm mt-12 md:mt-24">
-            <p class="text-xs font-light opacity-80 leading-relaxed border-l-2 border-[#262626] pl-4">
-              Auralis delivers unprecedented access to creative environments
-              designed for the bold. We integrate seamless technology.
+</div>
+</div>
+</div>
+<div class="max-w-sm mt-12 md:mt-24">
+<p class="text-xs font-light opacity-80 leading-relaxed border-l-2 border-[#262626] pl-4">
+              Auralis открывает беспрецедентный доступ к креативным пространствам, созданным для смелых. Мы интегрируем бесшовные технологии.
             </p>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-[#080808] border border-[#262626] rounded-3xl p-6 md:p-10 text-white flex flex-col md:flex-row gap-8 items-end relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-            <div class="absolute inset-0 bg-[#141414] opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
-            <div class="w-full md:w-1/2 relative z-10">
-              <div class="flex justify-between items-start mb-4">
-                <span class="text-4xl font-extralight opacity-20 font-mono">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-[#080808] border border-[#262626] rounded-3xl p-6 md:p-10 text-white flex flex-col md:flex-row gap-8 items-end relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute inset-0 bg-[#141414] opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+<div class="w-full md:w-1/2 relative z-10">
+<div class="flex justify-between items-start mb-4">
+<span class="text-4xl font-extralight opacity-20 font-mono">
                   01
                 </span>
-              </div>
-              <div class="h-64 rounded-2xl overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition-all duration-500">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2b26cbcf-e24c-4101-bac1-866062e99f3b_800w.webp" class="w-full h-full object-cover">
-              </div>
-              <h3 class="text-2xl font-medium uppercase tracking-tight leading-none text-[#F97316]">
-                I AM A
-                <br>
+</div>
+<div class="h-64 rounded-2xl overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2b26cbcf-e24c-4101-bac1-866062e99f3b_800w.webp"/>
+</div>
+<h3 class="text-2xl font-medium uppercase tracking-tight leading-none text-[#F97316]">
+                Я —
+                <br/>
                 DIGITAL
-                <br>
-                ARTIST
+                <br/>
+                ХУДОЖНИК
               </h3>
-            </div>
-            <div class="w-full md:w-1/2 pb-2 relative z-10">
-              <p class="text-xs font-light text-white/50 uppercase tracking-widest leading-relaxed mb-4 border-l border-white/20 pl-3">
-                I Am A Digital Artist Who Demands Inspiration
+</div>
+<div class="w-full md:w-1/2 pb-2 relative z-10">
+<p class="text-xs font-light text-white/50 uppercase tracking-widest leading-relaxed mb-4 border-l border-white/20 pl-3">
+                Я цифровой художник, которому необходимо вдохновение
               </p>
-              <div class="w-full h-[1px] bg-white/10 mb-4"></div>
-              <a href="#" class="text-xs font-medium uppercase tracking-wider flex items-center justify-between group-hover:text-[#F97316] transition-colors">
-                DISCOVER
-                <iconify-icon icon="solar:arrow-right-up-linear" class="group-hover:text-[#F97316]"></iconify-icon>
-              </a>
-            </div>
-          </div>
-
-          <div class="bg-[#080808] border border-[#262626] rounded-3xl p-6 md:p-10 text-white flex flex-col md:flex-row gap-8 items-end relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
-            <div class="absolute inset-0 bg-[#141414] opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
-            <div class="w-full md:w-1/2 relative z-10">
-              <div class="flex justify-between items-start mb-4">
-                <span class="text-4xl font-extralight opacity-20 font-mono">
+<div class="w-full h-[1px] bg-white/10 mb-4"></div>
+<a class="text-xs font-medium uppercase tracking-wider flex items-center justify-between group-hover:text-[#F97316] transition-colors" href="#">
+                ОТКРЫТЬ
+                <iconify-icon class="group-hover:text-[#F97316]" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<div class="bg-[#080808] border border-[#262626] rounded-3xl p-6 md:p-10 text-white flex flex-col md:flex-row gap-8 items-end relative overflow-hidden group hover:-translate-y-2 transition-transform duration-300">
+<div class="absolute inset-0 bg-[#141414] opacity-0 group-hover:opacity-100 transition-opacity z-0"></div>
+<div class="w-full md:w-1/2 relative z-10">
+<div class="flex justify-between items-start mb-4">
+<span class="text-4xl font-extralight opacity-20 font-mono">
                   02
                 </span>
-              </div>
-              <div class="h-64 rounded-2xl overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition-all duration-500">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e609d3b8-62f1-4b0b-afd1-81402d269b00_800w.webp" class="w-full h-full object-cover object-top">
-              </div>
-              <h3 class="text-2xl font-medium uppercase tracking-tight leading-none text-white group-hover:text-[#F97316] transition-colors">
-                I AM A
-                <br>
-                TECH FOUNDER
+</div>
+<div class="h-64 rounded-2xl overflow-hidden mb-6 filter grayscale group-hover:grayscale-0 transition-all duration-500">
+<img class="w-full h-full object-cover object-top" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e609d3b8-62f1-4b0b-afd1-81402d269b00_800w.webp"/>
+</div>
+<h3 class="text-2xl font-medium uppercase tracking-tight leading-none text-white group-hover:text-[#F97316] transition-colors">
+                Я —
+                <br/>
+                ТЕХ-ОСНОВАТЕЛЬ
               </h3>
-            </div>
-            <div class="w-full md:w-1/2 pb-2 relative z-10">
-              <p class="text-xs font-light text-white/50 uppercase tracking-widest leading-relaxed mb-4 border-l border-white/20 pl-3">
-                I Want To Connect With Forward-Thinking Leaders
+</div>
+<div class="w-full md:w-1/2 pb-2 relative z-10">
+<p class="text-xs font-light text-white/50 uppercase tracking-widest leading-relaxed mb-4 border-l border-white/20 pl-3">
+                Я хочу общаться с прогрессивными лидерами
               </p>
-              <div class="w-full h-[1px] bg-white/10 mb-4"></div>
-              <a href="#" class="text-xs font-medium uppercase tracking-wider flex items-center justify-between group-hover:text-[#F97316] transition-colors">
-                DISCOVER
-                <iconify-icon icon="solar:arrow-right-up-linear" class="group-hover:text-[#F97316]"></iconify-icon>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <footer class="overflow-hidden bg-[#080808] pt-24 pb-8 relative" id="footer">
-  <div class="md:px-12 z-10 flex flex-col max-w-7xl mr-auto ml-auto pr-6 pl-6 relative items-center">
-    <h2 class="text-[10vw] leading-[0.8] font-medium tracking-tight text-white uppercase text-center mb-12 gs-fade-up">
-      EXPAND
-      <br>
-      YOUR
+<div class="w-full h-[1px] bg-white/10 mb-4"></div>
+<a class="text-xs font-medium uppercase tracking-wider flex items-center justify-between group-hover:text-[#F97316] transition-colors" href="#">
+                ОТКРЫТЬ
+                <iconify-icon class="group-hover:text-[#F97316]" icon="solar:arrow-right-up-linear"></iconify-icon>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<footer class="overflow-hidden bg-[#080808] pt-24 pb-8 relative" id="footer">
+<div class="md:px-12 z-10 flex flex-col max-w-7xl mr-auto ml-auto pr-6 pl-6 relative items-center">
+<h2 class="text-[10vw] leading-[0.8] font-medium tracking-tight text-white uppercase text-center mb-12 gs-fade-up">
+      РАСШИРЬ
+      <br/>
+      СВОЙ
       <span class="text-transparent" style="-webkit-text-stroke: 1px rgba(255,255,255,0.3);">
-        HORIZON
+        ГОРИЗОНТ
       </span>
-    </h2>
-
-    <div class="w-full h-[40vh] md:h-[50vh] rounded-3xl overflow-hidden mb-16 gs-fade-up relative">
-      <div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent z-10"></div>
-      <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30e3ef4-40d7-42ff-80da-9a2204d74fdb_1600w.webp" class="w-full h-full object-cover">
-
-      <div class="absolute bottom-10 left-10 z-20">
-        <h3 class="text-3xl font-medium uppercase tracking-tight leading-none max-w-sm">
-          WHERE VISIONARY MINDS GATHER.
+</h2>
+<div class="w-full h-[40vh] md:h-[50vh] rounded-3xl overflow-hidden mb-16 gs-fade-up relative">
+<div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent z-10"></div>
+<img class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30e3ef4-40d7-42ff-80da-9a2204d74fdb_1600w.webp"/>
+<div class="absolute bottom-10 left-10 z-20">
+<h3 class="text-3xl font-medium uppercase tracking-tight leading-none max-w-sm">
+          ТАМ, ГДЕ СОБИРАЮТСЯ ВИЗИОНЕРЫ.
         </h3>
-      </div>
-    </div>
-
-    <div class="flex flex-col xl:flex-row w-full border-white/10 border-t pt-12 items-start justify-between gs-fade-up">
-      <div class="mb-12 xl:mb-0">
-        <div class="text-2xl font-medium tracking-tight uppercase text-white mb-6">AURALIS.</div>
-        <p class="text-xs font-light text-white/50 max-w-xs uppercase tracking-widest leading-relaxed">
-          Auralis Is For Visionaries And Driven Innovators. Anyone That Dares To Build The Future From Scratch.
+</div>
+</div>
+<div class="flex flex-col xl:flex-row w-full border-white/10 border-t pt-12 items-start justify-between gs-fade-up">
+<div class="mb-12 xl:mb-0">
+<div class="text-2xl font-medium tracking-tight uppercase text-white mb-6">AURALIS.</div>
+<p class="text-xs font-light text-white/50 max-w-xs uppercase tracking-widest leading-relaxed">
+          Auralis — для визионеров и целеустремлённых новаторов. Для всех, кто дерзает строить будущее с нуля.
         </p>
-      </div>
-
-      <div class="flex flex-wrap gap-12 md:gap-24">
-        <div class="">
-          <h4 class="text-xs font-medium uppercase tracking-widest mb-6 text-white">
-            CONNECT
+</div>
+<div class="flex flex-wrap gap-12 md:gap-24">
+<div class="">
+<h4 class="text-xs font-medium uppercase tracking-widest mb-6 text-white">
+            СВЯЗАТЬСЯ
           </h4>
-          <a href="mailto:hello@auralis.com" class="text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block mb-3">
+<a class="text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block mb-3" href="mailto:hello@auralis.com">
             hello@auralis.com
           </a>
-          <a href="tel:+8198765432" class="text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block">
+<a class="text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block" href="tel:+8198765432">
             +81 987 654 32
           </a>
-        </div>
-        <div class="">
-          <h4 class="text-xs font-medium uppercase tracking-widest mb-6 text-white">
+</div>
+<div class="">
+<h4 class="text-xs font-medium uppercase tracking-widest mb-6 text-white">
             AURALIS
           </h4>
-          <div class="flex gap-12">
-            <ul class="space-y-3">
-              <li>
-                <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
-                  Retreat
+<div class="flex gap-12">
+<ul class="space-y-3">
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
+                  Ретрит
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
+</li>
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
                   Enterprise
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
-                  Syndicate
+</li>
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
+                  Синдикат
                 </a>
-              </li>
-            </ul>
-            <ul class="space-y-3">
-              <li>
-                <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
-                  About Us
+</li>
+</ul>
+<ul class="space-y-3">
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
+                  О нас
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
-                  Careers
+</li>
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
+                  Карьера
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
-                  Contact
+</li>
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
+                  Контакты
                 </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="">
-          <h4 class="text-xs font-medium uppercase tracking-widest mb-6 text-white">
-            SOCIALS
+</li>
+</ul>
+</div>
+</div>
+<div class="">
+<h4 class="text-xs font-medium uppercase tracking-widest mb-6 text-white">
+            СОЦСЕТИ
           </h4>
-          <ul class="space-y-3">
-            <li class="">
-              <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
+<ul class="space-y-3">
+<li class="">
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
                 Instagram
               </a>
-            </li>
-            <li>
-              <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
+</li>
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
                 Twitter
               </a>
-            </li>
-            <li>
-              <a href="#" class="text-sm font-light text-white/50 hover:text-white transition-colors">
+</li>
+<li>
+<a class="text-sm font-light text-white/50 hover:text-white transition-colors" href="#">
                 LinkedIn
               </a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <div class="w-full border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gs-fade-up">
-        <ul class="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 text-xs font-light text-white/50 uppercase tracking-widest mb-6 md:mb-0">
-            <li><a href="#" class="hover:text-[#F97316] transition-colors">Privacy Policy</a></li>
-            <li><a href="#" class="hover:text-[#F97316] transition-colors">Terms of Service</a></li>
-            <li><a href="#" class="hover:text-[#F97316] transition-colors">Cookie Policy</a></li>
-            <li><a href="#" class="hover:text-[#F97316] transition-colors">Legal</a></li>
-        </ul>
-        <div class="text-xs font-light text-white/40 uppercase tracking-widest text-center md:text-right">
-            <p>Copyright © 2025 Auralis. All Rights Reserved.</p>
-        </div>
-    </div>
-  </div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="w-full border-t border-white/10 mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gs-fade-up">
+<ul class="flex flex-wrap items-center justify-center md:justify-start gap-6 md:gap-8 text-xs font-light text-white/50 uppercase tracking-widest mb-6 md:mb-0">
+<li><a class="hover:text-[#F97316] transition-colors" href="#">Политика конфиденциальности</a></li>
+<li><a class="hover:text-[#F97316] transition-colors" href="#">Условия использования</a></li>
+<li><a class="hover:text-[#F97316] transition-colors" href="#">Политика cookie</a></li>
+<li><a class="hover:text-[#F97316] transition-colors" href="#">Правовая информация</a></li>
+</ul>
+<div class="text-xs font-light text-white/40 uppercase tracking-widest text-center md:text-right">
+<p>Copyright © 2025 Auralis. Все права защищены.</p>
+</div>
+</div>
+</div>
 </footer>
-
-    <script class="">
+<script class="">
       const lenis = new Lenis({
           duration: 1.2,
           easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
@@ -1346,5 +1312,4 @@ gtag('config', 'G-2M6V79H761');
       });
       gsap.ticker.lagSmoothing(0, 0);
     </script>
-  
 </body></html>

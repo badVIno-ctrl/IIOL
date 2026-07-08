@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="bg-[#05050A] text-white antialiased selection:bg-[#00F0FF]/30 selection:text-white" style="scroll-behavior: smooth;">
-<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VALER | Grow Capital Ruthlessly. Protect It Absolutely.</title>
+<html class="bg-[#05050A] text-white antialiased selection:bg-[#00F0FF]/30 selection:text-white" lang="ru" style="scroll-behavior: smooth;">
+<head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>VALER | Наращивайте капитал безжалостно. Защищайте его абсолютно.</title>
 <!-- Tailwind via CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Iconify Solar Icons -->
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <!-- Fonts: Clash Display, Inter Tight, JetBrains Mono -->
-<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&display=swap" rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@400,500,600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500&amp;family=JetBrains+Mono:wght@300;400&amp;display=swap" rel="stylesheet"/>
 <style>
 /* Typography Scale & Core Setup */
 :root {
@@ -129,7 +129,7 @@ width: 100%; height: 2px; cursor: none; background: linear-gradient(90deg, var(-
 @keyframes pulse-ring { 0% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0.7); } 70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 240, 255, 0); } 100% { transform: scale(0.8); box-shadow: 0 0 0 0 rgba(0, 240, 255, 0); } }
 .status-dot { animation: pulse-ring 2s infinite cubic-bezier(0.215, 0.61, 0.355, 1); }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -137,647 +137,622 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="relative bg-[#05050A]">
-
-    <!-- Astonishing WebGL-Style Background: Dotted Grid + Falling Data Beams -->
-    <canvas id="bg-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-[0.85]"></canvas>
-    
-    <!-- Ambient Deep Gradients -->
-    <div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-screen pointer-events-none z-0 mix-blend-screen" 
-         style="background: radial-gradient(ellipse at 50% -20%, rgba(112,0,255,0.15), transparent 70%);"></div>
-
-    <!-- Custom Cursor -->
-    <div id="custom-cursor"></div>
-
-    <!-- NAVIGATION -->
-    <nav class="fixed top-0 left-0 w-full z-50 border-b border-white/[0.03] bg-[#05050A]/70 backdrop-blur-xl transition-all duration-300 py-[clamp(1rem,1.5vw,1.5rem)] px-[clamp(1.5rem,5vw,4rem)] flex justify-between items-center">
-        <!-- Logo: Bold geometric SVG -->
-        <a href="#" class="relative flex items-center justify-center interactive group gap-3">
-            <svg viewBox="0 0 40 40" class="w-[clamp(1.5rem,2.5vw,2rem)] h-[clamp(1.5rem,2.5vw,2rem)]">
-                <!-- Geometric V intersecting with a performance line -->
-                <path d="M5 10 L20 35 L35 10" stroke="white" stroke-width="3" fill="none" class="group-hover:stroke-[#00F0FF] transition-colors duration-500" vector-effect="non-scaling-stroke"/>
-                <path d="M0 25 L15 15 L25 20 L40 5" stroke="#7000FF" stroke-width="2" fill="none" class="opacity-0 group-hover:opacity-100 transition-opacity duration-500" stroke-dasharray="100" stroke-dashoffset="100">
-                    <animate attributeName="stroke-dashoffset" values="100;0" dur="1s" begin="mouseenter" fill="freeze" />
-                </path>
-            </svg>
-            <span class="font-display font-semibold text-[clamp(1rem,1.2vw,1.25rem)] tracking-tight text-white group-hover:text-[#00F0FF] transition-colors">VALER</span>
+<!-- Astonishing WebGL-Style Background: Dotted Grid + Falling Data Beams -->
+<canvas class="fixed inset-0 z-0 pointer-events-none opacity-[0.85]" id="bg-canvas"></canvas>
+<!-- Ambient Deep Gradients -->
+<div class="fixed top-0 left-1/2 -translate-x-1/2 w-full h-screen pointer-events-none z-0 mix-blend-screen" style="background: radial-gradient(ellipse at 50% -20%, rgba(112,0,255,0.15), transparent 70%);"></div>
+<!-- Custom Cursor -->
+<div id="custom-cursor"></div>
+<!-- NAVIGATION -->
+<nav class="fixed top-0 left-0 w-full z-50 border-b border-white/[0.03] bg-[#05050A]/70 backdrop-blur-xl transition-all duration-300 py-[clamp(1rem,1.5vw,1.5rem)] px-[clamp(1.5rem,5vw,4rem)] flex justify-between items-center">
+<!-- Logo: Bold geometric SVG -->
+<a class="relative flex items-center justify-center interactive group gap-3" href="#">
+<svg class="w-[clamp(1.5rem,2.5vw,2rem)] h-[clamp(1.5rem,2.5vw,2rem)]" viewbox="0 0 40 40">
+<!-- Geometric V intersecting with a performance line -->
+<path class="group-hover:stroke-[#00F0FF] transition-colors duration-500" d="M5 10 L20 35 L35 10" fill="none" stroke="white" stroke-width="3" vector-effect="non-scaling-stroke"></path>
+<path class="opacity-0 group-hover:opacity-100 transition-opacity duration-500" d="M0 25 L15 15 L25 20 L40 5" fill="none" stroke="#7000FF" stroke-dasharray="100" stroke-dashoffset="100" stroke-width="2">
+<animate attributename="stroke-dashoffset" begin="mouseenter" dur="1s" fill="freeze" values="100;0"></animate>
+</path>
+</svg>
+<span class="font-display font-semibold text-[clamp(1rem,1.2vw,1.25rem)] tracking-tight text-white group-hover:text-[#00F0FF] transition-colors">VALER</span>
+</a>
+<!-- Links (Desktop) -->
+<div class="hidden lg:flex items-center gap-[clamp(2rem,3vw,3rem)] font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] uppercase text-white/50 tracking-widest">
+<a class="hover:text-white transition-colors" href="#engine">Архитектура</a>
+<a class="hover:text-white transition-colors" href="#quant">Alpha Engine</a>
+<a class="hover:text-white transition-colors" href="#assets">Монополии</a>
+<a class="hover:text-white transition-colors" href="#manifesto">Тезис</a>
+</div>
+<!-- CTA -->
+<a class="btn-poly btn-poly-solid px-[clamp(1.5rem,2vw,2rem)] py-[clamp(0.5rem,1vw,0.75rem)] text-[clamp(0.75rem,0.9vw,0.875rem)] font-medium text-white interactive" href="#waitlist">
+            Запросить доступ
         </a>
-
-        <!-- Links (Desktop) -->
-        <div class="hidden lg:flex items-center gap-[clamp(2rem,3vw,3rem)] font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] uppercase text-white/50 tracking-widest">
-            <a href="#engine" class="hover:text-white transition-colors">Architecture</a>
-            <a href="#quant" class="hover:text-white transition-colors">Alpha Engine</a>
-            <a href="#assets" class="hover:text-white transition-colors">Monopolies</a>
-            <a href="#manifesto" class="hover:text-white transition-colors">Thesis</a>
-        </div>
-
-        <!-- CTA -->
-        <a href="#waitlist" class="btn-poly btn-poly-solid px-[clamp(1.5rem,2vw,2rem)] py-[clamp(0.5rem,1vw,0.75rem)] text-[clamp(0.75rem,0.9vw,0.875rem)] font-medium text-white interactive">
-            Request Access
-        </a>
-    </nav>
-
-    <main class="relative z-10 w-full max-w-[clamp(70rem,95vw,100rem)] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
-        
-        <!-- SECTION 1: HERO (Conversion & High-Fidelity Preview) -->
-        <section class="min-h-screen pt-[clamp(8rem,20vh,12rem)] pb-[clamp(5rem,10vw,10rem)] flex flex-col lg:flex-row items-center gap-[clamp(4rem,6vw,6rem)] relative border-b border-white/[0.03]">
-            
-            <!-- Left Copy -->
-            <div class="w-full lg:w-[55%] flex flex-col items-start z-10 fade-up">
-                <div class="inline-flex items-center gap-3 px-3 py-1.5 glass-card !border-[#00F0FF]/30 !rounded-none mb-[clamp(1.5rem,2.5vw,2rem)] bg-[#00F0FF]/[0.02]">
-                    <div class="w-1.5 h-1.5 rounded-full bg-[#00F0FF] status-dot"></div>
-                    <span class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-[#00F0FF] uppercase tracking-widest">System Online / Latency: 4ms</span>
-                </div>
-                
-                <h1 class="font-display font-medium text-[clamp(3.5rem,7.5vw,7rem)] leading-[0.9] tracking-tighter text-white mb-[clamp(1.5rem,3vw,2rem)]">
-                    Grow Capital <span class="italic text-white/40">Ruthlessly.</span><br>
-                    Protect It <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#7000FF]">Absolutely.</span>
-                </h1>
-                
-                <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60 leading-[1.6] max-w-xl mb-[clamp(2.5rem,4vw,3rem)]">
-                    Stop letting human emotion cap your returns. Valer's autonomous quant engine harvests yield and rebalances your net worth across global equities and private credit. Pure algorithmic alpha.
+</nav>
+<main class="relative z-10 w-full max-w-[clamp(70rem,95vw,100rem)] mx-auto px-[clamp(1.5rem,5vw,4rem)]">
+<!-- SECTION 1: HERO (Conversion & High-Fidelity Preview) -->
+<section class="min-h-screen pt-[clamp(8rem,20vh,12rem)] pb-[clamp(5rem,10vw,10rem)] flex flex-col lg:flex-row items-center gap-[clamp(4rem,6vw,6rem)] relative border-b border-white/[0.03]">
+<!-- Left Copy -->
+<div class="w-full lg:w-[55%] flex flex-col items-start z-10 fade-up">
+<div class="inline-flex items-center gap-3 px-3 py-1.5 glass-card !border-[#00F0FF]/30 !rounded-none mb-[clamp(1.5rem,2.5vw,2rem)] bg-[#00F0FF]/[0.02]">
+<div class="w-1.5 h-1.5 rounded-full bg-[#00F0FF] status-dot"></div>
+<span class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-[#00F0FF] uppercase tracking-widest">Система онлайн / Задержка: 4 мс</span>
+</div>
+<h1 class="font-display font-medium text-[clamp(3.5rem,7.5vw,7rem)] leading-[0.9] tracking-tighter text-white mb-[clamp(1.5rem,3vw,2rem)]">
+                    Наращивайте капитал <span class="italic text-white/40">Безжалостно.</span><br/>
+                    Защищайте его <span class="text-transparent bg-clip-text bg-gradient-to-r from-[#00F0FF] to-[#7000FF]">Абсолютно.</span>
+</h1>
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60 leading-[1.6] max-w-xl mb-[clamp(2.5rem,4vw,3rem)]">
+                    Перестаньте позволять человеческим эмоциям ограничивать вашу доходность. Автономный квант-движок Valer собирает доходность и ребалансирует ваш капитал по глобальным акциям и частному кредиту. Чистая алгоритмическая альфа.
                 </p>
-                
-                <div class="flex flex-wrap items-center gap-[clamp(1rem,2vw,1.5rem)]">
-                    <a href="#waitlist" class="btn-poly btn-poly-solid px-[clamp(2.5rem,4vw,3.5rem)] py-[clamp(1.25rem,1.5vw,1.5rem)] text-[clamp(0.875rem,1vw,1rem)] font-medium text-white interactive">
-                        Initialize Portfolio
+<div class="flex flex-wrap items-center gap-[clamp(1rem,2vw,1.5rem)]">
+<a class="btn-poly btn-poly-solid px-[clamp(2.5rem,4vw,3.5rem)] py-[clamp(1.25rem,1.5vw,1.5rem)] text-[clamp(0.875rem,1vw,1rem)] font-medium text-white interactive" href="#waitlist">
+                        Инициализировать портфель
                     </a>
-                    <a href="#calc" class="group flex items-center gap-3 text-[clamp(0.875rem,1vw,1rem)] font-mono uppercase tracking-wide text-white/50 hover:text-white transition-colors interactive">
-                        View Projections 
-                        <iconify-icon icon="solar:round-arrow-right-linear" class="text-xl group-hover:translate-x-1 group-hover:text-[#00F0FF] transition-all"></iconify-icon>
-                    </a>
-                </div>
-
-                <div class="mt-[clamp(3rem,5vw,4rem)] flex items-center gap-6 font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/30 uppercase tracking-widest">
-                    <span class="flex items-center gap-2"><iconify-icon icon="solar:shield-check-bold" class="text-white/50"></iconify-icon> Bank-grade Encryption</span>
-                    <span class="flex items-center gap-2"><iconify-icon icon="solar:graph-up-bold" class="text-white/50"></iconify-icon> $2.4B+ Deployed</span>
-                </div>
-            </div>
-
-            <!-- Right Visual: High-Fidelity Ultra-Detailed Dashboard -->
-            <div class="w-full lg:w-[45%] relative mt-10 lg:mt-0 opacity-40 lg:opacity-100 pointer-events-none lg:pointer-events-auto fade-up stagger-2">
-                <div class="dashboard-bleed w-[110%] lg:w-[130%] relative z-10">
-                    <!-- Main Terminal Card -->
-                    <div class="glass-card aspect-[4/3] w-full p-1 bg-[#0A0A12]/90 border-[#00F0FF]/20 shadow-[0_20px_60px_-15px_rgba(112,0,255,0.3)] flex flex-col">
-                        <!-- Header Bar -->
-                        <div class="w-full flex justify-between items-center px-4 py-3 border-b border-white/[0.05] bg-white/[0.01]">
-                            <div class="flex gap-4 items-center font-mono text-[0.65rem] text-white/40 tracking-widest">
-                                <span class="text-white/80">VALER_OS v2.4</span>
-                                <span class="hidden md:inline">/ RUNNING_AGENTS: 14</span>
-                            </div>
-                            <div class="flex gap-2">
-                                <div class="w-2 h-2 rounded-sm bg-white/10"></div>
-                                <div class="w-2 h-2 rounded-sm bg-white/10"></div>
-                                <div class="w-2 h-2 rounded-sm bg-[#00F0FF]/50 shadow-[0_0_5px_#00F0FF]"></div>
-                            </div>
-                        </div>
-                        
-                        <!-- Core UI -->
-                        <div class="flex-1 p-4 flex flex-col gap-4">
-                            <!-- Net Worth Row -->
-                            <div class="flex justify-between items-end">
-                                <div>
-                                    <div class="font-mono text-[0.65rem] text-white/40 mb-1">TOTAL_NAV</div>
-                                    <div class="font-mono text-[clamp(1.5rem,2vw,2rem)] text-white leading-none">$<span class="val-counter" data-target="14208941" data-decimals="0">0</span>.00</div>
-                                </div>
-                                <div class="text-right">
-                                    <div class="font-mono text-[0.65rem] text-[#00F0FF] mb-1">+<span class="val-counter" data-target="12.4" data-decimals="1">0</span>% YTD</div>
-                                    <svg width="100" height="30" viewBox="0 0 100 30" class="overflow-visible">
-                                        <path d="M0,30 L10,25 L20,28 L30,15 L40,20 L50,10 L60,12 L70,5 L80,8 L90,2 L100,0" fill="none" stroke="#00F0FF" stroke-width="2" class="drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]"/>
-                                        <circle cx="100" cy="0" r="3" fill="#fff" class="shadow-[0_0_10px_#fff]" />
-                                    </svg>
-                                </div>
-                            </div>
-
-                            <div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-2"></div>
-
-                            <!-- Live Allocation & Terminal -->
-                            <div class="flex-1 grid grid-cols-2 gap-4">
-                                <!-- Allocation Heatmap -->
-                                <div class="glass-card !bg-transparent !border-white/5 p-3 flex flex-col gap-2">
-                                    <div class="font-mono text-[0.5rem] text-white/40 mb-2">DYNAMIC_ALLOCATION</div>
-                                    <div class="w-full h-8 flex gap-1">
-                                        <div class="bg-gradient-to-b from-[#00F0FF] to-[#00F0FF]/20 w-[60%] rounded-sm relative group"><div class="absolute inset-0 border border-white/20 rounded-sm opacity-0 group-hover:opacity-100"></div></div>
-                                        <div class="bg-gradient-to-b from-[#7000FF] to-[#7000FF]/20 w-[25%] rounded-sm"></div>
-                                        <div class="bg-gradient-to-b from-white/80 to-white/20 w-[15%] rounded-sm"></div>
-                                    </div>
-                                    <div class="font-mono text-[0.55rem] text-white/60 flex justify-between mt-1">
-                                        <span>EQ_60</span><span>PC_25</span><span>ALT_15</span>
-                                    </div>
-                                </div>
-
-                                <!-- Execution Logs -->
-                                <div class="glass-card !bg-black/40 !border-white/5 p-3 relative overflow-hidden font-mono text-[0.55rem] text-white/40 leading-relaxed shadow-inner">
-                                    <div class="absolute top-0 left-0 w-full h-4 bg-gradient-to-b from-black/80 to-transparent z-10"></div>
-                                    <div class="animate-terminal absolute inset-x-3 top-3">
-                                        <span class="text-[#00F0FF]">></span> ANALYZING_MACRO_DATA<br>
-                                        <span class="text-[#00F0FF]">></span> DETECTED_YIELD_ARBITRAGE<br>
-                                        <span class="text-[#7000FF]">></span> REBALANCING_NODE_0x4A...<br>
-                                        <span class="text-white">></span> EXECUTION_MS: 4.012<br>
-                                        <span class="text-[#00F0FF]">></span> YIELD_HARVESTED: $4,209<br>
-                                        <span class="text-[#00F0FF]">></span> ANALYZING_MACRO_DATA<br>
-                                        <span class="text-[#7000FF]">></span> REBALANCING_NODE_0x4A...<br>
-                                    </div>
-                                    <div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
-                                </div>
-                            </div>
-                        </div>
+<a class="group flex items-center gap-3 text-[clamp(0.875rem,1vw,1rem)] font-mono uppercase tracking-wide text-white/50 hover:text-white transition-colors interactive" href="#calc">
+                        Смотреть прогнозы 
+                        <iconify-icon class="text-xl group-hover:translate-x-1 group-hover:text-[#00F0FF] transition-all" icon="solar:round-arrow-right-linear"></iconify-icon>
+</a>
+</div>
+<div class="mt-[clamp(3rem,5vw,4rem)] flex items-center gap-6 font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/30 uppercase tracking-widest">
+<span class="flex items-center gap-2"><iconify-icon class="text-white/50" icon="solar:shield-check-bold"></iconify-icon> Шифрование банковского уровня</span>
+<span class="flex items-center gap-2"><iconify-icon class="text-white/50" icon="solar:graph-up-bold"></iconify-icon> $2,4B+ размещено</span>
+</div>
+</div>
+<!-- Right Visual: High-Fidelity Ultra-Detailed Dashboard -->
+<div class="w-full lg:w-[45%] relative mt-10 lg:mt-0 opacity-40 lg:opacity-100 pointer-events-none lg:pointer-events-auto fade-up stagger-2">
+<div class="dashboard-bleed w-[110%] lg:w-[130%] relative z-10">
+<!-- Main Terminal Card -->
+<div class="glass-card aspect-[4/3] w-full p-1 bg-[#0A0A12]/90 border-[#00F0FF]/20 shadow-[0_20px_60px_-15px_rgba(112,0,255,0.3)] flex flex-col">
+<!-- Header Bar -->
+<div class="w-full flex justify-between items-center px-4 py-3 border-b border-white/[0.05] bg-white/[0.01]">
+<div class="flex gap-4 items-center font-mono text-[0.65rem] text-white/40 tracking-widest">
+<span class="text-white/80">VALER_OS v2.4</span>
+<span class="hidden md:inline">/ RUNNING_AGENTS: 14</span>
+</div>
+<div class="flex gap-2">
+<div class="w-2 h-2 rounded-sm bg-white/10"></div>
+<div class="w-2 h-2 rounded-sm bg-white/10"></div>
+<div class="w-2 h-2 rounded-sm bg-[#00F0FF]/50 shadow-[0_0_5px_#00F0FF]"></div>
+</div>
+</div>
+<!-- Core UI -->
+<div class="flex-1 p-4 flex flex-col gap-4">
+<!-- Net Worth Row -->
+<div class="flex justify-between items-end">
+<div>
+<div class="font-mono text-[0.65rem] text-white/40 mb-1">TOTAL_NAV</div>
+<div class="font-mono text-[clamp(1.5rem,2vw,2rem)] text-white leading-none">$<span class="val-counter" data-decimals="0" data-target="14208941">0</span>.00</div>
+</div>
+<div class="text-right">
+<div class="font-mono text-[0.65rem] text-[#00F0FF] mb-1">+<span class="val-counter" data-decimals="1" data-target="12.4">0</span>% YTD</div>
+<svg class="overflow-visible" height="30" viewbox="0 0 100 30" width="100">
+<path class="drop-shadow-[0_0_5px_rgba(0,240,255,0.5)]" d="M0,30 L10,25 L20,28 L30,15 L40,20 L50,10 L60,12 L70,5 L80,8 L90,2 L100,0" fill="none" stroke="#00F0FF" stroke-width="2"></path>
+<circle class="shadow-[0_0_10px_#fff]" cx="100" cy="0" fill="#fff" r="3"></circle>
+</svg>
+</div>
+</div>
+<div class="w-full h-[1px] bg-gradient-to-r from-transparent via-white/10 to-transparent my-2"></div>
+<!-- Live Allocation & Terminal -->
+<div class="flex-1 grid grid-cols-2 gap-4">
+<!-- Allocation Heatmap -->
+<div class="glass-card !bg-transparent !border-white/5 p-3 flex flex-col gap-2">
+<div class="font-mono text-[0.5rem] text-white/40 mb-2">DYNAMIC_ALLOCATION</div>
+<div class="w-full h-8 flex gap-1">
+<div class="bg-gradient-to-b from-[#00F0FF] to-[#00F0FF]/20 w-[60%] rounded-sm relative group"><div class="absolute inset-0 border border-white/20 rounded-sm opacity-0 group-hover:opacity-100"></div></div>
+<div class="bg-gradient-to-b from-[#7000FF] to-[#7000FF]/20 w-[25%] rounded-sm"></div>
+<div class="bg-gradient-to-b from-white/80 to-white/20 w-[15%] rounded-sm"></div>
+</div>
+<div class="font-mono text-[0.55rem] text-white/60 flex justify-between mt-1">
+<span>EQ_60</span><span>PC_25</span><span>ALT_15</span>
+</div>
+</div>
+ Логи выполнения 
+<div class="glass-card !bg-black/40 !border-white/5 p-3 relative overflow-hidden font-mono text-[0.55rem] text-white/40 leading-relaxed shadow-inner">
+<div class="absolute top-0 left-0 w-full h-4 bg-gradient-to-b from-black/80 to-transparent z-10"></div>
+<div class="animate-terminal absolute inset-x-3 top-3">
+<span class="text-[#00F0FF]">&gt;</span> ANALYZING_MACRO_DATA<br/>
+<span class="text-[#00F0FF]">&gt;</span> DETECTED_YIELD_ARBITRAGE<br/>
+<span class="text-[#7000FF]">&gt;</span> REBALANCING_NODE_0x4A...<br/>
+<span class="text-white">&gt;</span> EXECUTION_MS: 4.012<br/>
+<span class="text-[#00F0FF]">&gt;</span> YIELD_HARVESTED: $4,209<br/>
+<span class="text-[#00F0FF]">&gt;</span> ANALYZING_MACRO_DATA<br/>
+<span class="text-[#7000FF]">&gt;</span> REBALANCING_NODE_0x4A...<br/>
+</div>
+<div class="absolute bottom-0 left-0 w-full h-4 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Floating Sub-card: Yield Harvested -->
+<div class="absolute -bottom-6 -left-8 w-[60%] glass-card p-4 flex items-center justify-between border-[#7000FF]/40 bg-[#05050A]/80 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+<div>
+<div class="font-mono text-[0.55rem] text-white/40 mb-1">TAX_LOSS_HARVESTED</div>
+<div class="font-mono text-[clamp(0.875rem,1vw,1rem)] text-white">+$<span class="val-counter" data-decimals="0" data-target="84210">0</span></div>
+</div>
+<iconify-icon class="text-2xl text-[#7000FF]" icon="solar:shield-check-line-duotone"></iconify-icon>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: LIVE METRICS (Validation/Trust) -->
+<section class="w-full py-[clamp(3rem,5vw,4rem)] border-b border-white/[0.03] bg-[#0A0A12]/30 fade-up">
+<div class="grid grid-cols-2 lg:grid-cols-4 gap-[clamp(2rem,4vw,4rem)] divide-x divide-white/5">
+<div class="flex flex-col items-center justify-center text-center px-4 group">
+<div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-white mb-2 tracking-tight group-hover:text-[#00F0FF] transition-colors">
+<span class="val-counter" data-decimals="0" data-target="100">0</span>%
                     </div>
-                    
-                    <!-- Floating Sub-card: Yield Harvested -->
-                    <div class="absolute -bottom-6 -left-8 w-[60%] glass-card p-4 flex items-center justify-between border-[#7000FF]/40 bg-[#05050A]/80 shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                        <div>
-                            <div class="font-mono text-[0.55rem] text-white/40 mb-1">TAX_LOSS_HARVESTED</div>
-                            <div class="font-mono text-[clamp(0.875rem,1vw,1rem)] text-white">+$<span class="val-counter" data-target="84210" data-decimals="0">0</span></div>
-                        </div>
-                        <iconify-icon icon="solar:shield-check-line-duotone" class="text-2xl text-[#7000FF]"></iconify-icon>
+<div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Капитал защищён</div>
+</div>
+<div class="flex flex-col items-center justify-center text-center px-4 group">
+<div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-white mb-2 tracking-tight group-hover:text-[#00F0FF] transition-colors">
+<span class="val-counter" data-decimals="0" data-target="4">0</span>мс
                     </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 2: LIVE METRICS (Validation/Trust) -->
-        <section class="w-full py-[clamp(3rem,5vw,4rem)] border-b border-white/[0.03] bg-[#0A0A12]/30 fade-up">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-[clamp(2rem,4vw,4rem)] divide-x divide-white/5">
-                <div class="flex flex-col items-center justify-center text-center px-4 group">
-                    <div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-white mb-2 tracking-tight group-hover:text-[#00F0FF] transition-colors">
-                        <span class="val-counter" data-target="100" data-decimals="0">0</span>%
+<div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Преимущество исполнения</div>
+</div>
+<div class="flex flex-col items-center justify-center text-center px-4 group">
+<div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-white mb-2 tracking-tight group-hover:text-[#00F0FF] transition-colors">
+                        +<span class="val-counter" data-decimals="1" data-target="8.4">0.0</span>%
                     </div>
-                    <div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Capital Protected</div>
-                </div>
-                <div class="flex flex-col items-center justify-center text-center px-4 group">
-                    <div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-white mb-2 tracking-tight group-hover:text-[#00F0FF] transition-colors">
-                        <span class="val-counter" data-target="4" data-decimals="0">0</span>ms
-                    </div>
-                    <div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Execution Advantage</div>
-                </div>
-                <div class="flex flex-col items-center justify-center text-center px-4 group">
-                    <div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-white mb-2 tracking-tight group-hover:text-[#00F0FF] transition-colors">
-                        +<span class="val-counter" data-target="8.4" data-decimals="1">0.0</span>%
-                    </div>
-                    <div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Market Outperformance</div>
-                </div>
-                <div class="flex flex-col items-center justify-center text-center px-4 group">
-                    <div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-[#7000FF] mb-2 tracking-tight">
+<div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Опережение рынка</div>
+</div>
+<div class="flex flex-col items-center justify-center text-center px-4 group">
+<div class="font-display font-medium text-[clamp(2rem,3vw,3rem)] text-[#7000FF] mb-2 tracking-tight">
                         24/7
                     </div>
-                    <div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Continuous Uptime</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 3: ELITE PROOF (New - High Density Trust) -->
-        <section class="py-[clamp(4rem,8vw,6rem)] border-b border-white/[0.03] fade-up relative overflow-hidden">
-            <!-- Background text element -->
-            <div class="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[15vw] leading-none text-white/[0.01] whitespace-nowrap pointer-events-none font-medium">TRUSTED BY THE 0.1%</div>
-            
-            <div class="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
-                <div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest mb-4">Network Validation</div>
-                <h2 class="font-display font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-tight text-white mb-8">
-                    Monopolizing alpha for ex-founders, partners at Tier-1 VC firms, and institutional whales.
+<div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest">Непрерывный аптайм</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: ELITE PROOF (New - High Density Trust) -->
+<section class="py-[clamp(4rem,8vw,6rem)] border-b border-white/[0.03] fade-up relative overflow-hidden">
+<!-- Background text element -->
+<div class="absolute left-0 top-1/2 -translate-y-1/2 font-display text-[15vw] leading-none text-white/[0.01] whitespace-nowrap pointer-events-none font-medium">НАМ ДОВЕРЯЮТ 0,1%</div>
+<div class="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto">
+<div class="font-mono text-[clamp(0.65rem,0.8vw,0.75rem)] text-white/40 uppercase tracking-widest mb-4">Валидация сети</div>
+<h2 class="font-display font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-tight text-white mb-8">
+                    Монополизируем альфу для экс-фаундеров, партнёров Tier-1 VC-фондов и институциональных китов.
                 </h2>
-                <div class="flex flex-wrap justify-center items-center gap-x-[clamp(3rem,5vw,5rem)] gap-y-6 opacity-40 grayscale font-display font-semibold text-xl tracking-tighter">
-                    <!-- Faux Logos text-based for exact startup feel -->
-                    <span class="hover:opacity-100 hover:text-white transition-all cursor-default">SEQUOIA<span class="text-[0.5em] align-top">ALUMNI</span></span>
-                    <span class="hover:opacity-100 hover:text-white transition-all cursor-default">YCOMBINATOR<span class="text-[0.5em] align-top">FOUNDERS</span></span>
-                    <span class="hover:opacity-100 hover:text-white transition-all cursor-default">GOLDMAN<span class="text-[0.5em] align-top">EXITS</span></span>
-                    <span class="hover:opacity-100 hover:text-white transition-all cursor-default">BINANCE<span class="text-[0.5em] align-top">WHALES</span></span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 4: PROBLEM AGITATION -->
-        <section id="manifesto" class="py-[clamp(6rem,12vw,10rem)] fade-up">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(4rem,8vw,8rem)] items-center">
-                <!-- Text -->
-                <div class="flex flex-col items-start order-2 lg:order-1">
-                    <div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02]">
-                        THE INEFFICIENCY
+<div class="flex flex-wrap justify-center items-center gap-x-[clamp(3rem,5vw,5rem)] gap-y-6 opacity-40 grayscale font-display font-semibold text-xl tracking-tighter">
+<!-- Faux Logos text-based for exact startup feel -->
+<span class="hover:opacity-100 hover:text-white transition-all cursor-default">SEQUOIA<span class="text-[0.5em] align-top">ALUMNI</span></span>
+<span class="hover:opacity-100 hover:text-white transition-all cursor-default">YCOMBINATOR<span class="text-[0.5em] align-top">FOUNDERS</span></span>
+<span class="hover:opacity-100 hover:text-white transition-all cursor-default">GOLDMAN<span class="text-[0.5em] align-top">EXITS</span></span>
+<span class="hover:opacity-100 hover:text-white transition-all cursor-default">BINANCE<span class="text-[0.5em] align-top">WHALES</span></span>
+</div>
+</div>
+</section>
+<!-- SECTION 4: PROBLEM AGITATION -->
+<section class="py-[clamp(6rem,12vw,10rem)] fade-up" id="manifesto">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-[clamp(4rem,8vw,8rem)] items-center">
+<!-- Text -->
+<div class="flex flex-col items-start order-2 lg:order-1">
+<div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02]">
+                        НЕЭФФЕКТИВНОСТЬ
                     </div>
-                    <h2 class="font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-white mb-6">
-                        Human wealth managers are bleeding your returns.
+<h2 class="font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-white mb-6">
+                        Живые управляющие капиталом истощают вашу доходность.
                     </h2>
-                    <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60 leading-[1.6] mb-6">
-                        They charge 2% to lose to the S&P 500. They are slow, emotional, and trade on outdated data. Robo-advisors aren't much better—they trap you in rigid, generic models.
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60 leading-[1.6] mb-6">
+                        Они берут 2%, чтобы проигрывать S&amp;P 500. Они медленные, эмоциональные и торгуют на устаревших данных. Робо-эдвайзеры не сильно лучше — они запирают вас в жёстких, шаблонных моделях.
                     </p>
-                    <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/90 leading-[1.6]">
-                        Your capital deserves a hyper-personalized, purely rational engine that executes thousand-variable calculations per second. Zero fees on AUM. Just performance.
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/90 leading-[1.6]">
+                        Ваш капитал заслуживает гиперперсонализированного, чисто рационального движка, выполняющего расчёты с тысячами переменных каждую секунду. Ноль комиссий с AUM. Только результат.
                     </p>
+</div>
+<!-- Visual: Contrast UI -->
+<div class="relative h-[clamp(25rem,35vw,30rem)] w-full order-1 lg:order-2">
+<!-- Left: Traditional (Bleeding) -->
+<div class="glass-card absolute top-10 left-0 w-[60%] h-[70%] bg-[#1A0A0A]/40 border-red-500/10 p-6 flex flex-col justify-between opacity-50 scale-95 origin-bottom-left filter grayscale-[30%]">
+<div class="font-mono text-[0.65rem] text-red-400/50 uppercase">TRADITIONAL_ADVISORY</div>
+<div class="w-full flex-1 flex items-center justify-center relative my-4">
+<!-- Descending erratic line -->
+<svg class="w-full h-full stroke-red-500/30" fill="none" stroke-width="2" viewbox="0 0 100 50">
+<path d="M0,10 L20,30 L40,25 L60,45 L80,40 L100,60"></path>
+</svg>
+</div>
+<div class="flex justify-between font-mono text-[0.65rem] text-white/30 border-t border-white/5 pt-2">
+<span>КОМИССИЯ: 2,0%</span><span>СКОРОСТЬ: ВРУЧНУЮ</span>
+</div>
+</div>
+<!-- Right: Valer (Growing) -->
+<div class="glass-card absolute bottom-10 right-0 w-[70%] h-[80%] border-[#00F0FF]/30 bg-[#00F0FF]/[0.02] shadow-[0_20px_50px_rgba(0,240,255,0.1)] p-6 z-10 flex flex-col justify-between transform hover:-translate-y-2 transition-transform duration-500">
+<div class="flex justify-between items-center w-full">
+<span class="font-mono text-[0.65rem] text-[#00F0FF] tracking-widest">VALER_AUTONOMOUS</span>
+<span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#00F0FF]"></span></span>
+</div>
+<div class="w-full flex-1 flex items-end relative my-4">
+<!-- Ascending perfectly calculated line -->
+<svg class="w-full h-full absolute inset-0 preserveAspectRatio=" none""="" viewbox="0 0 100 50">
+<defs>
+<lineargradient id="glowG" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00F0FF" stop-opacity="0.2"></stop>
+<stop offset="100%" stop-color="#00F0FF" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,50 L0,40 Q25,35 50,25 T100,5 L100,50 Z" fill="url(#glowG)"></path>
+<path class="drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]" d="M0,40 Q25,35 50,25 T100,5" fill="none" stroke="#00F0FF" stroke-width="2"></path>
+</svg>
+</div>
+<div class="flex justify-between font-mono text-[0.65rem] text-white/80 border-t border-white/10 pt-2">
+<span>КОМИССИЯ: $0</span><span class="text-[#00F0FF]">СКОРОСТЬ: 4 мс</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 5: BENTO DASHBOARD (Features) -->
+<section class="py-[clamp(6rem,12vw,10rem)] fade-up relative" id="engine">
+<div class="flex flex-col items-center text-center mb-[clamp(4rem,6vw,5rem)] max-w-3xl mx-auto">
+<div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02]">
+                    ПЛАТФОРМА
                 </div>
-
-                <!-- Visual: Contrast UI -->
-                <div class="relative h-[clamp(25rem,35vw,30rem)] w-full order-1 lg:order-2">
-                    <!-- Left: Traditional (Bleeding) -->
-                    <div class="glass-card absolute top-10 left-0 w-[60%] h-[70%] bg-[#1A0A0A]/40 border-red-500/10 p-6 flex flex-col justify-between opacity-50 scale-95 origin-bottom-left filter grayscale-[30%]">
-                        <div class="font-mono text-[0.65rem] text-red-400/50 uppercase">TRADITIONAL_ADVISORY</div>
-                        <div class="w-full flex-1 flex items-center justify-center relative my-4">
-                            <!-- Descending erratic line -->
-                            <svg viewBox="0 0 100 50" class="w-full h-full stroke-red-500/30" fill="none" stroke-width="2">
-                                <path d="M0,10 L20,30 L40,25 L60,45 L80,40 L100,60" />
-                            </svg>
-                        </div>
-                        <div class="flex justify-between font-mono text-[0.65rem] text-white/30 border-t border-white/5 pt-2">
-                            <span>FEE: 2.0%</span><span>SPEED: MANUAL</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Right: Valer (Growing) -->
-                    <div class="glass-card absolute bottom-10 right-0 w-[70%] h-[80%] border-[#00F0FF]/30 bg-[#00F0FF]/[0.02] shadow-[0_20px_50px_rgba(0,240,255,0.1)] p-6 z-10 flex flex-col justify-between transform hover:-translate-y-2 transition-transform duration-500">
-                        <div class="flex justify-between items-center w-full">
-                            <span class="font-mono text-[0.65rem] text-[#00F0FF] tracking-widest">VALER_AUTONOMOUS</span>
-                            <span class="relative flex h-2 w-2"><span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#00F0FF] opacity-75"></span><span class="relative inline-flex rounded-full h-2 w-2 bg-[#00F0FF]"></span></span>
-                        </div>
-                        
-                        <div class="w-full flex-1 flex items-end relative my-4">
-                            <!-- Ascending perfectly calculated line -->
-                            <svg viewBox="0 0 100 50" class="w-full h-full absolute inset-0 preserveAspectRatio="none"">
-                                <defs>
-                                    <linearGradient id="glowG" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.2"/>
-                                        <stop offset="100%" stop-color="#00F0FF" stop-opacity="0"/>
-                                    </linearGradient>
-                                </defs>
-                                <path d="M0,50 L0,40 Q25,35 50,25 T100,5 L100,50 Z" fill="url(#glowG)" />
-                                <path d="M0,40 Q25,35 50,25 T100,5" fill="none" stroke="#00F0FF" stroke-width="2" class="drop-shadow-[0_0_8px_rgba(0,240,255,0.8)]" />
-                            </svg>
-                        </div>
-
-                        <div class="flex justify-between font-mono text-[0.65rem] text-white/80 border-t border-white/10 pt-2">
-                            <span>FEE: $0</span><span class="text-[#00F0FF]">SPEED: 4ms</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 5: BENTO DASHBOARD (Features) -->
-        <section id="engine" class="py-[clamp(6rem,12vw,10rem)] fade-up relative">
-            <div class="flex flex-col items-center text-center mb-[clamp(4rem,6vw,5rem)] max-w-3xl mx-auto">
-                <div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02]">
-                    THE PLATFORM
-                </div>
-                <h2 class="font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-white mb-6">
-                    Command center for generational wealth.
+<h2 class="font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-white mb-6">
+                    Командный центр для капитала поколений.
                 </h2>
-                <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60">
-                    Deep institutional insights. Infinite granular control. Zero manual labor required.
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60">
+                    Глубокие институциональные инсайты. Бесконечно гранулярный контроль. Ноль ручного труда.
                 </p>
-            </div>
-
-            <!-- Bento Grid 12-col layout simulation -->
-            <div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[clamp(1rem,2vw,1.5rem)] auto-rows-[clamp(16rem,22vw,22rem)]">
-                
-                <!-- Card 1: Large (Machine Learning) -->
-                <div class="glass-card lg:col-span-2 lg:row-span-2 p-[clamp(2rem,3vw,3rem)] flex flex-col justify-between group">
-                    <div class="relative z-10">
-                        <iconify-icon icon="solar:cpu-bold-duotone" class="text-3xl text-[#00F0FF] mb-4"></iconify-icon>
-                        <h3 class="font-display text-[clamp(1.5rem,2vw,1.75rem)] font-medium text-white mb-2 tracking-tight">Predictive Trajectory</h3>
-                        <p class="font-body text-[clamp(1rem,1.1vw,1.125rem)] text-white/50 max-w-sm">Agentic AI models millions of market scenarios to project your precise wealth scaling over 30 years.</p>
+</div>
+<!-- Bento Grid 12-col layout simulation -->
+<div class="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-[clamp(1rem,2vw,1.5rem)] auto-rows-[clamp(16rem,22vw,22rem)]">
+<!-- Card 1: Large (Machine Learning) -->
+<div class="glass-card lg:col-span-2 lg:row-span-2 p-[clamp(2rem,3vw,3rem)] flex flex-col justify-between group">
+<div class="relative z-10">
+<iconify-icon class="text-3xl text-[#00F0FF] mb-4" icon="solar:cpu-bold-duotone"></iconify-icon>
+<h3 class="font-display text-[clamp(1.5rem,2vw,1.75rem)] font-medium text-white mb-2 tracking-tight">Прогнозная траектория</h3>
+<p class="font-body text-[clamp(1rem,1.1vw,1.125rem)] text-white/50 max-w-sm">Агентный AI моделирует миллионы рыночных сценариев, чтобы точно спроецировать рост вашего капитала на 30 лет.</p>
+</div>
+<!-- Complex graphic -->
+<div class="absolute bottom-0 right-0 w-[80%] h-[60%] opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
+<svg height="100%" preserveaspectratio="none" viewbox="0 0 200 100" width="100%">
+<path d="M0,100 C50,80 100,90 150,40 S200,10 200,0" fill="none" stroke="rgba(0,240,255,0.2)" stroke-width="1"></path>
+<path d="M0,100 C50,70 100,80 150,30 S200,0 200,0" fill="none" stroke="rgba(0,240,255,0.4)" stroke-width="1"></path>
+<path class="drop-shadow-[0_0_8px_#00F0FF]" d="M0,100 C50,60 100,70 150,20 S200,-10 200,0" fill="none" stroke="#00F0FF" stroke-width="2"></path>
+</svg>
+</div>
+</div>
+<!-- Card 2: Square (Risk Management) -->
+<div class="glass-card lg:col-span-1 lg:row-span-1 p-[clamp(1.5rem,2vw,2rem)] flex flex-col justify-between overflow-hidden">
+<div>
+<h3 class="font-display text-[clamp(1.25rem,1.5vw,1.5rem)] font-medium text-white mb-2">Алгоритмическое хеджирование</h3>
+<p class="font-body text-[0.875rem] text-white/50">Автоматически размещает капитал в контрциклических активах во время волатильности.</p>
+</div>
+<div class="mt-4 flex flex-col gap-2 font-mono text-[0.65rem] text-white/60">
+<div class="flex justify-between items-center"><span class="flex items-center gap-1"><div class="w-1 h-1 bg-red-500 rounded-full"></div> S&amp;P_DROP</span> <span class="text-red-400">-4.2%</span></div>
+<div class="flex justify-between items-center"><span class="flex items-center gap-1"><div class="w-1 h-1 bg-[#00F0FF] rounded-full"></div> VALER_HEDGE</span> <span class="text-[#00F0FF]">+1.1%</span></div>
+</div>
+</div>
+<!-- Card 3: Square (Tax Harvesting) -->
+<div class="glass-card lg:col-span-1 lg:row-span-1 p-[clamp(1.5rem,2vw,2rem)] flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#7000FF]/[0.05] to-transparent group">
+<iconify-icon class="text-4xl text-[#7000FF] mb-4 group-hover:scale-110 transition-transform" icon="solar:wallet-money-bold-duotone"></iconify-icon>
+<h3 class="font-display text-[clamp(1.25rem,1.5vw,1.5rem)] font-medium text-white mb-1">Микро-сбор налоговых убытков</h3>
+<div class="font-mono text-[clamp(1.5rem,2vw,1.75rem)] text-white mt-2">
+                        +$<span class="val-counter" data-decimals="1" data-target="24.8">0.0</span>k
                     </div>
-                    <!-- Complex graphic -->
-                    <div class="absolute bottom-0 right-0 w-[80%] h-[60%] opacity-50 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none">
-                        <svg width="100%" height="100%" viewBox="0 0 200 100" preserveAspectRatio="none">
-                            <path d="M0,100 C50,80 100,90 150,40 S200,10 200,0" fill="none" stroke="rgba(0,240,255,0.2)" stroke-width="1"/>
-                            <path d="M0,100 C50,70 100,80 150,30 S200,0 200,0" fill="none" stroke="rgba(0,240,255,0.4)" stroke-width="1"/>
-                            <path d="M0,100 C50,60 100,70 150,20 S200,-10 200,0" fill="none" stroke="#00F0FF" stroke-width="2" class="drop-shadow-[0_0_8px_#00F0FF]"/>
-                        </svg>
+<p class="font-mono text-[0.65rem] text-white/40 mt-1 uppercase tracking-widest">Сэкономлено YTD</p>
+</div>
+<!-- Card 4: Wide (Live Terminal) -->
+<div class="glass-card lg:col-span-2 lg:row-span-1 p-0 flex flex-col overflow-hidden group">
+<div class="p-4 border-b border-white/5 flex justify-between items-center bg-black/20">
+<h3 class="font-display text-[1rem] font-medium text-white">Живой терминал исполнения</h3>
+<div class="font-mono text-[0.55rem] text-[#00F0FF] animate-pulse">ЗАПИСЬ</div>
+</div>
+<div class="relative flex-1 p-4 bg-black/40 font-mono text-[0.65rem] text-white/50 leading-[1.8] mask-image:linear-gradient(to_bottom,black,transparent)]">
+<div class="animate-terminal absolute inset-x-4 top-4">
+<div><span class="text-[#7000FF]">[0.012s]</span> Парсинг отчётности SEC (TSLA)...</div>
+<div><span class="text-[#00F0FF]">[0.014s]</span> Сентимент: НЕГАТИВНЫЙ. Экспозиция: 2,4%</div>
+<div><span class="text-[#00F0FF]">[0.015s]</span> Выполняется частичная ликвидация...</div>
+<div><span class="text-white">[0.021s]</span> Капитал направлен в Private Credit Node 4.</div>
+<div><span class="text-[#7000FF]">[0.012s]</span> Парсинг отчётности SEC (TSLA)...</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6: HOW IT WORKS (The Quant Engine) -->
+<section class="py-[clamp(6rem,12vw,10rem)] relative fade-up border-y border-white/[0.03]" id="quant">
+<div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-[clamp(4rem,6vw,5rem)] gap-6">
+<div class="max-w-2xl">
+<div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02] inline-block">
+                        МЕТОДОЛОГИЯ
                     </div>
-                </div>
-
-                <!-- Card 2: Square (Risk Management) -->
-                <div class="glass-card lg:col-span-1 lg:row-span-1 p-[clamp(1.5rem,2vw,2rem)] flex flex-col justify-between overflow-hidden">
-                    <div>
-                        <h3 class="font-display text-[clamp(1.25rem,1.5vw,1.5rem)] font-medium text-white mb-2">Algorithmic Hedging</h3>
-                        <p class="font-body text-[0.875rem] text-white/50">Auto-deploys capital into counter-cyclical assets during volatility.</p>
-                    </div>
-                    <div class="mt-4 flex flex-col gap-2 font-mono text-[0.65rem] text-white/60">
-                        <div class="flex justify-between items-center"><span class="flex items-center gap-1"><div class="w-1 h-1 bg-red-500 rounded-full"></div> S&P_DROP</span> <span class="text-red-400">-4.2%</span></div>
-                        <div class="flex justify-between items-center"><span class="flex items-center gap-1"><div class="w-1 h-1 bg-[#00F0FF] rounded-full"></div> VALER_HEDGE</span> <span class="text-[#00F0FF]">+1.1%</span></div>
-                    </div>
-                </div>
-
-                <!-- Card 3: Square (Tax Harvesting) -->
-                <div class="glass-card lg:col-span-1 lg:row-span-1 p-[clamp(1.5rem,2vw,2rem)] flex flex-col justify-center items-center text-center bg-gradient-to-br from-[#7000FF]/[0.05] to-transparent group">
-                    <iconify-icon icon="solar:wallet-money-bold-duotone" class="text-4xl text-[#7000FF] mb-4 group-hover:scale-110 transition-transform"></iconify-icon>
-                    <h3 class="font-display text-[clamp(1.25rem,1.5vw,1.5rem)] font-medium text-white mb-1">Micro-Tax Harvesting</h3>
-                    <div class="font-mono text-[clamp(1.5rem,2vw,1.75rem)] text-white mt-2">
-                        +$<span class="val-counter" data-target="24.8" data-decimals="1">0.0</span>k
-                    </div>
-                    <p class="font-mono text-[0.65rem] text-white/40 mt-1 uppercase tracking-widest">Saved YTD</p>
-                </div>
-
-                <!-- Card 4: Wide (Live Terminal) -->
-                <div class="glass-card lg:col-span-2 lg:row-span-1 p-0 flex flex-col overflow-hidden group">
-                    <div class="p-4 border-b border-white/5 flex justify-between items-center bg-black/20">
-                        <h3 class="font-display text-[1rem] font-medium text-white">Live Execution Terminal</h3>
-                        <div class="font-mono text-[0.55rem] text-[#00F0FF] animate-pulse">RECORDING</div>
-                    </div>
-                    <div class="relative flex-1 p-4 bg-black/40 font-mono text-[0.65rem] text-white/50 leading-[1.8] mask-image:linear-gradient(to_bottom,black,transparent)]">
-                        <div class="animate-terminal absolute inset-x-4 top-4">
-                            <div><span class="text-[#7000FF]">[0.012s]</span> Parsing SEC filings (TSLA)...</div>
-                            <div><span class="text-[#00F0FF]">[0.014s]</span> Sentiment: NEGATIVE. Exposure: 2.4%</div>
-                            <div><span class="text-[#00F0FF]">[0.015s]</span> Executing partial liquidation...</div>
-                            <div><span class="text-white">[0.021s]</span> Capital routed to Private Credit Node 4.</div>
-                            <div><span class="text-[#7000FF]">[0.012s]</span> Parsing SEC filings (TSLA)...</div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION 6: HOW IT WORKS (The Quant Engine) -->
-        <section id="quant" class="py-[clamp(6rem,12vw,10rem)] relative fade-up border-y border-white/[0.03]">
-            <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-[clamp(4rem,6vw,5rem)] gap-6">
-                <div class="max-w-2xl">
-                    <div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02] inline-block">
-                        THE METHODOLOGY
-                    </div>
-                    <h2 class="font-display font-medium text-[clamp(2.5rem,4vw,3.5rem)] leading-tight tracking-tighter text-white mb-4">
-                        Engineered to win.<br>Every millisecond.
+<h2 class="font-display font-medium text-[clamp(2.5rem,4vw,3.5rem)] leading-tight tracking-tighter text-white mb-4">
+                        Создан, чтобы побеждать.<br/>Каждую миллисекунду.
                     </h2>
-                    <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60">
-                        How the Valer architecture converts raw global data into an unfair advantage.
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60">
+                        Как архитектура Valer превращает сырые глобальные данные в нечестное преимущество.
                     </p>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
+<!-- Connecting Line Desktop -->
+<div class="hidden md:block absolute top-[3rem] left-0 w-full h-[1px] bg-white/5 z-0">
+<div class="h-full bg-gradient-to-r from-[#00F0FF] via-[#7000FF] to-transparent w-full opacity-50 relative">
+<!-- Moving light particle -->
+<div class="absolute top-1/2 -translate-y-1/2 left-0 w-8 h-[2px] bg-white shadow-[0_0_10px_#fff] animate-[pulse_3s_linear_infinite]" style="animation: scanline 4s linear infinite;"></div>
+</div>
+</div>
+<style>@keyframes scanline { 0% { left: 0%; } 100% { left: 100%; } }</style>
+<!-- Steps -->
+<div class="p-6 pt-10 md:border-r border-white/5 relative group z-10">
+<div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#00F0FF] group-hover:bg-[#00F0FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
+<div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">01</div>
+<h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Поглощение</h3>
+<p class="font-body text-[0.875rem] text-white/50 md:text-center">Принимает миллионы точек данных с глобальных рынков, из отчётности SEC и институциональных потоков.</p>
+</div>
+<div class="p-6 pt-10 md:border-r border-white/5 relative group z-10">
+<div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#00F0FF] group-hover:bg-[#00F0FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
+<div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">02</div>
+<h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Синтез</h3>
+<p class="font-body text-[0.875rem] text-white/50 md:text-center">Модели глубокого обучения сопоставляют сложные рыночные условия напрямую с вашим точным риск-профилем.</p>
+</div>
+<div class="p-6 pt-10 md:border-r border-white/5 relative group z-10">
+<div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#7000FF] group-hover:bg-[#7000FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
+<div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">03</div>
+<h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Выполнить</h3>
+<p class="font-body text-[0.875rem] text-white/50 md:text-center">Автономно направляет микрокорректировки через API с низкой задержкой, без человеческих колебаний.</p>
+</div>
+<div class="p-6 pt-10 relative group z-10">
+<div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#7000FF] group-hover:bg-[#7000FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
+<div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">04</div>
+<h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Компаундинг</h3>
+<p class="font-body text-[0.875rem] text-white/50 md:text-center">Мгновенно реинвестирует собранную доходность, максимизируя математическую кривую сложного процента.</p>
+</div>
+</div>
+</section>
+<!-- SECTION 7: ASSET CLASSES (Monopolies) -->
+<section class="py-[clamp(6rem,12vw,10rem)] fade-up" id="assets">
+<div class="flex flex-col items-center text-center mb-[clamp(4rem,6vw,5rem)] max-w-3xl mx-auto">
+<div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02]">
+                    ИНВЕНТАРЬ
                 </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-0 relative">
-                <!-- Connecting Line Desktop -->
-                <div class="hidden md:block absolute top-[3rem] left-0 w-full h-[1px] bg-white/5 z-0">
-                    <div class="h-full bg-gradient-to-r from-[#00F0FF] via-[#7000FF] to-transparent w-full opacity-50 relative">
-                        <!-- Moving light particle -->
-                        <div class="absolute top-1/2 -translate-y-1/2 left-0 w-8 h-[2px] bg-white shadow-[0_0_10px_#fff] animate-[pulse_3s_linear_infinite]" style="animation: scanline 4s linear infinite;"></div>
-                    </div>
-                </div>
-                <style>@keyframes scanline { 0% { left: 0%; } 100% { left: 100%; } }</style>
-
-                <!-- Steps -->
-                <div class="p-6 pt-10 md:border-r border-white/5 relative group z-10">
-                    <div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#00F0FF] group-hover:bg-[#00F0FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
-                    <div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">01</div>
-                    <h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Absorb</h3>
-                    <p class="font-body text-[0.875rem] text-white/50 md:text-center">Ingests millions of data points from global markets, SEC filings, and institutional flows.</p>
-                </div>
-                <div class="p-6 pt-10 md:border-r border-white/5 relative group z-10">
-                    <div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#00F0FF] group-hover:bg-[#00F0FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
-                    <div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">02</div>
-                    <h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Synthesize</h3>
-                    <p class="font-body text-[0.875rem] text-white/50 md:text-center">Deep learning models map complex market conditions directly to your precise risk profile.</p>
-                </div>
-                <div class="p-6 pt-10 md:border-r border-white/5 relative group z-10">
-                    <div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#7000FF] group-hover:bg-[#7000FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
-                    <div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">03</div>
-                    <h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Execute</h3>
-                    <p class="font-body text-[0.875rem] text-white/50 md:text-center">Autonomously routes micro-adjustments via low-latency API without human hesitation.</p>
-                </div>
-                <div class="p-6 pt-10 relative group z-10">
-                    <div class="absolute top-10 left-6 w-2 h-2 rounded-full bg-[#1A1A24] border border-[#7000FF] group-hover:bg-[#7000FF] transition-colors md:top-[2.8rem] md:left-1/2 md:-translate-x-1/2 md:w-3 md:h-3"></div>
-                    <div class="font-mono text-[1.5rem] text-white/10 font-bold mb-4 mt-8 md:mt-12 md:text-center">04</div>
-                    <h3 class="font-display text-[1.25rem] font-medium text-white mb-2 md:text-center">Compound</h3>
-                    <p class="font-body text-[0.875rem] text-white/50 md:text-center">Instantly reinvests harvested yield to maximize the mathematical compounding curve.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECTION 7: ASSET CLASSES (Monopolies) -->
-        <section id="assets" class="py-[clamp(6rem,12vw,10rem)] fade-up">
-            <div class="flex flex-col items-center text-center mb-[clamp(4rem,6vw,5rem)] max-w-3xl mx-auto">
-                <div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02]">
-                    THE INVENTORY
-                </div>
-                <h2 class="font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-white mb-4">
-                    Monopolize elite asset classes.
+<h2 class="font-display font-medium text-[clamp(2.5rem,5vw,4rem)] leading-tight tracking-tighter text-white mb-4">
+                    Монополизируйте элитные классы активов.
                 </h2>
-                <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60">
-                    True wealth isn't built on standard ETFs. The AI dynamically reallocates your capital across tiers previously locked behind billion-dollar buy-ins.
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60">
+                    Настоящее богатство не строится на стандартных ETF. AI динамически перераспределяет ваш капитал по уровням, ранее запертым за миллиардными порогами входа.
                 </p>
-            </div>
-
-            <!-- Stacking Cards Layout -->
-            <div class="relative w-full max-w-4xl mx-auto space-y-8">
-                
-                <div class="glass-card p-[clamp(2rem,4vw,3rem)] group">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
-                        <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-full border border-[#00F0FF]/30 flex items-center justify-center bg-[#00F0FF]/5 group-hover:bg-[#00F0FF]/10 transition-colors">
-                                <iconify-icon icon="solar:chart-line-duotone" class="text-2xl text-[#00F0FF]"></iconify-icon>
-                            </div>
-                            <div>
-                                <div class="font-mono text-[0.65rem] text-white/40 mb-1 tracking-widest">LIQUIDITY_TIER</div>
-                                <h3 class="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-medium text-white">Algorithmic Equities</h3>
-                            </div>
+</div>
+<!-- Stacking Cards Layout -->
+<div class="relative w-full max-w-4xl mx-auto space-y-8">
+<div class="glass-card p-[clamp(2rem,4vw,3rem)] group">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full border border-[#00F0FF]/30 flex items-center justify-center bg-[#00F0FF]/5 group-hover:bg-[#00F0FF]/10 transition-colors">
+<iconify-icon class="text-2xl text-[#00F0FF]" icon="solar:chart-line-duotone"></iconify-icon>
+</div>
+<div>
+<div class="font-mono text-[0.65rem] text-white/40 mb-1 tracking-widest">LIQUIDITY_TIER</div>
+<h3 class="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-medium text-white">Алгоритмические акции</h3>
+</div>
+</div>
+<p class="font-body text-[1rem] text-white/50 max-w-xs md:text-right">Гиперликвидная миллисекундная торговля на глобальных публичных рынках.</p>
+</div>
+</div>
+<div class="glass-card p-[clamp(2rem,4vw,3rem)] group transform md:translate-x-8 border-l-[#7000FF]/50">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full border border-[#7000FF]/30 flex items-center justify-center bg-[#7000FF]/5 group-hover:bg-[#7000FF]/10 transition-colors">
+<iconify-icon class="text-2xl text-[#7000FF]" icon="solar:safe-square-duotone"></iconify-icon>
+</div>
+<div>
+<div class="font-mono text-[0.65rem] text-white/40 mb-1 tracking-widest">YIELD_TIER</div>
+<h3 class="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-medium text-white">Частный кредит</h3>
+</div>
+</div>
+<p class="font-body text-[1rem] text-white/50 max-w-xs md:text-right">Институциональные долговые фонды с низкой корреляцией, генерирующие надёжную доходность.</p>
+</div>
+</div>
+<div class="glass-card p-[clamp(2rem,4vw,3rem)] group transform md:translate-x-16 border-l-white/50">
+<div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
+<div class="flex items-center gap-6">
+<div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center bg-white/5 group-hover:bg-white/10 transition-colors">
+<iconify-icon class="text-2xl text-white" icon="solar:shield-keyhole-duotone"></iconify-icon>
+</div>
+<div>
+<div class="font-mono text-[0.65rem] text-white/40 mb-1 tracking-widest">HEDGE_TIER</div>
+<h3 class="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-medium text-white">Альтернативные активы</h3>
+</div>
+</div>
+<p class="font-body text-[1rem] text-white/50 max-w-xs md:text-right">Расчётные хеджи против инфляции и макроволатильности.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 8: INTERACTIVE CALCULATOR -->
+<section class="py-[clamp(6rem,12vw,10rem)] fade-up" id="calc">
+<div class="glass-card w-full p-[clamp(2rem,5vw,5rem)] bg-gradient-to-br from-[#1A1A24]/60 to-[#05050A]">
+<div class="flex flex-col lg:flex-row gap-[clamp(4rem,8vw,8rem)] items-center">
+<!-- Controls -->
+<div class="w-full lg:w-5/12 flex flex-col justify-center">
+<div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02] inline-table">
+                            МОДЕЛЬ ПРОГНОЗА
                         </div>
-                        <p class="font-body text-[1rem] text-white/50 max-w-xs md:text-right">Hyper-liquid, millisecond trading across global public markets.</p>
-                    </div>
-                </div>
-
-                <div class="glass-card p-[clamp(2rem,4vw,3rem)] group transform md:translate-x-8 border-l-[#7000FF]/50">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
-                        <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-full border border-[#7000FF]/30 flex items-center justify-center bg-[#7000FF]/5 group-hover:bg-[#7000FF]/10 transition-colors">
-                                <iconify-icon icon="solar:safe-square-duotone" class="text-2xl text-[#7000FF]"></iconify-icon>
-                            </div>
-                            <div>
-                                <div class="font-mono text-[0.65rem] text-white/40 mb-1 tracking-widest">YIELD_TIER</div>
-                                <h3 class="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-medium text-white">Private Credit</h3>
-                            </div>
-                        </div>
-                        <p class="font-body text-[1rem] text-white/50 max-w-xs md:text-right">Low correlation, institutional-grade debt funds generating secure yield.</p>
-                    </div>
-                </div>
-
-                <div class="glass-card p-[clamp(2rem,4vw,3rem)] group transform md:translate-x-16 border-l-white/50">
-                    <div class="flex flex-col md:flex-row justify-between md:items-center gap-6">
-                        <div class="flex items-center gap-6">
-                            <div class="w-16 h-16 rounded-full border border-white/20 flex items-center justify-center bg-white/5 group-hover:bg-white/10 transition-colors">
-                                <iconify-icon icon="solar:shield-keyhole-duotone" class="text-2xl text-white"></iconify-icon>
-                            </div>
-                            <div>
-                                <div class="font-mono text-[0.65rem] text-white/40 mb-1 tracking-widest">HEDGE_TIER</div>
-                                <h3 class="font-display text-[clamp(1.25rem,2vw,1.75rem)] font-medium text-white">Alternative Assets</h3>
-                            </div>
-                        </div>
-                        <p class="font-body text-[1rem] text-white/50 max-w-xs md:text-right">Calculated hedges against inflation and macro volatility.</p>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION 8: INTERACTIVE CALCULATOR -->
-        <section id="calc" class="py-[clamp(6rem,12vw,10rem)] fade-up">
-            <div class="glass-card w-full p-[clamp(2rem,5vw,5rem)] bg-gradient-to-br from-[#1A1A24]/60 to-[#05050A]">
-                
-                <div class="flex flex-col lg:flex-row gap-[clamp(4rem,8vw,8rem)] items-center">
-                    <!-- Controls -->
-                    <div class="w-full lg:w-5/12 flex flex-col justify-center">
-                        <div class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-4 border border-[#00F0FF]/30 px-2 py-1 bg-[#00F0FF]/[0.02] inline-table">
-                            PROJECTION MODEL
-                        </div>
-                        <h2 class="font-display font-medium text-[clamp(2.5rem,4vw,3.5rem)] leading-tight tracking-tighter text-white mb-4">
-                            Calculate your unfair advantage.
+<h2 class="font-display font-medium text-[clamp(2.5rem,4vw,3.5rem)] leading-tight tracking-tighter text-white mb-4">
+                            Рассчитайте своё нечестное преимущество.
                         </h2>
-                        <p class="font-body text-[1.125rem] text-white/60 mb-10">
-                            See the mathematical difference of autonomous compounding over 20 years versus traditional passive indexing.
+<p class="font-body text-[1.125rem] text-white/60 mb-10">
+                            Увидьте математическую разницу автономного компаундинга за 20 лет против традиционного пассивного индексирования.
                         </p>
-
-                        <!-- Slider 1 -->
-                        <div class="mb-8 relative interactive group">
-                            <div class="flex justify-between font-mono text-[0.75rem] mb-4 uppercase tracking-wider">
-                                <span class="text-white/60 group-hover:text-white transition-colors">Initial Capital</span>
-                                <span class="text-[#00F0FF]">$<span id="val-initial">250,000</span></span>
-                            </div>
-                            <input type="range" id="calc-initial" min="50000" max="5000000" step="50000" value="250000" class="w-full" oninput="updateCalc()">
-                        </div>
-
-                        <!-- Slider 2 -->
-                        <div class="mb-8 relative interactive group">
-                            <div class="flex justify-between font-mono text-[0.75rem] mb-4 uppercase tracking-wider">
-                                <span class="text-white/60 group-hover:text-white transition-colors">Monthly Contribution</span>
-                                <span class="text-[#00F0FF]">$<span id="val-monthly">5,000</span></span>
-                            </div>
-                            <input type="range" id="calc-monthly" min="0" max="100000" step="1000" value="5000" class="w-full" oninput="updateCalc()">
-                        </div>
-                    </div>
-
-                    <!-- Chart Visualization -->
-                    <div class="w-full lg:w-7/12 relative h-[400px] flex flex-col justify-end p-4 lg:p-8 border border-white/5 bg-black/20 rounded-xl">
-                        
-                        <!-- Top Legend -->
-                        <div class="absolute top-6 left-6 flex flex-col gap-3 font-mono text-[0.65rem] uppercase tracking-widest z-20">
-                            <div class="flex items-center justify-between gap-6 w-48">
-                                <span class="flex items-center gap-2 text-white/90"><div class="w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]"></div> Valer AI</span>
-                                <span id="final-valer" class="text-[#00F0FF] text-[0.85rem] font-bold">$0</span>
-                            </div>
-                            <div class="flex items-center justify-between gap-6 w-48">
-                                <span class="flex items-center gap-2 text-white/40"><div class="w-2 h-2 rounded-full bg-white/20"></div> S&P 500</span>
-                                <span id="final-trad" class="text-white/40">$0</span>
-                            </div>
-                        </div>
-
-                        <!-- Graph Area -->
-                        <div class="relative w-full h-[80%] border-b border-l border-white/10">
-                            <!-- Y Axis labels -->
-                            <div class="absolute -left-12 top-0 bottom-0 flex flex-col justify-between font-mono text-[0.55rem] text-white/30 text-right pr-2">
-                                <span id="y-max">$20M</span>
-                                <span>$10M</span>
-                                <span>$0</span>
-                            </div>
-
-                            <!-- Traditional Chart (Static/Lower) -->
-                            <svg class="absolute bottom-0 left-0 w-full h-full preserveAspectRatio="none"" viewBox="0 0 100 100">
-                                <path id="path-trad" d="M0,100 Q50,90 100,70 L100,100 Z" fill="rgba(255,255,255,0.03)" />
-                                <path id="line-trad" d="M0,100 Q50,90 100,70" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-dasharray="2 2" />
-                            </svg>
-                            
-                            <!-- Valer Chart (Dynamic/Higher) -->
-                            <svg class="absolute bottom-0 left-0 w-full h-full preserveAspectRatio="none"" viewBox="0 0 100 100">
-                                <defs>
-                                    <linearGradient id="valerGrad" x1="0" y1="0" x2="0" y2="1">
-                                        <stop offset="0%" stop-color="#00F0FF" stop-opacity="0.3" />
-                                        <stop offset="100%" stop-color="#7000FF" stop-opacity="0" />
-                                    </linearGradient>
-                                </defs>
-                                <path id="path-valer" d="M0,100 Q50,70 100,20 L100,100 Z" fill="url(#valerGrad)" />
-                                <path id="line-valer" d="M0,100 Q50,70 100,20" fill="none" stroke="#00F0FF" stroke-width="2.5" class="drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]" />
-                            </svg>
-                        </div>
-                        
-                        <!-- X Axis -->
-                        <div class="w-full flex justify-between font-mono text-[0.55rem] text-white/30 mt-2 pl-[1px]">
-                            <span>YEAR 0</span><span>YEAR 10</span><span>YEAR 20</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECTION 9: FINAL CONVERSION -->
-        <section id="waitlist" class="py-[clamp(8rem,15vw,15rem)] fade-up">
-            <div class="glass-card w-full py-[clamp(6rem,12vw,10rem)] px-[clamp(2rem,5vw,4rem)] flex flex-col items-center justify-center text-center relative bg-transparent border-white/5 overflow-hidden">
-                <!-- Interactive Spotlight -->
-                <div class="absolute inset-0 z-0 pointer-events-none opacity-[0.85] mix-blend-screen" 
-                     style="background: radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(112,0,255,0.15), transparent 100%);">
-                </div>
-
-                <div class="relative z-10 flex flex-col items-center max-w-4xl">
-                    <iconify-icon icon="solar:lock-keyhole-minimalistic-bold-duotone" class="text-5xl text-[#00F0FF] mb-8"></iconify-icon>
-                    <h2 class="font-display font-medium text-[clamp(3.5rem,6vw,6rem)] leading-[0.9] tracking-tighter text-white mb-6">
-                        Stop leaving money<br>on the table.
+<!-- Slider 1 -->
+<div class="mb-8 relative interactive group">
+<div class="flex justify-between font-mono text-[0.75rem] mb-4 uppercase tracking-wider">
+<span class="text-white/60 group-hover:text-white transition-colors">Начальный капитал</span>
+<span class="text-[#00F0FF]">$<span id="val-initial">250,000</span></span>
+</div>
+<input class="w-full" id="calc-initial" max="5000000" min="50000" oninput="updateCalc()" step="50000" type="range" value="250000"/>
+</div>
+<!-- Slider 2 -->
+<div class="mb-8 relative interactive group">
+<div class="flex justify-between font-mono text-[0.75rem] mb-4 uppercase tracking-wider">
+<span class="text-white/60 group-hover:text-white transition-colors">Ежемесячный взнос</span>
+<span class="text-[#00F0FF]">$<span id="val-monthly">5,000</span></span>
+</div>
+<input class="w-full" id="calc-monthly" max="100000" min="0" oninput="updateCalc()" step="1000" type="range" value="5000"/>
+</div>
+</div>
+<!-- Chart Visualization -->
+<div class="w-full lg:w-7/12 relative h-[400px] flex flex-col justify-end p-4 lg:p-8 border border-white/5 bg-black/20 rounded-xl">
+<!-- Top Legend -->
+<div class="absolute top-6 left-6 flex flex-col gap-3 font-mono text-[0.65rem] uppercase tracking-widest z-20">
+<div class="flex items-center justify-between gap-6 w-48">
+<span class="flex items-center gap-2 text-white/90"><div class="w-2 h-2 rounded-full bg-[#00F0FF] shadow-[0_0_8px_#00F0FF]"></div> Valer AI</span>
+<span class="text-[#00F0FF] text-[0.85rem] font-bold" id="final-valer">$0</span>
+</div>
+<div class="flex items-center justify-between gap-6 w-48">
+<span class="flex items-center gap-2 text-white/40"><div class="w-2 h-2 rounded-full bg-white/20"></div> S&amp;P 500</span>
+<span class="text-white/40" id="final-trad">$0</span>
+</div>
+</div>
+<!-- Graph Area -->
+<div class="relative w-full h-[80%] border-b border-l border-white/10">
+<!-- Y Axis labels -->
+<div class="absolute -left-12 top-0 bottom-0 flex flex-col justify-between font-mono text-[0.55rem] text-white/30 text-right pr-2">
+<span id="y-max">$20M</span>
+<span>$10M</span>
+<span>$0</span>
+</div>
+<!-- Traditional Chart (Static/Lower) -->
+<svg class="absolute bottom-0 left-0 w-full h-full preserveAspectRatio=" none""="" viewbox="0 0 100 100">
+<path d="M0,100 Q50,90 100,70 L100,100 Z" fill="rgba(255,255,255,0.03)" id="path-trad"></path>
+<path d="M0,100 Q50,90 100,70" fill="none" id="line-trad" stroke="rgba(255,255,255,0.15)" stroke-dasharray="2 2" stroke-width="1.5"></path>
+</svg>
+<!-- Valer Chart (Dynamic/Higher) -->
+<svg class="absolute bottom-0 left-0 w-full h-full preserveAspectRatio=" none""="" viewbox="0 0 100 100">
+<defs>
+<lineargradient id="valerGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#00F0FF" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#7000FF" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0,100 Q50,70 100,20 L100,100 Z" fill="url(#valerGrad)" id="path-valer"></path>
+<path class="drop-shadow-[0_0_8px_rgba(0,240,255,0.6)]" d="M0,100 Q50,70 100,20" fill="none" id="line-valer" stroke="#00F0FF" stroke-width="2.5"></path>
+</svg>
+</div>
+<!-- X Axis -->
+<div class="w-full flex justify-between font-mono text-[0.55rem] text-white/30 mt-2 pl-[1px]">
+<span>ГОД 0</span><span>ГОД 10</span><span>ГОД 20</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 9: FINAL CONVERSION -->
+<section class="py-[clamp(8rem,15vw,15rem)] fade-up" id="waitlist">
+<div class="glass-card w-full py-[clamp(6rem,12vw,10rem)] px-[clamp(2rem,5vw,4rem)] flex flex-col items-center justify-center text-center relative bg-transparent border-white/5 overflow-hidden">
+<!-- Interactive Spotlight -->
+<div class="absolute inset-0 z-0 pointer-events-none opacity-[0.85] mix-blend-screen" style="background: radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(112,0,255,0.15), transparent 100%);">
+</div>
+<div class="relative z-10 flex flex-col items-center max-w-4xl">
+<iconify-icon class="text-5xl text-[#00F0FF] mb-8" icon="solar:lock-keyhole-minimalistic-bold-duotone"></iconify-icon>
+<h2 class="font-display font-medium text-[clamp(3.5rem,6vw,6rem)] leading-[0.9] tracking-tighter text-white mb-6">
+                        Хватит оставлять деньги<br/>на столе.
                     </h2>
-                    <p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60 mb-10 max-w-xl">
-                        The market doesn't sleep. Neither should your capital. Secure your allocation and redefine your financial legacy.
+<p class="font-body text-[clamp(1.125rem,1.5vw,1.25rem)] text-white/60 mb-10 max-w-xl">
+                        Рынок не спит. Ваш капитал тоже не должен. Закрепите свою аллокацию и переопределите своё финансовое наследие.
                     </p>
-                    <a href="#" class="btn-poly btn-poly-solid px-[clamp(3.5rem,5vw,5rem)] py-[clamp(1.5rem,2vw,1.75rem)] text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white interactive group">
-                        <span class="relative z-10 flex items-center gap-3">
-                            Request Private Access
-                            <iconify-icon icon="solar:arrow-right-linear" class="text-xl group-hover:translate-x-2 transition-transform"></iconify-icon>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- FOOTER -->
-    <footer class="relative w-full border-t border-white/[0.03] bg-[#05050A] pt-[clamp(5rem,10vw,8rem)] pb-8 overflow-hidden z-10">
-        <!-- Background watermark -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-semibold text-[30vw] leading-none text-white opacity-[0.01] pointer-events-none select-none tracking-tighter">
+<a class="btn-poly btn-poly-solid px-[clamp(3.5rem,5vw,5rem)] py-[clamp(1.5rem,2vw,1.75rem)] text-[clamp(1rem,1.2vw,1.125rem)] font-medium text-white interactive group" href="#">
+<span class="relative z-10 flex items-center gap-3">
+                            Запросить приватный доступ
+                            <iconify-icon class="text-xl group-hover:translate-x-2 transition-transform" icon="solar:arrow-right-linear"></iconify-icon>
+</span>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- FOOTER -->
+<footer class="relative w-full border-t border-white/[0.03] bg-[#05050A] pt-[clamp(5rem,10vw,8rem)] pb-8 overflow-hidden z-10">
+<!-- Background watermark -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-display font-semibold text-[30vw] leading-none text-white opacity-[0.01] pointer-events-none select-none tracking-tighter">
             VALER
         </div>
-
-        <div class="max-w-[clamp(70rem,95vw,100rem)] mx-auto px-[clamp(1.5rem,5vw,4rem)] relative z-10">
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[clamp(3rem,5vw,6rem)] gap-y-12 pb-16 border-b border-white/[0.03]">
-                
-                <div class="flex flex-col gap-5">
-                    <h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Platform</h4>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Algorithm Architecture</a>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Encryption Specs</a>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Historical Performance</a>
-                </div>
-
-                <div class="flex flex-col gap-5">
-                    <h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Allocations</h4>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Institutional LPs</a>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Private Wealth</a>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Family Offices</a>
-                </div>
-
-                <div class="flex flex-col gap-5">
-                    <h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Compliance</h4>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">SEC Form ADV</a>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Privacy Policy</a>
-                    <a href="#" class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive">Terms of Service</a>
-                </div>
-
-                <div class="flex flex-col gap-5">
-                    <h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Alpha Transmission</h4>
-                    <form class="relative w-full mt-2 group interactive" onsubmit="event.preventDefault();">
-                        <input type="email" placeholder="ENTER_EMAIL_" class="w-full bg-transparent border-b border-white/20 pb-3 font-mono text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#00F0FF] transition-colors rounded-none">
-                        <button type="submit" class="absolute right-0 top-0 text-white/40 group-hover:text-[#00F0FF] transition-colors" aria-label="Submit email">
-                            <iconify-icon icon="solar:arrow-right-linear" class="text-xl"></iconify-icon>
-                        </button>
-                    </form>
-                    <p class="font-mono text-[0.55rem] text-white/30 mt-2 uppercase tracking-widest leading-relaxed">Highly asymmetrical insights. Delivered strictly to approved nodes.</p>
-                </div>
-            </div>
-
-            <div class="flex flex-col md:flex-row justify-between items-center pt-8 font-mono text-[0.55rem] text-white/30 uppercase tracking-widest gap-4 text-center md:text-left">
-                <span>© VALER AUTONOMOUS WEALTH. ALL RIGHTS RESERVED. NOT FINANCIAL ADVICE.</span>
-                <span class="flex items-center gap-4">
-                    <span class="flex items-center gap-1"><div class="w-1 h-1 bg-[#00F0FF] rounded-full"></div> SYS_ONLINE</span>
-                    <span>NODE_US_EAST</span>
-                </span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- INTERACTIVITY & LOGIC -->
-    <script>
+<div class="max-w-[clamp(70rem,95vw,100rem)] mx-auto px-[clamp(1.5rem,5vw,4rem)] relative z-10">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-[clamp(3rem,5vw,6rem)] gap-y-12 pb-16 border-b border-white/[0.03]">
+<div class="flex flex-col gap-5">
+<h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Платформа</h4>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Архитектура алгоритма</a>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Спецификации шифрования</a>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Историческая доходность</a>
+</div>
+<div class="flex flex-col gap-5">
+<h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Аллокации</h4>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Институциональные LP</a>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Частный капитал</a>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Семейные офисы</a>
+</div>
+<div class="flex flex-col gap-5">
+<h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Комплаенс</h4>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">SEC Form ADV</a>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Политика конфиденциальности</a>
+<a class="font-body text-[0.875rem] text-white/50 hover:text-white transition-colors interactive" href="#">Условия использования</a>
+</div>
+<div class="flex flex-col gap-5">
+<h4 class="font-mono text-[0.65rem] text-[#00F0FF] uppercase tracking-widest mb-2">Передача альфы</h4>
+<form class="relative w-full mt-2 group interactive" onsubmit="event.preventDefault();">
+<input class="w-full bg-transparent border-b border-white/20 pb-3 font-mono text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#00F0FF] transition-colors rounded-none" placeholder="ВВЕДИТЕ_EMAIL_" type="email"/>
+<button aria-label="Отправить email" class="absolute right-0 top-0 text-white/40 group-hover:text-[#00F0FF] transition-colors" type="submit">
+<iconify-icon class="text-xl" icon="solar:arrow-right-linear"></iconify-icon>
+</button>
+</form>
+<p class="font-mono text-[0.55rem] text-white/30 mt-2 uppercase tracking-widest leading-relaxed">Крайне асимметричные инсайты. Доставляются строго одобренным нодам.</p>
+</div>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-center pt-8 font-mono text-[0.55rem] text-white/30 uppercase tracking-widest gap-4 text-center md:text-left">
+<span>© VALER AUTONOMOUS WEALTH. ВСЕ ПРАВА ЗАЩИЩЕНЫ. НЕ ЯВЛЯЕТСЯ ФИНАНСОВОЙ РЕКОМЕНДАЦИЕЙ.</span>
+<span class="flex items-center gap-4">
+<span class="flex items-center gap-1"><div class="w-1 h-1 bg-[#00F0FF] rounded-full"></div> SYS_ONLINE</span>
+<span>NODE_US_EAST</span>
+</span>
+</div>
+</div>
+</footer>
+<!-- INTERACTIVITY & LOGIC -->
+<script>
         // 1. Astonishing Canvas Effect: Dot Grid + Falling Data Beams
         const canvas = document.getElementById('bg-canvas');
         const ctx = canvas.getContext('2d');

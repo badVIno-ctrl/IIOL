@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
@@ -90,14 +90,14 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>MERIDIAN — Curated escapes to the edges of the map</title>
-<meta name="description" content="Small, unhurried journeys to the edges of the map. Designed by hand, never by itinerary. A cinematic travel brand — motion study.">
-<meta name="theme-color" content="#17130E">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>MERIDIAN — кураторские путешествия к краям карты</title>
+<meta content="Небольшие, неторопливые путешествия к краям карты. Созданные вручную, а не по маршрутному листу. Кинематографичный тревел-бренд — этюд о движении." name="description"/>
+<meta content="#17130E" name="theme-color"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
 /* ============================== TOKENS ============================== */
 :root{
@@ -401,7 +401,7 @@ font-size:.8rem;color:var(--stone-d)}
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -409,257 +409,276 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
 <script>window.__MIMG={"aerial":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cbc45d24-68dd-4afc-a185-a9cd27ebd80e_original.jpg","coast":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fd52c5b2-98d6-4b50-ae83-410751803891_original.jpg","dunes":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/182bf631-7989-42d6-af11-db0c28c5e78b_original.jpg","hero":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e43ce459-2d34-4c70-9cbf-28bee8ce4136_original.jpg","night":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eedbc5aa-da5b-4a56-a93d-7f1293f986e4_original.jpg","peaks":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5cd81936-fb20-478f-a409-86725064eaea_original.jpg","stay":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ffcda4c1-50d3-4145-a7fb-97b2489884ab_original.jpg","traveler":"https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7061e592-83e9-4e96-9da7-73d8df82b88d_original.jpg"};
 document.addEventListener('DOMContentLoaded',function(){var M=window.__MIMG;document.querySelectorAll('img[data-mimg]').forEach(function(i){var u=M[i.getAttribute('data-mimg')];if(u)i.src=u;});});</script>
-
-
 <div class="progress" id="progress"></div>
-<div class="cursor" id="cursor"><span class="label">Explore</span></div>
-
-<div class="rail" id="rail" aria-hidden="true">
-  <span class="rcap" id="railCap">The road out</span>
-  <span class="rtrack"><span class="rdot" id="railDot"></span></span>
-  <span class="rlabel">MERIDIAN</span>
+<div class="cursor" id="cursor"><span class="label">Смотреть</span></div>
+<div aria-hidden="true" class="rail" id="rail">
+<span class="rcap" id="railCap">Дорога прочь</span>
+<span class="rtrack"><span class="rdot" id="railDot"></span></span>
+<span class="rlabel">MERIDIAN</span>
 </div>
-
 <div class="veil" id="veil">
-  <div class="vmark"><span>MERIDIAN</span></div>
-  <div class="vbar"><i id="vbar"></i></div>
+<div class="vmark"><span>MERIDIAN</span></div>
+<div class="vbar"><i id="vbar"></i></div>
 </div>
-
 <header class="nav" id="nav">
-  <a href="#" class="brand">MERIDIAN<span>.</span></a>
-  <nav class="nav-links">
-    <a href="#journeys" data-cursor="See the routes">Journeys</a>
-    <a href="#experience" data-cursor="How it works">The Experience</a>
-    <a href="#stay" data-cursor="Where you rest">The Stay</a>
-    <a href="#begin" class="nav-cta" data-cursor="Hold a seat">Begin</a>
-  </nav>
+<a class="brand" href="#">MERIDIAN<span>.</span></a>
+<nav class="nav-links">
+<a data-cursor="See the routes" href="#journeys">Путешествия</a>
+<a data-cursor="How it works" href="#experience">Опыт</a>
+<a data-cursor="Where you rest" href="#stay">Проживание</a>
+<a class="nav-cta" data-cursor="Hold a seat" href="#begin">Начать</a>
+</nav>
 </header>
-
 <main id="smooth">
-
-  <!-- HERO -->
-  <section class="hero" id="hero" data-geo="The road out|dark">
-    <div class="hero-media" data-speed="0.82"><img data-mimg="hero" alt="A lone road winding through immense mountains at sunrise"></div>
-    <div class="hero-inner">
-      <p class="eyebrow">Meridian &middot; Curated Escapes</p>
-      <h1>
-        <span class="line-wrap"><span class="ln">Travel the</span></span>
-        <span class="line-wrap"><span class="ln">long way</span></span>
-        <span class="line-wrap"><span class="ln thin">to somewhere that means something.</span></span>
-      </h1>
-      <div class="hero-sub">
-        <p class="lead reveal">Small, unhurried journeys to the edges of the map &mdash; designed by hand, never by itinerary.</p>
-        <div class="cta-split reveal">
-          <a href="#begin" class="pill magnetic" data-cursor="Hold a seat">Plan your escape</a>
-          <a href="#journeys" class="disc magnetic" aria-label="See the journeys" data-cursor="See the routes">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-      </div>
-    </div>
-    <div class="scrollcue"><span>Scroll</span><span class="ln"></span></div>
-  </section>
-
-  <!-- MANIFESTO -->
-  <section class="manifesto" id="about" data-geo="The idea|light">
-    <div class="ghost" data-speed="1.15">meridian</div>
-    <div class="wrap">
-      <p class="eyebrow muted reveal">/ The idea</p>
-      <h2 class="statement" style="margin-top:26px">We don't sell destinations. We design the <em>distance</em> between you and the ordinary.</h2>
-      <div class="body">
-        <p class="reveal">A Meridian journey is built backwards &mdash; from the feeling you want at the end, not the boxes you tick along the way. No groups of forty. No 6 a.m. coach. No "optional" upsells.</p>
-        <p class="reveal">Just a handful of travellers, a place most people fly over, and enough room in the schedule to actually be somewhere.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- JOURNEYS (horizontal pinned) -->
-  <section class="journeys" id="journeys" data-geo="Twelve routes|dark">
-    <div class="jpin">
-      <div class="jtrack" id="jtrack">
-        <div class="jpanel jintro">
-          <p class="eyebrow">/ The Journeys</p>
-          <h2>Three ways<br>to lose the map.</h2>
-          <p class="lead">Each route runs a handful of times a year, eight seats at a time. Drag, or just keep scrolling.</p>
-        </div>
-
-        <article class="jcard">
-          <div class="frame"><img data-mimg="peaks" alt="Jagged alpine peaks above a cloud sea at first light"></div>
-          <span class="idx">01 / 03</span>
-          <div class="meta">
-            <p class="coord">47&deg;N &middot; 11&deg;E &middot; Dolomiti</p>
-            <h3>The high silence</h3>
-            <p class="note">Seven slow days above the cloud line.</p>
-          </div>
-        </article>
-
-        <article class="jcard">
-          <div class="frame"><img data-mimg="dunes" alt="Rolling desert dunes at golden hour with a single trail of footprints"></div>
-          <span class="idx">02 / 03</span>
-          <div class="meta">
-            <p class="coord">24&deg;S &middot; 15&deg;E &middot; Namib</p>
-            <h3>The oldest light</h3>
-            <p class="note">Dune dawns and nothing on the schedule.</p>
-          </div>
-        </article>
-
-        <article class="jcard">
-          <div class="frame"><img data-mimg="coast" alt="Dramatic coastal cliffs and a fjord at dusk"></div>
-          <span class="idx">03 / 03</span>
-          <div class="meta">
-            <p class="coord">61&deg;N &middot; 6&deg;E &middot; Vestland</p>
-            <h3>The long coast</h3>
-            <p class="note">Fjords, fog, and the road that runs out.</p>
-          </div>
-        </article>
-
-        <div class="jpanel joutro">
-          <p class="eyebrow">/ And nine more</p>
-          <h2>Can't choose?<br>Neither could we.</h2>
-          <a href="#begin" class="pill magnetic" data-cursor="Open the atlas">See all 12 routes
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-        </div>
-      </div>
-      <div class="jhint"><span>Scroll to travel</span><span class="bar"><i id="jbar"></i></span></div>
-    </div>
-  </section>
-
-  <!-- EXPERIENCE (sticky scrollytelling) -->
-  <section class="exp" id="experience" data-geo="The method|light">
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow muted reveal">/ The Experience</p>
-        <h2 class="h2 reveal">Four moves. That's<br>the whole itinerary.</h2>
-      </div>
-      <div class="exp-grid">
-        <div class="exp-media" id="expMedia">
-          <img class="em-img on" data-mimg="hero" alt="Arriving by mountain road">
-          <img class="em-img" data-mimg="coast" alt="Wandering the coast">
-          <img class="em-img" data-mimg="stay" alt="Resting at the lodge">
-          <img class="em-img" data-mimg="traveler" alt="The view on the way home">
-          <span class="cap" id="expCap">01 — Arrive</span>
-        </div>
-        <div class="exp-steps">
-          <div class="estep" data-cap="01 — Arrive"><div class="num">01</div><h3>Arrive</h3><p>You land, we handle the rest. No transfers to puzzle out, no group of forty already on the bus.</p></div>
-          <div class="estep" data-cap="02 — Wander"><div class="num">02</div><h3>Wander</h3><p>A local who actually knows the place &mdash; not a flag on a stick. The good light, the empty trail, the table without a sign.</p></div>
-          <div class="estep" data-cap="03 — Rest"><div class="num">03</div><h3>Rest</h3><p>We only book lodging we'd return to ourselves. Few rooms, real beds, windows that earn their view.</p></div>
-          <div class="estep" data-cap="04 — Return"><div class="num">04</div><h3>Return</h3><p>You come back with fewer photos and more of whatever you went looking for. That's the metric we keep.</p></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- STAY -->
-  <section class="stay" id="stay" data-geo="Basecamp|light">
-    <div class="wrap">
-      <div class="stay-grid">
-        <div class="stay-media"><img data-mimg="stay" alt="Warm minimalist lodge interior at dusk"></div>
-        <div class="stay-copy">
-          <p class="eyebrow muted reveal">/ The Stay</p>
-          <h2 class="h2 reveal">Where you land matters<br>as much as where you go.</h2>
-          <p class="lead reveal">Every bed on a Meridian route is one we've slept in. No 400-room towers, no lobby muzak &mdash; small houses run by people who remember your name by day two.</p>
-          <div class="ledger reveal">
-            <div><span>Rooms per stay</span><span>Under 12</span></div>
-            <div><span>Chosen by</span><span>The people who travel it</span></div>
-            <div><span>Chain hotels</span><span>None, ever</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- DARK INTERLUDE -->
-  <section class="interlude" id="interlude" data-geo="2,400 metres|dark">
-    <div class="bg" data-speed="0.8"><img data-mimg="night" alt="The Milky Way over a lit tent on a high plateau"></div>
-    <div class="wrap">
-      <p class="eyebrow reveal">/ Field note no.07</p>
-      <p class="big reveal">The best part of going far is the <em>quiet</em> when you finally get there.</p>
-      <p class="fieldnote reveal">&mdash; written at 2,400m, somewhere with no signal</p>
-    </div>
-  </section>
-
-  <!-- NUMBERS -->
-  <section class="numbers" id="numbers" data-geo="Small on purpose|dark">
-    <div class="bg" data-speed="0.78"><img data-mimg="aerial" alt="Aerial view of a river winding through autumn wilderness"></div>
-    <div class="wrap">
-      <div class="head">
-        <p class="eyebrow reveal">/ By the numbers</p>
-        <h2 class="h2 reveal">Small on purpose.</h2>
-      </div>
-      <div class="nledger">
-        <div class="nstat lead-stat"><div class="v" data-count="8" data-suffix="">8</div><div class="k">travellers per journey &mdash; never more</div></div>
-        <div class="nstat"><div class="v" data-count="12" data-suffix="">12</div><div class="k">routes a year, each run a few times</div></div>
-        <div class="nstat"><div class="v" data-count="0" data-suffix="">0</div><div class="k">fixed-itinerary forced marches</div></div>
-        <div class="nstat"><div class="v" data-count="94" data-suffix="%">94%</div><div class="k">of travellers book a second route</div></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- QUOTE -->
-  <section class="quote">
-    <div class="wrap">
-      <q>I booked a trip. I came home with a year's worth of quiet.</q>
-      <p class="who">&mdash; Lena R., Oslo &middot; after the Vestland coast</p>
-    </div>
-  </section>
-
-  <!-- MARQUEE -->
-  <section class="marquee" aria-hidden="true">
-    <div class="mrow" id="mrow1">
-      <span>Dolomiti</span><span>Namib</span><span>Vestland</span><span>Atacama</span><span>Hokkaido</span><span>Patagonia</span><span>Faroes</span>
-      <span>Dolomiti</span><span>Namib</span><span>Vestland</span><span>Atacama</span><span>Hokkaido</span><span>Patagonia</span><span>Faroes</span>
-    </div>
-    <div class="mrow dim" id="mrow2">
-      <span>47&deg;N 11&deg;E</span><span>24&deg;S 15&deg;E</span><span>61&deg;N 6&deg;E</span><span>23&deg;S 67&deg;W</span><span>43&deg;N 142&deg;E</span><span>50&deg;S 73&deg;W</span>
-      <span>47&deg;N 11&deg;E</span><span>24&deg;S 15&deg;E</span><span>61&deg;N 6&deg;E</span><span>23&deg;S 67&deg;W</span><span>43&deg;N 142&deg;E</span><span>50&deg;S 73&deg;W</span>
-    </div>
-  </section>
-
-  <!-- FINAL CTA -->
-  <section class="final" id="begin" data-geo="Your turn|dark">
-    <div class="bg" data-speed="0.85"><img data-mimg="traveler" alt="A lone traveller at a clifftop viewpoint at sunrise"></div>
-    <div class="wrap">
-      <p class="eyebrow">/ Your turn</p>
-      <h2>
-        <span class="line-wrap"><span class="ln">Begin your</span></span>
-        <span class="line-wrap"><span class="ln thin">Meridian.</span></span>
-      </h2>
-      <p class="lead">Twelve journeys. Eight seats each. One of them could be yours &mdash; leave an address and we'll send the atlas.</p>
-      <form class="signup" onsubmit="return false">
-        <input type="email" placeholder="you@somewhere.com" aria-label="Email address">
-        <button class="pill magnetic" type="submit" data-cursor="Send the atlas">Hold my seat
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-        </button>
-      </form>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="foot">
-    <div class="wrap">
-      <div class="foot-top">
-        <div>
-          <a href="#" class="brand">MERIDIAN<span style="color:var(--accent)">.</span></a>
-          <p>Curated escapes to the edges of the map. Small, unhurried, and built by hand.</p>
-        </div>
-        <div class="foot-col"><h4>Journeys</h4><a href="#journeys">The Dolomiti</a><a href="#journeys">The Namib</a><a href="#journeys">The Vestland</a><a href="#journeys">All 12 routes</a></div>
-        <div class="foot-col"><h4>Field notes</h4><a href="#interlude">The journal</a><a href="#about">Our idea</a><a href="#numbers">Why so small</a></div>
-        <div class="foot-col"><h4>The studio</h4><a href="#begin">Hold a seat</a><a href="#begin">Gift a journey</a><a href="#begin">Talk to us</a></div>
-      </div>
-      <div class="foot-bottom">
-        <span>&copy; 2026 Meridian Escapes &mdash; an imagined brand, built as a motion study.</span>
-        <span>Crafted with light, type &amp; scroll.</span>
-      </div>
-    </div>
-  </footer>
-
+<!-- HERO -->
+<section class="hero" data-geo="The road out|dark" id="hero">
+<div class="hero-media" data-speed="0.82"><img alt="Одинокая дорога, вьющаяся среди огромных гор на рассвете" data-mimg="hero"/></div>
+<div class="hero-inner">
+<p class="eyebrow">Meridian · Кураторские путешествия</p>
+<h1>
+<span class="line-wrap"><span class="ln">Отправляйтесь</span></span>
+<span class="line-wrap"><span class="ln">длинным путём</span></span>
+<span class="line-wrap"><span class="ln thin">туда, где есть смысл.</span></span>
+</h1>
+<div class="hero-sub">
+<p class="lead reveal">Небольшие, неторопливые путешествия к краям карты — созданные вручную, а не по маршрутному листу.</p>
+<div class="cta-split reveal">
+<a class="pill magnetic" data-cursor="Hold a seat" href="#begin">Спланировать побег</a>
+<a aria-label="Смотреть путешествия" class="disc magnetic" data-cursor="See the routes" href="#journeys">
+<svg fill="none" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</div>
+</div>
+<div class="scrollcue"><span>Листайте</span><span class="ln"></span></div>
+</section>
+<!-- MANIFESTO -->
+<section class="manifesto" data-geo="The idea|light" id="about">
+<div class="ghost" data-speed="1.15">meridian</div>
+<div class="wrap">
+<p class="eyebrow muted reveal">/ Идея</p>
+<h2 class="statement" style="margin-top:26px">Мы не продаём направления. Мы проектируем <em>расстояние</em> между вами и обыденностью.</h2>
+<div class="body">
+<p class="reveal">Путешествие Meridian строится в обратном порядке — от чувства, которое вы хотите испытать в конце, а не от галочек по пути. Никаких групп по сорок человек. Никакого автобуса в 6 утра. Никаких "опциональных" доплат.</p>
+<p class="reveal">Только горстка путешественников, место, над которым большинство пролетает, и достаточно свободы в расписании, чтобы по-настоящему побыть где-то.</p>
+</div>
+</div>
+</section>
+<!-- JOURNEYS (horizontal pinned) -->
+<section class="journeys" data-geo="Twelve routes|dark" id="journeys">
+<div class="jpin">
+<div class="jtrack" id="jtrack">
+<div class="jpanel jintro">
+<p class="eyebrow">/ Путешествия</p>
+<h2>Три способа<br/>потерять карту.</h2>
+<p class="lead">Каждый маршрут проходит несколько раз в год, по восемь мест за раз. Перетаскивайте или просто продолжайте листать.</p>
+</div>
+<article class="jcard">
+<div class="frame"><img alt="Зубчатые альпийские вершины над морем облаков в первом свете" data-mimg="peaks"/></div>
+<span class="idx">01 / 03</span>
+<div class="meta">
+<p class="coord">47°N · 11°E · Доломиты</p>
+<h3>Высокая тишина</h3>
+<p class="note">Семь медленных дней над линией облаков.</p>
+</div>
+</article>
+<article class="jcard">
+<div class="frame"><img alt="Волнистые пустынные дюны в золотой час с единственной цепочкой следов" data-mimg="dunes"/></div>
+<span class="idx">02 / 03</span>
+<div class="meta">
+<p class="coord">24°S · 15°E · Намиб</p>
+<h3>Древнейший свет</h3>
+<p class="note">Рассветы на дюнах и ничего в расписании.</p>
+</div>
+</article>
+<article class="jcard">
+<div class="frame"><img alt="Драматичные прибрежные скалы и фьорд в сумерках" data-mimg="coast"/></div>
+<span class="idx">03 / 03</span>
+<div class="meta">
+<p class="coord">61°N · 6°E · Вестланд</p>
+<h3>Длинное побережье</h3>
+<p class="note">Фьорды, туман и дорога, которая заканчивается.</p>
+</div>
+</article>
+<div class="jpanel joutro">
+<p class="eyebrow">/ И ещё девять</p>
+<h2>Не можете выбрать?<br/>Мы тоже не смогли.</h2>
+<a class="pill magnetic" data-cursor="Open the atlas" href="#begin">Смотреть все 12 маршрутов
+            <svg fill="none" height="18" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</a>
+</div>
+</div>
+<div class="jhint"><span>Листайте, чтобы путешествовать</span><span class="bar"><i id="jbar"></i></span></div>
+</div>
+</section>
+<!-- EXPERIENCE (sticky scrollytelling) -->
+<section class="exp" data-geo="The method|light" id="experience">
+<div class="wrap">
+<div class="head">
+<p class="eyebrow muted reveal">/ Опыт</p>
+<h2 class="h2 reveal">Четыре шага. Это<br/>весь маршрут.</h2>
+</div>
+<div class="exp-grid">
+<div class="exp-media" id="expMedia">
+<img alt="Прибытие по горной дороге" class="em-img on" data-mimg="hero"/>
+<img alt="Блуждание по побережью" class="em-img" data-mimg="coast"/>
+<img alt="Отдых в лодже" class="em-img" data-mimg="stay"/>
+<img alt="Вид по дороге домой" class="em-img" data-mimg="traveler"/>
+<span class="cap" id="expCap">01 — Прибытие</span>
+</div>
+<div class="exp-steps">
+<div class="estep" data-cap="01 — Arrive"><div class="num">01</div><h3>Прибытие</h3><p>Вы приземляетесь, остальное берём на себя мы. Никаких пересадок-головоломок, никакой группы из сорока человек, уже сидящей в автобусе.</p></div>
+<div class="estep" data-cap="02 — Wander"><div class="num">02</div><h3>Блуждание</h3><p>Местный, который действительно знает место, — а не флажок на палке. Хороший свет, пустая тропа, столик без вывески.</p></div>
+<div class="estep" data-cap="03 — Rest"><div class="num">03</div><h3>Отдых</h3><p>Мы бронируем только то жильё, куда вернулись бы сами. Немного комнат, настоящие кровати, окна, заслужившие свой вид.</p></div>
+<div class="estep" data-cap="04 — Return"><div class="num">04</div><h3>Возвращение</h3><p>Вы возвращаетесь с меньшим числом фотографий и большим количеством того, за чем ехали. Это метрика, которую мы отслеживаем.</p></div>
+</div>
+</div>
+</div>
+</section>
+<!-- STAY -->
+<section class="stay" data-geo="Basecamp|light" id="stay">
+<div class="wrap">
+<div class="stay-grid">
+<div class="stay-media"><img alt="Тёплый минималистичный интерьер лоджа в сумерках" data-mimg="stay"/></div>
+<div class="stay-copy">
+<p class="eyebrow muted reveal">/ Проживание</p>
+<h2 class="h2 reveal">Место, где вы остановитесь, важно<br/>не меньше, чем место, куда вы едете.</h2>
+<p class="lead reveal">В каждой кровати на маршруте Meridian мы спали сами. Никаких башен на 400 номеров, никакой фоновой музыки в лобби — маленькие дома, где хозяева помнят ваше имя уже ко второму дню.</p>
+<div class="ledger reveal">
+<div><span>Комнат на объект</span><span>Меньше 12</span></div>
+<div><span>Выбрано</span><span>Теми, кто сам путешествует по маршруту</span></div>
+<div><span>Сетевые отели</span><span>Никогда</span></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- DARK INTERLUDE -->
+<section class="interlude" data-geo="2,400 metres|dark" id="interlude">
+<div class="bg" data-speed="0.8"><img alt="Млечный Путь над освещённой палаткой на высоком плато" data-mimg="night"/></div>
+<div class="wrap">
+<p class="eyebrow reveal">/ Полевая заметка №07</p>
+<p class="big reveal">Лучшее в дальней дороге — это <em>тишина</em> когда вы наконец добираетесь.</p>
+<p class="fieldnote reveal">— написано на высоте 2 400 м, где-то без связи</p>
+</div>
+</section>
+<!-- NUMBERS -->
+<section class="numbers" data-geo="Small on purpose|dark" id="numbers">
+<div class="bg" data-speed="0.78"><img alt="Вид с воздуха на реку, вьющуюся сквозь осеннюю глушь" data-mimg="aerial"/></div>
+<div class="wrap">
+<div class="head">
+<p class="eyebrow reveal">/ В цифрах</p>
+<h2 class="h2 reveal">Маленькие нарочно.</h2>
+</div>
+<div class="nledger">
+<div class="nstat lead-stat"><div class="v" data-count="8" data-suffix="">8</div><div class="k">путешественников в поездке — и никогда больше</div></div>
+<div class="nstat"><div class="v" data-count="12" data-suffix="">12</div><div class="k">маршрутов в год, каждый проходит несколько раз</div></div>
+<div class="nstat"><div class="v" data-count="0" data-suffix="">0</div><div class="k">марш-бросков по жёсткому маршруту</div></div>
+<div class="nstat"><div class="v" data-count="94" data-suffix="%">94%</div><div class="k">путешественников бронируют второй маршрут</div></div>
+</div>
+</div>
+</section>
+<!-- QUOTE -->
+<section class="quote">
+<div class="wrap">
+<q>Я забронировала поездку. Домой я вернулась с годовым запасом тишины.</q>
+<p class="who">— Лена Р., Осло · после маршрута по побережью Вестланда</p>
+</div>
+</section>
+<!-- MARQUEE -->
+<section aria-hidden="true" class="marquee">
+<div class="mrow" id="mrow1">
+<span>Доломиты</span><span>Намиб</span><span>Вестланд</span><span>Атакама</span><span>Хоккайдо</span><span>Патагония</span><span>Фареры</span>
+<span>Доломиты</span><span>Намиб</span><span>Вестланд</span><span>Атакама</span><span>Хоккайдо</span><span>Патагония</span><span>Фареры</span>
+</div>
+<div class="mrow dim" id="mrow2">
+<span>47°N 11°E</span><span>24°S 15°E</span><span>61°N 6°E</span><span>23°S 67°W</span><span>43°N 142°E</span><span>50°S 73°W</span>
+<span>47°N 11°E</span><span>24°S 15°E</span><span>61°N 6°E</span><span>23°S 67°W</span><span>43°N 142°E</span><span>50°S 73°W</span>
+</div>
+</section>
+<!-- FINAL CTA -->
+<section class="final" data-geo="Your turn|dark" id="begin">
+<div class="bg" data-speed="0.85"><img alt="Одинокий путешественник на смотровой площадке на утёсе на рассвете" data-mimg="traveler"/></div>
+<div class="wrap">
+<p class="eyebrow">/ Ваш ход</p>
+<h2>
+<span class="line-wrap"><span class="ln">Начните свой</span></span>
+<span class="line-wrap"><span class="ln thin">Meridian.</span></span>
+</h2>
+<p class="lead">Двенадцать путешествий. По восемь мест в каждом. Одно из них может стать вашим — оставьте адрес, и мы пришлём атлас.</p>
+<form class="signup" onsubmit="return false">
+<input aria-label="Адрес эл. почты" placeholder="you@somewhere.com" type="email"/>
+<button class="pill magnetic" data-cursor="Send the atlas" type="submit">Придержите мне место
+          <svg fill="none" height="18" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="18"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>
+</button>
+</form>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="foot">
+<div class="wrap">
+<div class="foot-top">
+<div>
+<a class="brand" href="#">MERIDIAN<span style="color:var(--accent)">.</span></a>
+<p>Кураторские путешествия к краям карты. Небольшие, неторопливые и созданные вручную.</p>
+</div>
+<div class="foot-col"><h4>Путешествия</h4><a href="#journeys">Доломиты</a><a href="#journeys">Намиб</a><a href="#journeys">Вестланд</a><a href="#journeys">Все 12 маршрутов</a></div>
+<div class="foot-col"><h4>Полевые заметки</h4><a href="#interlude">Журнал</a><a href="#about">Наша идея</a><a href="#numbers">Почему так мало</a></div>
+<div class="foot-col"><h4>Студия</h4><a href="#begin">Забронировать место</a><a href="#begin">Подарить путешествие</a><a href="#begin">Написать нам</a></div>
+</div>
+<div class="foot-bottom">
+<span>© 2026 Meridian Escapes — воображаемый бренд, созданный как этюд о движении.</span>
+<span>Создано светом, типографикой и скроллом.</span>
+</div>
+</div>
+</footer>
 </main>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>

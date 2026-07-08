@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"><head><script id="aura-preview-performance-controller">
+<html class="scroll-smooth" lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -88,13 +88,13 @@ if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
 setPaused(event.data.paused);
 });
 })();
-</script><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Lunar Rhythm — Align With Your Rhythm</title>
+</script><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Lunar Rhythm — Настройтесь на свой ритм</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&amp;family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300;1,6..72,400&amp;display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
 :root {
@@ -306,7 +306,7 @@ pointer-events: none; padding: 1.5rem; display: flex; flex-direction: column; ju
 .vid-hover video { opacity: 0; transition: opacity 0.4s ease; }
 .vid-hover:hover video { opacity: 0; }
 </style>
-<link id="all-fonts-link-font-newsreader" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&display=swap"><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><style id="border-gradient-shared-style">
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..800&amp;display=swap" id="all-fonts-link-font-newsreader" rel="stylesheet"/><style id="all-fonts-style-font-newsreader">.font-newsreader { font-family: 'Newsreader', serif !important; }</style><style id="border-gradient-shared-style">
 [style*="--border-gradient"]::before {
 content: "";
 position: absolute;
@@ -321,7 +321,7 @@ background: var(--border-gradient);
 pointer-events: none;
 }</style><!-- aura-ga4-start -->
 <!-- aura-ga4-customer-id:G-QLTBPBPXKB -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -330,631 +330,643 @@ gtag('config', 'G-2M6V79H761');
 gtag('config', 'G-QLTBPBPXKB');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="overflow-x-hidden selection:bg-[#A3B18A] selection:text-white">
-
-   <!-- ═══════════════════════════════════════════ NAVIGATION ═══ -->
-  <nav id="main-nav" class="fixed top-3 left-3 right-3 md:left-6 md:right-6 z-50 rounded-full liquid-glass transition-all duration-500">
-    <div class="flex h-16 md:h-[4.5rem] max-w-7xl mx-auto px-5 md:px-8 items-center justify-between">
-      <!-- Logo -->
-      <a href="#" onclick="showPage('home')" class="flex items-center gap-2 group">
-        <div class="w-7 h-7 rounded-full border border-[#C9A96E]/40 flex items-center justify-center group-hover:border-[#C9A96E] transition-colors duration-300">
-          <div class="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-[#C9A96E] to-[#A3B18A]"></div>
-        </div>
-        <span class="text-xl italic text-[#1C1C22] tracking-tight font-newsreader">Lunar<span class="not-italic moon-text font-light text-[#1C1C22]"> Rhythm</span></span>
-      </a>
-
-      <!-- Desktop Nav -->
-      <div class="hidden lg:flex gap-9 text-sm font-light text-zinc-500 items-center">
-        <a href="/home" onclick="showPage('home')" class="transition-colors after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-px after:bg-amber-500 text-zinc-900 relative" id="nav-home">Home</a>
-        <a href="/classes" onclick="showPage('classes')" class="nav-link hover:text-zinc-900 transition-colors" id="nav-classes">Classes</a>
-        <a href="/courses" onclick="showPage('courses')" class="nav-link hover:text-zinc-900 transition-colors" id="nav-courses">Courses</a>
-        <a href="#" onclick="showPage('challenges')" class="nav-link hover:text-zinc-900 transition-colors" id="nav-challenges">Challenges</a>
-      </div>
-
-      <div class="flex items-center gap-4">
-        <!-- Sun/Moon Toggle -->
-        
-        <a href="#" class="text-sm font-light text-zinc-600 hidden sm:block hover:text-[#C9A96E] transition-colors">Sign In</a>
-        <button onclick="openModal(null)" class="zen-btn text-xs px-5 py-2.5">Start Trial</button>
-        <button onclick="document.getElementById('mobile-menu').classList.toggle('open')" class="lg:hidden text-zinc-600 hover:text-zinc-900 transition-colors p-1">
-          <iconify-icon icon="solar:hamburger-menu-linear" width="22"></iconify-icon>
-        </button>
-      </div>
-    </div>
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="px-6 pb-5 border-t border-white/20 mt-1" style="display: none;">
-      <div class="flex flex-col gap-4 pt-4 text-sm font-light text-zinc-600">
-        <a href="#" onclick="showPage('home');document.getElementById('mobile-menu').classList.remove('open')" class="hover:text-zinc-900 transition-colors">Home</a>
-        <a href="#" onclick="showPage('classes');document.getElementById('mobile-menu').classList.remove('open')" class="hover:text-zinc-900 transition-colors">Classes</a>
-        <a href="#" onclick="showPage('courses');document.getElementById('mobile-menu').classList.remove('open')" class="hover:text-zinc-900 transition-colors">Courses</a>
-        <a href="#" onclick="showPage('challenges');document.getElementById('mobile-menu').classList.remove('open')" class="hover:text-zinc-900 transition-colors">Challenges</a>
-      </div>
-    </div>
-  </nav>
-
-
-  <!-- ══════════════════════════════════════════════ HOME PAGE ══ -->
-  <div class="page-section active" id="page-home">
-
-    <!-- ── HERO ── -->
-    <header class="min-h-screen flex overflow-hidden relative items-center justify-center"><div class="absolute inset-0" data-container-bg="true"><div class="aura-background-component top-0 w-full -z-10 absolute h-full">
-  <div data-us-project="ZHhDKfVqqu8PKOSMwfuA" class="absolute w-full h-full left-0 top-0 -z-10"></div>
-  <script type="text/javascript" class="">
+<!-- ═══════════════════════════════════════════ NAVIGATION ═══ -->
+<nav class="fixed top-3 left-3 right-3 md:left-6 md:right-6 z-50 rounded-full liquid-glass transition-all duration-500" id="main-nav">
+<div class="flex h-16 md:h-[4.5rem] max-w-7xl mx-auto px-5 md:px-8 items-center justify-between">
+<!-- Логотип -->
+<a class="flex items-center gap-2 group" href="#" onclick="showPage('home')">
+<div class="w-7 h-7 rounded-full border border-[#C9A96E]/40 flex items-center justify-center group-hover:border-[#C9A96E] transition-colors duration-300">
+<div class="w-2.5 h-2.5 rounded-full bg-gradient-to-br from-[#C9A96E] to-[#A3B18A]"></div>
+</div>
+<span class="text-xl italic text-[#1C1C22] tracking-tight font-newsreader">Lunar<span class="not-italic moon-text font-light text-[#1C1C22]"> Rhythm</span></span>
+</a>
+<!-- Desktop Nav -->
+<div class="hidden lg:flex gap-9 text-sm font-light text-zinc-500 items-center">
+<a class="transition-colors after:absolute after:bottom-[-2px] after:left-0 after:w-full after:h-px after:bg-amber-500 text-zinc-900 relative" href="/home" id="nav-home" onclick="showPage('home')">Главная</a>
+<a class="nav-link hover:text-zinc-900 transition-colors" href="/classes" id="nav-classes" onclick="showPage('classes')">Занятия</a>
+<a class="nav-link hover:text-zinc-900 transition-colors" href="/courses" id="nav-courses" onclick="showPage('courses')">Курсы</a>
+<a class="nav-link hover:text-zinc-900 transition-colors" href="#" id="nav-challenges" onclick="showPage('challenges')">Челленджи</a>
+</div>
+<div class="flex items-center gap-4">
+<!-- Sun/Moon Toggle -->
+<a class="text-sm font-light text-zinc-600 hidden sm:block hover:text-[#C9A96E] transition-colors" href="#">Войти</a>
+<button class="zen-btn text-xs px-5 py-2.5" onclick="openModal(null)">Начать пробный период</button>
+<button class="lg:hidden text-zinc-600 hover:text-zinc-900 transition-colors p-1" onclick="document.getElementById('mobile-menu').classList.toggle('open')">
+<iconify-icon icon="solar:hamburger-menu-linear" width="22"></iconify-icon>
+</button>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="px-6 pb-5 border-t border-white/20 mt-1" id="mobile-menu" style="display: none;">
+<div class="flex flex-col gap-4 pt-4 text-sm font-light text-zinc-600">
+<a class="hover:text-zinc-900 transition-colors" href="#" onclick="showPage('home');document.getElementById('mobile-menu').classList.remove('open')">Главная</a>
+<a class="hover:text-zinc-900 transition-colors" href="#" onclick="showPage('classes');document.getElementById('mobile-menu').classList.remove('open')">Занятия</a>
+<a class="hover:text-zinc-900 transition-colors" href="#" onclick="showPage('courses');document.getElementById('mobile-menu').classList.remove('open')">Курсы</a>
+<a class="hover:text-zinc-900 transition-colors" href="#" onclick="showPage('challenges');document.getElementById('mobile-menu').classList.remove('open')">Челленджи</a>
+</div>
+</div>
+</nav>
+<!-- ══════════════════════════════════════════════ HOME PAGE ══ -->
+<div class="page-section active" id="page-home">
+<!-- ── HERO ── -->
+<header class="min-h-screen flex overflow-hidden relative items-center justify-center"><div class="absolute inset-0" data-container-bg="true"><div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+<div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="ZHhDKfVqqu8PKOSMwfuA"></div>
+<script class="" type="text/javascript">
     !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
   </script>
 </div></div>
-      <!-- Background Image -->
-      <div class="absolute top-0 right-0 bottom-0 left-0"><div class="absolute inset-0" data-container-bg="true"><div class="aura-background-component top-0 w-full -z-10 absolute h-full">
-  <div data-us-project="ZHhDKfVqqu8PKOSMwfuA" class="absolute w-full h-full left-0 top-0 -z-10"></div>
-  <script type="text/javascript">
+<!-- Background Image -->
+<div class="absolute top-0 right-0 bottom-0 left-0"><div class="absolute inset-0" data-container-bg="true"><div class="aura-background-component top-0 w-full -z-10 absolute h-full">
+<div class="absolute w-full h-full left-0 top-0 -z-10" data-us-project="ZHhDKfVqqu8PKOSMwfuA"></div>
+<script type="text/javascript">
     !function(){if(!window.UnicornStudio){window.UnicornStudio={isInitialized:!1};var i=document.createElement("script");i.src="https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.29/dist/unicornStudio.umd.js",i.onload=function(){window.UnicornStudio.isInitialized||(UnicornStudio.init(),window.UnicornStudio.isInitialized=!0)},(document.head || document.body).appendChild(i)}}();
   </script>
-</div></div><video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/6b935447-a404-4bef-866e-1dce2a107dcb/1781512370318-7e1661cf-372d-409e-9858-f018ab656707.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/717ed43e-de0d-4bf2-a286-b5309b6d1415_3840w.jpg?w=800&q=80" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Warrior Pose at Sunset" class="object-[center_30%] opacity-100 mix-blend-lighten w-full h-full object-cover scale-105"></video>
-        <div class="absolute top-0 right-0 bottom-0 left-0"></div><div class="absolute top-0 right-0 bottom-0 left-0"></div>
-        
-        
-      </div>
-      <!-- Hero Content -->
-      <div class="z-20 flex flex-col text-center max-w-4xl mr-auto ml-auto pr-6 pl-6 relative items-center">
-        <span class="reveal active inline-block uppercase text-xs font-light text-[#4e5214] tracking-[0.2em] bg-[#73702b]/10 border-[#e3e1d4]/30 border rounded-full mb-8 px-4 py-1.5">
-          Align With Your Rhythm
+</div></div><video aria-label="Поза воина на закате" class="object-[center_30%] opacity-100 mix-blend-lighten w-full h-full object-cover scale-105" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/717ed43e-de0d-4bf2-a286-b5309b6d1415_3840w.jpg?w=800&amp;q=80" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/6b935447-a404-4bef-866e-1dce2a107dcb/1781512370318-7e1661cf-372d-409e-9858-f018ab656707.mp4"></video>
+<div class="absolute top-0 right-0 bottom-0 left-0"></div><div class="absolute top-0 right-0 bottom-0 left-0"></div>
+</div>
+<!-- Hero Content -->
+<div class="z-20 flex flex-col text-center max-w-4xl mr-auto ml-auto pr-6 pl-6 relative items-center">
+<span class="reveal active inline-block uppercase text-xs font-light text-[#4e5214] tracking-[0.2em] bg-[#73702b]/10 border-[#e3e1d4]/30 border rounded-full mb-8 px-4 py-1.5">
+          Настройтесь на свой ритм
         </span>
-        <h1 class="reveal delay-100 active leading-[1.05] font-light text-[#636728] font-newsreader mb-6" style="font-size: clamp(2.8rem, 7vw, 5.5rem)" id="nav-challenges">
-          The practice that
-          <br>
-          <span class="text-gradient-sun font-newsreader" id="hero-gradient-text">moves with you.</span>
-        </h1>
-        <p class="reveal delay-200 active leading-relaxed font-light text-slate-800/70 max-w-xl mb-10" style="font-size: clamp(0.9rem, 2vw, 1.1rem)">
-          Yoga, meditation, and breathwork curated to your cycle. From sunrise flows to moonlit restorations — your complete ritual lives here.
+<h1 class="reveal delay-100 active leading-[1.05] font-light text-[#636728] font-newsreader mb-6" id="nav-challenges" style="font-size: clamp(2.8rem, 7vw, 5.5rem)">
+          Практика, которая
+          <br/>
+<span class="text-gradient-sun font-newsreader" id="hero-gradient-text">движется вместе с вами.</span>
+</h1>
+<p class="reveal delay-200 active leading-relaxed font-light text-slate-800/70 max-w-xl mb-10" style="font-size: clamp(0.9rem, 2vw, 1.1rem)">
+          Йога, медитации и дыхательные практики, подобранные под ваш цикл. От рассветных потоков до восстановления при луне — весь ваш ритуал здесь.
         </p>
-        <!-- Persona Path Buttons -->
-        <div class="reveal delay-300 active flex flex-wrap gap-3 justify-center mb-10">
-          <a href="#lunar-paths" onclick="smoothScrollTo('lunar-paths')" class="ghost-btn">
-            <iconify-icon icon="solar:sun-2-linear" width="14" class="mr-2"></iconify-icon>Energize
+<!-- Persona Path Buttons -->
+<div class="reveal delay-300 active flex flex-wrap gap-3 justify-center mb-10">
+<a class="ghost-btn" href="#lunar-paths" onclick="smoothScrollTo('lunar-paths')">
+<iconify-icon class="mr-2" icon="solar:sun-2-linear" width="14"></iconify-icon>Заряжайтесь
           </a>
-          <a href="#lunar-paths" onclick="smoothScrollTo('restore-section')" class="ghost-btn">
-            <iconify-icon icon="solar:moon-sleep-linear" width="14" class="mr-2"></iconify-icon>Restore
+<a class="ghost-btn" href="#lunar-paths" onclick="smoothScrollTo('restore-section')">
+<iconify-icon class="mr-2" icon="solar:moon-sleep-linear" width="14"></iconify-icon>Восстанавливайтесь
           </a>
-          <a href="#lunar-paths" onclick="smoothScrollTo('learn-section')" class="ghost-btn">
-            <iconify-icon icon="solar:book-2-linear" width="14" class="mr-2"></iconify-icon>Learn
+<a class="ghost-btn" href="#lunar-paths" onclick="smoothScrollTo('learn-section')">
+<iconify-icon class="mr-2" icon="solar:book-2-linear" width="14"></iconify-icon>Изучить
           </a>
-        </div>
-        <div class="reveal delay-400 active">
-          <button onclick="openModal(null)" class="zen-btn text-xs">Begin Your Journey</button>
-        </div>
-        <!-- Scroll indicator -->
-        <div class="scroll-indicator flex flex-col gap-2 opacity-50 mt-14 items-center">
-          <span class="uppercase text-xs font-light text-[#4e5214] tracking-widest">Scroll</span>
-          <iconify-icon icon="solar:arrow-down-linear" width="16" class="text-white" height="16" style="color: rgb(71, 85, 105)"></iconify-icon>
-        </div>
-      </div>
-    </header>
-
-    <!-- ── LUNAR PATHS ── -->
-    <section class="overflow-hidden pt-28 pr-6 pb-28 pl-6 relative" id="lunar-paths">
-      <!-- Subtle bg glow -->
-      <div class="-translate-x-1/2 -translate-y-1/2 blur-[120px] pointer-events-none bg-[#C9A96E]/5 w-[800px] h-[400px] rounded-full absolute top-1/2 left-1/2"></div>
-      <div class="max-w-7xl mr-auto ml-auto">
-        <div class="text-center mb-20 reveal">
-          <span class="uppercase block text-xs font-light text-[#A3B18A] tracking-[0.25em] mb-4">Your Daily Ritual</span>
-          <h2 class="font-newsreader font-light text-zinc-900 mb-5 tracking-tight" style="font-size: clamp(2rem, 4vw, 3.2rem);">Choose Your Lunar Path</h2>
-          <p class="text-zinc-500 font-light max-w-lg mx-auto" style="font-size: clamp(0.875rem, 1.5vw, 1rem);">Three pathways, one complete system. Move between them freely — your rhythm, your choice.</p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-6 lg:gap-8">
-          <!-- Energize -->
-          <div class="reveal delay-100 card-hover group overflow-hidden cursor-pointer vid-hover rounded-[2rem] relative" onclick="showPage('classes')" id="energize-path">
-            <div class="aspect-[3/4] relative">
-              <img src="https://images.unsplash.com/photo-1697060598741-7ca9b696febb?w=800&q=80" class="w-full h-full object-cover" alt="Energize">
-              <video src="https://cdn.midjourney.com/video/157de36c-d492-4080-87f3-0dcebd3b268f/1.mp4" class="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0" muted="" loop="" playsinline="" preload="metadata"></video>
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              <div class="group-hover:bg-[#C9A96E]/10 transition-all duration-500 bg-[#C9A96E]/0 absolute top-0 right-0 bottom-0 left-0"></div>
-              <div class="absolute top-5 left-5">
-                <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
-                  <iconify-icon icon="solar:sun-2-linear" width="20" class="text-[#C9A96E]"></iconify-icon>
-                </div>
+</div>
+<div class="reveal delay-400 active">
+<button class="zen-btn text-xs" onclick="openModal(null)">Начните свой путь</button>
+</div>
+<!-- Scroll indicator -->
+<div class="scroll-indicator flex flex-col gap-2 opacity-50 mt-14 items-center">
+<span class="uppercase text-xs font-light text-[#4e5214] tracking-widest">Листайте</span>
+<iconify-icon class="text-white" height="16" icon="solar:arrow-down-linear" style="color: rgb(71, 85, 105)" width="16"></iconify-icon>
+</div>
+</div>
+</header>
+<!-- ── LUNAR PATHS ── -->
+<section class="overflow-hidden pt-28 pr-6 pb-28 pl-6 relative" id="lunar-paths">
+<!-- Subtle bg glow -->
+<div class="-translate-x-1/2 -translate-y-1/2 blur-[120px] pointer-events-none bg-[#C9A96E]/5 w-[800px] h-[400px] rounded-full absolute top-1/2 left-1/2"></div>
+<div class="max-w-7xl mr-auto ml-auto">
+<div class="text-center mb-20 reveal">
+<span class="uppercase block text-xs font-light text-[#A3B18A] tracking-[0.25em] mb-4">Ваш ежедневный ритуал</span>
+<h2 class="font-newsreader font-light text-zinc-900 mb-5 tracking-tight" style="font-size: clamp(2rem, 4vw, 3.2rem);">Выберите свой лунный путь</h2>
+<p class="text-zinc-500 font-light max-w-lg mx-auto" style="font-size: clamp(0.875rem, 1.5vw, 1rem);">Три пути, одна цельная система. Свободно переходите между ними — ваш ритм, ваш выбор.</p>
+</div>
+<div class="grid md:grid-cols-3 gap-6 lg:gap-8">
+ Заряжайтесь 
+<div class="reveal delay-100 card-hover group overflow-hidden cursor-pointer vid-hover rounded-[2rem] relative" id="energize-path" onclick="showPage('classes')">
+<div class="aspect-[3/4] relative">
+<img alt="Заряжайтесь" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1697060598741-7ca9b696febb?w=800&amp;q=80"/>
+<video class="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0" loop="" muted="" playsinline="" preload="metadata" src="https://cdn.midjourney.com/video/157de36c-d492-4080-87f3-0dcebd3b268f/1.mp4"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="group-hover:bg-[#C9A96E]/10 transition-all duration-500 bg-[#C9A96E]/0 absolute top-0 right-0 bottom-0 left-0"></div>
+<div class="absolute top-5 left-5">
+<div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
+<iconify-icon class="text-[#C9A96E]" icon="solar:sun-2-linear" width="20"></iconify-icon>
+</div>
+</div>
+<div class="pt-7 pr-7 pb-7 pl-7 absolute right-0 bottom-0 left-0">
+<span class="text-xs uppercase tracking-[0.2em] text-[#C9A96E] mb-3 block font-light">Утро · Динамика</span>
+<h3 class="text-2xl font-light text-white tracking-tight font-newsreader mb-2">Заряжайтесь</h3>
+<p class="text-white/60 text-sm font-light mb-5 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">Приветствия солнцу, силовая виньяса и дыхательные практики, чтобы зарядить ваш день.</p>
+<div class="flex items-center gap-3">
+<span class="text-xs text-white/50 font-light">340+ занятий</span>
+<span class="w-1 h-1 rounded-full bg-white/30"></span>
+<span class="text-xs text-white/50 font-light">15–60 мин</span>
+</div>
+</div>
+</div>
+</div>
+ Восстанавливайтесь 
+<div class="reveal delay-200 card-hover group overflow-hidden cursor-pointer md:translate-y-6 vid-hover rounded-[2rem] relative" id="restore-section" onclick="showPage('classes')">
+<div class="aspect-[3/4] relative">
+<img alt="Восстанавливайтесь" class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eb353891-ca97-4901-b1f6-9f5b9d6bba37_800w.webp"/>
+<video class="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0" loop="" muted="" playsinline="" preload="metadata" src="https://cdn.midjourney.com/video/157de36c-d492-4080-87f3-0dcebd3b268f/1.mp4"></video>
+<div class="bg-gradient-to-t from-black/80 via-black/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+<div class="group-hover:bg-[#8BA7C7]/10 transition-all duration-500 bg-[#8BA7C7]/0 absolute top-0 right-0 bottom-0 left-0"></div>
+<div class="absolute top-5 left-5">
+<div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
+<iconify-icon class="text-[#8BA7C7]" icon="solar:moon-sleep-linear" width="20"></iconify-icon>
+</div>
+</div>
+<!-- Featured badge -->
+<div class="text-[10px] uppercase text-[#8BA7C7] tracking-wider bg-[#8BA7C7]/20 border-[#8BA7C7]/40 border rounded-full pt-1 pr-3 pb-1 pl-3 absolute top-5 right-5 backdrop-blur-sm">
+                Самое любимое
               </div>
-              <div class="pt-7 pr-7 pb-7 pl-7 absolute right-0 bottom-0 left-0">
-                <span class="text-xs uppercase tracking-[0.2em] text-[#C9A96E] mb-3 block font-light">Morning · Dynamic</span>
-                <h3 class="text-2xl font-light text-white tracking-tight font-newsreader mb-2">Energize</h3>
-                <p class="text-white/60 text-sm font-light mb-5 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">Sun salutations, power vinyasa, and breathwork to ignite your day.</p>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs text-white/50 font-light">340+ classes</span>
-                  <span class="w-1 h-1 rounded-full bg-white/30"></span>
-                  <span class="text-xs text-white/50 font-light">15–60 min</span>
-                </div>
+<div class="pt-7 pr-7 pb-7 pl-7 absolute right-0 bottom-0 left-0">
+<span class="text-xs uppercase tracking-[0.2em] text-[#8BA7C7] mb-3 block font-light">Вечер · Инь</span>
+<h3 class="font-newsreader font-light text-white text-2xl mb-2 tracking-tight">Восстанавливайтесь</h3>
+<p class="text-white/60 text-sm font-light mb-5 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">Инь-йога, восстанавливающие позы и направляемое сканирование тела для глубокого расслабления.</p>
+<div class="flex items-center gap-3">
+<span class="text-xs text-white/50 font-light">520+ занятий</span>
+<span class="w-1 h-1 rounded-full bg-white/30"></span>
+<span class="text-xs text-white/50 font-light">10–90 мин</span>
+</div>
+</div>
+</div>
+</div>
+ Изучить 
+<div class="reveal delay-300 card-hover group relative rounded-[2rem] overflow-hidden cursor-pointer vid-hover" id="learn-section" onclick="showPage('courses')">
+<div class="aspect-[3/4] relative">
+<img alt="Изучить" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1758599878236-47f6a918aed2?w=800&amp;q=80"/>
+<video class="absolute inset-0 w-full h-full object-cover" loop="" muted="" playsinline="" preload="metadata" src="https://cdn.midjourney.com/video/157de36c-d492-4080-87f3-0dcebd3b268f/1.mp4"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
+<div class="absolute inset-0 bg-[#A3B18A]/0 group-hover:bg-[#A3B18A]/10 transition-all duration-500"></div>
+<div class="absolute top-5 left-5">
+<div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
+<iconify-icon class="text-[#A3B18A]" icon="solar:book-2-linear" width="20"></iconify-icon>
+</div>
+</div>
+<div class="absolute bottom-0 left-0 right-0 p-7">
+<span class="text-xs uppercase tracking-[0.2em] text-[#A3B18A] mb-3 block font-light">Курсы · Философия</span>
+<h3 class="font-newsreader font-light text-white text-2xl mb-2 tracking-tight">Изучить</h3>
+<p class="text-white/60 text-sm font-light mb-5 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">Аюрведа, анатомия, философия и сертификационные курсы от мастеров-преподавателей.</p>
+<div class="flex items-center gap-3">
+<span class="text-xs text-white/50 font-light">300+ курсов</span>
+<span class="w-1 h-1 rounded-full bg-white/30"></span>
+<span class="text-xs text-white/50 font-light">Кредиты CEU</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── DAILY RITUALS CAROUSEL (Quick Classes) ── -->
+<section class="overflow-hidden bg-white pt-20 pr-6 pb-20 pl-6 relative">
+<div class="max-w-7xl mx-auto">
+<div class="flex reveal mb-12 items-end justify-between">
+<div class="">
+<span class="text-xs uppercase tracking-[0.2em] text-[#C9A96E] font-light mb-3 block">До 15 минут</span>
+<h2 class="font-newsreader font-light text-zinc-900 tracking-tight" style="font-size: clamp(1.6rem, 3vw, 2.4rem);">Ежедневные ритуалы</h2>
+</div>
+<a class="hidden md:flex items-center gap-2 text-sm font-light text-zinc-400 hover:text-zinc-900 transition-colors" href="#" onclick="showPage('classes')">Смотреть все <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
+</div>
+<div class="flex gap-5 overflow-x-auto hide-scrollbar snap-x -mx-6 lg:mx-0 lg:px-0 pr-6 pb-4 pl-6 gap-x-5 gap-y-5">
+<!-- Quick Class Card -->
+<div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group overflow-hidden cursor-pointer reveal delay-100 rounded-[1.5rem] relative" onclick="openModal('morning-ritual')">
+<div class="aspect-[3/4] relative">
+<img alt="Класс" class="group-hover:scale-105 transition-transform duration-700 w-full h-full object-cover" src="https://images.unsplash.com/photo-1552196634-24a18d82ac56?w=800&amp;q=80"/>
+<div class="bg-gradient-to-t from-black/70 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
+<div class="text-[10px] font-light text-white tracking-wide bg-white/15 border-white/20 border rounded-full pt-1 pr-3 pb-1 pl-3 absolute top-4 left-4 backdrop-blur">8 МИН</div>
+<div class="absolute right-4 bottom-4 left-4">
+<h4 class="text-base font-light text-white font-newsreader mb-1">Пробуждение и растяжка</h4>
+<p class="text-white/60 text-xs font-light">с Сарой Джонсон</p>
+</div>
+<!-- Quick Preview overlay -->
+<div class="quick-preview">
+<span class="text-[#C9A96E] text-[10px] uppercase tracking-widest mb-3 block">Быстрый просмотр</span>
+<p class="text-white/80 text-xs font-light leading-relaxed mb-3">Мягкий утренний поток, чтобы снять ночное напряжение и настроиться на сфокусированную энергию.</p>
+<div class="flex flex-wrap gap-1.5 mb-3">
+<span class="text-[10px] text-white/70 bg-white/10 rounded-full pt-1 pr-2 pb-1 pl-2">Позвоночник</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Подколенные сухожилия</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Без реквизита</span>
+</div>
+<button class="uppercase hover:text-white transition-colors text-xs text-[#C9A96E] tracking-wider text-center w-full" onclick="openModal('morning-ritual')">Начать бесплатный период →</button>
+</div>
+</div>
+</div>
+<div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group relative rounded-[1.5rem] overflow-hidden cursor-pointer reveal delay-200" onclick="openModal('breathwork')">
+<div class="aspect-[3/4] relative">
+<img alt="Класс" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1697060739671-586c21fa5e30?w=800&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">12 МИН</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h4 class="text-white font-light text-base mb-1 font-newsreader">Полуденная перезагрузка</h4>
+<p class="text-white/60 text-xs font-light">с Эленой Родригес</p>
+</div>
+<div class="quick-preview">
+<span class="text-[#8BA7C7] text-[10px] uppercase tracking-widest mb-3 block">Быстрый просмотр</span>
+<p class="text-white/80 text-xs font-light leading-relaxed mb-3">Растяжка прямо за рабочим столом и «дыхание по квадрату», чтобы перенастроить энергию в середине дня.</p>
+<div class="flex flex-wrap gap-1.5 mb-3">
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Плечи</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Шея</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Стул</span>
+</div>
+<button class="w-full text-center text-[#8BA7C7] text-xs uppercase tracking-wider hover:text-white transition-colors" onclick="openModal('breathwork')">Начать бесплатный период →</button>
+</div>
+</div>
+</div>
+<div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group relative rounded-[1.5rem] overflow-hidden cursor-pointer reveal delay-300" onclick="openModal('evening')">
+<div class="aspect-[3/4] relative">
+<img alt="Класс" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1767611123686-79b12f266eff?w=800&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">10 МИН</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h4 class="text-white font-light text-base mb-1 font-newsreader">Замедление</h4>
+<p class="text-white/60 text-xs font-light">с Майклом Ченом</p>
+</div>
+<div class="quick-preview">
+<span class="text-[#A3B18A] text-[10px] uppercase tracking-widest mb-3 block">Быстрый просмотр</span>
+<p class="text-white/80 text-xs font-light leading-relaxed mb-3">Инь-позы и дыхание 4-7-8, чтобы подготовить тело и разум к спокойному сну.</p>
+<div class="flex flex-wrap gap-1.5 mb-3">
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Бёдра</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Поясница</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Болстер</span>
+</div>
+<button class="w-full text-center text-[#A3B18A] text-xs uppercase tracking-wider hover:text-white transition-colors" onclick="openModal('evening')">Начать бесплатный период →</button>
+</div>
+</div>
+</div>
+<div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group relative rounded-[1.5rem] overflow-hidden cursor-pointer reveal delay-400" onclick="openModal('meditation')">
+<div class="aspect-[3/4] relative">
+<img alt="Класс" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1767611117223-28281a979627?w=800&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+<div class="absolute top-4 left-4 bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">5 МИН</div>
+<div class="absolute bottom-4 left-4 right-4">
+<h4 class="text-white font-light text-base mb-1 font-newsreader">Микромедитация</h4>
+<p class="text-white/60 text-xs font-light">с Прией Наир</p>
+</div>
+<div class="quick-preview">
+<span class="text-[#C9A96E] text-[10px] uppercase tracking-widest mb-3 block">Быстрый просмотр</span>
+<p class="text-white/80 text-xs font-light leading-relaxed mb-3">5-минутный якорь осознанности. Подходит для любого момента, когда нужно вернуться к центру.</p>
+<div class="flex flex-wrap gap-1.5 mb-3">
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Разум</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Дыхание</span>
+<span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Без реквизита</span>
+</div>
+<button class="w-full text-center text-[#C9A96E] text-xs uppercase tracking-wider hover:text-white transition-colors" onclick="openModal('meditation')">Начать бесплатный период →</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── IMMERSIVE RITUAL SECTION ── -->
+<section class="min-h-[480px] flex overflow-hidden md:my-16 md:mx-10 h-[65vh] rounded-[2.5rem] mt-8 mr-4 mb-8 ml-4 relative items-center justify-center">
+<div class="absolute inset-0">
+<video aria-label="Покой" class="w-full h-full object-cover" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://images.unsplash.com/photo-1683056255281-e52a141924f0?w=2000&amp;q=80" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/6b935447-a404-4bef-866e-1dce2a107dcb/1781511680655-ac927680-b931-4f06-94ce-4a4db9adb11f.mp4"></video>
+<div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
+</div>
+<div class="relative z-10 text-center px-6 flex flex-col items-center reveal">
+<h2 class="font-newsreader font-light text-white text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tight">
+          Создайте свой<br/><em class="not-italic text-gradient-sun">ежедневный ритуал</em>
+</h2>
+<p class="text-white/60 text-sm tracking-[0.25em] uppercase font-light mb-12">Йога · Медитация · Дыхание</p>
+<button class="w-24 h-24 md:w-28 md:h-28 rounded-full liquid-glass border flex items-center justify-center group hover:scale-105 transition-transform duration-500 border-white/30" onclick="openModal(null)">
+<iconify-icon class="text-white ml-1 group-hover:scale-110 transition-transform" icon="solar:play-bold" width="36"></iconify-icon>
+</button>
+</div>
+</section>
+<!-- ── STATS ── -->
+<section class="py-20 border-y border-zinc-100">
+<div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div class="reveal delay-100">
+<div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center gap-1">
+<span class="counter" data-count="3000">0</span><span>+</span>
+</div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Занятия</div>
+</div>
+<div class="reveal delay-200">
+<div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center gap-1">
+<span class="counter" data-count="700">0</span>
+</div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Медитации</div>
+</div>
+<div class="reveal delay-300">
+<div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center gap-1">
+<span class="counter" data-count="300">0</span><span>+</span>
+</div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Курсы</div>
+</div>
+<div class="reveal delay-400">
+<div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center">
+<span class="counter" data-count="1">0</span><span>M+</span>
+</div>
+<div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Практикующих</div>
+</div>
+</div>
+</section>
+<!-- ── FEATURED COURSES (HOME) ── -->
+<section class="py-28 px-6">
+<div class="max-w-7xl mx-auto">
+<div class="flex items-end justify-between mb-12 reveal">
+<div>
+<span class="text-xs uppercase tracking-[0.2em] text-[#A3B18A] font-light mb-3 block">Глубокое мастерство</span>
+<h2 class="font-newsreader font-light text-zinc-900 tracking-tight" style="font-size: clamp(1.6rem, 3vw, 2.4rem);">Избранные курсы</h2>
+</div>
+<a class="hidden md:flex items-center gap-2 text-sm font-light text-zinc-400 hover:text-zinc-900 transition-colors" href="#" onclick="showPage('courses')">Все курсы <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
+</div>
+<div class="grid md:grid-cols-3 gap-6">
+<!-- Course card -->
+<div class="reveal delay-100 card-hover group bg-white rounded-[1.8rem] overflow-hidden border border-zinc-100 cursor-pointer relative" onclick="showPage('courses')">
+<div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C9A96E] to-[#A3B18A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
+<div class="aspect-video overflow-hidden relative">
+<img alt="Курс" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" src="https://images.unsplash.com/photo-1734638901126-bd34c411a029?w=1600&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<span class="absolute top-4 left-4 bg-[#C9A96E]/90 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">Кредиты YACEP</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] uppercase tracking-wider text-[#A3B18A] font-light">Анатомия</span>
+<span class="w-1 h-1 rounded-full bg-zinc-200"></span>
+<span class="text-[10px] uppercase tracking-wider text-zinc-400 font-light">Средний уровень</span>
+</div>
+<h4 class="font-newsreader font-light text-zinc-900 text-lg mb-2 leading-snug tracking-tight">Функциональная анатомия для преподавателей йоги</h4>
+<p class="text-xs text-zinc-400 font-light mb-5">с доктором Реем Лонгом</p>
+<div class="flex items-center justify-between pt-4 border-t border-zinc-50">
+<div class="flex items-center gap-1.5">
+<iconify-icon class="text-amber-400" icon="solar:star-bold" width="13"></iconify-icon>
+<span class="text-sm font-light text-zinc-700">4.9</span>
+<span class="text-xs text-zinc-400">(312)</span>
+</div>
+<div class="flex items-center gap-1.5 text-zinc-400">
+<iconify-icon icon="solar:clock-circle-linear" width="13"></iconify-icon>
+<span class="text-xs font-light">6,5 ч</span>
+</div>
+</div>
+</div>
+</div>
+<div class="reveal delay-200 card-hover group bg-white rounded-[1.8rem] overflow-hidden border border-zinc-100 cursor-pointer relative" onclick="showPage('courses')">
+<div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C9A96E] to-[#A3B18A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
+<div class="aspect-video overflow-hidden relative">
+<img alt="Курс" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" src="https://images.unsplash.com/photo-1767611132156-1f47af948d4c?w=1600&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<span class="absolute top-4 left-4 bg-[#8BA7C7]/90 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">Сертификат</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] uppercase tracking-wider text-[#A3B18A] font-light">Аюрведа</span>
+<span class="w-1 h-1 rounded-full bg-zinc-200"></span>
+<span class="text-[10px] uppercase tracking-wider text-zinc-400 font-light">Все уровни</span>
+</div>
+<h4 class="font-newsreader font-light text-zinc-900 text-lg mb-2 leading-snug tracking-tight">Основы аюрведического образа жизни</h4>
+<p class="text-xs text-zinc-400 font-light mb-5">с Кейт Стиллман</p>
+<div class="flex items-center justify-between pt-4 border-t border-zinc-50">
+<div class="flex items-center gap-1.5">
+<iconify-icon class="text-amber-400" icon="solar:star-bold" width="13"></iconify-icon>
+<span class="text-sm font-light text-zinc-700">4.8</span>
+<span class="text-xs text-zinc-400">(198)</span>
+</div>
+<div class="flex items-center gap-1.5 text-zinc-400">
+<iconify-icon icon="solar:clock-circle-linear" width="13"></iconify-icon>
+<span class="text-xs font-light">4 ч</span>
+</div>
+</div>
+</div>
+</div>
+<div class="reveal delay-300 card-hover group bg-white rounded-[1.8rem] overflow-hidden border border-zinc-100 cursor-pointer relative" onclick="showPage('courses')">
+<div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C9A96E] to-[#A3B18A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
+<div class="aspect-video overflow-hidden relative">
+<img alt="Курс" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" src="https://images.unsplash.com/photo-1730672786064-c0836eeb41c2?w=1600&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
+<span class="absolute top-4 left-4 bg-[#A3B18A]/90 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">Кредиты YACEP</span>
+</div>
+<div class="p-6">
+<div class="flex items-center gap-2 mb-3">
+<span class="text-[10px] uppercase tracking-wider text-[#A3B18A] font-light">Философия</span>
+<span class="w-1 h-1 rounded-full bg-zinc-200"></span>
+<span class="text-[10px] uppercase tracking-wider text-zinc-400 font-light">Все уровни</span>
+</div>
+<h4 class="font-newsreader font-light text-zinc-900 text-lg mb-2 leading-snug tracking-tight">Йога-сутры Патанджали</h4>
+<p class="text-xs text-zinc-400 font-light mb-5">с Пандитом Раджмани Тигунайтом</p>
+<div class="flex items-center justify-between pt-4 border-t border-zinc-50">
+<div class="flex items-center gap-1.5">
+<iconify-icon class="text-amber-400" icon="solar:star-bold" width="13"></iconify-icon>
+<span class="text-sm font-light text-zinc-700">5.0</span>
+<span class="text-xs text-zinc-400">(421)</span>
+</div>
+<div class="flex items-center gap-1.5 text-zinc-400">
+<iconify-icon icon="solar:clock-circle-linear" width="13"></iconify-icon>
+<span class="text-xs font-light">9 ч</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ── COMMUNITY MARQUEE ── -->
+<section class="py-20 overflow-hidden">
+<div class="text-center mb-14 reveal px-6">
+<h2 class="font-newsreader font-light text-zinc-900 tracking-tight mb-3" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem);">Глобальная сангха</h2>
+<p class="text-zinc-500 font-light text-sm">Более 1 000 000 практикующих. Один общий ритм.</p>
+</div>
+<div class="relative marquee-mask">
+<div class="flex w-max animate-marquee mb-4">
+<div class="flex gap-4 pr-4">
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758599879513-9124e9718f2f?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1579566538197-a716d632210b?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1678506093268-4b114b4461cc?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1690149933431-fd701c9db018?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1701826510684-feb5d0c251da?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1650434951802-6f2d183b8ffe?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1701824429245-ce783f1dc026?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1752297852083-b8e8c04fa66e?w=800&amp;q=80"/>
+</div>
+<div class="flex gap-4 pr-4">
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1717839419301-75b91d4b5f7e?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1602192509154-0b900ee1f851?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1636141319019-eca800ba6d73?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758599879067-f99a68ea57ee?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758599881247-b7a28d9297e5?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1622025461364-717fd7e3344d?w=800&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&amp;q=80"/>
+<img alt="" class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885515623-4d8cfad47efb?w=800&amp;q=80"/>
+</div>
+</div>
+</div>
+</section>
+<!-- ── PRICING ── -->
+<section class="py-28 px-6 relative overflow-hidden">
+<div class="absolute inset-0 pointer-events-none z-0 opacity-30">
+<div class="absolute top-1/2 left-1/4 w-96 h-96 bg-[#C9A96E]/10 rounded-full blur-[100px]"></div>
+<div class="absolute top-1/2 right-1/4 w-96 h-96 bg-[#8BA7C7]/10 rounded-full blur-[100px]"></div>
+</div>
+<div class="max-w-4xl mx-auto relative z-10">
+<div class="reveal text-center mb-16">
+<span class="text-xs uppercase tracking-[0.25em] text-[#C9A96E] font-light mb-4 block">Членство</span>
+<h2 class="font-newsreader font-light text-zinc-900 tracking-tight mb-4" style="font-size: clamp(1.8rem, 4vw, 3rem);">Ваш ритм, ваш тариф</h2>
+<p class="text-zinc-500 font-light text-sm max-w-md mx-auto">Оба тарифа включают полный 7-дневный бесплатный пробный период. Без обязательств.</p>
+</div>
+<div class="grid md:grid-cols-2 gap-8 lg:gap-12 gap-x-8 gap-y-8">
+<!-- Annual Plan (Premium liquid glass styling) -->
+<div class="reveal border-gradient liquid-glass flex flex-col active bg-zinc-100 bg-cover bg-center rounded-[2.5rem] pt-10 pr-10 pb-10 pl-10 relative justify-between bg-[url(https://images.unsplash.com/photo-1528731708534-816fe59f90cb?w=1600&amp;q=80)]">
+<div class="absolute -top-4 right-10 bg-zinc-900 text-white text-[10px] font-medium px-4 py-1.5 rounded-full uppercase tracking-widest font-sans">
+                Скидка 40%
               </div>
-            </div>
-          </div>
-
-          <!-- Restore -->
-          <div class="reveal delay-200 card-hover group overflow-hidden cursor-pointer md:translate-y-6 vid-hover rounded-[2rem] relative" onclick="showPage('classes')" id="restore-section">
-            <div class="aspect-[3/4] relative">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eb353891-ca97-4901-b1f6-9f5b9d6bba37_800w.webp" class="w-full h-full object-cover" alt="Restore">
-              <video src="https://cdn.midjourney.com/video/157de36c-d492-4080-87f3-0dcebd3b268f/1.mp4" class="w-full h-full object-cover absolute top-0 right-0 bottom-0 left-0" muted="" loop="" playsinline="" preload="metadata"></video>
-              <div class="bg-gradient-to-t from-black/80 via-black/20 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
-              <div class="group-hover:bg-[#8BA7C7]/10 transition-all duration-500 bg-[#8BA7C7]/0 absolute top-0 right-0 bottom-0 left-0"></div>
-              <div class="absolute top-5 left-5">
-                <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
-                  <iconify-icon icon="solar:moon-sleep-linear" width="20" class="text-[#8BA7C7]"></iconify-icon>
-                </div>
-              </div>
-              <!-- Featured badge -->
-              <div class="text-[10px] uppercase text-[#8BA7C7] tracking-wider bg-[#8BA7C7]/20 border-[#8BA7C7]/40 border rounded-full pt-1 pr-3 pb-1 pl-3 absolute top-5 right-5 backdrop-blur-sm">
-                Most Loved
-              </div>
-              <div class="pt-7 pr-7 pb-7 pl-7 absolute right-0 bottom-0 left-0">
-                <span class="text-xs uppercase tracking-[0.2em] text-[#8BA7C7] mb-3 block font-light">Evening · Yin</span>
-                <h3 class="font-newsreader font-light text-white text-2xl mb-2 tracking-tight">Restore</h3>
-                <p class="text-white/60 text-sm font-light mb-5 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">Yin yoga, restorative postures, and guided body scans for deep release.</p>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs text-white/50 font-light">520+ classes</span>
-                  <span class="w-1 h-1 rounded-full bg-white/30"></span>
-                  <span class="text-xs text-white/50 font-light">10–90 min</span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Learn -->
-          <div id="learn-section" class="reveal delay-300 card-hover group relative rounded-[2rem] overflow-hidden cursor-pointer vid-hover" onclick="showPage('courses')">
-            <div class="aspect-[3/4] relative">
-              <img src="https://images.unsplash.com/photo-1758599878236-47f6a918aed2?w=800&q=80" class="w-full h-full object-cover" alt="Learn">
-              <video src="https://cdn.midjourney.com/video/157de36c-d492-4080-87f3-0dcebd3b268f/1.mp4" class="absolute inset-0 w-full h-full object-cover" muted="" loop="" playsinline="" preload="metadata"></video>
-              <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-              <div class="absolute inset-0 bg-[#A3B18A]/0 group-hover:bg-[#A3B18A]/10 transition-all duration-500"></div>
-              <div class="absolute top-5 left-5">
-                <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 backdrop-blur flex items-center justify-center">
-                  <iconify-icon icon="solar:book-2-linear" width="20" class="text-[#A3B18A]"></iconify-icon>
-                </div>
-              </div>
-              <div class="absolute bottom-0 left-0 right-0 p-7">
-                <span class="text-xs uppercase tracking-[0.2em] text-[#A3B18A] mb-3 block font-light">Courses · Philosophy</span>
-                <h3 class="font-newsreader font-light text-white text-2xl mb-2 tracking-tight">Learn</h3>
-                <p class="text-white/60 text-sm font-light mb-5 leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0">Ayurveda, anatomy, philosophy and certification courses from master teachers.</p>
-                <div class="flex items-center gap-3">
-                  <span class="text-xs text-white/50 font-light">300+ courses</span>
-                  <span class="w-1 h-1 rounded-full bg-white/30"></span>
-                  <span class="text-xs text-white/50 font-light">CEU Credits</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── DAILY RITUALS CAROUSEL (Quick Classes) ── -->
-    <section class="overflow-hidden bg-white pt-20 pr-6 pb-20 pl-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex reveal mb-12 items-end justify-between">
-          <div class="">
-            <span class="text-xs uppercase tracking-[0.2em] text-[#C9A96E] font-light mb-3 block">Under 15 Minutes</span>
-            <h2 class="font-newsreader font-light text-zinc-900 tracking-tight" style="font-size: clamp(1.6rem, 3vw, 2.4rem);">Daily Rituals</h2>
-          </div>
-          <a href="#" onclick="showPage('classes')" class="hidden md:flex items-center gap-2 text-sm font-light text-zinc-400 hover:text-zinc-900 transition-colors">View all <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
-        </div>
-        <div class="flex gap-5 overflow-x-auto hide-scrollbar snap-x -mx-6 lg:mx-0 lg:px-0 pr-6 pb-4 pl-6 gap-x-5 gap-y-5">
-          <!-- Quick Class Card -->
-          <div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group overflow-hidden cursor-pointer reveal delay-100 rounded-[1.5rem] relative" onclick="openModal('morning-ritual')">
-            <div class="aspect-[3/4] relative">
-              <img src="https://images.unsplash.com/photo-1552196634-24a18d82ac56?w=800&q=80" class="group-hover:scale-105 transition-transform duration-700 w-full h-full object-cover" alt="Class">
-              <div class="bg-gradient-to-t from-black/70 to-transparent absolute top-0 right-0 bottom-0 left-0"></div>
-              <div class="text-[10px] font-light text-white tracking-wide bg-white/15 border-white/20 border rounded-full pt-1 pr-3 pb-1 pl-3 absolute top-4 left-4 backdrop-blur">8 MIN</div>
-              <div class="absolute right-4 bottom-4 left-4">
-                <h4 class="text-base font-light text-white font-newsreader mb-1">Wake &amp; Stretch</h4>
-                <p class="text-white/60 text-xs font-light">with Sarah Johnson</p>
-              </div>
-              <!-- Quick Preview overlay -->
-              <div class="quick-preview">
-                <span class="text-[#C9A96E] text-[10px] uppercase tracking-widest mb-3 block">Quick Preview</span>
-                <p class="text-white/80 text-xs font-light leading-relaxed mb-3">A gentle morning flow to release overnight tension and invite focused energy.</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                  <span class="text-[10px] text-white/70 bg-white/10 rounded-full pt-1 pr-2 pb-1 pl-2">Spine</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Hamstrings</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">No props</span>
-                </div>
-                <button onclick="openModal('morning-ritual')" class="uppercase hover:text-white transition-colors text-xs text-[#C9A96E] tracking-wider text-center w-full">Start Free Trial →</button>
-              </div>
-            </div>
-          </div>
-          <div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group relative rounded-[1.5rem] overflow-hidden cursor-pointer reveal delay-200" onclick="openModal('breathwork')">
-            <div class="aspect-[3/4] relative">
-              <img src="https://images.unsplash.com/photo-1697060739671-586c21fa5e30?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Class">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-              <div class="absolute top-4 left-4 bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">12 MIN</div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h4 class="text-white font-light text-base mb-1 font-newsreader">Noon Reset</h4>
-                <p class="text-white/60 text-xs font-light">with Elena Rodriguez</p>
-              </div>
-              <div class="quick-preview">
-                <span class="text-[#8BA7C7] text-[10px] uppercase tracking-widest mb-3 block">Quick Preview</span>
-                <p class="text-white/80 text-xs font-light leading-relaxed mb-3">Desk-friendly stretches and box breathing to recalibrate mid-day energy.</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Shoulders</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Neck</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Chair</span>
-                </div>
-                <button onclick="openModal('breathwork')" class="w-full text-center text-[#8BA7C7] text-xs uppercase tracking-wider hover:text-white transition-colors">Start Free Trial →</button>
-              </div>
-            </div>
-          </div>
-          <div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group relative rounded-[1.5rem] overflow-hidden cursor-pointer reveal delay-300" onclick="openModal('evening')">
-            <div class="aspect-[3/4] relative">
-              <img src="https://images.unsplash.com/photo-1767611123686-79b12f266eff?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Class">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-              <div class="absolute top-4 left-4 bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">10 MIN</div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h4 class="text-white font-light text-base mb-1 font-newsreader">Wind Down</h4>
-                <p class="text-white/60 text-xs font-light">with Michael Chen</p>
-              </div>
-              <div class="quick-preview">
-                <span class="text-[#A3B18A] text-[10px] uppercase tracking-widest mb-3 block">Quick Preview</span>
-                <p class="text-white/80 text-xs font-light leading-relaxed mb-3">Yin postures and 4-7-8 breathing to prepare body and mind for restful sleep.</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Hips</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Lower Back</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Bolster</span>
-                </div>
-                <button onclick="openModal('evening')" class="w-full text-center text-[#A3B18A] text-xs uppercase tracking-wider hover:text-white transition-colors">Start Free Trial →</button>
-              </div>
-            </div>
-          </div>
-          <div class="min-w-[260px] md:min-w-[300px] snap-start card-outer group relative rounded-[1.5rem] overflow-hidden cursor-pointer reveal delay-400" onclick="openModal('meditation')">
-            <div class="aspect-[3/4] relative">
-              <img src="https://images.unsplash.com/photo-1767611117223-28281a979627?w=800&q=80" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" alt="Class">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
-              <div class="absolute top-4 left-4 bg-white/15 backdrop-blur border border-white/20 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">5 MIN</div>
-              <div class="absolute bottom-4 left-4 right-4">
-                <h4 class="text-white font-light text-base mb-1 font-newsreader">Micro Meditation</h4>
-                <p class="text-white/60 text-xs font-light">with Priya Nair</p>
-              </div>
-              <div class="quick-preview">
-                <span class="text-[#C9A96E] text-[10px] uppercase tracking-widest mb-3 block">Quick Preview</span>
-                <p class="text-white/80 text-xs font-light leading-relaxed mb-3">A 5-minute awareness anchor. Suitable for any moment you need to return to center.</p>
-                <div class="flex flex-wrap gap-1.5 mb-3">
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Mind</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">Breath</span>
-                  <span class="bg-white/10 text-white/70 text-[10px] px-2 py-1 rounded-full">No props</span>
-                </div>
-                <button onclick="openModal('meditation')" class="w-full text-center text-[#C9A96E] text-xs uppercase tracking-wider hover:text-white transition-colors">Start Free Trial →</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── IMMERSIVE RITUAL SECTION ── -->
-    <section class="min-h-[480px] flex overflow-hidden md:my-16 md:mx-10 h-[65vh] rounded-[2.5rem] mt-8 mr-4 mb-8 ml-4 relative items-center justify-center">
-      <div class="absolute inset-0">
-        <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/6b935447-a404-4bef-866e-1dce2a107dcb/1781511680655-ac927680-b931-4f06-94ce-4a4db9adb11f.mp4" poster="https://images.unsplash.com/photo-1683056255281-e52a141924f0?w=2000&q=80" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" aria-label="Tranquil" class="w-full h-full object-cover"></video>
-        <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
-      </div>
-      <div class="relative z-10 text-center px-6 flex flex-col items-center reveal">
-        <h2 class="font-newsreader font-light text-white text-4xl md:text-5xl lg:text-6xl mb-4 tracking-tight">
-          Create Your<br><em class="not-italic text-gradient-sun">Daily Ritual</em>
-        </h2>
-        <p class="text-white/60 text-sm tracking-[0.25em] uppercase font-light mb-12">Yoga · Meditation · Breathwork</p>
-        <button onclick="openModal(null)" class="w-24 h-24 md:w-28 md:h-28 rounded-full liquid-glass border flex items-center justify-center group hover:scale-105 transition-transform duration-500 border-white/30">
-          <iconify-icon icon="solar:play-bold" width="36" class="text-white ml-1 group-hover:scale-110 transition-transform"></iconify-icon>
-        </button>
-      </div>
-    </section>
-
-    <!-- ── STATS ── -->
-    <section class="py-20 border-y border-zinc-100">
-      <div class="max-w-5xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-        <div class="reveal delay-100">
-          <div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center gap-1">
-            <span class="counter" data-count="3000">0</span><span>+</span>
-          </div>
-          <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Classes</div>
-        </div>
-        <div class="reveal delay-200">
-          <div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center gap-1">
-            <span class="counter" data-count="700">0</span>
-          </div>
-          <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Meditations</div>
-        </div>
-        <div class="reveal delay-300">
-          <div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center gap-1">
-            <span class="counter" data-count="300">0</span><span>+</span>
-          </div>
-          <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Courses</div>
-        </div>
-        <div class="reveal delay-400">
-          <div class="text-4xl md:text-5xl text-gradient mb-3 font-newsreader font-light flex items-baseline justify-center">
-            <span class="counter" data-count="1">0</span><span>M+</span>
-          </div>
-          <div class="text-[10px] uppercase tracking-[0.2em] text-zinc-400 font-light">Practitioners</div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── FEATURED COURSES (HOME) ── -->
-    <section class="py-28 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex items-end justify-between mb-12 reveal">
-          <div>
-            <span class="text-xs uppercase tracking-[0.2em] text-[#A3B18A] font-light mb-3 block">Deep Mastery</span>
-            <h2 class="font-newsreader font-light text-zinc-900 tracking-tight" style="font-size: clamp(1.6rem, 3vw, 2.4rem);">Featured Courses</h2>
-          </div>
-          <a href="#" onclick="showPage('courses')" class="hidden md:flex items-center gap-2 text-sm font-light text-zinc-400 hover:text-zinc-900 transition-colors">All courses <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon></a>
-        </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          <!-- Course card -->
-          <div class="reveal delay-100 card-hover group bg-white rounded-[1.8rem] overflow-hidden border border-zinc-100 cursor-pointer relative" onclick="showPage('courses')">
-            <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C9A96E] to-[#A3B18A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
-            <div class="aspect-video overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1734638901126-bd34c411a029?w=1600&q=80" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" alt="Course">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <span class="absolute top-4 left-4 bg-[#C9A96E]/90 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">YACEP Credits</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-[10px] uppercase tracking-wider text-[#A3B18A] font-light">Anatomy</span>
-                <span class="w-1 h-1 rounded-full bg-zinc-200"></span>
-                <span class="text-[10px] uppercase tracking-wider text-zinc-400 font-light">Intermediate</span>
-              </div>
-              <h4 class="font-newsreader font-light text-zinc-900 text-lg mb-2 leading-snug tracking-tight">Functional Anatomy for Yoga Teachers</h4>
-              <p class="text-xs text-zinc-400 font-light mb-5">with Dr. Ray Long</p>
-              <div class="flex items-center justify-between pt-4 border-t border-zinc-50">
-                <div class="flex items-center gap-1.5">
-                  <iconify-icon icon="solar:star-bold" class="text-amber-400" width="13"></iconify-icon>
-                  <span class="text-sm font-light text-zinc-700">4.9</span>
-                  <span class="text-xs text-zinc-400">(312)</span>
-                </div>
-                <div class="flex items-center gap-1.5 text-zinc-400">
-                  <iconify-icon icon="solar:clock-circle-linear" width="13"></iconify-icon>
-                  <span class="text-xs font-light">6.5 hrs</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="reveal delay-200 card-hover group bg-white rounded-[1.8rem] overflow-hidden border border-zinc-100 cursor-pointer relative" onclick="showPage('courses')">
-            <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C9A96E] to-[#A3B18A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
-            <div class="aspect-video overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1767611132156-1f47af948d4c?w=1600&q=80" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" alt="Course">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <span class="absolute top-4 left-4 bg-[#8BA7C7]/90 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">Certificate</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-[10px] uppercase tracking-wider text-[#A3B18A] font-light">Ayurveda</span>
-                <span class="w-1 h-1 rounded-full bg-zinc-200"></span>
-                <span class="text-[10px] uppercase tracking-wider text-zinc-400 font-light">All Levels</span>
-              </div>
-              <h4 class="font-newsreader font-light text-zinc-900 text-lg mb-2 leading-snug tracking-tight">Foundations of Ayurvedic Living</h4>
-              <p class="text-xs text-zinc-400 font-light mb-5">with Cate Stillman</p>
-              <div class="flex items-center justify-between pt-4 border-t border-zinc-50">
-                <div class="flex items-center gap-1.5">
-                  <iconify-icon icon="solar:star-bold" class="text-amber-400" width="13"></iconify-icon>
-                  <span class="text-sm font-light text-zinc-700">4.8</span>
-                  <span class="text-xs text-zinc-400">(198)</span>
-                </div>
-                <div class="flex items-center gap-1.5 text-zinc-400">
-                  <iconify-icon icon="solar:clock-circle-linear" width="13"></iconify-icon>
-                  <span class="text-xs font-light">4 hrs</span>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="reveal delay-300 card-hover group bg-white rounded-[1.8rem] overflow-hidden border border-zinc-100 cursor-pointer relative" onclick="showPage('courses')">
-            <div class="absolute top-0 left-0 right-0 h-0.5 bg-gradient-to-r from-[#C9A96E] to-[#A3B18A] scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left z-10"></div>
-            <div class="aspect-video overflow-hidden relative">
-              <img src="https://images.unsplash.com/photo-1730672786064-c0836eeb41c2?w=1600&q=80" class="w-full h-full object-cover scale-105 group-hover:scale-100 transition-transform duration-700" alt="Course">
-              <div class="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
-              <span class="absolute top-4 left-4 bg-[#A3B18A]/90 text-white text-[10px] px-3 py-1 rounded-full font-light tracking-wide">YACEP Credits</span>
-            </div>
-            <div class="p-6">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-[10px] uppercase tracking-wider text-[#A3B18A] font-light">Philosophy</span>
-                <span class="w-1 h-1 rounded-full bg-zinc-200"></span>
-                <span class="text-[10px] uppercase tracking-wider text-zinc-400 font-light">All Levels</span>
-              </div>
-              <h4 class="font-newsreader font-light text-zinc-900 text-lg mb-2 leading-snug tracking-tight">Yoga Sutras of Patanjali</h4>
-              <p class="text-xs text-zinc-400 font-light mb-5">with Pandit Rajmani Tigunait</p>
-              <div class="flex items-center justify-between pt-4 border-t border-zinc-50">
-                <div class="flex items-center gap-1.5">
-                  <iconify-icon icon="solar:star-bold" class="text-amber-400" width="13"></iconify-icon>
-                  <span class="text-sm font-light text-zinc-700">5.0</span>
-                  <span class="text-xs text-zinc-400">(421)</span>
-                </div>
-                <div class="flex items-center gap-1.5 text-zinc-400">
-                  <iconify-icon icon="solar:clock-circle-linear" width="13"></iconify-icon>
-                  <span class="text-xs font-light">9 hrs</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── COMMUNITY MARQUEE ── -->
-    <section class="py-20 overflow-hidden">
-      <div class="text-center mb-14 reveal px-6">
-        <h2 class="font-newsreader font-light text-zinc-900 tracking-tight mb-3" style="font-size: clamp(1.8rem, 3.5vw, 2.8rem);">A Global Sangha</h2>
-        <p class="text-zinc-500 font-light text-sm">Over 1,000,000 practitioners. One shared rhythm.</p>
-      </div>
-      <div class="relative marquee-mask">
-        <div class="flex w-max animate-marquee mb-4">
-          <div class="flex gap-4 pr-4">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758599879513-9124e9718f2f?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1579566538197-a716d632210b?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1678506093268-4b114b4461cc?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1690149933431-fd701c9db018?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1701826510684-feb5d0c251da?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1650434951802-6f2d183b8ffe?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1701824429245-ce783f1dc026?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1752297852083-b8e8c04fa66e?w=800&q=80" alt="">
-          </div>
-          <div class="flex gap-4 pr-4">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1717839419301-75b91d4b5f7e?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1602192509154-0b900ee1f851?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1636141319019-eca800ba6d73?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758599879067-f99a68ea57ee?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758599881247-b7a28d9297e5?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1622025461364-717fd7e3344d?w=800&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885428976-dd612a7f3046?w=600&q=80" alt="">
-            <img class="w-28 h-36 md:w-44 md:h-52 object-cover rounded-2xl" src="https://images.unsplash.com/photo-1758885515623-4d8cfad47efb?w=800&q=80" alt="">
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ── PRICING ── -->
-    <section class="py-28 px-6 relative overflow-hidden">
-      <div class="absolute inset-0 pointer-events-none z-0 opacity-30">
-        <div class="absolute top-1/2 left-1/4 w-96 h-96 bg-[#C9A96E]/10 rounded-full blur-[100px]"></div>
-        <div class="absolute top-1/2 right-1/4 w-96 h-96 bg-[#8BA7C7]/10 rounded-full blur-[100px]"></div>
-      </div>
-      <div class="max-w-4xl mx-auto relative z-10">
-        <div class="reveal text-center mb-16">
-          <span class="text-xs uppercase tracking-[0.25em] text-[#C9A96E] font-light mb-4 block">Membership</span>
-          <h2 class="font-newsreader font-light text-zinc-900 tracking-tight mb-4" style="font-size: clamp(1.8rem, 4vw, 3rem);">Your Rhythm, Your Plan</h2>
-          <p class="text-zinc-500 font-light text-sm max-w-md mx-auto">Both plans include a full 7-day free trial. No commitment required.</p>
-        </div>
-        <div class="grid md:grid-cols-2 gap-8 lg:gap-12 gap-x-8 gap-y-8">
-      
-            <!-- Annual Plan (Premium liquid glass styling) -->
-            <div class="reveal border-gradient liquid-glass flex flex-col active bg-zinc-100 bg-cover bg-center rounded-[2.5rem] pt-10 pr-10 pb-10 pl-10 relative justify-between bg-[url(https://images.unsplash.com/photo-1528731708534-816fe59f90cb?w=1600&amp;q=80)]">
-              <div class="absolute -top-4 right-10 bg-zinc-900 text-white text-[10px] font-medium px-4 py-1.5 rounded-full uppercase tracking-widest font-sans">
-                Save 40%
-              </div>
-      
-              <div class="">
-                <h3 class="text-xl text-zinc-900 mb-6 font-newsreader font-light">
-                  Annual Ritual
+<div class="">
+<h3 class="text-xl text-zinc-900 mb-6 font-newsreader font-light">
+                  Годовой ритуал
                 </h3>
-                <div class="flex items-start gap-1 mb-2">
-                  <span class="text-zinc-500 mt-2 font-sans">$</span>
-                  <span class="text-5xl md:text-6xl text-zinc-900 font-newsreader font-light">
+<div class="flex items-start gap-1 mb-2">
+<span class="text-zinc-500 mt-2 font-sans">$</span>
+<span class="text-5xl md:text-6xl text-zinc-900 font-newsreader font-light">
                                       14.99
                                   </span>
-                  <span class="text-sm text-zinc-500 font-light mt-auto mb-2 font-sans">
-                                      / month
+<span class="text-sm text-zinc-500 font-light mt-auto mb-2 font-sans">
+                                      / месяц
                                   </span>
-                </div>
-                <p class="text-xs text-zinc-500 mb-8 pb-8 border-b border-zinc-200/50 font-sans">
-                  Billed once annually at $179.88
+</div>
+<p class="text-xs text-zinc-500 mb-8 pb-8 border-b border-zinc-200/50 font-sans">
+                  Оплата раз в год — 179,88 $
                 </p>
-      
-                <ul class="space-y-4 text-sm text-zinc-600 font-light mb-12">
-                  <li class="flex items-start gap-3 font-sans">
-                    <iconify-icon icon="solar:check-circle-linear" class="text-[#A3B18A] mt-0.5" width="20"></iconify-icon>
-                    3000+ on-demand yoga practices
+<ul class="space-y-4 text-sm text-zinc-600 font-light mb-12">
+<li class="flex items-start gap-3 font-sans">
+<iconify-icon class="text-[#A3B18A] mt-0.5" icon="solar:check-circle-linear" width="20"></iconify-icon>
+                    3000+ онлайн-практик йоги
                   </li>
-                  <li class="flex items-start gap-3 font-sans">
-                    <iconify-icon icon="solar:check-circle-linear" class="text-[#A3B18A] mt-0.5" width="20"></iconify-icon>
-                    700+ guided meditations
+<li class="flex items-start gap-3 font-sans">
+<iconify-icon class="text-[#A3B18A] mt-0.5" icon="solar:check-circle-linear" width="20"></iconify-icon>
+                    700+ управляемых медитаций
                   </li>
-                  <li class="flex items-start gap-3 font-sans">
-                    <iconify-icon icon="solar:check-circle-linear" class="text-[#A3B18A] mt-0.5" width="20"></iconify-icon>
-                    Certification courses &amp; tracking
+<li class="flex items-start gap-3 font-sans">
+<iconify-icon class="text-[#A3B18A] mt-0.5" icon="solar:check-circle-linear" width="20"></iconify-icon>
+                    Сертификационные курсы и отслеживание прогресса
                   </li>
-                </ul>
-              </div>
-      
-              <button class="w-full zen-btn text-xs font-sans">
-                              Start 7-Day Free Trial
+</ul>
+</div>
+<button class="w-full zen-btn text-xs font-sans">
+                              Начать 7-дневный пробный период
                           </button>
-            </div>
-      
-            <!-- Monthly Plan (Clean standard) -->
-            <div class="reveal delay-100 flex flex-col active bg-white border-zinc-100 border rounded-[2.5rem] pt-10 pr-10 pb-10 pl-10 shadow-sm justify-between">
-              <div class="">
-                <h3 class="text-xl text-zinc-900 mb-6 font-newsreader font-light">
-                  Monthly Flow
+</div>
+<!-- Monthly Plan (Clean standard) -->
+<div class="reveal delay-100 flex flex-col active bg-white border-zinc-100 border rounded-[2.5rem] pt-10 pr-10 pb-10 pl-10 shadow-sm justify-between">
+<div class="">
+<h3 class="text-xl text-zinc-900 mb-6 font-newsreader font-light">
+                  Ежемесячный поток
                 </h3>
-                <div class="flex gap-1 mb-2 gap-x-1 gap-y-1 items-start">
-                  <span class="text-zinc-500 mt-2 font-sans">$</span>
-                  <span class="text-5xl md:text-6xl text-zinc-900 font-newsreader font-light">
+<div class="flex gap-1 mb-2 gap-x-1 gap-y-1 items-start">
+<span class="text-zinc-500 mt-2 font-sans">$</span>
+<span class="text-5xl md:text-6xl text-zinc-900 font-newsreader font-light">
                                       24.99
                                   </span>
-                  <span class="text-sm text-zinc-500 font-light mt-auto mb-2 font-sans">
-                                      / month
+<span class="text-sm text-zinc-500 font-light mt-auto mb-2 font-sans">
+                                      / месяц
                                   </span>
-                </div>
-                <p class="text-xs text-zinc-500 mb-8 pb-8 border-b border-zinc-100 font-sans">
-                  Billed monthly, cancel anytime
+</div>
+<p class="text-xs text-zinc-500 mb-8 pb-8 border-b border-zinc-100 font-sans">
+                  Оплата ежемесячно, отмена в любое время
                 </p>
-      
-                <ul class="space-y-4 text-sm text-zinc-600 font-light mb-12">
-                  <li class="flex items-start gap-3 opacity-80 font-sans">
-                    <iconify-icon icon="solar:check-circle-linear" class="text-zinc-300 mt-0.5" width="20"></iconify-icon>
-                    3000+ on-demand yoga practices
+<ul class="space-y-4 text-sm text-zinc-600 font-light mb-12">
+<li class="flex items-start gap-3 opacity-80 font-sans">
+<iconify-icon class="text-zinc-300 mt-0.5" icon="solar:check-circle-linear" width="20"></iconify-icon>
+                    3000+ онлайн-практик йоги
                   </li>
-                  <li class="flex items-start gap-3 opacity-80 font-sans">
-                    <iconify-icon icon="solar:check-circle-linear" class="text-zinc-300 mt-0.5" width="20"></iconify-icon>
-                    700+ guided meditations
+<li class="flex items-start gap-3 opacity-80 font-sans">
+<iconify-icon class="text-zinc-300 mt-0.5" icon="solar:check-circle-linear" width="20"></iconify-icon>
+                    700+ управляемых медитаций
                   </li>
-                </ul>
-              </div>
-      
-              <button class="w-full bg-zinc-50 hover:bg-zinc-100 text-zinc-900 border border-zinc-200 uppercase tracking-widest text-xs py-4 rounded-full transition-colors mt-auto font-sans">
-                              Start Free Trial
+</ul>
+</div>
+<button class="w-full bg-zinc-50 hover:bg-zinc-100 text-zinc-900 border border-zinc-200 uppercase tracking-widest text-xs py-4 rounded-full transition-colors mt-auto font-sans">
+                              Начать бесплатный период
                           </button>
-            </div>
-      
-          </div>
-      </div>
-      <!-- Pricing (Premium Cards) -->
-      
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-zinc-900 text-zinc-400 py-20 px-6 relative overflow-hidden">
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 h-px w-3/4 bg-gradient-to-r from-transparent via-[#C9A96E]/30 to-transparent"></div>
-      <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#C9A96E]/5 rounded-full blur-[80px] pointer-events-none -translate-y-1/2"></div>
-      <div class="max-w-7xl mx-auto pt-10 relative z-10 grid grid-cols-2 md:grid-cols-5 gap-12 mb-16">
-        <div class="col-span-2">
-          <span class="text-3xl font-newsreader italic text-[#C9A96E] tracking-tight block mb-5">Lunar<span class="not-italic font-light text-white"> Rhythm</span></span>
-          <p class="text-sm text-zinc-500 font-light max-w-xs leading-relaxed mb-8">Elevate your daily ritual with the world's most comprehensive digital yoga platform.</p>
-          <div class="flex gap-3">
-            <a href="#" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white transition-all duration-300"><iconify-icon icon="solar:camera-linear" width="16"></iconify-icon></a>
-            <a href="#" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white transition-all duration-300"><iconify-icon icon="solar:play-circle-linear" width="16"></iconify-icon></a>
-            <a href="#" class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white transition-all duration-300"><iconify-icon icon="solar:letter-linear" width="16"></iconify-icon></a>
-          </div>
-        </div>
-        <div>
-          <h5 class="text-[10px] uppercase tracking-[0.2em] text-zinc-300 mb-5 font-light">Explore</h5>
-          <ul class="space-y-3 text-sm font-light">
-            <li><a href="#" onclick="showPage('classes')" class="hover:text-white transition-colors">Classes</a></li>
-            <li><a href="#" onclick="showPage('courses')" class="hover:text-white transition-colors">Courses</a></li>
-            <li><a href="#" onclick="showPage('challenges')" class="hover:text-white transition-colors">Challenges</a></li>
-          </ul>
-        </div>
-        <div class="">
-          <h5 class="text-[10px] uppercase tracking-[0.2em] text-zinc-300 mb-5 font-light">Company</h5>
-          <ul class="space-y-3 text-sm font-light">
-            <li class=""><a href="/about-us" class="hover:text-white transition-colors">About</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Teachers</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Blog</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 class="text-[10px] uppercase tracking-[0.2em] text-zinc-300 mb-5 font-light">Legal</h5>
-          <ul class="space-y-3 text-sm font-light">
-            <li><a href="#" class="hover:text-white transition-colors">Privacy</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Terms</a></li>
-            <li><a href="#" class="hover:text-white transition-colors">Support</a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="max-w-7xl mx-auto pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-zinc-600 relative z-10">
-        <span>© 2024 Lunar Rhythm. All Rights Reserved.</span>
-        <span class="flex items-center gap-2"><iconify-icon icon="solar:moon-sleep-linear" class="text-[#8BA7C7]" width="14"></iconify-icon>Designed for stillness</span>
-      </div>
-    </footer>
-  </div>
+</div>
+</div>
+</div>
+<!-- Pricing (Premium Cards) -->
+</section>
+<!-- Footer -->
+<footer class="bg-zinc-900 text-zinc-400 py-20 px-6 relative overflow-hidden">
+<div class="absolute top-0 left-1/2 -translate-x-1/2 h-px w-3/4 bg-gradient-to-r from-transparent via-[#C9A96E]/30 to-transparent"></div>
+<div class="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[300px] bg-[#C9A96E]/5 rounded-full blur-[80px] pointer-events-none -translate-y-1/2"></div>
+<div class="max-w-7xl mx-auto pt-10 relative z-10 grid grid-cols-2 md:grid-cols-5 gap-12 mb-16">
+<div class="col-span-2">
+<span class="text-3xl font-newsreader italic text-[#C9A96E] tracking-tight block mb-5">Lunar<span class="not-italic font-light text-white"> Rhythm</span></span>
+<p class="text-sm text-zinc-500 font-light max-w-xs leading-relaxed mb-8">Поднимите свой ежедневный ритуал с самой полноценной цифровой платформой йоги в мире.</p>
+<div class="flex gap-3">
+<a class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white transition-all duration-300" href="#"><iconify-icon icon="solar:camera-linear" width="16"></iconify-icon></a>
+<a class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white transition-all duration-300" href="#"><iconify-icon icon="solar:play-circle-linear" width="16"></iconify-icon></a>
+<a class="w-9 h-9 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center hover:bg-[#C9A96E] hover:border-[#C9A96E] hover:text-white transition-all duration-300" href="#"><iconify-icon icon="solar:letter-linear" width="16"></iconify-icon></a>
+</div>
+</div>
+<div>
+<h5 class="text-[10px] uppercase tracking-[0.2em] text-zinc-300 mb-5 font-light">Смотреть</h5>
+<ul class="space-y-3 text-sm font-light">
+<li><a class="hover:text-white transition-colors" href="#" onclick="showPage('classes')">Занятия</a></li>
+<li><a class="hover:text-white transition-colors" href="#" onclick="showPage('courses')">Курсы</a></li>
+<li><a class="hover:text-white transition-colors" href="#" onclick="showPage('challenges')">Челленджи</a></li>
+</ul>
+</div>
+<div class="">
+<h5 class="text-[10px] uppercase tracking-[0.2em] text-zinc-300 mb-5 font-light">Компания</h5>
+<ul class="space-y-3 text-sm font-light">
+<li class=""><a class="hover:text-white transition-colors" href="/about-us">О нас</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Преподаватели</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Блог</a></li>
+</ul>
+</div>
+<div>
+<h5 class="text-[10px] uppercase tracking-[0.2em] text-zinc-300 mb-5 font-light">Правовая информация</h5>
+<ul class="space-y-3 text-sm font-light">
+<li><a class="hover:text-white transition-colors" href="#">Конфиденциальность</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Условия</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Поддержка</a></li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto pt-8 border-t border-zinc-800 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-zinc-600 relative z-10">
+<span>© 2024 Lunar Rhythm. Все права защищены.</span>
+<span class="flex items-center gap-2"><iconify-icon class="text-[#8BA7C7]" icon="solar:moon-sleep-linear" width="14"></iconify-icon>Создано для тишины</span>
+</div>
+</footer>
+</div>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
   const counters = document.querySelectorAll(".counter");

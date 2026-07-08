@@ -1,4 +1,4 @@
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -88,12 +88,12 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GENESIS — Intelligence, grown.</title>
-<meta name="description" content="GENESIS — a frontier intelligence that is grown, not built. Scroll to push through the bloom into the core.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>GENESIS — интеллект, выращенный.</title>
+<meta content="GENESIS — передовой интеллект, который выращивают, а не строят. Листайте, чтобы пройти сквозь цветение к ядру." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
 --bg:#03040a; --paper:#eef1f7; --mute:#9aa4ba; --line:rgba(225,232,245,.10);
@@ -323,7 +323,7 @@ text-shadow:0 1px 14px rgba(2,3,10,.92);display:flex;gap:.85rem;align-items:cent
 .copy.split .col{max-width:none} .thesis-aside{height:52vh;min-height:300px} }
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -331,196 +331,223 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-
-  <!-- STAGE -->
-  <div class="stage" aria-hidden="true">
-    <canvas id="film"></canvas>
-    <div id="petals">
-      <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png" alt=""><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png" alt="">
-      <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png" alt=""><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png" alt="">
-      <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png" alt=""><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png" alt="">
-    </div>
-    <div class="stage-vign"></div>
-    <div class="veil" id="veil"></div>
-  </div>
-  <div class="grain" aria-hidden="true"></div>
-  <div class="growth" aria-hidden="true"><i id="growthFill"></i><b id="growthDot"></b></div>
-
-  <!-- station captions (during the camera push) -->
-  <div class="station" id="st1"><p>Every model begins as a seed.</p></div>
-  <div class="station" id="st2"><p>We grow it in the dark — until it blooms into a mind.</p></div>
-
-  <!-- NAV -->
-  <nav id="nav">
-    <div class="brand serif">GENESIS</div>
-    <div class="nlinks">
-      <a href="#thesis" class="hideable">Platform</a>
-      <a href="#core" class="hideable">The Core</a>
-      <a href="#features" class="hideable">Research</a>
-      <a href="#access" class="pill">Request access</a>
-    </div>
-  </nav>
-
-  <main>
-    <!-- HERO -->
-    <header class="act hero" id="top">
-      <div class="herobox">
-        <div class="eyebrow">Frontier intelligence</div>
-        <h1 class="serif">GENESIS</h1>
-        <p class="tag serif">Intelligence isn’t built. It’s grown.</p>
-        <div class="hcta">
-          <a class="btn" href="#thesis">Enter the core</a>
-          <span class="scrolltip">scroll to descend <span class="b"></span></span>
-        </div>
-      </div>
-    </header>
-
-    <!-- LOGOS -->
-    <section class="act logos">
-      <div class="lab reveal">Cultivated with teams at</div>
-      <div class="row reveal d1"><span>NEBULA&nbsp;LABS</span><span>HELIX&nbsp;BIO</span><span>ARC&nbsp;INSTITUTE</span><span>MERIDIAN</span><span>VANTA&nbsp;AI</span><span>ÉCOLE&nbsp;42</span></div>
-    </section>
-
-    <!-- THESIS -->
-    <section class="act copy split" id="thesis">
-      <div class="col">
-        <div class="num reveal">01 — The thesis</div>
-        <h2 class="serif reveal d1 kin">We don’t engineer intelligence.<br>We <em>cultivate</em> it.</h2>
-        <p class="lead reveal d2">GENESIS isn’t assembled layer by layer. It’s seeded, fed, and grown inside a living substrate until capability emerges on its own — reasoning, intuition, and judgment that no one hand-wrote. What blooms is not a tool. It’s a mind.</p>
-      </div>
-      <aside class="thesis-aside reveal d2">
-        <canvas id="bloomcv" aria-label="A mind growing as a living neural bloom — branches and nodes emerging from a single seed"></canvas>
-        <div class="bloom-cap"><span>seed</span>·<span>substrate</span>·<b>a mind</b></div>
-      </aside>
-    </section>
-
-    <!-- LIFECYCLE -->
-    <section class="act life" id="lifecycle">
-      <div class="head">
-        <div class="num reveal">— The lifecycle</div>
-        <h2 class="serif reveal d1 kin">How a model is grown.</h2>
-      </div>
-      <div class="lgrid">
-        <div class="stage-c reveal d1"><div class="ph"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-seed_rgba.png" alt="A seed pod" style="max-height:50%"></div><div class="st">01 — Seed</div><h3 class="serif">A seed of intent</h3><p>We plant an objective and a constitution — the first cell of a mind.</p></div>
-        <div class="stage-c reveal d2"><div class="ph"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-cultivate_rgba.png" alt="A sprouting seedling" style="max-height:88%"></div><div class="st">02 — Cultivate</div><h3 class="serif">Fed in the dark</h3><p>Trillions of tokens move through the substrate; capability accrues on its own.</p></div>
-        <div class="stage-c reveal d3"><div class="ph"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-bloom_rgba.png" alt="A single orchid in bloom" style="max-height:80%"></div><div class="st">03 — Emerge</div><h3 class="serif">It blooms</h3><p>Reasoning and judgment surface unprompted — not designed, discovered.</p></div>
-        <div class="stage-c reveal d4"><div class="ph"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-deploy_rgba.png" alt="An orchid stem in full, flourishing bloom" style="max-height:78%;opacity:.97"></div><div class="st">04 — Deploy</div><h3 class="serif">Grown for you</h3><p>The mind moves into your work and keeps adapting to what you give it.</p></div>
-      </div>
-    </section>
-
-    <!-- CORE -->
-    <section class="act core" id="core">
-      <canvas id="coreorb" aria-hidden="true"></canvas>
-      <div class="reveal">
-        <div class="num" style="text-align:center">02 — The Core</div>
-        <h2 class="serif kin">One model.<br>Grown, not assembled.</h2>
-        <div class="stats">
-          <div class="stat"><div class="v serif" data-v="1.4T">1.4T</div><div class="l">living parameters</div></div>
-          <div class="stat"><div class="v serif" data-v="200ms">200ms</div><div class="l">to first thought</div></div>
-          <div class="stat"><div class="v serif" data-v="94.8">94.8</div><div class="l">reasoning index</div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FEATURES -->
-    <section class="act features" id="features">
-      <div class="fhead">
-        <div class="num reveal">03 — Capabilities</div>
-        <h2 class="serif reveal d1 kin">A system that keeps growing<br>after you deploy it.</h2>
-      </div>
-      <div class="fgrid3">
-        <div class="card reveal d1"><div class="k">Reasoning</div><h3 class="serif">Thinks in branches</h3><p>Explores thousands of solution paths in parallel and prunes to the strongest — long-horizon planning that holds a goal across hours of work.</p></div>
-        <div class="card reveal d2"><div class="k">Multimodal</div><h3 class="serif">One sense organ</h3><p>Text, image, audio and code share a single latent space, so context never leaves the model as it moves between forms.</p></div>
-        <div class="card reveal d3"><div class="k">Alignment</div><h3 class="serif">Grown with values</h3><p>Constitutional training is woven through cultivation, not bolted on after — the model’s judgment and its intent develop together.</p></div>
-      </div>
-    </section>
-
-    <!-- SAFETY — The Sealed Substrate -->
-    <section class="act safety" id="safety">
-      <div class="grid">
-        <div class="sf-text">
-          <div class="eyebrow reveal">Safety</div>
-          <h2 class="serif reveal d1 kin">Grown carefully.<br>Watched <em>closely.</em></h2>
-          <p class="lead reveal d2">Every model matures inside a sealed substrate under constant oversight — interpretability probes reading its inner state, red teams pressure-testing its judgment, and a constitution woven through cultivation rather than bolted on after. <b>We grow minds we can account for.</b></p>
-          <div class="sf-status reveal d2">
-            <span class="sf-dot"></span>
-            <div>
-              <div class="sf-lbl">Containment integrity</div>
-              <div class="sf-val">99.998% <small>live</small></div>
-            </div>
-          </div>
-        </div>
-        <div class="sf-lat reveal d2">
-          <canvas id="safetylat" aria-label="A grown intelligence core sealed inside concentric oversight rings, watched by interpretability, red-team and constitution probes"></canvas>
-          <div class="sf-corecap"><div class="k">Grown core</div><div class="v">maturing</div></div>
-          <div class="sf-node sf-n1"><div class="sf-tag">
-            <div class="sf-nm"><i></i>Interpretability</div>
-            <div class="sf-ds">Reading the inner state</div>
-            <div class="sf-mt"><b>1.2M</b> features mapped <em>live</em></div>
-          </div></div>
-          <div class="sf-node sf-n2"><div class="sf-tag">
-            <div class="sf-nm"><i></i>Red Team</div>
-            <div class="sf-ds">Pressure-tested judgment</div>
-            <div class="sf-mt"><b>48k</b> attacks/day <em>0 critical</em></div>
-          </div></div>
-          <div class="sf-node sf-n3"><div class="sf-tag">
-            <div class="sf-nm"><i></i>Constitution</div>
-            <div class="sf-ds">Values grown in, not bolted on</div>
-            <div class="sf-mt"><b>61</b> principles <em>100% coverage</em></div>
-          </div></div>
-        </div>
-      </div>
-    </section>
-
-    <!-- TESTIMONIAL -->
-    <section class="act press">
-      <div class="reveal">
-        <blockquote class="serif">“The first model that understood the question before we’d finished asking it.”</blockquote>
-        <cite>— Dr. Lena Sato · Director of Research, Nebula Labs</cite>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="act cta" id="access">
-      <div class="eyebrow reveal" style="justify-content:center">04 — Access</div>
-      <h2 class="serif reveal d1 kin">Begin with GENESIS.</h2>
-      <p class="lead reveal d2">Access opens in waves to research labs, founders and builders. Join the next cohort and grow something of your own.</p>
-      <div class="row reveal d2">
-        <a class="btn solid" href="#access">Request access</a>
-        <a class="btn" href="#thesis">Read the paper</a>
-      </div>
-      <div class="news reveal d3">
-        <div class="lab">Join the waitlist — first access to the next cohort</div>
-        <form onsubmit="return false">
-          <input type="email" placeholder="you@lab.com" aria-label="Email">
-          <button type="submit">Join</button>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="fwrap">
-      <div class="b">
-        <div class="serif">GENESIS</div>
-        <p>A frontier intelligence, grown not built. Cultivated in San Francisco.</p>
-      </div>
-      <div class="fcol"><h4>Platform</h4><a href="#">The Core</a><a href="#">API</a><a href="#">Pricing</a><a href="#">Status</a></div>
-      <div class="fcol"><h4>Research</h4><a href="#">Papers</a><a href="#">Safety</a><a href="#">Index</a><a href="#">Careers</a></div>
-      <div class="fcol"><h4>Company</h4><a href="#">About</a><a href="#">Blog</a><a href="#">Contact</a></div>
-    </div>
-    <div class="fbot">
-      <span>© 2026 Genesis Labs, Inc.</span>
-      <span class="l"><a href="#">Terms</a><a href="#">Privacy</a><a href="#">Trust</a></span>
-    </div>
-  </footer>
-
-  <div class="loader" id="loader"><div class="lw"><div class="mk serif">✦</div><div class="lbar"><i id="lbar"></i></div><div class="sub" id="lsub">cultivating · 0%</div></div></div>
-
-  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
-  <script>
+<!-- STAGE -->
+<div aria-hidden="true" class="stage">
+<canvas id="film"></canvas>
+<div id="petals">
+<img alt="" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png"/><img alt="" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png"/>
+<img alt="" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png"/><img alt="" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png"/>
+<img alt="" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png"/><img alt="" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/petal_rgba.png"/>
+</div>
+<div class="stage-vign"></div>
+<div class="veil" id="veil"></div>
+</div>
+<div aria-hidden="true" class="grain"></div>
+<div aria-hidden="true" class="growth"><i id="growthFill"></i><b id="growthDot"></b></div>
+<!-- station captions (during the camera push) -->
+<div class="station" id="st1"><p>Каждая модель начинается с семени.</p></div>
+<div class="station" id="st2"><p>Мы растим её в темноте — пока она не расцветёт в разум.</p></div>
+<!-- NAV -->
+<nav id="nav">
+<div class="brand serif">GENESIS</div>
+<div class="nlinks">
+<a class="hideable" href="#thesis">Платформа</a>
+<a class="hideable" href="#core">Ядро</a>
+<a class="hideable" href="#features">Исследования</a>
+<a class="pill" href="#access">Запросить доступ</a>
+</div>
+</nav>
+<main>
+<!-- HERO -->
+<header class="act hero" id="top">
+<div class="herobox">
+<div class="eyebrow">Передовой интеллект</div>
+<h1 class="serif">GENESIS</h1>
+<p class="tag serif">Интеллект не строят. Его выращивают.</p>
+<div class="hcta">
+<a class="btn" href="#thesis">Войти в ядро</a>
+<span class="scrolltip">листайте, чтобы спуститься <span class="b"></span></span>
+</div>
+</div>
+</header>
+<!-- LOGOS -->
+<section class="act logos">
+<div class="lab reveal">Выращен вместе с командами</div>
+<div class="row reveal d1"><span>NEBULA LABS</span><span>HELIX BIO</span><span>ARC INSTITUTE</span><span>MERIDIAN</span><span>VANTA AI</span><span>ÉCOLE 42</span></div>
+</section>
+<!-- THESIS -->
+<section class="act copy split" id="thesis">
+<div class="col">
+<div class="num reveal">01 — Тезис</div>
+<h2 class="serif reveal d1 kin">Мы не конструируем интеллект.<br/>Мы <em>культивируем</em> его.</h2>
+<p class="lead reveal d2">GENESIS не собирается слой за слоем. Его сеют, питают и растят внутри живого субстрата, пока способности не возникают сами — рассуждение, интуиция и суждение, которые никто не писал вручную. То, что расцветает, — не инструмент. Это разум.</p>
+</div>
+<aside class="thesis-aside reveal d2">
+<canvas aria-label="Разум, растущий как живое нейронное цветение — ветви и узлы, возникающие из одного семени" id="bloomcv"></canvas>
+<div class="bloom-cap"><span>семя</span>·<span>субстрат</span>·<b>разум</b></div>
+</aside>
+</section>
+<!-- LIFECYCLE -->
+<section class="act life" id="lifecycle">
+<div class="head">
+<div class="num reveal">— Жизненный цикл</div>
+<h2 class="serif reveal d1 kin">Как выращивается модель.</h2>
+</div>
+<div class="lgrid">
+<div class="stage-c reveal d1"><div class="ph"><img alt="Семенная коробочка" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-seed_rgba.png" style="max-height:50%"/></div><div class="st">01 — Семя</div><h3 class="serif">Семя намерения</h3><p>Мы сажаем цель и конституцию — первую клетку разума.</p></div>
+<div class="stage-c reveal d2"><div class="ph"><img alt="Прорастающий росток" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-cultivate_rgba.png" style="max-height:88%"/></div><div class="st">02 — Культивация</div><h3 class="serif">Вскормлен в темноте</h3><p>Триллионы токенов проходят через субстрат; способности накапливаются сами собой.</p></div>
+<div class="stage-c reveal d3"><div class="ph"><img alt="Одинокая цветущая орхидея" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-bloom_rgba.png" style="max-height:80%"/></div><div class="st">03 — Эмерджентность</div><h3 class="serif">Он расцветает</h3><p>Рассуждение и суждение проявляются сами — не спроектированы, а открыты.</p></div>
+<div class="stage-c reveal d4"><div class="ph"><img alt="Стебель орхидеи в полном, пышном цветении" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@genesis-v3/genesis/parallax/lc-deploy_rgba.png" style="max-height:78%;opacity:.97"/></div><div class="st">04 — Развёртывание</div><h3 class="serif">Выращен для вас</h3><p>Разум входит в вашу работу и продолжает адаптироваться к тому, что вы ему даёте.</p></div>
+</div>
+</section>
+ ЯДРО 
+<section class="act core" id="core">
+<canvas aria-hidden="true" id="coreorb"></canvas>
+<div class="reveal">
+<div class="num" style="text-align:center">02 — Ядро</div>
+<h2 class="serif kin">Одна модель.<br/>Выращена, а не собрана.</h2>
+<div class="stats">
+<div class="stat"><div class="v serif" data-v="1.4T">1.4T</div><div class="l">живых параметров</div></div>
+<div class="stat"><div class="v serif" data-v="200ms">200 мс</div><div class="l">до первой мысли</div></div>
+<div class="stat"><div class="v serif" data-v="94.8">94.8</div><div class="l">индекс рассуждения</div></div>
+</div>
+</div>
+</section>
+<!-- FEATURES -->
+<section class="act features" id="features">
+<div class="fhead">
+<div class="num reveal">03 — Возможности</div>
+<h2 class="serif reveal d1 kin">Система, которая продолжает расти<br/>после развёртывания.</h2>
+</div>
+<div class="fgrid3">
+<div class="card reveal d1"><div class="k">Рассуждение</div><h3 class="serif">Мыслит ветвями</h3><p>Исследует тысячи путей решения параллельно и отсекает всё, кроме сильнейших, — долгосрочное планирование, удерживающее цель на протяжении часов работы.</p></div>
+<div class="card reveal d2"><div class="k">Мультимодальность</div><h3 class="serif">Единый орган чувств</h3><p>Текст, изображение, аудио и код разделяют единое латентное пространство, поэтому контекст не покидает модель при переходе между формами.</p></div>
+<div class="card reveal d3"><div class="k">Элайнмент</div><h3 class="serif">Выращен с ценностями</h3><p>Конституционное обучение вплетено в культивацию, а не прикручено после — суждение модели и её намерение развиваются вместе.</p></div>
+</div>
+</section>
+<!-- SAFETY — The Sealed Substrate -->
+<section class="act safety" id="safety">
+<div class="grid">
+<div class="sf-text">
+<div class="eyebrow reveal">Безопасность</div>
+<h2 class="serif reveal d1 kin">Выращен бережно.<br/>Под пристальным <em>наблюдением.</em></h2>
+<p class="lead reveal d2">Каждая модель созревает внутри герметичного субстрата под постоянным надзором — зонды интерпретируемости считывают её внутреннее состояние, ред-тимы проверяют её суждение под давлением, а конституция вплетена в культивацию, а не прикручена после. <b>Мы выращиваем разумы, за которые можем отвечать.</b></p>
+<div class="sf-status reveal d2">
+<span class="sf-dot"></span>
+<div>
+<div class="sf-lbl">Целостность контура изоляции</div>
+<div class="sf-val">99.998% <small>онлайн</small></div>
+</div>
+</div>
+</div>
+<div class="sf-lat reveal d2">
+<canvas aria-label="Выращенное ядро интеллекта, запечатанное в концентрических кольцах надзора, под наблюдением зондов интерпретируемости, ред-тима и конституции" id="safetylat"></canvas>
+<div class="sf-corecap"><div class="k">Выращенное ядро</div><div class="v">созревает</div></div>
+<div class="sf-node sf-n1"><div class="sf-tag">
+<div class="sf-nm"><i></i>Интерпретируемость</div>
+<div class="sf-ds">Чтение внутреннего состояния</div>
+<div class="sf-mt"><b>1.2M</b> признаков картировано <em>онлайн</em></div>
+</div></div>
+<div class="sf-node sf-n2"><div class="sf-tag">
+<div class="sf-nm"><i></i>Ред-тим</div>
+<div class="sf-ds">Суждение, проверенное под давлением</div>
+<div class="sf-mt"><b>48k</b> атак/день <em>0 критических</em></div>
+</div></div>
+<div class="sf-node sf-n3"><div class="sf-tag">
+<div class="sf-nm"><i></i>Конституция</div>
+<div class="sf-ds">Ценности выращены внутри, а не прикручены</div>
+<div class="sf-mt"><b>61</b> принципов <em>100% покрытие</em></div>
+</div></div>
+</div>
+</div>
+</section>
+<!-- TESTIMONIAL -->
+<section class="act press">
+<div class="reveal">
+<blockquote class="serif">«Первая модель, которая поняла вопрос до того, как мы закончили его задавать.»</blockquote>
+<cite>— Д-р Лена Сато · Директор по исследованиям, Nebula Labs</cite>
+</div>
+</section>
+<!-- CTA -->
+<section class="act cta" id="access">
+<div class="eyebrow reveal" style="justify-content:center">04 — Доступ</div>
+<h2 class="serif reveal d1 kin">Начните с GENESIS.</h2>
+<p class="lead reveal d2">Доступ открывается волнами для исследовательских лабораторий, фаундеров и разработчиков. Присоединяйтесь к следующей когорте и вырастите что-то своё.</p>
+<div class="row reveal d2">
+<a class="btn solid" href="#access">Запросить доступ</a>
+<a class="btn" href="#thesis">Читать статью</a>
+</div>
+<div class="news reveal d3">
+<div class="lab">Встаньте в лист ожидания — первый доступ к следующей когорте</div>
+<form onsubmit="return false">
+<input aria-label="Email" placeholder="you@lab.com" type="email"/>
+<button type="submit">Присоединиться</button>
+</form>
+</div>
+</section>
+</main>
+<footer>
+<div class="fwrap">
+<div class="b">
+<div class="serif">GENESIS</div>
+<p>Передовой интеллект, выращенный, а не построенный. Культивирован в Сан-Франциско.</p>
+</div>
+<div class="fcol"><h4>Платформа</h4><a href="#">Ядро</a><a href="#">API</a><a href="#">Цены</a><a href="#">Статус</a></div>
+<div class="fcol"><h4>Исследования</h4><a href="#">Статьи</a><a href="#">Безопасность</a><a href="#">Индекс</a><a href="#">Карьера</a></div>
+<div class="fcol"><h4>Компания</h4><a href="#">О нас</a><a href="#">Блог</a><a href="#">Контакты</a></div>
+</div>
+<div class="fbot">
+<span>© 2026 Genesis Labs, Inc.</span>
+<span class="l"><a href="#">Условия</a><a href="#">Конфиденциальность</a><a href="#">Доверие</a></span>
+</div>
+</footer>
+<div class="loader" id="loader"><div class="lw"><div class="mk serif">✦</div><div class="lbar"><i id="lbar"></i></div><div class="sub" id="lsub">культивация · 0%</div></div></div>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
   /* ================================================================
      GENESIS — scroll drives a camera PUSH (video scrub), and every
      parallax layer (lotus, pollen, rays, stars) scales with the push.
@@ -627,7 +654,7 @@ gtag('config', 'G-2M6V79H761');
   setTimeout(()=>{if(!started)start();},6000);   // safety: never hang on the loader
   window.__diag=()=>({loaded,started,push:clamp(getScrollY()/(PUSH*innerHeight),0,1)});
   </script>
-  <script>
+<script>
   /* ===== GENESIS — section "wow" interactions (content only; background untouched) ===== */
   (function(){
     const REDUCED = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -688,12 +715,12 @@ gtag('config', 'G-2M6V79H761');
     }
   })();
   </script>
-  <script>
+<script>
   (function(){ const acc=[...document.querySelectorAll('.accent[data-accent]')]; if(!acc.length)return;
     function up(){ const vh=innerHeight; acc.forEach(el=>{ const r=el.getBoundingClientRect(); el.style.setProperty('--ay',((r.top+r.height/2-vh/2)*-0.08).toFixed(1)+'px'); }); }
     addEventListener('scroll',up,{passive:true}); addEventListener('resize',up); up(); })();
   </script>
-  <script>
+<script>
   /* GENESIS — Safety: "The Sealed Substrate" containment lattice (pure canvas, DPR1, IO-paused) */
   (function(){
     var cv=document.getElementById('safetylat'); if(!cv) return;
@@ -745,7 +772,7 @@ gtag('config', 'G-2M6V79H761');
     resize(); if(reduce){ draw(performance.now()); } else { start(); }
   })();
   </script>
-  <script>
+<script>
   /* GENESIS — Thesis "mind bloom": a dendritic neural network that grows from a seed (pure canvas, additive) */
   (function(){
     const REDUCED=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -803,6 +830,4 @@ gtag('config', 'G-2M6V79H761');
     if(REDUCED){ size(); render(1,1,0); } else requestAnimationFrame(loop);
   })();
   </script>
-
-
 </body></html>

@@ -1,18 +1,18 @@
-<html lang="en" class="scroll-smooth"><head>
+<html class="scroll-smooth" lang="ru"><head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ioty.com | Global IoT Innovation & Startup Showcase</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ioty.com | Глобальная витрина IoT-инноваций и стартапов</title>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Iconify -->
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <!-- Three.js & GSAP -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
@@ -78,7 +78,7 @@ background-size: 40px 40px;
 background-image: radial-gradient(circle at 1px 1px, rgba(255,255,255,0.05) 1px, transparent 0);
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -86,190 +86,204 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="bg-zinc-950 text-zinc-50 font-sans overflow-x-hidden selection:bg-white/10 selection:text-white">
-
-    <!-- Ambient Gradients -->
-    <div class="fixed top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-blue-500/10 blur-[120px] pointer-events-none z-0"></div>
-    <div class="fixed bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-500/10 blur-[120px] pointer-events-none z-0"></div>
-    <div class="fixed inset-0 bg-grid pointer-events-none z-0 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
-
-    <!-- 3D Canvas Container -->
-    <div id="canvas-container" class="fixed inset-0 z-0 pointer-events-none opacity-40 md:opacity-100 transition-opacity duration-1000"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 glass-panel border-b-0 border-white/5">
-        <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-            <a href="#" class="flex items-center gap-2">
-                <div class="w-6 h-6 rounded flex items-center justify-center bg-white text-zinc-950 font-medium text-xs tracking-tighter">
+<!-- Ambient Gradients -->
+<div class="fixed top-[-20%] left-[-10%] w-[60%] h-[60%] rounded-full bg-blue-500/10 blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed bottom-[-20%] right-[-10%] w-[60%] h-[60%] rounded-full bg-purple-500/10 blur-[120px] pointer-events-none z-0"></div>
+<div class="fixed inset-0 bg-grid pointer-events-none z-0 [mask-image:linear-gradient(to_bottom,white,transparent)]"></div>
+<!-- 3D Canvas Container -->
+<div class="fixed inset-0 z-0 pointer-events-none opacity-40 md:opacity-100 transition-opacity duration-1000" id="canvas-container"></div>
+ Навигация 
+<nav class="fixed top-0 w-full z-50 glass-panel border-b-0 border-white/5">
+<div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+<a class="flex items-center gap-2" href="#">
+<div class="w-6 h-6 rounded flex items-center justify-center bg-white text-zinc-950 font-medium text-xs tracking-tighter">
                     IO
                 </div>
-                <span class="text-sm font-medium tracking-tight">ioty.com</span>
-            </a>
-
-            <div class="hidden md:flex gap-8 text-sm font-light text-zinc-400">
-                <a href="#about" class="transition-colors hover:text-white">Showcase</a>
-                <a href="#roles" class="transition-colors hover:text-white">Ecosystem</a>
-                <a href="#process" class="transition-colors hover:text-white">Verification</a>
-            </div>
-
-            <div class="flex items-center gap-4">
-                <a href="#" class="hidden md:block text-sm font-light text-zinc-400 hover:text-white transition-colors">Investor Login</a>
-                <a href="#" class="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-medium transition-all bg-white text-zinc-950 hover:bg-zinc-200">
-                    Submit Startup
+<span class="text-sm font-medium tracking-tight">ioty.com</span>
+</a>
+<div class="hidden md:flex gap-8 text-sm font-light text-zinc-400">
+<a class="transition-colors hover:text-white" href="#about">Витрина</a>
+<a class="transition-colors hover:text-white" href="#roles">Экосистема</a>
+<a class="transition-colors hover:text-white" href="#process">Верификация</a>
+</div>
+<div class="flex items-center gap-4">
+<a class="hidden md:block text-sm font-light text-zinc-400 hover:text-white transition-colors" href="#">Вход для инвесторов</a>
+<a class="inline-flex items-center justify-center px-4 py-2 rounded-full text-xs font-medium transition-all bg-white text-zinc-950 hover:bg-zinc-200" href="#">
+                    Подать стартап
                 </a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Main Content Wrapper -->
-    <main class="relative z-10 w-full max-w-7xl mx-auto px-6">
-        
-        <!-- Hero Section -->
-        <section class="min-h-screen flex flex-col justify-center pt-24 pb-12 md:w-1/2 md:pr-12">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 w-fit">
-                <span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
-                <span class="text-xs font-light tracking-wide text-zinc-300">Tracking 500+ global IoT innovations</span>
-            </div>
-            
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tighter leading-[1.05] mb-6 gradient-text">
-                Discover the Next Breakthrough in Global IoT.
+</div>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<main class="relative z-10 w-full max-w-7xl mx-auto px-6">
+ Hero-секция 
+<section class="min-h-screen flex flex-col justify-center pt-24 pb-12 md:w-1/2 md:pr-12">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8 w-fit">
+<span class="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
+<span class="text-xs font-light tracking-wide text-zinc-300">Отслеживаем 500+ глобальных IoT-инноваций</span>
+</div>
+<h1 class="text-5xl md:text-6xl lg:text-7xl font-medium tracking-tighter leading-[1.05] mb-6 gradient-text">
+                Откройте следующий прорыв в глобальном IoT.
             </h1>
-            
-            <p class="text-lg md:text-xl font-light text-zinc-400 leading-relaxed mb-10 max-w-lg">
-                ioty.com connects venture capitalists, corporate scouts, and researchers with vetted, high-potential IoT startups and hardware innovations from emerging markets worldwide.
+<p class="text-lg md:text-xl font-light text-zinc-400 leading-relaxed mb-10 max-w-lg">
+                ioty.com соединяет венчурных капиталистов, корпоративных скаутов и исследователей с проверенными, высокопотенциальными IoT-стартапами и аппаратными инновациями с развивающихся рынков по всему миру.
             </p>
-            
-            <div class="flex flex-col sm:flex-row items-start gap-4">
-                <a href="#" class="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-medium transition-all bg-white text-zinc-950 hover:bg-zinc-200 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]">
-                    Access Investor Portal
-                    <iconify-icon icon="solar:arrow-right-linear" width="16" height="16" class="ml-2" style="--iconify-stroke-width:1.5;"></iconify-icon>
+<div class="flex flex-col sm:flex-row items-start gap-4">
+<a class="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-medium transition-all bg-white text-zinc-950 hover:bg-zinc-200 shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_30px_rgba(255,255,255,0.2)]" href="#">
+                    Доступ к порталу инвестора
+                    <iconify-icon class="ml-2" height="16" icon="solar:arrow-right-linear" style="--iconify-stroke-width:1.5;" width="16"></iconify-icon>
+</a>
+<a class="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-medium transition-all bg-transparent border border-white/10 text-white hover:bg-white/5" href="#">
+                    Подать IoT-стартап
                 </a>
-                <a href="#" class="inline-flex items-center justify-center px-6 py-3 rounded-full text-sm font-medium transition-all bg-transparent border border-white/10 text-white hover:bg-white/5">
-                    Submit IoT Startup
-                </a>
-            </div>
-            
-            <div class="mt-20 flex items-center gap-4 opacity-50">
-                <p class="text-xs font-light tracking-wider uppercase text-zinc-400">Scroll to discover innovations</p>
-                <div class="w-px h-12 bg-gradient-to-b from-zinc-400 to-transparent"></div>
-            </div>
-        </section>
-
-        <!-- What is ioty.com -->
-        <section id="about" class="py-32 md:w-1/2 md:pr-12">
-            <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-8">Beyond surface-level pitch decks.</h2>
-            <div class="glass-panel rounded-2xl p-8 md:p-10 relative overflow-hidden group">
-                <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-                
-                <iconify-icon icon="solar:network-linear" width="32" height="32" class="text-zinc-500 mb-6" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                
-                <p class="text-lg font-light text-zinc-300 leading-relaxed mb-6">
-                    ioty.com is an authoritative intelligence platform designed exclusively for serious investors and hardware innovators actively shaping the connected future.
+</div>
+<div class="mt-20 flex items-center gap-4 opacity-50">
+<p class="text-xs font-light tracking-wider uppercase text-zinc-400">Листайте, чтобы открыть инновации</p>
+<div class="w-px h-12 bg-gradient-to-b from-zinc-400 to-transparent"></div>
+</div>
+</section>
+<!-- What is ioty.com -->
+<section class="py-32 md:w-1/2 md:pr-12" id="about">
+<h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-8">Глубже поверхностных питч-деков.</h2>
+<div class="glass-panel rounded-2xl p-8 md:p-10 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<iconify-icon class="text-zinc-500 mb-6" height="32" icon="solar:network-linear" style="--iconify-stroke-width:1.5;" width="32"></iconify-icon>
+<p class="text-lg font-light text-zinc-300 leading-relaxed mb-6">
+                    ioty.com — авторитетная аналитическая платформа, созданная исключительно для серьёзных инвесторов и аппаратных инноваторов, активно формирующих подключённое будущее.
                 </p>
-                <p class="text-base font-light text-zinc-500 leading-relaxed">
-                    We move past noisy networking groups to provide deep-dive profiles, technical analysis, and contextual market data—facilitating targeted lead generation and strategic matchmaking in the Internet of Things sector.
+<p class="text-base font-light text-zinc-500 leading-relaxed">
+                    Мы идём дальше шумных нетворкинг-групп, предоставляя глубокие профили, технический анализ и контекстные рыночные данные — обеспечивая целевую лидогенерацию и стратегический подбор партнёров в секторе Internet of Things.
                 </p>
-            </div>
-        </section>
-
-        <!-- Who It's For -->
-        <section id="roles" class="py-32 md:w-1/2 md:pr-12">
-            <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-4">A curated IoT ecosystem.</h2>
-            <p class="text-base font-light text-zinc-400 mb-10">We maintain a high-signal environment by strictly verifying participants across these key pillars of hardware innovation.</p>
-            
-            <div class="grid grid-cols-2 gap-3">
-                <div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
-                    <iconify-icon icon="solar:lightbulb-bolt-linear" width="20" height="20" class="text-zinc-400" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    <span class="text-sm font-medium tracking-tight">Seed-Stage IoT Startups</span>
-                </div>
-                <div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
-                    <iconify-icon icon="solar:chart-square-linear" width="20" height="20" class="text-zinc-400" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    <span class="text-sm font-medium tracking-tight">Venture Capitalists</span>
-                </div>
-                <div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
-                    <iconify-icon icon="solar:case-minimalistic-linear" width="20" height="20" class="text-zinc-400" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    <span class="text-sm font-medium tracking-tight">Corporate Innovation Scouts</span>
-                </div>
-                <div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
-                    <iconify-icon icon="solar:cpu-bolt-linear" width="20" height="20" class="text-zinc-400" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    <span class="text-sm font-medium tracking-tight">Hardware & Edge Tech</span>
-                </div>
-                <div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
-                    <iconify-icon icon="solar:shield-check-linear" width="20" height="20" class="text-zinc-400" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    <span class="text-sm font-medium tracking-tight">Verified Deal Flow</span>
-                </div>
-                <div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
-                    <iconify-icon icon="solar:global-linear" width="20" height="20" class="text-zinc-400" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    <span class="text-sm font-medium tracking-tight">Global Discovery</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- How It Works -->
-        <section id="process" class="py-32 mb-20 md:w-1/2 md:pr-12">
-            <h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-12">Verified deal flow & matchmaking.</h2>
-            
-            <div class="relative border-l border-white/10 ml-3 md:ml-4 space-y-12 pb-8">
-                
-                <div class="relative pl-8 md:pl-10">
-                    <div class="absolute w-6 h-6 rounded-full bg-zinc-950 border border-white/20 -left-[13px] top-0 flex items-center justify-center text-[10px] font-medium text-zinc-400">1</div>
-                    <h3 class="text-lg font-medium tracking-tight text-white mb-2">Rigorous Verification</h3>
-                    <p class="text-sm font-light text-zinc-400 leading-relaxed">
-                        Every startup undergoes transparent selection criteria, including verifiable founder background checks and community-driven technical validation before listing.
+</div>
+</section>
+<!-- Who It's For -->
+<section class="py-32 md:w-1/2 md:pr-12" id="roles">
+<h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-4">Курируемая IoT-экосистема.</h2>
+<p class="text-base font-light text-zinc-400 mb-10">Мы поддерживаем среду с высоким сигналом, строго верифицируя участников по этим ключевым столпам аппаратных инноваций.</p>
+<div class="grid grid-cols-2 gap-3">
+<div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
+<iconify-icon class="text-zinc-400" height="20" icon="solar:lightbulb-bolt-linear" style="--iconify-stroke-width:1.5;" width="20"></iconify-icon>
+<span class="text-sm font-medium tracking-tight">IoT-стартапы посевной стадии</span>
+</div>
+<div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
+<iconify-icon class="text-zinc-400" height="20" icon="solar:chart-square-linear" style="--iconify-stroke-width:1.5;" width="20"></iconify-icon>
+<span class="text-sm font-medium tracking-tight">Венчурные капиталисты</span>
+</div>
+<div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
+<iconify-icon class="text-zinc-400" height="20" icon="solar:case-minimalistic-linear" style="--iconify-stroke-width:1.5;" width="20"></iconify-icon>
+<span class="text-sm font-medium tracking-tight">Корпоративные скауты инноваций</span>
+</div>
+<div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
+<iconify-icon class="text-zinc-400" height="20" icon="solar:cpu-bolt-linear" style="--iconify-stroke-width:1.5;" width="20"></iconify-icon>
+<span class="text-sm font-medium tracking-tight">Железо и Edge-технологии</span>
+</div>
+<div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
+<iconify-icon class="text-zinc-400" height="20" icon="solar:shield-check-linear" style="--iconify-stroke-width:1.5;" width="20"></iconify-icon>
+<span class="text-sm font-medium tracking-tight">Проверенный дилфлоу</span>
+</div>
+<div class="glass-panel rounded-xl p-5 flex flex-col gap-3 hover:bg-white/5 transition-colors cursor-default">
+<iconify-icon class="text-zinc-400" height="20" icon="solar:global-linear" style="--iconify-stroke-width:1.5;" width="20"></iconify-icon>
+<span class="text-sm font-medium tracking-tight">Глобальный поиск</span>
+</div>
+</div>
+</section>
+ Как это работает 
+<section class="py-32 mb-20 md:w-1/2 md:pr-12" id="process">
+<h2 class="text-3xl md:text-4xl font-medium tracking-tight mb-12">Проверенный дилфлоу и подбор партнёров.</h2>
+<div class="relative border-l border-white/10 ml-3 md:ml-4 space-y-12 pb-8">
+<div class="relative pl-8 md:pl-10">
+<div class="absolute w-6 h-6 rounded-full bg-zinc-950 border border-white/20 -left-[13px] top-0 flex items-center justify-center text-[10px] font-medium text-zinc-400">1</div>
+<h3 class="text-lg font-medium tracking-tight text-white mb-2">Строгая верификация</h3>
+<p class="text-sm font-light text-zinc-400 leading-relaxed">
+                        Каждый стартап проходит прозрачные критерии отбора, включая проверяемый бэкграунд-чек основателей и техническую валидацию сообществом до размещения.
                     </p>
-                </div>
-                
-                <div class="relative pl-8 md:pl-10">
-                    <div class="absolute w-6 h-6 rounded-full bg-zinc-950 border border-white/20 -left-[13px] top-0 flex items-center justify-center text-[10px] font-medium text-zinc-400">2</div>
-                    <h3 class="text-lg font-medium tracking-tight text-white mb-2">Deep-Dive Intelligence</h3>
-                    <p class="text-sm font-light text-zinc-400 leading-relaxed">
-                        Approved innovations are showcased with comprehensive technology profiles, clear disclosure of information sources, and objective market context.
+</div>
+<div class="relative pl-8 md:pl-10">
+<div class="absolute w-6 h-6 rounded-full bg-zinc-950 border border-white/20 -left-[13px] top-0 flex items-center justify-center text-[10px] font-medium text-zinc-400">2</div>
+<h3 class="text-lg font-medium tracking-tight text-white mb-2">Глубокая аналитика</h3>
+<p class="text-sm font-light text-zinc-400 leading-relaxed">
+                        Одобренные инновации представлены с исчерпывающими технологическими профилями, ясным раскрытием источников информации и объективным рыночным контекстом.
                     </p>
-                </div>
-                
-                <div class="relative pl-8 md:pl-10">
-                    <div class="absolute w-6 h-6 rounded-full bg-white border border-white -left-[13px] top-0 flex items-center justify-center">
-                        <span class="w-2 h-2 rounded-full bg-zinc-950"></span>
-                    </div>
-                    <h3 class="text-lg font-medium tracking-tight text-white mb-2">Strategic Matchmaking</h3>
-                    <p class="text-sm font-light text-zinc-400 leading-relaxed">
-                        Registered investors receive highly curated deal flow matching their specific IoT investment thesis, enabling direct, high-value introductions.
+</div>
+<div class="relative pl-8 md:pl-10">
+<div class="absolute w-6 h-6 rounded-full bg-white border border-white -left-[13px] top-0 flex items-center justify-center">
+<span class="w-2 h-2 rounded-full bg-zinc-950"></span>
+</div>
+<h3 class="text-lg font-medium tracking-tight text-white mb-2">Стратегический подбор партнёров</h3>
+<p class="text-sm font-light text-zinc-400 leading-relaxed">
+                        Зарегистрированные инвесторы получают тщательно курируемый дилфлоу, соответствующий их конкретному инвестиционному тезису в IoT, что открывает прямые, ценные знакомства.
                     </p>
-                    
-                    <a href="#" class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-zinc-300 transition-colors group">
-                        Register for Investor Access 
-                        <iconify-icon icon="solar:arrow-right-linear" width="16" height="16" class="transition-transform group-hover:translate-x-1" style="--iconify-stroke-width:1.5;"></iconify-icon>
-                    </a>
-                </div>
-                
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="relative z-10 border-t border-white/5 bg-zinc-950/50 backdrop-blur-lg pt-16 pb-8 px-6">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
-            <div class="flex items-center gap-2">
-                <div class="w-5 h-5 rounded flex items-center justify-center bg-white/10 text-white font-medium text-[10px] tracking-tighter">
+<a class="inline-flex items-center gap-2 mt-6 text-sm font-medium text-white hover:text-zinc-300 transition-colors group" href="#">
+                        Регистрация для доступа инвестора 
+                        <iconify-icon class="transition-transform group-hover:translate-x-1" height="16" icon="solar:arrow-right-linear" style="--iconify-stroke-width:1.5;" width="16"></iconify-icon>
+</a>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="relative z-10 border-t border-white/5 bg-zinc-950/50 backdrop-blur-lg pt-16 pb-8 px-6">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+<div class="flex items-center gap-2">
+<div class="w-5 h-5 rounded flex items-center justify-center bg-white/10 text-white font-medium text-[10px] tracking-tighter">
                     IO
                 </div>
-                <span class="text-xs font-medium tracking-tight text-zinc-400">ioty.com © 2024</span>
-            </div>
-            
-            <div class="flex gap-6 text-xs font-light text-zinc-500">
-                <a href="#" class="hover:text-white transition-colors">Platform Scope</a>
-                <a href="#" class="hover:text-white transition-colors">Verification Process</a>
-                <a href="#" class="hover:text-white transition-colors">Terms</a>
-                <a href="#" class="hover:text-white transition-colors">Privacy</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- 3D Animation Script -->
-    <script>
+<span class="text-xs font-medium tracking-tight text-zinc-400">ioty.com © 2024</span>
+</div>
+<div class="flex gap-6 text-xs font-light text-zinc-500">
+<a class="hover:text-white transition-colors" href="#">Охват платформы</a>
+<a class="hover:text-white transition-colors" href="#">Процесс верификации</a>
+<a class="hover:text-white transition-colors" href="#">Условия</a>
+<a class="hover:text-white transition-colors" href="#">Конфиденциальность</a>
+</div>
+</div>
+</footer>
+<!-- 3D Animation Script -->
+<script>
         // Setup Three.js Scene
         const container = document.getElementById('canvas-container');
         const scene = new THREE.Scene();
@@ -472,5 +486,4 @@ gtag('config', 'G-2M6V79H761');
             updateLayout();
         });
     </script>
-
 </body></html>

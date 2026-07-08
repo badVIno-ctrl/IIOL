@@ -1,17 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html class="scroll-smooth" lang="ru">
 <head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kabovelo Film Farm | Cinematic Production</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Kabovelo Film Farm | Кинопродакшен</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
 --cursor-size: 20px;
@@ -68,476 +68,474 @@ pointer-events: none;
 .hover-border-glow:hover::after {
 border-color: rgba(255, 255, 255, 0.3);
 }
+</style><style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
 </style></head>
 <body class="antialiased selection:bg-red-900/50 selection:text-white">
-
-    <div class="grain-overlay"></div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
-        <div class="backdrop-blur-xl bg-black/70 border border-white/10 rounded-full px-6 py-4 flex items-center justify-between gap-12 shadow-2xl shadow-black/50 transition-all duration-300 hover:border-white/20">
-            <a href="#" class="text-lg font-bold tracking-tighter uppercase text-white flex items-center gap-1">
+<div class="grain-overlay"></div>
+ Навигация 
+<nav class="fixed top-6 left-0 right-0 z-50 flex justify-center px-4">
+<div class="backdrop-blur-xl bg-black/70 border border-white/10 rounded-full px-6 py-4 flex items-center justify-between gap-12 shadow-2xl shadow-black/50 transition-all duration-300 hover:border-white/20">
+<a class="text-lg font-bold tracking-tighter uppercase text-white flex items-center gap-1" href="#">
                 Kabovelo<span class="w-1.5 h-1.5 rounded-full bg-red-600 animate-pulse"></span>
-            </a>
-            
-            <div class="hidden md:flex items-center gap-8 text-xs font-medium uppercase tracking-widest text-neutral-400">
-                <a href="#vision" class="hover:text-white transition-colors">Vision</a>
-                <a href="#portfolio" class="hover:text-white transition-colors">Work</a>
-                <a href="#services" class="hover:text-white transition-colors">Services</a>
-                <a href="#contact" class="hover:text-white transition-colors">Contact</a>
-            </div>
-
-            <a href="#contact" class="hidden md:flex items-center justify-center w-8 h-8 rounded-full bg-white text-black hover:bg-neutral-200 transition-transform hover:scale-110">
-                <span class="iconify" data-icon="lucide:arrow-up-right" data-width="16"></span>
-            </a>
-
-            <button class="md:hidden text-white">
-                <span class="iconify" data-icon="lucide:menu" data-width="20"></span>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="relative w-full h-[110vh] overflow-hidden flex flex-col items-center justify-center">
-        <!-- Background Video -->
-        <div class="absolute inset-0 z-0">
-            <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&w=3450&auto=format&fit=crop" class="w-full h-full object-cover opacity-50 scale-105">
-                <source src="https://videos.pexels.com/video-files/5824571/5824571-hd_1920_1080_24fps.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-black/30"></div>
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#050505_110%)]"></div>
-        </div>
-
-        <div class="relative z-20 text-center px-6 max-w-5xl mx-auto mt-20">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 fade-up" style="transition-delay: 0.1s;">
-                <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
-                  <span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
-                </span>
-                <span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-300">Global Production House</span>
-            </div>
-            
-            <h1 class="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white leading-[0.9] mb-8 fade-up" style="transition-delay: 0.2s;">
-                Visuals that <br />
-                <span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500">resonate.</span>
-            </h1>
-            
-            <p class="text-lg md:text-xl text-neutral-400 font-light max-w-2xl mx-auto leading-relaxed mb-10 fade-up" style="transition-delay: 0.3s;">
-                We craft high-fidelity cinematic experiences for brands, artists, and visionaries who dare to stand out.
+</a>
+<div class="hidden md:flex items-center gap-8 text-xs font-medium uppercase tracking-widest text-neutral-400">
+<a class="hover:text-white transition-colors" href="#vision">Видение</a>
+<a class="hover:text-white transition-colors" href="#portfolio">Работы</a>
+<a class="hover:text-white transition-colors" href="#services">Услуги</a>
+<a class="hover:text-white transition-colors" href="#contact">Контакты</a>
+</div>
+<a class="hidden md:flex items-center justify-center w-8 h-8 rounded-full bg-white text-black hover:bg-neutral-200 transition-transform hover:scale-110" href="#contact">
+<span class="iconify" data-icon="lucide:arrow-up-right" data-width="16"></span>
+</a>
+<button class="md:hidden text-white">
+<span class="iconify" data-icon="lucide:menu" data-width="20"></span>
+</button>
+</div>
+</nav>
+ Hero-секция 
+<header class="relative w-full h-[110vh] overflow-hidden flex flex-col items-center justify-center">
+<!-- Background Video -->
+<div class="absolute inset-0 z-0">
+<video autoplay="" class="w-full h-full object-cover opacity-50 scale-105" loop="" muted="" playsinline="" poster="https://images.unsplash.com/photo-1536440136628-849c177e76a1?q=80&amp;w=3450&amp;auto=format&amp;fit=crop">
+<source src="https://videos.pexels.com/video-files/5824571/5824571-hd_1920_1080_24fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-black/30"></div>
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_transparent_0%,_#050505_110%)]"></div>
+</div>
+<div class="relative z-20 text-center px-6 max-w-5xl mx-auto mt-20">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/10 bg-white/5 backdrop-blur-sm mb-8 fade-up" style="transition-delay: 0.1s;">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-red-600"></span>
+</span>
+<span class="text-[10px] font-semibold uppercase tracking-[0.2em] text-neutral-300">Глобальный продакшен-хаус</span>
+</div>
+<h1 class="text-6xl md:text-8xl lg:text-9xl font-semibold tracking-tighter text-white leading-[0.9] mb-8 fade-up" style="transition-delay: 0.2s;">
+                Визуалы, которые <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-b from-white to-neutral-500">резонируют.</span>
+</h1>
+<p class="text-lg md:text-xl text-neutral-400 font-light max-w-2xl mx-auto leading-relaxed mb-10 fade-up" style="transition-delay: 0.3s;">
+                Мы создаём высококачественные кинематографические впечатления для брендов, артистов и визионеров, которые не боятся выделяться.
             </p>
-
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up" style="transition-delay: 0.4s;">
-                <a href="#portfolio" class="group relative px-8 py-4 bg-white text-black text-sm font-semibold tracking-wide overflow-hidden rounded-sm transition-all hover:pr-10">
-                    <span class="relative z-10">Watch Reel</span>
-                    <div class="absolute inset-0 bg-neutral-200 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
-                    <span class="iconify absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10" data-icon="lucide:play" data-width="12"></span>
+<div class="flex flex-col sm:flex-row items-center justify-center gap-4 fade-up" style="transition-delay: 0.4s;">
+<a class="group relative px-8 py-4 bg-white text-black text-sm font-semibold tracking-wide overflow-hidden rounded-sm transition-all hover:pr-10" href="#portfolio">
+<span class="relative z-10">Смотреть шоурил</span>
+<div class="absolute inset-0 bg-neutral-200 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out z-0"></div>
+<span class="iconify absolute right-3 top-1/2 -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-all duration-300 z-10" data-icon="lucide:play" data-width="12"></span>
+</a>
+<a class="group px-8 py-4 border border-white/10 text-white text-sm font-medium tracking-wide hover:bg-white/5 transition-all rounded-sm backdrop-blur-sm" href="#contact">
+                    Начать проект
                 </a>
-                <a href="#contact" class="group px-8 py-4 border border-white/10 text-white text-sm font-medium tracking-wide hover:bg-white/5 transition-all rounded-sm backdrop-blur-sm">
-                    Start a Project
-                </a>
-            </div>
-        </div>
-
-        <!-- Scroll Indicator -->
-        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
-            <div class="w-[1px] h-12 bg-gradient-to-b from-transparent via-white to-transparent"></div>
-        </div>
-    </header>
-
-    <!-- Infinite Marquee -->
-    <div class="w-full bg-neutral-900/30 border-y border-white/5 py-6 overflow-hidden relative z-20 backdrop-blur-sm">
-        <div class="flex whitespace-nowrap w-[200%] animate-scroll hover:[animation-play-state:paused]">
-            <div class="flex items-center gap-12 mx-6">
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Cinematography</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Direction</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Post-Production</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Color Grading</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Sound Design</span>
-                <span class="text-red-600 text-xl">•</span>
-            </div>
-            <div class="flex items-center gap-12 mx-6">
-                 <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Cinematography</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Direction</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Post-Production</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Color Grading</span>
-                <span class="text-red-600 text-xl">•</span>
-                <span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Sound Design</span>
-                <span class="text-red-600 text-xl">•</span>
-            </div>
-        </div>
-    </div>
-
-    <!-- Vision Section -->
-    <section id="vision" class="py-32 relative">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="grid lg:grid-cols-12 gap-16 items-start">
-                <div class="lg:col-span-5 fade-up sticky top-32">
-                    <span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-4 block">01 / The Vision</span>
-                    <h2 class="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-8 leading-[1.1]">
-                        We don't just capture moments. <br><span class="text-neutral-500">We construct feelings.</span>
-                    </h2>
-                    <p class="text-neutral-400 font-light leading-relaxed mb-8">
-                        Every frame is a decision. Every cut is a heartbeat. At Kabovelo, we operate at the intersection of raw emotion and technical precision. Our films are designed to linger in the mind long after the screen goes black.
+</div>
+</div>
+<!-- Scroll Indicator -->
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+<div class="w-[1px] h-12 bg-gradient-to-b from-transparent via-white to-transparent"></div>
+</div>
+</header>
+<!-- Infinite Marquee -->
+<div class="w-full bg-neutral-900/30 border-y border-white/5 py-6 overflow-hidden relative z-20 backdrop-blur-sm">
+<div class="flex whitespace-nowrap w-[200%] animate-scroll hover:[animation-play-state:paused]">
+<div class="flex items-center gap-12 mx-6">
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Операторская работа</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Режиссура</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Постпродакшен</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Цветокоррекция</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Саунд-дизайн</span>
+<span class="text-red-600 text-xl">•</span>
+</div>
+<div class="flex items-center gap-12 mx-6">
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Операторская работа</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Режиссура</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Постпродакшен</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Цветокоррекция</span>
+<span class="text-red-600 text-xl">•</span>
+<span class="text-4xl font-bold uppercase tracking-tighter text-white/10">Саунд-дизайн</span>
+<span class="text-red-600 text-xl">•</span>
+</div>
+</div>
+</div>
+<!-- Vision Section -->
+<section class="py-32 relative" id="vision">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-12 gap-16 items-start">
+<div class="lg:col-span-5 fade-up sticky top-32">
+<span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-4 block">01 / Видение</span>
+<h2 class="text-4xl md:text-5xl font-semibold tracking-tighter text-white mb-8 leading-[1.1]">
+                        Мы не просто фиксируем моменты. <br/><span class="text-neutral-500">Мы конструируем чувства.</span>
+</h2>
+<p class="text-neutral-400 font-light leading-relaxed mb-8">
+                        Каждый кадр — это решение. Каждая склейка — удар сердца. В Kabovelo мы работаем на пересечении живой эмоции и технической точности. Наши фильмы созданы, чтобы оставаться в памяти долго после того, как экран погаснет.
                     </p>
-                    <div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
-                        <div>
-                            <span class="block text-3xl font-bold text-white mb-1">50+</span>
-                            <span class="text-xs text-neutral-500 uppercase tracking-widest">Projects Shipped</span>
-                        </div>
-                        <div>
-                            <span class="block text-3xl font-bold text-white mb-1">12</span>
-                            <span class="text-xs text-neutral-500 uppercase tracking-widest">Global Awards</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="lg:col-span-7 grid gap-6 fade-up">
-                    <div class="relative aspect-video group overflow-hidden rounded-sm border border-white/5">
-                        <video autoplay loop muted playsinline poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
-                             <source src="https://videos.pexels.com/video-files/3205647/3205647-hd_1920_1080_25fps.mp4" type="video/mp4">
-                        </video>
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-100 transition-opacity duration-300"></div>
-                        <div class="absolute bottom-6 left-6">
-                            <h3 class="text-xl font-medium text-white tracking-tight">Narrative Depth</h3>
-                        </div>
-                    </div>
-                    <div class="grid sm:grid-cols-2 gap-6">
-                        <div class="relative aspect-[4/5] group overflow-hidden rounded-sm border border-white/5">
-                            <img src="https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&w=2996&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0">
-                            <div class="absolute bottom-6 left-6">
-                                <h3 class="text-xl font-medium text-white tracking-tight">Lighting</h3>
-                            </div>
-                        </div>
-                        <div class="relative aspect-[4/5] group overflow-hidden rounded-sm border border-white/5">
-                            <img src="https://images.unsplash.com/photo-1585647347384-2593bc35786b?q=80&w=2940&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100">
-                            <div class="absolute bottom-6 left-6">
-                                <h3 class="text-xl font-medium text-white tracking-tight">Composition</h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Selected Works -->
-    <section id="portfolio" class="py-32 bg-[#080808] border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 fade-up">
-                <div>
-                    <span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-2 block">02 / Portfolio</span>
-                    <h2 class="text-4xl font-semibold tracking-tighter text-white">Selected Works</h2>
-                </div>
-                <div class="flex items-center gap-6 mt-6 md:mt-0">
-                    <button class="text-white text-sm font-medium border-b border-red-500 pb-1">All</button>
-                    <button class="text-neutral-500 text-sm font-medium hover:text-white transition-colors pb-1">Commercial</button>
-                    <button class="text-neutral-500 text-sm font-medium hover:text-white transition-colors pb-1">Music Video</button>
-                    <button class="text-neutral-500 text-sm font-medium hover:text-white transition-colors pb-1">Documentary</button>
-                </div>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                
-                <!-- Project Card 1 -->
-                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up">
-                    <video autoplay loop muted playsinline poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100">
-                        <source src="https://videos.pexels.com/video-files/3015511/3015511-hd_1920_1080_24fps.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                    
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
-                        <div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
-                            <span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                        </div>
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Automotive</p>
-                            <h3 class="text-2xl font-semibold text-white tracking-tight">Apex Velocity</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 2 -->
-                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.1s;">
-                    <video autoplay loop muted playsinline poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100">
-                        <source src="https://videos.pexels.com/video-files/4057317/4057317-hd_1920_1080_25fps.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
-                        <div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2024</span>
-                            <span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                        </div>
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Music Video</p>
-                            <h3 class="text-2xl font-semibold text-white tracking-tight">Neon Nights</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 3 -->
-                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.2s;">
-                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&w=2874&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100">
-                        <source src="https://videos.pexels.com/video-files/3205915/3205915-hd_1920_1080_25fps.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
-                        <div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
-                            <span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                        </div>
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Fashion</p>
-                            <h3 class="text-2xl font-semibold text-white tracking-tight">Vogue Noir</h3>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project Card 4 -->
-                <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up">
-                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&w=2788&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100">
-                         <source src="https://videos.pexels.com/video-files/3752535/3752535-hd_1920_1080_24fps.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
-                        <div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
-                            <span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                        </div>
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Experimental</p>
-                            <h3 class="text-2xl font-semibold text-white tracking-tight">Chromatic Echo</h3>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Project Card 5 -->
-                 <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.1s;">
-                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&w=2942&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100">
-                         <source src="https://videos.pexels.com/video-files/853870/853870-hd_1920_1080_25fps.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
-                        <div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2024</span>
-                            <span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                        </div>
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Documentary</p>
-                            <h3 class="text-2xl font-semibold text-white tracking-tight">Terra Firma</h3>
-                        </div>
-                    </div>
-                </div>
-
-                 <!-- Project Card 6 -->
-                 <div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.2s;">
-                    <video autoplay loop muted playsinline poster="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=2940&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100">
-                        <source src="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4" type="video/mp4">
-                    </video>
-                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
-                    <div class="absolute inset-0 p-8 flex flex-col justify-between">
-                        <div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
-                            <span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
-                            <span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
-                        </div>
-                        <div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                            <p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Tech</p>
-                            <h3 class="text-2xl font-semibold text-white tracking-tight">Quantum Leap</h3>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-            
-            <div class="mt-16 text-center fade-up">
-                <a href="#" class="inline-flex items-center justify-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors uppercase tracking-widest group">
-                    View Full Archive
+<div class="grid grid-cols-2 gap-8 pt-8 border-t border-white/10">
+<div>
+<span class="block text-3xl font-bold text-white mb-1">50+</span>
+<span class="text-xs text-neutral-500 uppercase tracking-widest">Запущенные проекты</span>
+</div>
+<div>
+<span class="block text-3xl font-bold text-white mb-1">12</span>
+<span class="text-xs text-neutral-500 uppercase tracking-widest">Международных наград</span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-7 grid gap-6 fade-up">
+<div class="relative aspect-video group overflow-hidden rounded-sm border border-white/5">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg">
+<source src="https://videos.pexels.com/video-files/3205647/3205647-hd_1920_1080_25fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-100 transition-opacity duration-300"></div>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-medium text-white tracking-tight">Глубина нарратива</h3>
+</div>
+</div>
+<div class="grid sm:grid-cols-2 gap-6">
+<div class="relative aspect-[4/5] group overflow-hidden rounded-sm border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100 grayscale group-hover:grayscale-0" src="https://images.unsplash.com/photo-1518135714426-c18f5ffb6f4d?q=80&amp;w=2996&amp;auto=format&amp;fit=crop"/>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-medium text-white tracking-tight">Свет</h3>
+</div>
+</div>
+<div class="relative aspect-[4/5] group overflow-hidden rounded-sm border border-white/5">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100" src="https://images.unsplash.com/photo-1585647347384-2593bc35786b?q=80&amp;w=2940&amp;auto=format&amp;fit=crop"/>
+<div class="absolute bottom-6 left-6">
+<h3 class="text-xl font-medium text-white tracking-tight">Композиция</h3>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+ Избранные работы 
+<section class="py-32 bg-[#080808] border-t border-white/5" id="portfolio">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-16 fade-up">
+<div>
+<span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-2 block">02 / Портфолио</span>
+<h2 class="text-4xl font-semibold tracking-tighter text-white">Избранные работы</h2>
+</div>
+<div class="flex items-center gap-6 mt-6 md:mt-0">
+<button class="text-white text-sm font-medium border-b border-red-500 pb-1">Все</button>
+<button class="text-neutral-500 text-sm font-medium hover:text-white transition-colors pb-1">Реклама</button>
+<button class="text-neutral-500 text-sm font-medium hover:text-white transition-colors pb-1">Музыкальное видео</button>
+<button class="text-neutral-500 text-sm font-medium hover:text-white transition-colors pb-1">Документалистика</button>
+</div>
+</div>
+<div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Project Card 1 -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4734259a-bad7-422f-981e-ce01e79184f2_1600w.jpg">
+<source src="https://videos.pexels.com/video-files/3015511/3015511-hd_1920_1080_24fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
+<span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
+</div>
+<div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Автомобильная индустрия</p>
+<h3 class="text-2xl font-semibold text-white tracking-tight">Apex Velocity</h3>
+</div>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.1s;">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c543a9e1-f226-4ced-80b0-feb8445a75b9_1600w.jpg">
+<source src="https://videos.pexels.com/video-files/4057317/4057317-hd_1920_1080_25fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2024</span>
+<span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
+</div>
+<div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Музыкальное видео</p>
+<h3 class="text-2xl font-semibold text-white tracking-tight">Neon Nights</h3>
+</div>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.2s;">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://images.unsplash.com/photo-1542204165-65bf26472b9b?q=80&amp;w=2874&amp;auto=format&amp;fit=crop">
+<source src="https://videos.pexels.com/video-files/3205915/3205915-hd_1920_1080_25fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
+<span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
+</div>
+<div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Мода</p>
+<h3 class="text-2xl font-semibold text-white tracking-tight">Vogue Noir</h3>
+</div>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://images.unsplash.com/photo-1500462918059-b1a0cb512f1d?q=80&amp;w=2788&amp;auto=format&amp;fit=crop">
+<source src="https://videos.pexels.com/video-files/3752535/3752535-hd_1920_1080_24fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
+<span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
+</div>
+<div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Экспериментальное</p>
+<h3 class="text-2xl font-semibold text-white tracking-tight">Chromatic Echo</h3>
+</div>
+</div>
+</div>
+<!-- Project Card 5 -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.1s;">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?q=80&amp;w=2942&amp;auto=format&amp;fit=crop">
+<source src="https://videos.pexels.com/video-files/853870/853870-hd_1920_1080_25fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2024</span>
+<span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
+</div>
+<div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Документалистика</p>
+<h3 class="text-2xl font-semibold text-white tracking-tight">Terra Firma</h3>
+</div>
+</div>
+</div>
+<!-- Project Card 6 -->
+<div class="group relative aspect-[3/4] overflow-hidden cursor-pointer rounded-sm border border-white/5 fade-up" style="transition-delay: 0.2s;">
+<video autoplay="" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105 opacity-70 group-hover:opacity-100" loop="" muted="" playsinline="" poster="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&amp;w=2940&amp;auto=format&amp;fit=crop">
+<source src="https://videos.pexels.com/video-files/3195394/3195394-hd_1920_1080_25fps.mp4" type="video/mp4">
+</source></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 transition-opacity duration-500"></div>
+<div class="absolute inset-0 p-8 flex flex-col justify-between">
+<div class="flex justify-between items-start opacity-0 group-hover:opacity-100 transition-opacity duration-500 -translate-y-4 group-hover:translate-y-0">
+<span class="px-3 py-1 bg-white/10 backdrop-blur-md rounded-full text-[10px] uppercase tracking-widest text-white border border-white/10">2023</span>
+<span class="iconify text-white rotate-45 group-hover:rotate-0 transition-transform duration-500" data-icon="lucide:arrow-up-right" data-width="20"></span>
+</div>
+<div class="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+<p class="text-red-500 text-xs font-mono uppercase tracking-widest mb-2">Технологии</p>
+<h3 class="text-2xl font-semibold text-white tracking-tight">Quantum Leap</h3>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-16 text-center fade-up">
+<a class="inline-flex items-center justify-center gap-2 text-sm text-neutral-400 hover:text-white transition-colors uppercase tracking-widest group" href="#">
+                    Смотреть весь архив
                     <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right" data-width="16"></span>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Grid -->
-    <section id="services" class="py-32 relative overflow-hidden">
-        <!-- Decoration -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[120px] pointer-events-none"></div>
-
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-            <div class="mb-16 fade-up">
-                <span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-2 block">03 / Expertise</span>
-                <h2 class="text-4xl font-semibold tracking-tighter text-white">Production Services</h2>
-            </div>
-
-            <!-- Bento Grid Style -->
-            <div class="grid md:grid-cols-3 gap-0 border border-white/10 bg-black">
-                
-                <!-- Service 1 -->
-                <div class="group hover-border-glow p-10 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors fade-up">
-                    <div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
-                        <span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:film" data-width="24"></span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Pre-Production</h3>
-                    <p class="text-sm text-neutral-400 leading-relaxed">Concept development, scriptwriting, and storyboarding. We lay the foundation for visual excellence.</p>
-                </div>
-
-                <!-- Service 2 -->
-                <div class="group hover-border-glow p-10 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.1s;">
-                    <div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
-                        <span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:video" data-width="24"></span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Production</h3>
-                    <p class="text-sm text-neutral-400 leading-relaxed">High-end cinematography, directing, and on-set management using state-of-the-art cinema gear.</p>
-                </div>
-
-                <!-- Service 3 -->
-                <div class="group hover-border-glow p-10 border-b border-white/10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.2s;">
-                    <div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
-                        <span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:scissors" data-width="24"></span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Post-Production</h3>
-                    <p class="text-sm text-neutral-400 leading-relaxed">Editing, VFX, and sound mixing. We sculpt the raw footage into a polished narrative.</p>
-                </div>
-
-                <!-- Service 4 -->
-                <div class="group hover-border-glow p-10 border-r border-white/10 hover:bg-white/[0.02] transition-colors fade-up">
-                    <div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
-                        <span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:palette" data-width="24"></span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Color Grading</h3>
-                    <p class="text-sm text-neutral-400 leading-relaxed">Defining mood and tone through expert color science. Davinci Resolve certified workflow.</p>
-                </div>
-
-                <!-- Service 5 -->
-                <div class="group hover-border-glow p-10 border-r border-white/10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.1s;">
-                    <div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
-                        <span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:music-2" data-width="24"></span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Sound Design</h3>
-                    <p class="text-sm text-neutral-400 leading-relaxed">Immersive audio landscapes that heighten emotional impact. Composition and SFX.</p>
-                </div>
-
-                <!-- Service 6 -->
-                <div class="group hover-border-glow p-10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.2s;">
-                    <div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
-                        <span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:monitor-play" data-width="24"></span>
-                    </div>
-                    <h3 class="text-xl font-semibold text-white mb-3">Motion Graphics</h3>
-                    <p class="text-sm text-neutral-400 leading-relaxed">2D and 3D animation to explain complex concepts or add flair to your visual identity.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- BTS Section (Masonry) -->
-    <section class="py-24 bg-[#080808]">
-        <div class="max-w-7xl mx-auto px-6 mb-12 fade-up">
-            <span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-2 block">04 / Behind the Scenes</span>
-            <h2 class="text-3xl font-semibold tracking-tighter text-white">On Location</h2>
-        </div>
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[600px]">
-            <div class="col-span-2 row-span-2 relative group overflow-hidden rounded-sm fade-up">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0">
-                <div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] text-white uppercase tracking-widest border border-white/10">Set Life</div>
-            </div>
-            <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-sm fade-up" style="transition-delay: 0.1s;">
-                 <img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=2918&auto=format&fit=crop" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0">
-            </div>
-            <div class="col-span-1 row-span-2 relative group overflow-hidden rounded-sm fade-up" style="transition-delay: 0.2s;">
-                 <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0">
-            </div>
-            <div class="col-span-1 row-span-1 relative group overflow-hidden rounded-sm fade-up" style="transition-delay: 0.3s;">
-                 <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0">
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-32 relative bg-neutral-950 border-t border-white/5 overflow-hidden">
-        
-        <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 relative z-10">
-            <div class="fade-up">
-                <h2 class="text-6xl md:text-7xl font-semibold tracking-tighter text-white mb-8">
-                    Let's make <br />
-                    <span class="text-neutral-600">history.</span>
-                </h2>
-                <p class="text-neutral-400 text-lg font-light mb-12 max-w-md">
-                    We are currently accepting new projects for Q4 2023. Reach out to discuss your vision.
+</a>
+</div>
+</div>
+</section>
+<!-- Services Grid -->
+<section class="py-32 relative overflow-hidden" id="services">
+<!-- Decoration -->
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-red-900/10 rounded-full blur-[120px] pointer-events-none"></div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<div class="mb-16 fade-up">
+<span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-2 block">03 / Экспертиза</span>
+<h2 class="text-4xl font-semibold tracking-tighter text-white">Продакшн-услуги</h2>
+</div>
+<!-- Bento Grid Style -->
+<div class="grid md:grid-cols-3 gap-0 border border-white/10 bg-black">
+<!-- Service 1 -->
+<div class="group hover-border-glow p-10 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors fade-up">
+<div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
+<span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:film" data-width="24"></span>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Препродакшн</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">Разработка концепции, сценарий и раскадровка. Мы закладываем фундамент визуального совершенства.</p>
+</div>
+<!-- Service 2 -->
+<div class="group hover-border-glow p-10 border-r border-b border-white/10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.1s;">
+<div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
+<span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:video" data-width="24"></span>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Продакшн</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">Высококлассная операторская работа, режиссура и управление съёмочной площадкой с использованием новейшего кинооборудования.</p>
+</div>
+<!-- Service 3 -->
+<div class="group hover-border-glow p-10 border-b border-white/10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.2s;">
+<div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
+<span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:scissors" data-width="24"></span>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Постпродакшен</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">Монтаж, VFX и сведение звука. Мы превращаем отснятый материал в отточенное повествование.</p>
+</div>
+<!-- Service 4 -->
+<div class="group hover-border-glow p-10 border-r border-white/10 hover:bg-white/[0.02] transition-colors fade-up">
+<div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
+<span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:palette" data-width="24"></span>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Цветокоррекция</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">Настроение и тон через профессиональную работу с цветом. Сертифицированный процесс на базе Davinci Resolve.</p>
+</div>
+<!-- Service 5 -->
+<div class="group hover-border-glow p-10 border-r border-white/10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.1s;">
+<div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
+<span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:music-2" data-width="24"></span>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Саунд-дизайн</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">Иммерсивные звуковые ландшафты, усиливающие эмоциональное воздействие. Композиция и SFX.</p>
+</div>
+<!-- Service 6 -->
+<div class="group hover-border-glow p-10 hover:bg-white/[0.02] transition-colors fade-up" style="transition-delay: 0.2s;">
+<div class="w-12 h-12 bg-neutral-900 rounded-sm flex items-center justify-center mb-8 border border-white/5 group-hover:border-red-500/50 transition-colors">
+<span class="iconify text-neutral-300 group-hover:text-red-500 transition-colors" data-icon="lucide:monitor-play" data-width="24"></span>
+</div>
+<h3 class="text-xl font-semibold text-white mb-3">Моушн-графика</h3>
+<p class="text-sm text-neutral-400 leading-relaxed">2D- и 3D-анимация, чтобы объяснить сложные концепции или добавить яркости вашей визуальной айдентике.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- BTS Section (Masonry) -->
+<section class="py-24 bg-[#080808]">
+<div class="max-w-7xl mx-auto px-6 mb-12 fade-up">
+<span class="text-red-500 font-mono text-xs uppercase tracking-widest mb-2 block">04 / За кадром</span>
+<h2 class="text-3xl font-semibold tracking-tighter text-white">На локации</h2>
+</div>
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 grid-rows-2 gap-4 h-[600px]">
+<div class="col-span-2 row-span-2 relative group overflow-hidden rounded-sm fade-up">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5bab247f-35d9-400d-a82b-fd87cfe913d2_1600w.webp"/>
+<div class="absolute bottom-4 left-4 bg-black/60 backdrop-blur-md px-3 py-1 text-[10px] text-white uppercase tracking-widest border border-white/10">Жизнь на площадке</div>
+</div>
+<div class="col-span-1 row-span-1 relative group overflow-hidden rounded-sm fade-up" style="transition-delay: 0.1s;">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0" src="https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&amp;w=2918&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="col-span-1 row-span-2 relative group overflow-hidden rounded-sm fade-up" style="transition-delay: 0.2s;">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30104e3c-5eea-4b93-93e9-5313698a7156_1600w.webp"/>
+</div>
+<div class="col-span-1 row-span-1 relative group overflow-hidden rounded-sm fade-up" style="transition-delay: 0.3s;">
+<img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-60 group-hover:opacity-100 filter grayscale group-hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/917d6f93-fb36-439a-8c48-884b67b35381_1600w.jpg"/>
+</div>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="py-32 relative bg-neutral-950 border-t border-white/5 overflow-hidden" id="contact">
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-20 relative z-10">
+<div class="fade-up">
+<h2 class="text-6xl md:text-7xl font-semibold tracking-tighter text-white mb-8">
+                    Давайте творить <br/>
+<span class="text-neutral-600">историю.</span>
+</h2>
+<p class="text-neutral-400 text-lg font-light mb-12 max-w-md">
+                    Мы принимаем новые проекты на Q4 2023. Свяжитесь с нами, чтобы обсудить вашу идею.
                 </p>
-
-                <div class="space-y-8">
-                    <a href="mailto:hello@kabovelo.com" class="group flex items-center gap-6 text-white hover:text-red-500 transition-colors">
-                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-red-500 transition-colors">
-                            <span class="iconify" data-icon="lucide:mail" data-width="20"></span>
-                        </div>
-                        <div>
-                            <span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Email Us</span>
-                            <span class="text-xl font-medium">hello@kabovelo.com</span>
-                        </div>
-                    </a>
-                    <a href="#" class="group flex items-center gap-6 text-white hover:text-red-500 transition-colors">
-                        <div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-red-500 transition-colors">
-                            <span class="iconify" data-icon="lucide:instagram" data-width="20"></span>
-                        </div>
-                        <div>
-                            <span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Follow Us</span>
-                            <span class="text-xl font-medium">@kabovelo.film</span>
-                        </div>
-                    </a>
-                </div>
-            </div>
-
-            <div class="bg-neutral-900/30 p-10 border border-white/10 rounded-sm backdrop-blur-sm fade-up" style="transition-delay: 0.2s;">
-                <form class="space-y-8">
-                    <div class="grid md:grid-cols-2 gap-8">
-                        <div class="group relative">
-                            <input type="text" id="name" class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent" placeholder="Name">
-                            <label for="name" class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500">Name</label>
-                        </div>
-                        <div class="group relative">
-                            <input type="email" id="email" class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent" placeholder="Email">
-                            <label for="email" class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500">Email</label>
-                        </div>
-                    </div>
-                    
-                    <div class="group relative">
-                        <input type="text" id="budget" class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent" placeholder="Budget">
-                        <label for="budget" class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500">Estimated Budget</label>
-                    </div>
-
-                    <div class="group relative">
-                        <textarea id="message" rows="4" class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent resize-none" placeholder="Message"></textarea>
-                        <label for="message" class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500">Project Details</label>
-                    </div>
-
-                    <button class="w-full py-5 bg-white text-black font-semibold uppercase tracking-widest hover:bg-neutral-200 transition-all flex items-center justify-center gap-3 group">
-                        Send Inquiry
+<div class="space-y-8">
+<a class="group flex items-center gap-6 text-white hover:text-red-500 transition-colors" href="mailto:hello@kabovelo.com">
+<div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-red-500 transition-colors">
+<span class="iconify" data-icon="lucide:mail" data-width="20"></span>
+</div>
+<div>
+<span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Напишите нам</span>
+<span class="text-xl font-medium">hello@kabovelo.com</span>
+</div>
+</a>
+<a class="group flex items-center gap-6 text-white hover:text-red-500 transition-colors" href="#">
+<div class="w-12 h-12 rounded-full border border-white/10 flex items-center justify-center group-hover:border-red-500 transition-colors">
+<span class="iconify" data-icon="lucide:instagram" data-width="20"></span>
+</div>
+<div>
+<span class="block text-xs text-neutral-500 uppercase tracking-widest mb-1">Подписывайтесь</span>
+<span class="text-xl font-medium">@kabovelo.film</span>
+</div>
+</a>
+</div>
+</div>
+<div class="bg-neutral-900/30 p-10 border border-white/10 rounded-sm backdrop-blur-sm fade-up" style="transition-delay: 0.2s;">
+<form class="space-y-8">
+<div class="grid md:grid-cols-2 gap-8">
+<div class="group relative">
+<input class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent" id="name" placeholder="Имя" type="text"/>
+<label class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500" for="name">Имя</label>
+</div>
+<div class="group relative">
+<input class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent" id="email" placeholder="Email" type="email"/>
+<label class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500" for="email">Email</label>
+</div>
+</div>
+<div class="group relative">
+<input class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent" id="budget" placeholder="Бюджет" type="text"/>
+<label class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500" for="budget">Ориентировочный бюджет</label>
+</div>
+<div class="group relative">
+<textarea class="peer w-full bg-transparent border-b border-neutral-700 py-3 text-white focus:outline-none focus:border-red-500 transition-colors placeholder-transparent resize-none" id="message" placeholder="Сообщение" rows="4"></textarea>
+<label class="absolute left-0 -top-3.5 text-xs text-neutral-500 transition-all peer-placeholder-shown:text-base peer-placeholder-shown:text-neutral-500 peer-placeholder-shown:top-3 peer-focus:-top-3.5 peer-focus:text-xs peer-focus:text-red-500" for="message">Детали проекта</label>
+</div>
+<button class="w-full py-5 bg-white text-black font-semibold uppercase tracking-widest hover:bg-neutral-200 transition-all flex items-center justify-center gap-3 group">
+                        Отправить заявку
                         <span class="iconify group-hover:translate-x-1 transition-transform" data-icon="lucide:arrow-right" data-width="18"></span>
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-black py-12 border-t border-white/5">
-        <div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
-            <a href="#" class="text-xl font-bold tracking-tighter uppercase text-white flex items-center gap-1">
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-black py-12 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+<a class="text-xl font-bold tracking-tighter uppercase text-white flex items-center gap-1" href="#">
                 Kabovelo<span class="text-red-600">.</span>
-            </a>
-            <p class="text-neutral-600 text-xs">© 2024 Kabovelo Film Farm. All rights reserved.</p>
-        </div>
-    </footer>
-
-    <!-- Simple Scroll Animation Script -->
-    <script>
+</a>
+<p class="text-neutral-600 text-xs">© 2024 Kabovelo Film Farm. Все права защищены.</p>
+</div>
+</footer>
+<!-- Simple Scroll Animation Script -->
+<script>
         document.addEventListener('DOMContentLoaded', () => {
             const observerOptions = {
                 root: null,

@@ -1,11 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
-<head><meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cadence — Revenue Operations & Intelligence Platform</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+<html lang="ru">
+<head><meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Cadence — платформа операций с выручкой и аналитики</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Outfit:wght@200;300;400;500&amp;display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/3/3.1.0/iconify.min.js"></script>
 <style>
 /* ============================================================
@@ -2387,7 +2387,7 @@ nav { padding: 0 16px; }
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -2395,949 +2395,953 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-
 <!-- ============================================================
      NAV
      ============================================================ -->
 <nav>
-  <div class="nav-logo">Cadence</div>
-  <ul class="nav-links">
-    <li><a href="#">Platform</a></li>
-    <li><a href="#">Solutions</a></li>
-    <li><a href="#">Integrations</a></li>
-    <li><a href="#">Pricing</a></li>
-    <li><a href="#">Resources</a></li>
-  </ul>
-  <div class="nav-cta">
-    <button class="btn-nav btn-nav-ghost">Sign in</button>
-    <button class="btn-nav btn-nav-solid">Get started free</button>
-  </div>
-  <div class="nav-hamburger" id="hamburger">
-    <span></span><span></span><span></span>
-  </div>
+<div class="nav-logo">Cadence</div>
+<ul class="nav-links">
+<li><a href="#">Платформа</a></li>
+<li><a href="#">Решения</a></li>
+<li><a href="#">Интеграции</a></li>
+<li><a href="#">Цены</a></li>
+<li><a href="#">Ресурсы</a></li>
+</ul>
+<div class="nav-cta">
+<button class="btn-nav btn-nav-ghost">Войти</button>
+<button class="btn-nav btn-nav-solid">Начать бесплатно</button>
+</div>
+<div class="nav-hamburger" id="hamburger">
+<span></span><span></span><span></span>
+</div>
 </nav>
 <div class="nav-mobile" id="navMobile">
-  <ul>
-    <li><a href="#">Platform</a></li>
-    <li><a href="#">Solutions</a></li>
-    <li><a href="#">Integrations</a></li>
-    <li><a href="#">Pricing</a></li>
-    <li><a href="#">Resources</a></li>
-  </ul>
-  <button class="btn-nav btn-nav-solid" style="margin-top:20px">Get started free</button>
+<ul>
+<li><a href="#">Платформа</a></li>
+<li><a href="#">Решения</a></li>
+<li><a href="#">Интеграции</a></li>
+<li><a href="#">Цены</a></li>
+<li><a href="#">Ресурсы</a></li>
+</ul>
+<button class="btn-nav btn-nav-solid" style="margin-top:20px">Начать бесплатно</button>
 </div>
-
 <!-- ============================================================
      HERO
      ============================================================ -->
 <section id="hero">
-  <!-- WebGL aurora shader -->
-  <canvas id="heroCanvas"></canvas>
-
-  <!-- Ambient glow orbs -->
-  <div class="hero-orb hero-orb-1"></div>
-  <div class="hero-orb hero-orb-2"></div>
-  <div class="hero-orb hero-orb-3"></div>
-
-  <!-- Shooting stars -->
-  <div class="hero-stars">
-    <div class="hero-star hero-star-1"></div>
-    <div class="hero-star hero-star-2"></div>
-    <div class="hero-star hero-star-3"></div>
-    <div class="hero-star hero-star-4"></div>
-    <div class="hero-star hero-star-5"></div>
-    <div class="hero-star hero-star-6"></div>
-  </div>
-
-  <!-- Orbit rings -->
-  <div class="hero-orbits">
-    <div class="hero-orbit hero-orbit-1"><div class="hero-orbit-dot"></div></div>
-    <div class="hero-orbit hero-orbit-2"><div class="hero-orbit-dot"></div></div>
-    <div class="hero-orbit hero-orbit-3"><div class="hero-orbit-dot"></div></div>
-  </div>
-
-  <!-- Hero content -->
-  <div class="hero-content">
-    <div class="hero-eyebrow">
-      <span class="iconify" data-icon="lucide:zap"></span>
-      Revenue Operations Platform
+<!-- WebGL aurora shader -->
+<canvas id="heroCanvas"></canvas>
+<!-- Ambient glow orbs -->
+<div class="hero-orb hero-orb-1"></div>
+<div class="hero-orb hero-orb-2"></div>
+<div class="hero-orb hero-orb-3"></div>
+<!-- Shooting stars -->
+<div class="hero-stars">
+<div class="hero-star hero-star-1"></div>
+<div class="hero-star hero-star-2"></div>
+<div class="hero-star hero-star-3"></div>
+<div class="hero-star hero-star-4"></div>
+<div class="hero-star hero-star-5"></div>
+<div class="hero-star hero-star-6"></div>
+</div>
+<!-- Orbit rings -->
+<div class="hero-orbits">
+<div class="hero-orbit hero-orbit-1"><div class="hero-orbit-dot"></div></div>
+<div class="hero-orbit hero-orbit-2"><div class="hero-orbit-dot"></div></div>
+<div class="hero-orbit hero-orbit-3"><div class="hero-orbit-dot"></div></div>
+</div>
+<!-- Hero content -->
+<div class="hero-content">
+<div class="hero-eyebrow">
+<span class="iconify" data-icon="lucide:zap"></span>
+      Платформа Revenue Operations
     </div>
-    <h1 class="hero-title">
-      Revenue Intelligence,<br>
-      <span class="text-gradient">Unified</span>
-    </h1>
-    <p class="hero-subtitle">
-      Align your sales, marketing, and customer success teams on a single source of revenue truth. Predict outcomes, eliminate leakage, and close faster.
+<h1 class="hero-title">
+      Аналитика выручки,<br/>
+<span class="text-gradient">Единая</span>
+</h1>
+<p class="hero-subtitle">
+      Объедините команды продаж, маркетинга и клиентского успеха вокруг единого источника правды о выручке. Прогнозируйте результаты, устраняйте потери и закрывайте сделки быстрее.
     </p>
-    <div class="hero-ctas">
-      <button class="btn-hero-primary">
-        <span class="iconify" data-icon="lucide:play-circle"></span>
-        Start free trial
+<div class="hero-ctas">
+<button class="btn-hero-primary">
+<span class="iconify" data-icon="lucide:play-circle"></span>
+        Начать бесплатный период
       </button>
-      <button class="btn-hero-ghost">
-        <span class="iconify" data-icon="lucide:monitor-play"></span>
-        Watch demo
+<button class="btn-hero-ghost">
+<span class="iconify" data-icon="lucide:monitor-play"></span>
+        Смотреть демо
       </button>
-    </div>
-    <div class="hero-metrics">
-      <div class="hero-metric">
-        <span class="hero-metric-val">3.2x</span>
-        <span class="hero-metric-label">Pipeline velocity</span>
-      </div>
-      <div class="hero-metric-sep"></div>
-      <div class="hero-metric">
-        <span class="hero-metric-val">98.7%</span>
-        <span class="hero-metric-label">Forecast accuracy</span>
-      </div>
-      <div class="hero-metric-sep"></div>
-      <div class="hero-metric">
-        <span class="hero-metric-val">$2.1B</span>
-        <span class="hero-metric-label">Revenue managed</span>
-      </div>
-      <div class="hero-metric-sep"></div>
-      <div class="hero-metric">
-        <span class="hero-metric-val">47%</span>
-        <span class="hero-metric-label">Less leakage</span>
-      </div>
-    </div>
-  </div>
-
+</div>
+<div class="hero-metrics">
+<div class="hero-metric">
+<span class="hero-metric-val">3.2x</span>
+<span class="hero-metric-label">Скорость пайплайна</span>
+</div>
+<div class="hero-metric-sep"></div>
+<div class="hero-metric">
+<span class="hero-metric-val">98.7%</span>
+<span class="hero-metric-label">Точность прогноза</span>
+</div>
+<div class="hero-metric-sep"></div>
+<div class="hero-metric">
+<span class="hero-metric-val">$2.1B</span>
+<span class="hero-metric-label">Выручка под управлением</span>
+</div>
+<div class="hero-metric-sep"></div>
+<div class="hero-metric">
+<span class="hero-metric-val">47%</span>
+<span class="hero-metric-label">Меньше потерь</span>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      TRUST / LOGO BAR
      ============================================================ -->
 <section id="trust">
-  <p class="trust-label">Trusted by 2,400+ revenue teams worldwide</p>
-  <div class="logo-bar-wrap">
-    <div class="logo-track" id="logoTrack">
-      <span class="logo-item">Salesforce</span>
-      <span class="logo-item">HubSpot</span>
-      <span class="logo-item">Notion</span>
-      <span class="logo-item">Stripe</span>
-      <span class="logo-item">Figma</span>
-      <span class="logo-item">Intercom</span>
-      <span class="logo-item">Lattice</span>
-      <span class="logo-item">Rippling</span>
-      <span class="logo-item">Brex</span>
-      <span class="logo-item">Airtable</span>
-      <span class="logo-item">Linear</span>
-      <span class="logo-item">Vercel</span>
-      <!-- duplicate -->
-      <span class="logo-item">Salesforce</span>
-      <span class="logo-item">HubSpot</span>
-      <span class="logo-item">Notion</span>
-      <span class="logo-item">Stripe</span>
-      <span class="logo-item">Figma</span>
-      <span class="logo-item">Intercom</span>
-      <span class="logo-item">Lattice</span>
-      <span class="logo-item">Rippling</span>
-      <span class="logo-item">Brex</span>
-      <span class="logo-item">Airtable</span>
-      <span class="logo-item">Linear</span>
-      <span class="logo-item">Vercel</span>
-    </div>
-  </div>
+<p class="trust-label">Нам доверяют 2 400+ revenue-команд по всему миру</p>
+<div class="logo-bar-wrap">
+<div class="logo-track" id="logoTrack">
+<span class="logo-item">Salesforce</span>
+<span class="logo-item">HubSpot</span>
+<span class="logo-item">Notion</span>
+<span class="logo-item">Stripe</span>
+<span class="logo-item">Figma</span>
+<span class="logo-item">Intercom</span>
+<span class="logo-item">Lattice</span>
+<span class="logo-item">Rippling</span>
+<span class="logo-item">Brex</span>
+<span class="logo-item">Airtable</span>
+<span class="logo-item">Linear</span>
+<span class="logo-item">Vercel</span>
+<!-- duplicate -->
+<span class="logo-item">Salesforce</span>
+<span class="logo-item">HubSpot</span>
+<span class="logo-item">Notion</span>
+<span class="logo-item">Stripe</span>
+<span class="logo-item">Figma</span>
+<span class="logo-item">Intercom</span>
+<span class="logo-item">Lattice</span>
+<span class="logo-item">Rippling</span>
+<span class="logo-item">Brex</span>
+<span class="logo-item">Airtable</span>
+<span class="logo-item">Linear</span>
+<span class="logo-item">Vercel</span>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      FEATURES BENTO GRID
      ============================================================ -->
-<section id="features" class="section">
-  <div class="section-sep"></div>
-  <div class="container">
-    <div class="section-header">
-      <span class="section-label">Platform Capabilities</span>
-      <h2>Every layer of revenue,<br><span class="text-gradient">under one roof</span></h2>
-      <p>From pipeline analytics to AI-powered forecasting, Cadence surfaces the signals that matter before deals slip.</p>
-    </div>
-
-    <div class="bento-grid stagger-up" id="bentoGrid">
-
-      <!-- Card 1: Pipeline Analytics -->
-      <div class="bento-card reveal-child">
-        <div class="bc-grid"></div>
-        <div class="bc-shimmer"></div>
-        <div class="bc-corner bc-corner-tl"></div>
-        <div class="bc-corner bc-corner-br"></div>
-        <div class="bc-header">
-          <div class="bc-live-dot"></div>
-          <span class="bc-header-title">Pipeline Analytics</span>
-          <span class="bc-header-tag">Real-time</span>
-        </div>
-        <div class="bc-body">
-          <p>Real-time visibility into every deal stage. Spot bottlenecks, measure velocity, and track conversion rates.</p>
-          <div class="bento-widget" id="barWidget">
-            <div class="bw-status"><span class="bw-status-label">Q1 Velocity</span><span class="bw-status-val">3.2x</span></div>
-            <div class="widget-bars" id="barChartWidget">
-              <div class="widget-bar" style="height:45%"></div>
-              <div class="widget-bar" style="height:68%"></div>
-              <div class="widget-bar" style="height:55%"></div>
-              <div class="widget-bar" style="height:82%"></div>
-              <div class="widget-bar" style="height:60%"></div>
-              <div class="widget-bar" style="height:74%"></div>
-              <div class="widget-bar" style="height:50%"></div>
-              <div class="widget-bar" style="height:88%"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2: Forecast Engine -->
-      <div class="bento-card reveal-child">
-        <div class="bc-grid"></div>
-        <div class="bc-shimmer"></div>
-        <div class="bc-corner bc-corner-tl"></div>
-        <div class="bc-corner bc-corner-br"></div>
-        <div class="bc-header">
-          <div class="bc-live-dot"></div>
-          <span class="bc-header-title">Forecast Engine</span>
-          <span class="bc-header-tag">AI</span>
-        </div>
-        <div class="bc-body">
-          <p>AI-powered predictions with 98.7% accuracy. Compare bottoms-up, top-down, and AI-assisted forecasts.</p>
-          <div class="bento-widget">
-            <div class="bw-status"><span class="bw-status-label">Accuracy</span><span class="bw-status-val">98.7%</span></div>
-            <div class="widget-donut">
-              <svg class="donut-svg" viewBox="0 0 72 72">
-                <circle cx="36" cy="36" r="28" fill="none" stroke="rgba(20,184,166,0.1)" stroke-width="8"/>
-                <circle cx="36" cy="36" r="28" fill="none" stroke="#14B8A6" stroke-width="8" stroke-dasharray="126 176" stroke-dashoffset="44" stroke-linecap="round" opacity="0.9"/>
-                <circle cx="36" cy="36" r="28" fill="none" stroke="#2DD4BF" stroke-width="8" stroke-dasharray="44 176" stroke-dashoffset="-82" stroke-linecap="round" opacity="0.5"/>
-                <text x="36" y="39" text-anchor="middle" fill="#2DD4BF" font-size="10" font-family="Outfit" font-weight="300">72%</text>
-              </svg>
-              <div class="donut-labels">
-                <div class="donut-item"><div class="donut-dot" style="background:#14B8A6"></div>Committed</div>
-                <div class="donut-item"><div class="donut-dot" style="background:#2DD4BF"></div>Best Case</div>
-                <div class="donut-item"><div class="donut-dot" style="background:rgba(255,255,255,0.15)"></div>Pipeline</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: Deal Intelligence -->
-      <div class="bento-card reveal-child">
-        <div class="bc-grid"></div>
-        <div class="bc-shimmer"></div>
-        <div class="bc-corner bc-corner-tl"></div>
-        <div class="bc-corner bc-corner-br"></div>
-        <div class="bc-header">
-          <div class="bc-live-dot"></div>
-          <span class="bc-header-title">Deal Intelligence</span>
-          <span class="bc-header-tag">Scoring</span>
-        </div>
-        <div class="bc-body">
-          <p>Surface at-risk deals automatically. AI coaching recommendations before executive reviews.</p>
-          <div class="bento-widget">
-            <div class="bw-status"><span class="bw-status-label">Pipeline</span><span class="bw-status-val">$2.85M</span></div>
-            <div class="widget-pipeline" id="pipelineWidget">
-              <div class="pipeline-stage">
-                <span class="pipeline-stage-label">Discovery</span>
-                <div class="pipeline-stage-bar" style="width:85%"></div>
-                <span class="pipeline-stage-val">$1.2M</span>
-              </div>
-              <div class="pipeline-stage">
-                <span class="pipeline-stage-label">Demo</span>
-                <div class="pipeline-stage-bar" style="width:64%"></div>
-                <span class="pipeline-stage-val">$840K</span>
-              </div>
-              <div class="pipeline-stage">
-                <span class="pipeline-stage-label">Proposal</span>
-                <div class="pipeline-stage-bar" style="width:48%"></div>
-                <span class="pipeline-stage-val">$520K</span>
-              </div>
-              <div class="pipeline-stage">
-                <span class="pipeline-stage-label">Negotiation</span>
-                <div class="pipeline-stage-bar" style="width:30%"></div>
-                <span class="pipeline-stage-val">$290K</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4: Revenue Signals -->
-      <div class="bento-card reveal-child">
-        <div class="bc-grid"></div>
-        <div class="bc-shimmer"></div>
-        <div class="bc-corner bc-corner-tl"></div>
-        <div class="bc-corner bc-corner-br"></div>
-        <div class="bc-header">
-          <div class="bc-live-dot"></div>
-          <span class="bc-header-title">Revenue Signals</span>
-          <span class="bc-header-tag">Live</span>
-        </div>
-        <div class="bc-body">
-          <p>Detect buying intent, churn risk, and expansion opportunities as they emerge across data sources.</p>
-          <div class="bento-widget">
-            <div class="bw-status"><span class="bw-status-label">Active alerts</span><span class="bw-status-val">5 signals</span></div>
-            <div class="widget-signals" id="signalWidget">
-              <div class="signal-row"><div class="signal-dot hot"></div>Acme Corp — churn risk detected</div>
-              <div class="signal-row"><div class="signal-dot"></div>TechFlow Inc — expansion signal</div>
-              <div class="signal-row"><div class="signal-dot warn"></div>Vertix — deal stalled 12 days</div>
-              <div class="signal-row"><div class="signal-dot"></div>Meridian Co — champion hired</div>
-              <div class="signal-row"><div class="signal-dot hot"></div>NovaCorp — legal review delay</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5: Team Performance -->
-      <div class="bento-card reveal-child">
-        <div class="bc-grid"></div>
-        <div class="bc-shimmer"></div>
-        <div class="bc-corner bc-corner-tl"></div>
-        <div class="bc-corner bc-corner-br"></div>
-        <div class="bc-header">
-          <div class="bc-live-dot"></div>
-          <span class="bc-header-title">Team Performance</span>
-          <span class="bc-header-tag">Coaching</span>
-        </div>
-        <div class="bc-body">
-          <p>Benchmark reps against top performers. Coach with data — quota attainment, activity trends, win rates.</p>
-          <div class="bento-widget">
-            <div class="bw-status"><span class="bw-status-label">Avg attainment</span><span class="bw-status-val">92%</span></div>
-            <div class="widget-team">
-              <div class="team-row">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#14B8A6,#2DD4BF)">SR</div>
-                <span class="team-name">Sarah R.</span>
-                <div class="team-progress"><div class="team-progress-fill" style="width:92%"></div></div>
-                <span class="team-score">118%</span>
-              </div>
-              <div class="team-row">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#0D9488,#14B8A6)">JM</div>
-                <span class="team-name">James M.</span>
-                <div class="team-progress"><div class="team-progress-fill" style="width:78%"></div></div>
-                <span class="team-score">96%</span>
-              </div>
-              <div class="team-row">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#5EEAD4,#2DD4BF)">AL</div>
-                <span class="team-name">Amy L.</span>
-                <div class="team-progress"><div class="team-progress-fill" style="width:65%"></div></div>
-                <span class="team-score">82%</span>
-              </div>
-              <div class="team-row">
-                <div class="team-avatar" style="background:linear-gradient(135deg,#0D9488,#0F766E)">DK</div>
-                <span class="team-name">Dev K.</span>
-                <div class="team-progress"><div class="team-progress-fill" style="width:54%"></div></div>
-                <span class="team-score">71%</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6: Integration Hub -->
-      <div class="bento-card reveal-child">
-        <div class="bc-grid"></div>
-        <div class="bc-shimmer"></div>
-        <div class="bc-corner bc-corner-tl"></div>
-        <div class="bc-corner bc-corner-br"></div>
-        <div class="bc-header">
-          <div class="bc-live-dot"></div>
-          <span class="bc-header-title">Integration Hub</span>
-          <span class="bc-header-tag">240+</span>
-        </div>
-        <div class="bc-body">
-          <p>Connect CRM, MAP, and CS tools in minutes. Bi-directional sync keeps data fresh — no manual exports.</p>
-          <div class="bento-widget">
-            <div class="bw-status"><span class="bw-status-label">Connected</span><span class="bw-status-val">8 active</span></div>
-            <div class="widget-integrations">
-              <span class="int-badge">Salesforce</span>
-              <span class="int-badge">HubSpot</span>
-              <span class="int-badge">Marketo</span>
-              <span class="int-badge">Slack</span>
-              <span class="int-badge">Gong</span>
-              <span class="int-badge">Outreach</span>
-              <span class="int-badge">Zendesk</span>
-              <span class="int-badge">BigQuery</span>
-              <span class="int-badge" style="color:var(--accent-light);border-style:dashed">+232</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
+<section class="section" id="features">
+<div class="section-sep"></div>
+<div class="container">
+<div class="section-header">
+<span class="section-label">Возможности платформы</span>
+<h2>Каждый слой выручки<br/><span class="text-gradient">под одной крышей</span></h2>
+<p>От аналитики пайплайна до AI-прогнозирования — Cadence выявляет важные сигналы до того, как сделки сорвутся.</p>
+</div>
+<div class="bento-grid stagger-up" id="bentoGrid">
+<!-- Card 1: Pipeline Analytics -->
+<div class="bento-card reveal-child">
+<div class="bc-grid"></div>
+<div class="bc-shimmer"></div>
+<div class="bc-corner bc-corner-tl"></div>
+<div class="bc-corner bc-corner-br"></div>
+<div class="bc-header">
+<div class="bc-live-dot"></div>
+<span class="bc-header-title">Аналитика пайплайна</span>
+<span class="bc-header-tag">В реальном времени</span>
+</div>
+<div class="bc-body">
+<p>Видимость каждой стадии сделки в реальном времени. Находите узкие места, измеряйте скорость и отслеживайте конверсию.</p>
+<div class="bento-widget" id="barWidget">
+<div class="bw-status"><span class="bw-status-label">Скорость Q1</span><span class="bw-status-val">3.2x</span></div>
+<div class="widget-bars" id="barChartWidget">
+<div class="widget-bar" style="height:45%"></div>
+<div class="widget-bar" style="height:68%"></div>
+<div class="widget-bar" style="height:55%"></div>
+<div class="widget-bar" style="height:82%"></div>
+<div class="widget-bar" style="height:60%"></div>
+<div class="widget-bar" style="height:74%"></div>
+<div class="widget-bar" style="height:50%"></div>
+<div class="widget-bar" style="height:88%"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 2: Forecast Engine -->
+<div class="bento-card reveal-child">
+<div class="bc-grid"></div>
+<div class="bc-shimmer"></div>
+<div class="bc-corner bc-corner-tl"></div>
+<div class="bc-corner bc-corner-br"></div>
+<div class="bc-header">
+<div class="bc-live-dot"></div>
+<span class="bc-header-title">Движок прогнозов</span>
+<span class="bc-header-tag">AI</span>
+</div>
+<div class="bc-body">
+<p>AI-прогнозы с точностью 98,7%. Сравнивайте прогнозы снизу вверх, сверху вниз и с помощью AI.</p>
+<div class="bento-widget">
+<div class="bw-status"><span class="bw-status-label">Точность</span><span class="bw-status-val">98.7%</span></div>
+<div class="widget-donut">
+<svg class="donut-svg" viewbox="0 0 72 72">
+<circle cx="36" cy="36" fill="none" r="28" stroke="rgba(20,184,166,0.1)" stroke-width="8"></circle>
+<circle cx="36" cy="36" fill="none" opacity="0.9" r="28" stroke="#14B8A6" stroke-dasharray="126 176" stroke-dashoffset="44" stroke-linecap="round" stroke-width="8"></circle>
+<circle cx="36" cy="36" fill="none" opacity="0.5" r="28" stroke="#2DD4BF" stroke-dasharray="44 176" stroke-dashoffset="-82" stroke-linecap="round" stroke-width="8"></circle>
+<text fill="#2DD4BF" font-family="Outfit" font-size="10" font-weight="300" text-anchor="middle" x="36" y="39">72%</text>
+</svg>
+<div class="donut-labels">
+<div class="donut-item"><div class="donut-dot" style="background:#14B8A6"></div>Подтверждено</div>
+<div class="donut-item"><div class="donut-dot" style="background:#2DD4BF"></div>Лучший сценарий</div>
+<div class="donut-item"><div class="donut-dot" style="background:rgba(255,255,255,0.15)"></div>Пайплайн</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 3: Deal Intelligence -->
+<div class="bento-card reveal-child">
+<div class="bc-grid"></div>
+<div class="bc-shimmer"></div>
+<div class="bc-corner bc-corner-tl"></div>
+<div class="bc-corner bc-corner-br"></div>
+<div class="bc-header">
+<div class="bc-live-dot"></div>
+<span class="bc-header-title">Интеллект сделок</span>
+<span class="bc-header-tag">Скоринг</span>
+</div>
+<div class="bc-body">
+<p>Автоматически выявляйте рискованные сделки. AI-рекомендации по коучингу перед встречами с руководством.</p>
+<div class="bento-widget">
+<div class="bw-status"><span class="bw-status-label">Пайплайн</span><span class="bw-status-val">$2.85M</span></div>
+<div class="widget-pipeline" id="pipelineWidget">
+<div class="pipeline-stage">
+<span class="pipeline-stage-label">Знакомство</span>
+<div class="pipeline-stage-bar" style="width:85%"></div>
+<span class="pipeline-stage-val">$1.2M</span>
+</div>
+<div class="pipeline-stage">
+<span class="pipeline-stage-label">Демо</span>
+<div class="pipeline-stage-bar" style="width:64%"></div>
+<span class="pipeline-stage-val">$840K</span>
+</div>
+<div class="pipeline-stage">
+<span class="pipeline-stage-label">Предложение</span>
+<div class="pipeline-stage-bar" style="width:48%"></div>
+<span class="pipeline-stage-val">$520K</span>
+</div>
+<div class="pipeline-stage">
+<span class="pipeline-stage-label">Переговоры</span>
+<div class="pipeline-stage-bar" style="width:30%"></div>
+<span class="pipeline-stage-val">$290K</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 4: Revenue Signals -->
+<div class="bento-card reveal-child">
+<div class="bc-grid"></div>
+<div class="bc-shimmer"></div>
+<div class="bc-corner bc-corner-tl"></div>
+<div class="bc-corner bc-corner-br"></div>
+<div class="bc-header">
+<div class="bc-live-dot"></div>
+<span class="bc-header-title">Сигналы выручки</span>
+<span class="bc-header-tag">Live</span>
+</div>
+<div class="bc-body">
+<p>Обнаруживайте намерение купить, риск оттока и возможности расширения по мере их появления в источниках данных.</p>
+<div class="bento-widget">
+<div class="bw-status"><span class="bw-status-label">Активные оповещения</span><span class="bw-status-val">5 сигналов</span></div>
+<div class="widget-signals" id="signalWidget">
+<div class="signal-row"><div class="signal-dot hot"></div>Acme Corp — обнаружен риск оттока</div>
+<div class="signal-row"><div class="signal-dot"></div>TechFlow Inc — сигнал расширения</div>
+<div class="signal-row"><div class="signal-dot warn"></div>Vertix — сделка застыла на 12 дней</div>
+<div class="signal-row"><div class="signal-dot"></div>Meridian Co — нанят чемпион</div>
+<div class="signal-row"><div class="signal-dot hot"></div>NovaCorp — задержка юридической проверки</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 5: Team Performance -->
+<div class="bento-card reveal-child">
+<div class="bc-grid"></div>
+<div class="bc-shimmer"></div>
+<div class="bc-corner bc-corner-tl"></div>
+<div class="bc-corner bc-corner-br"></div>
+<div class="bc-header">
+<div class="bc-live-dot"></div>
+<span class="bc-header-title">Эффективность команды</span>
+<span class="bc-header-tag">Коучинг</span>
+</div>
+<div class="bc-body">
+<p>Сравнивайте менеджеров с лучшими. Коучьте на основе данных — выполнение квоты, тренды активности, доля побед.</p>
+<div class="bento-widget">
+<div class="bw-status"><span class="bw-status-label">Среднее выполнение</span><span class="bw-status-val">92%</span></div>
+<div class="widget-team">
+<div class="team-row">
+<div class="team-avatar" style="background:linear-gradient(135deg,#14B8A6,#2DD4BF)">SR</div>
+<span class="team-name">Sarah R.</span>
+<div class="team-progress"><div class="team-progress-fill" style="width:92%"></div></div>
+<span class="team-score">118%</span>
+</div>
+<div class="team-row">
+<div class="team-avatar" style="background:linear-gradient(135deg,#0D9488,#14B8A6)">JM</div>
+<span class="team-name">James M.</span>
+<div class="team-progress"><div class="team-progress-fill" style="width:78%"></div></div>
+<span class="team-score">96%</span>
+</div>
+<div class="team-row">
+<div class="team-avatar" style="background:linear-gradient(135deg,#5EEAD4,#2DD4BF)">AL</div>
+<span class="team-name">Amy L.</span>
+<div class="team-progress"><div class="team-progress-fill" style="width:65%"></div></div>
+<span class="team-score">82%</span>
+</div>
+<div class="team-row">
+<div class="team-avatar" style="background:linear-gradient(135deg,#0D9488,#0F766E)">DK</div>
+<span class="team-name">Dev K.</span>
+<div class="team-progress"><div class="team-progress-fill" style="width:54%"></div></div>
+<span class="team-score">71%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Card 6: Integration Hub -->
+<div class="bento-card reveal-child">
+<div class="bc-grid"></div>
+<div class="bc-shimmer"></div>
+<div class="bc-corner bc-corner-tl"></div>
+<div class="bc-corner bc-corner-br"></div>
+<div class="bc-header">
+<div class="bc-live-dot"></div>
+<span class="bc-header-title">Хаб интеграций</span>
+<span class="bc-header-tag">240+</span>
+</div>
+<div class="bc-body">
+<p>Подключайте CRM, MAP и CS-инструменты за минуты. Двусторонняя синхронизация сохраняет данные свежими — без ручных выгрузок.</p>
+<div class="bento-widget">
+<div class="bw-status"><span class="bw-status-label">Подключено</span><span class="bw-status-val">8 активных</span></div>
+<div class="widget-integrations">
+<span class="int-badge">Salesforce</span>
+<span class="int-badge">HubSpot</span>
+<span class="int-badge">Marketo</span>
+<span class="int-badge">Slack</span>
+<span class="int-badge">Gong</span>
+<span class="int-badge">Outreach</span>
+<span class="int-badge">Zendesk</span>
+<span class="int-badge">BigQuery</span>
+<span class="int-badge" style="color:var(--accent-light);border-style:dashed">+232</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      METRICS STRIP
      ============================================================ -->
 <section id="metrics">
-  <div class="metrics-wrap">
-    <div class="metrics-track" id="metricsTrack">
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val" data-target="3.2" data-suffix="x">3.2x</span><span class="metric-label">Pipeline Velocity</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">98.7%</span><span class="metric-label">Forecast Accuracy</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">47%</span><span class="metric-label">Less Revenue Leakage</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">$2.1B</span><span class="metric-label">Revenue Managed</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">18 min</span><span class="metric-label">Avg Onboarding</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">240+</span><span class="metric-label">Native Integrations</span></div>
-      <!-- duplicate -->
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">3.2x</span><span class="metric-label">Pipeline Velocity</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">98.7%</span><span class="metric-label">Forecast Accuracy</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">47%</span><span class="metric-label">Less Revenue Leakage</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">$2.1B</span><span class="metric-label">Revenue Managed</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">18 min</span><span class="metric-label">Avg Onboarding</span></div>
-      <div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">240+</span><span class="metric-label">Native Integrations</span></div>
-    </div>
-  </div>
+<div class="metrics-wrap">
+<div class="metrics-track" id="metricsTrack">
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val" data-suffix="x" data-target="3.2">3.2x</span><span class="metric-label">Скорость пайплайна</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">98.7%</span><span class="metric-label">Точность прогноза</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">47%</span><span class="metric-label">Меньше потерь выручки</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">$2.1B</span><span class="metric-label">Выручка под управлением</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">18 мин</span><span class="metric-label">Среднее время онбординга</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">240+</span><span class="metric-label">Нативные интеграции</span></div>
+<!-- duplicate -->
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">3.2x</span><span class="metric-label">Скорость пайплайна</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">98.7%</span><span class="metric-label">Точность прогноза</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">47%</span><span class="metric-label">Меньше потерь выручки</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">$2.1B</span><span class="metric-label">Выручка под управлением</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">18 мин</span><span class="metric-label">Среднее время онбординга</span></div>
+<div class="metric-pill"><div class="metric-dot"></div><span class="metric-val">240+</span><span class="metric-label">Нативные интеграции</span></div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      HOW IT WORKS
      ============================================================ -->
 <section id="how">
-  <div class="section-sep"></div>
-  <div class="how-sticky" id="howSticky">
-    <!-- Ambient bg -->
-    <div class="how-bg-orb how-bg-orb-1" id="howOrb1"></div>
-    <div class="how-bg-orb how-bg-orb-2" id="howOrb2"></div>
-    <div class="how-bg-dots"></div>
-
-    <div class="how-mobile-header">
-      <span class="section-label">How It Works</span>
-      <h2>Revenue clarity in <span class="text-gradient">four steps</span></h2>
-    </div>
-    <div class="how-inner">
-      <!-- Left: big number + text -->
-      <div class="how-left">
-        <span class="section-label" style="opacity:1">How It Works</span>
-        <div class="how-step-counter">
-          <div class="how-big-num" id="howBigNum">01</div>
-          <div class="how-big-num-fill" id="howBigNumFill">01</div>
-        </div>
-        <div class="how-left-label visible" id="howLabel">Step 1 of 4</div>
-        <div class="how-left-title visible" id="howTitle">Connect your stack</div>
-        <div class="how-progress"><div class="how-progress-fill" id="howProgressFill"></div></div>
-        <div class="how-dots">
-          <div class="how-dot active" data-step="0"></div>
-          <div class="how-dot" data-step="1"></div>
-          <div class="how-dot" data-step="2"></div>
-          <div class="how-dot" data-step="3"></div>
-        </div>
-      </div>
-
-      <!-- Right: 3D card stack -->
-      <div class="how-right">
-        <!-- Panel 1: Connect -->
-        <div class="how-panel active" data-panel="0">
-          <div class="hp-grid"></div>
-          <div class="hp-shimmer"></div>
-          <div class="hp-corner hp-corner-tl"></div>
-          <div class="hp-corner hp-corner-tr"></div>
-          <div class="hp-corner hp-corner-br"></div>
-          <div class="hp-header">
-            <div class="hp-live-dot"></div>
-            <span class="hp-header-title">Connect</span>
-            <span class="hp-header-badge">Integrations</span>
-          </div>
-          <div class="hp-body">
-            <p>One-click connections to your CRM, marketing automation, and customer success stack. No engineering required.</p>
-            <div class="how-panel-widget">
-              <div class="hw-status-row">
-                <span class="hw-status-label">Sync status</span>
-                <span class="hw-status-val">6 / 8 connected</span>
-              </div>
-              <div class="hw-integrations">
-                <span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Salesforce</span>
-                <span class="hw-int-pill glow"><span class="hw-status-dot on"></span>HubSpot</span>
-                <span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Gong</span>
-                <span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Slack</span>
-                <span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Outreach</span>
-                <span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Marketo</span>
-                <span class="hw-int-pill"><span class="hw-status-dot off"></span>Zendesk</span>
-                <span class="hw-int-pill"><span class="hw-status-dot off"></span>BigQuery</span>
-                <span class="hw-int-pill" style="color:var(--accent-light);border-style:dashed">+232 more</span>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Panel 2: Analyze -->
-        <div class="how-panel" data-panel="1">
-          <div class="hp-grid"></div>
-          <div class="hp-shimmer"></div>
-          <div class="hp-corner hp-corner-tl"></div>
-          <div class="hp-corner hp-corner-tr"></div>
-          <div class="hp-corner hp-corner-br"></div>
-          <div class="hp-header">
-            <div class="hp-live-dot"></div>
-            <span class="hp-header-title">Analyze</span>
-            <span class="hp-header-badge">Live funnel</span>
-          </div>
-          <div class="hp-body">
-            <p>Automatic funnel mapping, data normalization across systems, and real-time anomaly detection.</p>
-            <div class="how-panel-widget">
-              <div class="hw-status-row">
-                <span class="hw-status-label">Conversion rate</span>
-                <span class="hw-status-val">Leads → Closed 12.4%</span>
-              </div>
-              <div class="hw-funnel" id="hwFunnel">
-                <div class="hw-funnel-row">
-                  <span class="hw-funnel-label">Leads</span>
-                  <div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:92%"></div></div>
-                  <span class="hw-funnel-pct">100%</span>
-                  <span class="hw-funnel-val">4,218</span>
-                </div>
-                <div class="hw-funnel-row">
-                  <span class="hw-funnel-label">MQLs</span>
-                  <div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:68%"></div></div>
-                  <span class="hw-funnel-pct">67%</span>
-                  <span class="hw-funnel-val">2,847</span>
-                </div>
-                <div class="hw-funnel-row">
-                  <span class="hw-funnel-label">SQLs</span>
-                  <div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:42%"></div></div>
-                  <span class="hw-funnel-pct">31%</span>
-                  <span class="hw-funnel-val">1,291</span>
-                </div>
-                <div class="hw-funnel-row">
-                  <span class="hw-funnel-label">Closed</span>
-                  <div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:24%"></div></div>
-                  <span class="hw-funnel-pct">12%</span>
-                  <span class="hw-funnel-val">$2.1M</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Panel 3: Predict -->
-        <div class="how-panel" data-panel="2">
-          <div class="hp-grid"></div>
-          <div class="hp-shimmer"></div>
-          <div class="hp-corner hp-corner-tl"></div>
-          <div class="hp-corner hp-corner-tr"></div>
-          <div class="hp-corner hp-corner-br"></div>
-          <div class="hp-header">
-            <div class="hp-live-dot"></div>
-            <span class="hp-header-title">Predict</span>
-            <span class="hp-header-badge">AI forecast</span>
-          </div>
-          <div class="hp-body">
-            <p>AI generates rolling forecasts and deal health scores, updated hourly with zero manual input.</p>
-            <div class="how-panel-widget">
-              <div class="hw-status-row">
-                <span class="hw-status-label">Confidence</span>
-                <span class="hw-status-val">87% — High</span>
-              </div>
-              <div class="hw-gauge">
-                <div class="hw-gauge-ring">
-                  <svg viewBox="0 0 72 72">
-                    <circle class="ring-bg" cx="36" cy="36" r="30"/>
-                    <circle class="ring-fill" id="hwGaugeRing" cx="36" cy="36" r="30"/>
-                  </svg>
-                  <div class="hw-gauge-val">87%</div>
-                </div>
-                <div class="hw-gauge-meta">
-                  <div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:#2DD4BF"></div>Forecast confidence</div>
-                  <div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:#14B8A6"></div>Commit: $3.2M</div>
-                  <div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:rgba(255,255,255,0.15)"></div>Best case: $4.1M</div>
-                  <div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:#F59E0B"></div>3 at-risk deals flagged</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Panel 4: Act -->
-        <div class="how-panel" data-panel="3">
-          <div class="hp-grid"></div>
-          <div class="hp-shimmer"></div>
-          <div class="hp-corner hp-corner-tl"></div>
-          <div class="hp-corner hp-corner-tr"></div>
-          <div class="hp-corner hp-corner-br"></div>
-          <div class="hp-header">
-            <div class="hp-live-dot"></div>
-            <span class="hp-header-title">Act</span>
-            <span class="hp-header-badge">3 dispatched</span>
-          </div>
-          <div class="hp-body">
-            <p>Push insights to Slack, email digests, or CRM tasks. Coach reps and close the quarter with confidence.</p>
-            <div class="how-panel-widget">
-              <div class="hw-status-row">
-                <span class="hw-status-label">Activity log</span>
-                <span class="hw-status-val">Last 5 min</span>
-              </div>
-              <div class="hw-actions">
-                <div class="hw-action-row">
-                  <div class="hw-action-dot live"></div>
-                  <span class="hw-action-text">Alert dispatched to #revenue-ops</span>
-                  <span class="hw-action-time">2s ago</span>
-                </div>
-                <div class="hw-action-row">
-                  <div class="hw-action-dot live"></div>
-                  <span class="hw-action-text">CRM task created: Follow up Acme Corp</span>
-                  <span class="hw-action-time">14s ago</span>
-                </div>
-                <div class="hw-action-row">
-                  <div class="hw-action-dot done"></div>
-                  <span class="hw-action-text">Weekly digest emailed to VP Sales</span>
-                  <span class="hw-action-time">1m ago</span>
-                </div>
-                <div class="hw-action-row">
-                  <div class="hw-action-dot done"></div>
-                  <span class="hw-action-text">Churn risk report sent to CS lead</span>
-                  <span class="hw-action-time">3m ago</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="section-sep"></div>
+<div class="how-sticky" id="howSticky">
+<!-- Ambient bg -->
+<div class="how-bg-orb how-bg-orb-1" id="howOrb1"></div>
+<div class="how-bg-orb how-bg-orb-2" id="howOrb2"></div>
+<div class="how-bg-dots"></div>
+<div class="how-mobile-header">
+<span class="section-label">Как это работает</span>
+<h2>Ясность по выручке за <span class="text-gradient">четыре шага</span></h2>
+</div>
+<div class="how-inner">
+<!-- Left: big number + text -->
+<div class="how-left">
+<span class="section-label" style="opacity:1">Как это работает</span>
+<div class="how-step-counter">
+<div class="how-big-num" id="howBigNum">01</div>
+<div class="how-big-num-fill" id="howBigNumFill">01</div>
+</div>
+<div class="how-left-label visible" id="howLabel">Шаг 1 из 4</div>
+<div class="how-left-title visible" id="howTitle">Подключите свой стек</div>
+<div class="how-progress"><div class="how-progress-fill" id="howProgressFill"></div></div>
+<div class="how-dots">
+<div class="how-dot active" data-step="0"></div>
+<div class="how-dot" data-step="1"></div>
+<div class="how-dot" data-step="2"></div>
+<div class="how-dot" data-step="3"></div>
+</div>
+</div>
+<!-- Right: 3D card stack -->
+<div class="how-right">
+<!-- Panel 1: Connect -->
+<div class="how-panel active" data-panel="0">
+<div class="hp-grid"></div>
+<div class="hp-shimmer"></div>
+<div class="hp-corner hp-corner-tl"></div>
+<div class="hp-corner hp-corner-tr"></div>
+<div class="hp-corner hp-corner-br"></div>
+<div class="hp-header">
+<div class="hp-live-dot"></div>
+<span class="hp-header-title">Подключение</span>
+<span class="hp-header-badge">Интеграции</span>
+</div>
+<div class="hp-body">
+<p>Подключение к вашей CRM, автоматизации маркетинга и стеку клиентского успеха в один клик. Инженеры не требуются.</p>
+<div class="how-panel-widget">
+<div class="hw-status-row">
+<span class="hw-status-label">Статус синхронизации</span>
+<span class="hw-status-val">6 / 8 подключено</span>
+</div>
+<div class="hw-integrations">
+<span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Salesforce</span>
+<span class="hw-int-pill glow"><span class="hw-status-dot on"></span>HubSpot</span>
+<span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Gong</span>
+<span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Slack</span>
+<span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Outreach</span>
+<span class="hw-int-pill glow"><span class="hw-status-dot on"></span>Marketo</span>
+<span class="hw-int-pill"><span class="hw-status-dot off"></span>Zendesk</span>
+<span class="hw-int-pill"><span class="hw-status-dot off"></span>BigQuery</span>
+<span class="hw-int-pill" style="color:var(--accent-light);border-style:dashed">+232 ещё</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel 2: Analyze -->
+<div class="how-panel" data-panel="1">
+<div class="hp-grid"></div>
+<div class="hp-shimmer"></div>
+<div class="hp-corner hp-corner-tl"></div>
+<div class="hp-corner hp-corner-tr"></div>
+<div class="hp-corner hp-corner-br"></div>
+<div class="hp-header">
+<div class="hp-live-dot"></div>
+<span class="hp-header-title">Анализ</span>
+<span class="hp-header-badge">Живая воронка</span>
+</div>
+<div class="hp-body">
+<p>Автоматическое построение воронки, нормализация данных между системами и обнаружение аномалий в реальном времени.</p>
+<div class="how-panel-widget">
+<div class="hw-status-row">
+<span class="hw-status-label">Конверсия</span>
+<span class="hw-status-val">Лиды → Закрыто 12,4%</span>
+</div>
+<div class="hw-funnel" id="hwFunnel">
+<div class="hw-funnel-row">
+<span class="hw-funnel-label">Лиды</span>
+<div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:92%"></div></div>
+<span class="hw-funnel-pct">100%</span>
+<span class="hw-funnel-val">4,218</span>
+</div>
+<div class="hw-funnel-row">
+<span class="hw-funnel-label">MQL</span>
+<div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:68%"></div></div>
+<span class="hw-funnel-pct">67%</span>
+<span class="hw-funnel-val">2,847</span>
+</div>
+<div class="hw-funnel-row">
+<span class="hw-funnel-label">SQL</span>
+<div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:42%"></div></div>
+<span class="hw-funnel-pct">31%</span>
+<span class="hw-funnel-val">1,291</span>
+</div>
+<div class="hw-funnel-row">
+<span class="hw-funnel-label">Закрыто</span>
+<div class="hw-funnel-bar-wrap"><div class="hw-funnel-bar" style="width:24%"></div></div>
+<span class="hw-funnel-pct">12%</span>
+<span class="hw-funnel-val">$2.1M</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel 3: Predict -->
+<div class="how-panel" data-panel="2">
+<div class="hp-grid"></div>
+<div class="hp-shimmer"></div>
+<div class="hp-corner hp-corner-tl"></div>
+<div class="hp-corner hp-corner-tr"></div>
+<div class="hp-corner hp-corner-br"></div>
+<div class="hp-header">
+<div class="hp-live-dot"></div>
+<span class="hp-header-title">Прогноз</span>
+<span class="hp-header-badge">AI-прогноз</span>
+</div>
+<div class="hp-body">
+<p>AI формирует скользящие прогнозы и оценки здоровья сделок, обновляемые ежечасно без ручного ввода.</p>
+<div class="how-panel-widget">
+<div class="hw-status-row">
+<span class="hw-status-label">Уверенность</span>
+<span class="hw-status-val">87% — высокая</span>
+</div>
+<div class="hw-gauge">
+<div class="hw-gauge-ring">
+<svg viewbox="0 0 72 72">
+<circle class="ring-bg" cx="36" cy="36" r="30"></circle>
+<circle class="ring-fill" cx="36" cy="36" id="hwGaugeRing" r="30"></circle>
+</svg>
+<div class="hw-gauge-val">87%</div>
+</div>
+<div class="hw-gauge-meta">
+<div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:#2DD4BF"></div>Уверенность прогноза</div>
+<div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:#14B8A6"></div>Коммит: $3,2M</div>
+<div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:rgba(255,255,255,0.15)"></div>Лучший сценарий: $4,1M</div>
+<div class="hw-gauge-row"><div class="hw-gauge-dot" style="background:#F59E0B"></div>Отмечено 3 рискованные сделки</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Panel 4: Act -->
+<div class="how-panel" data-panel="3">
+<div class="hp-grid"></div>
+<div class="hp-shimmer"></div>
+<div class="hp-corner hp-corner-tl"></div>
+<div class="hp-corner hp-corner-tr"></div>
+<div class="hp-corner hp-corner-br"></div>
+<div class="hp-header">
+<div class="hp-live-dot"></div>
+<span class="hp-header-title">Действуйте</span>
+<span class="hp-header-badge">3 отправлено</span>
+</div>
+<div class="hp-body">
+<p>Отправляйте инсайты в Slack, email-дайджесты или задачи CRM. Коучьте менеджеров и закрывайте квартал уверенно.</p>
+<div class="how-panel-widget">
+<div class="hw-status-row">
+<span class="hw-status-label">Журнал активности</span>
+<span class="hw-status-val">Последние 5 мин</span>
+</div>
+<div class="hw-actions">
+<div class="hw-action-row">
+<div class="hw-action-dot live"></div>
+<span class="hw-action-text">Оповещение отправлено в #revenue-ops</span>
+<span class="hw-action-time">2 с назад</span>
+</div>
+<div class="hw-action-row">
+<div class="hw-action-dot live"></div>
+<span class="hw-action-text">Создана задача в CRM: связаться с Acme Corp</span>
+<span class="hw-action-time">14 с назад</span>
+</div>
+<div class="hw-action-row">
+<div class="hw-action-dot done"></div>
+<span class="hw-action-text">Еженедельный дайджест отправлен VP по продажам</span>
+<span class="hw-action-time">1 мин назад</span>
+</div>
+<div class="hw-action-row">
+<div class="hw-action-dot done"></div>
+<span class="hw-action-text">Отчёт о риске оттока отправлен руководителю CS</span>
+<span class="hw-action-time">3 мин назад</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      PRODUCT UI SHOWCASE
      ============================================================ -->
-<section id="showcase" class="section section-alt">
-  <div class="section-sep"></div>
-  <div class="container showcase-container">
-    <div class="section-header reveal">
-      <span class="section-label">Product Tour</span>
-      <h2>Your entire revenue motion,<br><span class="text-gradient">at a glance</span></h2>
-      <p>A dashboard that updates in real time, not after a weekend data pipeline run.</p>
-    </div>
-
-    <div class="product-ui-wrap reveal" id="productUI">
-      <div class="ui-titlebar">
-        <div class="ui-dots">
-          <div class="ui-dot"></div>
-          <div class="ui-dot"></div>
-          <div class="ui-dot"></div>
-        </div>
-        <div class="ui-tabs">
-          <span class="ui-tab active">Revenue</span>
-          <span class="ui-tab">Pipeline</span>
-          <span class="ui-tab">Team</span>
-          <span class="ui-tab">Forecasts</span>
-        </div>
-      </div>
-      <div class="ui-body">
-        <!-- Sidebar -->
-        <div class="ui-sidebar">
-          <div class="ui-sidebar-logo">
-            <div class="ui-sidebar-logo-mark"></div>
-            <span class="ui-sidebar-logo-text">Cadence</span>
-          </div>
-          <div class="ui-nav-item active"><span class="iconify" data-icon="lucide:layout-dashboard"></span>Overview</div>
-          <div class="ui-nav-item"><span class="iconify" data-icon="lucide:bar-chart-2"></span>Pipeline</div>
-          <div class="ui-nav-item"><span class="iconify" data-icon="lucide:target"></span>Forecasts</div>
-          <div class="ui-nav-item"><span class="iconify" data-icon="lucide:users-2"></span>Teams</div>
-          <div class="ui-nav-item"><span class="iconify" data-icon="lucide:radio"></span>Signals</div>
-          <div class="ui-nav-item"><span class="iconify" data-icon="lucide:settings"></span>Settings</div>
-        </div>
-        <!-- Main content -->
-        <div class="ui-main">
-          <div class="ui-main-header">
-            <span class="ui-main-title">Revenue Overview — Q1 2026</span>
-            <span class="ui-date-badge">Last updated: 2 min ago</span>
-          </div>
-          <!-- Metrics row -->
-          <div class="ui-metrics-row">
-            <div class="ui-metric-card">
-              <div class="ui-metric-val">$4.8M</div>
-              <div class="ui-metric-label">ARR to Date</div>
-              <div class="ui-metric-delta">+12.4% MoM</div>
-            </div>
-            <div class="ui-metric-card">
-              <div class="ui-metric-val">$2.1M</div>
-              <div class="ui-metric-label">Open Pipeline</div>
-              <div class="ui-metric-delta">+8.2% WoW</div>
-            </div>
-            <div class="ui-metric-card">
-              <div class="ui-metric-val">72%</div>
-              <div class="ui-metric-label">Forecast Commit</div>
-              <div class="ui-metric-delta">+3.1pts</div>
-            </div>
-            <div class="ui-metric-card">
-              <div class="ui-metric-val">18 days</div>
-              <div class="ui-metric-label">Avg Sales Cycle</div>
-              <div class="ui-metric-delta" style="color:#4ADE80">-2 days</div>
-            </div>
-          </div>
-          <!-- Chart -->
-          <div class="ui-chart-area">
-            <div class="ui-chart-title">Monthly Recurring Revenue</div>
-            <svg class="chart-svg" id="revChart" viewBox="0 0 600 120" preserveAspectRatio="none">
-              <defs>
-                <linearGradient id="chartFillGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#14B8A6" stop-opacity="0.25"/>
-                  <stop offset="100%" stop-color="#14B8A6" stop-opacity="0"/>
-                </linearGradient>
-              </defs>
-              <path id="chartAreaPath" class="chart-area-fill" d="M0 110 L60 95 L120 88 L180 78 L240 70 L300 62 L360 52 L420 45 L480 35 L540 28 L600 20 L600 120 L0 120 Z" fill="url(#chartFillGrad)"/>
-              <path id="chartLinePath" class="chart-line" d="M0 110 L60 95 L120 88 L180 78 L240 70 L300 62 L360 52 L420 45 L480 35 L540 28 L600 20"/>
-              <!-- X axis labels -->
-              <text x="0" y="118" fill="rgba(255,255,255,0.2)" font-size="6" font-family="Inter">Jan</text>
-              <text x="120" y="118" fill="rgba(255,255,255,0.2)" font-size="6" font-family="Inter">Mar</text>
-              <text x="240" y="118" fill="rgba(255,255,255,0.2)" font-size="6" font-family="Inter">May</text>
-              <text x="360" y="118" fill="rgba(255,255,255,0.2)" font-size="6" font-family="Inter">Jul</text>
-              <text x="480" y="118" fill="rgba(255,255,255,0.2)" font-size="6" font-family="Inter">Sep</text>
-              <text x="570" y="118" fill="rgba(255,255,255,0.2)" font-size="6" font-family="Inter">Nov</text>
-              <!-- Data point dot -->
-              <circle cx="600" cy="20" r="4" fill="#2DD4BF" opacity="0.9">
-                <animate attributeName="r" values="3;5;3" dur="2s" repeatCount="indefinite"/>
-              </circle>
-            </svg>
-          </div>
-          <!-- Kanban -->
-          <div class="ui-kanban" id="uiKanban">
-            <div class="kanban-col">
-              <div class="kanban-col-header">Prospecting <span class="kanban-count">12</span></div>
-              <div class="kanban-card">Acme Corp — $180K</div>
-              <div class="kanban-card">TechFlow — $95K</div>
-            </div>
-            <div class="kanban-col">
-              <div class="kanban-col-header">Discovery <span class="kanban-count">8</span></div>
-              <div class="kanban-card">Vertix Inc — $420K</div>
-              <div class="kanban-card">Nova Labs — $210K</div>
-            </div>
-            <div class="kanban-col">
-              <div class="kanban-col-header">Proposal <span class="kanban-count">5</span></div>
-              <div class="kanban-card">Meridian Co — $780K</div>
-              <div class="kanban-card">Cascade — $340K</div>
-            </div>
-            <div class="kanban-col">
-              <div class="kanban-col-header">Closing <span class="kanban-count">3</span></div>
-              <div class="kanban-card">Apex Group — $1.2M</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="section section-alt" id="showcase">
+<div class="section-sep"></div>
+<div class="container showcase-container">
+<div class="section-header reveal">
+<span class="section-label">Тур по продукту</span>
+<h2>Вся ваша работа с выручкой,<br/><span class="text-gradient">как на ладони</span></h2>
+<p>Дашборд, который обновляется в реальном времени, а не после прогона пайплайна данных за выходные.</p>
+</div>
+<div class="product-ui-wrap reveal" id="productUI">
+<div class="ui-titlebar">
+<div class="ui-dots">
+<div class="ui-dot"></div>
+<div class="ui-dot"></div>
+<div class="ui-dot"></div>
+</div>
+<div class="ui-tabs">
+<span class="ui-tab active">Выручка</span>
+<span class="ui-tab">Пайплайн</span>
+<span class="ui-tab">Team</span>
+<span class="ui-tab">Прогнозы</span>
+</div>
+</div>
+<div class="ui-body">
+<!-- Sidebar -->
+<div class="ui-sidebar">
+<div class="ui-sidebar-logo">
+<div class="ui-sidebar-logo-mark"></div>
+<span class="ui-sidebar-logo-text">Cadence</span>
+</div>
+<div class="ui-nav-item active"><span class="iconify" data-icon="lucide:layout-dashboard"></span>Обзор</div>
+<div class="ui-nav-item"><span class="iconify" data-icon="lucide:bar-chart-2"></span>Пайплайн</div>
+<div class="ui-nav-item"><span class="iconify" data-icon="lucide:target"></span>Прогнозы</div>
+<div class="ui-nav-item"><span class="iconify" data-icon="lucide:users-2"></span>Команды</div>
+<div class="ui-nav-item"><span class="iconify" data-icon="lucide:radio"></span>Сигналы</div>
+<div class="ui-nav-item"><span class="iconify" data-icon="lucide:settings"></span>Настройки</div>
+</div>
+<!-- Main content -->
+<div class="ui-main">
+<div class="ui-main-header">
+<span class="ui-main-title">Обзор выручки — Q1 2026</span>
+<span class="ui-date-badge">Обновлено: 2 мин назад</span>
+</div>
+<!-- Metrics row -->
+<div class="ui-metrics-row">
+<div class="ui-metric-card">
+<div class="ui-metric-val">$4.8M</div>
+<div class="ui-metric-label">ARR на текущий момент</div>
+<div class="ui-metric-delta">+12,4% м/м</div>
+</div>
+<div class="ui-metric-card">
+<div class="ui-metric-val">$2.1M</div>
+<div class="ui-metric-label">Открытый пайплайн</div>
+<div class="ui-metric-delta">+8,2% н/н</div>
+</div>
+<div class="ui-metric-card">
+<div class="ui-metric-val">72%</div>
+<div class="ui-metric-label">Коммит прогноза</div>
+<div class="ui-metric-delta">+3,1 п.п.</div>
+</div>
+<div class="ui-metric-card">
+<div class="ui-metric-val">18 дней</div>
+<div class="ui-metric-label">Средний цикл продаж</div>
+<div class="ui-metric-delta" style="color:#4ADE80">-2 дня</div>
+</div>
+</div>
+<!-- Chart -->
+<div class="ui-chart-area">
+<div class="ui-chart-title">Ежемесячная регулярная выручка</div>
+<svg class="chart-svg" id="revChart" preserveaspectratio="none" viewbox="0 0 600 120">
+<defs>
+<lineargradient id="chartFillGrad" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#14B8A6" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#14B8A6" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path class="chart-area-fill" d="M0 110 L60 95 L120 88 L180 78 L240 70 L300 62 L360 52 L420 45 L480 35 L540 28 L600 20 L600 120 L0 120 Z" fill="url(#chartFillGrad)" id="chartAreaPath"></path>
+<path class="chart-line" d="M0 110 L60 95 L120 88 L180 78 L240 70 L300 62 L360 52 L420 45 L480 35 L540 28 L600 20" id="chartLinePath"></path>
+<!-- X axis labels -->
+<text fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="6" x="0" y="118">Янв</text>
+<text fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="6" x="120" y="118">Мар</text>
+<text fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="6" x="240" y="118">Май</text>
+<text fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="6" x="360" y="118">Июл</text>
+<text fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="6" x="480" y="118">Сен</text>
+<text fill="rgba(255,255,255,0.2)" font-family="Inter" font-size="6" x="570" y="118">Ноя</text>
+<!-- Data point dot -->
+<circle cx="600" cy="20" fill="#2DD4BF" opacity="0.9" r="4">
+<animate attributename="r" dur="2s" repeatcount="indefinite" values="3;5;3"></animate>
+</circle>
+</svg>
+</div>
+<!-- Kanban -->
+<div class="ui-kanban" id="uiKanban">
+<div class="kanban-col">
+<div class="kanban-col-header">Поиск клиентов <span class="kanban-count">12</span></div>
+<div class="kanban-card">Acme Corp — $180K</div>
+<div class="kanban-card">TechFlow — $95K</div>
+</div>
+<div class="kanban-col">
+<div class="kanban-col-header">Знакомство <span class="kanban-count">8</span></div>
+<div class="kanban-card">Vertix Inc — $420K</div>
+<div class="kanban-card">Nova Labs — $210K</div>
+</div>
+<div class="kanban-col">
+<div class="kanban-col-header">Предложение <span class="kanban-count">5</span></div>
+<div class="kanban-card">Meridian Co — $780K</div>
+<div class="kanban-card">Cascade — $340K</div>
+</div>
+<div class="kanban-col">
+<div class="kanban-col-header">Закрытие <span class="kanban-count">3</span></div>
+<div class="kanban-card">Apex Group — $1,2M</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      TESTIMONIALS
      ============================================================ -->
-<section id="testimonials" class="section">
-  <div class="section-sep"></div>
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Customer Stories</span>
-      <h2>Revenue leaders who <span class="text-gradient">trust Cadence</span></h2>
-      <p>From Series A to enterprise — teams that align on revenue, win more.</p>
-    </div>
-
-    <div class="testimonials-layout">
-      <!-- Featured large card -->
-      <div class="testi-featured reveal-left">
-        <div class="testi-stars">
-          <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-        </div>
-        <div class="testi-quote-mark">"</div>
-        <p class="testi-quote">Cadence replaced four tools we were cobbling together. For the first time, my sales, marketing, and CS leads were looking at the same numbers in the same meeting. We closed Q3 at 124% — the first time we'd cracked that ceiling in three years. It wasn't magic; it was just having a single source of truth.</p>
-        <div class="testi-author">
-          <div class="testi-avatar" style="background:linear-gradient(135deg,#14B8A6,#2DD4BF)">MW</div>
-          <div>
-            <div class="testi-name">Marcus Webb</div>
-            <div class="testi-role">Chief Revenue Officer, Aether Cloud</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Stack of two smaller cards -->
-      <div class="testi-stack reveal-right">
-        <div class="testi-card">
-          <div class="testi-stars" style="margin-bottom:12px">
-            <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-          </div>
-          <p class="testi-quote">Our forecast accuracy went from 63% to 97% within 60 days. My board stopped questioning the numbers — that alone was worth every penny of the subscription.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,#0D9488,#14B8A6)">PL</div>
-            <div>
-              <div class="testi-name">Priya Landes</div>
-              <div class="testi-role">VP Sales, Luminary Systems</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="testi-card">
-          <div class="testi-stars" style="margin-bottom:12px">
-            <span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
-          </div>
-          <p class="testi-quote">The Signals feature alone is a churn prevention machine. We caught three at-risk accounts in the first week that our CS team had completely missed. Saved us over $300K in ARR on the first month.</p>
-          <div class="testi-author">
-            <div class="testi-avatar" style="background:linear-gradient(135deg,#5EEAD4,#2DD4BF)">DH</div>
-            <div>
-              <div class="testi-name">Diana Hoang</div>
-              <div class="testi-role">Head of Customer Success, Relay.io</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+<section class="section" id="testimonials">
+<div class="section-sep"></div>
+<div class="container">
+<div class="section-header reveal">
+<span class="section-label">Истории клиентов</span>
+<h2>Лидеры по выручке, которые <span class="text-gradient">доверяют Cadence</span></h2>
+<p>От Series A до энтерпрайза — команды, которые сходятся в цифрах по выручке, выигрывают чаще.</p>
+</div>
+<div class="testimonials-layout">
+<!-- Featured large card -->
+<div class="testi-featured reveal-left">
+<div class="testi-stars">
+<span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+</div>
+<div class="testi-quote-mark">"</div>
+<p class="testi-quote">Cadence заменил четыре инструмента, которые мы кое-как связывали вместе. Впервые мои руководители продаж, маркетинга и CS смотрели на одни и те же цифры на одной встрече. Мы закрыли Q3 на 124% — впервые за три года пробили этот потолок. Это не магия — просто единый источник правды.</p>
+<div class="testi-author">
+<div class="testi-avatar" style="background:linear-gradient(135deg,#14B8A6,#2DD4BF)">MW</div>
+<div>
+<div class="testi-name">Marcus Webb</div>
+<div class="testi-role">Директор по выручке, Aether Cloud</div>
+</div>
+</div>
+</div>
+<!-- Stack of two smaller cards -->
+<div class="testi-stack reveal-right">
+<div class="testi-card">
+<div class="testi-stars" style="margin-bottom:12px">
+<span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+</div>
+<p class="testi-quote">Точность нашего прогноза выросла с 63% до 97% за 60 дней. Совет директоров перестал ставить цифры под сомнение — уже одно это окупило каждую копейку подписки.</p>
+<div class="testi-author">
+<div class="testi-avatar" style="background:linear-gradient(135deg,#0D9488,#14B8A6)">PL</div>
+<div>
+<div class="testi-name">Priya Landes</div>
+<div class="testi-role">VP по продажам, Luminary Systems</div>
+</div>
+</div>
+</div>
+<div class="testi-card">
+<div class="testi-stars" style="margin-bottom:12px">
+<span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span><span class="testi-star">★</span>
+</div>
+<p class="testi-quote">Одна только функция сигналов — машина по предотвращению оттока. За первую неделю мы поймали три рискованных аккаунта, которые наша CS-команда полностью упустила. Сэкономили более $300K ARR в первый же месяц.</p>
+<div class="testi-author">
+<div class="testi-avatar" style="background:linear-gradient(135deg,#5EEAD4,#2DD4BF)">DH</div>
+<div>
+<div class="testi-name">Diana Hoang</div>
+<div class="testi-role">Руководитель клиентского успеха, Relay.io</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      PRICING
      ============================================================ -->
-<section id="pricing" class="section section-alt">
-  <div class="section-sep"></div>
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="section-label">Pricing</span>
-      <h2>Simple pricing, <span class="text-gradient">serious results</span></h2>
-      <p>No hidden fees. No per-seat traps. Every plan includes unlimited data integrations.</p>
-    </div>
-
-    <div class="pricing-toggle">
-      <span class="toggle-label">Monthly</span>
-      <div class="toggle-switch" id="billingToggle">
-        <div class="toggle-knob"></div>
-      </div>
-      <span class="toggle-label">Annual</span>
-      <span class="toggle-badge">Save 20%</span>
-    </div>
-
-    <div class="pricing-grid stagger-up">
-      <!-- Starter -->
-      <div class="pricing-card reveal-child">
-        <p class="pricing-tier">Starter</p>
-        <div class="pricing-price" id="price-starter"><sup>$</sup><span class="price-val">199</span></div>
-        <p class="pricing-price-note">per month · up to 5 seats</p>
-        <p class="pricing-desc">For early-stage revenue teams getting their first real look at the funnel.</p>
-        <ul class="pricing-features">
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Pipeline analytics dashboard</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>3 native integrations</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Weekly AI forecast</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Slack digest notifications</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>14-day data history</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Team leaderboard</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Email support</li>
-        </ul>
-        <button class="pricing-cta pricing-cta-ghost">Get started free</button>
-      </div>
-
-      <!-- Growth (featured) -->
-      <div class="pricing-card featured reveal-child">
-        <div class="pricing-popular-badge">
-          <span class="iconify" data-icon="lucide:star"></span>
-          Most Popular
+<section class="section section-alt" id="pricing">
+<div class="section-sep"></div>
+<div class="container">
+<div class="section-header reveal">
+<span class="section-label">Цены</span>
+<h2>Простые цены, <span class="text-gradient">серьёзные результаты</span></h2>
+<p>Никаких скрытых платежей. Никаких ловушек с оплатой за место. Каждый план включает неограниченные интеграции данных.</p>
+</div>
+<div class="pricing-toggle">
+<span class="toggle-label">Ежемесячно</span>
+<div class="toggle-switch" id="billingToggle">
+<div class="toggle-knob"></div>
+</div>
+<span class="toggle-label">Ежегодно</span>
+<span class="toggle-badge">Экономия 20%</span>
+</div>
+<div class="pricing-grid stagger-up">
+<!-- Starter -->
+<div class="pricing-card reveal-child">
+<p class="pricing-tier">Starter</p>
+<div class="pricing-price" id="price-starter"><sup>$</sup><span class="price-val">199</span></div>
+<p class="pricing-price-note">в месяц · до 5 мест</p>
+<p class="pricing-desc">Для revenue-команд ранней стадии, впервые по-настоящему взглянувших на свою воронку.</p>
+<ul class="pricing-features">
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Дашборд аналитики пайплайна</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>3 нативные интеграции</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Еженедельный AI-прогноз</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Дайджест-уведомления в Slack</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>История данных за 14 дней</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Рейтинг команды</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Поддержка по email</li>
+</ul>
+<button class="pricing-cta pricing-cta-ghost">Начать бесплатно</button>
+</div>
+<!-- Growth (featured) -->
+<div class="pricing-card featured reveal-child">
+<div class="pricing-popular-badge">
+<span class="iconify" data-icon="lucide:star"></span>
+          Самый популярный
         </div>
-        <p class="pricing-tier">Growth</p>
-        <div class="pricing-price"><sup>$</sup><span class="price-val" id="price-growth-val">599</span></div>
-        <p class="pricing-price-note">per month · up to 25 seats</p>
-        <p class="pricing-desc">For scaling revenue teams that need AI forecasting and deal intelligence to close every quarter.</p>
-        <ul class="pricing-features">
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Everything in Starter</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Unlimited integrations</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Daily AI forecasting</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Deal intelligence & signals</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Rep performance coaching</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>1-year data history</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Priority support</li>
-        </ul>
-        <button class="pricing-cta pricing-cta-solid">Start 14-day trial</button>
-      </div>
-
-      <!-- Enterprise -->
-      <div class="pricing-card reveal-child">
-        <p class="pricing-tier">Enterprise</p>
-        <div class="pricing-price" style="font-size:1.8rem;letter-spacing:-0.02em;">Custom</div>
-        <p class="pricing-price-note">unlimited seats · dedicated SLA</p>
-        <p class="pricing-desc">For revenue organizations that require custom data models, SSO, and white-glove onboarding.</p>
-        <ul class="pricing-features">
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Everything in Growth</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Custom AI model training</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>SSO / SCIM provisioning</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Dedicated CSM</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Unlimited data history</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>99.9% uptime SLA</li>
-          <li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Private cloud deployment</li>
-        </ul>
-        <button class="pricing-cta pricing-cta-ghost">Contact sales</button>
-      </div>
-    </div>
-  </div>
+<p class="pricing-tier">Growth</p>
+<div class="pricing-price"><sup>$</sup><span class="price-val" id="price-growth-val">599</span></div>
+<p class="pricing-price-note">в месяц · до 25 мест</p>
+<p class="pricing-desc">Для растущих revenue-команд, которым нужны AI-прогнозирование и интеллект сделок, чтобы закрывать каждый квартал.</p>
+<ul class="pricing-features">
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Всё из Starter</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Неограниченные интеграции</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Ежедневное AI-прогнозирование</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Интеллект сделок и сигналы</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Коучинг эффективности менеджеров</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>История данных за 1 год</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Приоритетная поддержка</li>
+</ul>
+<button class="pricing-cta pricing-cta-solid">Начать 14-дневный период</button>
+</div>
+<!-- Enterprise -->
+<div class="pricing-card reveal-child">
+<p class="pricing-tier">Enterprise</p>
+<div class="pricing-price" style="font-size:1.8rem;letter-spacing:-0.02em;">Индивидуально</div>
+<p class="pricing-price-note">неограниченные места · выделенный SLA</p>
+<p class="pricing-desc">Для revenue-организаций, которым нужны кастомные модели данных, SSO и онбординг «под ключ».</p>
+<ul class="pricing-features">
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Всё из Growth</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Обучение кастомных AI-моделей</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>SSO / SCIM-провижининг</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Выделенный CSM</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Неограниченная история данных</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>SLA 99,9% аптайма</li>
+<li class="pricing-feature"><span class="iconify pricing-check" data-icon="lucide:check"></span>Развёртывание в приватном облаке</li>
+</ul>
+<button class="pricing-cta pricing-cta-ghost">Связаться с продажами</button>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      CTA SECTION
      ============================================================ -->
 <section id="cta-section">
-  <div class="container" style="position:relative;z-index:1">
-    <div class="reveal">
-      <span class="section-label">Ready to align your revenue?</span>
-      <h2 class="cta-title">Start closing quarters with<br><span class="text-gradient">confidence, not guesswork</span></h2>
-      <p class="cta-sub">Join 2,400+ revenue teams that use Cadence to forecast accurately, close faster, and stop letting deals slip.</p>
-      <div class="cta-buttons">
-        <button class="btn-cta-primary">
-          <span class="iconify" data-icon="lucide:rocket"></span>
-          Start free trial
+<div class="container" style="position:relative;z-index:1">
+<div class="reveal">
+<span class="section-label">Готовы синхронизироваться по выручке?</span>
+<h2 class="cta-title">Начните закрывать кварталы с<br/><span class="text-gradient">уверенностью, а не догадками</span></h2>
+<p class="cta-sub">Присоединяйтесь к 2 400+ revenue-командам, которые используют Cadence, чтобы точно прогнозировать, быстрее закрывать сделки и не давать им срываться.</p>
+<div class="cta-buttons">
+<button class="btn-cta-primary">
+<span class="iconify" data-icon="lucide:rocket"></span>
+          Начать бесплатный период
         </button>
-        <button class="btn-cta-ghost">
-          <span class="iconify" data-icon="lucide:calendar"></span>
-          Book a demo
+<button class="btn-cta-ghost">
+<span class="iconify" data-icon="lucide:calendar"></span>
+          Записаться на демо
         </button>
-      </div>
-    </div>
-  </div>
+</div>
+</div>
+</div>
 </section>
-
 <!-- ============================================================
      FOOTER
      ============================================================ -->
 <footer style="position:relative">
-  <div class="container">
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="nav-logo" style="margin-bottom:0">Cadence</div>
-        <p>Revenue operations and intelligence platform for modern go-to-market teams. Forecast confidently, sell smarter.</p>
-      </div>
-      <div>
-        <p class="footer-col-title">Product</p>
-        <ul class="footer-links">
-          <li><a href="#">Pipeline Analytics</a></li>
-          <li><a href="#">Forecast Engine</a></li>
-          <li><a href="#">Deal Intelligence</a></li>
-          <li><a href="#">Revenue Signals</a></li>
-          <li><a href="#">Integrations</a></li>
-          <li><a href="#">Changelog</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-col-title">Company</p>
-        <ul class="footer-links">
-          <li><a href="#">About</a></li>
-          <li><a href="#">Blog</a></li>
-          <li><a href="#">Careers</a></li>
-          <li><a href="#">Press</a></li>
-          <li><a href="#">Partners</a></li>
-          <li><a href="#">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <p class="footer-col-title">Legal</p>
-        <ul class="footer-links">
-          <li><a href="#">Privacy Policy</a></li>
-          <li><a href="#">Terms of Service</a></li>
-          <li><a href="#">Security</a></li>
-          <li><a href="#">Cookie Policy</a></li>
-          <li><a href="#">GDPR</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <span class="footer-copy">© <span id="year"></span> Cadence, Inc. All rights reserved.</span>
-      <div class="footer-socials">
-        <a href="#" class="social-link"><span class="iconify" data-icon="lucide:twitter"></span></a>
-        <a href="#" class="social-link"><span class="iconify" data-icon="lucide:linkedin"></span></a>
-        <a href="#" class="social-link"><span class="iconify" data-icon="lucide:github"></span></a>
-        <a href="#" class="social-link"><span class="iconify" data-icon="lucide:youtube"></span></a>
-      </div>
-    </div>
-  </div>
+<div class="container">
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="nav-logo" style="margin-bottom:0">Cadence</div>
+<p>Платформа операций с выручкой и аналитики для современных go-to-market команд. Прогнозируйте уверенно, продавайте умнее.</p>
+</div>
+<div>
+<p class="footer-col-title">Продукт</p>
+<ul class="footer-links">
+<li><a href="#">Аналитика пайплайна</a></li>
+<li><a href="#">Движок прогнозов</a></li>
+<li><a href="#">Интеллект сделок</a></li>
+<li><a href="#">Сигналы выручки</a></li>
+<li><a href="#">Интеграции</a></li>
+<li><a href="#">Список изменений</a></li>
+</ul>
+</div>
+<div>
+<p class="footer-col-title">Компания</p>
+<ul class="footer-links">
+<li><a href="#">О нас</a></li>
+<li><a href="#">Блог</a></li>
+<li><a href="#">Карьера</a></li>
+<li><a href="#">Пресса</a></li>
+<li><a href="#">Партнёры</a></li>
+<li><a href="#">Контакты</a></li>
+</ul>
+</div>
+<div>
+<p class="footer-col-title">Правовая информация</p>
+<ul class="footer-links">
+<li><a href="#">Политика конфиденциальности</a></li>
+<li><a href="#">Условия использования</a></li>
+<li><a href="#">Безопасность</a></li>
+<li><a href="#">Политика cookie</a></li>
+<li><a href="#">GDPR</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span class="footer-copy">© <span id="year"></span> Cadence, Inc. Все права защищены.</span>
+<div class="footer-socials">
+<a class="social-link" href="#"><span class="iconify" data-icon="lucide:twitter"></span></a>
+<a class="social-link" href="#"><span class="iconify" data-icon="lucide:linkedin"></span></a>
+<a class="social-link" href="#"><span class="iconify" data-icon="lucide:github"></span></a>
+<a class="social-link" href="#"><span class="iconify" data-icon="lucide:youtube"></span></a>
+</div>
+</div>
+</div>
 </footer>
-
 <!-- ============================================================
      JAVASCRIPT
      ============================================================ -->
@@ -3719,6 +3723,5 @@ window.addEventListener('scroll', onHowScroll, { passive: true });
 // Initial call
 onHowScroll();
 </script>
-
 </body>
 </html>

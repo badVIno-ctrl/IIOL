@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,19 +89,19 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LumaLoop — Prompt Music Lab</title>
-<meta name="description" content="A cinematic prompt-based music creation landing page with motion details and an animated generative layer.">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>LumaLoop — Промпт-лаборатория музыки</title>
+<meta content="Кинематографичный лендинг для создания музыки по промптам с моушн-деталями и анимированным генеративным слоем." name="description"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Orbitron:wght@500;600&display=swap" rel="stylesheet"><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&amp;family=Orbitron:wght@500;600&amp;display=swap" rel="stylesheet"/><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -109,642 +109,636 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="min-h-screen overflow-x-hidden bg-neutral-950 text-cyan-50 antialiased selection:text-black selection:bg-cyan-100" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-image: linear-gradient(120deg, rgba(255,255,255,0.035) 0, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 100%), radial-gradient(circle at 52% 38%, rgba(207,250,254,0.09), transparent 31%), linear-gradient(135deg, #171717 0%, #111111 42%, #1f1f2e 42%, #0f0f14 100%); background-size: 3.75rem 3.75rem, auto, auto;">
-    <main class="relative flex min-h-screen items-center justify-center px-3 py-6 sm:px-6 lg:px-10 flex-col">
-      
-      
-      
-
-      <header class="flex sm:px-6 shadow-black/80 transition-all duration-300 z-30 bg-black/60 w-full max-w-[92rem] border-cyan-100/10 border rounded-2xl mt-2 mb-8 pt-4 pr-6 pb-4 pl-6 relative shadow-lg backdrop-blur-md items-center justify-between">
-        <a href="#" class="brand-mark inline-flex items-center uppercase sm:text-3xl hover:text-orange-300 transition-colors text-2xl font-normal italic text-cyan-100 tracking-tight pr-2 pl-0" style="font-family: Orbitron, Inter, sans-serif; will-change: transform, opacity;" aria-label="LumaLoop home">
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="min-h-screen overflow-x-hidden bg-neutral-950 text-cyan-50 antialiased selection:text-black selection:bg-cyan-100" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-image: linear-gradient(120deg, rgba(255,255,255,0.035) 0, rgba(255,255,255,0.035) 1px, transparent 1px, transparent 100%), radial-gradient(circle at 52% 38%, rgba(207,250,254,0.09), transparent 31%), linear-gradient(135deg, #171717 0%, #111111 42%, #1f1f2e 42%, #0f0f14 100%); background-size: 3.75rem 3.75rem, auto, auto;">
+<main class="relative flex min-h-screen items-center justify-center px-3 py-6 sm:px-6 lg:px-10 flex-col">
+<header class="flex sm:px-6 shadow-black/80 transition-all duration-300 z-30 bg-black/60 w-full max-w-[92rem] border-cyan-100/10 border rounded-2xl mt-2 mb-8 pt-4 pr-6 pb-4 pl-6 relative shadow-lg backdrop-blur-md items-center justify-between">
+<a aria-label="Главная LumaLoop" class="brand-mark inline-flex items-center uppercase sm:text-3xl hover:text-orange-300 transition-colors text-2xl font-normal italic text-cyan-100 tracking-tight pr-2 pl-0" href="#" style="font-family: Orbitron, Inter, sans-serif; will-change: transform, opacity;">
           LUMALOOP
         </a>
-        <nav aria-label="Primary navigation" class="hidden items-center gap-10 text-xs font-light uppercase tracking-wide text-cyan-50/90 md:flex lg:gap-14">
-          <a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#create" style="will-change: transform, opacity;">
-            Compose
+<nav aria-label="Основная навигация" class="hidden items-center gap-10 text-xs font-light uppercase tracking-wide text-cyan-50/90 md:flex lg:gap-14">
+<a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#create" style="will-change: transform, opacity;">
+            Создание
           </a>
-          <a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#library" style="will-change: transform, opacity;">
-            Catalog
+<a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#library" style="will-change: transform, opacity;">
+            Каталог
           </a>
-          <a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#workflow" style="will-change: transform, opacity;">
-            Flow
+<a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#workflow" style="will-change: transform, opacity;">
+            Поток
           </a>
-          <a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#pricing" style="will-change: transform, opacity;">
-            Plans
+<a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#pricing" style="will-change: transform, opacity;">
+            Тарифы
           </a>
-          <a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#teams" style="will-change: transform, opacity;">
-            For teams
+<a class="nav-link transition-colors duration-200 hover:text-orange-300 relative py-1 after:absolute after:bottom-0 after:left-0 after:h-[1px] after:w-0 after:bg-orange-300 hover:after:w-full after:transition-all" href="#teams" style="will-change: transform, opacity;">
+            Для команд
           </a>
-        </nav>
-        <button type="button" aria-label="Open menu" class="menu-button inline-flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-black transition-all duration-200 hover:bg-orange-500 hover:scale-105 active:scale-95" style="will-change: transform, opacity;">
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-menu">
-            <line x1="4" x2="20" y1="12" y2="12"></line>
-            <line x1="4" x2="20" y1="6" y2="6"></line>
-            <line x1="4" x2="20" y1="18" y2="18"></line>
-          </svg>
-        </button>
-      </header>
-      <section aria-label="LumaLoop music generation hero" class="hero-shell overflow-hidden shadow-black/60 sm:rounded-[2.75rem] bg-black w-full max-w-[92rem] z-30 border-transparent border rounded-[2rem] relative shadow-2xl" style="min-height: min(72vw, 48rem); background: linear-gradient(#030303, #030303) padding-box, linear-gradient(135deg, rgba(207,250,254,0.18), rgba(249,115,22,0.28), rgba(207,250,254,0.06)) border-box;">
-        <div class="pointer-events-none absolute inset-0 z-0 opacity-80" aria-hidden="true">
-          <canvas id="webgl-canvas" class="absolute inset-0 h-full w-full" width="2860" height="1532"></canvas>
-          <div id="webgl-fallback" class="absolute inset-0 hidden" style="background: radial-gradient(circle at 48% 45%, rgba(207,250,254,0.16), transparent 26%), radial-gradient(circle at 76% 38%, rgba(207,250,254,0.12), transparent 20%), linear-gradient(110deg, transparent 0%, rgba(207,250,254,0.04) 45%, transparent 70%);"></div>
-        </div>
-
-        <div class="pointer-events-none absolute inset-0 z-10" aria-hidden="true" style="background-image: linear-gradient(135deg, rgba(207,250,254,0.08) 0, rgba(207,250,254,0.08) 1px, transparent 1px, transparent 100%); background-size: 3rem 3rem;"></div>
-
-        <div class="pointer-events-none absolute left-6 top-6 z-30 h-4 w-4 border-l border-t border-cyan-100/50 sm:left-8 sm:top-8"></div>
-        <div class="pointer-events-none absolute right-6 top-6 z-30 h-4 w-4 border-r border-t border-cyan-100/50 sm:right-8 sm:top-8"></div>
-        <div class="pointer-events-none absolute bottom-6 left-6 z-30 h-4 w-4 border-b border-l border-cyan-100/50 sm:bottom-8 sm:left-8"></div>
-        <div class="pointer-events-none absolute bottom-6 right-6 z-30 h-4 w-4 border-b border-r border-cyan-100/50 sm:bottom-8 sm:right-8"></div>
-
-        <div class="pointer-events-none absolute left-[14%] top-0 z-20 hidden h-full w-px bg-cyan-100/10 md:block" aria-hidden="true">
-          <span class="absolute -left-1 top-20 h-2 w-2 bg-cyan-100/60"></span>
-          <span class="absolute -left-1 bottom-24 h-2 w-2 bg-cyan-100/60"></span>
-        </div>
-        <div class="pointer-events-none absolute right-[14%] top-0 z-20 hidden h-full w-px bg-cyan-100/10 md:block" aria-hidden="true">
-          <span class="absolute -left-1 top-28 h-2 w-2 bg-cyan-100/60"></span>
-          <span class="absolute -left-1 bottom-20 h-2 w-2 bg-cyan-100/60"></span>
-        </div>
-
-        <div class="relative z-30 grid min-h-[42rem] grid-cols-1 px-6 pb-7 pt-8 sm:px-10 lg:grid-cols-12 lg:px-14 lg:pb-10 lg:pt-7">
-          <aside class="left-panel relative z-30 flex flex-col justify-between gap-8 lg:col-span-3">
-            <div class="trusted-block flex max-w-xs items-center gap-4" style="will-change: transform, opacity;">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eca707cc-a5b7-439a-b4fd-247f6106c2e1_1600w.jpg" alt="Producer portrait" class="h-14 w-14 rounded-full object-cover ring-2 ring-cyan-100/20">
-              <p class="text-xs font-medium uppercase leading-snug text-cyan-50">
-                Trusted by 12,700+ documentarians, streamers, and post teams
+</nav>
+<button aria-label="Открыть меню" class="menu-button inline-flex h-11 w-11 items-center justify-center rounded-full bg-cyan-100 text-black transition-all duration-200 hover:bg-orange-500 hover:scale-105 active:scale-95" style="will-change: transform, opacity;" type="button">
+<svg class="lucide lucide-menu" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" viewbox="0 0 24 24" width="20" xmlns="http://www.w3.org/2000/svg">
+<line x1="4" x2="20" y1="12" y2="12"></line>
+<line x1="4" x2="20" y1="6" y2="6"></line>
+<line x1="4" x2="20" y1="18" y2="18"></line>
+</svg>
+</button>
+</header>
+<section aria-label="Хиро-блок генерации музыки LumaLoop" class="hero-shell overflow-hidden shadow-black/60 sm:rounded-[2.75rem] bg-black w-full max-w-[92rem] z-30 border-transparent border rounded-[2rem] relative shadow-2xl" style="min-height: min(72vw, 48rem); background: linear-gradient(#030303, #030303) padding-box, linear-gradient(135deg, rgba(207,250,254,0.18), rgba(249,115,22,0.28), rgba(207,250,254,0.06)) border-box;">
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 opacity-80">
+<canvas class="absolute inset-0 h-full w-full" height="1532" id="webgl-canvas" width="2860"></canvas>
+<div class="absolute inset-0 hidden" id="webgl-fallback" style="background: radial-gradient(circle at 48% 45%, rgba(207,250,254,0.16), transparent 26%), radial-gradient(circle at 76% 38%, rgba(207,250,254,0.12), transparent 20%), linear-gradient(110deg, transparent 0%, rgba(207,250,254,0.04) 45%, transparent 70%);"></div>
+</div>
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-10" style="background-image: linear-gradient(135deg, rgba(207,250,254,0.08) 0, rgba(207,250,254,0.08) 1px, transparent 1px, transparent 100%); background-size: 3rem 3rem;"></div>
+<div class="pointer-events-none absolute left-6 top-6 z-30 h-4 w-4 border-l border-t border-cyan-100/50 sm:left-8 sm:top-8"></div>
+<div class="pointer-events-none absolute right-6 top-6 z-30 h-4 w-4 border-r border-t border-cyan-100/50 sm:right-8 sm:top-8"></div>
+<div class="pointer-events-none absolute bottom-6 left-6 z-30 h-4 w-4 border-b border-l border-cyan-100/50 sm:bottom-8 sm:left-8"></div>
+<div class="pointer-events-none absolute bottom-6 right-6 z-30 h-4 w-4 border-b border-r border-cyan-100/50 sm:bottom-8 sm:right-8"></div>
+<div aria-hidden="true" class="pointer-events-none absolute left-[14%] top-0 z-20 hidden h-full w-px bg-cyan-100/10 md:block">
+<span class="absolute -left-1 top-20 h-2 w-2 bg-cyan-100/60"></span>
+<span class="absolute -left-1 bottom-24 h-2 w-2 bg-cyan-100/60"></span>
+</div>
+<div aria-hidden="true" class="pointer-events-none absolute right-[14%] top-0 z-20 hidden h-full w-px bg-cyan-100/10 md:block">
+<span class="absolute -left-1 top-28 h-2 w-2 bg-cyan-100/60"></span>
+<span class="absolute -left-1 bottom-20 h-2 w-2 bg-cyan-100/60"></span>
+</div>
+<div class="relative z-30 grid min-h-[42rem] grid-cols-1 px-6 pb-7 pt-8 sm:px-10 lg:grid-cols-12 lg:px-14 lg:pb-10 lg:pt-7">
+<aside class="left-panel relative z-30 flex flex-col justify-between gap-8 lg:col-span-3">
+<div class="trusted-block flex max-w-xs items-center gap-4" style="will-change: transform, opacity;">
+<img alt="Портрет продюсера" class="h-14 w-14 rounded-full object-cover ring-2 ring-cyan-100/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eca707cc-a5b7-439a-b4fd-247f6106c2e1_1600w.jpg"/>
+<p class="text-xs font-medium uppercase leading-snug text-cyan-50">
+                Нам доверяют 12 700+ документалистов, стримеров и пост-продакшн команд
               </p>
-            </div>
-
-            <p class="intro-copy max-w-[13rem] text-xs font-light leading-relaxed text-cyan-50/70 sm:mt-8" style="will-change: transform, opacity;">
-              Write a sonic brief in everyday language and hear it unfold as a
-              polished cue with stems, rhythm, texture, and motion.
+</div>
+<p class="intro-copy max-w-[13rem] text-xs font-light leading-relaxed text-cyan-50/70 sm:mt-8" style="will-change: transform, opacity;">
+              Опишите звуковой бриф обычным языком и услышьте, как он превращается в
+              отточенный трек со стемами, ритмом, текстурой и движением.
             </p>
-
-            <div class="prompt-card relative mt-4 max-w-[16rem] rounded-[1.55rem] bg-cyan-100 p-5 text-black shadow-xl shadow-cyan-950/30 sm:mt-10" style="border: 1px solid transparent; background: linear-gradient(rgb(207,250,254), rgb(207,250,254)) padding-box, linear-gradient(135deg, rgba(255,255,255,0.34), rgba(207,250,254,0.22), rgba(0,0,0,0.12)) border-box;">
-              <h2 class="relative text-2xl font-medium uppercase leading-none tracking-tight sm:text-3xl" style="font-family: Orbitron, Inter, sans-serif;">
-                Cue on
-                <br>
-                command
+<div class="prompt-card relative mt-4 max-w-[16rem] rounded-[1.55rem] bg-cyan-100 p-5 text-black shadow-xl shadow-cyan-950/30 sm:mt-10" style="border: 1px solid transparent; background: linear-gradient(rgb(207,250,254), rgb(207,250,254)) padding-box, linear-gradient(135deg, rgba(255,255,255,0.34), rgba(207,250,254,0.22), rgba(0,0,0,0.12)) border-box;">
+<h2 class="relative text-2xl font-medium uppercase leading-none tracking-tight sm:text-3xl" style="font-family: Orbitron, Inter, sans-serif;">
+                Трек по
+                <br/>
+                команде
               </h2>
-              <div class="equalizer relative mt-4 grid w-32 grid-cols-9 gap-1" aria-hidden="true">
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
-                <span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
-              </div>
+<div aria-hidden="true" class="equalizer relative mt-4 grid w-32 grid-cols-9 gap-1">
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-black" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 50% 100%;"></span>
+<span class="eq-dot h-2.5 w-2.5 rounded-full bg-cyan-300" style="transform-origin: 5px 5px;"></span>
+</div>
+</div>
+<div class="tags flex flex-wrap gap-2 pb-0 pt-1 text-xs font-normal uppercase text-cyan-50 lg:pb-2">
+<span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
+                Быстро
+              </span>
+<span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
+                Индивидуально
+              </span>
+<span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
+                Лицензировано
+              </span>
+<span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
+                Реактивно
+              </span>
+<span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
+                Безопасно для стемов
+              </span>
+</div>
+</aside>
+<section class="stage relative z-20 mt-8 min-h-[36rem] lg:col-span-9 lg:mt-0">
+<div class="mint-shape primary-shape absolute left-0 top-2 h-[38%] w-[84%] rounded-[1.7rem] bg-cyan-100 sm:rounded-[2rem] lg:left-[4%] lg:w-[86%]" style="clip-path: polygon(19% 0%, 98% 0%, 100% 8%, 82% 100%, 0% 100%, 0% 88%); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);"></div>
+<div class="mint-shape lower-shape absolute bottom-[14%] left-[4%] h-[25%] w-[45%] rounded-[1.5rem] bg-cyan-100 sm:rounded-[1.8rem]" style="clip-path: polygon(20% 0%, 100% 0%, 82% 100%, 0% 100%, 0% 82%); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);"></div>
+<div class="compose-copy absolute right-[19%] top-[13%] z-30 hidden max-w-[14rem] text-sm font-medium uppercase leading-snug text-black md:block" style="will-change: transform, opacity;">
+              Сочиняйте от сцены — AI как ваш тихий студийный партнёр
             </div>
-
-            <div class="tags flex flex-wrap gap-2 pb-0 pt-1 text-xs font-normal uppercase text-cyan-50 lg:pb-2">
-              <span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
-                Swift
-              </span>
-              <span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
-                Bespoke
-              </span>
-              <span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
-                Licensed
-              </span>
-              <span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
-                Reactive
-              </span>
-              <span class="rounded-full border border-cyan-100/80 px-4 py-2" style="will-change: transform, opacity;">
-                Stem-safe
-              </span>
-            </div>
-          </aside>
-
-          <section class="stage relative z-20 mt-8 min-h-[36rem] lg:col-span-9 lg:mt-0">
-            <div class="mint-shape primary-shape absolute left-0 top-2 h-[38%] w-[84%] rounded-[1.7rem] bg-cyan-100 sm:rounded-[2rem] lg:left-[4%] lg:w-[86%]" style="clip-path: polygon(19% 0%, 98% 0%, 100% 8%, 82% 100%, 0% 100%, 0% 88%); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);"></div>
-            <div class="mint-shape lower-shape absolute bottom-[14%] left-[4%] h-[25%] w-[45%] rounded-[1.5rem] bg-cyan-100 sm:rounded-[1.8rem]" style="clip-path: polygon(20% 0%, 100% 0%, 82% 100%, 0% 100%, 0% 82%); box-shadow: inset 0 0 0 1px rgba(0,0,0,0.08);"></div>
-
-            <div class="compose-copy absolute right-[19%] top-[13%] z-30 hidden max-w-[14rem] text-sm font-medium uppercase leading-snug text-black md:block" style="will-change: transform, opacity;">
-              Compose scene-first — AI as your quiet studio partner
-            </div>
-
-            
-            <svg class="wave-line absolute right-[9%] top-[27%] z-30 hidden h-28 w-72 md:block" viewBox="0 0 288 112" fill="none" aria-hidden="true" style="will-change: transform, opacity">
-              <path d="M2 76 L38 8 L75 96 L106 44 L128 76 L165 76 L202 8 L238 76 L286 76" stroke="black" stroke-width="4" stroke-linejoin="round" style="stroke-dashoffset: 0px; stroke-dasharray: 511.1318;" class=""></path>
-            </svg><div class="instant-card z-40 flex gap-4 shadow-cyan-950/30 sm:w-[18rem] sm:rounded-[1.65rem] text-black bg-cyan-500 w-[17rem] rounded-[1.35rem] px-3 py-3 absolute top-[25%] right-0 shadow-xl gap-x-4 gap-y-4 items-center" style="will-change: transform, opacity;">
-              <div class="min-w-24">
-                <p class="text-xs font-medium uppercase leading-none">
-                  Instant cues
+<svg aria-hidden="true" class="wave-line absolute right-[9%] top-[27%] z-30 hidden h-28 w-72 md:block" fill="none" style="will-change: transform, opacity" viewbox="0 0 288 112">
+<path class="" d="M2 76 L38 8 L75 96 L106 44 L128 76 L165 76 L202 8 L238 76 L286 76" stroke="black" stroke-linejoin="round" stroke-width="4" style="stroke-dashoffset: 0px; stroke-dasharray: 511.1318;"></path>
+</svg><div class="instant-card z-40 flex gap-4 shadow-cyan-950/30 sm:w-[18rem] sm:rounded-[1.65rem] text-black bg-cyan-500 w-[17rem] rounded-[1.35rem] px-3 py-3 absolute top-[25%] right-0 shadow-xl gap-x-4 gap-y-4 items-center" style="will-change: transform, opacity;">
+<div class="min-w-24">
+<p class="text-xs font-medium uppercase leading-none">
+                  Мгновенные треки
                 </p>
-                <p class="mt-1 text-4xl font-medium uppercase leading-none tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
+<p class="mt-1 text-4xl font-medium uppercase leading-none tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
                   36
                 </p>
+</div>
+<div class="flex-1 rounded-2xl bg-black px-4 py-4 text-xs font-medium uppercase leading-snug text-cyan-50">
+                Набросок, доработка, экспорт за тридцать секунд
               </div>
-              <div class="flex-1 rounded-2xl bg-black px-4 py-4 text-xs font-medium uppercase leading-snug text-cyan-50">
-                Sketch, refine, export in thirty seconds
-              </div>
-            </div>
-
-            <button type="button" aria-label="Play demo" class="play-button absolute left-[7%] top-[55%] z-50 inline-flex h-20 w-20 items-center justify-center rounded-full bg-black text-cyan-50 shadow-2xl shadow-black/40 transition hover:scale-105 sm:left-[8%] hover:bg-cyan-100" style="will-change: transform, opacity;">
-              <iconify-icon icon="solar:play-linear" class="text-3xl" stroke-width="1.5"></iconify-icon>
-            </button>
-
-            <img class="hero-figure absolute top-0 left-[24%] z-30 h-[44rem] max-h-none w-auto object-contain drop-shadow-2xl sm:left-[25%] lg:left-[2%]" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dff95b47-30f9-4651-9e66-3a9fde564066_1600w.png" alt="Futuristic producer wearing studio headphones" style="clip-path: inset(0 0 0 0 round 0);">
-
-            <div class="headline z-50 uppercase leading-[0.92] sm:text-6xl lg:text-7xl text-4xl font-medium text-cyan-100 tracking-tight text-right max-w-[39rem] absolute right-[2%] bottom-[2%]" style="font-family: Orbitron, Inter, sans-serif; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 1.5rem">
-              <span class="headline-line block" style="will-change: transform, opacity; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 24px;">
-                Prompt.
+</div>
+<button aria-label="Включить демо" class="play-button absolute left-[7%] top-[55%] z-50 inline-flex h-20 w-20 items-center justify-center rounded-full bg-black text-cyan-50 shadow-2xl shadow-black/40 transition hover:scale-105 sm:left-[8%] hover:bg-cyan-100" style="will-change: transform, opacity;" type="button">
+<iconify-icon class="text-3xl" icon="solar:play-linear" stroke-width="1.5"></iconify-icon>
+</button>
+<img alt="Футуристичный продюсер в студийных наушниках" class="hero-figure absolute top-0 left-[24%] z-30 h-[44rem] max-h-none w-auto object-contain drop-shadow-2xl sm:left-[25%] lg:left-[2%]" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dff95b47-30f9-4651-9e66-3a9fde564066_1600w.png" style="clip-path: inset(0 0 0 0 round 0);"/>
+<div class="headline z-50 uppercase leading-[0.92] sm:text-6xl lg:text-7xl text-4xl font-medium text-cyan-100 tracking-tight text-right max-w-[39rem] absolute right-[2%] bottom-[2%]" style="font-family: Orbitron, Inter, sans-serif; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 1.5rem">
+<span class="headline-line block" style="will-change: transform, opacity; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 24px;">
+                Промпт.
               </span>
-              <span class="headline-line block" style="will-change: transform, opacity; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 24px;">
-                Layer.
+<span class="headline-line block" style="will-change: transform, opacity; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 24px;">
+                Слои.
               </span>
-              <span class="headline-line block" style="will-change: transform, opacity; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 24px;">
-                Deliver.
+<span class="headline-line block" style="will-change: transform, opacity; text-shadow: rgba(207, 250, 254, 0.12) 0px 0px 24px;">
+                Готово.
               </span>
-            </div>
-          </section>
-        </div>
-      </section>
-    </main>
-
-    <section aria-label="Diagnostic workspace capabilities" class="flex flex-col overflow-hidden shadow-black/60 sm:rounded-[2.75rem] sm:px-10 lg:px-14 lg:pb-28 lg:pt-24 w-full max-w-[92rem] z-10 mr-auto ml-auto pt-24 pr-10 pb-28 pl-10 relative">
-      <div class="pointer-events-none absolute inset-0 z-0 opacity-80" aria-hidden="true" style="background: radial-gradient(circle at 48% 45%, rgba(207,250,254,0.12), transparent 40%), radial-gradient(circle at 76% 38%, rgba(249,115,22,0.06), transparent 30%);"></div>
-
-      <div class="pointer-events-none absolute inset-0 z-10" aria-hidden="true" style="background-image: linear-gradient(135deg, rgba(207,250,254,0.08) 0, rgba(207,250,254,0.08) 1px, transparent 1px, transparent 100%); background-size: 3rem 3rem;"></div>
-
-      <div class="pointer-events-none absolute left-6 top-6 z-30 h-4 w-4 border-l border-t border-cyan-100/50 sm:left-8 sm:top-8"></div>
-      <div class="pointer-events-none absolute right-6 top-6 z-30 h-4 w-4 border-r border-t border-cyan-100/50 sm:right-8 sm:top-8"></div>
-      <div class="pointer-events-none absolute bottom-6 left-6 z-30 h-4 w-4 border-b border-l border-cyan-100/50 sm:bottom-8 sm:left-8"></div>
-      <div class="pointer-events-none absolute bottom-6 right-6 z-30 h-4 w-4 border-b border-r border-cyan-100/50 sm:bottom-8 sm:right-8"></div>
-
-      <div class="relative z-20 flex items-center gap-2">
-        <span class="h-3 w-3 rounded-full border border-cyan-100/50 bg-cyan-100/15" style="box-shadow: 0 0 18px rgba(207,250,254,0.5), inset 0 1px 2px rgba(255,255,255,0.3);"></span>
-        <span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/90">
-          Capabilities
+</div>
+</section>
+</div>
+</section>
+</main>
+<section aria-label="Возможности диагностического рабочего пространства" class="flex flex-col overflow-hidden shadow-black/60 sm:rounded-[2.75rem] sm:px-10 lg:px-14 lg:pb-28 lg:pt-24 w-full max-w-[92rem] z-10 mr-auto ml-auto pt-24 pr-10 pb-28 pl-10 relative">
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 opacity-80" style="background: radial-gradient(circle at 48% 45%, rgba(207,250,254,0.12), transparent 40%), radial-gradient(circle at 76% 38%, rgba(249,115,22,0.06), transparent 30%);"></div>
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-10" style="background-image: linear-gradient(135deg, rgba(207,250,254,0.08) 0, rgba(207,250,254,0.08) 1px, transparent 1px, transparent 100%); background-size: 3rem 3rem;"></div>
+<div class="pointer-events-none absolute left-6 top-6 z-30 h-4 w-4 border-l border-t border-cyan-100/50 sm:left-8 sm:top-8"></div>
+<div class="pointer-events-none absolute right-6 top-6 z-30 h-4 w-4 border-r border-t border-cyan-100/50 sm:right-8 sm:top-8"></div>
+<div class="pointer-events-none absolute bottom-6 left-6 z-30 h-4 w-4 border-b border-l border-cyan-100/50 sm:bottom-8 sm:left-8"></div>
+<div class="pointer-events-none absolute bottom-6 right-6 z-30 h-4 w-4 border-b border-r border-cyan-100/50 sm:bottom-8 sm:right-8"></div>
+<div class="relative z-20 flex items-center gap-2">
+<span class="h-3 w-3 rounded-full border border-cyan-100/50 bg-cyan-100/15" style="box-shadow: 0 0 18px rgba(207,250,254,0.5), inset 0 1px 2px rgba(255,255,255,0.3);"></span>
+<span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/90">
+          Компетенции
         </span>
-        <span class="h-3 w-3 rounded-full border border-cyan-100/50 bg-cyan-100/15" style="box-shadow: 0 0 18px rgba(207,250,254,0.5), inset 0 1px 2px rgba(255,255,255,0.3);"></span>
-      </div>
-
-      <h2 class="relative z-20 mt-6 max-w-5xl text-balance text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl lg:text-7xl" style="font-family: Orbitron, Inter, sans-serif">
-        Everything your producers need to compose faster.
+<span class="h-3 w-3 rounded-full border border-cyan-100/50 bg-cyan-100/15" style="box-shadow: 0 0 18px rgba(207,250,254,0.5), inset 0 1px 2px rgba(255,255,255,0.3);"></span>
+</div>
+<h2 class="relative z-20 mt-6 max-w-5xl text-balance text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl lg:text-7xl" style="font-family: Orbitron, Inter, sans-serif">
+        Всё, что нужно вашим продюсерам, чтобы сочинять быстрее.
       </h2>
-
-      <p class="relative z-20 mt-5 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/70 sm:text-base">
-        A live diagnostic workspace for stem control, arrangement, mix policy,
-        and audio signals across every track.
+<p class="relative z-20 mt-5 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/70 sm:text-base">
+        Живое диагностическое рабочее пространство для управления стемами, аранжировкой, политикой микса
+        и аудиосигналами по всем трекам.
       </p>
-
-      <div class="relative z-20 mt-16 grid w-full grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-12">
-        <article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-black p-6 text-cyan-50 shadow-xl lg:col-span-8 lg:min-h-[28rem]" style="background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)) padding-box, linear-gradient(135deg, rgba(207, 250, 254, 0.25), rgba(249, 115, 22, 0.2), rgba(207, 250, 254, 0.05)) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/40"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/40"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/40"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/40"></div>
-
-          <div class="relative flex min-h-[17rem] items-center justify-center sm:min-h-[19rem]">
-            <div class="relative h-72 w-72 sm:h-80 sm:w-80">
-              <div class="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-[2rem] border border-white/5 bg-neutral-950/80"></div>
-              <div class="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-[1.55rem] border border-cyan-100/10 bg-black"></div>
-              <div class="absolute left-1/2 top-1/2 flex h-36 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[1.35rem] border border-white/5 bg-neutral-950/90" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 2rem rgba(207,250,254,0.08);">
-                <i data-lucide="bell-ring" class="h-12 w-12 text-cyan-50 drop-shadow-lg"></i>
-              </div>
-              <div class="absolute left-[4.1rem] top-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
-              <div class="absolute right-[4.1rem] top-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
-              <div class="absolute bottom-[4.1rem] left-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
-              <div class="absolute bottom-[4.1rem] right-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
-
-              <svg class="absolute inset-0 h-full w-full overflow-visible opacity-60" viewBox="0 0 320 320" fill="none" aria-hidden="true">
-                <g stroke="rgba(207,250,254,0.2)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
-                  <path d="M78 112H38L20 94H10"></path>
-                  <path d="M78 140H32L18 126H3"></path>
-                  <path d="M78 180H34L18 196H6"></path>
-                  <path d="M78 208H42L24 226H12"></path>
-                  <path d="M242 112H282L300 94H310"></path>
-                  <path d="M242 140H288L302 126H317"></path>
-                  <path d="M242 180H286L302 196H314"></path>
-                  <path d="M242 208H278L296 226H308"></path>
-                  <path d="M112 242V284L94 302V314"></path>
-                  <path d="M140 242V292L126 306V318"></path>
-                  <path d="M180 242V288L196 304V316" class=""></path>
-                  <path d="M208 242V282L226 300V312" class=""></path>
-                </g>
-                <g fill="#020202" stroke="rgba(207,250,254,0.5)" stroke-width="2">
-                  <circle cx="10" cy="94" r="4"></circle>
-                  <circle cx="3" cy="126" r="4"></circle>
-                  <circle cx="6" cy="196" r="4"></circle>
-                  <circle cx="12" cy="226" r="4"></circle>
-                  <circle cx="310" cy="94" r="4"></circle>
-                  <circle cx="317" cy="126" r="4"></circle>
-                  <circle cx="314" cy="196" r="4"></circle>
-                  <circle cx="308" cy="226" r="4"></circle>
-                  <circle cx="94" cy="314" r="4"></circle>
-                  <circle cx="126" cy="318" r="4"></circle>
-                  <circle cx="196" cy="316" r="4"></circle>
-                  <circle cx="226" cy="312" r="4"></circle>
-                </g>
-              </svg>
-            </div>
-          </div>
-
-          <div class="relative mt-4 max-w-xl">
-            <div class="flex items-center gap-3">
-              <div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100">
-                <i data-lucide="shield-alert" class="h-5 w-5"></i>
-              </div>
-              <h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-                Audio Engine &amp; Stem Alerts
+<div class="relative z-20 mt-16 grid w-full grid-cols-1 gap-6 lg:mt-20 lg:grid-cols-12">
+<article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-black p-6 text-cyan-50 shadow-xl lg:col-span-8 lg:min-h-[28rem]" style="background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)) padding-box, linear-gradient(135deg, rgba(207, 250, 254, 0.25), rgba(249, 115, 22, 0.2), rgba(207, 250, 254, 0.05)) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/40"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/40"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/40"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/40"></div>
+<div class="relative flex min-h-[17rem] items-center justify-center sm:min-h-[19rem]">
+<div class="relative h-72 w-72 sm:h-80 sm:w-80">
+<div class="absolute left-1/2 top-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-[2rem] border border-white/5 bg-neutral-950/80"></div>
+<div class="absolute left-1/2 top-1/2 h-52 w-52 -translate-x-1/2 -translate-y-1/2 rounded-[1.55rem] border border-cyan-100/10 bg-black"></div>
+<div class="absolute left-1/2 top-1/2 flex h-36 w-36 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-[1.35rem] border border-white/5 bg-neutral-950/90" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 0 2rem rgba(207,250,254,0.08);">
+<i class="h-12 w-12 text-cyan-50 drop-shadow-lg" data-lucide="bell-ring"></i>
+</div>
+<div class="absolute left-[4.1rem] top-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
+<div class="absolute right-[4.1rem] top-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
+<div class="absolute bottom-[4.1rem] left-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
+<div class="absolute bottom-[4.1rem] right-[4.1rem] h-3 w-3 rounded-full bg-cyan-100" style="box-shadow: 0 0 1rem rgba(207,250,254,0.8);"></div>
+<svg aria-hidden="true" class="absolute inset-0 h-full w-full overflow-visible opacity-60" fill="none" viewbox="0 0 320 320">
+<g class="" stroke="rgba(207,250,254,0.2)" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+<path d="M78 112H38L20 94H10"></path>
+<path d="M78 140H32L18 126H3"></path>
+<path d="M78 180H34L18 196H6"></path>
+<path d="M78 208H42L24 226H12"></path>
+<path d="M242 112H282L300 94H310"></path>
+<path d="M242 140H288L302 126H317"></path>
+<path d="M242 180H286L302 196H314"></path>
+<path d="M242 208H278L296 226H308"></path>
+<path d="M112 242V284L94 302V314"></path>
+<path d="M140 242V292L126 306V318"></path>
+<path class="" d="M180 242V288L196 304V316"></path>
+<path class="" d="M208 242V282L226 300V312"></path>
+</g>
+<g fill="#020202" stroke="rgba(207,250,254,0.5)" stroke-width="2">
+<circle cx="10" cy="94" r="4"></circle>
+<circle cx="3" cy="126" r="4"></circle>
+<circle cx="6" cy="196" r="4"></circle>
+<circle cx="12" cy="226" r="4"></circle>
+<circle cx="310" cy="94" r="4"></circle>
+<circle cx="317" cy="126" r="4"></circle>
+<circle cx="314" cy="196" r="4"></circle>
+<circle cx="308" cy="226" r="4"></circle>
+<circle cx="94" cy="314" r="4"></circle>
+<circle cx="126" cy="318" r="4"></circle>
+<circle cx="196" cy="316" r="4"></circle>
+<circle cx="226" cy="312" r="4"></circle>
+</g>
+</svg>
+</div>
+</div>
+<div class="relative mt-4 max-w-xl">
+<div class="flex items-center gap-3">
+<div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100">
+<i class="h-5 w-5" data-lucide="shield-alert"></i>
+</div>
+<h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+                Аудиодвижок и оповещения по стемам
               </h3>
-            </div>
-            <p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
-              Spot unusual frequency spikes, duplicate rhythms, and mix drift
-              before exporting the final cue.
+</div>
+<p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
+              Замечайте необычные частотные пики, повторяющиеся ритмы и дрейф микса
+              до экспорта финального трека.
             </p>
-          </div>
-        </article>
-
-        <article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-cyan-100 p-6 text-black shadow-xl shadow-cyan-950/30 lg:col-span-4 lg:min-h-[28rem]" style="background: linear-gradient(rgb(207, 250, 254), rgb(207, 250, 254)) padding-box, linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(207, 250, 254, 0.2), rgba(0, 0, 0, 0.1)) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-black/20"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-black/20"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-black/20"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-black/20"></div>
-
-          <div class="relative flex min-h-[17rem] items-center justify-center sm:min-h-[19rem]">
-            <div class="relative h-60 w-60 rounded-[1.5rem] border border-black/10 bg-white/40 p-8 shadow-inner backdrop-blur-sm">
-              <span class="absolute left-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <span class="absolute right-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <span class="absolute bottom-5 left-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <span class="absolute bottom-5 right-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <div class="absolute inset-x-8 top-[5.15rem] h-16 bg-white/60 blur-xl"></div>
-              <div class="relative flex h-full items-center justify-center overflow-hidden rounded-xl border border-black/5 bg-black/5">
-                <div class="absolute left-0 top-1/2 h-px w-full bg-black/20" style="box-shadow: 0 0 8px rgba(0,0,0,0.1);"></div>
-                <div class="relative flex h-24 w-16 items-center justify-center rounded-b-md bg-black text-cyan-50 shadow-lg" style="clip-path: polygon(0 0, 31% 0, 38% 10%, 62% 10%, 69% 0, 100% 0, 100% 100%, 0 100%); border-top: 2px solid rgba(255,255,255,0.2);">
-                  <i data-lucide="music" class="h-8 w-8"></i>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative mt-4">
-            <div class="flex items-center gap-3">
-              <div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-black">
-                <i data-lucide="disc" class="h-5 w-5"></i>
-              </div>
-              <h3 class="text-xl font-normal uppercase tracking-tight text-black" style="font-family: Orbitron, Inter, sans-serif;">
-                Reference Capture
+</div>
+</article>
+<article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-cyan-100 p-6 text-black shadow-xl shadow-cyan-950/30 lg:col-span-4 lg:min-h-[28rem]" style="background: linear-gradient(rgb(207, 250, 254), rgb(207, 250, 254)) padding-box, linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(207, 250, 254, 0.2), rgba(0, 0, 0, 0.1)) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-black/20"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-black/20"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-black/20"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-black/20"></div>
+<div class="relative flex min-h-[17rem] items-center justify-center sm:min-h-[19rem]">
+<div class="relative h-60 w-60 rounded-[1.5rem] border border-black/10 bg-white/40 p-8 shadow-inner backdrop-blur-sm">
+<span class="absolute left-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
+<span class="absolute right-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
+<span class="absolute bottom-5 left-5 h-3 w-3 rounded-full bg-black/80"></span>
+<span class="absolute bottom-5 right-5 h-3 w-3 rounded-full bg-black/80"></span>
+<div class="absolute inset-x-8 top-[5.15rem] h-16 bg-white/60 blur-xl"></div>
+<div class="relative flex h-full items-center justify-center overflow-hidden rounded-xl border border-black/5 bg-black/5">
+<div class="absolute left-0 top-1/2 h-px w-full bg-black/20" style="box-shadow: 0 0 8px rgba(0,0,0,0.1);"></div>
+<div class="relative flex h-24 w-16 items-center justify-center rounded-b-md bg-black text-cyan-50 shadow-lg" style="clip-path: polygon(0 0, 31% 0, 38% 10%, 62% 10%, 69% 0, 100% 0, 100% 100%, 0 100%); border-top: 2px solid rgba(255,255,255,0.2);">
+<i class="h-8 w-8" data-lucide="music"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mt-4">
+<div class="flex items-center gap-3">
+<div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-black">
+<i class="h-5 w-5" data-lucide="disc"></i>
+</div>
+<h3 class="text-xl font-normal uppercase tracking-tight text-black" style="font-family: Orbitron, Inter, sans-serif;">
+                Захват референсов
               </h3>
-            </div>
-            <p class="mt-4 text-xs font-light uppercase leading-relaxed text-black/70">
-              Parse reference tracks, stems, and MIDI events into clean sessions
-              with genre confidence scoring.
+</div>
+<p class="mt-4 text-xs font-light uppercase leading-relaxed text-black/70">
+              Разбирайте референс-треки, стемы и MIDI-события в чистые сессии
+              с оценкой уверенности по жанрам.
             </p>
-          </div>
-        </article>
-
-        <article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-cyan-100 p-6 text-black shadow-xl shadow-cyan-950/30 lg:col-span-4 lg:min-h-[28rem]" style="background: linear-gradient(rgb(207, 250, 254), rgb(207, 250, 254)) padding-box, linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(207, 250, 254, 0.2), rgba(0, 0, 0, 0.1)) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-black/20"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-black/20"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-black/20"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-black/20"></div>
-
-          <div class="relative flex min-h-[17rem] items-center justify-center sm:min-h-[19rem]">
-            <div class="relative h-60 w-60 rounded-[1.5rem] border border-black/10 bg-white/40 p-8 shadow-inner backdrop-blur-sm">
-              <span class="absolute left-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <span class="absolute right-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <span class="absolute bottom-5 left-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <span class="absolute bottom-5 right-5 h-3 w-3 rounded-full bg-black/80"></span>
-              <div class="relative flex h-full items-end justify-center overflow-hidden rounded-xl border border-black/5 bg-black/5 px-6 pb-6">
-                <div class="flex h-40 items-end gap-[0.35rem]">
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 28%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 44%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 58%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 84%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 52%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 38%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 50%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 76%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 46%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 35%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 56%;"></span>
-                  <span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 78%;"></span>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative mt-4">
-            <div class="flex items-center gap-3">
-              <div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-black">
-                <i data-lucide="bar-chart-2" class="w-[20px] h-[20px]" stroke-width="2" data-icon-replaced="true" style="color: rgb(0, 0, 0); width: 20px; height: 20px"></i>
-              </div>
-              <h3 class="text-xl font-normal uppercase tracking-tight text-black" style="font-family: Orbitron, Inter, sans-serif;">
-                Live Mix Analytics
+</div>
+</article>
+<article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-cyan-100 p-6 text-black shadow-xl shadow-cyan-950/30 lg:col-span-4 lg:min-h-[28rem]" style="background: linear-gradient(rgb(207, 250, 254), rgb(207, 250, 254)) padding-box, linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(207, 250, 254, 0.2), rgba(0, 0, 0, 0.1)) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-black/20"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-black/20"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-black/20"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-black/20"></div>
+<div class="relative flex min-h-[17rem] items-center justify-center sm:min-h-[19rem]">
+<div class="relative h-60 w-60 rounded-[1.5rem] border border-black/10 bg-white/40 p-8 shadow-inner backdrop-blur-sm">
+<span class="absolute left-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
+<span class="absolute right-5 top-5 h-3 w-3 rounded-full bg-black/80"></span>
+<span class="absolute bottom-5 left-5 h-3 w-3 rounded-full bg-black/80"></span>
+<span class="absolute bottom-5 right-5 h-3 w-3 rounded-full bg-black/80"></span>
+<div class="relative flex h-full items-end justify-center overflow-hidden rounded-xl border border-black/5 bg-black/5 px-6 pb-6">
+<div class="flex h-40 items-end gap-[0.35rem]">
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 28%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 44%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 58%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 84%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 52%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 38%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 50%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 76%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 46%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 35%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 56%;"></span>
+<span class="block w-2.5 rounded-t-[2px] bg-black shadow-md" style="height: 78%;"></span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mt-4">
+<div class="flex items-center gap-3">
+<div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-black/10 bg-black/5 text-black">
+<i class="w-[20px] h-[20px]" data-icon-replaced="true" data-lucide="bar-chart-2" stroke-width="2" style="color: rgb(0, 0, 0); width: 20px; height: 20px"></i>
+</div>
+<h3 class="text-xl font-normal uppercase tracking-tight text-black" style="font-family: Orbitron, Inter, sans-serif;">
+                Живая аналитика микса
               </h3>
-            </div>
-            <p class="mt-4 text-xs font-light uppercase leading-relaxed text-black/70">
-              Track frequency movement, LUFS velocity, and dynamic variance from
-              one live master channel.
+</div>
+<p class="mt-4 text-xs font-light uppercase leading-relaxed text-black/70">
+              Отслеживайте движение частот, скорость LUFS и динамическую вариативность
+              с одного живого мастер-канала.
             </p>
-          </div>
-        </article>
-
-        <article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-black p-6 text-cyan-50 shadow-xl lg:col-span-8 lg:min-h-[28rem]" style="background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)) padding-box, linear-gradient(135deg, rgba(207, 250, 254, 0.25), rgba(249, 115, 22, 0.2), rgba(207, 250, 254, 0.05)) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/40"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/40"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/40"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/40"></div>
-
-          <div class="relative flex min-h-[17rem] items-center justify-center overflow-hidden sm:min-h-[19rem]">
-            <div class="relative h-72 w-full max-w-lg">
-              <div class="absolute left-1/2 top-8 h-56 w-[82%] -translate-x-1/2 rounded-[1.25rem] border border-white/5 bg-neutral-900/50" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 2rem rgba(0,0,0,0.5);"></div>
-              <div class="absolute left-1/2 top-14 h-56 w-[72%] -translate-x-1/2 rounded-[1.25rem] border border-white/5 bg-neutral-900/80" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 2rem rgba(0,0,0,0.6);"></div>
-              <div class="absolute left-1/2 top-24 h-40 w-[82%] max-w-sm -translate-x-1/2 rounded-xl border border-cyan-100/20 bg-neutral-800 p-6" style="background: linear-gradient(180deg, #1f1f1f, #0a0a0a); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1.5rem 3rem rgba(0,0,0,0.8);">
-                <div class="flex items-center justify-between text-cyan-50">
-                  <i data-lucide="server" class="h-8 w-8"></i>
-                  <span class="text-xs font-normal tracking-[0.32rem] text-cyan-50/80">
+</div>
+</article>
+<article class="relative overflow-hidden rounded-[1.55rem] border border-transparent bg-black p-6 text-cyan-50 shadow-xl lg:col-span-8 lg:min-h-[28rem]" style="background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)) padding-box, linear-gradient(135deg, rgba(207, 250, 254, 0.25), rgba(249, 115, 22, 0.2), rgba(207, 250, 254, 0.05)) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/40"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/40"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/40"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/40"></div>
+<div class="relative flex min-h-[17rem] items-center justify-center overflow-hidden sm:min-h-[19rem]">
+<div class="relative h-72 w-full max-w-lg">
+<div class="absolute left-1/2 top-8 h-56 w-[82%] -translate-x-1/2 rounded-[1.25rem] border border-white/5 bg-neutral-900/50" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 2rem rgba(0,0,0,0.5);"></div>
+<div class="absolute left-1/2 top-14 h-56 w-[72%] -translate-x-1/2 rounded-[1.25rem] border border-white/5 bg-neutral-900/80" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 2rem rgba(0,0,0,0.6);"></div>
+<div class="absolute left-1/2 top-24 h-40 w-[82%] max-w-sm -translate-x-1/2 rounded-xl border border-cyan-100/20 bg-neutral-800 p-6" style="background: linear-gradient(180deg, #1f1f1f, #0a0a0a); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 1.5rem 3rem rgba(0,0,0,0.8);">
+<div class="flex items-center justify-between text-cyan-50">
+<i class="h-8 w-8" data-lucide="server"></i>
+<span class="text-xs font-normal tracking-[0.32rem] text-cyan-50/80">
                     •••• •••• 7194
                   </span>
-                </div>
-                <div class="mt-12 flex items-end justify-between">
-                  <div class="">
-                    <p class="text-xs font-normal uppercase text-cyan-50">
-                      Mira Keane
+</div>
+<div class="mt-12 flex items-end justify-between">
+<div class="">
+<p class="text-xs font-normal uppercase text-cyan-50">
+                      Мира Кин
                     </p>
-                    <p class="mt-1 text-xs font-light uppercase text-cyan-50/50">
-                      Session 04
+<p class="mt-1 text-xs font-light uppercase text-cyan-50/50">
+                      Сессия 04
                     </p>
-                  </div>
-                  <p class="text-3xl font-normal uppercase tracking-tight text-cyan-100/40" style="font-family: Orbitron, Inter, sans-serif;">
+</div>
+<p class="text-3xl font-normal uppercase tracking-tight text-cyan-100/40" style="font-family: Orbitron, Inter, sans-serif;">
                     LUMA
                   </p>
-                </div>
-                <div class="pointer-events-none absolute inset-x-0 top-0 h-8 opacity-20" style="background-image: radial-gradient(rgba(207,250,254,0.4) 1px, transparent 1px); background-size: 8px 8px;"></div>
-                <div class="pointer-events-none absolute inset-x-0 bottom-0 h-8 opacity-20" style="background-image: radial-gradient(rgba(207,250,254,0.4) 1px, transparent 1px); background-size: 8px 8px;"></div>
-              </div>
-            </div>
-          </div>
-
-          <div class="relative mt-4 max-w-xl">
-            <div class="flex items-center gap-3">
-              <div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100">
-                <i data-lucide="layers" class="h-5 w-5"></i>
-              </div>
-              <h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-                Adaptive Team Sessions
+</div>
+<div class="pointer-events-none absolute inset-x-0 top-0 h-8 opacity-20" style="background-image: radial-gradient(rgba(207,250,254,0.4) 1px, transparent 1px); background-size: 8px 8px;"></div>
+<div class="pointer-events-none absolute inset-x-0 bottom-0 h-8 opacity-20" style="background-image: radial-gradient(rgba(207,250,254,0.4) 1px, transparent 1px); background-size: 8px 8px;"></div>
+</div>
+</div>
+</div>
+<div class="relative mt-4 max-w-xl">
+<div class="flex items-center gap-3">
+<div class="inline-flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100">
+<i class="h-5 w-5" data-lucide="layers"></i>
+</div>
+<h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+                Адаптивные командные сессии
               </h3>
-            </div>
-            <p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
-              Create sessions, bind plugin rules, cap track count by project,
-              and manage CPU exposure in real time.
+</div>
+<p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
+              Создавайте сессии, привязывайте правила плагинов, ограничивайте число треков по проекту
+              и управляйте нагрузкой на CPU в реальном времени.
             </p>
-          </div>
-        </article>
-      </div>
-    </section>
-    <section class="relative mx-auto w-full max-w-[92rem] px-3 pb-10 sm:px-6 lg:px-10 z-10" aria-label="Diagnostic Workspace">
-      <div class="relative overflow-hidden rounded-[2rem] border border-transparent shadow-2xl z-10" style="background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)) padding-box, linear-gradient(135deg, rgba(207, 250, 254, 0.25), rgba(249, 115, 22, 0.2), rgba(207, 250, 254, 0.05)) border-box;">
-        <div class="pointer-events-none absolute inset-0 z-0 opacity-80" aria-hidden="true" style="background: radial-gradient(circle at 48% 45%, rgba(207,250,254,0.12), transparent 40%), radial-gradient(circle at 76% 38%, rgba(249,115,22,0.06), transparent 30%);"></div>
-        <div class="pointer-events-none absolute inset-0 z-10" aria-hidden="true" style="background-image: linear-gradient(135deg, rgba(207,250,254,0.08) 0, rgba(207,250,254,0.08) 1px, transparent 1px, transparent 100%); background-size: 3rem 3rem;"></div>
-
-        <div class="pointer-events-none absolute left-6 top-6 z-30 h-4 w-4 border-l border-t border-cyan-100/50 sm:left-8 sm:top-8"></div>
-        <div class="pointer-events-none absolute right-6 top-6 z-30 h-4 w-4 border-r border-t border-cyan-100/50 sm:right-8 sm:top-8"></div>
-        <div class="pointer-events-none absolute bottom-6 left-6 z-30 h-4 w-4 border-b border-l border-cyan-100/50 sm:bottom-8 sm:left-8"></div>
-        <div class="pointer-events-none absolute bottom-6 right-6 z-30 h-4 w-4 border-b border-r border-cyan-100/50 sm:bottom-8 sm:right-8"></div>
-
-        <header class="relative z-20 grid border-b border-cyan-100/10 lg:grid-cols-[1.1fr_0.9fr]">
-          <section class="relative min-h-[24rem] border-b border-cyan-100/10 px-5 py-6 sm:px-8 sm:py-8 lg:border-b-0 lg:border-r lg:border-cyan-100/10 lg:px-10 lg:py-10">
-            <div class="reveal flex flex-wrap items-center gap-2">
-              <div class="inline-flex items-center gap-2 rounded-full border border-cyan-100/15 bg-cyan-100/5 px-3 py-1.5 shadow-[0_0_12px_rgba(207,250,254,0.1)]">
-                <span class="flex h-5 w-5 items-center justify-center text-cyan-50/70">
-                  <i data-lucide="activity" class="h-4 w-4 text-cyan-50/70"></i>
+</div>
+</article>
+</div>
+</section>
+<section aria-label="Диагностическое рабочее пространство" class="relative mx-auto w-full max-w-[92rem] px-3 pb-10 sm:px-6 lg:px-10 z-10">
+<div class="relative overflow-hidden rounded-[2rem] border border-transparent shadow-2xl z-10" style="background: linear-gradient(rgba(10, 10, 10, 0.8), rgba(10, 10, 10, 0.8)) padding-box, linear-gradient(135deg, rgba(207, 250, 254, 0.25), rgba(249, 115, 22, 0.2), rgba(207, 250, 254, 0.05)) border-box;">
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 opacity-80" style="background: radial-gradient(circle at 48% 45%, rgba(207,250,254,0.12), transparent 40%), radial-gradient(circle at 76% 38%, rgba(249,115,22,0.06), transparent 30%);"></div>
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-10" style="background-image: linear-gradient(135deg, rgba(207,250,254,0.08) 0, rgba(207,250,254,0.08) 1px, transparent 1px, transparent 100%); background-size: 3rem 3rem;"></div>
+<div class="pointer-events-none absolute left-6 top-6 z-30 h-4 w-4 border-l border-t border-cyan-100/50 sm:left-8 sm:top-8"></div>
+<div class="pointer-events-none absolute right-6 top-6 z-30 h-4 w-4 border-r border-t border-cyan-100/50 sm:right-8 sm:top-8"></div>
+<div class="pointer-events-none absolute bottom-6 left-6 z-30 h-4 w-4 border-b border-l border-cyan-100/50 sm:bottom-8 sm:left-8"></div>
+<div class="pointer-events-none absolute bottom-6 right-6 z-30 h-4 w-4 border-b border-r border-cyan-100/50 sm:bottom-8 sm:right-8"></div>
+<header class="relative z-20 grid border-b border-cyan-100/10 lg:grid-cols-[1.1fr_0.9fr]">
+<section class="relative min-h-[24rem] border-b border-cyan-100/10 px-5 py-6 sm:px-8 sm:py-8 lg:border-b-0 lg:border-r lg:border-cyan-100/10 lg:px-10 lg:py-10">
+<div class="reveal flex flex-wrap items-center gap-2">
+<div class="inline-flex items-center gap-2 rounded-full border border-cyan-100/15 bg-cyan-100/5 px-3 py-1.5 shadow-[0_0_12px_rgba(207,250,254,0.1)]">
+<span class="flex h-5 w-5 items-center justify-center text-cyan-50/70">
+<i class="h-4 w-4 text-cyan-50/70" data-lucide="activity"></i>
+</span>
+<span class="text-xs font-extralight uppercase tracking-[0.22rem] text-cyan-50/70">
+                  Рабочее пространство / Session-04
                 </span>
-                <span class="text-xs font-extralight uppercase tracking-[0.22rem] text-cyan-50/70">
-                  Workspace / Session-04
+</div>
+<div class="inline-flex items-center gap-2 rounded-full border border-cyan-100/15 bg-cyan-100/5 px-3 py-1.5 shadow-[0_0_12px_rgba(207,250,254,0.1)]">
+<span class="h-1.5 w-1.5 rounded-full bg-cyan-100" style="box-shadow: 0 0 8px rgba(207,250,254,0.8);"></span>
+<span class="text-xs font-extralight uppercase text-cyan-50/70">
+                  Живая синхронизация
                 </span>
-              </div>
-              <div class="inline-flex items-center gap-2 rounded-full border border-cyan-100/15 bg-cyan-100/5 px-3 py-1.5 shadow-[0_0_12px_rgba(207,250,254,0.1)]">
-                <span class="h-1.5 w-1.5 rounded-full bg-cyan-100" style="box-shadow: 0 0 8px rgba(207,250,254,0.8);"></span>
-                <span class="text-xs font-extralight uppercase text-cyan-50/70">
-                  Live Sync
-                </span>
-              </div>
-            </div>
-
-            <div class="mt-12 max-w-2xl">
-              <p class="reveal text-xs font-extralight uppercase tracking-[0.28rem] text-cyan-50/50">
-                Arrangement Diagnostic
+</div>
+</div>
+<div class="mt-12 max-w-2xl">
+<p class="reveal text-xs font-extralight uppercase tracking-[0.28rem] text-cyan-50/50">
+                Диагностика аранжировки
               </p>
-              <h1 class="reveal mt-4 text-4xl font-thin uppercase tracking-tight text-cyan-50 sm:text-5xl lg:text-6xl" style="font-family: Orbitron, Inter, sans-serif;">
-                Stem Generation Core
+<h1 class="reveal mt-4 text-4xl font-thin uppercase tracking-tight text-cyan-50 sm:text-5xl lg:text-6xl" style="font-family: Orbitron, Inter, sans-serif;">
+                Ядро генерации стемов
               </h1>
-              <p class="reveal mt-5 max-w-xl text-sm font-extralight uppercase leading-relaxed text-cyan-50/60 sm:text-base">
-                A minimalist diagnostic view for inspecting audio pathways,
-                arrangement layers, stem channels, and generation events across
-                your active timeline.
+<p class="reveal mt-5 max-w-xl text-sm font-extralight uppercase leading-relaxed text-cyan-50/60 sm:text-base">
+                Минималистичное диагностическое представление для проверки аудиопутей,
+                слоёв аранжировки, каналов стемов и событий генерации по
+                активному таймлайну.
               </p>
-            </div>
-
-            <div class="reveal mt-12 grid max-w-2xl grid-cols-2 gap-8 sm:grid-cols-4">
-              <div class="border-l border-cyan-100/20 pl-4">
-                <p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
-                  Stems
+</div>
+<div class="reveal mt-12 grid max-w-2xl grid-cols-2 gap-8 sm:grid-cols-4">
+<div class="border-l border-cyan-100/20 pl-4">
+<p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
+                  Стемы
                 </p>
-                <p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+<p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
                   24
                 </p>
-              </div>
-              <div class="border-l border-cyan-100/20 pl-4">
-                <p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
-                  Latency
+</div>
+<div class="border-l border-cyan-100/20 pl-4">
+<p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
+                  Задержка
                 </p>
-                <p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-                  12ms
+<p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+                  12 мс
                 </p>
-              </div>
-              <div class="border-l border-cyan-100/20 pl-4">
-                <p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
-                  Tracks
+</div>
+<div class="border-l border-cyan-100/20 pl-4">
+<p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
+                  Треки
                 </p>
-                <p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+<p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
                   8
                 </p>
-              </div>
-              <div class="border-l border-cyan-100/20 pl-4">
-                <p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
-                  Fidelity
+</div>
+<div class="border-l border-cyan-100/20 pl-4">
+<p class="text-xs font-extralight uppercase tracking-[0.18rem] text-cyan-50/50">
+                  Детализация
                 </p>
-                <p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+<p class="mt-2 text-2xl font-extralight uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
                   99.9%
                 </p>
-              </div>
-            </div>
-          </section>
-
-          <aside class="relative flex min-h-[24rem] flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
-            <div class="reveal flex items-center justify-between gap-4 border-b border-cyan-100/10 pb-6">
-              <div>
-                <p class="text-xs font-extralight uppercase tracking-[0.22rem] text-cyan-50/50">
-                  Active Pipeline
+</div>
+</div>
+</section>
+<aside class="relative flex min-h-[24rem] flex-col px-5 py-6 sm:px-8 sm:py-8 lg:px-10 lg:py-10">
+<div class="reveal flex items-center justify-between gap-4 border-b border-cyan-100/10 pb-6">
+<div>
+<p class="text-xs font-extralight uppercase tracking-[0.22rem] text-cyan-50/50">
+                  Активный пайплайн
                 </p>
-                <h2 class="mt-2 text-xl font-thin uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-                  Generation Sequence
+<h2 class="mt-2 text-xl font-thin uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+                  Последовательность генерации
                 </h2>
-              </div>
-              <div class="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 1rem rgba(207,250,254,0.08);">
-                <i data-lucide="music" class="h-8 w-8"></i>
-              </div>
-            </div>
-
-            <div class="reveal mt-8 flex flex-col gap-5">
-              <div class="flex items-center gap-4">
-                <span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
+</div>
+<div class="flex h-10 w-10 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), 0 0 1rem rgba(207,250,254,0.08);">
+<i class="h-8 w-8" data-lucide="music"></i>
+</div>
+</div>
+<div class="reveal mt-8 flex flex-col gap-5">
+<div class="flex items-center gap-4">
+<span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
                   DRM
                 </span>
-                <div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
-                  <div class="h-1.5 w-[30%] rounded-full bg-cyan-100/60" style="box-shadow: 0 0 8px rgba(207,250,254,0.4);"></div>
-                  <div class="h-1.5 w-[15%] rounded-full bg-cyan-100/40"></div>
-                  <div class="h-1.5 w-[40%] rounded-full bg-cyan-100/20"></div>
-                </div>
-                <span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
+<div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
+<div class="h-1.5 w-[30%] rounded-full bg-cyan-100/60" style="box-shadow: 0 0 8px rgba(207,250,254,0.4);"></div>
+<div class="h-1.5 w-[15%] rounded-full bg-cyan-100/40"></div>
+<div class="h-1.5 w-[40%] rounded-full bg-cyan-100/20"></div>
+</div>
+<span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
                   100%
                 </span>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
+</div>
+<div class="flex items-center gap-4">
+<span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
                   BSS
                 </span>
-                <div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
-                  <div class="h-1.5 w-[45%] rounded-full bg-cyan-100/60" style="box-shadow: 0 0 8px rgba(207,250,254,0.4);"></div>
-                  <div class="h-1.5 w-[25%] rounded-full bg-cyan-100/20"></div>
-                </div>
-                <span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
+<div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
+<div class="h-1.5 w-[45%] rounded-full bg-cyan-100/60" style="box-shadow: 0 0 8px rgba(207,250,254,0.4);"></div>
+<div class="h-1.5 w-[25%] rounded-full bg-cyan-100/20"></div>
+</div>
+<span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
                   100%
                 </span>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
+</div>
+<div class="flex items-center gap-4">
+<span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
                   SYN
                 </span>
-                <div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
-                  <div class="h-1.5 w-[20%] rounded-full bg-orange-400/60" style="box-shadow: 0 0 8px rgba(249,115,22,0.4);"></div>
-                  <div class="h-1.5 w-[50%] rounded-full bg-cyan-100/20"></div>
-                </div>
-                <span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
+<div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
+<div class="h-1.5 w-[20%] rounded-full bg-orange-400/60" style="box-shadow: 0 0 8px rgba(249,115,22,0.4);"></div>
+<div class="h-1.5 w-[50%] rounded-full bg-cyan-100/20"></div>
+</div>
+<span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
                   72%
                 </span>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
+</div>
+<div class="flex items-center gap-4">
+<span class="w-12 text-xs font-extralight uppercase tracking-widest text-cyan-50/50">
                   VOX
                 </span>
-                <div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
-                  <div class="h-1.5 w-[10%] rounded-full bg-orange-400/60" style="box-shadow: 0 0 8px rgba(249,115,22,0.4);"></div>
-                  <div class="h-1.5 w-[80%] rounded-full bg-black/40"></div>
-                </div>
-                <span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
+<div class="relative flex h-8 flex-1 items-center gap-1 overflow-hidden rounded-md border border-cyan-100/10 bg-black/50 px-2 shadow-inner">
+<div class="h-1.5 w-[10%] rounded-full bg-orange-400/60" style="box-shadow: 0 0 8px rgba(249,115,22,0.4);"></div>
+<div class="h-1.5 w-[80%] rounded-full bg-black/40"></div>
+</div>
+<span class="w-12 text-right text-xs font-extralight uppercase text-cyan-50/70">
                   14%
                 </span>
-              </div>
-            </div>
-
-            <div class="mt-auto pt-8">
-              <div class="reveal rounded-xl border border-cyan-100/10 bg-black/40 p-5 shadow-inner">
-                <div class="flex items-center justify-between">
-                  <div>
-                    <p class="text-xs font-extralight uppercase tracking-[0.15rem] text-cyan-50/50">
-                      Render Target
+</div>
+</div>
+<div class="mt-auto pt-8">
+<div class="reveal rounded-xl border border-cyan-100/10 bg-black/40 p-5 shadow-inner">
+<div class="flex items-center justify-between">
+<div>
+<p class="text-xs font-extralight uppercase tracking-[0.15rem] text-cyan-50/50">
+                      Цель рендера
                     </p>
-                    <p class="mt-1 text-sm font-extralight uppercase text-cyan-50/80">
-                      Uncompressed WAV / 48kHz
+<p class="mt-1 text-sm font-extralight uppercase text-cyan-50/80">
+                      Несжатый WAV / 48 кГц
                     </p>
-                  </div>
-                  <span class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="headphones" aria-hidden="true" class="lucide lucide-headphones h-4 w-4"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>
-                  </span>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </header>
-
-        <div class="relative z-20 border-b border-cyan-100/10 p-5 sm:p-8 lg:px-10">
-          <div class="reveal max-w-3xl">
-            <p class="text-xs font-extralight uppercase tracking-[0.22rem] text-cyan-50/50">
-              Inspection Note
+</div>
+<span class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100">
+<svg aria-hidden="true" class="lucide lucide-headphones h-4 w-4" data-lucide="headphones" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M3 14h3a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-7a9 9 0 0 1 18 0v7a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3"></path></svg>
+</span>
+</div>
+</div>
+</div>
+</aside>
+</header>
+<div class="relative z-20 border-b border-cyan-100/10 p-5 sm:p-8 lg:px-10">
+<div class="reveal max-w-3xl">
+<p class="text-xs font-extralight uppercase tracking-[0.22rem] text-cyan-50/50">
+              Заметка проверки
             </p>
-            <h2 class="mt-3 text-2xl font-thin uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-              Arrangement Health
+<h2 class="mt-3 text-2xl font-thin uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+              Состояние аранжировки
             </h2>
-            <p class="mt-4 text-sm font-extralight uppercase leading-relaxed text-cyan-50/70">
-              The composition engine is operating within tolerance. Two
-              secondary stems were regenerated after structural pressure crossed
-              the complexity threshold. Ready for export.
+<p class="mt-4 text-sm font-extralight uppercase leading-relaxed text-cyan-50/70">
+              Движок композиции работает в пределах допуска. Два
+              вторичных стема были перегенерированы после того, как структурная нагрузка превысила
+              порог сложности. Готово к экспорту.
             </p>
-            <button type="button" class="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-100/20 bg-cyan-100/10 px-5 py-2.5 text-sm font-extralight uppercase text-cyan-50 transition-all duration-300 hover:bg-cyan-100 hover:text-black hover:scale-105 active:scale-95">
-              Open timeline
-              <i data-lucide="arrow-right" class="h-4 w-4"></i>
-            </button>
-          </div>
-        </div>
-
-        <footer class="relative z-20 flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
-          <div class="flex items-center gap-3">
-            <span class="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1rem_rgba(207,250,254,0.08)]">
-              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" data-lucide="audio-lines" aria-hidden="true" class="lucide lucide-audio-lines h-4 w-4"><path d="M2 10v3"></path><path d="M6 6v11"></path><path d="M10 3v18"></path><path d="M14 8v7"></path><path d="M18 5v13"></path><path d="M22 10v3"></path></svg>
-            </span>
-            <div>
-              <p class="text-sm font-extralight uppercase text-cyan-50/90">
-                LumaLoop Console
+<button class="mt-6 inline-flex items-center gap-2 rounded-full border border-cyan-100/20 bg-cyan-100/10 px-5 py-2.5 text-sm font-extralight uppercase text-cyan-50 transition-all duration-300 hover:bg-cyan-100 hover:text-black hover:scale-105 active:scale-95" type="button">
+              Открыть таймлайн
+              <i class="h-4 w-4" data-lucide="arrow-right"></i>
+</button>
+</div>
+</div>
+<footer class="relative z-20 flex flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-10">
+<div class="flex items-center gap-3">
+<span class="flex h-9 w-9 items-center justify-center rounded-full border border-cyan-100/15 bg-cyan-100/10 text-cyan-100 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1rem_rgba(207,250,254,0.08)]">
+<svg aria-hidden="true" class="lucide lucide-audio-lines h-4 w-4" data-lucide="audio-lines" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M2 10v3"></path><path d="M6 6v11"></path><path d="M10 3v18"></path><path d="M14 8v7"></path><path d="M18 5v13"></path><path d="M22 10v3"></path></svg>
+</span>
+<div>
+<p class="text-sm font-extralight uppercase text-cyan-50/90">
+                Консоль LumaLoop
               </p>
-              <p class="text-xs font-extralight uppercase text-cyan-50/50">
-                Project ID: LMA-88-Delta
+<p class="text-xs font-extralight uppercase text-cyan-50/50">
+                ID проекта: LMA-88-Delta
               </p>
-            </div>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="rounded-md border border-cyan-100/10 bg-black/40 px-3 py-1.5 text-xs font-extralight uppercase text-cyan-50/60 shadow-inner">
+</div>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<span class="rounded-md border border-cyan-100/10 bg-black/40 px-3 py-1.5 text-xs font-extralight uppercase text-cyan-50/60 shadow-inner">
               BPM 120
             </span>
-            <span class="rounded-md border border-cyan-100/10 bg-black/40 px-3 py-1.5 text-xs font-extralight uppercase text-cyan-50/60 shadow-inner">
-              Key C Min
+<span class="rounded-md border border-cyan-100/10 bg-black/40 px-3 py-1.5 text-xs font-extralight uppercase text-cyan-50/60 shadow-inner">
+              Тональность C min
             </span>
-            <span class="rounded-md border border-cyan-100/10 bg-black/40 px-3 py-1.5 text-xs font-extralight uppercase text-cyan-50/60 shadow-inner">
-              Quantize 1/16
+<span class="rounded-md border border-cyan-100/10 bg-black/40 px-3 py-1.5 text-xs font-extralight uppercase text-cyan-50/60 shadow-inner">
+              Квантизация 1/16
             </span>
-          </div>
-        </footer>
-      </div>
-
-      <script src="https://unpkg.com/lucide@latest"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-      <script>
+</div>
+</footer>
+</div>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
         (function () {
           function init() {
             if (typeof lucide !== "undefined") {
@@ -775,422 +769,397 @@ gtag('config', 'G-2M6V79H761');
           }
         })();
       </script>
-    </section>
-    <section aria-label="Integration and Workflow" class="relative mx-auto flex max-w-[92rem] flex-col items-center gap-12 px-3 py-20 sm:px-6 lg:px-10 lg:py-32 z-10">
-      <div class="pointer-events-none absolute inset-0 z-0 flex justify-center" aria-hidden="true">
-        <div class="h-full w-full max-w-4xl bg-cyan-400/5 blur-[120px] rounded-[100%]"></div>
-      </div>
-
-      <div class="relative z-10 w-full text-center max-w-3xl mx-auto">
-        <div class="flex items-center justify-center gap-2 mb-6">
-          <span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
-          <span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/70">
-            Seamless Pipeline
+</section>
+<section aria-label="Интеграция и рабочий процесс" class="relative mx-auto flex max-w-[92rem] flex-col items-center gap-12 px-3 py-20 sm:px-6 lg:px-10 lg:py-32 z-10">
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 flex justify-center">
+<div class="h-full w-full max-w-4xl bg-cyan-400/5 blur-[120px] rounded-[100%]"></div>
+</div>
+<div class="relative z-10 w-full text-center max-w-3xl mx-auto">
+<div class="flex items-center justify-center gap-2 mb-6">
+<span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
+<span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/70">
+            Бесшовный пайплайн
           </span>
-          <span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
-        </div>
-
-        <h2 class="mt-4 text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl text-balance" style="font-family: Orbitron, Inter, sans-serif;">
-          From text to timeline in seconds.
+<span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
+</div>
+<h2 class="mt-4 text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl text-balance" style="font-family: Orbitron, Inter, sans-serif;">
+          От текста до таймлайна за секунды.
         </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/60 sm:text-base">
-          Integrate directly with your favorite DAWs. Drag and drop generated
-          cues, stems, and MIDI sequences straight into your arrangement window.
+<p class="mx-auto mt-6 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/60 sm:text-base">
+          Интегрируйтесь напрямую с любимыми DAW. Перетаскивайте сгенерированные
+          треки, стемы и MIDI-секвенции прямо в окно аранжировки.
         </p>
-      </div>
-
-      <div class="relative z-10 mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
-        <div class="hidden md:block absolute top-[4.5rem] left-[16%] right-[16%] h-[1px] bg-gradient-to-r from-transparent via-cyan-100/20 to-transparent z-0"></div>
-
-        <div class="relative z-10 flex flex-col items-center rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.2), rgba(207,250,254,0.05), transparent) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
-
-          <div class="flex h-20 w-20 items-center justify-center rounded-[1.25rem] border border-cyan-100/15 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1.5rem_rgba(207,250,254,0.08)] text-cyan-100">
-            <i data-lucide="terminal" class="h-8 w-8"></i>
-          </div>
-          <h3 class="mt-8 text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-            1. Prompt
+</div>
+<div class="relative z-10 mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+<div class="hidden md:block absolute top-[4.5rem] left-[16%] right-[16%] h-[1px] bg-gradient-to-r from-transparent via-cyan-100/20 to-transparent z-0"></div>
+<div class="relative z-10 flex flex-col items-center rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.2), rgba(207,250,254,0.05), transparent) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
+<div class="flex h-20 w-20 items-center justify-center rounded-[1.25rem] border border-cyan-100/15 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1.5rem_rgba(207,250,254,0.08)] text-cyan-100">
+<i class="h-8 w-8" data-lucide="terminal"></i>
+</div>
+<h3 class="mt-8 text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+            1. Промпт
           </h3>
-          <p class="mt-4 text-center text-xs font-light uppercase leading-relaxed text-cyan-50/60">
-            Describe the emotional arc, tempo, and instrumentation using natural
-            language or structured tags.
+<p class="mt-4 text-center text-xs font-light uppercase leading-relaxed text-cyan-50/60">
+            Опишите эмоциональную арку, темп и инструментовку естественным
+            языком или структурированными тегами.
           </p>
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.2), rgba(207,250,254,0.05), transparent) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
-
-          <div class="flex h-20 w-20 items-center justify-center rounded-[1.25rem] border border-cyan-100/15 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1.5rem_rgba(207,250,254,0.08)] text-cyan-100">
-            <i data-lucide="sliders-horizontal" class="h-8 w-8"></i>
-          </div>
-          <h3 class="mt-8 text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-            2. Shape
+</div>
+<div class="relative z-10 flex flex-col items-center rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.2), rgba(207,250,254,0.05), transparent) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
+<div class="flex h-20 w-20 items-center justify-center rounded-[1.25rem] border border-cyan-100/15 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1.5rem_rgba(207,250,254,0.08)] text-cyan-100">
+<i class="h-8 w-8" data-lucide="sliders-horizontal"></i>
+</div>
+<h3 class="mt-8 text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+            2. Форма
           </h3>
-          <p class="mt-4 text-center text-xs font-light uppercase leading-relaxed text-cyan-50/60">
-            Preview multiple variations. Adjust intensity, swap stems, or
-            regenerate specific 8-bar loops instantly.
+<p class="mt-4 text-center text-xs font-light uppercase leading-relaxed text-cyan-50/60">
+            Просматривайте несколько вариаций. Настраивайте интенсивность, меняйте стемы или
+            мгновенно перегенерируйте отдельные 8-тактовые лупы.
           </p>
-        </div>
-
-        <div class="relative z-10 flex flex-col items-center rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.2), rgba(207,250,254,0.05), transparent) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
-
-          <div class="flex h-20 w-20 items-center justify-center rounded-[1.25rem] border border-cyan-100/15 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1.5rem_rgba(207,250,254,0.08)] text-cyan-100">
-            <i data-lucide="hard-drive-download" class="h-8 w-8"></i>
-          </div>
-          <h3 class="mt-8 text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-            3. Export
+</div>
+<div class="relative z-10 flex flex-col items-center rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.2), rgba(207,250,254,0.05), transparent) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
+<div class="flex h-20 w-20 items-center justify-center rounded-[1.25rem] border border-cyan-100/15 bg-neutral-950 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),_0_0_1.5rem_rgba(207,250,254,0.08)] text-cyan-100">
+<i class="h-8 w-8" data-lucide="hard-drive-download"></i>
+</div>
+<h3 class="mt-8 text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+            3. Экспорт
           </h3>
-          <p class="mt-4 text-center text-xs font-light uppercase leading-relaxed text-cyan-50/60">
-            Drag full mixes, wet/dry stems, and MIDI data directly into Pro
-            Tools, Logic, Ableton, or Premiere.
+<p class="mt-4 text-center text-xs font-light uppercase leading-relaxed text-cyan-50/60">
+            Перетаскивайте полные миксы, wet/dry-стемы и MIDI-данные прямо в Pro
+            Tools, Logic, Ableton или Premiere.
           </p>
-        </div>
-      </div>
-
-      <div class="relative z-10 mt-16 flex w-full flex-col items-center justify-center gap-6 border-t border-cyan-100/10 pt-12 sm:flex-row sm:gap-12">
-        <p class="text-xs font-normal uppercase tracking-[0.2rem] text-cyan-50/50">
-          Native Export Destinations
+</div>
+</div>
+<div class="relative z-10 mt-16 flex w-full flex-col items-center justify-center gap-6 border-t border-cyan-100/10 pt-12 sm:flex-row sm:gap-12">
+<p class="text-xs font-normal uppercase tracking-[0.2rem] text-cyan-50/50">
+          Нативные направления экспорта
         </p>
-        <div class="flex flex-wrap items-center justify-center gap-8 text-cyan-50/30">
-          <div class="flex items-center gap-2 transition hover:text-cyan-100/80">
-            <i data-lucide="box" class="h-5 w-5"></i>
-            <span class="text-xs font-normal uppercase">Pro Tools</span>
-          </div>
-          <div class="flex items-center gap-2 transition hover:text-cyan-100/80">
-            <i data-lucide="layers" class="h-5 w-5"></i>
-            <span class="text-xs font-normal uppercase">Logic Pro</span>
-          </div>
-          <div class="flex items-center gap-2 transition hover:text-cyan-100/80">
-            <i data-lucide="monitor-speaker" class="h-5 w-5"></i>
-            <span class="text-xs font-normal uppercase">Ableton Live</span>
-          </div>
-          <div class="flex items-center gap-2 transition hover:text-cyan-100/80">
-            <i data-lucide="film" class="h-5 w-5"></i>
-            <span class="text-xs font-normal uppercase">Premiere</span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section aria-label="Producer Testimonials" class="relative mx-auto flex max-w-[92rem] flex-col items-center gap-12 px-3 py-20 sm:px-6 lg:px-10 lg:py-24 z-10">
-      <div class="pointer-events-none absolute inset-0 z-0 flex justify-center" aria-hidden="true">
-        <div class="h-full w-full max-w-5xl bg-orange-500/5 blur-[120px] rounded-[100%]"></div>
-      </div>
-
-      <div class="relative z-10 w-full text-center max-w-3xl mx-auto">
-        <div class="flex items-center justify-center gap-2 mb-6">
-          <span class="h-2 w-2 rounded-full border border-orange-200/50 bg-orange-200/20" style="box-shadow: 0 0 12px rgba(251,146,60,0.5);"></span>
-          <span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/70">
-            Studio Feedback
+<div class="flex flex-wrap items-center justify-center gap-8 text-cyan-50/30">
+<div class="flex items-center gap-2 transition hover:text-cyan-100/80">
+<i class="h-5 w-5" data-lucide="box"></i>
+<span class="text-xs font-normal uppercase">Pro Tools</span>
+</div>
+<div class="flex items-center gap-2 transition hover:text-cyan-100/80">
+<i class="h-5 w-5" data-lucide="layers"></i>
+<span class="text-xs font-normal uppercase">Logic Pro</span>
+</div>
+<div class="flex items-center gap-2 transition hover:text-cyan-100/80">
+<i class="h-5 w-5" data-lucide="monitor-speaker"></i>
+<span class="text-xs font-normal uppercase">Ableton Live</span>
+</div>
+<div class="flex items-center gap-2 transition hover:text-cyan-100/80">
+<i class="h-5 w-5" data-lucide="film"></i>
+<span class="text-xs font-normal uppercase">Premiere</span>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Отзывы продюсеров" class="relative mx-auto flex max-w-[92rem] flex-col items-center gap-12 px-3 py-20 sm:px-6 lg:px-10 lg:py-24 z-10">
+<div aria-hidden="true" class="pointer-events-none absolute inset-0 z-0 flex justify-center">
+<div class="h-full w-full max-w-5xl bg-orange-500/5 blur-[120px] rounded-[100%]"></div>
+</div>
+<div class="relative z-10 w-full text-center max-w-3xl mx-auto">
+<div class="flex items-center justify-center gap-2 mb-6">
+<span class="h-2 w-2 rounded-full border border-orange-200/50 bg-orange-200/20" style="box-shadow: 0 0 12px rgba(251,146,60,0.5);"></span>
+<span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/70">
+            Отзывы студий
           </span>
-          <span class="h-2 w-2 rounded-full border border-orange-200/50 bg-orange-200/20" style="box-shadow: 0 0 12px rgba(251,146,60,0.5);"></span>
-        </div>
-
-        <h2 class="mt-4 text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl text-balance" style="font-family: Orbitron, Inter, sans-serif;">
-          Soundtracks forged by pros.
+<span class="h-2 w-2 rounded-full border border-orange-200/50 bg-orange-200/20" style="box-shadow: 0 0 12px rgba(251,146,60,0.5);"></span>
+</div>
+<h2 class="mt-4 text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl text-balance" style="font-family: Orbitron, Inter, sans-serif;">
+          Саундтреки, выкованные профи.
         </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/60 sm:text-base">
-          See how top composers, audio directors, and post-production teams use
-          LumaLoop to scale their scoring pipeline without compromising on
-          fidelity.
+<p class="mx-auto mt-6 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/60 sm:text-base">
+          Узнайте, как ведущие композиторы, аудиодиректора и команды пост-продакшна используют
+          LumaLoop, чтобы масштабировать пайплайн скоринга без компромиссов в
+          качестве.
         </p>
-      </div>
-
-      <div class="relative z-10 mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
-        <!-- Testimonial 1 -->
-        <article class="relative z-10 flex flex-col justify-between overflow-hidden rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md transition-all hover:bg-black/80" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.15), rgba(207,250,254,0.02), transparent) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
-          <i data-lucide="quote" class="absolute right-8 top-8 h-10 w-10 text-cyan-100/5" aria-hidden="true"></i>
-
-          <div class="relative z-10">
-            <div class="flex gap-1.5 mb-6 text-orange-400">
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-            </div>
-            <p class="text-xs font-light uppercase leading-relaxed text-cyan-50/80 sm:text-sm">
-              "LumaLoop completely changed our post-production pipeline. What
-              used to take three days of temp-scoring now takes four hours, and
-              the exported stems drop flawlessly into Pro Tools."
+</div>
+<div class="relative z-10 mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+<!-- Testimonial 1 -->
+<article class="relative z-10 flex flex-col justify-between overflow-hidden rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md transition-all hover:bg-black/80" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.15), rgba(207,250,254,0.02), transparent) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
+<i aria-hidden="true" class="absolute right-8 top-8 h-10 w-10 text-cyan-100/5" data-lucide="quote"></i>
+<div class="relative z-10">
+<div class="flex gap-1.5 mb-6 text-orange-400">
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+</div>
+<p class="text-xs font-light uppercase leading-relaxed text-cyan-50/80 sm:text-sm">
+              "LumaLoop полностью изменил наш пайплайн пост-продакшна. То, что
+              раньше занимало три дня темп-скоринга, теперь занимает четыре часа, а
+              экспортированные стемы безупречно ложатся в Pro Tools."
             </p>
-          </div>
-
-          <div class="relative z-10 mt-10 flex items-center gap-4 border-t border-cyan-100/10 pt-6">
-            <div class="relative h-12 w-12 overflow-hidden rounded-full border border-cyan-100/20 bg-neutral-900">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92b77739-972d-4184-bac9-0785d0307b16_320w.png" alt="Sarah Jenkins" class="h-full w-full object-cover grayscale transition hover:grayscale-0">
-            </div>
-            <div>
-              <h4 class="text-xs font-normal uppercase tracking-wide text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+</div>
+<div class="relative z-10 mt-10 flex items-center gap-4 border-t border-cyan-100/10 pt-6">
+<div class="relative h-12 w-12 overflow-hidden rounded-full border border-cyan-100/20 bg-neutral-900">
+<img alt="Sarah Jenkins" class="h-full w-full object-cover grayscale transition hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92b77739-972d-4184-bac9-0785d0307b16_320w.png"/>
+</div>
+<div>
+<h4 class="text-xs font-normal uppercase tracking-wide text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
                 Sarah Jenkins
               </h4>
-              <p class="text-[0.65rem] font-light uppercase tracking-wider text-cyan-50/50">
-                Lead Composer, A24
+<p class="text-[0.65rem] font-light uppercase tracking-wider text-cyan-50/50">
+                Ведущий композитор, A24
               </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- Testimonial 2 -->
-        <article class="relative z-10 flex flex-col justify-between overflow-hidden rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md transition-all hover:bg-black/80" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.15), rgba(207,250,254,0.02), transparent) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
-          <i data-lucide="quote" class="absolute right-8 top-8 h-10 w-10 text-cyan-100/5" aria-hidden="true"></i>
-
-          <div class="relative z-10">
-            <div class="flex gap-1.5 mb-6 text-orange-400">
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-            </div>
-            <p class="text-xs font-light uppercase leading-relaxed text-cyan-50/80 sm:text-sm">
-              "The ability to prompt for emotional arcs and instantly receive a
-              32-bar cue with separated stems is simply magic. It's not just a
-              toy, it's a diagnostic workspace for serious arrangements."
+</div>
+</div>
+</article>
+<!-- Testimonial 2 -->
+<article class="relative z-10 flex flex-col justify-between overflow-hidden rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md transition-all hover:bg-black/80" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.15), rgba(207,250,254,0.02), transparent) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
+<i aria-hidden="true" class="absolute right-8 top-8 h-10 w-10 text-cyan-100/5" data-lucide="quote"></i>
+<div class="relative z-10">
+<div class="flex gap-1.5 mb-6 text-orange-400">
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+</div>
+<p class="text-xs font-light uppercase leading-relaxed text-cyan-50/80 sm:text-sm">
+              "Возможность запросить эмоциональную арку и мгновенно получить
+              32-тактовый трек с разделёнными стемами — это просто магия. Это не
+              игрушка, а диагностическое рабочее пространство для серьёзных аранжировок."
             </p>
-          </div>
-
-          <div class="relative z-10 mt-10 flex items-center gap-4 border-t border-cyan-100/10 pt-6">
-            <div class="relative h-12 w-12 overflow-hidden rounded-full border border-cyan-100/20 bg-neutral-900">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a47fdc81-bd26-49ad-af4d-e2e22283b996_320w.png" alt="David Miller" class="h-full w-full object-cover grayscale transition hover:grayscale-0">
-            </div>
-            <div>
-              <h4 class="text-xs font-normal uppercase tracking-wide text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-                David Miller
+</div>
+<div class="relative z-10 mt-10 flex items-center gap-4 border-t border-cyan-100/10 pt-6">
+<div class="relative h-12 w-12 overflow-hidden rounded-full border border-cyan-100/20 bg-neutral-900">
+<img alt="Дэвид Миллер" class="h-full w-full object-cover grayscale transition hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a47fdc81-bd26-49ad-af4d-e2e22283b996_320w.png"/>
+</div>
+<div>
+<h4 class="text-xs font-normal uppercase tracking-wide text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+                Дэвид Миллер
               </h4>
-              <p class="text-[0.65rem] font-light uppercase tracking-wider text-cyan-50/50">
-                Audio Director, Riot
+<p class="text-[0.65rem] font-light uppercase tracking-wider text-cyan-50/50">
+                Аудиодиректор, Riot
               </p>
-            </div>
-          </div>
-        </article>
-
-        <!-- Testimonial 3 -->
-        <article class="relative z-10 flex flex-col justify-between overflow-hidden rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md transition-all hover:bg-black/80" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.15), rgba(207,250,254,0.02), transparent) border-box;">
-          <div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
-          <div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
-          <i data-lucide="quote" class="absolute right-8 top-8 h-10 w-10 text-cyan-100/5" aria-hidden="true"></i>
-
-          <div class="relative z-10">
-            <div class="flex gap-1.5 mb-6 text-orange-400">
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-              <i data-lucide="star" class="h-4 w-4 fill-current"></i>
-            </div>
-            <p class="text-xs font-light uppercase leading-relaxed text-cyan-50/80 sm:text-sm">
-              "I was skeptical of generative ai for scoring, but LumaLoop is
-              different. The mix analytics and the native Ableton exports make
-              it a natural extension of my current studio rig."
+</div>
+</div>
+</article>
+<!-- Testimonial 3 -->
+<article class="relative z-10 flex flex-col justify-between overflow-hidden rounded-[1.55rem] border border-transparent bg-black/60 p-8 shadow-2xl backdrop-blur-md transition-all hover:bg-black/80" style="background: linear-gradient(rgba(10,10,10,0.7), rgba(10,10,10,0.9)) padding-box, linear-gradient(135deg, rgba(207,250,254,0.15), rgba(207,250,254,0.02), transparent) border-box;">
+<div class="pointer-events-none absolute left-4 top-4 h-3 w-3 border-l border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute right-4 top-4 h-3 w-3 border-r border-t border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 left-4 h-3 w-3 border-b border-l border-cyan-100/30"></div>
+<div class="pointer-events-none absolute bottom-4 right-4 h-3 w-3 border-b border-r border-cyan-100/30"></div>
+<i aria-hidden="true" class="absolute right-8 top-8 h-10 w-10 text-cyan-100/5" data-lucide="quote"></i>
+<div class="relative z-10">
+<div class="flex gap-1.5 mb-6 text-orange-400">
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+<i class="h-4 w-4 fill-current" data-lucide="star"></i>
+</div>
+<p class="text-xs font-light uppercase leading-relaxed text-cyan-50/80 sm:text-sm">
+              "Я скептически относился к генеративному AI для скоринга, но LumaLoop —
+              другое дело. Аналитика микса и нативный экспорт в Ableton делают
+              его естественным расширением моей студийной системы."
             </p>
-          </div>
-
-          <div class="relative z-10 mt-10 flex items-center gap-4 border-t border-cyan-100/10 pt-6">
-            <div class="relative h-12 w-12 overflow-hidden rounded-full border border-cyan-100/20 bg-neutral-900">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/72adc0f8-ad1f-4732-a5bf-c000b45152a2_320w.webp" alt="Elena Rostova" class="h-full w-full object-cover grayscale transition hover:grayscale-0">
-            </div>
-            <div>
-              <h4 class="text-xs font-normal uppercase tracking-wide text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
-                Elena Rostova
+</div>
+<div class="relative z-10 mt-10 flex items-center gap-4 border-t border-cyan-100/10 pt-6">
+<div class="relative h-12 w-12 overflow-hidden rounded-full border border-cyan-100/20 bg-neutral-900">
+<img alt="Елена Ростова" class="h-full w-full object-cover grayscale transition hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/72adc0f8-ad1f-4732-a5bf-c000b45152a2_320w.webp"/>
+</div>
+<div>
+<h4 class="text-xs font-normal uppercase tracking-wide text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+                Елена Ростова
               </h4>
-              <p class="text-[0.65rem] font-light uppercase tracking-wider text-cyan-50/50">
-                Independent Producer
+<p class="text-[0.65rem] font-light uppercase tracking-wider text-cyan-50/50">
+                Независимый продюсер
               </p>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-    <section id="pricing" class="relative mx-auto flex max-w-[92rem] flex-col items-center gap-12 px-3 py-20 sm:px-6 lg:px-10 lg:py-24 z-10" aria-label="Pricing Plans">
-      <div class="relative z-10 w-full text-center max-w-3xl mx-auto">
-        <div class="flex items-center justify-center gap-2 mb-6">
-          <span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
-          <span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/70">
-            Plans
+</div>
+</div>
+</article>
+</div>
+</section>
+<section aria-label="Тарифные планы" class="relative mx-auto flex max-w-[92rem] flex-col items-center gap-12 px-3 py-20 sm:px-6 lg:px-10 lg:py-24 z-10" id="pricing">
+<div class="relative z-10 w-full text-center max-w-3xl mx-auto">
+<div class="flex items-center justify-center gap-2 mb-6">
+<span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
+<span class="text-xs font-normal uppercase tracking-[0.22rem] text-cyan-50/70">
+            Тарифы
           </span>
-          <span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
-        </div>
-        <h2 class="mt-4 text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl text-balance" style="font-family: Orbitron, Inter, sans-serif;">
-          Scale your audio pipeline.
+<span class="h-2 w-2 rounded-full border border-cyan-100/50 bg-cyan-100/20" style="box-shadow: 0 0 12px rgba(207,250,254,0.5);"></span>
+</div>
+<h2 class="mt-4 text-4xl font-normal uppercase leading-none tracking-tight text-cyan-50 sm:text-5xl md:text-6xl text-balance" style="font-family: Orbitron, Inter, sans-serif;">
+          Масштабируйте свой аудиопайплайн.
         </h2>
-        <p class="mx-auto mt-6 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/60 sm:text-base">
-          Transparent pricing for studios of all sizes. From solo producers to
-          enterprise post-houses.
+<p class="mx-auto mt-6 max-w-2xl text-sm font-light uppercase leading-relaxed text-cyan-50/60 sm:text-base">
+          Прозрачные цены для студий любого размера. От сольных продюсеров до
+          корпоративных пост-хаусов.
         </p>
-      </div>
-
-      <div class="relative z-10 mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
-        <div class="relative flex flex-col rounded-[1.55rem] border border-cyan-100/10 bg-black/60 p-8 shadow-xl backdrop-blur-md">
-          <h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+</div>
+<div class="relative z-10 mt-10 grid w-full grid-cols-1 gap-6 md:grid-cols-3">
+<div class="relative flex flex-col rounded-[1.55rem] border border-cyan-100/10 bg-black/60 p-8 shadow-xl backdrop-blur-md">
+<h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
             Creator
           </h3>
-          <div class="mt-4 flex items-baseline text-cyan-50">
-            <span class="text-4xl font-normal tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
+<div class="mt-4 flex items-baseline text-cyan-50">
+<span class="text-4xl font-normal tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
               $19
             </span>
-            <span class="ml-1 text-xs font-light uppercase text-cyan-50/50">
-              /month
+<span class="ml-1 text-xs font-light uppercase text-cyan-50/50">
+              /месяц
             </span>
-          </div>
-          <p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
-            For independent creators and solo devs.
+</div>
+<p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
+            Для независимых авторов и сольных разработчиков.
           </p>
-          <ul class="mt-8 flex flex-1 flex-col gap-4 text-xs font-light uppercase text-cyan-50/80">
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              100 generations/mo
+<ul class="mt-8 flex flex-1 flex-col gap-4 text-xs font-light uppercase text-cyan-50/80">
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              100 генераций/мес
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              Standard stems
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              Стандартные стемы
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              MP3 / WAV exports
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              Экспорт в MP3 / WAV
             </li>
-          </ul>
-          <button class="mt-8 w-full rounded-full border border-cyan-100/20 bg-transparent py-3 text-xs font-normal uppercase tracking-wide text-cyan-50 transition hover:bg-cyan-100/10 hover:text-cyan-100">
-            Get Started
+</ul>
+<button class="mt-8 w-full rounded-full border border-cyan-100/20 bg-transparent py-3 text-xs font-normal uppercase tracking-wide text-cyan-50 transition hover:bg-cyan-100/10 hover:text-cyan-100">
+            Начать
           </button>
-        </div>
-
-        <div class="relative flex flex-col rounded-[1.55rem] border border-transparent bg-cyan-100 p-8 shadow-2xl" style="background: linear-gradient(rgb(207,250,254), rgb(207,250,254)) padding-box, linear-gradient(135deg, rgba(255,255,255,0.4), rgba(207,250,254,0.2), rgba(0,0,0,0.1)) border-box;">
-          <div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-black px-4 py-1 text-[10px] font-normal uppercase tracking-widest text-cyan-50">
-            Most Popular
+</div>
+<div class="relative flex flex-col rounded-[1.55rem] border border-transparent bg-cyan-100 p-8 shadow-2xl" style="background: linear-gradient(rgb(207,250,254), rgb(207,250,254)) padding-box, linear-gradient(135deg, rgba(255,255,255,0.4), rgba(207,250,254,0.2), rgba(0,0,0,0.1)) border-box;">
+<div class="absolute -top-4 left-1/2 -translate-x-1/2 rounded-full bg-black px-4 py-1 text-[10px] font-normal uppercase tracking-widest text-cyan-50">
+            Самый популярный
           </div>
-          <h3 class="text-xl font-normal uppercase tracking-tight text-black" style="font-family: Orbitron, Inter, sans-serif;">
-            Studio
+<h3 class="text-xl font-normal uppercase tracking-tight text-black" style="font-family: Orbitron, Inter, sans-serif;">
+            Студия
           </h3>
-          <div class="mt-4 flex items-baseline text-black">
-            <span class="text-4xl font-normal tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
+<div class="mt-4 flex items-baseline text-black">
+<span class="text-4xl font-normal tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
               $49
             </span>
-            <span class="ml-1 text-xs font-normal uppercase text-black/60">
-              /month
+<span class="ml-1 text-xs font-normal uppercase text-black/60">
+              /месяц
             </span>
-          </div>
-          <p class="mt-4 text-xs font-normal uppercase leading-relaxed text-black/70">
-            For professional producers and small teams.
+</div>
+<p class="mt-4 text-xs font-normal uppercase leading-relaxed text-black/70">
+            Для профессиональных продюсеров и небольших команд.
           </p>
-          <ul class="mt-8 flex flex-1 flex-col gap-4 text-xs font-normal uppercase text-black/80">
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-black"></i>
-              Unlimited generations
+<ul class="mt-8 flex flex-1 flex-col gap-4 text-xs font-normal uppercase text-black/80">
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-black" data-lucide="check"></i>
+              Безлимитные генерации
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-black"></i>
-              Native DAW exports
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-black" data-lucide="check"></i>
+              Нативный экспорт в DAW
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-black"></i>
-              Live Mix Analytics
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-black" data-lucide="check"></i>
+              Живая аналитика микса
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-black"></i>
-              Uncompressed 48kHz
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-black" data-lucide="check"></i>
+              Несжатые 48 кГц
             </li>
-          </ul>
-          <button class="mt-8 w-full rounded-full bg-black py-3 text-xs font-normal uppercase tracking-wide text-cyan-50 transition hover:bg-neutral-800">
-            Start Free Trial
+</ul>
+<button class="mt-8 w-full rounded-full bg-black py-3 text-xs font-normal uppercase tracking-wide text-cyan-50 transition hover:bg-neutral-800">
+            Начать бесплатный период
           </button>
-        </div>
-
-        <div class="relative flex flex-col rounded-[1.55rem] border border-cyan-100/10 bg-black/60 p-8 shadow-xl backdrop-blur-md">
-          <h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
+</div>
+<div class="relative flex flex-col rounded-[1.55rem] border border-cyan-100/10 bg-black/60 p-8 shadow-xl backdrop-blur-md">
+<h3 class="text-xl font-normal uppercase tracking-tight text-cyan-50" style="font-family: Orbitron, Inter, sans-serif;">
             Enterprise
           </h3>
-          <div class="mt-4 flex items-baseline text-cyan-50">
-            <span class="text-4xl font-normal tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
-              Custom
+<div class="mt-4 flex items-baseline text-cyan-50">
+<span class="text-4xl font-normal tracking-tight" style="font-family: Orbitron, Inter, sans-serif;">
+              Индивидуально
             </span>
-          </div>
-          <p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
-            For large post-houses and gaming studios.
+</div>
+<p class="mt-4 text-xs font-light uppercase leading-relaxed text-cyan-50/70">
+            Для крупных пост-хаусов и игровых студий.
           </p>
-          <ul class="mt-8 flex flex-1 flex-col gap-4 text-xs font-light uppercase text-cyan-50/80">
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              Custom AI models
+<ul class="mt-8 flex flex-1 flex-col gap-4 text-xs font-light uppercase text-cyan-50/80">
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              Кастомные AI-модели
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              API Access
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              Доступ к API
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              Dedicated Support
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              Выделенная поддержка
             </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="check" class="h-4 w-4 text-cyan-100"></i>
-              Advanced Security
+<li class="flex items-center gap-3">
+<i class="h-4 w-4 text-cyan-100" data-lucide="check"></i>
+              Продвинутая безопасность
             </li>
-          </ul>
-          <button class="mt-8 w-full rounded-full border border-cyan-100/20 bg-transparent py-3 text-xs font-normal uppercase tracking-wide text-cyan-50 transition hover:bg-cyan-100/10 hover:text-cyan-100">
-            Contact Sales
+</ul>
+<button class="mt-8 w-full rounded-full border border-cyan-100/20 bg-transparent py-3 text-xs font-normal uppercase tracking-wide text-cyan-50 transition hover:bg-cyan-100/10 hover:text-cyan-100">
+            Связаться с отделом продаж
           </button>
-        </div>
-      </div>
-    </section>
-    <section class="relative mx-auto max-w-[92rem] px-3 pb-20 pt-10 sm:px-6 lg:px-10">
-      <div class="relative overflow-hidden rounded-[2rem] border border-transparent bg-cyan-100 p-8 text-black shadow-2xl shadow-cyan-900/20 sm:p-12 lg:p-16" style="background: linear-gradient(rgb(207,250,254), rgb(207,250,254)) padding-box, linear-gradient(135deg, rgba(255,255,255,0.34), rgba(207,250,254,0.22), rgba(0,0,0,0.12)) border-box;">
-        <div class="relative z-10 mx-auto max-w-3xl text-center">
-          <h2 class="text-3xl font-medium uppercase tracking-tight sm:text-5xl" style="font-family: Orbitron, Inter, sans-serif;">
-            Ready to compose?
+</div>
+</div>
+</section>
+<section class="relative mx-auto max-w-[92rem] px-3 pb-20 pt-10 sm:px-6 lg:px-10">
+<div class="relative overflow-hidden rounded-[2rem] border border-transparent bg-cyan-100 p-8 text-black shadow-2xl shadow-cyan-900/20 sm:p-12 lg:p-16" style="background: linear-gradient(rgb(207,250,254), rgb(207,250,254)) padding-box, linear-gradient(135deg, rgba(255,255,255,0.34), rgba(207,250,254,0.22), rgba(0,0,0,0.12)) border-box;">
+<div class="relative z-10 mx-auto max-w-3xl text-center">
+<h2 class="text-3xl font-medium uppercase tracking-tight sm:text-5xl" style="font-family: Orbitron, Inter, sans-serif;">
+            Готовы сочинять?
           </h2>
-          <p class="mx-auto mt-5 max-w-xl text-sm font-medium uppercase leading-relaxed text-black/80">
-            Join the waitlist to get early access to LumaLoop and transform your
-            creative workflow.
+<p class="mx-auto mt-5 max-w-xl text-sm font-medium uppercase leading-relaxed text-black/80">
+            Вступите в лист ожидания, чтобы получить ранний доступ к LumaLoop и преобразить свой
+            творческий процесс.
           </p>
-          <div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <button type="button" class="inline-flex h-14 items-center justify-center rounded-full bg-black px-8 text-sm font-medium uppercase tracking-wide text-cyan-50 transition hover:scale-105 hover:text-black hover:bg-cyan-50">
-              Join Waitlist
+<div class="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+<button class="inline-flex h-14 items-center justify-center rounded-full bg-black px-8 text-sm font-medium uppercase tracking-wide text-cyan-50 transition hover:scale-105 hover:text-black hover:bg-cyan-50" type="button">
+              В лист ожидания
             </button>
-            <button type="button" class="inline-flex h-14 items-center justify-center rounded-full border border-black/20 px-8 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-black/5">
-              View Examples
+<button class="inline-flex h-14 items-center justify-center rounded-full border border-black/20 px-8 text-sm font-medium uppercase tracking-wide text-black transition hover:bg-black/5" type="button">
+              Смотреть примеры
             </button>
-          </div>
-        </div>
-      </div>
-    </section>
-    <footer class="relative z-10 border-t border-cyan-100/10 bg-black/40 px-6 py-12 backdrop-blur sm:px-10 lg:px-14">
-      <div class="mx-auto flex max-w-[92rem] flex-col items-center justify-between gap-6 sm:flex-row">
-        <div class="flex flex-col items-center gap-2 sm:items-start">
-          <a href="#" class="text-xl font-medium uppercase italic tracking-tight text-cyan-100 sm:text-2xl" style="font-family: Orbitron, Inter, sans-serif;">
+</div>
+</div>
+</div>
+</section>
+<footer class="relative z-10 border-t border-cyan-100/10 bg-black/40 px-6 py-12 backdrop-blur sm:px-10 lg:px-14">
+<div class="mx-auto flex max-w-[92rem] flex-col items-center justify-between gap-6 sm:flex-row">
+<div class="flex flex-col items-center gap-2 sm:items-start">
+<a class="text-xl font-medium uppercase italic tracking-tight text-cyan-100 sm:text-2xl" href="#" style="font-family: Orbitron, Inter, sans-serif;">
             LUMALOOP
           </a>
-          <p class="text-xs font-medium uppercase tracking-wide text-cyan-50/60">
-            © 2024 LumaLoop. All rights reserved.
+<p class="text-xs font-medium uppercase tracking-wide text-cyan-50/60">
+            © 2024 LumaLoop. Все права защищены.
           </p>
-        </div>
-        <nav class="flex items-center gap-6 text-xs font-medium uppercase tracking-wide text-cyan-50/80">
-          <a href="#" class="transition hover:text-cyan-100">Privacy</a>
-          <a href="#" class="transition hover:text-cyan-100">Terms</a>
-          <a href="#" class="transition hover:text-cyan-100">Contact</a>
-        </nav>
-      </div>
-    </footer>
-
-    <script class="">
+</div>
+<nav class="flex items-center gap-6 text-xs font-medium uppercase tracking-wide text-cyan-50/80">
+<a class="transition hover:text-cyan-100" href="#">Конфиденциальность</a>
+<a class="transition hover:text-cyan-100" href="#">Условия</a>
+<a class="transition hover:text-cyan-100" href="#">Контакты</a>
+</nav>
+</div>
+</footer>
+<script class="">
       const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
       function initWebGL() {
@@ -1384,5 +1353,4 @@ gtag('config', 'G-2M6V79H761');
         initMotion();
       });
     </script>
-  
 </body></html>

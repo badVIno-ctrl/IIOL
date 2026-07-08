@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,8 +89,8 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Auralis | Global Nexus</title>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
@@ -101,9 +101,9 @@ setPaused(event.data.paused);
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <!-- Three.js Import Map -->
 <script type="importmap">
 {
@@ -189,7 +189,7 @@ border-radius: inherit;
 opacity: 1;
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -197,547 +197,553 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="antialiased scroll-smooth bg-[#020617] text-[#FFFFFF] overflow-x-hidden selection:bg-[#F97316] selection:text-[#020617] font-['Geist',sans-serif]">
-
-    <!-- Custom Cursor -->
-    <div class="cursor-dot hidden md:block"></div>
-    <div class="cursor-outline hidden md:block"></div>
-
-    <!-- Dynamic Background Environment -->
-    <div class="fixed inset-0 z-0 pointer-events-none" style="mask-image: linear-gradient(transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(transparent, black 0%, black 80%, transparent);">
-        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9aea64b5-bfda-4948-bf88-d4e5d45762fa_3840w.jpg" alt="Atmosphere" class="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105">
-        <div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/60 to-transparent"></div>
-        <canvas id="webgl-canvas" class="fixed inset-0 z-0 pointer-events-none opacity-50 mix-blend-screen transition-transform duration-1000" data-engine="three.js r160" width="2347" height="1750" style="width: 1565px; height: 1167px;"></canvas>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="fixed top-8 left-0 w-full z-50 px-6 flex justify-center pointer-events-none">
-        <div class="w-full max-w-7xl flex justify-between items-center bg-[#080808]/80 backdrop-blur-xl border border-[#262626] rounded-full px-6 py-3 pointer-events-auto gs-nav transition-all duration-300 hover:border-white/20 hover:bg-[#080808]/90">
-            <a href="#hero" class="text-xl font-medium tracking-tight uppercase text-white scroll-link interactive">AURALIS</a>
-            
-            <div class="hidden md:flex items-center gap-8">
-                <a href="#features" class="flex items-center gap-2 text-sm font-light text-[#F97316] transition-colors scroll-link hover:opacity-80 interactive">
-                    <span class="w-1.5 h-1.5 rounded-full bg-[#F97316] animate-pulse"></span>
-                    Capabilities
+<!-- Custom Cursor -->
+<div class="cursor-dot hidden md:block"></div>
+<div class="cursor-outline hidden md:block"></div>
+<!-- Dynamic Background Environment -->
+<div class="fixed inset-0 z-0 pointer-events-none" style="mask-image: linear-gradient(transparent, black 0%, black 80%, transparent); -webkit-mask-image: linear-gradient(transparent, black 0%, black 80%, transparent);">
+<img alt="Атмосфера" class="w-full h-full object-cover object-center opacity-30 mix-blend-luminosity scale-105" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9aea64b5-bfda-4948-bf88-d4e5d45762fa_3840w.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#020617] via-[#020617]/60 to-transparent"></div>
+<canvas class="fixed inset-0 z-0 pointer-events-none opacity-50 mix-blend-screen transition-transform duration-1000" data-engine="three.js r160" height="1750" id="webgl-canvas" style="width: 1565px; height: 1167px;" width="2347"></canvas>
+</div>
+ Навигация 
+<nav class="fixed top-8 left-0 w-full z-50 px-6 flex justify-center pointer-events-none">
+<div class="w-full max-w-7xl flex justify-between items-center bg-[#080808]/80 backdrop-blur-xl border border-[#262626] rounded-full px-6 py-3 pointer-events-auto gs-nav transition-all duration-300 hover:border-white/20 hover:bg-[#080808]/90">
+<a class="text-xl font-medium tracking-tight uppercase text-white scroll-link interactive" href="#hero">AURALIS</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="flex items-center gap-2 text-sm font-light text-[#F97316] transition-colors scroll-link hover:opacity-80 interactive" href="#features">
+<span class="w-1.5 h-1.5 rounded-full bg-[#F97316] animate-pulse"></span>
+                    Компетенции
                 </a>
-                <a href="#testimonials" class="text-sm font-light text-white/70 hover:text-white transition-colors scroll-link interactive">
-                    Syndicate
+<a class="text-sm font-light text-white/70 hover:text-white transition-colors scroll-link interactive" href="#testimonials">
+                    Синдикат
                 </a>
-            </div>
-
-            <a href="#footer" class="bg-white text-[#020617] px-5 py-2 rounded-full text-sm font-normal flex items-center gap-2 hover:bg-[#D4D4D4] transition-all duration-300 group scroll-link interactive overflow-hidden relative">
-                <span class="relative z-10 flex items-center gap-2">
-                    Engage
-                    <iconify-icon icon="solar:arrow-right-up-linear" class="group-hover:rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" stroke-width="1.5"></iconify-icon>
-                </span>
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="min-h-[130vh] flex flex-col overflow-hidden w-full relative items-center justify-center pt-24" id="hero">
-        <div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none z-0 opacity-10">
-            <h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">GLOBAL</h1>
-            <h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">NEXUS</h1>
-        </div>
-
-        <div class="w-full max-w-[90%] mx-auto relative z-10 flex flex-col items-center">
-            <div class="w-full flex justify-between absolute top-0 -translate-y-full text-xs font-light text-white/50 uppercase tracking-widest hidden lg:flex gs-hero-text">
-                <div class="max-w-[200px] leading-relaxed">
-                    Designed for visionaries. Daring to build the future from scratch.
+</div>
+<a class="bg-white text-[#020617] px-5 py-2 rounded-full text-sm font-normal flex items-center gap-2 hover:bg-[#D4D4D4] transition-all duration-300 group scroll-link interactive overflow-hidden relative" href="#footer">
+<span class="relative z-10 flex items-center gap-2">
+                    Связаться
+                    <iconify-icon class="group-hover:rotate-45 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-300" icon="solar:arrow-right-up-linear" stroke-width="1.5"></iconify-icon>
+</span>
+</a>
+</div>
+</nav>
+ Hero-секция 
+<section class="min-h-[130vh] flex flex-col overflow-hidden w-full relative items-center justify-center pt-24" id="hero">
+<div class="absolute inset-0 flex flex-col justify-center items-center pointer-events-none select-none z-0 opacity-10">
+<h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">ГЛОБАЛЬНО</h1>
+<h1 class="text-[25vw] leading-[0.8] font-medium tracking-tight text-white/5 uppercase mix-blend-overlay gs-bg-text">NEXUS</h1>
+</div>
+<div class="w-full max-w-[90%] mx-auto relative z-10 flex flex-col items-center">
+<div class="w-full flex justify-between absolute top-0 -translate-y-full text-xs font-light text-white/50 uppercase tracking-widest hidden lg:flex gs-hero-text">
+<div class="max-w-[200px] leading-relaxed">
+                    Создано для визионеров. Смелость строить будущее с нуля.
                 </div>
-                <div class="text-right flex flex-col gap-1 font-mono">
-                    <span class="flex justify-end gap-2 items-center"><span class="w-1 h-1 bg-[#F97316] rounded-full"></span> // IMMERSIVE</span>
-                    <span class="flex justify-end gap-2 items-center"><span class="w-1 h-1 bg-[#429DFE] rounded-full"></span> // FLUIDITY</span>
-                </div>
-            </div>
-
-            <div class="text-center relative gs-title mt-12 md:mt-0">
-                <div class="absolute -left-10 md:-left-32 top-1/2 -translate-y-1/2 gs-hero-btn z-30">
-                    <button onclick="openModal('access')" class="interactive bg-white/5 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 hover:border-white/40 transition-all duration-300 group">
-                        Access
+<div class="text-right flex flex-col gap-1 font-mono">
+<span class="flex justify-end gap-2 items-center"><span class="w-1 h-1 bg-[#F97316] rounded-full"></span> // ИММЕРСИВНЫЙ</span>
+<span class="flex justify-end gap-2 items-center"><span class="w-1 h-1 bg-[#429DFE] rounded-full"></span> // ТЕКУЧЕСТЬ</span>
+</div>
+</div>
+<div class="text-center relative gs-title mt-12 md:mt-0">
+<div class="absolute -left-10 md:-left-32 top-1/2 -translate-y-1/2 gs-hero-btn z-30">
+<button class="interactive bg-white/5 backdrop-blur-md border border-white/20 text-white px-4 py-2 rounded-full text-sm font-normal flex items-center gap-3 hover:bg-white/10 hover:border-white/40 transition-all duration-300 group" onclick="openModal('access')">
+                        Доступ
                         <span class="w-6 h-6 rounded-full text-[#020617] flex items-center justify-center bg-[#F97316] group-hover:scale-110 transition-transform duration-300">
-                            <iconify-icon icon="solar:arrow-down-linear" stroke-width="1.5"></iconify-icon>
-                        </span>
-                    </button>
-                </div>
-                <h1 class="text-[14vw] md:text-[11vw] leading-[0.85] font-medium tracking-tight uppercase text-white drop-shadow-2xl z-20 relative mix-blend-difference">
-                    <span class="block overflow-hidden"><span class="block gs-title-line">WHERE</span></span>
-                    <span class="block overflow-hidden"><span class="block gs-title-line">VISION</span></span>
-                    <span class="block overflow-hidden text-transparent clip-text-image"><span class="block gs-title-line hover:tracking-normal transition-all duration-700">MEETS</span></span>
-                </h1>
-            </div>
-        </div>
-
-        <div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] w-[90%] md:w-[70%] h-[50vh] md:h-[65vh] rounded-3xl overflow-hidden z-20 gs-hero-img border border-[#262626]" style=" clip-path: inset(0% round 24px);">
-            <div class="w-full h-full bg-[#020617]/20 absolute inset-0 z-10 transition-colors duration-700 hover:bg-transparent"></div>
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c69b0daa-dea4-4516-9b14-b46c6f05101c_1600w.webp" alt="Nexus Architecture" class="w-full h-full object-cover scale-110 origin-bottom" id="hero-img-inner">
-        </div>
-    </section>
-
-    <!-- Features Section -->
-    <section class="bg-[#080808] pt-[30vh] pb-32 px-6 md:px-12 relative z-20" id="features">
-        <div class="max-w-7xl mx-auto gs-fade-up">
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16 border-b border-[#262626] pb-12">
-                <div class="">
-                    <div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-medium uppercase tracking-wider mb-6 inline-block text-white/70">
-                        Core Capabilities
+<iconify-icon icon="solar:arrow-down-linear" stroke-width="1.5"></iconify-icon>
+</span>
+</button>
+</div>
+<h1 class="text-[14vw] md:text-[11vw] leading-[0.85] font-medium tracking-tight uppercase text-white drop-shadow-2xl z-20 relative mix-blend-difference">
+<span class="block overflow-hidden"><span class="block gs-title-line">ТАМ, ГДЕ</span></span>
+<span class="block overflow-hidden"><span class="block gs-title-line">ВИДЕНИЕ</span></span>
+<span class="block overflow-hidden text-transparent clip-text-image"><span class="block gs-title-line hover:tracking-normal transition-all duration-700">ВСТРЕЧАЕТ</span></span>
+</h1>
+</div>
+</div>
+<div class="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-[20%] w-[90%] md:w-[70%] h-[50vh] md:h-[65vh] rounded-3xl overflow-hidden z-20 gs-hero-img border border-[#262626]" style=" clip-path: inset(0% round 24px);">
+<div class="w-full h-full bg-[#020617]/20 absolute inset-0 z-10 transition-colors duration-700 hover:bg-transparent"></div>
+<img alt="Архитектура нексуса" class="w-full h-full object-cover scale-110 origin-bottom" id="hero-img-inner" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c69b0daa-dea4-4516-9b14-b46c6f05101c_1600w.webp"/>
+</div>
+</section>
+<!-- Features Section -->
+<section class="bg-[#080808] pt-[30vh] pb-32 px-6 md:px-12 relative z-20" id="features">
+<div class="max-w-7xl mx-auto gs-fade-up">
+<div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-16 border-b border-[#262626] pb-12">
+<div class="">
+<div class="px-3 py-1 rounded-full border border-[#262626] text-xs font-medium uppercase tracking-wider mb-6 inline-block text-white/70">
+                        Ключевые возможности
                     </div>
-                    <h2 class="text-5xl md:text-[6vw] leading-[0.9] font-medium tracking-tight text-white uppercase">
-                        ENGINEERED<br>FOR IMPACT
+<h2 class="text-5xl md:text-[6vw] leading-[0.9] font-medium tracking-tight text-white uppercase">
+                        СОЗДАНО<br/>ДЛЯ РЕЗУЛЬТАТА
                     </h2>
-                </div>
-                <div class="max-w-sm mt-12 md:mt-auto">
-                    <p class="text-sm font-light text-white/50 leading-relaxed border-l-2 border-[#262626] pl-6 uppercase tracking-widest hover:border-white/50 transition-colors duration-500">
-                        Auralis translates conceptual workflows into physical and digital reality. We provide the friction-free infrastructure required for elite creation.
+</div>
+<div class="max-w-sm mt-12 md:mt-auto">
+<p class="text-sm font-light text-white/50 leading-relaxed border-l-2 border-[#262626] pl-6 uppercase tracking-widest hover:border-white/50 transition-colors duration-500">
+                        Auralis превращает концептуальные рабочие процессы в физическую и цифровую реальность. Мы обеспечиваем инфраструктуру без трения, необходимую для создания на элитном уровне.
                     </p>
-                </div>
-            </div>
-
-            <!-- Tabs Navigation -->
-            <div class="w-full overflow-x-auto no-scrollbar mb-12">
-                <div class="flex gap-2 p-1.5 bg-[#020617] border border-[#262626] rounded-full w-max mx-auto md:mx-0">
-                    <button onclick="switchTab('infra')" class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white bg-[#262626] outline-none whitespace-nowrap" data-tab="infra">Infrastructure</button>
-                    <button onclick="switchTab('intel')" class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="intel">Intelligence</button>
-                    <button onclick="switchTab('connect')" class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="connect">Connectivity</button>
-                    <button onclick="switchTab('security')" class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="security">Security</button>
-                    <button onclick="switchTab('analytics')" class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="analytics">Analytics</button>
-                </div>
-            </div>
-
-            <!-- Tab Content: Infrastructure -->
-            <div id="tab-infra" class="tab-pane grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1300.2727355957031px; --mouse-y: 2956.426025390625px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#F97316] group-hover:translate-x-2">01</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#F97316] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:cpu-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7f78131e-65e9-49b2-aa1f-ccc33e28df9f_1600w.webp" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#F97316] transition-colors duration-500">
-                            KINETIC<br>ZONES
+</div>
+</div>
+<!-- Tabs Navigation -->
+<div class="w-full overflow-x-auto no-scrollbar mb-12">
+<div class="flex gap-2 p-1.5 bg-[#020617] border border-[#262626] rounded-full w-max mx-auto md:mx-0">
+<button class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white bg-[#262626] outline-none whitespace-nowrap" data-tab="infra" onclick="switchTab('infra')">Инфраструктура</button>
+<button class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="intel" onclick="switchTab('intel')">Интеллект</button>
+<button class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="connect" onclick="switchTab('connect')">Связность</button>
+<button class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="security" onclick="switchTab('security')">Безопасность</button>
+<button class="interactive tab-btn px-5 md:px-6 py-2 rounded-full text-sm font-medium transition-all duration-300 text-white/50 hover:text-white outline-none whitespace-nowrap" data-tab="analytics" onclick="switchTab('analytics')">Аналитика</button>
+</div>
+</div>
+<!-- Tab Content: Infrastructure -->
+<div class="tab-pane grid grid-cols-1 md:grid-cols-2 gap-6" id="tab-infra">
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1300.2727355957031px; --mouse-y: 2956.426025390625px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#F97316] group-hover:translate-x-2">01</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#F97316] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:cpu-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7f78131e-65e9-49b2-aa1f-ccc33e28df9f_1600w.webp"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#F97316] transition-colors duration-500">
+                            КИНЕТИЧЕСКИЕ<br/>ЗОНЫ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Adaptive environments that respond to your workflow state, altering acoustics and lighting for maximum focus.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Адаптивные среды, реагирующие на состояние вашего рабочего процесса: меняют акустику и освещение для максимальной сосредоточенности.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#F97316] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Explore Specs <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 648.2770385742188px; --mouse-y: 2956.426025390625px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#429DFE] group-hover:translate-x-2">02</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#429DFE] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:network-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bfef5098-c30f-4cd9-b4ac-04b2673ab943_1600w.jpg" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#429DFE] transition-colors duration-500">
-                            GLOBAL<br>SYNCHRONY
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#F97316] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Изучить характеристики <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 648.2770385742188px; --mouse-y: 2956.426025390625px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#429DFE] group-hover:translate-x-2">02</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#429DFE] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:network-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/bfef5098-c30f-4cd9-b4ac-04b2673ab943_1600w.jpg"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#429DFE] transition-colors duration-500">
+                            ГЛОБАЛЬНО<br/>СИНХРОНИЯ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Instantaneous zero-latency connections bridging distributed teams across our international node network.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Мгновенные соединения с нулевой задержкой, связывающие распределённые команды через нашу международную сеть узлов.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('nodes')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#429DFE] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            View Nodes <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab Content: Intelligence -->
-            <div id="tab-intel" class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#FF91E3] group-hover:translate-x-2">03</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#FF91E3] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:brain-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#FF91E3] transition-colors duration-500">
-                            COGNITIVE<br>FLOW
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#429DFE] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('nodes')">
+                            Смотреть узлы <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+</div>
+<!-- Tab Content: Intelligence -->
+<div class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6" id="tab-intel">
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#FF91E3] group-hover:translate-x-2">03</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#FF91E3] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:brain-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1620121692029-d088224ddc74?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#FF91E3] transition-colors duration-500">
+                            КОГНИТИВНЫЙ<br/>ПОТОК
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Neural pattern matching actively analyzes and accelerates your computational state, pre-loading essential assets before you demand them.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Нейронное сопоставление паттернов активно анализирует и ускоряет ваше вычислительное состояние, предзагружая необходимые ресурсы до того, как вы их запросите.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#FF91E3] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            System Details <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#10B981] group-hover:translate-x-2">04</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#10B981] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:chart-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#10B981] transition-colors duration-500">
-                            PREDICTIVE<br>ALLOCATION
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#FF91E3] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Детали системы <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#10B981] group-hover:translate-x-2">04</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#10B981] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:chart-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#10B981] transition-colors duration-500">
+                            ПРЕДСКАЗАТЕЛЬНОЕ<br/>РАСПРЕДЕЛЕНИЕ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Algorithmic resource distribution ensures intensive rendering or compiling processes never interrupt active creative momentum.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Алгоритмическое распределение ресурсов гарантирует, что интенсивный рендеринг или компиляция никогда не прерывают активный творческий импульс.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#10B981] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            View Metrics <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab Content: Connectivity -->
-            <div id="tab-connect" class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#F59E0B] group-hover:translate-x-2">05</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#F59E0B] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:routing-2-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#F59E0B] transition-colors duration-500">
-                            HOLOGRAPHIC<br>RELAYS
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#10B981] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Смотреть метрики <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+</div>
+<!-- Tab Content: Connectivity -->
+<div class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6" id="tab-connect">
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#F59E0B] group-hover:translate-x-2">05</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#F59E0B] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:routing-2-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#F59E0B] transition-colors duration-500">
+                            ГОЛОГРАФИЧЕСКИЕ<br/>РЕТРАНСЛЯТОРЫ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Project high-fidelity virtual instances of your collaborators directly into your physical workspace without latency.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Проецируйте высококачественные виртуальные копии коллег прямо в ваше физическое рабочее пространство без задержек.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#F59E0B] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Discover Range <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#8B5CF6] group-hover:translate-x-2">06</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#8B5CF6] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:planet-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#8B5CF6] transition-colors duration-500">
-                            QUANTUM<br>LINKS
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#F59E0B] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Изучить линейку <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#8B5CF6] group-hover:translate-x-2">06</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#8B5CF6] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:planet-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#8B5CF6] transition-colors duration-500">
+                            КВАНТОВЫЕ<br/>КАНАЛЫ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Proprietary tunneling technology bypassing traditional internet infrastructure, offering uninterrupted, unthrottled bandwidth.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Проприетарная технология туннелирования, обходящая традиционную интернет-инфраструктуру и обеспечивающая бесперебойную, неограниченную пропускную способность.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#8B5CF6] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Topology View <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab Content: Security -->
-            <div id="tab-security" class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#EF4444] group-hover:translate-x-2">07</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#EF4444] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:shield-keyhole-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#EF4444] transition-colors duration-500">
-                            BIOMETRIC<br>BASTION
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#8B5CF6] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Вид топологии <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+</div>
+<!-- Tab Content: Security -->
+<div class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6" id="tab-security">
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#EF4444] group-hover:translate-x-2">07</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#EF4444] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:shield-keyhole-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#EF4444] transition-colors duration-500">
+                            БИОМЕТРИЧЕСКИЙ<br/>БАСТИОН
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Multi-factor physical and digital access controlled by non-intrusive ambient scanning and gait analysis.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Многофакторный физический и цифровой доступ, управляемый ненавязчивым окружающим сканированием и анализом походки.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#EF4444] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Security Protocol <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#6366F1] group-hover:translate-x-2">08</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#6366F1] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:lock-password-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#6366F1] transition-colors duration-500">
-                            ENCRYPTED<br>VAULTS
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#EF4444] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Протокол безопасности <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#6366F1] group-hover:translate-x-2">08</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#6366F1] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:lock-password-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#6366F1] transition-colors duration-500">
+                            ЗАШИФРОВАННЫЕ<br/>ХРАНИЛИЩА
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Cold storage integration directly at the edge. Your intellectual property never touches public servers without military-grade obfuscation.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Интеграция холодного хранения прямо на периферии. Ваша интеллектуальная собственность никогда не попадает на публичные серверы без обфускации военного класса.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#6366F1] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Audit Vaults <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Tab Content: Analytics -->
-            <div id="tab-analytics" class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#14B8A6] group-hover:translate-x-2">09</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#14B8A6] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:pie-chart-2-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#14B8A6] transition-colors duration-500">
-                            NEURAL<br>METRICS
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#6366F1] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Аудит хранилищ <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+</div>
+<!-- Tab Content: Analytics -->
+<div class="tab-pane hidden grid-cols-1 md:grid-cols-2 gap-6" id="tab-analytics">
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#14B8A6] group-hover:translate-x-2">09</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#14B8A6] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:pie-chart-2-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#14B8A6] transition-colors duration-500">
+                            НЕЙРОННЫЕ<br/>МЕТРИКИ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            Analyze productivity cycles with non-invasive sensors, mapping out your peak cognitive hours for critical problem solving.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Анализируйте циклы продуктивности с помощью неинвазивных датчиков, определяя пиковые когнитивные часы для решения критических задач.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#14B8A6] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Read Dashboard <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
-                    <div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
-                    <div class="relative z-10 flex justify-between items-start mb-12">
-                        <span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#EC4899] group-hover:translate-x-2">10</span>
-                        <div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#EC4899] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
-                            <iconify-icon icon="solar:pulse-linear" width="24" stroke-width="1.5"></iconify-icon>
-                        </div>
-                    </div>
-                    <div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&q=80" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000">
-                    </div>
-                    <div class="relative z-10">
-                        <h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#EC4899] transition-colors duration-500">
-                            FLOW STATE<br>TRACKING
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#14B8A6] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Открыть дашборд <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+<div class="glow-card interactive bg-[#020617] border border-[#262626] rounded-3xl p-8 md:p-12 text-white flex flex-col justify-between relative overflow-hidden group min-h-[60vh] transition-all duration-700 hover:-translate-y-2 hover:border-white/20" style="--mouse-x: 1443px; --mouse-y: 556px;">
+<div class="absolute inset-0 bg-[#080808] opacity-0 group-hover:opacity-100 transition-opacity duration-700 z-0 pointer-events-none"></div>
+<div class="relative z-10 flex justify-between items-start mb-12">
+<span class="text-5xl font-extralight opacity-20 font-mono transition-all duration-500 group-hover:opacity-100 group-hover:text-[#EC4899] group-hover:translate-x-2">10</span>
+<div class="w-12 h-12 rounded-full border border-[#262626] flex items-center justify-center bg-[#080808] group-hover:bg-[#EC4899] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<iconify-icon icon="solar:pulse-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+</div>
+<div class="relative z-10 h-48 w-full rounded-2xl overflow-hidden mb-8 filter grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-700 bg-[#1A1A1A]">
+<img class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-1000" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=1600&amp;q=80"/>
+</div>
+<div class="relative z-10">
+<h3 class="text-3xl md:text-4xl font-medium uppercase tracking-tight leading-none mb-4 group-hover:text-[#EC4899] transition-colors duration-500">
+                            СОСТОЯНИЕ ПОТОКА<br/>ОТСЛЕЖИВАНИЕ
                         </h3>
-                        <p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
-                            The system learns when you enter deep work, automatically silencing peripheral notifications and routing non-critical tasks to async processing.
+<p class="text-sm font-light text-white/50 leading-relaxed mb-6 max-w-sm group-hover:text-white/70 transition-colors duration-500">
+                            Система обучается распознавать состояние глубокой работы, автоматически отключая второстепенные уведомления и направляя некритические задачи в асинхронную обработку.
                         </p>
-                        <div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
-                        <button onclick="openModal('specs')" class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#EC4899] transition-colors duration-500 cursor-pointer w-max outline-none">
-                            Flow Metrics <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Marquee Transition (Fluidly reacts to scroll velocity) -->
-    <div class="border-y border-[#262626] py-6 bg-[#020617] marquee-container relative z-20">
-        <div id="fluid-marquee" class="marquee-content text-2xl md:text-4xl font-normal tracking-tight uppercase text-white/10 flex gap-8 select-none hover:text-white/30 transition-colors duration-500 cursor-default">
-            <span class="">FLUID MOTION • UNCOMPROMISED FOCUS • IMMERSIVE DESIGN •</span>
-            <span class="">FLUID MOTION • UNCOMPROMISED FOCUS • IMMERSIVE DESIGN •</span>
-            <span>FLUID MOTION • UNCOMPROMISED FOCUS • IMMERSIVE DESIGN •</span>
-            <span>FLUID MOTION • UNCOMPROMISED FOCUS • IMMERSIVE DESIGN •</span>
-        </div>
-    </div>
-
-    <!-- Testimonials Section -->
-    <section class="bg-[#020617] py-32 px-6 md:px-12 relative z-20" id="testimonials">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col items-center text-center mb-24 gs-fade-up">
-                <span class="text-xs font-mono text-[#F97316] mb-4 block">// PROOF OF CONCEPT</span>
-                <h2 class="text-4xl md:text-[5vw] leading-[0.9] font-medium tracking-tight text-white uppercase max-w-3xl">
-                    THE SYNDICATE<br>VOICES
+<div class="w-full h-[1px] bg-white/10 mb-6 group-hover:bg-white/20 transition-colors duration-500"></div>
+<button class="text-xs font-medium uppercase tracking-wider flex items-center gap-2 group-hover:text-[#EC4899] transition-colors duration-500 cursor-pointer w-max outline-none" onclick="openModal('specs')">
+                            Метрики потока <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Marquee Transition (Fluidly reacts to scroll velocity) -->
+<div class="border-y border-[#262626] py-6 bg-[#020617] marquee-container relative z-20">
+<div class="marquee-content text-2xl md:text-4xl font-normal tracking-tight uppercase text-white/10 flex gap-8 select-none hover:text-white/30 transition-colors duration-500 cursor-default" id="fluid-marquee">
+<span class="">ПЛАВНОЕ ДВИЖЕНИЕ • НЕПОКОЛЕБИМЫЙ ФОКУС • ИММЕРСИВНЫЙ ДИЗАЙН •</span>
+<span class="">ПЛАВНОЕ ДВИЖЕНИЕ • НЕПОКОЛЕБИМЫЙ ФОКУС • ИММЕРСИВНЫЙ ДИЗАЙН •</span>
+<span>ПЛАВНОЕ ДВИЖЕНИЕ • НЕПОКОЛЕБИМЫЙ ФОКУС • ИММЕРСИВНЫЙ ДИЗАЙН •</span>
+<span>ПЛАВНОЕ ДВИЖЕНИЕ • НЕПОКОЛЕБИМЫЙ ФОКУС • ИММЕРСИВНЫЙ ДИЗАЙН •</span>
+</div>
+</div>
+<!-- Testimonials Section -->
+<section class="bg-[#020617] py-32 px-6 md:px-12 relative z-20" id="testimonials">
+<div class="max-w-7xl mx-auto">
+<div class="flex flex-col items-center text-center mb-24 gs-fade-up">
+<span class="text-xs font-mono text-[#F97316] mb-4 block">// ДОКАЗАТЕЛЬСТВО КОНЦЕПЦИИ</span>
+<h2 class="text-4xl md:text-[5vw] leading-[0.9] font-medium tracking-tight text-white uppercase max-w-3xl">
+                    СИНДИКАТ<br/>ГОЛОСА
                 </h2>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                <div class="glow-card interactive bg-[#080808] border border-[#262626] p-8 md:p-10 rounded-3xl flex flex-col justify-between min-h-[400px] gs-fade-up hover:border-white/20 transition-all duration-700 hover:-translate-y-2 group cursor-default" style=" --mouse-x: 1116.1660614013672px; --mouse-y: -3138.343505859375px;">
-                    <iconify-icon icon="solar:quote-left-linear" width="32" class="text-white/10 group-hover:text-[#F97316] transition-colors duration-500 mb-8"></iconify-icon>
-                    <p class="text-base md:text-lg font-light text-white/80 leading-relaxed mb-12 flex-grow group-hover:text-white transition-colors duration-500">
-                        "Auralis completely redefined our developmental workflow. The environment acts as a catalyst for deep work, stripping away the friction of traditional spaces."
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="glow-card interactive bg-[#080808] border border-[#262626] p-8 md:p-10 rounded-3xl flex flex-col justify-between min-h-[400px] gs-fade-up hover:border-white/20 transition-all duration-700 hover:-translate-y-2 group cursor-default" style=" --mouse-x: 1116.1660614013672px; --mouse-y: -3138.343505859375px;">
+<iconify-icon class="text-white/10 group-hover:text-[#F97316] transition-colors duration-500 mb-8" icon="solar:quote-left-linear" width="32"></iconify-icon>
+<p class="text-base md:text-lg font-light text-white/80 leading-relaxed mb-12 flex-grow group-hover:text-white transition-colors duration-500">
+                        "Auralis полностью переосмыслил наш рабочий процесс разработки. Среда выступает катализатором глубокой работы, устраняя трение традиционных пространств."
                     </p>
-                    <div class="flex items-center gap-4 border-t border-[#262626] pt-6 group-hover:border-white/20 transition-colors duration-500">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_320w.jpg" alt="Member" class="w-12 h-12 rounded-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                        <div>
-                            <div class="text-sm font-medium uppercase tracking-tight text-white">ELENA ROSTOVA</div>
-                            <div class="text-xs font-mono text-white/40 mt-0.5">Founder // Nova Tech</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#080808] border border-[#262626] p-8 md:p-10 rounded-3xl flex flex-col justify-between min-h-[400px] gs-fade-up hover:border-white/20 transition-all duration-700 hover:-translate-y-2 group cursor-default" style="transition-delay: 100ms;">
-                    <iconify-icon icon="solar:quote-left-linear" width="32" class="text-white/10 group-hover:text-[#429DFE] transition-colors duration-500 mb-8"></iconify-icon>
-                    <p class="text-base md:text-lg font-light text-white/80 leading-relaxed mb-12 flex-grow group-hover:text-white transition-colors duration-500">
-                        "The integration of aesthetics and pure utility here is unmatched. It's less of a workspace and more of an operating system for human creativity."
+<div class="flex items-center gap-4 border-t border-[#262626] pt-6 group-hover:border-white/20 transition-colors duration-500">
+<img alt="Участник" class="w-12 h-12 rounded-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d50f4a31-1a94-4495-b28b-7fb99a6f6730_320w.jpg"/>
+<div>
+<div class="text-sm font-medium uppercase tracking-tight text-white">ELENA ROSTOVA</div>
+<div class="text-xs font-mono text-white/40 mt-0.5">Основатель // Nova Tech</div>
+</div>
+</div>
+</div>
+<div class="glow-card interactive bg-[#080808] border border-[#262626] p-8 md:p-10 rounded-3xl flex flex-col justify-between min-h-[400px] gs-fade-up hover:border-white/20 transition-all duration-700 hover:-translate-y-2 group cursor-default" style="transition-delay: 100ms;">
+<iconify-icon class="text-white/10 group-hover:text-[#429DFE] transition-colors duration-500 mb-8" icon="solar:quote-left-linear" width="32"></iconify-icon>
+<p class="text-base md:text-lg font-light text-white/80 leading-relaxed mb-12 flex-grow group-hover:text-white transition-colors duration-500">
+                        "Интеграция эстетики и чистой функциональности здесь не имеет равных. Это не столько рабочее пространство, сколько операционная система для человеческого творчества."
                     </p>
-                    <div class="flex items-center gap-4 border-t border-[#262626] pt-6 group-hover:border-white/20 transition-colors duration-500">
-                        <div class="w-12 h-12 rounded-full bg-[#141414] border border-[#262626] flex items-center justify-center text-[#429DFE] font-mono text-lg group-hover:bg-[#429DFE] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
+<div class="flex items-center gap-4 border-t border-[#262626] pt-6 group-hover:border-white/20 transition-colors duration-500">
+<div class="w-12 h-12 rounded-full bg-[#141414] border border-[#262626] flex items-center justify-center text-[#429DFE] font-mono text-lg group-hover:bg-[#429DFE] group-hover:text-[#020617] group-hover:scale-110 transition-all duration-500">
                             M
                         </div>
-                        <div>
-                            <div class="text-sm font-medium uppercase tracking-tight text-white">MARCUS CHEN</div>
-                            <div class="text-xs font-mono text-white/40 mt-0.5">Lead Architect // Void</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="glow-card interactive bg-[#080808] border border-[#262626] p-8 md:p-10 rounded-3xl flex flex-col justify-between min-h-[400px] gs-fade-up hover:border-white/20 transition-all duration-700 hover:-translate-y-2 group cursor-default" style="transition-delay: 200ms;">
-                    <iconify-icon icon="solar:quote-left-linear" width="32" class="text-white/10 group-hover:text-[#FF91E3] transition-colors duration-500 mb-8"></iconify-icon>
-                    <p class="text-base md:text-lg font-light text-white/80 leading-relaxed mb-12 flex-grow group-hover:text-white transition-colors duration-500">
-                        "Joining the syndicate granted us access to a network of individuals who operate on a totally different frequency. The serendipity engineered here is brilliant."
+<div>
+<div class="text-sm font-medium uppercase tracking-tight text-white">MARCUS CHEN</div>
+<div class="text-xs font-mono text-white/40 mt-0.5">Ведущий архитектор // Void</div>
+</div>
+</div>
+</div>
+<div class="glow-card interactive bg-[#080808] border border-[#262626] p-8 md:p-10 rounded-3xl flex flex-col justify-between min-h-[400px] gs-fade-up hover:border-white/20 transition-all duration-700 hover:-translate-y-2 group cursor-default" style="transition-delay: 200ms;">
+<iconify-icon class="text-white/10 group-hover:text-[#FF91E3] transition-colors duration-500 mb-8" icon="solar:quote-left-linear" width="32"></iconify-icon>
+<p class="text-base md:text-lg font-light text-white/80 leading-relaxed mb-12 flex-grow group-hover:text-white transition-colors duration-500">
+                        "Вступление в синдикат открыло нам доступ к сети людей, работающих на совершенно иной частоте. Синергия, выстроенная здесь, — блестящая."
                     </p>
-                    <div class="flex items-center gap-4 border-t border-[#262626] pt-6 group-hover:border-white/20 transition-colors duration-500">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fb6415fd-bf4d-4ccf-8e9d-7ab445e99207_800w.jpg" alt="Member" class="w-12 h-12 rounded-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500">
-                        <div>
-                            <div class="text-sm font-medium uppercase tracking-tight text-white">SARAH JENKINS</div>
-                            <div class="text-xs font-mono text-white/40 mt-0.5">Director // Synthesis</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-[#080808] pt-32 pb-8 relative z-20 border-t border-[#262626]" id="footer">
-        <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
-            
-            <h2 class="text-[12vw] leading-[0.8] font-medium tracking-tight text-white uppercase text-center mb-16 gs-fade-up">
-                EXPAND<br>
-                <span class="text-transparent transition-all duration-700 hover:text-white/10" style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">YOUR</span><br>
-                HORIZON
+<div class="flex items-center gap-4 border-t border-[#262626] pt-6 group-hover:border-white/20 transition-colors duration-500">
+<img alt="Участник" class="w-12 h-12 rounded-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-500" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fb6415fd-bf4d-4ccf-8e9d-7ab445e99207_800w.jpg"/>
+<div>
+<div class="text-sm font-medium uppercase tracking-tight text-white">SARAH JENKINS</div>
+<div class="text-xs font-mono text-white/40 mt-0.5">Директор // Synthesis</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-[#080808] pt-32 pb-8 relative z-20 border-t border-[#262626]" id="footer">
+<div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-col items-center">
+<h2 class="text-[12vw] leading-[0.8] font-medium tracking-tight text-white uppercase text-center mb-16 gs-fade-up">
+                РАСШИРЬ<br/>
+<span class="text-transparent transition-all duration-700 hover:text-white/10" style="-webkit-text-stroke: 1px rgba(255,255,255,0.4);">СВОЙ</span><br/>
+                ГОРИЗОНТ
             </h2>
-
-            <div class="w-full h-[40vh] md:h-[50vh] rounded-3xl overflow-hidden mb-24 gs-fade-up relative border border-[#262626] group interactive" onclick="openModal('access')">
-                <div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent z-10 opacity-80 group-hover:opacity-40 transition-opacity duration-700"></div>
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30e3ef4-40d7-42ff-80da-9a2204d74fdb_1600w.webp" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110">
-                <div class="absolute bottom-10 left-10 z-20 pointer-events-none transition-transform duration-500 group-hover:translate-x-4">
-                    <h3 class="text-2xl md:text-4xl font-medium uppercase tracking-tight leading-none text-white drop-shadow-lg">
-                        RESERVE YOUR<br>COORDINATES.
+<div class="w-full h-[40vh] md:h-[50vh] rounded-3xl overflow-hidden mb-24 gs-fade-up relative border border-[#262626] group interactive" onclick="openModal('access')">
+<div class="absolute inset-0 bg-gradient-to-t from-[#080808] via-transparent to-transparent z-10 opacity-80 group-hover:opacity-40 transition-opacity duration-700"></div>
+<img class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-1000 group-hover:scale-110" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c30e3ef4-40d7-42ff-80da-9a2204d74fdb_1600w.webp"/>
+<div class="absolute bottom-10 left-10 z-20 pointer-events-none transition-transform duration-500 group-hover:translate-x-4">
+<h3 class="text-2xl md:text-4xl font-medium uppercase tracking-tight leading-none text-white drop-shadow-lg">
+                        ЗАБРОНИРУЙТЕ СВОИ<br/>КООРДИНАТЫ.
                     </h3>
-                </div>
-                <div class="absolute bottom-10 right-10 z-20 pointer-events-none">
-                    <div class="w-16 h-16 rounded-full bg-white text-[#020617] flex items-center justify-center group-hover:bg-[#F97316] group-hover:scale-125 transition-all duration-500 shadow-2xl">
-                        <iconify-icon icon="solar:arrow-right-up-linear" width="28" stroke-width="1.5" class="group-hover:rotate-45 transition-transform duration-500"></iconify-icon>
-                    </div>
-                </div>
-            </div>
-
-            <div class="flex flex-col lg:flex-row w-full border-t border-[#262626] pt-16 items-start justify-between gs-fade-up gap-12">
-                <div class="max-w-sm">
-                    <div class="text-3xl font-medium tracking-tight uppercase text-white mb-6">AURALIS</div>
-                    <p class="text-xs font-light text-white/50 uppercase tracking-widest leading-relaxed">
-                        Auralis is designed for visionaries. The global nexus combining brutalist structure with fluid creativity.
+</div>
+<div class="absolute bottom-10 right-10 z-20 pointer-events-none">
+<div class="w-16 h-16 rounded-full bg-white text-[#020617] flex items-center justify-center group-hover:bg-[#F97316] group-hover:scale-125 transition-all duration-500 shadow-2xl">
+<iconify-icon class="group-hover:rotate-45 transition-transform duration-500" icon="solar:arrow-right-up-linear" stroke-width="1.5" width="28"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="flex flex-col lg:flex-row w-full border-t border-[#262626] pt-16 items-start justify-between gs-fade-up gap-12">
+<div class="max-w-sm">
+<div class="text-3xl font-medium tracking-tight uppercase text-white mb-6">AURALIS</div>
+<p class="text-xs font-light text-white/50 uppercase tracking-widest leading-relaxed">
+                        Auralis создан для визионеров. Глобальный нексус, соединяющий бруталистскую структуру с текучей креативностью.
                     </p>
-                </div>
-
-                <div class="flex flex-wrap gap-16 md:gap-24">
-                    <div class="">
-                        <h4 class="text-xs font-mono text-[#F97316] uppercase tracking-widest mb-6 block">// DIRECT</h4>
-                        <button onclick="copyToClipboard('nexus@auralis.io', 'Email address copied to clipboard')" class="interactive text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block mb-4 text-left outline-none group">
+</div>
+<div class="flex flex-wrap gap-16 md:gap-24">
+<div class="">
+<h4 class="text-xs font-mono text-[#F97316] uppercase tracking-widest mb-6 block">// НАПРЯМУЮ</h4>
+<button class="interactive text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block mb-4 text-left outline-none group" onclick="copyToClipboard('nexus@auralis.io', 'Email address copied to clipboard')">
                             nexus@auralis.io
-                            <iconify-icon icon="solar:copy-linear" class="opacity-0 group-hover:opacity-100 transition-opacity ml-1 group-hover:translate-x-1 duration-300 inline-block"></iconify-icon>
-                        </button>
-                        <button onclick="copyToClipboard('+81 900 1010', 'System terminal copied to clipboard')" class="interactive text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block text-left outline-none group">SYS: +9607340707<iconify-icon icon="solar:copy-linear" class="opacity-0 group-hover:opacity-100 transition-opacity ml-1 group-hover:translate-x-1 duration-300 inline-block"></iconify-icon></button>
-                    </div>
-                    <div class="">
-                        <h4 class="text-xs font-mono text-white/40 uppercase tracking-widest mb-6 block">// INDEX</h4>
-                        <ul class="space-y-4">
-                            <li class=""><a href="#hero" class="interactive text-sm font-light text-white/70 hover:text-[#429DFE] transition-colors scroll-link hover:translate-x-1 duration-300 inline-block">Platform</a></li>
-                            <li class=""><button onclick="showToast('Manifesto is currently encrypted.')" class="interactive text-sm font-light text-white/70 hover:text-[#429DFE] transition-colors outline-none text-left hover:translate-x-1 duration-300">Manifesto</button></li>
-                            <li class=""><a href="#testimonials" class="interactive text-sm font-light text-white/70 hover:text-[#429DFE] transition-colors scroll-link hover:translate-x-1 duration-300 inline-block">Syndicate</a></li>
-                        </ul>
-                    </div>
-                    <div class="">
-                        <h4 class="text-xs font-mono text-white/40 uppercase tracking-widest mb-6 block">// NETWORK</h4>
-                        <ul class="space-y-4">
-                            <li class=""><button onclick="showToast('Establishing X connection...')" class="interactive w-full text-sm font-light text-white/70 hover:text-[#FF91E3] transition-colors flex items-center justify-between group outline-none">X <iconify-icon icon="solar:arrow-right-up-linear" class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 duration-300"></iconify-icon></button></li>
-                            <li><button onclick="showToast('Establishing Insta connection...')" class="interactive w-full text-sm font-light text-white/70 hover:text-[#FF91E3] transition-colors flex items-center justify-between group outline-none">Insta <iconify-icon icon="solar:arrow-right-up-linear" class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 duration-300"></iconify-icon></button></li>
-                            <li><button onclick="showToast('Establishing Linked connection...')" class="interactive w-full text-sm font-light text-white/70 hover:text-[#FF91E3] transition-colors flex items-center justify-between group outline-none">Linked <iconify-icon icon="solar:arrow-right-up-linear" class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 duration-300"></iconify-icon></button></li>
-                        </ul>
-                    </div>
+                            <iconify-icon class="opacity-0 group-hover:opacity-100 transition-opacity ml-1 group-hover:translate-x-1 duration-300 inline-block" icon="solar:copy-linear"></iconify-icon>
+</button>
+<button class="interactive text-sm font-light text-white/70 hover:text-[#F97316] transition-colors block text-left outline-none group" onclick="copyToClipboard('+81 900 1010', 'System terminal copied to clipboard')">SYS: +9607340707<iconify-icon class="opacity-0 group-hover:opacity-100 transition-opacity ml-1 group-hover:translate-x-1 duration-300 inline-block" icon="solar:copy-linear"></iconify-icon></button>
+</div>
+<div class="">
+<h4 class="text-xs font-mono text-white/40 uppercase tracking-widest mb-6 block">// ИНДЕКС</h4>
+<ul class="space-y-4">
+<li class=""><a class="interactive text-sm font-light text-white/70 hover:text-[#429DFE] transition-colors scroll-link hover:translate-x-1 duration-300 inline-block" href="#hero">Платформа</a></li>
+<li class=""><button class="interactive text-sm font-light text-white/70 hover:text-[#429DFE] transition-colors outline-none text-left hover:translate-x-1 duration-300" onclick="showToast('Manifesto is currently encrypted.')">Манифест</button></li>
+<li class=""><a class="interactive text-sm font-light text-white/70 hover:text-[#429DFE] transition-colors scroll-link hover:translate-x-1 duration-300 inline-block" href="#testimonials">Синдикат</a></li>
+</ul>
+</div>
+<div class="">
+<h4 class="text-xs font-mono text-white/40 uppercase tracking-widest mb-6 block">// СЕТЬ</h4>
+<ul class="space-y-4">
+<li class=""><button class="interactive w-full text-sm font-light text-white/70 hover:text-[#FF91E3] transition-colors flex items-center justify-between group outline-none" onclick="showToast('Establishing X connection...')">X <iconify-icon class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 duration-300" icon="solar:arrow-right-up-linear"></iconify-icon></button></li>
+<li><button class="interactive w-full text-sm font-light text-white/70 hover:text-[#FF91E3] transition-colors flex items-center justify-between group outline-none" onclick="showToast('Establishing Insta connection...')">Insta <iconify-icon class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 duration-300" icon="solar:arrow-right-up-linear"></iconify-icon></button></li>
+<li><button class="interactive w-full text-sm font-light text-white/70 hover:text-[#FF91E3] transition-colors flex items-center justify-between group outline-none" onclick="showToast('Establishing Linked connection...')">Linked <iconify-icon class="opacity-0 group-hover:opacity-100 transition-all group-hover:translate-x-1 group-hover:-translate-y-1 duration-300" icon="solar:arrow-right-up-linear"></iconify-icon></button></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="w-full border-t border-[#262626] mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gs-fade-up">
+<ul class="flex flex-wrap items-center justify-center gap-8 text-xs font-mono text-white/30 uppercase tracking-widest mb-6 md:mb-0">
+<li><button class="interactive hover:text-white transition-colors outline-none" onclick="showToast('Privacy protocol initiated.')">Конфиденциальность</button></li>
+<li><button class="interactive hover:text-white transition-colors outline-none" onclick="showToast('Terms of engagement loaded.')">Условия</button></li>
+<li><button class="interactive hover:text-white transition-colors outline-none" onclick="showToast('Cookie preferences updated.')">Cookies</button></li>
+</ul>
+<div class="text-xs font-mono text-white/30 uppercase tracking-widest text-center">
+                    © 2025 AURALIS. ВСЕ ПРАВА ЗАЩИЩЕНЫ.
                 </div>
-            </div>
-
-            <div class="w-full border-t border-[#262626] mt-16 pt-8 flex flex-col md:flex-row items-center justify-between gs-fade-up">
-                <ul class="flex flex-wrap items-center justify-center gap-8 text-xs font-mono text-white/30 uppercase tracking-widest mb-6 md:mb-0">
-                    <li><button onclick="showToast('Privacy protocol initiated.')" class="interactive hover:text-white transition-colors outline-none">Privacy</button></li>
-                    <li><button onclick="showToast('Terms of engagement loaded.')" class="interactive hover:text-white transition-colors outline-none">Terms</button></li>
-                    <li><button onclick="showToast('Cookie preferences updated.')" class="interactive hover:text-white transition-colors outline-none">Cookies</button></li>
-                </ul>
-                <div class="text-xs font-mono text-white/30 uppercase tracking-widest text-center">
-                    © 2025 AURALIS. ALL RIGHTS RESERVED.
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Global Modal System -->
-    <div id="global-modal" class="fixed inset-0 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-500">
-        <div class="absolute inset-0 bg-[#020617]/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
-        <div class="bg-[#080808] border border-[#262626] rounded-3xl w-full max-w-md mx-6 relative z-10 scale-95 transition-transform duration-500 flex flex-col overflow-hidden shadow-2xl" id="modal-panel">
-            <div class="px-6 py-4 border-b border-[#262626] flex justify-between items-center bg-[#020617]/50">
-                <span class="text-xs font-mono text-white/50 uppercase tracking-widest" id="modal-title">// SYSTEM ACCESS</span>
-                <button onclick="closeModal()" class="interactive text-white/50 hover:text-white transition-colors outline-none hover:rotate-90 duration-300 transform">
-                    <iconify-icon icon="solar:close-square-linear" width="20" stroke-width="1.5"></iconify-icon>
-                </button>
-            </div>
-            <div class="p-6 md:p-8" id="modal-body"></div>
-        </div>
-    </div>
-
-    <!-- Global Toast System -->
-    <div id="toast" class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[110] bg-white text-[#020617] px-6 py-3 rounded-full text-sm font-medium tracking-tight shadow-2xl flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-500 pointer-events-none">
-        <iconify-icon icon="solar:check-circle-linear" width="20" stroke-width="1.5" class="text-[#F97316]"></iconify-icon>
-        <span id="toast-msg">Action successful</span>
-    </div>
-
-    <!-- Core Scripts -->
-    <script>
+</div>
+</div>
+</footer>
+<!-- Global Modal System -->
+<div class="fixed inset-0 z-[100] hidden flex items-center justify-center opacity-0 transition-opacity duration-500" id="global-modal">
+<div class="absolute inset-0 bg-[#020617]/80 backdrop-blur-md cursor-pointer" onclick="closeModal()"></div>
+<div class="bg-[#080808] border border-[#262626] rounded-3xl w-full max-w-md mx-6 relative z-10 scale-95 transition-transform duration-500 flex flex-col overflow-hidden shadow-2xl" id="modal-panel">
+<div class="px-6 py-4 border-b border-[#262626] flex justify-between items-center bg-[#020617]/50">
+<span class="text-xs font-mono text-white/50 uppercase tracking-widest" id="modal-title">// ДОСТУП К СИСТЕМЕ</span>
+<button class="interactive text-white/50 hover:text-white transition-colors outline-none hover:rotate-90 duration-300 transform" onclick="closeModal()">
+<iconify-icon icon="solar:close-square-linear" stroke-width="1.5" width="20"></iconify-icon>
+</button>
+</div>
+<div class="p-6 md:p-8" id="modal-body"></div>
+</div>
+</div>
+<!-- Global Toast System -->
+<div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-[110] bg-white text-[#020617] px-6 py-3 rounded-full text-sm font-medium tracking-tight shadow-2xl flex items-center gap-3 translate-y-20 opacity-0 transition-all duration-500 pointer-events-none" id="toast">
+<iconify-icon class="text-[#F97316]" icon="solar:check-circle-linear" stroke-width="1.5" width="20"></iconify-icon>
+<span id="toast-msg">Действие выполнено успешно</span>
+</div>
+<!-- Core Scripts -->
+<script>
         // Custom Fluid Cursor Logic
         const cursorDot = document.querySelector('.cursor-dot');
         const cursorOutline = document.querySelector('.cursor-outline');
@@ -1006,9 +1012,8 @@ gtag('config', 'G-2M6V79H761');
             }, 3000);
         }
     </script>
-
-    <!-- Three.js Visual Atmosphere - Immersive Fluidity Update -->
-    <script type="module">
+<!-- Three.js Visual Atmosphere - Immersive Fluidity Update -->
+<script type="module">
         import * as THREE from 'three';
 
         const canvas = document.querySelector('#webgl-canvas');
@@ -1098,5 +1103,4 @@ gtag('config', 'G-2M6V79H761');
 
         animate();
     </script>
-
 </body></html>

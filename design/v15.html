@@ -1,13 +1,13 @@
-<html lang="en"><head><script>
+<html lang="ru"><head><script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>simple.ai | Agentic AI Marketing & Consulting</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>simple.ai | Агентный AI-маркетинг и консалтинг</title>
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@200;300;400&amp;family=JetBrains+Mono:wght@200;300;400&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&amp;family=Inter:wght@200;300;400&amp;family=JetBrains+Mono:wght@200;300;400&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind & Icons -->
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -80,7 +80,7 @@ linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
 linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -88,730 +88,710 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
-  <body class="antialiased font-sans bg-paper overflow-x-hidden relative">
-    <!-- Fixed Backgrounds -->
-    <div class="fixed inset-0 pointer-events-none grid-overlay z-0">
-      <div class="absolute inset-0 bg-gradient-to-b from-transparent via-paper/50 to-paper"></div>
-    </div>
-    <div id="canvas-container" class="fixed inset-0 z-0 pointer-events-none opacity-80"></div>
-
-    <!-- GLOBAL NAVIGATION -->
-    <nav class="fixed top-0 w-full z-50 vellum-glass border-b transition-all duration-300 border-neutral-800/50">
-      <div class="max-w-screen-2xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
-        <!-- Left: Logo -->
-        <a href="#" class="flex items-center gap-3 group">
-          <div class="w-8 h-8 border flex items-center justify-center rounded-sm bg-paper relative overflow-hidden group-hover:bg-neutral-900 transition-colors border-neutral-200">
-            <div class="absolute w-full h-px rotate-45 bg-neutral-200"></div>
-            <div class="absolute w-full h-px -rotate-45 bg-neutral-200"></div>
-          </div>
-          <span class="font-serif text-xl tracking-tight text-ink font-medium">
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="antialiased font-sans bg-paper overflow-x-hidden relative">
+<!-- Fixed Backgrounds -->
+<div class="fixed inset-0 pointer-events-none grid-overlay z-0">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent via-paper/50 to-paper"></div>
+</div>
+<div class="fixed inset-0 z-0 pointer-events-none opacity-80" id="canvas-container"></div>
+<!-- GLOBAL NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 vellum-glass border-b transition-all duration-300 border-neutral-800/50">
+<div class="max-w-screen-2xl mx-auto px-6 md:px-12 h-20 flex items-center justify-between">
+<!-- Left: Logo -->
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-8 h-8 border flex items-center justify-center rounded-sm bg-paper relative overflow-hidden group-hover:bg-neutral-900 transition-colors border-neutral-200">
+<div class="absolute w-full h-px rotate-45 bg-neutral-200"></div>
+<div class="absolute w-full h-px -rotate-45 bg-neutral-200"></div>
+</div>
+<span class="font-serif text-xl tracking-tight text-ink font-medium">
             simple.ai
           </span>
-        </a>
-
-        <!-- Center: Links -->
-        <div class="hidden md:flex items-center gap-10">
-          <div class="relative group h-20 flex items-center">
-            <button class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest flex items-center gap-1 text-neutral-400">
-              Capabilities
-              <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xs"></iconify-icon>
-            </button>
-            <!-- Dropdown -->
-            <div class="absolute top-full left-1/2 -translate-x-1/2 w-56 vellum-glass rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 py-2">
-              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
-                Strategy
+</a>
+<!-- Center: Links -->
+<div class="hidden md:flex items-center gap-10">
+<div class="relative group h-20 flex items-center">
+<button class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest flex items-center gap-1 text-neutral-400">
+              Компетенции
+              <iconify-icon class="text-xs" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</button>
+<!-- Dropdown -->
+<div class="absolute top-full left-1/2 -translate-x-1/2 w-56 vellum-glass rounded-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 py-2">
+<a class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50" href="#">
+                Стратегия
               </a>
-              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
-                Acquisition
+<a class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50" href="#">
+                Привлечение
               </a>
-              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
-                Automation
+<a class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50" href="#">
+                Автоматизация
               </a>
-              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
-                Retention
+<a class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50" href="#">
+                Удержание
               </a>
-              <a href="#" class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50">
-                Analytics
+<a class="block px-6 py-3 font-mono text-xs tracking-widest hover:text-ink uppercase transition-colors text-neutral-400 hover:bg-neutral-800/50" href="#">
+                Аналитика
               </a>
-            </div>
-          </div>
-          <a href="#" class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest text-neutral-400">
-            Case Studies
+</div>
+</div>
+<a class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest text-neutral-400" href="#">
+            Кейсы
           </a>
-          <a href="#" class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest text-neutral-400">
-            About Us
+<a class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest text-neutral-400" href="#">
+            О нас
           </a>
-        </div>
-
-        <!-- Right: CTA -->
-        <button class="font-serif italic text-lg px-6 py-1 border transition-colors text-ink rounded-full hidden md:block border-neutral-800 hover:border-neutral-200">
-          Book a Consultation
+</div>
+<!-- Right: CTA -->
+<button class="font-serif italic text-lg px-6 py-1 border transition-colors text-ink rounded-full hidden md:block border-neutral-800 hover:border-neutral-200">
+          Записаться на консультацию
         </button>
-      </div>
-    </nav>
-
-    <!-- MAIN SCROLLING CONTENT -->
-    <main class="relative z-10 flex flex-col w-full">
-      <!-- SECTION 1 — HERO -->
-      <section class="relative w-full min-h-screen flex items-center pt-20 px-6 md:px-12 max-w-screen-2xl mx-auto">
-        <div class="relative z-10 w-full max-w-4xl animate-fade-in opacity-0" style="animation-delay: 0.2s;">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="h-px w-12 bg-rust"></div>
-            <span class="font-mono text-xs text-rust uppercase tracking-widest">
-              AGENTIC AI — MARKETING & CONSULTING
+</div>
+</nav>
+<!-- MAIN SCROLLING CONTENT -->
+<main class="relative z-10 flex flex-col w-full">
+<!-- SECTION 1 — HERO -->
+<section class="relative w-full min-h-screen flex items-center pt-20 px-6 md:px-12 max-w-screen-2xl mx-auto">
+<div class="relative z-10 w-full max-w-4xl animate-fade-in opacity-0" style="animation-delay: 0.2s;">
+<div class="flex items-center gap-3 mb-6">
+<div class="h-px w-12 bg-rust"></div>
+<span class="font-mono text-xs text-rust uppercase tracking-widest">
+              АГЕНТНЫЙ AI — МАРКЕТИНГ И КОНСАЛТИНГ
             </span>
-          </div>
-
-          <h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-ink leading-none tracking-tight mix-blend-screen">
-            Agentic AI for
-            <br>
-            <span class="italic font-light text-neutral-400">
-              Autonomous Growth
+</div>
+<h1 class="font-serif text-5xl md:text-7xl lg:text-8xl text-ink leading-none tracking-tight mix-blend-screen">
+            Агентный AI для
+            <br/>
+<span class="italic font-light text-neutral-400">
+              автономного роста
             </span>
-          </h1>
-
-          <p class="mt-8 max-w-md font-sans text-sm md:text-base font-light leading-relaxed text-neutral-400">
-            simple.ai orchestrates and personalizes every customer touchpoint —
-            from first impression to brand loyalty — through a single intelligent
-            layer that scales your marketing autonomously.
+</h1>
+<p class="mt-8 max-w-md font-sans text-sm md:text-base font-light leading-relaxed text-neutral-400">
+            simple.ai оркестрирует и персонализирует каждую точку контакта с клиентом — от первого впечатления до лояльности к бренду — через единый интеллектуальный слой, автономно масштабирующий ваш маркетинг.
           </p>
-
-          <div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-6 pointer-events-auto">
-            <button class="group inline-flex w-fit items-center gap-3 bg-ink text-paper pl-6 pr-5 py-4 rounded-sm transition-all duration-500 shadow-xl hover:bg-neutral-300 shadow-black/50">
-              <span class="font-mono text-xs tracking-widest uppercase">
-                DISCOVER OUR APPROACH
+<div class="mt-10 flex flex-col sm:flex-row sm:items-center gap-6 pointer-events-auto">
+<button class="group inline-flex w-fit items-center gap-3 bg-ink text-paper pl-6 pr-5 py-4 rounded-sm transition-all duration-500 shadow-xl hover:bg-neutral-300 shadow-black/50">
+<span class="font-mono text-xs tracking-widest uppercase">
+                УЗНАТЬ О НАШЕМ ПОДХОДЕ
               </span>
-              <iconify-icon icon="solar:arrow-right-linear" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
-            </button>
-            <div class="hidden sm:block h-px w-12 bg-neutral-700"></div>
-            <span class="font-serif italic text-lg tracking-tight text-neutral-400">
-              PILOT LIVE — GLOBAL BRANDS
+<iconify-icon class="text-base group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear"></iconify-icon>
+</button>
+<div class="hidden sm:block h-px w-12 bg-neutral-700"></div>
+<span class="font-serif italic text-lg tracking-tight text-neutral-400">
+              ПИЛОТ ЗАПУЩЕН — ГЛОБАЛЬНЫЕ БРЕНДЫ
             </span>
-          </div>
-
-          <div class="mt-20 flex flex-col gap-1 opacity-50">
-            <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
-              SECTOR: MARKETING TECH
+</div>
+<div class="mt-20 flex flex-col gap-1 opacity-50">
+<span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+              СЕКТОР: МАРКЕТИНГОВЫЕ ТЕХНОЛОГИИ
             </span>
-            <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
-              PLATFORM: SIMPLE.AI
+<span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+              ПЛАТФОРМА: SIMPLE.AI
             </span>
-          </div>
-        </div>
-
-        <!-- Technical Panel (Tablet) -->
-        <div class="pointer-events-auto absolute bottom-12 right-6 md:right-12 w-[300px] vellum-glass rounded-sm animate-fade-in opacity-0 hidden lg:block" style="animation-delay: 0.5s;">
-          <div class="border-b px-5 py-4 flex justify-between items-center border-neutral-800/60 bg-neutral-900/40">
-            <span class="font-serif italic text-xl text-ink tracking-tight">
-              Growth Intelligence Engine
+</div>
+</div>
+<!-- Technical Panel (Tablet) -->
+<div class="pointer-events-auto absolute bottom-12 right-6 md:right-12 w-[300px] vellum-glass rounded-sm animate-fade-in opacity-0 hidden lg:block" style="animation-delay: 0.5s;">
+<div class="border-b px-5 py-4 flex justify-between items-center border-neutral-800/60 bg-neutral-900/40">
+<span class="font-serif italic text-xl text-ink tracking-tight">
+              Движок интеллекта роста
             </span>
-          </div>
-          <div class="p-6 space-y-8">
-            <div class="space-y-3">
-              <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-400">
-                <span>CONVERSION</span>
-                <span id="val-distortion">0.9</span>
-              </div>
-              <input type="range" id="input-distortion" min="0" max="2.0" step="0.1" value="0.9">
-            </div>
-            <div class="space-y-3">
-              <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-400">
-                <span>ENGAGEMENT</span>
-                <span id="val-detail">0.8</span>
-              </div>
-              <input type="range" id="input-detail" min="0.1" max="2.0" step="0.1" value="0.8">
-            </div>
-            <div class="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-800/50">
-              <div class="space-y-2">
-                <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-500">
-                  <span>ACQUISITION</span>
-                </div>
-                <div class="h-1 w-full rounded-full overflow-hidden bg-neutral-800">
-                  <div class="h-full bg-ink w-[85%]"></div>
-                </div>
-              </div>
-              <div class="space-y-2">
-                <div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-500">
-                  <span>RETENTION</span>
-                </div>
-                <div class="h-1 w-full rounded-full overflow-hidden bg-neutral-800">
-                  <div class="h-full bg-ink w-[92%]"></div>
-                </div>
-              </div>
-            </div>
-            <div class="pt-2 flex items-center justify-between">
-              <span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
-                AI LAYER
+</div>
+<div class="p-6 space-y-8">
+<div class="space-y-3">
+<div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-400">
+<span>КОНВЕРСИЯ</span>
+<span id="val-distortion">0.9</span>
+</div>
+<input id="input-distortion" max="2.0" min="0" step="0.1" type="range" value="0.9"/>
+</div>
+<div class="space-y-3">
+<div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-400">
+<span>ВОВЛЕЧЁННОСТЬ</span>
+<span id="val-detail">0.8</span>
+</div>
+<input id="input-detail" max="2.0" min="0.1" step="0.1" type="range" value="0.8"/>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4 border-t border-neutral-800/50">
+<div class="space-y-2">
+<div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-500">
+<span>ПРИВЛЕЧЕНИЕ</span>
+</div>
+<div class="h-1 w-full rounded-full overflow-hidden bg-neutral-800">
+<div class="h-full bg-ink w-[85%]"></div>
+</div>
+</div>
+<div class="space-y-2">
+<div class="flex justify-between font-mono text-xs tracking-widest uppercase text-neutral-500">
+<span>УДЕРЖАНИЕ</span>
+</div>
+<div class="h-1 w-full rounded-full overflow-hidden bg-neutral-800">
+<div class="h-full bg-ink w-[92%]"></div>
+</div>
+</div>
+</div>
+<div class="pt-2 flex items-center justify-between">
+<span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
+                AI-СЛОЙ
               </span>
-              <div class="flex items-center gap-2">
-                <span class="font-mono text-xs tracking-widest text-green-500/80">
+<div class="flex items-center gap-2">
+<span class="font-mono text-xs tracking-widest text-green-500/80">
                   LIVE
                 </span>
-                <div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)] animate-pulse"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 2 — SOCIAL PROOF -->
-      <section class="w-full py-24 px-6 md:px-12 max-w-screen-2xl mx-auto border-t relative z-20 bg-paper/80 backdrop-blur-sm border-neutral-800/40">
-        <!-- Part A: Logos -->
-        <div class="flex flex-col items-center text-center mb-24">
-          <span class="font-mono text-xs uppercase tracking-widest mb-10 text-neutral-500">
-            TRUSTED BY INDUSTRY LEADERS
+<div class="w-2 h-2 rounded-full bg-green-500 shadow-[0_0_8px_rgba(34,197,94,0.4)] animate-pulse"></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2 — SOCIAL PROOF -->
+<section class="w-full py-24 px-6 md:px-12 max-w-screen-2xl mx-auto border-t relative z-20 bg-paper/80 backdrop-blur-sm border-neutral-800/40">
+<!-- Part A: Logos -->
+<div class="flex flex-col items-center text-center mb-24">
+<span class="font-mono text-xs uppercase tracking-widest mb-10 text-neutral-500">
+            НАМ ДОВЕРЯЮТ ЛИДЕРЫ ИНДУСТРИИ
           </span>
-          <div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale">
-            <span class="font-serif text-2xl font-medium tracking-tight">
+<div class="flex flex-wrap justify-center items-center gap-12 md:gap-20 opacity-60 grayscale">
+<span class="font-serif text-2xl font-medium tracking-tight">
               Google
             </span>
-            <span class="font-sans text-xl font-medium tracking-tight">
+<span class="font-sans text-xl font-medium tracking-tight">
               Meta
             </span>
-            <span class="font-serif italic text-2xl tracking-tight">
+<span class="font-serif italic text-2xl tracking-tight">
               Salesforce
             </span>
-            <span class="font-mono text-lg tracking-tight">ORACLE</span>
-          </div>
-          <div class="mt-12 inline-flex items-center gap-3 border px-5 py-2 rounded-full border-neutral-700 bg-neutral-900/50">
-            <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">
-              AS FEATURED IN —
+<span class="font-mono text-lg tracking-tight">ORACLE</span>
+</div>
+<div class="mt-12 inline-flex items-center gap-3 border px-5 py-2 rounded-full border-neutral-700 bg-neutral-900/50">
+<span class="font-mono text-xs uppercase tracking-widest text-neutral-400">
+              О НАС ПИСАЛИ —
             </span>
-            <span class="font-serif italic text-lg tracking-tight text-ink">
+<span class="font-serif italic text-lg tracking-tight text-ink">
               The Wall Street Journal
             </span>
-          </div>
-        </div>
-
-        <!-- Part B: Testimonials -->
-        <div class="mb-8">
-          <span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
-            WHAT CLIENTS ARE SAYING
+</div>
+</div>
+<!-- Part B: Testimonials -->
+<div class="mb-8">
+<span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
+            ЧТО ГОВОРЯТ КЛИЕНТЫ
           </span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <!-- Card 1 -->
-          <div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
-            <iconify-icon icon="solar:quote-left-linear" class="text-3xl text-rust/40 mb-4"></iconify-icon>
-            <p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
-              "The future of marketing intelligence is already here."
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
+<iconify-icon class="text-3xl text-rust/40 mb-4" icon="solar:quote-left-linear"></iconify-icon>
+<p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
+              "Будущее маркетингового интеллекта уже наступило."
             </p>
-            <div class="border-t pt-4 border-neutral-800/50">
-              <span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
-                Chief Marketing Officer
+<div class="border-t pt-4 border-neutral-800/50">
+<span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
+                Директор по маркетингу
               </span>
-            </div>
-          </div>
-          <!-- Card 2 -->
-          <div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
-            <iconify-icon icon="solar:quote-left-linear" class="text-3xl text-rust/40 mb-4"></iconify-icon>
-            <p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
-              "ROAS increased by 300% in week one. Truly autonomous."
+</div>
+</div>
+<!-- Card 2 -->
+<div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
+<iconify-icon class="text-3xl text-rust/40 mb-4" icon="solar:quote-left-linear"></iconify-icon>
+<p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
+              "ROAS вырос на 300% за первую неделю. По-настоящему автономно."
             </p>
-            <div class="border-t pt-4 border-neutral-800/50">
-              <span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
-                VP of Growth
+<div class="border-t pt-4 border-neutral-800/50">
+<span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
+                Вице-президент по росту
               </span>
-              <span class="block font-mono text-xs uppercase tracking-widest mt-1 text-neutral-500">
-                Global Retail Brand
+<span class="block font-mono text-xs uppercase tracking-widest mt-1 text-neutral-500">
+                Глобальный ритейл-бренд
               </span>
-            </div>
-          </div>
-          <!-- Card 3 -->
-          <div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
-            <iconify-icon icon="solar:quote-left-linear" class="text-3xl text-rust/40 mb-4"></iconify-icon>
-            <p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
-              "Finally, an agency partner that genuinely understands our data."
+</div>
+</div>
+<!-- Card 3 -->
+<div class="vellum-glass p-8 flex flex-col justify-between min-h-[240px]">
+<iconify-icon class="text-3xl text-rust/40 mb-4" icon="solar:quote-left-linear"></iconify-icon>
+<p class="font-serif italic text-xl md:text-2xl text-ink leading-snug mb-8 tracking-tight">
+              "Наконец-то агентство-партнёр, которое действительно понимает наши данные."
             </p>
-            <div class="border-t pt-4 border-neutral-800/50">
-              <span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
-                Director of E-Commerce
+<div class="border-t pt-4 border-neutral-800/50">
+<span class="block font-mono text-xs uppercase tracking-widest text-neutral-400">
+                Директор по электронной коммерции
               </span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 3 — THE DISRUPTION -->
-      <section class="w-full relative py-32 border-y bg-paper border-neutral-800/50">
-        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
-          <div class="mb-16 text-center">
-            <span class="font-mono text-xs uppercase tracking-widest border px-4 py-1.5 rounded-full text-neutral-400 border-neutral-800 bg-neutral-900">
-              THE SHIFT
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3 — THE DISRUPTION -->
+<section class="w-full relative py-32 border-y bg-paper border-neutral-800/50">
+<div class="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10">
+<div class="mb-16 text-center">
+<span class="font-mono text-xs uppercase tracking-widest border px-4 py-1.5 rounded-full text-neutral-400 border-neutral-800 bg-neutral-900">
+              СДВИГ
             </span>
-          </div>
-
-          <div class="flex flex-col md:flex-row relative">
-            <!-- Center Divider -->
-            <div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px flex-col items-center justify-center bg-neutral-800">
-              <div class="w-8 h-8 rounded-full border bg-paper flex items-center justify-center text-xs font-mono text-neutral-500 border-neutral-800">
+</div>
+<div class="flex flex-col md:flex-row relative">
+<!-- Center Divider -->
+<div class="hidden md:flex absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-px flex-col items-center justify-center bg-neutral-800">
+<div class="w-8 h-8 rounded-full border bg-paper flex items-center justify-center text-xs font-mono text-neutral-500 border-neutral-800">
                 VS
               </div>
-            </div>
-
-            <!-- Left: Current State -->
-            <div class="w-full md:w-1/2 md:pr-20 pb-16 md:pb-0 opacity-50 grayscale hover:opacity-80 transition-opacity">
-              <h3 class="font-serif italic text-4xl tracking-tight mb-12 text-neutral-400">
-                "Today's Reality"
+</div>
+<!-- Left: Current State -->
+<div class="w-full md:w-1/2 md:pr-20 pb-16 md:pb-0 opacity-50 grayscale hover:opacity-80 transition-opacity">
+<h3 class="font-serif italic text-4xl tracking-tight mb-12 text-neutral-400">
+                "Сегодняшняя реальность"
               </h3>
-              <div class="grid grid-cols-2 gap-8 mb-10 text-neutral-300">
-                <div class="flex items-center gap-4">
-                  <iconify-icon icon="solar:database-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase">
-                    Siloed Data
+<div class="grid grid-cols-2 gap-8 mb-10 text-neutral-300">
+<div class="flex items-center gap-4">
+<iconify-icon class="text-2xl" icon="solar:database-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase">
+                    Разрозненные данные
                   </span>
-                </div>
-                <div class="flex items-center gap-4">
-                  <iconify-icon icon="solar:mouse-circle-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase">
-                    Manual Bidding
+</div>
+<div class="flex items-center gap-4">
+<iconify-icon class="text-2xl" icon="solar:mouse-circle-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase">
+                    Ручные ставки
                   </span>
-                </div>
-                <div class="flex items-center gap-4">
-                  <iconify-icon icon="solar:document-text-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase">
-                    Generic Copy
+</div>
+<div class="flex items-center gap-4">
+<iconify-icon class="text-2xl" icon="solar:document-text-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase">
+                    Шаблонные тексты
                   </span>
-                </div>
-                <div class="flex items-center gap-4">
-                  <iconify-icon icon="solar:chart-square-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase">
-                    Gut Decisions
+</div>
+<div class="flex items-center gap-4">
+<iconify-icon class="text-2xl" icon="solar:chart-square-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase">
+                    Решения по наитию
                   </span>
-                </div>
-              </div>
-              <p class="font-sans font-light leading-relaxed max-w-sm text-neutral-400">
-                Fragmented systems. Manual optimization. Zero personalization.
-                Customers leave without a trace.
+</div>
+</div>
+<p class="font-sans font-light leading-relaxed max-w-sm text-neutral-400">
+                Фрагментированные системы. Ручная оптимизация. Ноль персонализации. Клиенты уходят бесследно.
               </p>
-            </div>
-
-            <!-- Right: Future State -->
-            <div class="w-full md:w-1/2 md:pl-20 pt-16 md:pt-0 border-t md:border-t-0 relative border-neutral-800">
-              <h3 class="font-serif italic text-4xl text-ink tracking-tight mb-12">
-                "The simple.ai Layer"
+</div>
+<!-- Right: Future State -->
+<div class="w-full md:w-1/2 md:pl-20 pt-16 md:pt-0 border-t md:border-t-0 relative border-neutral-800">
+<h3 class="font-serif italic text-4xl text-ink tracking-tight mb-12">
+                "Слой simple.ai"
               </h3>
-              <div class="grid grid-cols-2 gap-8 mb-10 text-ink">
-                <div class="flex items-center gap-4 text-rust">
-                  <iconify-icon icon="solar:server-square-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
-                    Unified CRM
+<div class="grid grid-cols-2 gap-8 mb-10 text-ink">
+<div class="flex items-center gap-4 text-rust">
+<iconify-icon class="text-2xl" icon="solar:server-square-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Единая CRM
                   </span>
-                </div>
-                <div class="flex items-center gap-4 text-rust">
-                  <iconify-icon icon="solar:bolt-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
-                    Agentic Bidding
+</div>
+<div class="flex items-center gap-4 text-rust">
+<iconify-icon class="text-2xl" icon="solar:bolt-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Агентные ставки
                   </span>
-                </div>
-                <div class="flex items-center gap-4 text-rust">
-                  <iconify-icon icon="solar:pen-new-square-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
-                    Dynamic Creative
+</div>
+<div class="flex items-center gap-4 text-rust">
+<iconify-icon class="text-2xl" icon="solar:pen-new-square-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Динамические креативы
                   </span>
-                </div>
-                <div class="flex items-center gap-4 text-rust">
-                  <iconify-icon icon="solar:graph-up-linear" class="text-2xl"></iconify-icon>
-                  <span class="font-mono text-xs tracking-widest uppercase text-ink">
-                    Predictive Analytics
+</div>
+<div class="flex items-center gap-4 text-rust">
+<iconify-icon class="text-2xl" icon="solar:graph-up-linear"></iconify-icon>
+<span class="font-mono text-xs tracking-widest uppercase text-ink">
+                    Предиктивная аналитика
                   </span>
-                </div>
-              </div>
-              <p class="font-sans font-light text-ink leading-relaxed max-w-sm">
-                One intelligent platform. Unified data. Every touchpoint
-                personalized. Every interaction measured.
+</div>
+</div>
+<p class="font-sans font-light text-ink leading-relaxed max-w-sm">
+                Одна интеллектуальная платформа. Единые данные. Каждая точка контакта персонализирована. Каждое взаимодействие измерено.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 4 — DIFFERENTIATORS -->
-      <section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto relative z-10 bg-paper/90 backdrop-blur-md">
-        <span class="block font-mono text-xs uppercase tracking-widest mb-8 text-neutral-500">
-          WHY SIMPLE.AI
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 4 — DIFFERENTIATORS -->
+<section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto relative z-10 bg-paper/90 backdrop-blur-md">
+<span class="block font-mono text-xs uppercase tracking-widest mb-8 text-neutral-500">
+          ПОЧЕМУ SIMPLE.AI
         </span>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
-          <h2 class="font-serif text-5xl md:text-7xl text-ink leading-none tracking-tight">
-            One Layer.
-            <br>
-            <span class="italic text-neutral-400">Everything Connected.</span>
-          </h2>
-          <div class="flex items-center">
-            <p class="font-sans font-light text-lg leading-relaxed max-w-lg text-neutral-400">
-              simple.ai doesn't replace your existing marketing stack. It sits
-              above your CRM and Ad platforms as an intelligent orchestration layer —
-              unifying fragmented customer data, automating campaigns in real time,
-              and delivering hyper-personalized experiences without a single
-              rip-and-replace.
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-24">
+<h2 class="font-serif text-5xl md:text-7xl text-ink leading-none tracking-tight">
+            Один слой.
+            <br/>
+<span class="italic text-neutral-400">Всё связано.</span>
+</h2>
+<div class="flex items-center">
+<p class="font-sans font-light text-lg leading-relaxed max-w-lg text-neutral-400">
+              simple.ai не заменяет ваш существующий маркетинговый стек. Он располагается над вашей CRM и рекламными платформами как интеллектуальный слой оркестрации — объединяя фрагментированные данные о клиентах, автоматизируя кампании в реальном времени и обеспечивая гиперперсонализированный опыт без какой-либо замены систем.
             </p>
-          </div>
-        </div>
-
-        <!-- Technical Flow Diagram -->
-        <div class="w-full border rounded-sm p-8 mb-20 flex flex-col md:flex-row justify-between items-center gap-8 text-center vellum-glass border-neutral-800/60 bg-neutral-900/40">
-          <div class="w-full md:w-1/3 p-6 border bg-paper shadow-sm border-neutral-800">
-            <span class="block font-mono text-xs uppercase tracking-widest mb-2 text-neutral-400">
-              EXISTING SYSTEMS
+</div>
+</div>
+<!-- Technical Flow Diagram -->
+<div class="w-full border rounded-sm p-8 mb-20 flex flex-col md:flex-row justify-between items-center gap-8 text-center vellum-glass border-neutral-800/60 bg-neutral-900/40">
+<div class="w-full md:w-1/3 p-6 border bg-paper shadow-sm border-neutral-800">
+<span class="block font-mono text-xs uppercase tracking-widest mb-2 text-neutral-400">
+              СУЩЕСТВУЮЩИЕ СИСТЕМЫ
             </span>
-            <span class="font-serif italic text-2xl tracking-tight text-ink">
-              CRM &amp; Ad Platforms
+<span class="font-serif italic text-2xl tracking-tight text-ink">
+              CRM и рекламные платформы
             </span>
-          </div>
-          <div class="flex flex-col items-center text-rust">
-            <span class="font-mono text-xs uppercase tracking-widest mb-2 opacity-60">
-              INTEGRATES
+</div>
+<div class="flex flex-col items-center text-rust">
+<span class="font-mono text-xs uppercase tracking-widest mb-2 opacity-60">
+              ИНТЕГРИРУЕТСЯ
             </span>
-            <iconify-icon icon="solar:arrow-right-linear" class="text-3xl rotate-90 md:rotate-0"></iconify-icon>
-          </div>
-          <div class="w-full md:w-1/3 p-8 bg-ink text-paper shadow-xl rounded-sm transform scale-105">
-            <span class="block font-mono text-xs text-paper/60 uppercase tracking-widest mb-2">
-              INTELLIGENCE
+<iconify-icon class="text-3xl rotate-90 md:rotate-0" icon="solar:arrow-right-linear"></iconify-icon>
+</div>
+<div class="w-full md:w-1/3 p-8 bg-ink text-paper shadow-xl rounded-sm transform scale-105">
+<span class="block font-mono text-xs text-paper/60 uppercase tracking-widest mb-2">
+              ИНТЕЛЛЕКТ
             </span>
-            <span class="font-serif italic text-3xl tracking-tight">
-              simple.ai Layer
+<span class="font-serif italic text-3xl tracking-tight">
+              Слой simple.ai
             </span>
-          </div>
-          <div class="flex flex-col items-center text-rust">
-            <span class="font-mono text-xs uppercase tracking-widest mb-2 opacity-60">
-              DELIVERS
+</div>
+<div class="flex flex-col items-center text-rust">
+<span class="font-mono text-xs uppercase tracking-widest mb-2 opacity-60">
+              ДОСТАВЛЯЕТ
             </span>
-            <iconify-icon icon="solar:arrow-right-linear" class="text-3xl rotate-90 md:rotate-0"></iconify-icon>
-          </div>
-          <div class="w-full md:w-1/3 p-6 border bg-paper shadow-sm border-neutral-800">
-            <span class="block font-mono text-xs uppercase tracking-widest mb-2 text-neutral-400">
-              EXPERIENCE
+<iconify-icon class="text-3xl rotate-90 md:rotate-0" icon="solar:arrow-right-linear"></iconify-icon>
+</div>
+<div class="w-full md:w-1/3 p-6 border bg-paper shadow-sm border-neutral-800">
+<span class="block font-mono text-xs uppercase tracking-widest mb-2 text-neutral-400">
+              ОПЫТ
             </span>
-            <span class="font-serif italic text-2xl tracking-tight text-ink">
-              Customer Journey
+<span class="font-serif italic text-2xl tracking-tight text-ink">
+              Путь клиента
             </span>
-          </div>
-        </div>
-
-        <!-- Differentiator Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
-            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
-              <span class="font-mono text-xs text-neutral-500">01</span>
-              <span class="font-mono text-xs text-ink uppercase tracking-widest">
-                SEAMLESS INTEGRATION
+</div>
+</div>
+<!-- Differentiator Cards -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
+<div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
+<span class="font-mono text-xs text-neutral-500">01</span>
+<span class="font-mono text-xs text-ink uppercase tracking-widest">
+                БЕСШОВНАЯ ИНТЕГРАЦИЯ
               </span>
-            </div>
-            <p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
-              Integrates flawlessly with existing CRMs &amp; ad networks. Zero
-              platform migration required.
+</div>
+<p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
+              Безупречно интегрируется с существующими CRM и рекламными сетями. Миграция платформ не требуется.
             </p>
-          </div>
-          <div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
-            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
-              <span class="font-mono text-xs text-neutral-500">02</span>
-              <span class="font-mono text-xs text-ink uppercase tracking-widest">
-                AGENTIC CAMPAIGNS
+</div>
+<div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
+<div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
+<span class="font-mono text-xs text-neutral-500">02</span>
+<span class="font-mono text-xs text-ink uppercase tracking-widest">
+                АГЕНТНЫЕ КАМПАНИИ
               </span>
-            </div>
-            <p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
-              Autonomous decision-making that optimizes each user's
-              individual journey in real time.
+</div>
+<p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
+              Автономное принятие решений, оптимизирующее индивидуальный путь каждого пользователя в реальном времени.
             </p>
-          </div>
-          <div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
-            <div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
-              <span class="font-mono text-xs text-neutral-500">03</span>
-              <span class="font-mono text-xs text-ink uppercase tracking-widest">
-                HOLISTIC STRATEGY
+</div>
+<div class="vellum-glass p-8 border-t-2 border-t-neutral-200">
+<div class="flex items-center gap-3 mb-6 pb-6 border-b border-neutral-800">
+<span class="font-mono text-xs text-neutral-500">03</span>
+<span class="font-mono text-xs text-ink uppercase tracking-widest">
+                ЦЕЛОСТНАЯ СТРАТЕГИЯ
               </span>
-            </div>
-            <p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
-              One unified approach controls Strategy, Acquisition,
-              Retention, and Analytics reporting.
+</div>
+<p class="font-sans font-light leading-relaxed text-sm text-neutral-400">
+              Один единый подход управляет стратегией, привлечением, удержанием и аналитической отчётностью.
             </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 5 — THE ECOSYSTEM -->
-      <section class="w-full py-32 border-y bg-paper/50 relative overflow-hidden border-neutral-800/50">
-        <div class="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10 text-center mb-20">
-          <span class="font-mono text-xs uppercase tracking-widest mb-6 block text-neutral-500">
-            THE PLATFORM
+</div>
+</div>
+</section>
+<!-- SECTION 5 — THE ECOSYSTEM -->
+<section class="w-full py-32 border-y bg-paper/50 relative overflow-hidden border-neutral-800/50">
+<div class="max-w-screen-2xl mx-auto px-6 md:px-12 relative z-10 text-center mb-20">
+<span class="font-mono text-xs uppercase tracking-widest mb-6 block text-neutral-500">
+            ПЛАТФОРМА
           </span>
-          <h2 class="font-serif text-5xl md:text-6xl text-ink leading-none tracking-tight">
-            Five Pillars.
-            <br>
-            <span class="italic text-neutral-400">One Seamless Strategy.</span>
-          </h2>
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
-          <!-- Ecosystem Grid Layout -->
-          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-            <!-- Center Decorative Element (Fake Canvas Node) -->
-            <div class="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border rounded-full items-center justify-center bg-paper/80 backdrop-blur-md shadow-2xl z-0 border-neutral-800">
-              <div class="w-48 h-48 border rounded-full flex flex-col items-center justify-center relative border-neutral-800/50 bg-neutral-900">
-                <div class="absolute inset-0 rounded-full border border-rust/30 animate-ping" style="animation-duration: 4s;"></div>
-                <span class="font-serif text-2xl tracking-tight text-ink relative z-10">
+<h2 class="font-serif text-5xl md:text-6xl text-ink leading-none tracking-tight">
+            Пять столпов.
+            <br/>
+<span class="italic text-neutral-400">Одна цельная стратегия.</span>
+</h2>
+</div>
+<div class="max-w-7xl mx-auto px-6 relative z-10">
+<!-- Ecosystem Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
+<!-- Center Decorative Element (Fake Canvas Node) -->
+<div class="hidden md:flex absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border rounded-full items-center justify-center bg-paper/80 backdrop-blur-md shadow-2xl z-0 border-neutral-800">
+<div class="w-48 h-48 border rounded-full flex flex-col items-center justify-center relative border-neutral-800/50 bg-neutral-900">
+<div class="absolute inset-0 rounded-full border border-rust/30 animate-ping" style="animation-duration: 4s;"></div>
+<span class="font-serif text-2xl tracking-tight text-ink relative z-10">
                   simple.ai
                 </span>
-                <span class="font-mono text-xs tracking-widest mt-2 relative z-10 text-neutral-500">
-                  CORE
+<span class="font-mono text-xs tracking-widest mt-2 relative z-10 text-neutral-500">
+                  ЯДРО
                 </span>
-              </div>
-            </div>
-
-            <!-- Card 1 -->
-            <div class="vellum-glass p-8 relative z-10 md:col-start-1 md:row-start-1 transform hover:-translate-y-1 transition-transform">
-              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
-                <span class="font-mono text-xs text-ink">01</span>
-              </div>
-              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
-                STRATEGY
+</div>
+</div>
+<!-- Card 1 -->
+<div class="vellum-glass p-8 relative z-10 md:col-start-1 md:row-start-1 transform hover:-translate-y-1 transition-transform">
+<div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+<span class="font-mono text-xs text-ink">01</span>
+</div>
+<h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                СТРАТЕГИЯ
               </h4>
-              <p class="font-sans font-light text-sm text-neutral-400">
-                Data-driven roadmaps. Integrated market research.
-                Predictive audience modeling built in from step one.
+<p class="font-sans font-light text-sm text-neutral-400">
+                Дорожные карты на основе данных. Встроенные маркетинговые исследования. Предиктивное моделирование аудитории с первого шага.
               </p>
-            </div>
-
-            <!-- Card 2 -->
-            <div class="vellum-glass p-8 relative z-10 md:col-start-3 md:row-start-1 transform hover:-translate-y-1 transition-transform">
-              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
-                <span class="font-mono text-xs text-ink">02</span>
-              </div>
-              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
-                ACQUISITION
+</div>
+<!-- Card 2 -->
+<div class="vellum-glass p-8 relative z-10 md:col-start-3 md:row-start-1 transform hover:-translate-y-1 transition-transform">
+<div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+<span class="font-mono text-xs text-ink">02</span>
+</div>
+<h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                ПРИВЛЕЧЕНИЕ
               </h4>
-              <p class="font-sans font-light text-sm text-neutral-400">
-                Agentic ad buying. Fully automated campaign deployment.
-                Zero manual bidding adjustments required.
+<p class="font-sans font-light text-sm text-neutral-400">
+                Агентная закупка рекламы. Полностью автоматизированный запуск кампаний. Никаких ручных корректировок ставок.
               </p>
-            </div>
-
-            <!-- Empty Space for Center Node on Desktop -->
-            <div class="hidden md:block col-start-2 row-start-2"></div>
-
-            <!-- Card 3 -->
-            <div class="vellum-glass p-8 relative z-10 md:col-start-1 md:row-start-2 md:mt-12 transform hover:-translate-y-1 transition-transform">
-              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
-                <span class="font-mono text-xs text-ink">03</span>
-              </div>
-              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
-                AUTOMATION
+</div>
+<!-- Empty Space for Center Node on Desktop -->
+<div class="hidden md:block col-start-2 row-start-2"></div>
+<!-- Card 3 -->
+<div class="vellum-glass p-8 relative z-10 md:col-start-1 md:row-start-2 md:mt-12 transform hover:-translate-y-1 transition-transform">
+<div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+<span class="font-mono text-xs text-ink">03</span>
+</div>
+<h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                АВТОМАТИЗАЦИЯ
               </h4>
-              <p class="font-sans font-light text-sm text-neutral-400">
-                End-to-end campaign automation. Multi-channel workflow control.
-                AI-driven creative and copy generation.
+<p class="font-sans font-light text-sm text-neutral-400">
+                Сквозная автоматизация кампаний. Управление мультиканальными процессами. AI-генерация креативов и текстов.
               </p>
-            </div>
-
-            <!-- Card 4 -->
-            <div class="vellum-glass p-8 relative z-10 md:col-start-3 md:row-start-2 md:mt-12 transform hover:-translate-y-1 transition-transform">
-              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
-                <span class="font-mono text-xs text-ink">04</span>
-              </div>
-              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
-                RETENTION
+</div>
+<!-- Card 4 -->
+<div class="vellum-glass p-8 relative z-10 md:col-start-3 md:row-start-2 md:mt-12 transform hover:-translate-y-1 transition-transform">
+<div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+<span class="font-mono text-xs text-ink">04</span>
+</div>
+<h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                УДЕРЖАНИЕ
               </h4>
-              <p class="font-sans font-light text-sm text-neutral-400">
-                Nurture leads with hyper-personalized logic. Instant churn
-                prediction and seamless re-engagement routing.
+<p class="font-sans font-light text-sm text-neutral-400">
+                Прогревайте лидов с гиперперсонализированной логикой. Мгновенное прогнозирование оттока и бесшовное повторное вовлечение.
               </p>
-            </div>
-
-            <!-- Card 5 (Centered Bottom) -->
-            <div class="vellum-glass p-8 relative z-10 md:col-start-2 md:row-start-3 md:mt-8 transform hover:-translate-y-1 transition-transform">
-              <div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
-                <span class="font-mono text-xs text-ink">05</span>
-              </div>
-              <h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
-                ANALYTICS
+</div>
+<!-- Card 5 (Centered Bottom) -->
+<div class="vellum-glass p-8 relative z-10 md:col-start-2 md:row-start-3 md:mt-8 transform hover:-translate-y-1 transition-transform">
+<div class="w-8 h-8 rounded-full border flex items-center justify-center mb-6 border-neutral-700 bg-neutral-900">
+<span class="font-mono text-xs text-ink">05</span>
+</div>
+<h4 class="font-mono text-xs uppercase tracking-widest text-ink mb-4 pb-4 border-b border-neutral-800/50">
+                АНАЛИТИКА
               </h4>
-              <p class="font-sans font-light text-sm text-neutral-400">
-                Real-time dashboarding. Multi-touch attribution models.
-                Automated KPI tracking and ROI reporting.
+<p class="font-sans font-light text-sm text-neutral-400">
+                Дашборды в реальном времени. Мультитач-модели атрибуции. Автоматическое отслеживание KPI и отчётность по ROI.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 6 — INDUSTRY VALIDATION -->
-      <section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto bg-paper">
-        <span class="block font-mono text-xs uppercase tracking-widest mb-16 text-neutral-500">
-          INDUSTRY VALIDATION
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 6 — INDUSTRY VALIDATION -->
+<section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto bg-paper">
+<span class="block font-mono text-xs uppercase tracking-widest mb-16 text-neutral-500">
+          ПРИЗНАНИЕ ИНДУСТРИИ
         </span>
-
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
-          <!-- Left: WSJ -->
-          <div class="flex flex-col border p-10 md:p-16 relative border-neutral-800 bg-neutral-900/50">
-            <div class="absolute top-0 left-0 w-full h-1 bg-neutral-200"></div>
-            <iconify-icon icon="solar:newspaper-linear" class="text-4xl mb-8 text-neutral-600"></iconify-icon>
-            <h3 class="font-serif italic text-5xl md:text-6xl text-ink tracking-tight leading-none mb-8">
-              "Agency of the Future"
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+<!-- Left: WSJ -->
+<div class="flex flex-col border p-10 md:p-16 relative border-neutral-800 bg-neutral-900/50">
+<div class="absolute top-0 left-0 w-full h-1 bg-neutral-200"></div>
+<iconify-icon class="text-4xl mb-8 text-neutral-600" icon="solar:newspaper-linear"></iconify-icon>
+<h3 class="font-serif italic text-5xl md:text-6xl text-ink tracking-tight leading-none mb-8">
+              "Агентство будущего"
             </h3>
-            <span class="font-mono text-xs uppercase tracking-widest mb-10 block text-neutral-400">
+<span class="font-mono text-xs uppercase tracking-widest mb-10 block text-neutral-400">
               — The Wall Street Journal
             </span>
-            <p class="font-sans font-light text-lg leading-relaxed mt-auto border-t pt-8 text-neutral-400 border-neutral-800">
-              simple.ai was featured by the WSJ as a landmark example of
-              AI-driven consulting — the first platform to fully automate the
-              growth journey end-to-end.
+<p class="font-sans font-light text-lg leading-relaxed mt-auto border-t pt-8 text-neutral-400 border-neutral-800">
+              WSJ отметил simple.ai как знаковый пример AI-консалтинга — первую платформу, полностью автоматизирующую путь роста от начала до конца.
             </p>
-          </div>
-
-          <!-- Right: Pilot Results -->
-          <div class="flex flex-col justify-center">
-            <div class="inline-flex items-center gap-3 mb-12 border px-4 py-1.5 rounded-full w-fit border-neutral-800 bg-neutral-900/30">
-              <div class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.4)]"></div>
-              <span class="font-mono text-xs uppercase tracking-widest text-neutral-400">
-                LIVE PILOT — GLOBAL BRANDS
+</div>
+<!-- Right: Pilot Results -->
+<div class="flex flex-col justify-center">
+<div class="inline-flex items-center gap-3 mb-12 border px-4 py-1.5 rounded-full w-fit border-neutral-800 bg-neutral-900/30">
+<div class="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_8px_rgba(34,197,94,0.4)]"></div>
+<span class="font-mono text-xs uppercase tracking-widest text-neutral-400">
+                ПИЛОТ ЗАПУЩЕН — ГЛОБАЛЬНЫЕ БРЕНДЫ
               </span>
-            </div>
-
-            <div class="space-y-12">
-              <div class="flex flex-col border-b pb-8 border-neutral-800">
-                <span class="font-serif text-6xl text-ink tracking-tight mb-2">
+</div>
+<div class="space-y-12">
+<div class="flex flex-col border-b pb-8 border-neutral-800">
+<span class="font-serif text-6xl text-ink tracking-tight mb-2">
                   3x
                 </span>
-                <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
-                  Average ROAS increase within 30 days
+<span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+                  Средний рост ROAS в течение 30 дней
                 </span>
-              </div>
-              <div class="flex flex-col border-b pb-8 border-neutral-800">
-                <span class="font-serif text-6xl text-ink tracking-tight mb-2">
+</div>
+<div class="flex flex-col border-b pb-8 border-neutral-800">
+<span class="font-serif text-6xl text-ink tracking-tight mb-2">
                   $10M+
                 </span>
-                <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
-                  Ad spend managed autonomously
+<span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+                  Рекламный бюджет под автономным управлением
                 </span>
-              </div>
-              <div class="flex flex-col">
-                <span class="font-serif text-6xl text-ink tracking-tight mb-2">
+</div>
+<div class="flex flex-col">
+<span class="font-serif text-6xl text-ink tracking-tight mb-2">
                   1
                 </span>
-                <span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
-                  Partner to orchestrate your growth
+<span class="font-mono text-xs text-neutral-500 uppercase tracking-widest">
+                  Партнёр для оркестрации вашего роста
                 </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 7 — CUSTOMER TESTIMONIALS (Videos) -->
-      <section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-t bg-paper/80 backdrop-blur-sm border-neutral-800/50">
-        <div class="mb-16">
-          <span class="block font-mono text-xs uppercase tracking-widest mb-6 text-neutral-500">
-            CLIENT STORIES
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 7 — CUSTOMER TESTIMONIALS (Videos) -->
+<section class="w-full py-32 px-6 md:px-12 max-w-screen-2xl mx-auto border-t bg-paper/80 backdrop-blur-sm border-neutral-800/50">
+<div class="mb-16">
+<span class="block font-mono text-xs uppercase tracking-widest mb-6 text-neutral-500">
+            ИСТОРИИ КЛИЕНТОВ
           </span>
-          <h2 class="font-serif text-5xl md:text-6xl text-ink leading-none tracking-tight">
-            The Age of
-            <br>
-            <span class="italic text-neutral-400">Hyper-Personalisation</span>
-          </h2>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Video Card 1 -->
-          <div class="group cursor-pointer">
-            <div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
-              <div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
-              <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Data Analytics" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700">
-              <div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
-                <iconify-icon icon="solar:play-linear" class="text-2xl text-ink translate-x-0.5"></iconify-icon>
-              </div>
-            </div>
-            <span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
-              "The CMO's Secret"
+<h2 class="font-serif text-5xl md:text-6xl text-ink leading-none tracking-tight">
+            Эпоха
+            <br/>
+<span class="italic text-neutral-400">гиперперсонализации</span>
+</h2>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Video Card 1 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
+<div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
+<img alt="Аналитика данных" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"/>
+<div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
+<iconify-icon class="text-2xl text-ink translate-x-0.5" icon="solar:play-linear"></iconify-icon>
+</div>
+</div>
+<span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
+              "Секрет CMO"
             </span>
-            <span class="block font-sans font-light text-sm text-neutral-400">
-              Automated their entire ad workflow
+<span class="block font-sans font-light text-sm text-neutral-400">
+              Автоматизировали весь рекламный процесс
             </span>
-          </div>
-
-          <!-- Video Card 2 -->
-          <div class="group cursor-pointer">
-            <div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
-              <div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
-              <img src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Agency Workspace" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700">
-              <div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
-                <iconify-icon icon="solar:play-linear" class="text-2xl text-ink translate-x-0.5"></iconify-icon>
-              </div>
-            </div>
-            <span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
-              "Next-Gen Agency"
+</div>
+<!-- Video Card 2 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
+<div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
+<img alt="Рабочее пространство агентства" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"/>
+<div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
+<iconify-icon class="text-2xl text-ink translate-x-0.5" icon="solar:play-linear"></iconify-icon>
+</div>
+</div>
+<span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
+              "Агентство нового поколения"
             </span>
-            <span class="block font-sans font-light text-sm text-neutral-400">
-              WSJ Featured Story
+<span class="block font-sans font-light text-sm text-neutral-400">
+              Статья в WSJ
             </span>
-          </div>
-
-          <!-- Video Card 3 -->
-          <div class="group cursor-pointer">
-            <div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
-              <div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
-              <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80" alt="Charts on Computer" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700">
-              <div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
-                <iconify-icon icon="solar:play-linear" class="text-2xl text-ink translate-x-0.5"></iconify-icon>
-              </div>
-            </div>
-            <span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
-              "From Click to Customer"
+</div>
+<!-- Video Card 3 -->
+<div class="group cursor-pointer">
+<div class="relative w-full aspect-video border overflow-hidden mb-4 rounded-sm flex items-center justify-center bg-neutral-800 border-neutral-700">
+<div class="absolute inset-0 group-hover:bg-white/10 transition-colors z-10 bg-white/5"></div>
+<img alt="Графики на компьютере" class="absolute inset-0 w-full h-full object-cover grayscale opacity-60 group-hover:scale-105 transition-transform duration-700" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=80"/>
+<div class="w-16 h-16 rounded-full backdrop-blur border flex items-center justify-center relative z-20 group-hover:scale-110 transition-transform bg-neutral-900/90 border-neutral-700">
+<iconify-icon class="text-2xl text-ink translate-x-0.5" icon="solar:play-linear"></iconify-icon>
+</div>
+</div>
+<span class="block font-mono text-xs text-ink uppercase tracking-widest mb-1">
+              "От клика до клиента"
             </span>
-            <span class="block font-sans font-light text-sm text-neutral-400">
-              End-to-End Walkthrough
+<span class="block font-sans font-light text-sm text-neutral-400">
+              Полный разбор от и до
             </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 8 — CTA -->
-      <section class="w-full min-h-[60vh] flex flex-col items-center justify-center text-center py-32 px-6 border-t relative bg-paper z-20 border-neutral-800">
-        <div class="absolute inset-0 pointer-events-none grid-overlay opacity-50 z-0"></div>
-
-        <div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
-          <div class="w-12 h-12 border flex items-center justify-center rounded-sm relative overflow-hidden mb-10 border-neutral-200 bg-neutral-900">
-            <div class="absolute w-full h-px rotate-45 bg-neutral-200"></div>
-            <div class="absolute w-full h-px -rotate-45 bg-neutral-200"></div>
-          </div>
-
-          <h2 class="font-serif text-5xl md:text-7xl text-ink leading-none tracking-tight mb-8">
-            Ready to Orchestrate
-            <br>
-            <span class="italic text-neutral-400">Every Campaign?</span>
-          </h2>
-
-          <p class="font-sans font-light text-lg mb-12 max-w-lg text-neutral-400">
-            Join the brands already delivering the future. Schedule a
-            personalized consultation and see simple.ai live.
+</div>
+</div>
+</section>
+<!-- SECTION 8 — CTA -->
+<section class="w-full min-h-[60vh] flex flex-col items-center justify-center text-center py-32 px-6 border-t relative bg-paper z-20 border-neutral-800">
+<div class="absolute inset-0 pointer-events-none grid-overlay opacity-50 z-0"></div>
+<div class="relative z-10 max-w-2xl mx-auto flex flex-col items-center">
+<div class="w-12 h-12 border flex items-center justify-center rounded-sm relative overflow-hidden mb-10 border-neutral-200 bg-neutral-900">
+<div class="absolute w-full h-px rotate-45 bg-neutral-200"></div>
+<div class="absolute w-full h-px -rotate-45 bg-neutral-200"></div>
+</div>
+<h2 class="font-serif text-5xl md:text-7xl text-ink leading-none tracking-tight mb-8">
+            Готовы оркестрировать
+            <br/>
+<span class="italic text-neutral-400">каждую кампанию?</span>
+</h2>
+<p class="font-sans font-light text-lg mb-12 max-w-lg text-neutral-400">
+            Присоединяйтесь к брендам, которые уже создают будущее. Запишитесь на персональную консультацию и посмотрите simple.ai вживую.
           </p>
-
-          <div class="flex flex-col sm:flex-row items-center gap-6">
-            <button class="group flex items-center justify-center gap-3 bg-ink text-paper px-8 py-4 rounded-sm transition-all duration-500 w-full sm:w-auto shadow-xl hover:bg-neutral-300 shadow-black/50">
-              <span class="font-mono text-xs tracking-widest uppercase">
-                BOOK A CONSULTATION
+<div class="flex flex-col sm:flex-row items-center gap-6">
+<button class="group flex items-center justify-center gap-3 bg-ink text-paper px-8 py-4 rounded-sm transition-all duration-500 w-full sm:w-auto shadow-xl hover:bg-neutral-300 shadow-black/50">
+<span class="font-mono text-xs tracking-widest uppercase">
+                ЗАПИСАТЬСЯ НА КОНСУЛЬТАЦИЮ
               </span>
-              <iconify-icon icon="solar:arrow-right-linear" class="text-base group-hover:translate-x-1 transition-transform"></iconify-icon>
-            </button>
-            <a href="#" class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest border-b border-transparent hover:border-ink pb-1 text-neutral-400">
-              Explore Our Capabilities
+<iconify-icon class="text-base group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear"></iconify-icon>
+</button>
+<a class="font-mono text-xs hover:text-ink transition-colors uppercase tracking-widest border-b border-transparent hover:border-ink pb-1 text-neutral-400" href="#">
+              Изучите наши возможности
             </a>
-          </div>
-        </div>
-
-        <!-- Footer Detail -->
-        <div class="absolute bottom-8 w-full text-center opacity-60">
-          <span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
-            SIMPLE.AI — AGENTIC MARKETING INTELLIGENCE
+</div>
+</div>
+<!-- Footer Detail -->
+<div class="absolute bottom-8 w-full text-center opacity-60">
+<span class="font-mono text-xs uppercase tracking-widest text-neutral-500">
+            SIMPLE.AI — АГЕНТНЫЙ МАРКЕТИНГОВЫЙ ИНТЕЛЛЕКТ
           </span>
-        </div>
-      </section>
-    </main>
-
-    <!-- Shaders -->
-    <script type="x-shader/x-vertex" id="vertexShader">
+</div>
+</section>
+</main>
+<!-- Shaders -->
+<script id="vertexShader" type="x-shader/x-vertex">
       uniform float uTime;
       uniform float uDistortion;
       uniform float uSize;
@@ -888,8 +868,7 @@ gtag('config', 'G-2M6V79H761');
           vPos = newPos;
       }
     </script>
-
-    <script type="x-shader/x-fragment" id="fragmentShader">
+<script id="fragmentShader" type="x-shader/x-fragment">
       uniform vec3 uColor;
       uniform float uOpacity;
       varying float vNoise;
@@ -909,8 +888,7 @@ gtag('config', 'G-2M6V79H761');
           gl_FragColor = vec4(finalColor, alpha);
       }
     </script>
-
-    <script>
+<script>
       const container = document.getElementById('canvas-container');
       const scene = new THREE.Scene();
       scene.fog = new THREE.FogExp2(0x0A0A0A, 0.035);
@@ -1051,5 +1029,4 @@ gtag('config', 'G-2M6V79H761');
           }
       });
     </script>
-  
 </body></html>

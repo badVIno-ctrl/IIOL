@@ -1,194 +1,220 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NOVAFALL: IRIS — A Revolution Begins</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NOVAFALL: IRIS — Революция начинается</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&family=Archivo:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600&amp;family=Archivo:wght@200;300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="bg-[#101113] text-white antialiased overflow-hidden" style="font-family:'Rajdhani',sans-serif; background-image:repeating-linear-gradient(45deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 14px), radial-gradient(ellipse at 50% 0%, rgba(120,130,160,0.06), transparent 60%);">
-
-  <!-- ===== OUTER FRAME / CENTERED VIEWPORT ===== -->
-  <div class="fixed inset-2 sm:inset-4 md:inset-6 lg:inset-8 border border-white/10" style="box-shadow:0 0 80px rgba(0,0,0,0.8);">
-
-    <!-- Corner brackets -->
-    <div class="absolute -top-px -left-px w-5 h-5 border-t-2 border-l-2 border-white/40 z-50 pointer-events-none"></div>
-    <div class="absolute -top-px -right-px w-5 h-5 border-t-2 border-r-2 border-white/40 z-50 pointer-events-none"></div>
-    <div class="absolute -bottom-px -left-px w-5 h-5 border-b-2 border-l-2 border-white/40 z-50 pointer-events-none"></div>
-    <div class="absolute -bottom-px -right-px w-5 h-5 border-b-2 border-r-2 border-white/40 z-50 pointer-events-none"></div>
-
-    <!-- Container size lines + mini squares (desktop) -->
-    <div class="hidden lg:block absolute top-0 bottom-0 -left-5 w-px bg-white/15 pointer-events-none" aria-hidden="true">
-      <div class="absolute -left-[3px] top-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
-      <div class="absolute -left-[3px] bottom-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
-      <div class="absolute -left-[3px] top-1/2 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
-    </div>
-    <div class="hidden lg:block absolute top-0 bottom-0 -right-5 w-px bg-white/15 pointer-events-none" aria-hidden="true">
-      <div class="absolute -right-[3px] top-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
-      <div class="absolute -right-[3px] bottom-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
-      <div class="absolute -right-[3px] top-1/2 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
-    </div>
-
-    <!-- ===== FIXED NAV ===== -->
-    <nav class="absolute top-0 left-0 right-0 z-40 border-b border-white/10 backdrop-blur-sm" style="background:linear-gradient(to bottom, rgba(8,9,12,0.55), rgba(8,9,12,0));" aria-label="Main navigation">
-      <div class="grid grid-cols-3 items-center px-5 sm:px-10 h-14 sm:h-16">
-        <div class="flex items-center gap-6 sm:gap-10 text-xs tracking-[0.3em] font-medium uppercase">
-          <a href="#showcase" class="hover:text-cyan-300 transition-colors duration-300 nav-item">Worlds</a>
-          <a href="#showcase" class="hidden sm:inline hover:text-cyan-300 transition-colors duration-300 nav-item">Devices</a>
-        </div>
-        <a href="#hero" class="flex justify-center nav-item" aria-label="Novafall home">
-          <span class="w-9 h-9 border border-white/40 flex items-center justify-center" style="clip-path:polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%);">
-            <iconify-icon icon="solar:black-hole-linear" class="text-cyan-300 text-lg" aria-hidden="true"></iconify-icon>
-          </span>
-        </a>
-        <div class="flex items-center justify-end gap-6 sm:gap-10 text-xs tracking-[0.3em] font-medium uppercase">
-          <a href="#story" class="hidden sm:inline hover:text-cyan-300 transition-colors duration-300 nav-item">Studio</a>
-          <a href="#cta" class="hover:text-cyan-300 transition-colors duration-300 nav-item">Signal</a>
-        </div>
-      </div>
-    </nav>
-
-    <!-- ===== SCROLLER ===== -->
-    <main id="scroller" class="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth" style="scrollbar-width:none;">
-
-      <!-- ===== HERO ===== -->
-      <section id="hero" class="relative h-full snap-start overflow-hidden">
-        <div id="hero-bg" class="absolute inset-0 bg-cover bg-center will-change-transform" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5ee0a38a-b5d3-4531-8793-98beed4af162_1600w.jpg'); transform:scale(1.08); filter:saturate(0.7) brightness(0.85) hue-rotate(-10deg);"></div>
-        <!-- WebGL fog -->
-        <canvas id="fog" class="absolute inset-0 w-full h-full pointer-events-none" style="mix-blend-mode:screen; opacity:0.55;" aria-hidden="true"></canvas>
-        <!-- Washes -->
-        <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, rgba(96,90,140,0.28), rgba(10,12,18,0.25) 50%, rgba(6,8,12,0.85));"></div>
-        <div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55));"></div>
-
-        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-          <p id="hero-kicker" class="text-xs sm:text-sm tracking-[0.7em] uppercase font-medium text-white/80 mb-4 sm:mb-6">Novafall</p>
-          <h1 id="hero-title" class="tracking-tight text-white leading-none select-none" style="font-family:'Archivo',sans-serif; font-weight:200; letter-spacing:0.18em; font-size:clamp(4rem, 16vw, 13rem);">IRIS</h1>
-          <div id="hero-rule" class="mt-6 sm:mt-8 h-px w-24 bg-cyan-300/70" style="box-shadow:0 0 14px rgba(103,232,249,0.7);"></div>
-          <p id="hero-sub" class="mt-5 text-xs sm:text-sm tracking-[0.4em] uppercase text-white/60">The signal beneath Meridian 9</p>
-        </div>
-
-        <div class="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-2 text-white/50">
-          <span class="text-xs tracking-[0.4em] uppercase">Descend</span>
-          <iconify-icon id="scroll-hint" icon="solar:alt-arrow-down-linear" class="text-lg" aria-hidden="true"></iconify-icon>
-        </div>
-      </section>
-
-      <!-- ===== GAMEPLAY SHOWCASE ===== -->
-      <section id="showcase" class="relative h-full snap-start overflow-hidden bg-black">
-        <div id="fade-a" class="absolute inset-0 bg-cover bg-center transition-opacity duration-[900ms] ease-in-out" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg'); opacity:1; filter:brightness(0.8) saturate(0.9);"></div>
-        <div id="fade-b" class="absolute inset-0 bg-cover bg-center transition-opacity duration-[900ms] ease-in-out" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/75134536-4198-40bf-9944-315511fe8c0b_1600w.jpg'); opacity:0; filter:brightness(0.75) saturate(0.8);"></div>
-        <div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.4));"></div>
-
-        <!-- inner frame -->
-        <div class="absolute inset-4 sm:inset-8 border border-white/10 pointer-events-none">
-          <div class="absolute -top-px -left-px w-4 h-4 border-t border-l border-cyan-300/60"></div>
-          <div class="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-cyan-300/60"></div>
-        </div>
-
-        <div class="relative z-10 h-full flex flex-col justify-end p-8 sm:p-14">
-          <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8">
-            <div class="reveal">
-              <p class="text-xs tracking-[0.45em] uppercase text-cyan-300 mb-2 flex items-center gap-2">
-                <iconify-icon icon="solar:bolt-linear" class="text-sm" aria-hidden="true"></iconify-icon>
-                Vault Exclusive
+<!-- ===== OUTER FRAME / CENTERED VIEWPORT ===== -->
+<div class="fixed inset-2 sm:inset-4 md:inset-6 lg:inset-8 border border-white/10" style="box-shadow:0 0 80px rgba(0,0,0,0.8);">
+<!-- Corner brackets -->
+<div class="absolute -top-px -left-px w-5 h-5 border-t-2 border-l-2 border-white/40 z-50 pointer-events-none"></div>
+<div class="absolute -top-px -right-px w-5 h-5 border-t-2 border-r-2 border-white/40 z-50 pointer-events-none"></div>
+<div class="absolute -bottom-px -left-px w-5 h-5 border-b-2 border-l-2 border-white/40 z-50 pointer-events-none"></div>
+<div class="absolute -bottom-px -right-px w-5 h-5 border-b-2 border-r-2 border-white/40 z-50 pointer-events-none"></div>
+<!-- Container size lines + mini squares (desktop) -->
+<div aria-hidden="true" class="hidden lg:block absolute top-0 bottom-0 -left-5 w-px bg-white/15 pointer-events-none">
+<div class="absolute -left-[3px] top-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+<div class="absolute -left-[3px] bottom-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+<div class="absolute -left-[3px] top-1/2 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+</div>
+<div aria-hidden="true" class="hidden lg:block absolute top-0 bottom-0 -right-5 w-px bg-white/15 pointer-events-none">
+<div class="absolute -right-[3px] top-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+<div class="absolute -right-[3px] bottom-0 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+<div class="absolute -right-[3px] top-1/2 w-[7px] h-[7px] border border-white/40 bg-[#101113]"></div>
+</div>
+<!-- ===== FIXED NAV ===== -->
+<nav aria-label="Основная навигация" class="absolute top-0 left-0 right-0 z-40 border-b border-white/10 backdrop-blur-sm" style="background:linear-gradient(to bottom, rgba(8,9,12,0.55), rgba(8,9,12,0));">
+<div class="grid grid-cols-3 items-center px-5 sm:px-10 h-14 sm:h-16">
+<div class="flex items-center gap-6 sm:gap-10 text-xs tracking-[0.3em] font-medium uppercase">
+<a class="hover:text-cyan-300 transition-colors duration-300 nav-item" href="#showcase">Миры</a>
+<a class="hidden sm:inline hover:text-cyan-300 transition-colors duration-300 nav-item" href="#showcase">Устройства</a>
+</div>
+<a aria-label="Главная Novafall" class="flex justify-center nav-item" href="#hero">
+<span class="w-9 h-9 border border-white/40 flex items-center justify-center" style="clip-path:polygon(0 0, 100% 0, 100% 78%, 78% 100%, 0 100%);">
+<iconify-icon aria-hidden="true" class="text-cyan-300 text-lg" icon="solar:black-hole-linear"></iconify-icon>
+</span>
+</a>
+<div class="flex items-center justify-end gap-6 sm:gap-10 text-xs tracking-[0.3em] font-medium uppercase">
+<a class="hidden sm:inline hover:text-cyan-300 transition-colors duration-300 nav-item" href="#story">Студия</a>
+<a class="hover:text-cyan-300 transition-colors duration-300 nav-item" href="#cta">Сигнал</a>
+</div>
+</div>
+</nav>
+<!-- ===== SCROLLER ===== -->
+<main class="h-full overflow-y-scroll snap-y snap-mandatory scroll-smooth" id="scroller" style="scrollbar-width:none;">
+<!-- ===== HERO ===== -->
+<section class="relative h-full snap-start overflow-hidden" id="hero">
+<div class="absolute inset-0 bg-cover bg-center will-change-transform" id="hero-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5ee0a38a-b5d3-4531-8793-98beed4af162_1600w.jpg'); transform:scale(1.08); filter:saturate(0.7) brightness(0.85) hue-rotate(-10deg);"></div>
+<!-- WebGL fog -->
+<canvas aria-hidden="true" class="absolute inset-0 w-full h-full pointer-events-none" id="fog" style="mix-blend-mode:screen; opacity:0.55;"></canvas>
+<!-- Washes -->
+<div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to bottom, rgba(96,90,140,0.28), rgba(10,12,18,0.25) 50%, rgba(6,8,12,0.85));"></div>
+<div class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.55));"></div>
+<div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+<p class="text-xs sm:text-sm tracking-[0.7em] uppercase font-medium text-white/80 mb-4 sm:mb-6" id="hero-kicker">Novafall</p>
+<h1 class="tracking-tight text-white leading-none select-none" id="hero-title" style="font-family:'Archivo',sans-serif; font-weight:200; letter-spacing:0.18em; font-size:clamp(4rem, 16vw, 13rem);">IRIS</h1>
+<div class="mt-6 sm:mt-8 h-px w-24 bg-cyan-300/70" id="hero-rule" style="box-shadow:0 0 14px rgba(103,232,249,0.7);"></div>
+<p class="mt-5 text-xs sm:text-sm tracking-[0.4em] uppercase text-white/60" id="hero-sub">Сигнал под Меридианом 9</p>
+</div>
+<div class="absolute bottom-6 left-0 right-0 z-10 flex flex-col items-center gap-2 text-white/50">
+<span class="text-xs tracking-[0.4em] uppercase">Спуститься</span>
+<iconify-icon aria-hidden="true" class="text-lg" icon="solar:alt-arrow-down-linear" id="scroll-hint"></iconify-icon>
+</div>
+</section>
+<!-- ===== GAMEPLAY SHOWCASE ===== -->
+<section class="relative h-full snap-start overflow-hidden bg-black" id="showcase">
+<div class="absolute inset-0 bg-cover bg-center transition-opacity duration-[900ms] ease-in-out" id="fade-a" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg'); opacity:1; filter:brightness(0.8) saturate(0.9);"></div>
+<div class="absolute inset-0 bg-cover bg-center transition-opacity duration-[900ms] ease-in-out" id="fade-b" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/75134536-4198-40bf-9944-315511fe8c0b_1600w.jpg'); opacity:0; filter:brightness(0.75) saturate(0.8);"></div>
+<div class="absolute inset-0 pointer-events-none" style="background:linear-gradient(to top, rgba(0,0,0,0.85), rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.4));"></div>
+<!-- inner frame -->
+<div class="absolute inset-4 sm:inset-8 border border-white/10 pointer-events-none">
+<div class="absolute -top-px -left-px w-4 h-4 border-t border-l border-cyan-300/60"></div>
+<div class="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-cyan-300/60"></div>
+</div>
+<div class="relative z-10 h-full flex flex-col justify-end p-8 sm:p-14">
+<div class="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-8">
+<div class="reveal">
+<p class="text-xs tracking-[0.45em] uppercase text-cyan-300 mb-2 flex items-center gap-2">
+<iconify-icon aria-hidden="true" class="text-sm" icon="solar:bolt-linear"></iconify-icon>
+                Эксклюзив Vault
               </p>
-              <h2 class="text-2xl sm:text-4xl tracking-tight text-white" style="font-family:'Archivo',sans-serif; font-weight:500;">Available October 2027</h2>
-              <p class="mt-2 text-sm text-white/50 max-w-md font-normal" style="font-family:'Archivo',sans-serif;">Built from the ground up for immersive hardware. Every drawer, every wire, every shadow can be touched.</p>
-            </div>
-            <a href="#cta" class="reveal group relative inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-white border border-white/50 hover:border-cyan-300 hover:text-cyan-300 transition-colors duration-300" style="clip-path:polygon(0 0, 100% 0, 100% 65%, 92% 100%, 0 100%); background:rgba(0,0,0,0.35);">
-              Reserve Access
-              <iconify-icon icon="solar:alt-arrow-right-linear" class="text-base transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></iconify-icon>
-            </a>
-          </div>
-          <div class="mt-8 flex items-center gap-3" aria-hidden="true">
-            <span id="dot-a" class="h-px w-10 bg-cyan-300 transition-all duration-500"></span>
-            <span id="dot-b" class="h-px w-10 bg-white/25 transition-all duration-500"></span>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== BLACK TRANSITION ===== -->
-      <section class="relative h-full snap-start bg-black flex items-center justify-center overflow-hidden">
-        <div class="absolute inset-0" style="background:radial-gradient(ellipse at center, rgba(40,48,66,0.25), transparent 65%);"></div>
-        <p class="transition-line relative text-center px-8 text-lg sm:text-3xl tracking-[0.25em] uppercase text-white/70" style="font-family:'Archivo',sans-serif; font-weight:300;">They took the sky.<br class="sm:hidden"> <span class="text-cyan-300/80">She took it back.</span></p>
-      </section>
-
-      <!-- ===== STORY SECTION ===== -->
-      <section id="story" class="relative h-full snap-start bg-black overflow-hidden">
-        <div class="absolute inset-0 pointer-events-none" style="background-image:repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 16px);"></div>
-        <div class="relative z-10 h-full flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-24">
-          <div class="max-w-3xl">
-            <p class="story-el text-xs tracking-[0.5em] uppercase text-cyan-300 mb-4">Chapter Zero</p>
-            <h2 class="story-el text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.05]" style="font-family:'Archivo',sans-serif; font-weight:600; letter-spacing:0.02em;">You are Iris Vale, and you're about to ignite an uprising.</h2>
-            <p class="story-el mt-6 text-sm sm:text-base text-white/45 max-w-xl leading-relaxed font-normal" style="font-family:'Archivo',sans-serif;">Displaced to Meridian 9 in the years after the Concord seized the surface, you work in the undercity's hidden laboratories — salvaging forbidden instruments, decoding the resonance grid, and building the tools that will tear the occupation apart from below.</p>
-          </div>
-
-          <!-- Numbered thumbnail carousel -->
-          <div class="story-el mt-10 sm:mt-14 flex gap-4 sm:gap-6 overflow-x-auto pb-4" style="scrollbar-width:none;" role="list" aria-label="Story chapters">
-            <figure role="listitem" class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" style="padding:1px; background:linear-gradient(135deg, rgba(103,232,249,0.5), rgba(255,255,255,0.08) 40%, rgba(255,255,255,0.04));">
-              <div class="relative w-full h-full overflow-hidden bg-black">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/724142aa-44a6-48d3-9cf3-761e00d05b78_1600w.jpg" alt="The fractured monolith above the undercity" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
-                <figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">014</figcaption>
-              </div>
-              <div class="absolute -bottom-3 left-0 h-px w-full bg-white/15"><div id="thumb-progress" class="h-px bg-white" style="width:0%; box-shadow:0 0 8px rgba(255,255,255,0.6);"></div></div>
-            </figure>
-            <figure role="listitem" class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" style="padding:1px; background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));">
-              <div class="relative w-full h-full overflow-hidden bg-black">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c31dd008-598b-4fc9-b5c7-9c3e1d296d38_1600w.jpg" alt="Resonance storm over the eastern quarter" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
-                <figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">015</figcaption>
-              </div>
-            </figure>
-            <figure role="listitem" class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" style="padding:1px; background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));">
-              <div class="relative w-full h-full overflow-hidden bg-black">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4780cd9-2a3d-4bdc-9e5f-85a097b3a8bf_1600w.webp" alt="Signal relay deep in the flooded tunnels" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy">
-                <figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">016</figcaption>
-              </div>
-            </figure>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===== CTA / FOOTER ===== -->
-      <section id="cta" class="relative h-full snap-start bg-black overflow-hidden">
-        <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d14dc069-558a-4c51-8aad-5cc237f9b61d_1600w.jpg'); opacity:0.3; filter:saturate(0.5) brightness(0.7);"></div>
-        <div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4));"></div>
-        <div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
-          <div class="cta-el relative border border-white/15 px-8 sm:px-16 py-12 sm:py-16 max-w-2xl w-full" style="background:rgba(8,10,14,0.55); backdrop-filter:blur(6px);">
-            <div class="absolute -top-px -left-px w-4 h-4 border-t border-l border-cyan-300/70"></div>
-            <div class="absolute -top-px -right-px w-4 h-4 border-t border-r border-cyan-300/70"></div>
-            <div class="absolute -bottom-px -left-px w-4 h-4 border-b border-l border-cyan-300/70"></div>
-            <div class="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-cyan-300/70"></div>
-            <p class="text-xs tracking-[0.5em] uppercase text-cyan-300 mb-3">Transmission Open</p>
-            <h2 class="text-3xl sm:text-5xl tracking-tight text-white" style="font-family:'Archivo',sans-serif; font-weight:300; letter-spacing:0.1em;">NOVAFALL: IRIS</h2>
-            <p class="mt-4 text-sm text-white/50" style="font-family:'Archivo',sans-serif;">October 2027 · Immersive hardware required · 17 districts to liberate</p>
-            <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a href="#hero" class="group inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-black bg-white hover:bg-cyan-200 transition-colors duration-300" style="clip-path:polygon(0 0, 100% 0, 100% 65%, 93% 100%, 0 100%);">
-                Reserve Now
-                <iconify-icon icon="solar:alt-arrow-right-linear" class="text-base transition-transform duration-300 group-hover:translate-x-1" aria-hidden="true"></iconify-icon>
-              </a>
-              <a href="#story" class="inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-white/70 border border-white/30 hover:border-white hover:text-white transition-colors duration-300">
-                Watch Reveal
-                <iconify-icon icon="solar:play-linear" class="text-sm" aria-hidden="true"></iconify-icon>
-              </a>
-            </div>
-          </div>
-          <footer class="cta-el absolute bottom-5 left-0 right-0 flex items-center justify-between px-6 sm:px-12 text-xs tracking-[0.3em] uppercase text-white/35">
-            <span>© 2027 Halcyon Forge Interactive</span>
-            <span class="hidden sm:inline">Meridian Protocol v9.14</span>
-            <span>Privacy · Terms</span>
-          </footer>
-        </div>
-      </section>
-    </main>
-  </div>
-
-  <script>
+<h2 class="text-2xl sm:text-4xl tracking-tight text-white" style="font-family:'Archivo',sans-serif; font-weight:500;">Доступно в октябре 2027</h2>
+<p class="mt-2 text-sm text-white/50 max-w-md font-normal" style="font-family:'Archivo',sans-serif;">Создано с нуля для иммерсивного оборудования. Каждый ящик, каждый провод, каждую тень можно потрогать.</p>
+</div>
+<a class="reveal group relative inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-white border border-white/50 hover:border-cyan-300 hover:text-cyan-300 transition-colors duration-300" href="#cta" style="clip-path:polygon(0 0, 100% 0, 100% 65%, 92% 100%, 0 100%); background:rgba(0,0,0,0.35);">
+              Зарезервировать доступ
+              <iconify-icon aria-hidden="true" class="text-base transition-transform duration-300 group-hover:translate-x-1" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</a>
+</div>
+<div aria-hidden="true" class="mt-8 flex items-center gap-3">
+<span class="h-px w-10 bg-cyan-300 transition-all duration-500" id="dot-a"></span>
+<span class="h-px w-10 bg-white/25 transition-all duration-500" id="dot-b"></span>
+</div>
+</div>
+</section>
+<!-- ===== BLACK TRANSITION ===== -->
+<section class="relative h-full snap-start bg-black flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0" style="background:radial-gradient(ellipse at center, rgba(40,48,66,0.25), transparent 65%);"></div>
+<p class="transition-line relative text-center px-8 text-lg sm:text-3xl tracking-[0.25em] uppercase text-white/70" style="font-family:'Archivo',sans-serif; font-weight:300;">Они забрали небо.<br class="sm:hidden"/> <span class="text-cyan-300/80">Она вернула его.</span></p>
+</section>
+<!-- ===== STORY SECTION ===== -->
+<section class="relative h-full snap-start bg-black overflow-hidden" id="story">
+<div class="absolute inset-0 pointer-events-none" style="background-image:repeating-linear-gradient(135deg, rgba(255,255,255,0.012) 0px, rgba(255,255,255,0.012) 1px, transparent 1px, transparent 16px);"></div>
+<div class="relative z-10 h-full flex flex-col justify-center px-8 sm:px-14 lg:px-20 py-24">
+<div class="max-w-3xl">
+<p class="story-el text-xs tracking-[0.5em] uppercase text-cyan-300 mb-4">Глава ноль</p>
+<h2 class="story-el text-3xl sm:text-5xl lg:text-6xl tracking-tight text-white leading-[1.05]" style="font-family:'Archivo',sans-serif; font-weight:600; letter-spacing:0.02em;">Вы — Айрис Вейл, и вы вот-вот разожжёте восстание.</h2>
+<p class="story-el mt-6 text-sm sm:text-base text-white/45 max-w-xl leading-relaxed font-normal" style="font-family:'Archivo',sans-serif;">Перемещённая на Меридиан 9 в годы после захвата поверхности Конкордом, вы работаете в скрытых лабораториях нижнего города — добывая запрещённые инструменты, расшифровывая резонансную сеть и создавая орудия, которые разорвут оккупацию изнутри.</p>
+</div>
+<!-- Numbered thumbnail carousel -->
+<div aria-label="Главы истории" class="story-el mt-10 sm:mt-14 flex gap-4 sm:gap-6 overflow-x-auto pb-4" role="list" style="scrollbar-width:none;">
+<figure class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" role="listitem" style="padding:1px; background:linear-gradient(135deg, rgba(103,232,249,0.5), rgba(255,255,255,0.08) 40%, rgba(255,255,255,0.04));">
+<div class="relative w-full h-full overflow-hidden bg-black">
+<img alt="Расколотый монолит над нижним городом" class="w-full h-full object-cover opacity-80 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/724142aa-44a6-48d3-9cf3-761e00d05b78_1600w.jpg"/>
+<figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">014</figcaption>
+</div>
+<div class="absolute -bottom-3 left-0 h-px w-full bg-white/15"><div class="h-px bg-white" id="thumb-progress" style="width:0%; box-shadow:0 0 8px rgba(255,255,255,0.6);"></div></div>
+</figure>
+<figure class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" role="listitem" style="padding:1px; background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));">
+<div class="relative w-full h-full overflow-hidden bg-black">
+<img alt="Резонансная буря над восточным кварталом" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c31dd008-598b-4fc9-b5c7-9c3e1d296d38_1600w.jpg"/>
+<figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">015</figcaption>
+</div>
+</figure>
+<figure class="relative shrink-0 w-44 sm:w-56 aspect-[3/4] overflow-hidden group" role="listitem" style="padding:1px; background:linear-gradient(135deg, rgba(255,255,255,0.18), rgba(255,255,255,0.04));">
+<div class="relative w-full h-full overflow-hidden bg-black">
+<img alt="Ретранслятор сигнала в глубине затопленных тоннелей" class="w-full h-full object-cover opacity-60 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4780cd9-2a3d-4bdc-9e5f-85a097b3a8bf_1600w.webp"/>
+<figcaption class="absolute bottom-2 right-3 text-4xl sm:text-5xl text-white tracking-tight" style="font-family:'Archivo',sans-serif; font-weight:600;">016</figcaption>
+</div>
+</figure>
+</div>
+</div>
+</section>
+<!-- ===== CTA / FOOTER ===== -->
+<section class="relative h-full snap-start bg-black overflow-hidden" id="cta">
+<div class="absolute inset-0 bg-cover bg-center" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d14dc069-558a-4c51-8aad-5cc237f9b61d_1600w.jpg'); opacity:0.3; filter:saturate(0.5) brightness(0.7);"></div>
+<div class="absolute inset-0" style="background:linear-gradient(to top, rgba(0,0,0,0.95), rgba(0,0,0,0.4));"></div>
+<div class="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+<div class="cta-el relative border border-white/15 px-8 sm:px-16 py-12 sm:py-16 max-w-2xl w-full" style="background:rgba(8,10,14,0.55); backdrop-filter:blur(6px);">
+<div class="absolute -top-px -left-px w-4 h-4 border-t border-l border-cyan-300/70"></div>
+<div class="absolute -top-px -right-px w-4 h-4 border-t border-r border-cyan-300/70"></div>
+<div class="absolute -bottom-px -left-px w-4 h-4 border-b border-l border-cyan-300/70"></div>
+<div class="absolute -bottom-px -right-px w-4 h-4 border-b border-r border-cyan-300/70"></div>
+<p class="text-xs tracking-[0.5em] uppercase text-cyan-300 mb-3">Передача открыта</p>
+<h2 class="text-3xl sm:text-5xl tracking-tight text-white" style="font-family:'Archivo',sans-serif; font-weight:300; letter-spacing:0.1em;">NOVAFALL: IRIS</h2>
+<p class="mt-4 text-sm text-white/50" style="font-family:'Archivo',sans-serif;">Октябрь 2027 · Требуется иммерсивное оборудование · 17 районов для освобождения</p>
+<div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
+<a class="group inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-black bg-white hover:bg-cyan-200 transition-colors duration-300" href="#hero" style="clip-path:polygon(0 0, 100% 0, 100% 65%, 93% 100%, 0 100%);">
+                Забронировать
+                <iconify-icon aria-hidden="true" class="text-base transition-transform duration-300 group-hover:translate-x-1" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</a>
+<a class="inline-flex items-center gap-3 px-8 py-3 text-xs tracking-[0.4em] uppercase font-semibold text-white/70 border border-white/30 hover:border-white hover:text-white transition-colors duration-300" href="#story">
+                Смотреть анонс
+                <iconify-icon aria-hidden="true" class="text-sm" icon="solar:play-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<footer class="cta-el absolute bottom-5 left-0 right-0 flex items-center justify-between px-6 sm:px-12 text-xs tracking-[0.3em] uppercase text-white/35">
+<span>© 2027 Halcyon Forge Interactive</span>
+<span class="hidden sm:inline">Протокол Meridian v9.14</span>
+<span>Конфиденциальность · Условия</span>
+</footer>
+</div>
+</section>
+</main>
+</div>
+<script>
     // ===== WebGL fog shader =====
     (function () {
       const canvas = document.getElementById('fog');

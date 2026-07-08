@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,9 +89,9 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BIRKA | Premium Outdoor Sales Agency</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>BIRKA | Премиальное аутдор-агентство продаж</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>
@@ -124,7 +124,7 @@ appearance: none;
 <style>
 @keyframes auraFadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}.aura-reveal{opacity:0}.aura-reveal.aura-visible{animation:auraFadeUp .8s cubic-bezier(.16,1,.3,1) forwards}a,button{transition:all .3s cubic-bezier(.16,1,.3,1)}a.inline-flex:hover,button.inline-flex:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(216,180,133,.25)}a.inline-flex:active,button.inline-flex:active{transform:translateY(0)}
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -132,438 +132,463 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="text-zinc-300 antialiased selection:bg-zinc-800 selection:text-white relative min-h-screen flex flex-col">
-    <div class="absolute top-0 left-0 w-full h-[100vh] min-h-[750px] z-[-1] pointer-events-none">
-      <div class="absolute inset-0 bg-[url('https://i.pics.rs/KKBaL.png')] bg-cover bg-center"></div>
-      <div class="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/95 to-transparent"></div>
-      <div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-[#09090b]/50"></div>
-    </div>
-
-    <!-- Background Glow Effects -->
-
-    <div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-zinc-800/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
-
-    <!-- Navigation -->
-    <header class="fixed top-0 w-full z-50 bg-[#09090b]/80 backdrop-blur-md border-b border-white/5">
-      <div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
-        <div class="flex flex-col gap-0 cursor-pointer gap-x-0 gap-y-0 items-start" onclick="window.location.href='https://i.pics.rs/ttCRX.png'" role="button">
-          <img src="https://i.pics.rs/ttCRX.png" alt="BIRKA" class="h-10 w-auto">
-        </div>
-        <nav class="hidden lg:flex items-center gap-10 text-[10px] font-bold tracking-widest text-white/70 uppercase">
-          <a href="#home" class="text-[#d8b485] border-b border-[#d8b485] pb-1">
-            Home
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="text-zinc-300 antialiased selection:bg-zinc-800 selection:text-white relative min-h-screen flex flex-col">
+<div class="absolute top-0 left-0 w-full h-[100vh] min-h-[750px] z-[-1] pointer-events-none">
+<div class="absolute inset-0 bg-[url('https://i.pics.rs/KKBaL.png')] bg-cover bg-center"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#09090b] via-[#09090b]/95 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-t from-[#09090b] via-transparent to-[#09090b]/50"></div>
+</div>
+<!-- Background Glow Effects -->
+<div class="fixed bottom-[-20%] right-[-10%] w-[50%] h-[50%] bg-zinc-800/10 blur-[120px] rounded-full pointer-events-none z-0"></div>
+ Навигация 
+<header class="fixed top-0 w-full z-50 bg-[#09090b]/80 backdrop-blur-md border-b border-white/5">
+<div class="max-w-[1400px] mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex flex-col gap-0 cursor-pointer gap-x-0 gap-y-0 items-start" onclick="window.location.href='https://i.pics.rs/ttCRX.png'" role="button">
+<img alt="BIRKA" class="h-10 w-auto" src="https://i.pics.rs/ttCRX.png"/>
+</div>
+<nav class="hidden lg:flex items-center gap-10 text-[10px] font-bold tracking-widest text-white/70 uppercase">
+<a class="text-[#d8b485] border-b border-[#d8b485] pb-1" href="#home">
+            Главная
           </a>
-          <a href="#about" class="hover:text-[#d8b485] transition-colors">
-            About Us
+<a class="hover:text-[#d8b485] transition-colors" href="#about">
+            О нас
           </a>
-          <a href="#services" class="hover:text-[#d8b485] transition-colors">
-            Services
+<a class="hover:text-[#d8b485] transition-colors" href="#services">
+            Услуги
           </a>
-          <a href="#brands" class="hover:text-[#d8b485] transition-colors">
-            Brands
+<a class="hover:text-[#d8b485] transition-colors" href="#brands">
+            Бренды
           </a>
-          <a href="#markets" class="hover:text-[#d8b485] transition-colors">
-            Markets
+<a class="hover:text-[#d8b485] transition-colors" href="#markets">
+            Рынки
           </a>
-          <a href="#contact" class="hover:text-[#d8b485] transition-colors">
-            Contact
+<a class="hover:text-[#d8b485] transition-colors" href="#contact">
+            Контакты
           </a>
-        </nav>
-        <div class="flex items-center">
-          <a href="#contact" class="hidden md:inline-flex items-center justify-center px-6 py-3 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-colors uppercase">
-            Let's Connect →
+</nav>
+<div class="flex items-center">
+<a class="hidden md:inline-flex items-center justify-center px-6 py-3 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-colors uppercase" href="#contact">
+            Свяжитесь с нами →
           </a>
-          <button class="lg:hidden ml-4 text-zinc-400 hover:text-white">
-            <iconify-icon icon="solar:hamburger-menu-linear" style="font-size: 24px;"></iconify-icon>
-          </button>
-        </div>
-      </div>
-    </header>
-
-    <main class="flex-grow z-10 relative pt-0 pb-0">
-      <!-- Hero Section -->
-      <section class="max-w-[1400px] mx-auto px-6 flex flex-col items-start text-left pt-40 pb-24 relative w-full scroll-mt-24 aura-reveal aura-visible">
-        <div class="flex items-center gap-4 mb-6">
-          <div class="w-12 h-px bg-[#d8b485]"></div>
-          <p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase leading-relaxed">
-            Connecting Brands.
-            <br>
-            Building Markets.
+<button class="lg:hidden ml-4 text-zinc-400 hover:text-white">
+<iconify-icon icon="solar:hamburger-menu-linear" style="font-size: 24px;"></iconify-icon>
+</button>
+</div>
+</div>
+</header>
+<main class="flex-grow z-10 relative pt-0 pb-0">
+ Hero-секция 
+<section class="max-w-[1400px] mx-auto px-6 flex flex-col items-start text-left pt-40 pb-24 relative w-full scroll-mt-24 aura-reveal aura-visible">
+<div class="flex items-center gap-4 mb-6">
+<div class="w-12 h-px bg-[#d8b485]"></div>
+<p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase leading-relaxed">
+            Соединяем бренды.
+            <br/>
+            Строим рынки.
           </p>
-        </div>
-        <h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white mb-2 leading-none uppercase aura-reveal aura-visible">
+</div>
+<h1 class="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white mb-2 leading-none uppercase aura-reveal aura-visible">
           BIRKA
         </h1>
-        <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8 w-full max-w-2xl">
-          <h2 class="text-2xl md:text-4xl font-light tracking-[0.3em] text-white uppercase whitespace-nowrap aura-reveal aura-visible">
-            Sales Agency
+<div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6 mb-8 w-full max-w-2xl">
+<h2 class="text-2xl md:text-4xl font-light tracking-[0.3em] text-white uppercase whitespace-nowrap aura-reveal aura-visible">
+            Агентство продаж
           </h2>
-          <div class="hidden sm:block flex-grow h-px bg-[#d8b485]/50"></div>
-        </div>
-        <p class="text-sm md:text-base text-zinc-300 max-w-lg font-light mb-12 leading-relaxed">
-          We are your local partner for sales representation
-          <br class="hidden md:block">
-          and market development in Croatia and the Adriatic region.
+<div class="hidden sm:block flex-grow h-px bg-[#d8b485]/50"></div>
+</div>
+<p class="text-sm md:text-base text-zinc-300 max-w-lg font-light mb-12 leading-relaxed">
+          Мы ваш локальный партнёр по торговому представительству
+          <br class="hidden md:block"/>
+          и развитию рынка в Хорватии и Адриатическом регионе.
         </p>
-        <div class="flex flex-col sm:flex-row items-center gap-6 md:gap-8 mb-20">
-          <a href="#discover" class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-all uppercase">
-            Discover More →
+<div class="flex flex-col sm:flex-row items-center gap-6 md:gap-8 mb-20">
+<a class="w-full sm:w-auto inline-flex items-center justify-center px-8 py-4 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-all uppercase" href="#discover">
+            Узнать больше →
           </a>
-          <a href="#about" class="w-full sm:w-auto inline-flex items-center justify-center text-[10px] font-bold tracking-widest text-white uppercase border-b border-white/30 pb-1 hover:border-white transition-colors">
-            Who We Are
+<a class="w-full sm:w-auto inline-flex items-center justify-center text-[10px] font-bold tracking-widest text-white uppercase border-b border-white/30 pb-1 hover:border-white transition-colors" href="#about">
+            Кто мы
           </a>
+</div>
+<div class="absolute right-0 top-[60%] -translate-y-1/2 rotate-90 origin-right text-[10px] tracking-[0.5em] text-zinc-500 uppercase hidden xl:block">
+          Адриатический регион
         </div>
-        <div class="absolute right-0 top-[60%] -translate-y-1/2 rotate-90 origin-right text-[10px] tracking-[0.5em] text-zinc-500 uppercase hidden xl:block">
-          Adriatic Region
-        </div>
-        <div class="absolute right-12 bottom-12 w-32 h-32 rounded-full border border-[#d8b485]/30 hidden lg:flex items-center justify-center backdrop-blur-sm">
-          <div class="text-center flex flex-col items-center justify-center">
-            <span class="block text-[#d8b485] text-[10px] tracking-widest mb-1">
+<div class="absolute right-12 bottom-12 w-32 h-32 rounded-full border border-[#d8b485]/30 hidden lg:flex items-center justify-center backdrop-blur-sm">
+<div class="text-center flex flex-col items-center justify-center">
+<span class="block text-[#d8b485] text-[10px] tracking-widest mb-1">
               BIRKA
             </span>
-            <span class="block text-3xl font-serif text-[#d8b485] leading-none mb-1">
+<span class="block text-3xl font-serif text-[#d8b485] leading-none mb-1">
               B
             </span>
-            <span class="block text-zinc-500 text-[8px] tracking-widest">
-              EST. 2024
+<span class="block text-zinc-500 text-[8px] tracking-widest">
+              ОСН. 2024
             </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- Expertise Grid -->
-      <div class="w-full">
-        <div class="w-full border-y border-white/5 bg-[#09090b]/80 backdrop-blur-md py-8">
-          <div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div class="flex items-start gap-4 aura-reveal aura-visible">
-              <iconify-icon icon="solar:mountains-linear" class="text-3xl text-[#d8b485] shrink-0"></iconify-icon>
-              <div>
-                <h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
-                  Local Expertise
+</div>
+</div>
+</section>
+<!-- Expertise Grid -->
+<div class="w-full">
+<div class="w-full border-y border-white/5 bg-[#09090b]/80 backdrop-blur-md py-8">
+<div class="max-w-[1400px] mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex items-start gap-4 aura-reveal aura-visible">
+<iconify-icon class="text-3xl text-[#d8b485] shrink-0" icon="solar:mountains-linear"></iconify-icon>
+<div>
+<h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
+                  Локальная экспертиза
                 </h4>
-                <p class="text-[11px] text-zinc-400 leading-snug">
-                  Deep knowledge of the
-                  <br>
-                  market and retailers
+<p class="text-[11px] text-zinc-400 leading-snug">
+                  Глубокое знание
+                  <br/>
+                  рынка и ритейлеров
                 </p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4 aura-reveal aura-visible">
-              <iconify-icon icon="solar:hand-shake-linear" class="text-3xl text-[#d8b485] shrink-0"></iconify-icon>
-              <div>
-                <h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
-                  Strong Relationships
+</div>
+</div>
+<div class="flex items-start gap-4 aura-reveal aura-visible">
+<iconify-icon class="text-3xl text-[#d8b485] shrink-0" icon="solar:hand-shake-linear"></iconify-icon>
+<div>
+<h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
+                  Крепкие отношения
                 </h4>
-                <p class="text-[11px] text-zinc-400 leading-snug">
-                  Trusted by key retailers
-                  <br>
-                  across the region
+<p class="text-[11px] text-zinc-400 leading-snug">
+                  Нам доверяют ключевые ритейлеры
+                  <br/>
+                  по всему региону
                 </p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4 aura-reveal aura-visible">
-              <iconify-icon icon="solar:target-linear" class="text-3xl text-[#d8b485] shrink-0"></iconify-icon>
-              <div class="">
-                <h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
-                  Focused Results
+</div>
+</div>
+<div class="flex items-start gap-4 aura-reveal aura-visible">
+<iconify-icon class="text-3xl text-[#d8b485] shrink-0" icon="solar:target-linear"></iconify-icon>
+<div class="">
+<h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
+                  Фокус на результат
                 </h4>
-                <p class="text-[11px] text-zinc-400 leading-snug">
-                  Growing brands and
-                  <br>
-                  long-term partnerships
+<p class="text-[11px] text-zinc-400 leading-snug">
+                  Растущие бренды и
+                  <br/>
+                  долгосрочные партнёрства
                 </p>
-              </div>
-            </div>
-            <div class="flex items-start gap-4 aura-reveal aura-visible">
-              <iconify-icon icon="solar:global-linear" class="text-3xl text-[#d8b485] shrink-0"></iconify-icon>
-              <div class="">
-                <h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
-                  Adriatic Coverage
+</div>
+</div>
+<div class="flex items-start gap-4 aura-reveal aura-visible">
+<iconify-icon class="text-3xl text-[#d8b485] shrink-0" icon="solar:global-linear"></iconify-icon>
+<div class="">
+<h4 class="text-[10px] font-bold text-white tracking-widest mb-1 uppercase">
+                  Покрытие Адриатики
                 </h4>
-                <p class="text-[11px] text-zinc-400 leading-snug">
-                  Croatia, Slovenia,
-                  <br>
-                  Bosnia &amp; Herzegovina
+<p class="text-[11px] text-zinc-400 leading-snug">
+                  Хорватия, Словения,
+                  <br/>
+                  Босния и Герцеговина
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <section class="max-w-[1400px] mx-auto w-full border-b border-white/5 flex flex-col lg:flex-row mt-0 scroll-mt-24 aura-reveal aura-visible" id="about">
-          <div class="flex-1 p-12 lg:p-20 border-b lg:border-b-0 lg:border-r border-white/5 relative bg-[#0c0c0e]">
-            <div class="hidden md:block absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&amp;fit=crop&amp;q=80')] bg-cover bg-center opacity-5 mix-blend-luminosity"></div>
-            <div class="relative z-10">
-              <div class="flex items-center gap-4 mb-8">
-                <div class="w-8 h-px bg-[#d8b485]"></div>
-                <p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
-                  Our Mission
+</div>
+</div>
+</div>
+</div>
+<section class="max-w-[1400px] mx-auto w-full border-b border-white/5 flex flex-col lg:flex-row mt-0 scroll-mt-24 aura-reveal aura-visible" id="about">
+<div class="flex-1 p-12 lg:p-20 border-b lg:border-b-0 lg:border-r border-white/5 relative bg-[#0c0c0e]">
+<div class="hidden md:block absolute inset-0 bg-[url('https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&amp;fit=crop&amp;q=80')] bg-cover bg-center opacity-5 mix-blend-luminosity"></div>
+<div class="relative z-10">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-px bg-[#d8b485]"></div>
+<p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
+                  Наша миссия
                 </p>
-              </div>
-              <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6 leading-[1.1] max-w-md aura-reveal">
-                We help outdoor brands grow in the right way.
+</div>
+<h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6 leading-[1.1] max-w-md aura-reveal">
+                Мы помогаем аутдор-брендам расти правильно.
               </h2>
-              <p class="text-sm text-zinc-400 font-light leading-relaxed mb-12 max-w-md">
-                Through strong retailer partnerships, market insight and
-                dedicated sales execution, we open doors and build sustainable
-                growth for your brand.
+<p class="text-sm text-zinc-400 font-light leading-relaxed mb-12 max-w-md">
+                Через крепкие партнёрства с ритейлерами, знание рынка и
+                целенаправленное исполнение продаж мы открываем двери и строим устойчивый
+                рост для вашего бренда.
               </p>
-              <a href="#about" class="inline-flex items-center justify-center px-8 py-4 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-all uppercase">
-                About Us →
+<a class="inline-flex items-center justify-center px-8 py-4 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-all uppercase" href="#about">
+                О нас →
               </a>
-            </div>
-          </div>
-
-          <div class="w-full lg:w-[50%] xl:w-[45%] flex flex-col bg-[#09090b] scroll-mt-24" id="services">
-            <div class="p-10 lg:p-16 border-b border-white/5 flex-grow">
-              <div class="flex items-center gap-4 mb-10">
-                <div class="w-8 h-px bg-[#d8b485]"></div>
-                <p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
-                  Our Services
+</div>
+</div>
+<div class="w-full lg:w-[50%] xl:w-[45%] flex flex-col bg-[#09090b] scroll-mt-24" id="services">
+<div class="p-10 lg:p-16 border-b border-white/5 flex-grow">
+<div class="flex items-center gap-4 mb-10">
+<div class="w-8 h-px bg-[#d8b485]"></div>
+<p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
+                  Наши услуги
                 </p>
-              </div>
-              <div class="space-y-8">
-                <div class="flex items-center justify-between group cursor-pointer">
-                  <div class="flex items-start gap-4">
-                    <iconify-icon icon="solar:document-text-linear" class="text-2xl text-[#d8b485] shrink-0 mt-0.5"></iconify-icon>
-                    <div class="">
-                      <h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
-                        Sales Representation
+</div>
+<div class="space-y-8">
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-start gap-4">
+<iconify-icon class="text-2xl text-[#d8b485] shrink-0 mt-0.5" icon="solar:document-text-linear"></iconify-icon>
+<div class="">
+<h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
+                        Торговое представительство
                       </h4>
-                      <p class="text-[11px] text-zinc-500">
-                        Professional representation with focus on results
+<p class="text-[11px] text-zinc-500">
+                        Профессиональное представительство с фокусом на результат
                       </p>
-                    </div>
-                  </div>
-                  <iconify-icon icon="solar:alt-arrow-right-linear" class="text-zinc-600 group-hover:text-[#d8b485] text-lg"></iconify-icon>
-                </div>
-                <div class="flex items-center justify-between group cursor-pointer">
-                  <div class="flex items-start gap-4">
-                    <iconify-icon icon="solar:chart-square-linear" class="text-2xl text-[#d8b485] shrink-0 mt-0.5"></iconify-icon>
-                    <div>
-                      <h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
-                        Market Development
+</div>
+</div>
+<iconify-icon class="text-zinc-600 group-hover:text-[#d8b485] text-lg" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-start gap-4">
+<iconify-icon class="text-2xl text-[#d8b485] shrink-0 mt-0.5" icon="solar:chart-square-linear"></iconify-icon>
+<div>
+<h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
+                        Развитие рынка
                       </h4>
-                      <p class="text-[11px] text-zinc-500">
-                        Building brand presence and market share
+<p class="text-[11px] text-zinc-500">
+                        Построение присутствия бренда и доли рынка
                       </p>
-                    </div>
-                  </div>
-                  <iconify-icon icon="solar:alt-arrow-right-linear" class="text-zinc-600 group-hover:text-[#d8b485] text-lg"></iconify-icon>
-                </div>
-                <div class="flex items-center justify-between group cursor-pointer">
-                  <div class="flex items-start gap-4">
-                    <iconify-icon icon="solar:shop-linear" class="text-2xl text-[#d8b485] shrink-0 mt-0.5"></iconify-icon>
-                    <div class="">
-                      <h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
-                        Retail Partnerships
+</div>
+</div>
+<iconify-icon class="text-zinc-600 group-hover:text-[#d8b485] text-lg" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-start gap-4">
+<iconify-icon class="text-2xl text-[#d8b485] shrink-0 mt-0.5" icon="solar:shop-linear"></iconify-icon>
+<div class="">
+<h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
+                        Партнёрства с ритейлом
                       </h4>
-                      <p class="text-[11px] text-zinc-500">
-                        Strong network of specialist retailers
+<p class="text-[11px] text-zinc-500">
+                        Сильная сеть специализированных ритейлеров
                       </p>
-                    </div>
-                  </div>
-                  <iconify-icon icon="solar:alt-arrow-right-linear" class="text-zinc-600 group-hover:text-[#d8b485] text-lg"></iconify-icon>
-                </div>
-                <div class="flex items-center justify-between group cursor-pointer">
-                  <div class="flex items-start gap-4">
-                    <iconify-icon icon="solar:megaphone-linear" class="text-2xl text-[#d8b485] shrink-0 mt-0.5"></iconify-icon>
-                    <div class="">
-                      <h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
-                        Marketing Support
+</div>
+</div>
+<iconify-icon class="text-zinc-600 group-hover:text-[#d8b485] text-lg" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</div>
+<div class="flex items-center justify-between group cursor-pointer">
+<div class="flex items-start gap-4">
+<iconify-icon class="text-2xl text-[#d8b485] shrink-0 mt-0.5" icon="solar:megaphone-linear"></iconify-icon>
+<div class="">
+<h4 class="text-[11px] font-bold text-white tracking-widest mb-1 group-hover:text-[#d8b485] transition-colors uppercase">
+                        Маркетинговая поддержка
                       </h4>
-                      <p class="text-[11px] text-zinc-500">
-                        In-store, digital and brand activations
+<p class="text-[11px] text-zinc-500">
+                        Активации в магазинах, digital и бренд-активации
                       </p>
-                    </div>
-                  </div>
-                  <iconify-icon icon="solar:alt-arrow-right-linear" class="text-zinc-600 group-hover:text-[#d8b485] text-lg"></iconify-icon>
-                </div>
-              </div>
-            </div>
-            <div class="flex flex-col h-full min-h-[300px] lg:h-auto lg:flex-1">
-              <div class="hidden"></div>
-              <div class="grid grid-cols-2 flex-1 min-h-[150px]">
-                <div class="bg-[url('https://images.unsplash.com/photo-1588636400615-56f8f533a1e9?auto=format&amp;fit=crop&amp;q=80')] bg-cover bg-center border-r border-white/5 aura-reveal"></div>
-                <div class="bg-[url('https://images.unsplash.com/photo-1549298453-2940e797ab84?auto=format&amp;fit=crop&amp;q=80')] bg-cover bg-center aura-reveal"></div>
-              </div>
-            </div>
-          </div>
-        </section>
-      </div>
-      <section class="max-w-[1400px] mx-auto w-full border-b border-white/5 py-20 px-6 relative scroll-mt-24 aura-reveal" id="brands">
-        <div class="flex items-center gap-4 mb-12">
-          <div class="w-8 h-px bg-[#d8b485]"></div>
-          <p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
-            Our Brands
+</div>
+</div>
+<iconify-icon class="text-zinc-600 group-hover:text-[#d8b485] text-lg" icon="solar:alt-arrow-right-linear"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="flex flex-col h-full min-h-[300px] lg:h-auto lg:flex-1">
+<div class="hidden"></div>
+<div class="grid grid-cols-2 flex-1 min-h-[150px]">
+<div class="bg-[url('https://images.unsplash.com/photo-1588636400615-56f8f533a1e9?auto=format&amp;fit=crop&amp;q=80')] bg-cover bg-center border-r border-white/5 aura-reveal"></div>
+<div class="bg-[url('https://images.unsplash.com/photo-1549298453-2940e797ab84?auto=format&amp;fit=crop&amp;q=80')] bg-cover bg-center aura-reveal"></div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<section class="max-w-[1400px] mx-auto w-full border-b border-white/5 py-20 px-6 relative scroll-mt-24 aura-reveal" id="brands">
+<div class="flex items-center gap-4 mb-12">
+<div class="w-8 h-px bg-[#d8b485]"></div>
+<p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
+            Наши бренды
           </p>
-        </div>
-        <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-12 leading-[1.1] max-w-2xl aura-reveal">
-          Trusted by premium outdoor brands.
+</div>
+<h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-12 leading-[1.1] max-w-2xl aura-reveal">
+          Нам доверяют премиальные аутдор-бренды.
         </h2>
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-          <div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
-            <span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
-              Brand 1
+<div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+<div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
+<span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
+              Бренд 1
             </span>
-          </div>
-          <div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
-            <span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
-              Brand 2
+</div>
+<div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
+<span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
+              Бренд 2
             </span>
-          </div>
-          <div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
-            <span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
-              Brand 3
+</div>
+<div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
+<span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
+              Бренд 3
             </span>
-          </div>
-          <div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
-            <span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
-              Brand 4
+</div>
+<div class="aspect-[3/2] flex items-center justify-center border border-white/5 bg-[#0c0c0e] hover:bg-[#111114] transition-colors aura-reveal">
+<span class="text-sm font-bold tracking-widest text-zinc-500 uppercase">
+              Бренд 4
             </span>
-          </div>
-        </div>
-      </section>
-
-      <section id="markets" class="max-w-[1400px] mx-auto w-full border-b border-white/5 py-20 px-6 relative scroll-mt-24 aura-reveal">
-        <div class="flex items-center gap-4 mb-12">
-          <div class="w-8 h-px bg-[#d8b485]"></div>
-          <p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
-            Our Markets
+</div>
+</div>
+</section>
+<section class="max-w-[1400px] mx-auto w-full border-b border-white/5 py-20 px-6 relative scroll-mt-24 aura-reveal" id="markets">
+<div class="flex items-center gap-4 mb-12">
+<div class="w-8 h-px bg-[#d8b485]"></div>
+<p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
+            Наши рынки
           </p>
-        </div>
-        <div class="flex flex-col lg:flex-row gap-16 items-start">
-          <div class="flex-1">
-            <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6 leading-[1.1] aura-reveal">
-              The Adriatic Region.
+</div>
+<div class="flex flex-col lg:flex-row gap-16 items-start">
+<div class="flex-1">
+<h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6 leading-[1.1] aura-reveal">
+              Адриатический регион.
             </h2>
-            <p class="text-sm text-zinc-400 font-light leading-relaxed max-w-md">
-              We provide extensive coverage across the Adriatic region, offering
-              deep local market knowledge, cultural understanding, and
-              established retail networks in key countries.
+<p class="text-sm text-zinc-400 font-light leading-relaxed max-w-md">
+              Мы обеспечиваем широкое покрытие Адриатического региона, предлагая
+              глубокое знание локальных рынков, понимание культуры и
+              устоявшиеся розничные сети в ключевых странах.
             </p>
-          </div>
-          <div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
-            <div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
-              <h3 class="text-lg font-medium text-white mb-2">Croatia</h3>
-              <p class="text-[11px] text-zinc-500">HQ &amp; Primary Market</p>
-            </div>
-            <div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
-              <h3 class="text-lg font-medium text-white mb-2">Slovenia</h3>
-              <p class="text-[11px] text-zinc-500">Key Alpine Market</p>
-            </div>
-            <div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
-              <h3 class="text-lg font-medium text-white mb-2">
-                Bosnia &amp; Herzegovina
+</div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4 w-full">
+<div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
+<h3 class="text-lg font-medium text-white mb-2">Хорватия</h3>
+<p class="text-[11px] text-zinc-500">Штаб-квартира и основной рынок</p>
+</div>
+<div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
+<h3 class="text-lg font-medium text-white mb-2">Словения</h3>
+<p class="text-[11px] text-zinc-500">Ключевой альпийский рынок</p>
+</div>
+<div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
+<h3 class="text-lg font-medium text-white mb-2">
+                Босния и Герцеговина
               </h3>
-              <p class="text-[11px] text-zinc-500">Growing Retail Sector</p>
-            </div>
-            <div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
-              <h3 class="text-lg font-medium text-white mb-2">Montenegro</h3>
-              <p class="text-[11px] text-zinc-500">Emerging Market</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section id="contact" class="max-w-[1400px] mx-auto w-full py-20 px-6 relative scroll-mt-24 aura-reveal">
-        <div class="flex flex-col lg:flex-row gap-16">
-          <div class="flex-1">
-            <div class="flex items-center gap-4 mb-8">
-              <div class="w-8 h-px bg-[#d8b485]"></div>
-              <p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
-                Let's Connect
+<p class="text-[11px] text-zinc-500">Растущий розничный сектор</p>
+</div>
+<div class="p-8 border border-white/5 bg-[#0c0c0e] aura-reveal">
+<h3 class="text-lg font-medium text-white mb-2">Черногория</h3>
+<p class="text-[11px] text-zinc-500">Развивающийся рынок</p>
+</div>
+</div>
+</div>
+</section>
+<section class="max-w-[1400px] mx-auto w-full py-20 px-6 relative scroll-mt-24 aura-reveal" id="contact">
+<div class="flex flex-col lg:flex-row gap-16">
+<div class="flex-1">
+<div class="flex items-center gap-4 mb-8">
+<div class="w-8 h-px bg-[#d8b485]"></div>
+<p class="text-[#d8b485] text-[10px] font-bold tracking-[0.2em] uppercase">
+                Свяжитесь с нами
               </p>
-            </div>
-            <h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6 leading-[1.1] max-w-md aura-reveal">
-              Ready to grow your brand?
+</div>
+<h2 class="text-3xl md:text-5xl font-medium tracking-tight text-white mb-6 leading-[1.1] max-w-md aura-reveal">
+              Готовы развивать свой бренд?
             </h2>
-            <p class="text-sm text-zinc-400 font-light leading-relaxed mb-12 max-w-md">
-              Get in touch with us to discuss how we can help represent and grow
-              your outdoor brand in the Adriatic region.
+<p class="text-sm text-zinc-400 font-light leading-relaxed mb-12 max-w-md">
+              Напишите нам, чтобы обсудить, как мы можем представлять и развивать
+              ваш аутдор-бренд в Адриатическом регионе.
             </p>
-
-            <div class="space-y-8">
-              <div class="flex items-start gap-4">
-                <iconify-icon icon="solar:letter-linear" class="text-2xl text-[#d8b485] shrink-0 mt-1"></iconify-icon>
-                <div>
-                  <h4 class="text-[10px] font-bold text-white tracking-widest mb-2 uppercase">
+<div class="space-y-8">
+<div class="flex items-start gap-4">
+<iconify-icon class="text-2xl text-[#d8b485] shrink-0 mt-1" icon="solar:letter-linear"></iconify-icon>
+<div>
+<h4 class="text-[10px] font-bold text-white tracking-widest mb-2 uppercase">
                     Email
                   </h4>
-                  <a href="mailto:hello@birka.com" class="text-sm text-zinc-400 hover:text-[#d8b485] transition-colors">
+<a class="text-sm text-zinc-400 hover:text-[#d8b485] transition-colors" href="mailto:hello@birka.com">
                     hello@birka.com
                   </a>
-                </div>
-              </div>
-              <div class="flex items-start gap-4">
-                <iconify-icon icon="solar:map-point-linear" class="text-2xl text-[#d8b485] shrink-0 mt-1"></iconify-icon>
-                <div>
-                  <h4 class="text-[10px] font-bold text-white tracking-widest mb-2 uppercase">
-                    Location
+</div>
+</div>
+<div class="flex items-start gap-4">
+<iconify-icon class="text-2xl text-[#d8b485] shrink-0 mt-1" icon="solar:map-point-linear"></iconify-icon>
+<div>
+<h4 class="text-[10px] font-bold text-white tracking-widest mb-2 uppercase">
+                    Локация
                   </h4>
-                  <p class="text-sm text-zinc-400">Zagreb, Croatia</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="flex-1 lg:max-w-xl w-full">
-            <form class="space-y-8 bg-[#0c0c0e] p-8 md:p-12 border border-white/5">
-              <div>
-                <label class="block text-[10px] font-bold text-white tracking-widest mb-4 uppercase">
-                  Name
+<p class="text-sm text-zinc-400">Загреб, Хорватия</p>
+</div>
+</div>
+</div>
+</div>
+<div class="flex-1 lg:max-w-xl w-full">
+<form class="space-y-8 bg-[#0c0c0e] p-8 md:p-12 border border-white/5">
+<div>
+<label class="block text-[10px] font-bold text-white tracking-widest mb-4 uppercase">
+                  Имя
                 </label>
-                <input type="text" class="w-full bg-transparent border-b border-white/10 pb-4 text-sm text-white focus:outline-none focus:border-[#d8b485] transition-colors placeholder:text-zinc-700" placeholder="Your name">
-              </div>
-              <div>
-                <label class="block text-[10px] font-bold text-white tracking-widest mb-4 uppercase">
+<input class="w-full bg-transparent border-b border-white/10 pb-4 text-sm text-white focus:outline-none focus:border-[#d8b485] transition-colors placeholder:text-zinc-700" placeholder="Ваше имя" type="text"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-white tracking-widest mb-4 uppercase">
                   Email
                 </label>
-                <input type="email" class="w-full bg-transparent border-b border-white/10 pb-4 text-sm text-white focus:outline-none focus:border-[#d8b485] transition-colors placeholder:text-zinc-700" placeholder="Your email address">
-              </div>
-              <div>
-                <label class="block text-[10px] font-bold text-white tracking-widest mb-4 uppercase">
-                  Message
+<input class="w-full bg-transparent border-b border-white/10 pb-4 text-sm text-white focus:outline-none focus:border-[#d8b485] transition-colors placeholder:text-zinc-700" placeholder="Ваш email" type="email"/>
+</div>
+<div>
+<label class="block text-[10px] font-bold text-white tracking-widest mb-4 uppercase">
+                  Сообщение
                 </label>
-                <textarea class="w-full bg-transparent border-b border-white/10 pb-4 text-sm text-white focus:outline-none focus:border-[#d8b485] transition-colors placeholder:text-zinc-700 resize-none h-24" placeholder="How can we help?"></textarea>
-              </div>
-              <button type="button" class="w-full inline-flex items-center justify-center px-8 py-5 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-all uppercase mt-4">
-                Send Message →
+<textarea class="w-full bg-transparent border-b border-white/10 pb-4 text-sm text-white focus:outline-none focus:border-[#d8b485] transition-colors placeholder:text-zinc-700 resize-none h-24" placeholder="Чем мы можем помочь?"></textarea>
+</div>
+<button class="w-full inline-flex items-center justify-center px-8 py-5 text-[10px] font-bold tracking-widest text-zinc-950 bg-[#d8b485] hover:bg-[#c2a277] transition-all uppercase mt-4" type="button">
+                Отправить сообщение →
               </button>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      <!-- Stats/Approach Section -->
-
-      <!-- Contact Section -->
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-white/5 bg-zinc-950 z-10 relative mt-auto aura-reveal">
-      <div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
-        <div class="flex items-center gap-2">
-          <span class="text-base font-medium tracking-tighter text-zinc-400">
+</form>
+</div>
+</div>
+</section>
+<!-- Stats/Approach Section -->
+<!-- Contact Section -->
+</main>
+<!-- Footer -->
+<footer class="border-t border-white/5 bg-zinc-950 z-10 relative mt-auto aura-reveal">
+<div class="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-6">
+<div class="flex items-center gap-2">
+<span class="text-base font-medium tracking-tighter text-zinc-400">
             BIRKA
           </span>
-        </div>
-
-        <div class="flex items-center gap-6 text-xs text-zinc-600">
-          <a href="#" class="hover:text-zinc-300 transition-colors">
-            Privacy Policy
+</div>
+<div class="flex items-center gap-6 text-xs text-zinc-600">
+<a class="hover:text-zinc-300 transition-colors" href="#">
+            Политика конфиденциальности
           </a>
-          <a href="#" class="hover:text-zinc-300 transition-colors">
-            Terms of Service
+<a class="hover:text-zinc-300 transition-colors" href="#">
+            Условия использования
           </a>
-          <span>© 2024 BIRKA Agency. All rights reserved.</span>
-        </div>
-      </div>
-    </footer>
-
-    <script>
+<span>© 2024 BIRKA Agency. Все права защищены.</span>
+</div>
+</div>
+</footer>
+<script>
       document.addEventListener('DOMContentLoaded',function(){var els=document.querySelectorAll('section, footer, .grid > div, h1, h2');els.forEach(function(el){el.classList.add('aura-reveal')});var io=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting){e.target.classList.add('aura-visible');io.unobserve(e.target)}})},{threshold:.12});els.forEach(function(el){io.observe(el)})});
     </script>
-  
 </body></html>

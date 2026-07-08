@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,13 +89,13 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NEXUS — The Idea Arcade</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS — аркада идей</title>
 <!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&family=VT323&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&amp;family=Space+Mono:wght@400;700&amp;family=VT323&amp;display=swap" rel="stylesheet"/>
 <!-- Tailwind CSS -->
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Iconify -->
@@ -3737,7 +3737,7 @@ padding: 1.5rem;
 }
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -3745,1639 +3745,1275 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="bg-[#03000a] text-[#f7f2ff] overflow-x-hidden selection:bg-[#ff007f] selection:text-white relative min-h-screen antialiased">
-
-  <!-- =======================================================
+<!-- =======================================================
        GLOBAL PHYSICS LAYER
        ======================================================= -->
-  <div id="physics-layer">
-    <canvas id="pixel-canvas"></canvas>
-    <div class="nexus-scanlines"></div>
-    <div class="nexus-vignette"></div>
-  </div>
-
-  <!-- =======================================================
+<div id="physics-layer">
+<canvas id="pixel-canvas"></canvas>
+<div class="nexus-scanlines"></div>
+<div class="nexus-vignette"></div>
+</div>
+<!-- =======================================================
        PAGE CONTENT WRAPPER
        ======================================================= -->
-  <div class="nexus-page-shell">
-
-    <!-- =====================================================
+<div class="nexus-page-shell">
+<!-- =====================================================
          HEADER
          ===================================================== -->
-    <header class="nexus-header">
-
-      <!-- Logo -->
-      <a href="#" class="nexus-logo flex items-center gap-3 group">
-        <span class="nexus-logo-mark">
-          <span class="font-arcade text-3xl leading-none">N</span>
-        </span>
-
-        <span class="flex flex-col leading-none">
-          <span class="font-display text-[1.55rem] font-extrabold uppercase tracking-[-0.04em] text-white transition-colors duration-300 group-hover:[color:var(--nexus-cyan)]">
+<header class="nexus-header">
+<!-- Логотип -->
+<a class="nexus-logo flex items-center gap-3 group" href="#">
+<span class="nexus-logo-mark">
+<span class="font-arcade text-3xl leading-none">N</span>
+</span>
+<span class="flex flex-col leading-none">
+<span class="font-display text-[1.55rem] font-extrabold uppercase tracking-[-0.04em] text-white transition-colors duration-300 group-hover:[color:var(--nexus-cyan)]">
             Nexus
           </span>
-
-        <span class="mt-1 text-[0.58rem] font-bold tracking-[0.32em] uppercase" style="color: rgba(232, 184, 93, 0.70);">
-            Idea Arcade
+<span class="mt-1 text-[0.58rem] font-bold tracking-[0.32em] uppercase" style="color: rgba(232, 184, 93, 0.70);">
+            Аркада идей
           </span>
-        </span>
+</span>
+</a>
+ Навигация 
+<nav class="nexus-nav">
+<a class="nexus-nav-link is-active" href="#">[ Аркады ]</a>
+<a class="nexus-nav-link" href="#high-scores">Рекорды</a>
+<a class="nexus-nav-link" href="#cheat-codes">Читы</a>
+<a class="nexus-nav-link" href="#join-the-guild">Гильдия</a>
+</nav>
+<!-- Header CTA -->
+<a class="nexus-header-cta" href="#join-the-guild">
+<span class="text-base leading-none">●</span>
+        Вставьте монету
       </a>
-
-      <!-- Navigation -->
-      <nav class="nexus-nav">
-        <a href="#" class="nexus-nav-link is-active">[ Arcades ]</a>
-        <a href="#high-scores" class="nexus-nav-link">High Scores</a>
-        <a href="#cheat-codes" class="nexus-nav-link">Cheats</a>
-        <a href="#join-the-guild" class="nexus-nav-link">Guild</a>
-      </nav>
-
-      <!-- Header CTA -->
-      <a href="#join-the-guild" class="nexus-header-cta">
-        <span class="text-base leading-none">●</span>
-        Insert Coin
-      </a>
-
-    </header>
-
-    <!-- =====================================================
+</header>
+<!-- =====================================================
          HERO SECTION
          ===================================================== -->
-    <main id="hero" class="nexus-hero">
-
-      <!-- Left Hero Content -->
-      <div class="relative z-10 max-w-4xl">
-
-        <div class="nexus-hero-kicker" id="hero-kicker">
-          <span class="kicker-symbol font-arcade text-2xl leading-none">//</span>
-          <span class="text-xs font-bold uppercase tracking-[0.28em]">Creative engine online</span>
-        </div>
-
-        <h1 id="hero-title" class="nexus-hero-title">
-          <span class="block whitespace-nowrap">
-            <span class="word-collider">
-              <span class="inline-block">Ideas</span>
-          </span>
-
-          <span class="word-collider">
-              <span class="inline-block">Collide.</span>
-          </span>
-          </span>
-
-          <span class="block whitespace-nowrap">
-            <span class="word-collider">
-              <span class="inline-block cyan">Worlds</span>
-          </span>
-
-          <span class="word-collider">
-              <span class="inline-block pink">Unlock.</span>
-          </span>
-          </span>
-        </h1>
-
-        <p class="nexus-hero-copy" id="hero-desc">
-          Drop loose prompts, visual references, and half-formed concepts into the field.
-          NEXUS turns creative chaos into structured worlds, playable systems, and sharper visual direction.
+<main class="nexus-hero" id="hero">
+<!-- Left Hero Content -->
+<div class="relative z-10 max-w-4xl">
+<div class="nexus-hero-kicker" id="hero-kicker">
+<span class="kicker-symbol font-arcade text-2xl leading-none">//</span>
+<span class="text-xs font-bold uppercase tracking-[0.28em]">Креативный движок в сети</span>
+</div>
+<h1 class="nexus-hero-title" id="hero-title">
+<span class="block whitespace-nowrap">
+<span class="word-collider">
+<span class="inline-block">Идеи</span>
+</span>
+<span class="word-collider">
+<span class="inline-block">Сталкиваются.</span>
+</span>
+</span>
+<span class="block whitespace-nowrap">
+<span class="word-collider">
+<span class="inline-block cyan">Миры</span>
+</span>
+<span class="word-collider">
+<span class="inline-block pink">Открываются.</span>
+</span>
+</span>
+</h1>
+<p class="nexus-hero-copy" id="hero-desc">
+          Бросайте в поле сырые промпты, визуальные референсы и полусформированные концепции.
+          NEXUS превращает творческий хаос в структурированные миры, играбельные системы и более чёткое визуальное направление.
         </p>
-
-        <div class="nexus-hero-actions" id="hero-cta">
-          <a href="#chaos-to-form" class="nexus-button-primary group">
-            Insert Coin
-            <iconify-icon icon="solar:round-alt-arrow-right-linear" class="text-2xl transform transition-transform group-hover:translate-x-1"></iconify-icon>
+<div class="nexus-hero-actions" id="hero-cta">
+<a class="nexus-button-primary group" href="#chaos-to-form">
+            Вставьте монету
+            <iconify-icon class="text-2xl transform transition-transform group-hover:translate-x-1" icon="solar:round-alt-arrow-right-linear"></iconify-icon>
+</a>
+<a class="nexus-button-secondary" href="#game-modes">
+            Исследовать движок
           </a>
-
-          <a href="#game-modes" class="nexus-button-secondary">
-            Explore Engine
-          </a>
-        </div>
-
-        <div class="nexus-hero-stats" id="hero-stats">
-          <div class="nexus-hero-stat">
-            <div class="nexus-hero-stat-value" style="color: var(--nexus-cyan);">128</div>
-            <div class="nexus-hero-stat-label">Input fragments</div>
-          </div>
-
-          <div class="nexus-hero-stat">
-            <div class="nexus-hero-stat-value" style="color: var(--nexus-pink);">42</div>
-            <div class="nexus-hero-stat-label">World collisions</div>
-          </div>
-
-          <div class="nexus-hero-stat">
-            <div class="nexus-hero-stat-value" style="color: var(--nexus-gold);">87%</div>
-            <div class="nexus-hero-stat-label">World stability</div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Right Hero Core Visual -->
-      <aside class="nexus-core-wrap" aria-hidden="true">
-
-        <div class="nexus-core-stage">
-
-          <div class="nexus-core-glow"></div>
-
-          <div class="nexus-core-axis"></div>
-
-          <div class="nexus-core-ring r1"></div>
-          <div class="nexus-core-ring r2"></div>
-          <div class="nexus-core-ring r3"></div>
-
-          <div class="nexus-core-chip input">Input</div>
-          <div class="nexus-core-chip remix">Remix</div>
-          <div class="nexus-core-chip lock">World Lock</div>
-          <div class="nexus-core-chip output">Output</div>
-
-          <div class="nexus-mini-particle p1"></div>
-          <div class="nexus-mini-particle p2"></div>
-          <div class="nexus-mini-particle p3"></div>
-          <div class="nexus-mini-particle p4"></div>
-          <div class="nexus-mini-particle p5"></div>
-
-          <div class="nexus-cube-scene">
-            <div class="nexus-cube">
-              <div class="nexus-cube-face front"></div>
-              <div class="nexus-cube-face back"></div>
-              <div class="nexus-cube-face right"></div>
-              <div class="nexus-cube-face left"></div>
-              <div class="nexus-cube-face top"></div>
-              <div class="nexus-cube-face bottom"></div>
+</div>
+<div class="nexus-hero-stats" id="hero-stats">
+<div class="nexus-hero-stat">
+<div class="nexus-hero-stat-value" style="color: var(--nexus-cyan);">128</div>
+<div class="nexus-hero-stat-label">Фрагменты ввода</div>
+</div>
+<div class="nexus-hero-stat">
+<div class="nexus-hero-stat-value" style="color: var(--nexus-pink);">42</div>
+<div class="nexus-hero-stat-label">Столкновения миров</div>
+</div>
+<div class="nexus-hero-stat">
+<div class="nexus-hero-stat-value" style="color: var(--nexus-gold);">87%</div>
+<div class="nexus-hero-stat-label">Стабильность мира</div>
+</div>
+</div>
+</div>
+<!-- Right Hero Core Visual -->
+<aside aria-hidden="true" class="nexus-core-wrap">
+<div class="nexus-core-stage">
+<div class="nexus-core-glow"></div>
+<div class="nexus-core-axis"></div>
+<div class="nexus-core-ring r1"></div>
+<div class="nexus-core-ring r2"></div>
+<div class="nexus-core-ring r3"></div>
+<div class="nexus-core-chip input">Ввод</div>
+<div class="nexus-core-chip remix">Ремикс</div>
+<div class="nexus-core-chip lock">Фиксация мира</div>
+<div class="nexus-core-chip output">Вывод</div>
+<div class="nexus-mini-particle p1"></div>
+<div class="nexus-mini-particle p2"></div>
+<div class="nexus-mini-particle p3"></div>
+<div class="nexus-mini-particle p4"></div>
+<div class="nexus-mini-particle p5"></div>
+<div class="nexus-cube-scene">
+<div class="nexus-cube">
+<div class="nexus-cube-face front"></div>
+<div class="nexus-cube-face back"></div>
+<div class="nexus-cube-face right"></div>
+<div class="nexus-cube-face left"></div>
+<div class="nexus-cube-face top"></div>
+<div class="nexus-cube-face bottom"></div>
+</div>
+</div>
+<div class="nexus-core-side-panel">
+<div class="text-[0.58rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(232, 184, 93, 0.70);">
+              Ядро движения
             </div>
-          </div>
-
-          <div class="nexus-core-side-panel">
-            <div class="text-[0.58rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(232, 184, 93, 0.70);">
-              Core Motion
+<div class="mt-2 font-arcade text-3xl leading-none" style="color: var(--nexus-gold);">
+              Синхронизация 04
             </div>
-
-            <div class="mt-2 font-arcade text-3xl leading-none" style="color: var(--nexus-gold);">
-              Sync 04
-            </div>
-
-            <div class="mt-4 grid gap-2">
-              <div class="flex items-center justify-between text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white/38">
-                <span>Axis</span>
-                <span style="color: rgba(232, 184, 93, 0.80);">Stable</span>
-              </div>
-
-              <div class="flex items-center justify-between text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white/38">
-                <span>Loop</span>
-                <span style="color: rgba(53, 221, 242, 0.80);">Active</span>
-              </div>
-            </div>
-          </div>
-
-          <div class="nexus-core-panel">
-            <div class="nexus-core-panel-top">
-              <span>World Core</span>
-              <span>87%</span>
-            </div>
-
-            <div class="nexus-core-meter">
-              <span></span>
-            </div>
-
-            <div class="mt-4 grid grid-cols-3 gap-2 text-center">
-
-              <div class="p-2" style="border: 1px solid rgba(53, 221, 242, 0.20); background: rgba(53, 221, 242, 0.05);">
-                <div class="font-arcade text-2xl" style="color: var(--nexus-cyan);">01</div>
-                <div class="mt-1 text-[0.5rem] font-bold uppercase tracking-[0.18em] text-white/35">
-                  Input
+<div class="mt-4 grid gap-2">
+<div class="flex items-center justify-between text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white/38">
+<span>Ось</span>
+<span style="color: rgba(232, 184, 93, 0.80);">Стабильно</span>
+</div>
+<div class="flex items-center justify-between text-[0.58rem] font-bold uppercase tracking-[0.18em] text-white/38">
+<span>Цикл</span>
+<span style="color: rgba(53, 221, 242, 0.80);">Активен</span>
+</div>
+</div>
+</div>
+<div class="nexus-core-panel">
+<div class="nexus-core-panel-top">
+<span>Ядро мира</span>
+<span>87%</span>
+</div>
+<div class="nexus-core-meter">
+<span></span>
+</div>
+<div class="mt-4 grid grid-cols-3 gap-2 text-center">
+<div class="p-2" style="border: 1px solid rgba(53, 221, 242, 0.20); background: rgba(53, 221, 242, 0.05);">
+<div class="font-arcade text-2xl" style="color: var(--nexus-cyan);">01</div>
+<div class="mt-1 text-[0.5rem] font-bold uppercase tracking-[0.18em] text-white/35">
+                  Ввод
                 </div>
-              </div>
-
-              <div class="p-2" style="border: 1px solid rgba(244, 91, 168, 0.20); background: rgba(244, 91, 168, 0.05);">
-                <div class="font-arcade text-2xl" style="color: var(--nexus-pink);">02</div>
-                <div class="mt-1 text-[0.5rem] font-bold uppercase tracking-[0.18em] text-white/35">
-                  Collide
+</div>
+<div class="p-2" style="border: 1px solid rgba(244, 91, 168, 0.20); background: rgba(244, 91, 168, 0.05);">
+<div class="font-arcade text-2xl" style="color: var(--nexus-pink);">02</div>
+<div class="mt-1 text-[0.5rem] font-bold uppercase tracking-[0.18em] text-white/35">
+                  Столкнуть
                 </div>
-              </div>
-
-              <div class="p-2" style="border: 1px solid rgba(232, 184, 93, 0.20); background: rgba(232, 184, 93, 0.05);">
-                <div class="font-arcade text-2xl" style="color: var(--nexus-gold);">03</div>
-                <div class="mt-1 text-[0.5rem] font-bold uppercase tracking-[0.18em] text-white/35">
-                  Unlock
+</div>
+<div class="p-2" style="border: 1px solid rgba(232, 184, 93, 0.20); background: rgba(232, 184, 93, 0.05);">
+<div class="font-arcade text-2xl" style="color: var(--nexus-gold);">03</div>
+<div class="mt-1 text-[0.5rem] font-bold uppercase tracking-[0.18em] text-white/35">
+                  Открыть
                 </div>
-              </div>
-
-            </div>
-          </div>
-
-        </div>
-
-      </aside>
-
-    </main>
-
-    <!-- =====================================================
+</div>
+</div>
+</div>
+</div>
+</aside>
+</main>
+<!-- =====================================================
  SECTION 02 — CONVERSION CHAMBER
  First targeted Matter.js catcher section.
  Blocks collide with headline, intro, cards, machine, and console.
  ===================================================== -->
-    <section id="chaos-to-form" class="relative w-full max-w-[90rem] mx-auto px-6 lg:px-12 pb-28 lg:pb-36">
-
-      <div id="section-2-catcher" class="nexus-s2-frame">
-
-        <!-- Corner accents -->
-        <div class="nexus-s2-corner tl"></div>
-        <div class="nexus-s2-corner tr"></div>
-        <div class="nexus-s2-corner bl"></div>
-        <div class="nexus-s2-corner br"></div>
-
-        <div class="relative z-10 min-h-[820px] p-6 md:p-10 lg:p-14 xl:p-16">
-
-          <!-- Centered section intro -->
-          <div class="mx-auto max-w-5xl text-center">
-
-            <h2 class="nexus-s2-title">
-              <span class="line-one" data-s2-collider="headline">From chaos</span>
-              <span class="line-two" data-s2-collider="headline">to playable form</span>
-            </h2>
-
-            <p class="nexus-s2-intro" data-s2-collider="subtitle">
-              Every idea enters messy: a prompt, a screenshot, a reference, or a half-built direction.
-              NEXUS gives those pieces a field to collide, remix, and lock into a stronger creative system.
+<section class="relative w-full max-w-[90rem] mx-auto px-6 lg:px-12 pb-28 lg:pb-36" id="chaos-to-form">
+<div class="nexus-s2-frame" id="section-2-catcher">
+<!-- Corner accents -->
+<div class="nexus-s2-corner tl"></div>
+<div class="nexus-s2-corner tr"></div>
+<div class="nexus-s2-corner bl"></div>
+<div class="nexus-s2-corner br"></div>
+<div class="relative z-10 min-h-[820px] p-6 md:p-10 lg:p-14 xl:p-16">
+<!-- Centered section intro -->
+<div class="mx-auto max-w-5xl text-center">
+<h2 class="nexus-s2-title">
+<span class="line-one" data-s2-collider="headline">Из хаоса</span>
+<span class="line-two" data-s2-collider="headline">в играбельную форму</span>
+</h2>
+<p class="nexus-s2-intro" data-s2-collider="subtitle">
+              Каждая идея приходит сырой: промпт, скриншот, референс или полусобранное направление.
+              NEXUS даёт этим фрагментам поле, где они сталкиваются, ремикшируются и фиксируются в более сильную креативную систему.
             </p>
-
-          </div>
-
-          <!-- Main content -->
-          <div class="nexus-s2-content-grid">
-
-            <!-- Left system stack -->
-            <div class="nexus-s2-left-stack">
-
-              <!-- Input / Process / Output cards -->
-              <div class="nexus-s2-rail">
-
-                <div class="nexus-s2-rail-item" data-s2-collider="rail-card">
-                  <div class="nexus-s2-rail-index" data-s2-collider="rail-index" style="color: var(--nexus-cyan);">
+</div>
+<!-- Main content -->
+<div class="nexus-s2-content-grid">
+<!-- Left system stack -->
+<div class="nexus-s2-left-stack">
+<!-- Input / Process / Output cards -->
+<div class="nexus-s2-rail">
+<div class="nexus-s2-rail-item" data-s2-collider="rail-card">
+<div class="nexus-s2-rail-index" data-s2-collider="rail-index" style="color: var(--nexus-cyan);">
                     01
                   </div>
-
-                  <h3 class="nexus-s2-rail-title" data-s2-collider="rail-title">
-                    Input fragments
+<h3 class="nexus-s2-rail-title" data-s2-collider="rail-title">
+                    Фрагменты ввода
                   </h3>
-
-                  <p class="nexus-s2-rail-copy">
-                    Prompts, screenshots, references, moods, loose concepts, and visual signals.
+<p class="nexus-s2-rail-copy">
+                    Промпты, скриншоты, референсы, настроения, сырые концепции и визуальные сигналы.
                   </p>
-                </div>
-
-                <div class="nexus-s2-rail-item" data-s2-collider="rail-card">
-                  <div class="nexus-s2-rail-index" data-s2-collider="rail-index" style="color: var(--nexus-pink);">
+</div>
+<div class="nexus-s2-rail-item" data-s2-collider="rail-card">
+<div class="nexus-s2-rail-index" data-s2-collider="rail-index" style="color: var(--nexus-pink);">
                     02
                   </div>
-
-                  <h3 class="nexus-s2-rail-title" data-s2-collider="rail-title">
-                    Force collision
+<h3 class="nexus-s2-rail-title" data-s2-collider="rail-title">
+                    Запустить столкновение
                   </h3>
-
-                  <p class="nexus-s2-rail-copy">
-                    The system compares, compresses, remixes, rejects, and sharpens the direction.
+<p class="nexus-s2-rail-copy">
+                    Система сравнивает, сжимает, ремикширует, отбрасывает и оттачивает направление.
                   </p>
-                </div>
-
-                <div class="nexus-s2-rail-item" data-s2-collider="rail-card">
-                  <div class="nexus-s2-rail-index" data-s2-collider="rail-index" style="color: var(--nexus-gold);">
+</div>
+<div class="nexus-s2-rail-item" data-s2-collider="rail-card">
+<div class="nexus-s2-rail-index" data-s2-collider="rail-index" style="color: var(--nexus-gold);">
                     03
                   </div>
-
-                  <h3 class="nexus-s2-rail-title" data-s2-collider="rail-title">
-                    Lock the world
+<h3 class="nexus-s2-rail-title" data-s2-collider="rail-title">
+                    Зафиксировать мир
                   </h3>
-
-                  <p class="nexus-s2-rail-copy">
-                    The strongest patterns become typography, color, layout, motion, and section rhythm.
+<p class="nexus-s2-rail-copy">
+                    Сильнейшие паттерны становятся типографикой, цветом, макетом, моушном и ритмом секций.
                   </p>
-                </div>
-
-              </div>
-
-              <!-- Supporting copy block -->
-              <div class="nexus-s2-info-card" data-s2-collider="info-card">
-
-                <div class="mb-3 flex items-center gap-3">
-                  <div class="h-2.5 w-2.5" style="background: var(--nexus-cyan); box-shadow: 0 0 12px rgba(53, 221, 242, 0.9);"></div>
-
-                  <div class="text-[0.65rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(53, 221, 242, 0.80);">
-                    First transformation
+</div>
+</div>
+<!-- Supporting copy block -->
+<div class="nexus-s2-info-card" data-s2-collider="info-card">
+<div class="mb-3 flex items-center gap-3">
+<div class="h-2.5 w-2.5" style="background: var(--nexus-cyan); box-shadow: 0 0 12px rgba(53, 221, 242, 0.9);"></div>
+<div class="text-[0.65rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(53, 221, 242, 0.80);">
+                    Первая трансформация
                   </div>
-                </div>
-
-                <p class="text-sm leading-relaxed" style="color: rgba(248, 243, 255, 0.62);">
-                  This is where falling fragments stop being random pixels and start becoming a readable creative
-                  structure.
+</div>
+<p class="text-sm leading-relaxed" style="color: rgba(248, 243, 255, 0.62);">
+                  Именно здесь падающие фрагменты перестают быть случайными пикселями и начинают становиться читаемой креативной
+                  структурой.
                 </p>
-
-              </div>
-
-              <div class="nexus-s2-note" data-s2-collider="note-card">
-
-                <div class="mb-3 flex items-center gap-3">
-                  <div class="flex h-9 w-9 items-center justify-center font-arcade text-2xl" style="border: 1px solid rgba(232, 184, 93, 0.35); color: var(--nexus-gold);">
+</div>
+<div class="nexus-s2-note" data-s2-collider="note-card">
+<div class="mb-3 flex items-center gap-3">
+<div class="flex h-9 w-9 items-center justify-center font-arcade text-2xl" style="border: 1px solid rgba(232, 184, 93, 0.35); color: var(--nexus-gold);">
                     i
                   </div>
-
-                  <div class="text-[0.65rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(232, 184, 93, 0.72);">
-                    System note
+<div class="text-[0.65rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(232, 184, 93, 0.72);">
+                    Заметка системы
                   </div>
-                </div>
-
-                <p class="text-xs leading-relaxed" style="color: rgba(232, 184, 93, 0.72);">
-                  Better inputs create better collisions. Better collisions create better worlds.
-                  This chamber is the first physical stop in the page-wide falling block sequence.
+</div>
+<p class="text-xs leading-relaxed" style="color: rgba(232, 184, 93, 0.72);">
+                  Лучшие входные данные создают лучшие столкновения. Лучшие столкновения создают лучшие миры.
+                  Эта камера — первая физическая остановка в последовательности падающих блоков на всей странице.
                 </p>
-
-              </div>
-
-            </div>
-
-            <!-- Right visual machine -->
-            <div class="relative">
-
-              <div class="nexus-s2-machine" data-s2-collider="machine">
-
-                <!-- Machine header -->
-                <div class="nexus-s2-machine-header" data-s2-collider="machine-header">
-
-                  <div>
-                    <div class="text-[0.62rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(248, 243, 255, 0.40);">
+</div>
+</div>
+<!-- Right visual machine -->
+<div class="relative">
+<div class="nexus-s2-machine" data-s2-collider="machine">
+<!-- Machine header -->
+<div class="nexus-s2-machine-header" data-s2-collider="machine-header">
+<div>
+<div class="text-[0.62rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(248, 243, 255, 0.40);">
                       Nexus Engine v2.0
                     </div>
-
-                    <div class="nexus-s2-machine-title" data-s2-collider="machine-title">
-                      Conversion chamber
+<div class="nexus-s2-machine-title" data-s2-collider="machine-title">
+                      Камера преобразования
                     </div>
+</div>
+<div class="nexus-s2-machine-status" data-s2-collider="machine-status">
+<span></span>
+                    В сети
                   </div>
-
-                  <div class="nexus-s2-machine-status" data-s2-collider="machine-status">
-                    <span></span>
-                    Online
-                  </div>
-
-                </div>
-
-                <!-- Monitor -->
-                <div class="nexus-s2-monitor" data-s2-collider="monitor">
-
-                  <!-- Connector lines -->
-                  <div class="nexus-s2-node-line one"></div>
-                  <div class="nexus-s2-node-line two"></div>
-                  <div class="nexus-s2-node-line three"></div>
-                  <div class="nexus-s2-node-line four"></div>
-
-                  <!-- Chamber labels -->
-                  <div class="nexus-s2-node input" data-s2-collider="node">Raw input</div>
-                  <div class="nexus-s2-node collision" data-s2-collider="node">Collision</div>
-                  <div class="nexus-s2-node system" data-s2-collider="node">Rules locked</div>
-                  <div class="nexus-s2-node output" data-s2-collider="node">Playable form</div>
-
-                  <!-- Central chamber artifact -->
-                  <div class="nexus-s2-chamber" data-s2-collider="chamber">
-                    <div class="nexus-s2-core"></div>
-                  </div>
-
-                  <!-- Internal particles -->
-                  <div class="nexus-s2-flow-pixel" style="--delay: 0s;"></div>
-                  <div class="nexus-s2-flow-pixel pink" style="--delay: -1.2s;"></div>
-                  <div class="nexus-s2-flow-pixel gold" style="--delay: -2.4s;"></div>
-                  <div class="nexus-s2-flow-pixel blue" style="--delay: -3.6s;"></div>
-
-                  <!-- Bottom console -->
-                  <div class="nexus-s2-console" data-s2-collider="console">
-
-                    <div class="grid gap-4 md:grid-cols-[1fr_150px] md:items-end">
-
-                      <div>
-                        <div class="nexus-s2-meter-label">
-                          <span>World stability</span>
-                          <span style="color: var(--nexus-cyan);">active</span>
+</div>
+ Монитор 
+<div class="nexus-s2-monitor" data-s2-collider="monitor">
+<!-- Connector lines -->
+<div class="nexus-s2-node-line one"></div>
+<div class="nexus-s2-node-line two"></div>
+<div class="nexus-s2-node-line three"></div>
+<div class="nexus-s2-node-line four"></div>
+<!-- Chamber labels -->
+<div class="nexus-s2-node input" data-s2-collider="node">Сырой ввод</div>
+<div class="nexus-s2-node collision" data-s2-collider="node">Столкновение</div>
+<div class="nexus-s2-node system" data-s2-collider="node">Правила зафиксированы</div>
+<div class="nexus-s2-node output" data-s2-collider="node">Играбельная форма</div>
+<!-- Central chamber artifact -->
+<div class="nexus-s2-chamber" data-s2-collider="chamber">
+<div class="nexus-s2-core"></div>
+</div>
+<!-- Internal particles -->
+<div class="nexus-s2-flow-pixel" style="--delay: 0s;"></div>
+<div class="nexus-s2-flow-pixel pink" style="--delay: -1.2s;"></div>
+<div class="nexus-s2-flow-pixel gold" style="--delay: -2.4s;"></div>
+<div class="nexus-s2-flow-pixel blue" style="--delay: -3.6s;"></div>
+<!-- Bottom console -->
+<div class="nexus-s2-console" data-s2-collider="console">
+<div class="grid gap-4 md:grid-cols-[1fr_150px] md:items-end">
+<div>
+<div class="nexus-s2-meter-label">
+<span>Стабильность мира</span>
+<span style="color: var(--nexus-cyan);">активен</span>
+</div>
+<div class="nexus-s2-meter">
+<span></span>
+</div>
+</div>
+<div class="p-3 text-right" data-s2-collider="run-score" style="border: 1px solid rgba(232, 184, 93, 0.22); background: rgba(232, 184, 93, 0.06);">
+<div class="text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(232, 184, 93, 0.70);">
+                          Текущий забег
                         </div>
-
-                        <div class="nexus-s2-meter">
-                          <span></span>
-                        </div>
-                      </div>
-
-                      <div class="p-3 text-right" data-s2-collider="run-score" style="border: 1px solid rgba(232, 184, 93, 0.22); background: rgba(232, 184, 93, 0.06);">
-                        <div class="text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(232, 184, 93, 0.70);">
-                          Current run
-                        </div>
-
-                        <div class="font-arcade text-3xl leading-none" style="color: var(--nexus-gold);">
+<div class="font-arcade text-3xl leading-none" style="color: var(--nexus-gold);">
                           87%
                         </div>
-                      </div>
-
-                    </div>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
  SECTION 03 — GAME MODES
  Targeted Matter.js catcher section.
  Blocks collide with headline, subtitle, cards, and panels.
  ===================================================== -->
-    <section id="game-modes" class="nexus-s3-section">
-
-      <div id="section-3-catcher" class="nexus-s3-catcher">
-
-        <div class="nexus-s3-inner">
-
-          <!-- Header -->
-          <div class="nexus-s3-header">
-
-            <div class="nexus-s3-eyebrow" data-s3-collider="eyebrow">
-              <span class="font-arcade text-2xl leading-none">//</span>
-              <span class="text-xs font-bold uppercase tracking-[0.28em]">Choose your route</span>
-            </div>
-
-            <h2 class="nexus-s3-title">
-              <span class="line-one" data-s3-collider="headline">Choose your</span>
-              <span class="line-two" data-s3-collider="headline">game mode</span>
-            </h2>
-
-            <p class="nexus-s3-copy" data-s3-collider="subtitle">
-              Different missions. Different rules. One goal: turn creative fragments into a complete world with the
-              right level of speed, structure, and polish.
+<section class="nexus-s3-section" id="game-modes">
+<div class="nexus-s3-catcher" id="section-3-catcher">
+<div class="nexus-s3-inner">
+<!-- Header -->
+<div class="nexus-s3-header">
+<div class="nexus-s3-eyebrow" data-s3-collider="eyebrow">
+<span class="font-arcade text-2xl leading-none">//</span>
+<span class="text-xs font-bold uppercase tracking-[0.28em]">Выберите маршрут</span>
+</div>
+<h2 class="nexus-s3-title">
+<span class="line-one" data-s3-collider="headline">Выберите свой</span>
+<span class="line-two" data-s3-collider="headline">игровой режим</span>
+</h2>
+<p class="nexus-s3-copy" data-s3-collider="subtitle">
+              Разные миссии. Разные правила. Одна цель: превратить креативные фрагменты в законченный мир с
+              нужным уровнем скорости, структуры и отделки.
             </p>
-
-          </div>
-
-          <!-- Mode Cards -->
-          <div class="nexus-s3-mode-grid">
-
-            <!-- Card 01 -->
-            <article class="nexus-s3-card is-cyan is-selected" data-s3-collider="card">
-
-              <div class="nexus-s3-card-content">
-
-                <div class="nexus-s3-card-top" data-s3-collider="card-top">
-                  <div class="nexus-s3-index" data-s3-collider="card-index">01</div>
-                  <div class="nexus-s3-badge" data-s3-collider="badge">Selected</div>
-                </div>
-
-                <div class="nexus-s3-icon-wrap" data-s3-collider="icon">
-                  <iconify-icon icon="solar:gamepad-minimalistic-linear"></iconify-icon>
-                </div>
-
-                <h3 class="nexus-s3-card-title" data-s3-collider="card-title">
-                  Arcade Mode
+</div>
+<!-- Mode Cards -->
+<div class="nexus-s3-mode-grid">
+<!-- Card 01 -->
+<article class="nexus-s3-card is-cyan is-selected" data-s3-collider="card">
+<div class="nexus-s3-card-content">
+<div class="nexus-s3-card-top" data-s3-collider="card-top">
+<div class="nexus-s3-index" data-s3-collider="card-index">01</div>
+<div class="nexus-s3-badge" data-s3-collider="badge">Выбрано</div>
+</div>
+<div class="nexus-s3-icon-wrap" data-s3-collider="icon">
+<iconify-icon icon="solar:gamepad-minimalistic-linear"></iconify-icon>
+</div>
+<h3 class="nexus-s3-card-title" data-s3-collider="card-title">
+                  Аркадный режим
                 </h3>
-
-                <p class="nexus-s3-card-copy" data-s3-collider="card-copy">
-                  Rapid-fire creativity. Generate, test, and explore visual ideas at lightning speed.
+<p class="nexus-s3-card-copy" data-s3-collider="card-copy">
+                  Креатив в скоростном темпе. Генерируйте, тестируйте и исследуйте визуальные идеи с молниеносной скоростью.
                 </p>
-
-                <div class="nexus-s3-meter-list" data-s3-collider="meters">
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Speed</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 96%; --delay: 0s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Clarity</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 74%; --delay: -0.6s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Risk</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 62%; --delay: -1.2s;"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="nexus-s3-action" data-s3-collider="action">
-                <span>Select mode</span>
-                <span>Fast run</span>
-              </div>
-
-            </article>
-
-            <!-- Card 02 -->
-            <article class="nexus-s3-card is-pink" data-s3-collider="card">
-
-              <div class="nexus-s3-card-content">
-
-                <div class="nexus-s3-card-top" data-s3-collider="card-top">
-                  <div class="nexus-s3-index" data-s3-collider="card-index">02</div>
-                </div>
-
-                <div class="nexus-s3-icon-wrap" data-s3-collider="icon">
-                  <iconify-icon icon="solar:map-point-wave-linear"></iconify-icon>
-                </div>
-
-                <h3 class="nexus-s3-card-title" data-s3-collider="card-title">
-                  Campaign Mode
+<div class="nexus-s3-meter-list" data-s3-collider="meters">
+<div class="nexus-s3-meter-row">
+<span>Скорость</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 96%; --delay: 0s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Ясность</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 74%; --delay: -0.6s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Риск</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 62%; --delay: -1.2s;"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="nexus-s3-action" data-s3-collider="action">
+<span>Выбрать режим</span>
+<span>Быстрый забег</span>
+</div>
+</article>
+<!-- Card 02 -->
+<article class="nexus-s3-card is-pink" data-s3-collider="card">
+<div class="nexus-s3-card-content">
+<div class="nexus-s3-card-top" data-s3-collider="card-top">
+<div class="nexus-s3-index" data-s3-collider="card-index">02</div>
+</div>
+<div class="nexus-s3-icon-wrap" data-s3-collider="icon">
+<iconify-icon icon="solar:map-point-wave-linear"></iconify-icon>
+</div>
+<h3 class="nexus-s3-card-title" data-s3-collider="card-title">
+                  Режим кампании
                 </h3>
-
-                <p class="nexus-s3-card-copy" data-s3-collider="card-copy">
-                  Build a complete journey. Shape full landing pages section by section with narrative flow.
+<p class="nexus-s3-card-copy" data-s3-collider="card-copy">
+                  Постройте полное путешествие. Формируйте целые лендинги секция за секцией с нарративным потоком.
                 </p>
-
-                <div class="nexus-s3-meter-list" data-s3-collider="meters">
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Speed</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 72%; --delay: -0.2s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Flow</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 94%; --delay: -0.8s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Polish</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 88%; --delay: -1.4s;"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="nexus-s3-action" data-s3-collider="action">
-                <span>Select mode</span>
-                <span>Full build</span>
-              </div>
-
-            </article>
-
-            <!-- Card 03 -->
-            <article class="nexus-s3-card is-purple" data-s3-collider="card">
-
-              <div class="nexus-s3-card-content">
-
-                <div class="nexus-s3-card-top" data-s3-collider="card-top">
-                  <div class="nexus-s3-index" data-s3-collider="card-index">03</div>
-                </div>
-
-                <div class="nexus-s3-icon-wrap" data-s3-collider="icon">
-                  <iconify-icon icon="solar:crown-star-linear"></iconify-icon>
-                </div>
-
-                <h3 class="nexus-s3-card-title" data-s3-collider="card-title">
-                  Boss Mode
+<div class="nexus-s3-meter-list" data-s3-collider="meters">
+<div class="nexus-s3-meter-row">
+<span>Скорость</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 72%; --delay: -0.2s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Поток</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 94%; --delay: -0.8s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Отделка</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 88%; --delay: -1.4s;"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="nexus-s3-action" data-s3-collider="action">
+<span>Выбрать режим</span>
+<span>Полная сборка</span>
+</div>
+</article>
+<!-- Card 03 -->
+<article class="nexus-s3-card is-purple" data-s3-collider="card">
+<div class="nexus-s3-card-content">
+<div class="nexus-s3-card-top" data-s3-collider="card-top">
+<div class="nexus-s3-index" data-s3-collider="card-index">03</div>
+</div>
+<div class="nexus-s3-icon-wrap" data-s3-collider="icon">
+<iconify-icon icon="solar:crown-star-linear"></iconify-icon>
+</div>
+<h3 class="nexus-s3-card-title" data-s3-collider="card-title">
+                  Режим босса
                 </h3>
-
-                <p class="nexus-s3-card-copy" data-s3-collider="card-copy">
-                  Face the hard truths. Hunt weak layouts, poor hierarchy, generic copy, and visual noise.
+<p class="nexus-s3-card-copy" data-s3-collider="card-copy">
+                  Взгляните правде в глаза. Выслеживайте слабые макеты, плохую иерархию, шаблонные тексты и визуальный шум.
                 </p>
-
-                <div class="nexus-s3-meter-list" data-s3-collider="meters">
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Pressure</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 92%; --delay: -0.3s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Clarity</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 86%; --delay: -0.9s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Fix rate</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 78%; --delay: -1.5s;"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="nexus-s3-action" data-s3-collider="action">
-                <span>Select mode</span>
-                <span>Audit run</span>
-              </div>
-
-            </article>
-
-            <!-- Card 04 -->
-            <article class="nexus-s3-card is-blue" data-s3-collider="card">
-
-              <div class="nexus-s3-card-content">
-
-                <div class="nexus-s3-card-top" data-s3-collider="card-top">
-                  <div class="nexus-s3-index" data-s3-collider="card-index">04</div>
-                </div>
-
-                <div class="nexus-s3-icon-wrap" data-s3-collider="icon">
-                  <iconify-icon icon="solar:box-minimalistic-linear"></iconify-icon>
-                </div>
-
-                <h3 class="nexus-s3-card-title" data-s3-collider="card-title">
-                  Sandbox Mode
+<div class="nexus-s3-meter-list" data-s3-collider="meters">
+<div class="nexus-s3-meter-row">
+<span>Давление</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 92%; --delay: -0.3s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Ясность</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 86%; --delay: -0.9s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Доля исправлений</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 78%; --delay: -1.5s;"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="nexus-s3-action" data-s3-collider="action">
+<span>Выбрать режим</span>
+<span>Аудит-забег</span>
+</div>
+</article>
+<!-- Card 04 -->
+<article class="nexus-s3-card is-blue" data-s3-collider="card">
+<div class="nexus-s3-card-content">
+<div class="nexus-s3-card-top" data-s3-collider="card-top">
+<div class="nexus-s3-index" data-s3-collider="card-index">04</div>
+</div>
+<div class="nexus-s3-icon-wrap" data-s3-collider="icon">
+<iconify-icon icon="solar:box-minimalistic-linear"></iconify-icon>
+</div>
+<h3 class="nexus-s3-card-title" data-s3-collider="card-title">
+                  Режим песочницы
                 </h3>
-
-                <p class="nexus-s3-card-copy" data-s3-collider="card-copy">
-                  No rules, just possibilities. Remix references, colors, layouts, and components freely.
+<p class="nexus-s3-card-copy" data-s3-collider="card-copy">
+                  Никаких правил, только возможности. Свободно ремикшируйте референсы, цвета, макеты и компоненты.
                 </p>
-
-                <div class="nexus-s3-meter-list" data-s3-collider="meters">
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Freedom</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 98%; --delay: -0.4s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Risk</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 76%; --delay: -1s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="nexus-s3-meter-row">
-                    <span>Range</span>
-                    <div class="nexus-s3-meter-track">
-                      <i class="nexus-s3-meter-fill" style="--meter-width: 91%; --delay: -1.6s;"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-              </div>
-
-              <div class="nexus-s3-action" data-s3-collider="action">
-                <span>Select mode</span>
-                <span>Free remix</span>
-              </div>
-
-            </article>
-
-          </div>
-
-          <!-- Bottom Row -->
-          <div class="nexus-s3-footer-row">
-
-            <div class="nexus-s3-tip" data-s3-collider="tip">
-              <div class="flex items-start gap-4">
-
-                <div class="flex h-11 w-11 shrink-0 items-center justify-center font-arcade text-3xl" style="border: 1px solid rgba(53, 221, 242, 0.40); color: var(--nexus-cyan);">
+<div class="nexus-s3-meter-list" data-s3-collider="meters">
+<div class="nexus-s3-meter-row">
+<span>Свобода</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 98%; --delay: -0.4s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Риск</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 76%; --delay: -1s;"></i>
+</div>
+</div>
+<div class="nexus-s3-meter-row">
+<span>Диапазон</span>
+<div class="nexus-s3-meter-track">
+<i class="nexus-s3-meter-fill" style="--meter-width: 91%; --delay: -1.6s;"></i>
+</div>
+</div>
+</div>
+</div>
+<div class="nexus-s3-action" data-s3-collider="action">
+<span>Выбрать режим</span>
+<span>Свободный ремикс</span>
+</div>
+</article>
+</div>
+<!-- Bottom Row -->
+<div class="nexus-s3-footer-row">
+<div class="nexus-s3-tip" data-s3-collider="tip">
+<div class="flex items-start gap-4">
+<div class="flex h-11 w-11 shrink-0 items-center justify-center font-arcade text-3xl" style="border: 1px solid rgba(53, 221, 242, 0.40); color: var(--nexus-cyan);">
                   i
                 </div>
-
-                <div>
-                  <div class="text-xs font-bold uppercase tracking-[0.24em]" style="color: var(--nexus-cyan);">
-                    Tip
+<div>
+<div class="text-xs font-bold uppercase tracking-[0.24em]" style="color: var(--nexus-cyan);">
+                    Совет
                   </div>
-
-                  <p class="mt-2 text-sm leading-relaxed" style="color: rgba(248, 243, 255, 0.70);">
-                    Start in Arcade Mode when the idea is still loose. Switch to Campaign Mode once the world starts to
-                    take shape.
+<p class="mt-2 text-sm leading-relaxed" style="color: rgba(248, 243, 255, 0.70);">
+                    Начинайте в аркадном режиме, пока идея ещё сырая. Переключайтесь в режим кампании, когда мир начинает
+                    обретать форму.
                   </p>
-                </div>
-
-              </div>
-            </div>
-
-            <div class="nexus-s3-rank" data-s3-collider="rank">
-              <div class="flex items-center justify-between gap-5">
-
-                <div>
-                  <div class="text-xs font-bold uppercase tracking-[0.24em]" style="color: rgba(232, 184, 93, 0.75);">
-                    Your Rank
+</div>
+</div>
+</div>
+<div class="nexus-s3-rank" data-s3-collider="rank">
+<div class="flex items-center justify-between gap-5">
+<div>
+<div class="text-xs font-bold uppercase tracking-[0.24em]" style="color: rgba(232, 184, 93, 0.75);">
+                    Ваш ранг
                   </div>
-
-                  <div class="mt-2 font-display text-3xl font-extrabold uppercase tracking-[-0.05em] text-white">
-                    Creative Player
+<div class="mt-2 font-display text-3xl font-extrabold uppercase tracking-[-0.05em] text-white">
+                    Креативный игрок
                   </div>
-                </div>
-
-                <div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2" style="border-color: rgba(232, 184, 93, 0.55); color: var(--nexus-gold); box-shadow: 0 0 24px rgba(232, 184, 93, 0.18);">
-                  <span class="font-arcade text-4xl">N</span>
-                </div>
-
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
+</div>
+<div class="flex h-16 w-16 shrink-0 items-center justify-center rounded-full border-2" style="border-color: rgba(232, 184, 93, 0.55); color: var(--nexus-gold); box-shadow: 0 0 24px rgba(232, 184, 93, 0.18);">
+<span class="font-arcade text-4xl">N</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
  SECTION 04 — COLLISION ENGINE
  Targeted Matter.js catcher section.
  ===================================================== -->
-<section id="collision-engine" class="nexus-s4-section">
-
-  <div id="section-4-catcher" class="nexus-s4-catcher">
-
-    <div class="nexus-s4-inner">
-
-      <div class="nexus-s4-layout">
-
-        <!-- Left Content -->
-        <div class="relative z-10">
-
-          <div class="nexus-s4-eyebrow" data-s4-collider="eyebrow">
-            <span class="font-arcade text-2xl leading-none">//</span>
-            <span class="text-xs font-bold uppercase tracking-[0.28em]">System pressure layer</span>
-          </div>
-
-          <h2 class="nexus-s4-title">
-            <span class="line-one" data-s4-collider="headline">Collision</span>
-            <span class="line-two" data-s4-collider="headline">Engine</span>
-          </h2>
-
-          <p class="nexus-s4-copy" data-s4-collider="subtitle">
-            The engine does not simply generate ideas. It applies pressure. Inputs collide,
-            weak signals break apart, useful patterns survive, and the strongest direction becomes easier to build.
+<section class="nexus-s4-section" id="collision-engine">
+<div class="nexus-s4-catcher" id="section-4-catcher">
+<div class="nexus-s4-inner">
+<div class="nexus-s4-layout">
+<!-- Left Content -->
+<div class="relative z-10">
+<div class="nexus-s4-eyebrow" data-s4-collider="eyebrow">
+<span class="font-arcade text-2xl leading-none">//</span>
+<span class="text-xs font-bold uppercase tracking-[0.28em]">Слой давления системы</span>
+</div>
+<h2 class="nexus-s4-title">
+<span class="line-one" data-s4-collider="headline">Столкновение</span>
+<span class="line-two" data-s4-collider="headline">Движок</span>
+</h2>
+<p class="nexus-s4-copy" data-s4-collider="subtitle">
+            Движок не просто генерирует идеи. Он создаёт давление. Входные данные сталкиваются,
+            слабые сигналы распадаются, полезные паттерны выживают, а сильнейшее направление становится проще воплотить.
           </p>
-
-          <!-- Process List -->
-          <div class="nexus-s4-process">
-
-            <article class="nexus-s4-process-card is-cyan" data-s4-collider="process-card">
-              <div class="nexus-s4-process-card-inner">
-
-                <div class="nexus-s4-process-index" data-s4-collider="process-index">01</div>
-
-                <div>
-                  <h3 class="nexus-s4-process-title" data-s4-collider="process-title">
-                    Drop Inputs
+<!-- Process List -->
+<div class="nexus-s4-process">
+<article class="nexus-s4-process-card is-cyan" data-s4-collider="process-card">
+<div class="nexus-s4-process-card-inner">
+<div class="nexus-s4-process-index" data-s4-collider="process-index">01</div>
+<div>
+<h3 class="nexus-s4-process-title" data-s4-collider="process-title">
+                    Забросьте входные данные
                   </h3>
-
-                  <p class="nexus-s4-process-copy" data-s4-collider="process-copy">
-                    Prompts, references, colors, moods, screenshots, layout fragments, and rough creative instincts
-                    enter the system.
+<p class="nexus-s4-process-copy" data-s4-collider="process-copy">
+                    Промпты, референсы, цвета, настроения, скриншоты, фрагменты макетов и сырые творческие интуиции
+                    попадают в систему.
                   </p>
-                </div>
-
-              </div>
-            </article>
-
-            <article class="nexus-s4-process-card is-pink" data-s4-collider="process-card">
-              <div class="nexus-s4-process-card-inner">
-
-                <div class="nexus-s4-process-index" data-s4-collider="process-index">02</div>
-
-                <div>
-                  <h3 class="nexus-s4-process-title" data-s4-collider="process-title">
-                    Force Collision
+</div>
+</div>
+</article>
+<article class="nexus-s4-process-card is-pink" data-s4-collider="process-card">
+<div class="nexus-s4-process-card-inner">
+<div class="nexus-s4-process-index" data-s4-collider="process-index">02</div>
+<div>
+<h3 class="nexus-s4-process-title" data-s4-collider="process-title">
+                    Запустите столкновение
                   </h3>
-
-                  <p class="nexus-s4-process-copy" data-s4-collider="process-copy">
-                    Ideas are compared, remixed, rejected, compressed, and pushed until a sharper visual language
-                    emerges.
+<p class="nexus-s4-process-copy" data-s4-collider="process-copy">
+                    Идеи сравниваются, ремикшируются, отбрасываются, сжимаются и дожимаются, пока не проявится более чёткий визуальный
+                    язык.
                   </p>
-                </div>
-
-              </div>
-            </article>
-
-            <article class="nexus-s4-process-card is-gold" data-s4-collider="process-card">
-              <div class="nexus-s4-process-card-inner">
-
-                <div class="nexus-s4-process-index" data-s4-collider="process-index">03</div>
-
-                <div>
-                  <h3 class="nexus-s4-process-title" data-s4-collider="process-title">
-                    Lock Direction
+</div>
+</div>
+</article>
+<article class="nexus-s4-process-card is-gold" data-s4-collider="process-card">
+<div class="nexus-s4-process-card-inner">
+<div class="nexus-s4-process-index" data-s4-collider="process-index">03</div>
+<div>
+<h3 class="nexus-s4-process-title" data-s4-collider="process-title">
+                    Зафиксируйте направление
                   </h3>
-
-                  <p class="nexus-s4-process-copy" data-s4-collider="process-copy">
-                    The strongest patterns become rules: typography, color, hierarchy, interaction, and section
-                    rhythm.
+<p class="nexus-s4-process-copy" data-s4-collider="process-copy">
+                    Сильнейшие паттерны становятся правилами: типографика, цвет, иерархия, взаимодействие и ритм
+                    секций.
                   </p>
+</div>
+</div>
+</article>
+</div>
+</div>
+<!-- Right Engine Visual -->
+<div class="relative z-10">
+<div class="nexus-s4-machine" data-s4-collider="machine">
+<!-- Header Bar -->
+<div class="nexus-s4-machine-header" data-s4-collider="machine-header">
+<div>
+<div class="text-[0.62rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(232, 184, 93, 0.62);">
+                  Статус движка
                 </div>
-
-              </div>
-            </article>
-
-          </div>
-
-        </div>
-
-        <!-- Right Engine Visual -->
-        <div class="relative z-10">
-
-          <div class="nexus-s4-machine" data-s4-collider="machine">
-
-            <!-- Header Bar -->
-            <div class="nexus-s4-machine-header" data-s4-collider="machine-header">
-              <div>
-                <div class="text-[0.62rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(232, 184, 93, 0.62);">
-                  Engine Status
+<div class="nexus-s4-status-title" data-s4-collider="status-title">
+                  Столкновение стабильно
                 </div>
-
-                <div class="nexus-s4-status-title" data-s4-collider="status-title">
-                  Collision Stable
-                </div>
+</div>
+<div class="nexus-s4-status-badge" data-s4-collider="status-badge">
+<span></span>
+                В сети
               </div>
-
-              <div class="nexus-s4-status-badge" data-s4-collider="status-badge">
-                <span></span>
-                Online
-              </div>
-            </div>
-
-            <!-- Monitor -->
-            <div class="nexus-s4-monitor" data-s4-collider="monitor">
-
-              <!-- Monitor Labels -->
-              <div class="nexus-s4-monitor-label color" data-s4-collider="monitor-label">Color</div>
-              <div class="nexus-s4-monitor-label type" data-s4-collider="monitor-label">Type</div>
-              <div class="nexus-s4-monitor-label motion" data-s4-collider="monitor-label">Motion</div>
-              <div class="nexus-s4-monitor-label system" data-s4-collider="monitor-label">System</div>
-
-              <!-- Center Field -->
-              <div class="nexus-s4-core-field" data-s4-collider="core-field">
-                <div class="nexus-s4-ring"></div>
-                <div class="nexus-s4-ring"></div>
-                <div class="nexus-s4-ring"></div>
-                <div class="nexus-s4-core" data-s4-collider="core"></div>
-
-                <span class="nexus-s4-orbit-dot d1"></span>
-                <span class="nexus-s4-orbit-dot d2"></span>
-                <span class="nexus-s4-orbit-dot d3"></span>
-                <span class="nexus-s4-orbit-dot d4"></span>
-              </div>
-
-              <!-- Bottom Console -->
-              <div class="nexus-s4-console" data-s4-collider="console">
-                <div class="nexus-s4-console-grid">
-
-                  <div style="color: var(--nexus-cyan);" data-s4-collider="signal">
-                    <div class="nexus-s4-signal-label">
-                      <span>Signal Match</span>
-                      <span>94%</span>
-                    </div>
-
-                    <div class="nexus-s4-signal-track">
-                      <i class="nexus-s4-signal-fill" style="--signal-width: 94%; --delay: 0s;"></i>
-                    </div>
-                  </div>
-
-                  <div style="color: var(--nexus-pink);" data-s4-collider="signal">
-                    <div class="nexus-s4-signal-label">
-                      <span>Remix Force</span>
-                      <span>88%</span>
-                    </div>
-
-                    <div class="nexus-s4-signal-track">
-                      <i class="nexus-s4-signal-fill" style="--signal-width: 88%; --delay: -0.8s;"></i>
-                    </div>
-                  </div>
-
-                  <div style="color: var(--nexus-gold);" data-s4-collider="signal">
-                    <div class="nexus-s4-signal-label">
-                      <span>World Lock</span>
-                      <span>97%</span>
-                    </div>
-
-                    <div class="nexus-s4-signal-track">
-                      <i class="nexus-s4-signal-fill" style="--signal-width: 97%; --delay: -1.4s;"></i>
-                    </div>
-                  </div>
-
-                </div>
-              </div>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+ Монитор 
+<div class="nexus-s4-monitor" data-s4-collider="monitor">
+<!-- Monitor Labels -->
+<div class="nexus-s4-monitor-label color" data-s4-collider="monitor-label">Цвет</div>
+<div class="nexus-s4-monitor-label type" data-s4-collider="monitor-label">Шрифт</div>
+<div class="nexus-s4-monitor-label motion" data-s4-collider="monitor-label">Моушн</div>
+<div class="nexus-s4-monitor-label system" data-s4-collider="monitor-label">Система</div>
+<!-- Center Field -->
+<div class="nexus-s4-core-field" data-s4-collider="core-field">
+<div class="nexus-s4-ring"></div>
+<div class="nexus-s4-ring"></div>
+<div class="nexus-s4-ring"></div>
+<div class="nexus-s4-core" data-s4-collider="core"></div>
+<span class="nexus-s4-orbit-dot d1"></span>
+<span class="nexus-s4-orbit-dot d2"></span>
+<span class="nexus-s4-orbit-dot d3"></span>
+<span class="nexus-s4-orbit-dot d4"></span>
+</div>
+<!-- Bottom Console -->
+<div class="nexus-s4-console" data-s4-collider="console">
+<div class="nexus-s4-console-grid">
+<div data-s4-collider="signal" style="color: var(--nexus-cyan);">
+<div class="nexus-s4-signal-label">
+<span>Совпадение сигнала</span>
+<span>94%</span>
+</div>
+<div class="nexus-s4-signal-track">
+<i class="nexus-s4-signal-fill" style="--signal-width: 94%; --delay: 0s;"></i>
+</div>
+</div>
+<div data-s4-collider="signal" style="color: var(--nexus-pink);">
+<div class="nexus-s4-signal-label">
+<span>Сила ремикса</span>
+<span>88%</span>
+</div>
+<div class="nexus-s4-signal-track">
+<i class="nexus-s4-signal-fill" style="--signal-width: 88%; --delay: -0.8s;"></i>
+</div>
+</div>
+<div data-s4-collider="signal" style="color: var(--nexus-gold);">
+<div class="nexus-s4-signal-label">
+<span>Фиксация мира</span>
+<span>97%</span>
+</div>
+<div class="nexus-s4-signal-track">
+<i class="nexus-s4-signal-fill" style="--signal-width: 97%; --delay: -1.4s;"></i>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-    <!-- =====================================================
+<!-- =====================================================
      SECTION 05 — HIGH SCORES
      Cyan / blue scoreboard layer with targeted Matter.js colliders.
      ===================================================== -->
-    <section id="high-scores" class="nexus-s5-section">
-
-      <div id="section-5-catcher" class="nexus-s5-stage">
-
-        <div class="nexus-s5-inner">
-
-          <!-- Header -->
-          <div class="nexus-s5-header">
-
-            <div>
-              <div class="nexus-s5-eyebrow" data-s5-collider="eyebrow">
-                <span class="font-arcade text-2xl leading-none">//</span>
-                <span class="text-xs font-bold uppercase tracking-[0.28em]">Performance layer</span>
-              </div>
-
-              <h2 class="nexus-s5-title">
-                <span class="line-one" data-s5-collider="headline">High</span>
-                <span class="line-two" data-s5-collider="headline">Scores</span>
-              </h2>
-            </div>
-
-            <div class="lg:ml-auto">
-              <p class="nexus-s5-copy" data-s5-collider="subtitle">
-                Every run leaves a signal. Track the worlds created, systems stabilized, layouts upgraded,
-                and creative loops completed across the Idea Arcade.
+<section class="nexus-s5-section" id="high-scores">
+<div class="nexus-s5-stage" id="section-5-catcher">
+<div class="nexus-s5-inner">
+<!-- Header -->
+<div class="nexus-s5-header">
+<div>
+<div class="nexus-s5-eyebrow" data-s5-collider="eyebrow">
+<span class="font-arcade text-2xl leading-none">//</span>
+<span class="text-xs font-bold uppercase tracking-[0.28em]">Слой производительности</span>
+</div>
+<h2 class="nexus-s5-title">
+<span class="line-one" data-s5-collider="headline">Лучшие</span>
+<span class="line-two" data-s5-collider="headline">результаты</span>
+</h2>
+</div>
+<div class="lg:ml-auto">
+<p class="nexus-s5-copy" data-s5-collider="subtitle">
+                Каждый забег оставляет сигнал. Отслеживайте созданные миры, стабилизированные системы, улучшенные макеты
+                и завершённые креативные циклы по всей аркаде идей.
               </p>
-
-              <div class="nexus-s5-tags" data-s5-collider="tags">
-                <span class="nexus-s5-tag text-[#00f0ff]" data-s5-collider="tag">Live Board</span>
-                <span class="nexus-s5-tag text-[#6f9bff]" data-s5-collider="tag">Creative Runs</span>
-                <span class="nexus-s5-tag text-[#ff66b3]" data-s5-collider="tag">World Lock</span>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Metrics -->
-          <div class="nexus-s5-metrics">
-
-            <article class="nexus-s5-metric-card is-cyan" data-s5-collider="metric-card">
-              <div class="nexus-s5-metric-inner">
-                <div class="nexus-s5-metric-top" data-s5-collider="metric-top">
-                  <div class="nexus-s5-metric-label">Concepts</div>
-                  <span class="nexus-s5-dot" style="--delay: 0s;"></span>
-                </div>
-
-                <div class="nexus-s5-number" data-s5-collider="metric-number">
-                  <span class="nexus-count" data-count="128">0</span>
-                </div>
-
-                <div class="nexus-s5-caption" data-s5-collider="metric-caption">Generated Ideas</div>
-              </div>
-            </article>
-
-            <article class="nexus-s5-metric-card is-blue" data-s5-collider="metric-card">
-              <div class="nexus-s5-metric-inner">
-                <div class="nexus-s5-metric-top" data-s5-collider="metric-top">
-                  <div class="nexus-s5-metric-label">Worlds</div>
-                  <span class="nexus-s5-dot" style="--delay: -0.4s;"></span>
-                </div>
-
-                <div class="nexus-s5-number" data-s5-collider="metric-number">
-                  <span class="nexus-count" data-count="42">0</span>
-                </div>
-
-                <div class="nexus-s5-caption" data-s5-collider="metric-caption">Stabilized Systems</div>
-              </div>
-            </article>
-
-            <article class="nexus-s5-metric-card is-pink" data-s5-collider="metric-card">
-              <div class="nexus-s5-metric-inner">
-                <div class="nexus-s5-metric-top" data-s5-collider="metric-top">
-                  <div class="nexus-s5-metric-label">Speed</div>
-                  <span class="nexus-s5-dot" style="--delay: -0.8s;"></span>
-                </div>
-
-                <div class="nexus-s5-number" data-s5-collider="metric-number">
-                  <span class="nexus-count" data-count="9.8" data-decimal="1" data-suffix="x">0</span>
-                </div>
-
-                <div class="nexus-s5-caption" data-s5-collider="metric-caption">Faster Direction</div>
-              </div>
-            </article>
-
-            <article class="nexus-s5-metric-card is-purple" data-s5-collider="metric-card">
-              <div class="nexus-s5-metric-inner">
-                <div class="nexus-s5-metric-top" data-s5-collider="metric-top">
-                  <div class="nexus-s5-metric-label">Modes</div>
-                  <span class="nexus-s5-dot" style="--delay: -1.2s;"></span>
-                </div>
-
-                <div class="nexus-s5-number" data-s5-collider="metric-number">
-                  <span class="nexus-count" data-count="4" data-prefix="0">0</span>
-                </div>
-
-                <div class="nexus-s5-caption" data-s5-collider="metric-caption">Active Game Modes</div>
-              </div>
-            </article>
-
-          </div>
-
-          <!-- Leaderboard + Current Run -->
-          <div class="nexus-s5-board-grid">
-
-            <!-- Leaderboard -->
-            <div class="nexus-s5-leaderboard" data-s5-collider="leaderboard">
-
-              <div class="nexus-s5-leaderboard-head" data-s5-collider="leaderboard-head">
-                <div>Rank</div>
-                <div>Player</div>
-                <div>Run Type</div>
-                <div class="text-right">Score</div>
-              </div>
-
-              <div class="nexus-s5-row" data-s5-collider="leaderboard-row">
-                <div class="nexus-s5-rank-number text-[#00f0ff]" data-s5-collider="rank">01</div>
-
-                <div>
-                  <div class="nexus-s5-player-name" data-s5-collider="player-name">NovaByte</div>
-                  <div class="nexus-s5-player-meta" data-s5-collider="player-meta">Visual System Run</div>
-                </div>
-
-                <div class="nexus-s5-run-type text-[#00f0ff]" data-s5-collider="run-type">Brand System</div>
-                <div class="nexus-s5-score text-[#00f0ff]" data-s5-collider="score">98,400</div>
-              </div>
-
-              <div class="nexus-s5-row" data-s5-collider="leaderboard-row">
-                <div class="nexus-s5-rank-number text-[#6f9bff]" data-s5-collider="rank">02</div>
-
-                <div>
-                  <div class="nexus-s5-player-name" data-s5-collider="player-name">Mira Vector</div>
-                  <div class="nexus-s5-player-meta" data-s5-collider="player-meta">Campaign Completion</div>
-                </div>
-
-                <div class="nexus-s5-run-type text-[#6f9bff]" data-s5-collider="run-type">Landing Page</div>
-                <div class="nexus-s5-score text-[#6f9bff]" data-s5-collider="score">87,200</div>
-              </div>
-
-              <div class="nexus-s5-row" data-s5-collider="leaderboard-row">
-                <div class="nexus-s5-rank-number text-[#ff66b3]" data-s5-collider="rank">03</div>
-
-                <div>
-                  <div class="nexus-s5-player-name" data-s5-collider="player-name">PixelMancer</div>
-                  <div class="nexus-s5-player-meta" data-s5-collider="player-meta">Motion Pattern Lock</div>
-                </div>
-
-                <div class="nexus-s5-run-type text-[#ff66b3]" data-s5-collider="run-type">Motion Concept</div>
-                <div class="nexus-s5-score text-[#ff66b3]" data-s5-collider="score">76,900</div>
-              </div>
-
-              <div class="nexus-s5-row" data-s5-collider="leaderboard-row">
-                <div class="nexus-s5-rank-number text-[#b45cff]" data-s5-collider="rank">04</div>
-
-                <div>
-                  <div class="nexus-s5-player-name" data-s5-collider="player-name">Ryo Signal</div>
-                  <div class="nexus-s5-player-meta" data-s5-collider="player-meta">Sandbox Remix Chain</div>
-                </div>
-
-                <div class="nexus-s5-run-type text-[#b45cff]" data-s5-collider="run-type">Visual Identity</div>
-                <div class="nexus-s5-score text-[#b45cff]" data-s5-collider="score">71,300</div>
-              </div>
-
-            </div>
-
-            <!-- Current Run Panel -->
-            <aside class="nexus-s5-current-run" data-s5-collider="current-run">
-
-              <div class="nexus-s5-run-panel">
-
-                <div class="flex items-center justify-between gap-5" data-s5-collider="run-header">
-                  <div>
-                    <div class="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#00f0ff]/75">
-                      Current Run
+<div class="nexus-s5-tags" data-s5-collider="tags">
+<span class="nexus-s5-tag text-[#00f0ff]" data-s5-collider="tag">Живое табло</span>
+<span class="nexus-s5-tag text-[#6f9bff]" data-s5-collider="tag">Креативные забеги</span>
+<span class="nexus-s5-tag text-[#ff66b3]" data-s5-collider="tag">Фиксация мира</span>
+</div>
+</div>
+</div>
+<!-- Metrics -->
+<div class="nexus-s5-metrics">
+<article class="nexus-s5-metric-card is-cyan" data-s5-collider="metric-card">
+<div class="nexus-s5-metric-inner">
+<div class="nexus-s5-metric-top" data-s5-collider="metric-top">
+<div class="nexus-s5-metric-label">Концепции</div>
+<span class="nexus-s5-dot" style="--delay: 0s;"></span>
+</div>
+<div class="nexus-s5-number" data-s5-collider="metric-number">
+<span class="nexus-count" data-count="128">0</span>
+</div>
+<div class="nexus-s5-caption" data-s5-collider="metric-caption">Сгенерированные идеи</div>
+</div>
+</article>
+<article class="nexus-s5-metric-card is-blue" data-s5-collider="metric-card">
+<div class="nexus-s5-metric-inner">
+<div class="nexus-s5-metric-top" data-s5-collider="metric-top">
+<div class="nexus-s5-metric-label">Миры</div>
+<span class="nexus-s5-dot" style="--delay: -0.4s;"></span>
+</div>
+<div class="nexus-s5-number" data-s5-collider="metric-number">
+<span class="nexus-count" data-count="42">0</span>
+</div>
+<div class="nexus-s5-caption" data-s5-collider="metric-caption">Стабилизированные системы</div>
+</div>
+</article>
+<article class="nexus-s5-metric-card is-pink" data-s5-collider="metric-card">
+<div class="nexus-s5-metric-inner">
+<div class="nexus-s5-metric-top" data-s5-collider="metric-top">
+<div class="nexus-s5-metric-label">Скорость</div>
+<span class="nexus-s5-dot" style="--delay: -0.8s;"></span>
+</div>
+<div class="nexus-s5-number" data-s5-collider="metric-number">
+<span class="nexus-count" data-count="9.8" data-decimal="1" data-suffix="x">0</span>
+</div>
+<div class="nexus-s5-caption" data-s5-collider="metric-caption">Быстрее к направлению</div>
+</div>
+</article>
+<article class="nexus-s5-metric-card is-purple" data-s5-collider="metric-card">
+<div class="nexus-s5-metric-inner">
+<div class="nexus-s5-metric-top" data-s5-collider="metric-top">
+<div class="nexus-s5-metric-label">Режимы</div>
+<span class="nexus-s5-dot" style="--delay: -1.2s;"></span>
+</div>
+<div class="nexus-s5-number" data-s5-collider="metric-number">
+<span class="nexus-count" data-count="4" data-prefix="0">0</span>
+</div>
+<div class="nexus-s5-caption" data-s5-collider="metric-caption">Активные игровые режимы</div>
+</div>
+</article>
+</div>
+<!-- Leaderboard + Current Run -->
+<div class="nexus-s5-board-grid">
+<!-- Leaderboard -->
+<div class="nexus-s5-leaderboard" data-s5-collider="leaderboard">
+<div class="nexus-s5-leaderboard-head" data-s5-collider="leaderboard-head">
+<div>Ранг</div>
+<div>Игрок</div>
+<div>Тип забега</div>
+<div class="text-right">Счёт</div>
+</div>
+<div class="nexus-s5-row" data-s5-collider="leaderboard-row">
+<div class="nexus-s5-rank-number text-[#00f0ff]" data-s5-collider="rank">01</div>
+<div>
+<div class="nexus-s5-player-name" data-s5-collider="player-name">NovaByte</div>
+<div class="nexus-s5-player-meta" data-s5-collider="player-meta">Забег визуальной системы</div>
+</div>
+<div class="nexus-s5-run-type text-[#00f0ff]" data-s5-collider="run-type">Бренд-система</div>
+<div class="nexus-s5-score text-[#00f0ff]" data-s5-collider="score">98,400</div>
+</div>
+<div class="nexus-s5-row" data-s5-collider="leaderboard-row">
+<div class="nexus-s5-rank-number text-[#6f9bff]" data-s5-collider="rank">02</div>
+<div>
+<div class="nexus-s5-player-name" data-s5-collider="player-name">Mira Vector</div>
+<div class="nexus-s5-player-meta" data-s5-collider="player-meta">Завершение кампании</div>
+</div>
+<div class="nexus-s5-run-type text-[#6f9bff]" data-s5-collider="run-type">Лендинг</div>
+<div class="nexus-s5-score text-[#6f9bff]" data-s5-collider="score">87,200</div>
+</div>
+<div class="nexus-s5-row" data-s5-collider="leaderboard-row">
+<div class="nexus-s5-rank-number text-[#ff66b3]" data-s5-collider="rank">03</div>
+<div>
+<div class="nexus-s5-player-name" data-s5-collider="player-name">PixelMancer</div>
+<div class="nexus-s5-player-meta" data-s5-collider="player-meta">Фиксация моушн-паттерна</div>
+</div>
+<div class="nexus-s5-run-type text-[#ff66b3]" data-s5-collider="run-type">Моушн-концепция</div>
+<div class="nexus-s5-score text-[#ff66b3]" data-s5-collider="score">76,900</div>
+</div>
+<div class="nexus-s5-row" data-s5-collider="leaderboard-row">
+<div class="nexus-s5-rank-number text-[#b45cff]" data-s5-collider="rank">04</div>
+<div>
+<div class="nexus-s5-player-name" data-s5-collider="player-name">Ryo Signal</div>
+<div class="nexus-s5-player-meta" data-s5-collider="player-meta">Цепочка ремиксов в песочнице</div>
+</div>
+<div class="nexus-s5-run-type text-[#b45cff]" data-s5-collider="run-type">Визуальная айдентика</div>
+<div class="nexus-s5-score text-[#b45cff]" data-s5-collider="score">71,300</div>
+</div>
+</div>
+<!-- Current Run Panel -->
+<aside class="nexus-s5-current-run" data-s5-collider="current-run">
+<div class="nexus-s5-run-panel">
+<div class="flex items-center justify-between gap-5" data-s5-collider="run-header">
+<div>
+<div class="text-[0.65rem] font-bold uppercase tracking-[0.24em] text-[#00f0ff]/75">
+                      Текущий забег
                     </div>
-
-                    <div class="mt-2 font-display text-3xl font-extrabold uppercase tracking-[-0.055em] text-white">
-                      Arcade Mode
+<div class="mt-2 font-display text-3xl font-extrabold uppercase tracking-[-0.055em] text-white">
+                      Аркадный режим
                     </div>
+</div>
+<div class="nexus-s5-run-icon" data-s5-collider="run-icon">
+<iconify-icon class="text-3xl" icon="solar:gamepad-minimalistic-linear"></iconify-icon>
+</div>
+</div>
+<div class="nexus-s5-progress-group" data-s5-collider="progress-group">
+<div class="text-[#00f0ff]" data-s5-collider="progress-row">
+<div class="nexus-s5-progress-label">
+<span>Стабильность мира</span>
+<span>87%</span>
+</div>
+<div class="nexus-s5-progress-track">
+<i class="nexus-s5-progress-fill" style="--target-width: 87%; --delay: 0s;"></i>
+</div>
+</div>
+<div class="text-[#6f9bff]" data-s5-collider="progress-row">
+<div class="nexus-s5-progress-label">
+<span>Ясность сигнала</span>
+<span>74%</span>
+</div>
+<div class="nexus-s5-progress-track">
+<i class="nexus-s5-progress-fill" style="--target-width: 74%; --delay: 0.18s;"></i>
+</div>
+</div>
+<div class="text-[#ff66b3]" data-s5-collider="progress-row">
+<div class="nexus-s5-progress-label">
+<span>Глубина ремикса</span>
+<span>91%</span>
+</div>
+<div class="nexus-s5-progress-track">
+<i class="nexus-s5-progress-fill" style="--target-width: 91%; --delay: 0.36s;"></i>
+</div>
+</div>
+</div>
+<div class="nexus-s5-bonus" data-s5-collider="bonus">
+<div class="nexus-s5-bonus-title" data-s5-collider="bonus-title">
+                    Бонусный раунд
                   </div>
-
-                  <div class="nexus-s5-run-icon" data-s5-collider="run-icon">
-                    <iconify-icon icon="solar:gamepad-minimalistic-linear" class="text-3xl"></iconify-icon>
-                  </div>
-                </div>
-
-                <div class="nexus-s5-progress-group" data-s5-collider="progress-group">
-
-                  <div class="text-[#00f0ff]" data-s5-collider="progress-row">
-                    <div class="nexus-s5-progress-label">
-                      <span>World Stability</span>
-                      <span>87%</span>
-                    </div>
-
-                    <div class="nexus-s5-progress-track">
-                      <i class="nexus-s5-progress-fill" style="--target-width: 87%; --delay: 0s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="text-[#6f9bff]" data-s5-collider="progress-row">
-                    <div class="nexus-s5-progress-label">
-                      <span>Signal Clarity</span>
-                      <span>74%</span>
-                    </div>
-
-                    <div class="nexus-s5-progress-track">
-                      <i class="nexus-s5-progress-fill" style="--target-width: 74%; --delay: 0.18s;"></i>
-                    </div>
-                  </div>
-
-                  <div class="text-[#ff66b3]" data-s5-collider="progress-row">
-                    <div class="nexus-s5-progress-label">
-                      <span>Remix Depth</span>
-                      <span>91%</span>
-                    </div>
-
-                    <div class="nexus-s5-progress-track">
-                      <i class="nexus-s5-progress-fill" style="--target-width: 91%; --delay: 0.36s;"></i>
-                    </div>
-                  </div>
-
-                </div>
-
-                <div class="nexus-s5-bonus" data-s5-collider="bonus">
-                  <div class="nexus-s5-bonus-title" data-s5-collider="bonus-title">
-                    Bonus Round
-                  </div>
-
-                  <p class="mt-3 text-sm leading-relaxed text-gray-300" data-s5-collider="bonus-copy">
-                    Complete one more remix chain to unlock a cleaner system direction.
+<p class="mt-3 text-sm leading-relaxed text-gray-300" data-s5-collider="bonus-copy">
+                    Завершите ещё одну цепочку ремиксов, чтобы открыть более чистое направление системы.
                   </p>
-                </div>
-
-              </div>
-
-            </aside>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
-
-    <!-- =====================================================
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
+</section>
+<!-- =====================================================
  SECTION 06 — CHEAT CODES
  Pink / purple command layer with targeted Matter.js colliders.
  ===================================================== -->
-<section id="cheat-codes" class="nexus-s6-section">
-
-  <div id="section-6-catcher" class="nexus-s6-stage">
-
-    <div class="nexus-s6-inner">
-
-      <!-- Centered Header -->
-      <div class="nexus-s6-header">
-
-        <div class="nexus-s6-eyebrow" data-s6-collider="eyebrow">
-          <span class="font-arcade text-2xl leading-none">//</span>
-          <span class="text-xs font-bold uppercase tracking-[0.28em]">Command layer</span>
-        </div>
-
-        <h2 class="nexus-s6-title">
-          <span class="line-one" data-s6-collider="headline">Cheat</span>
-          <span class="line-two" data-s6-collider="headline">Codes</span>
-        </h2>
-
-        <p class="nexus-s6-copy" data-s6-collider="subtitle">
-          Not every creative problem needs a full rebuild. Sometimes you need the right command:
-          lock the style, chain the remix, sync the section rhythm, or export the world.
+<section class="nexus-s6-section" id="cheat-codes">
+<div class="nexus-s6-stage" id="section-6-catcher">
+<div class="nexus-s6-inner">
+<!-- Centered Header -->
+<div class="nexus-s6-header">
+<div class="nexus-s6-eyebrow" data-s6-collider="eyebrow">
+<span class="font-arcade text-2xl leading-none">//</span>
+<span class="text-xs font-bold uppercase tracking-[0.28em]">Командный слой</span>
+</div>
+<h2 class="nexus-s6-title">
+<span class="line-one" data-s6-collider="headline">Чит-</span>
+<span class="line-two" data-s6-collider="headline">коды</span>
+</h2>
+<p class="nexus-s6-copy" data-s6-collider="subtitle">
+          Не каждая творческая проблема требует полной пересборки. Иногда нужна правильная команда:
+          зафиксировать стиль, выстроить цепочку ремиксов, синхронизировать ритм секций или экспортировать мир.
         </p>
-
-        <div class="nexus-s6-command" data-s6-collider="main-command">
-          <div class="nexus-s6-command-inner">
-            <div>
-              <div class="nexus-s6-command-label" data-s6-collider="command-label">
-                Enter code
+<div class="nexus-s6-command" data-s6-collider="main-command">
+<div class="nexus-s6-command-inner">
+<div>
+<div class="nexus-s6-command-label" data-s6-collider="command-label">
+                Введите код
               </div>
-
-              <div class="nexus-s6-command-code" data-s6-collider="command-code">
+<div class="nexus-s6-command-code" data-s6-collider="command-code">
                 &gt; unlock<span>_creative_system</span><span class="nexus-s6-cursor">_</span>
-              </div>
+</div>
+</div>
+<div class="nexus-s6-command-button" data-s6-collider="command-button">
+              Выполнить
             </div>
-
-            <div class="nexus-s6-command-button" data-s6-collider="command-button">
-              Execute
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-      <!-- Main Layout -->
-      <div class="nexus-s6-layout">
-
-        <!-- Cheat Code Grid -->
-        <div class="nexus-s6-code-grid">
-
-          <!-- Code 01 -->
-          <article class="nexus-s6-card is-pink" data-s6-collider="code-card">
-            <div class="nexus-s6-card-inner">
-
-              <div class="nexus-s6-card-top" data-s6-collider="card-top">
-                <div class="nexus-s6-index" data-s6-collider="card-index">01</div>
-
-                <div class="nexus-s6-icon" data-s6-collider="card-icon">
-                  <iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon>
-                </div>
-              </div>
-
-              <h3 class="nexus-s6-card-title" data-s6-collider="card-title">STYLE_LOCK</h3>
-
-              <p class="nexus-s6-card-copy" data-s6-collider="card-copy">
-                Preserve the strongest visual direction so future sections keep the same design DNA.
+</div>
+</div>
+</div>
+<!-- Main Layout -->
+<div class="nexus-s6-layout">
+<!-- Cheat Code Grid -->
+<div class="nexus-s6-code-grid">
+<!-- Code 01 -->
+<article class="nexus-s6-card is-pink" data-s6-collider="code-card">
+<div class="nexus-s6-card-inner">
+<div class="nexus-s6-card-top" data-s6-collider="card-top">
+<div class="nexus-s6-index" data-s6-collider="card-index">01</div>
+<div class="nexus-s6-icon" data-s6-collider="card-icon">
+<iconify-icon icon="solar:lock-keyhole-linear"></iconify-icon>
+</div>
+</div>
+<h3 class="nexus-s6-card-title" data-s6-collider="card-title">STYLE_LOCK</h3>
+<p class="nexus-s6-card-copy" data-s6-collider="card-copy">
+                Сохраняет сильнейшее визуальное направление, чтобы будущие секции несли ту же дизайн-ДНК.
               </p>
-
-              <div class="nexus-s6-card-command" data-s6-collider="card-command">
-                <div class="nexus-s6-card-command-label">Command</div>
-                <div class="nexus-s6-card-command-code">/lock style --active</div>
-              </div>
-
-            </div>
-          </article>
-
-          <!-- Code 02 -->
-          <article class="nexus-s6-card is-purple" data-s6-collider="code-card">
-            <div class="nexus-s6-card-inner">
-
-              <div class="nexus-s6-card-top" data-s6-collider="card-top">
-                <div class="nexus-s6-index" data-s6-collider="card-index">02</div>
-
-                <div class="nexus-s6-icon" data-s6-collider="card-icon">
-                  <iconify-icon icon="solar:refresh-circle-linear"></iconify-icon>
-                </div>
-              </div>
-
-              <h3 class="nexus-s6-card-title" data-s6-collider="card-title">REMIX_CHAIN</h3>
-
-              <p class="nexus-s6-card-copy" data-s6-collider="card-copy">
-                Create new variations from an existing direction without losing the original creative thread.
+<div class="nexus-s6-card-command" data-s6-collider="card-command">
+<div class="nexus-s6-card-command-label">Команда</div>
+<div class="nexus-s6-card-command-code">/lock style --active</div>
+</div>
+</div>
+</article>
+<!-- Code 02 -->
+<article class="nexus-s6-card is-purple" data-s6-collider="code-card">
+<div class="nexus-s6-card-inner">
+<div class="nexus-s6-card-top" data-s6-collider="card-top">
+<div class="nexus-s6-index" data-s6-collider="card-index">02</div>
+<div class="nexus-s6-icon" data-s6-collider="card-icon">
+<iconify-icon icon="solar:refresh-circle-linear"></iconify-icon>
+</div>
+</div>
+<h3 class="nexus-s6-card-title" data-s6-collider="card-title">REMIX_CHAIN</h3>
+<p class="nexus-s6-card-copy" data-s6-collider="card-copy">
+                Создаёт новые вариации существующего направления, не теряя исходную творческую нить.
               </p>
-
-              <div class="nexus-s6-card-command" data-s6-collider="card-command">
-                <div class="nexus-s6-card-command-label">Command</div>
-                <div class="nexus-s6-card-command-code">/remix chain --x04</div>
-              </div>
-
-            </div>
-          </article>
-
-          <!-- Code 03 -->
-          <article class="nexus-s6-card is-blue" data-s6-collider="code-card">
-            <div class="nexus-s6-card-inner">
-
-              <div class="nexus-s6-card-top" data-s6-collider="card-top">
-                <div class="nexus-s6-index" data-s6-collider="card-index">03</div>
-
-                <div class="nexus-s6-icon" data-s6-collider="card-icon">
-                  <iconify-icon icon="solar:layers-minimalistic-linear"></iconify-icon>
-                </div>
-              </div>
-
-              <h3 class="nexus-s6-card-title" data-s6-collider="card-title">SECTION_SYNC</h3>
-
-              <p class="nexus-s6-card-copy" data-s6-collider="card-copy">
-                Keep spacing, hierarchy, type scale, borders, and interaction logic consistent across the page.
+<div class="nexus-s6-card-command" data-s6-collider="card-command">
+<div class="nexus-s6-card-command-label">Команда</div>
+<div class="nexus-s6-card-command-code">/remix chain --x04</div>
+</div>
+</div>
+</article>
+<!-- Code 03 -->
+<article class="nexus-s6-card is-blue" data-s6-collider="code-card">
+<div class="nexus-s6-card-inner">
+<div class="nexus-s6-card-top" data-s6-collider="card-top">
+<div class="nexus-s6-index" data-s6-collider="card-index">03</div>
+<div class="nexus-s6-icon" data-s6-collider="card-icon">
+<iconify-icon icon="solar:layers-minimalistic-linear"></iconify-icon>
+</div>
+</div>
+<h3 class="nexus-s6-card-title" data-s6-collider="card-title">SECTION_SYNC</h3>
+<p class="nexus-s6-card-copy" data-s6-collider="card-copy">
+                Поддерживает единые отступы, иерархию, шкалу шрифтов, границы и логику взаимодействия по всей странице.
               </p>
-
-              <div class="nexus-s6-card-command" data-s6-collider="card-command">
-                <div class="nexus-s6-card-command-label">Command</div>
-                <div class="nexus-s6-card-command-code">/sync sections --all</div>
-              </div>
-
-            </div>
-          </article>
-
-          <!-- Code 04 -->
-          <article class="nexus-s6-card is-cyan" data-s6-collider="code-card">
-            <div class="nexus-s6-card-inner">
-
-              <div class="nexus-s6-card-top" data-s6-collider="card-top">
-                <div class="nexus-s6-index" data-s6-collider="card-index">04</div>
-
-                <div class="nexus-s6-icon" data-s6-collider="card-icon">
-                  <iconify-icon icon="solar:shield-warning-linear"></iconify-icon>
-                </div>
-              </div>
-
-              <h3 class="nexus-s6-card-title" data-s6-collider="card-title">BOSS_FIX</h3>
-
-              <p class="nexus-s6-card-copy" data-s6-collider="card-copy">
-                Detect weak hierarchy, muddy contrast, generic UI patterns, and layout imbalance before shipping.
+<div class="nexus-s6-card-command" data-s6-collider="card-command">
+<div class="nexus-s6-card-command-label">Команда</div>
+<div class="nexus-s6-card-command-code">/sync sections --all</div>
+</div>
+</div>
+</article>
+<!-- Code 04 -->
+<article class="nexus-s6-card is-cyan" data-s6-collider="code-card">
+<div class="nexus-s6-card-inner">
+<div class="nexus-s6-card-top" data-s6-collider="card-top">
+<div class="nexus-s6-index" data-s6-collider="card-index">04</div>
+<div class="nexus-s6-icon" data-s6-collider="card-icon">
+<iconify-icon icon="solar:shield-warning-linear"></iconify-icon>
+</div>
+</div>
+<h3 class="nexus-s6-card-title" data-s6-collider="card-title">BOSS_FIX</h3>
+<p class="nexus-s6-card-copy" data-s6-collider="card-copy">
+                Обнаруживает слабую иерархию, мутный контраст, шаблонные UI-паттерны и дисбаланс макета до релиза.
               </p>
-
-              <div class="nexus-s6-card-command" data-s6-collider="card-command">
-                <div class="nexus-s6-card-command-label">Command</div>
-                <div class="nexus-s6-card-command-code">/boss fix --critical</div>
-              </div>
-
-            </div>
-          </article>
-
-        </div>
-
-        <!-- Terminal Panel -->
-        <aside class="nexus-s6-terminal" data-s6-collider="terminal">
-
-          <div class="nexus-s6-terminal-inner">
-
-            <div class="nexus-s6-terminal-head" data-s6-collider="terminal-head">
-              <div>
-                <div class="text-[0.65rem] font-bold uppercase tracking-[0.24em]" style="color: rgba(244, 91, 168, 0.75);">
-                  Terminal
+<div class="nexus-s6-card-command" data-s6-collider="card-command">
+<div class="nexus-s6-card-command-label">Команда</div>
+<div class="nexus-s6-card-command-code">/boss fix --critical</div>
+</div>
+</div>
+</article>
+</div>
+<!-- Terminal Panel -->
+<aside class="nexus-s6-terminal" data-s6-collider="terminal">
+<div class="nexus-s6-terminal-inner">
+<div class="nexus-s6-terminal-head" data-s6-collider="terminal-head">
+<div>
+<div class="text-[0.65rem] font-bold uppercase tracking-[0.24em]" style="color: rgba(244, 91, 168, 0.75);">
+                  Терминал
                 </div>
-
-                <div class="mt-2 font-display text-3xl font-extrabold uppercase tracking-[-0.055em] text-white" data-s6-collider="terminal-title">
-                  Code Console
+<div class="mt-2 font-display text-3xl font-extrabold uppercase tracking-[-0.055em] text-white" data-s6-collider="terminal-title">
+                  Консоль кодов
                 </div>
-              </div>
-
-              <div class="nexus-s6-dots" data-s6-collider="terminal-dots">
-                <span style="background: var(--nexus-pink); color: var(--nexus-pink);"></span>
-                <span style="background: var(--nexus-purple); color: var(--nexus-purple);"></span>
-                <span style="background: var(--nexus-cyan); color: var(--nexus-cyan);"></span>
-              </div>
-            </div>
-
-            <!-- Terminal Lines -->
-            <div class="nexus-s6-terminal-lines" data-s6-collider="terminal-lines">
-              <div style="color: var(--nexus-pink);" data-s6-collider="terminal-line">&gt; boot creative_engine</div>
-              <div class="text-gray-500" data-s6-collider="terminal-line">loading visual memory...</div>
-              <div style="color: var(--nexus-purple);" data-s6-collider="terminal-line">style map detected</div>
-              <div class="text-gray-500" data-s6-collider="terminal-line">checking section rhythm...</div>
-              <div style="color: var(--nexus-cyan);" data-s6-collider="terminal-line">generic patterns removed</div>
-              <div class="text-gray-500" data-s6-collider="terminal-line">stabilizing direction...</div>
-              <div style="color: var(--nexus-pink);" data-s6-collider="terminal-line">
-                &gt; world_export ready<span class="nexus-s6-cursor">_</span>
-              </div>
-            </div>
-
-            <!-- Export Code -->
-            <div class="nexus-s6-export" data-s6-collider="export">
-
-              <div class="nexus-s6-export-top" data-s6-collider="export-top">
-                <div>
-                  <div class="text-[0.65rem] font-bold uppercase tracking-[0.24em]" style="color: rgba(164, 119, 255, 0.75);">
-                    Final Code
+</div>
+<div class="nexus-s6-dots" data-s6-collider="terminal-dots">
+<span style="background: var(--nexus-pink); color: var(--nexus-pink);"></span>
+<span style="background: var(--nexus-purple); color: var(--nexus-purple);"></span>
+<span style="background: var(--nexus-cyan); color: var(--nexus-cyan);"></span>
+</div>
+</div>
+<!-- Terminal Lines -->
+<div class="nexus-s6-terminal-lines" data-s6-collider="terminal-lines">
+<div data-s6-collider="terminal-line" style="color: var(--nexus-pink);">&gt; boot creative_engine</div>
+<div class="text-gray-500" data-s6-collider="terminal-line">загрузка визуальной памяти...</div>
+<div data-s6-collider="terminal-line" style="color: var(--nexus-purple);">карта стилей обнаружена</div>
+<div class="text-gray-500" data-s6-collider="terminal-line">проверка ритма секций...</div>
+<div data-s6-collider="terminal-line" style="color: var(--nexus-cyan);">шаблонные паттерны удалены</div>
+<div class="text-gray-500" data-s6-collider="terminal-line">стабилизация направления...</div>
+<div data-s6-collider="terminal-line" style="color: var(--nexus-pink);">
+                &gt; world_export готов<span class="nexus-s6-cursor">_</span>
+</div>
+</div>
+<!-- Export Code -->
+<div class="nexus-s6-export" data-s6-collider="export">
+<div class="nexus-s6-export-top" data-s6-collider="export-top">
+<div>
+<div class="text-[0.65rem] font-bold uppercase tracking-[0.24em]" style="color: rgba(164, 119, 255, 0.75);">
+                    Финальный код
                   </div>
-
-                  <div class="nexus-s6-export-title" data-s6-collider="export-title">
+<div class="nexus-s6-export-title" data-s6-collider="export-title">
                     WORLD_EXPORT
                   </div>
-                </div>
-
-                <div class="nexus-s6-export-icon" data-s6-collider="export-icon">
-                  <iconify-icon icon="solar:export-linear" class="text-3xl"></iconify-icon>
-                </div>
-              </div>
-
-              <p class="mt-5 text-sm leading-relaxed" style="color: rgba(248, 243, 255, 0.70);" data-s6-collider="export-copy">
-                Turn the final creative direction into a reusable HTML system with consistent visual rules.
+</div>
+<div class="nexus-s6-export-icon" data-s6-collider="export-icon">
+<iconify-icon class="text-3xl" icon="solar:export-linear"></iconify-icon>
+</div>
+</div>
+<p class="mt-5 text-sm leading-relaxed" data-s6-collider="export-copy" style="color: rgba(248, 243, 255, 0.70);">
+                Превращает финальное креативное направление в переиспользуемую HTML-систему с едиными визуальными правилами.
               </p>
-
-              <div class="nexus-s6-meter-group" data-s6-collider="meter-group">
-
-                <div style="color: var(--nexus-pink);" data-s6-collider="meter-row">
-                  <div class="nexus-s6-meter-label">
-                    <span>Structure</span>
-                    <span>94%</span>
-                  </div>
-
-                  <div class="nexus-s6-meter-track">
-                    <i class="nexus-s6-meter-fill" style="--meter-width: 94%; --delay: 0s;"></i>
-                  </div>
-                </div>
-
-                <div style="color: var(--nexus-purple);" data-s6-collider="meter-row">
-                  <div class="nexus-s6-meter-label">
-                    <span>Visual DNA</span>
-                    <span>88%</span>
-                  </div>
-
-                  <div class="nexus-s6-meter-track">
-                    <i class="nexus-s6-meter-fill" style="--meter-width: 88%; --delay: -0.8s;"></i>
-                  </div>
-                </div>
-
-                <div style="color: var(--nexus-cyan);" data-s6-collider="meter-row">
-                  <div class="nexus-s6-meter-label">
-                    <span>Export Readiness</span>
-                    <span>97%</span>
-                  </div>
-
-                  <div class="nexus-s6-meter-track">
-                    <i class="nexus-s6-meter-fill" style="--meter-width: 97%; --delay: -1.4s;"></i>
-                  </div>
-                </div>
-
-              </div>
-
-            </div>
-
-            <!-- Bottom Chips -->
-            <div class="nexus-s6-chip-row" data-s6-collider="chips">
-              <span class="nexus-s6-chip" data-s6-collider="chip" style="--delay: 0s; color: var(--nexus-pink);">HTML</span>
-              <span class="nexus-s6-chip" data-s6-collider="chip" style="--delay: -0.6s; color: var(--nexus-purple);">Design DNA</span>
-              <span class="nexus-s6-chip" data-s6-collider="chip" style="--delay: -1.2s; color: var(--nexus-cyan);">Export</span>
-            </div>
-
-          </div>
-
-        </aside>
-
-      </div>
-
-    </div>
-
-  </div>
-
+<div class="nexus-s6-meter-group" data-s6-collider="meter-group">
+<div data-s6-collider="meter-row" style="color: var(--nexus-pink);">
+<div class="nexus-s6-meter-label">
+<span>Структура</span>
+<span>94%</span>
+</div>
+<div class="nexus-s6-meter-track">
+<i class="nexus-s6-meter-fill" style="--meter-width: 94%; --delay: 0s;"></i>
+</div>
+</div>
+<div data-s6-collider="meter-row" style="color: var(--nexus-purple);">
+<div class="nexus-s6-meter-label">
+<span>Визуальная ДНК</span>
+<span>88%</span>
+</div>
+<div class="nexus-s6-meter-track">
+<i class="nexus-s6-meter-fill" style="--meter-width: 88%; --delay: -0.8s;"></i>
+</div>
+</div>
+<div data-s6-collider="meter-row" style="color: var(--nexus-cyan);">
+<div class="nexus-s6-meter-label">
+<span>Готовность к экспорту</span>
+<span>97%</span>
+</div>
+<div class="nexus-s6-meter-track">
+<i class="nexus-s6-meter-fill" style="--meter-width: 97%; --delay: -1.4s;"></i>
+</div>
+</div>
+</div>
+</div>
+<!-- Bottom Chips -->
+<div class="nexus-s6-chip-row" data-s6-collider="chips">
+<span class="nexus-s6-chip" data-s6-collider="chip" style="--delay: 0s; color: var(--nexus-pink);">HTML</span>
+<span class="nexus-s6-chip" data-s6-collider="chip" style="--delay: -0.6s; color: var(--nexus-purple);">Дизайн-ДНК</span>
+<span class="nexus-s6-chip" data-s6-collider="chip" style="--delay: -1.2s; color: var(--nexus-cyan);">Экспорт</span>
+</div>
+</div>
+</aside>
+</div>
+</div>
+</div>
 </section>
-
-    <!-- =====================================================
+<!-- =====================================================
  SECTION 07 — FINAL CTA
  Reduced yellow, brighter cubes, targeted Matter.js colliders.
  ===================================================== -->
-<section id="join-the-guild" class="nexus-s7-section">
-
-  <div id="section-7-catcher" class="nexus-s7-stage">
-
-    <div class="nexus-s7-inner">
-
-      <!-- Coin / Core Visual -->
-      <div class="nexus-s7-core" data-s7-collider="core">
-        <div class="nexus-s7-ring r1"></div>
-        <div class="nexus-s7-ring r2"></div>
-        <div class="nexus-s7-ring r3"></div>
-
-        <div class="nexus-s7-coin" data-s7-collider="coin">
-          <span class="font-arcade text-6xl leading-none">N</span>
-        </div>
-      </div>
-
-      <!-- Eyebrow -->
-      <div class="nexus-s7-eyebrow" data-s7-collider="eyebrow">
-        <span class="font-arcade text-2xl leading-none">//</span>
-        <span class="text-xs font-bold uppercase tracking-[0.28em]">Final stage</span>
-      </div>
-
-      <!-- Headline -->
-      <h2 class="nexus-s7-title">
-        <span class="line-one" data-s7-collider="headline">Your Next</span><br>
-        <span class="line-two" data-s7-collider="headline">World Is Waiting</span>
-      </h2>
-
-      <!-- Copy -->
-      <p class="nexus-s7-copy" data-s7-collider="subtitle">
-        Start with a loose idea, a visual reference, or a messy prompt. NEXUS gives it a playable system,
-        a sharper design direction, and a clearer path from chaos to finished creative work.
+<section class="nexus-s7-section" id="join-the-guild">
+<div class="nexus-s7-stage" id="section-7-catcher">
+<div class="nexus-s7-inner">
+<!-- Coin / Core Visual -->
+<div class="nexus-s7-core" data-s7-collider="core">
+<div class="nexus-s7-ring r1"></div>
+<div class="nexus-s7-ring r2"></div>
+<div class="nexus-s7-ring r3"></div>
+<div class="nexus-s7-coin" data-s7-collider="coin">
+<span class="font-arcade text-6xl leading-none">N</span>
+</div>
+</div>
+<!-- Eyebrow -->
+<div class="nexus-s7-eyebrow" data-s7-collider="eyebrow">
+<span class="font-arcade text-2xl leading-none">//</span>
+<span class="text-xs font-bold uppercase tracking-[0.28em]">Финальная стадия</span>
+</div>
+<!-- Headline -->
+<h2 class="nexus-s7-title">
+<span class="line-one" data-s7-collider="headline">Ваш следующий</span><br/>
+<span class="line-two" data-s7-collider="headline">мир уже ждёт</span>
+</h2>
+<!-- Copy -->
+<p class="nexus-s7-copy" data-s7-collider="subtitle">
+        Начните с сырой идеи, визуального референса или беспорядочного промпта. NEXUS даст ему играбельную систему,
+        более чёткое дизайн-направление и понятный путь от хаоса к готовой креативной работе.
       </p>
-
-      <!-- Buttons -->
-      <div class="nexus-s7-actions" data-s7-collider="buttons">
-        <a href="#" class="nexus-s7-button-primary" data-s7-collider="button">
-          Insert Coin
-          <iconify-icon icon="solar:round-alt-arrow-right-linear" class="text-2xl"></iconify-icon>
+<!-- Buttons -->
+<div class="nexus-s7-actions" data-s7-collider="buttons">
+<a class="nexus-s7-button-primary" data-s7-collider="button" href="#">
+          Вставьте монету
+          <iconify-icon class="text-2xl" icon="solar:round-alt-arrow-right-linear"></iconify-icon>
+</a>
+<a class="nexus-s7-button-secondary" data-s7-collider="button" href="#game-modes">
+          Переиграть режимы
         </a>
-
-        <a href="#game-modes" class="nexus-s7-button-secondary" data-s7-collider="button">
-          Replay Modes
-        </a>
-      </div>
-
-      <!-- Status Row -->
-      <div class="nexus-s7-status" data-s7-collider="status">
-
-        <div class="nexus-s7-status-grid">
-
-          <div class="nexus-s7-status-item" data-s7-collider="status-card">
-            <div class="font-arcade text-4xl leading-none" style="color: var(--nexus-cyan);">
+</div>
+<!-- Status Row -->
+<div class="nexus-s7-status" data-s7-collider="status">
+<div class="nexus-s7-status-grid">
+<div class="nexus-s7-status-item" data-s7-collider="status-card">
+<div class="font-arcade text-4xl leading-none" style="color: var(--nexus-cyan);">
               128
             </div>
-
-            <div class="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(248, 243, 255, 0.42);">
-              Input fragments
+<div class="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(248, 243, 255, 0.42);">
+              Фрагменты ввода
             </div>
-          </div>
-
-          <div class="nexus-s7-status-item" data-s7-collider="status-card">
-            <div class="font-arcade text-4xl leading-none" style="color: var(--nexus-pink);">
+</div>
+<div class="nexus-s7-status-item" data-s7-collider="status-card">
+<div class="font-arcade text-4xl leading-none" style="color: var(--nexus-pink);">
               42
             </div>
-
-            <div class="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(248, 243, 255, 0.42);">
-              World collisions
+<div class="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(248, 243, 255, 0.42);">
+              Столкновения миров
             </div>
-          </div>
-
-          <div class="nexus-s7-status-item" data-s7-collider="status-card">
-            <div class="font-arcade text-4xl leading-none" style="color: var(--nexus-gold);">
+</div>
+<div class="nexus-s7-status-item" data-s7-collider="status-card">
+<div class="font-arcade text-4xl leading-none" style="color: var(--nexus-gold);">
               87%
             </div>
-
-            <div class="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(248, 243, 255, 0.42);">
-              World stability
+<div class="mt-2 text-[0.58rem] font-bold uppercase tracking-[0.2em]" style="color: rgba(248, 243, 255, 0.42);">
+              Стабильность мира
             </div>
-          </div>
-
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-
+</div>
+</div>
+</div>
+</div>
+</div>
 </section>
-
-
-    <!-- =====================================================
+<!-- =====================================================
      FOOTER
      ===================================================== -->
 <footer class="nexus-footer">
-
-  <div class="nexus-footer-shell">
-
-    <div class="nexus-footer-grid">
-
-      <!-- Footer Logo -->
-      <div class="nexus-footer-logo">
-        <span class="nexus-footer-mark">
-          <span class="font-arcade text-3xl leading-none">N</span>
-        </span>
-
-        <span class="flex flex-col leading-none">
-          <span class="font-display text-[1.35rem] font-extrabold uppercase tracking-[-0.04em] text-white">
+<div class="nexus-footer-shell">
+<div class="nexus-footer-grid">
+<!-- Footer Logo -->
+<div class="nexus-footer-logo">
+<span class="nexus-footer-mark">
+<span class="font-arcade text-3xl leading-none">N</span>
+</span>
+<span class="flex flex-col leading-none">
+<span class="font-display text-[1.35rem] font-extrabold uppercase tracking-[-0.04em] text-white">
             Nexus
           </span>
-
-          <span class="mt-1 text-[0.56rem] font-bold uppercase tracking-[0.30em]" style="color: rgba(232, 184, 93, 0.70);">
-            Idea Arcade
+<span class="mt-1 text-[0.56rem] font-bold uppercase tracking-[0.30em]" style="color: rgba(232, 184, 93, 0.70);">
+            Аркада идей
           </span>
+</span>
+</div>
+<!-- Footer Nav -->
+<nav class="nexus-footer-nav">
+<a class="nexus-footer-link" href="#hero">Аркада</a>
+<a class="nexus-footer-link" href="#game-modes">Режимы</a>
+<a class="nexus-footer-link" href="#high-scores">результаты</a>
+<a class="nexus-footer-link" href="#cheat-codes">Читы</a>
+<a class="nexus-footer-link" href="#join-the-guild">Гильдия</a>
+</nav>
+<!-- Footer Status -->
+<div class="flex items-center justify-start gap-3 lg:justify-end">
+<span class="h-2.5 w-2.5" style="background: var(--nexus-cyan); box-shadow: 0 0 12px rgba(53, 221, 242, 0.85);"></span>
+<span class="text-[0.62rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(53, 221, 242, 0.78);">
+          Креативный движок в сети
         </span>
-      </div>
-
-      <!-- Footer Nav -->
-      <nav class="nexus-footer-nav">
-        <a href="#hero" class="nexus-footer-link">Arcade</a>
-        <a href="#game-modes" class="nexus-footer-link">Modes</a>
-        <a href="#high-scores" class="nexus-footer-link">Scores</a>
-        <a href="#cheat-codes" class="nexus-footer-link">Cheats</a>
-        <a href="#join-the-guild" class="nexus-footer-link">Guild</a>
-      </nav>
-
-      <!-- Footer Status -->
-      <div class="flex items-center justify-start gap-3 lg:justify-end">
-        <span class="h-2.5 w-2.5" style="background: var(--nexus-cyan); box-shadow: 0 0 12px rgba(53, 221, 242, 0.85);"></span>
-
-        <span class="text-[0.62rem] font-bold uppercase tracking-[0.22em]" style="color: rgba(53, 221, 242, 0.78);">
-          Creative engine online
-        </span>
-      </div>
-
-    </div>
-
-    <!-- Footer Meta -->
-    <div class="nexus-footer-meta">
-      <span>© 2026 NEXUS Idea Arcade. All systems online.</span>
-      <span>Designed for creative collisions, remix chains, and playable worlds.</span>
-    </div>
-
-  </div>
-
+</div>
+</div>
+<!-- Footer Meta -->
+<div class="nexus-footer-meta">
+<span>© 2026 NEXUS Аркада идей. Все системы в сети.</span>
+<span>Создано для креативных столкновений, цепочек ремиксов и играбельных миров.</span>
+</div>
+</div>
 </footer>
-
-  </div>
-
-
-
-  <!-- =====================================================
+</div>
+<!-- =====================================================
      APPLICATION LOGIC
      Place this after the closing Section/Footer markup.
      ===================================================== -->
-  <script>
+<script>
     /* =====================================================
      01. GSAP SETUP
      ===================================================== */
@@ -7751,11 +7387,4 @@ setupSection5Animations();
 
   requestAnimationFrame(animatePixels);
   </script>
-
-
-
-
-
-
-
 </body></html>

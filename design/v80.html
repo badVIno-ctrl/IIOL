@@ -1,18 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
+<html lang="ru">
+<head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Modak-Cafe n Restaurant</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Geist:wght@300;400;500;600&amp;display=swap"
-rel="stylesheet"
-/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
 body { font-family: 'Inter', sans-serif; -webkit-font-smoothing: antialiased; }
 .font-jakarta { font-family: 'Plus Jakarta Sans', sans-serif !important; }
@@ -62,773 +59,446 @@ transform: translateY(0);
 /* Interactive States */
 .hover-lift { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 .hover-lift:hover { transform: translateY(-4px); }
+</style><style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
 </style></head>
-  <body
-    class="md:p-4 min-h-screen flex items-center justify-center text-slate-900 bg-neutral-100 selection:bg-orange-200 selection:text-orange-900 p-4 md:p-6"
-  >
-    <!-- Main Container -->
-    <div
-      class="relative w-full max-w-[1600px] bg-white rounded-[2.5rem] overflow-hidden shadow-2xl ring-1 ring-black/5 flex flex-col"
-    >
-      <!-- HERO SECTION -->
-      <div
-        class="relative w-full h-[90vh] bg-neutral-950 overflow-hidden shrink-0"
-      >
-        <!-- Background Image with Overlay -->
-        <div class="absolute inset-0 animate-enter duration-1000">
-          <img
-            src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&amp;w=2547&amp;auto=format&amp;fit=crop"
-            alt="Cafe Interior"
-            class="w-full h-full object-cover object-center opacity-70 scale-105"
-          />
-          <div
-            class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"
-          ></div>
-          <!-- Grain Texture Overlay -->
-          <div
-            class="absolute inset-0 opacity-[0.03]"
-            style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"
-          ></div>
-        </div>
-
-        <!-- Navbar -->
-        <nav
-          class="absolute top-0 left-0 right-0 z-50 py-8 flex justify-between items-start animate-enter delay-500 px-8 md:px-16"
-        >
-          <a href="#" class="flex items-center gap-3 group">
-            <div
-              class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-orange-400 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300 shadow-lg shadow-black/5"
-            >
-              <iconify-icon
-                icon="solar:chef-hat-heart-bold-duotone"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </div>
-            <div class="flex flex-col justify-center">
-              <span
-                class="text-white font-jakarta font-bold text-lg leading-tight tracking-tight"
-              >
+<body class="md:p-4 min-h-screen flex items-center justify-center text-slate-900 bg-neutral-100 selection:bg-orange-200 selection:text-orange-900 p-4 md:p-6">
+<!-- Main Container -->
+<div class="relative w-full max-w-[1600px] bg-white rounded-[2.5rem] overflow-hidden shadow-2xl ring-1 ring-black/5 flex flex-col">
+<!-- HERO SECTION -->
+<div class="relative w-full h-[90vh] bg-neutral-950 overflow-hidden shrink-0">
+<!-- Background Image with Overlay -->
+<div class="absolute inset-0 animate-enter duration-1000">
+<img alt="Интерьер кафе" class="w-full h-full object-cover object-center opacity-70 scale-105" src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&amp;w=2547&amp;auto=format&amp;fit=crop"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/10"></div>
+<!-- Grain Texture Overlay -->
+<div class="absolute inset-0 opacity-[0.03]" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+</div>
+<!-- Navbar -->
+<nav class="absolute top-0 left-0 right-0 z-50 py-8 flex justify-between items-start animate-enter delay-500 px-8 md:px-16">
+<a class="flex items-center gap-3 group" href="#">
+<div class="w-10 h-10 rounded-full bg-white/10 backdrop-blur-xl border border-white/10 flex items-center justify-center text-orange-400 group-hover:bg-white group-hover:text-orange-500 transition-all duration-300 shadow-lg shadow-black/5">
+<iconify-icon height="20" icon="solar:chef-hat-heart-bold-duotone" width="20"></iconify-icon>
+</div>
+<div class="flex flex-col justify-center">
+<span class="text-white font-jakarta font-bold text-lg leading-tight tracking-tight">
                 Modak-Cafe
               </span>
-              <span
-                class="text-white/70 font-jakarta text-[10px] font-medium tracking-widest uppercase"
-              >
+<span class="text-white/70 font-jakarta text-[10px] font-medium tracking-widest uppercase">
                 n Restaurant
               </span>
-            </div>
-          </a>
-
-          <div class="hidden md:flex items-center gap-3">
-            <span
-              class="px-4 py-2 rounded-full border border-white/10 text-neutral-200 bg-black/20 backdrop-blur-md text-xs font-medium tracking-wide font-geist flex items-center gap-2"
-            >
-              <iconify-icon
-                icon="solar:clock-circle-linear"
-                width="16"
-                height="16"
-                stroke-width="1.5"
-              ></iconify-icon>
-              Open until 10:00 PM
+</div>
+</a>
+<div class="hidden md:flex items-center gap-3">
+<span class="px-4 py-2 rounded-full border border-white/10 text-neutral-200 bg-black/20 backdrop-blur-md text-xs font-medium tracking-wide font-geist flex items-center gap-2">
+<iconify-icon height="16" icon="solar:clock-circle-linear" stroke-width="1.5" width="16"></iconify-icon>
+              Открыто до 22:00
             </span>
-          </div>
-        </nav>
-
-        <!-- Hero Content -->
-        <div
-          class="relative w-full h-full flex flex-col justify-end pb-16 md:pb-24 px-8 md:px-16 pointer-events-none"
-        >
-          <div class="pointer-events-auto">
-            <!-- Badges -->
-            <div
-              class="flex flex-wrap items-center gap-3 mb-8 animate-enter delay-100"
-            >
-              <div
-                class="flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-xs font-semibold font-geist shadow-xl hover:scale-105 transition-transform duration-300 border border-white"
-              >
-                <iconify-icon
-                  icon="solar:star-linear"
-                  class="text-orange-500"
-                  width="16"
-                  height="16"
-                  stroke-width="1.5"
-                ></iconify-icon>
+</div>
+</nav>
+<!-- Hero Content -->
+<div class="relative w-full h-full flex flex-col justify-end pb-16 md:pb-24 px-8 md:px-16 pointer-events-none">
+<div class="pointer-events-auto">
+<!-- Badges -->
+<div class="flex flex-wrap items-center gap-3 mb-8 animate-enter delay-100">
+<div class="flex items-center gap-2 bg-white text-black px-4 py-1.5 rounded-full text-xs font-semibold font-geist shadow-xl hover:scale-105 transition-transform duration-300 border border-white">
+<iconify-icon class="text-orange-500" height="16" icon="solar:star-linear" stroke-width="1.5" width="16"></iconify-icon>
                 4.9
-                <span class="text-neutral-400 font-medium">(840+ reviews)</span>
+                <span class="text-neutral-400 font-medium">(840+ отзывов)</span>
+</div>
+<div class="flex items-center gap-2 glass-panel text-white px-4 py-1.5 rounded-full text-xs font-medium font-geist hover:bg-white/20 transition-colors">
+<iconify-icon height="16" icon="solar:wallet-linear" stroke-width="1.5" width="16"></iconify-icon>
+                Доступная роскошь
               </div>
-              <div
-                class="flex items-center gap-2 glass-panel text-white px-4 py-1.5 rounded-full text-xs font-medium font-geist hover:bg-white/20 transition-colors"
-              >
-                <iconify-icon
-                  icon="solar:wallet-linear"
-                  width="16"
-                  height="16"
-                  stroke-width="1.5"
-                ></iconify-icon>
-                Affordable Luxury
-              </div>
-            </div>
-
-            <h1
-              class="text-white font-jakarta leading-[0.95] drop-shadow-2xl max-w-5xl animate-enter delay-200 text-5xl md:text-8xl mb-8 font-semibold tracking-tighter"
-            >
-              Good Food...
-              <br />
-              <span
-                class="text-transparent bg-clip-text bg-gradient-to-r from-orange-200 via-white to-white"
-              >
-                Good Life.
+</div>
+<h1 class="text-white font-jakarta leading-[0.95] drop-shadow-2xl max-w-5xl animate-enter delay-200 text-5xl md:text-8xl mb-8 font-semibold tracking-tighter">
+              Вкусная еда...
+              <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-orange-200 via-white to-white">
+                Счастливая жизнь.
               </span>
-            </h1>
-
-            <p
-              class="text-neutral-300 text-lg md:text-xl font-light max-w-lg leading-relaxed font-geist mb-12 animate-enter delay-300"
-            >
-              Experience the perfect blend of cafe culture and dining in
-              Sanawad. Providing a "Good Food...Good Life" experience since
-              2022.
+</h1>
+<p class="text-neutral-300 text-lg md:text-xl font-light max-w-lg leading-relaxed font-geist mb-12 animate-enter delay-300">
+              Испытайте идеальное сочетание культуры кафе и ресторанного обслуживания в Санаваде. Опыт «Вкусная еда...Счастливая жизнь» с 2022 года.
             </p>
-
-            <div
-              class="flex flex-col md:flex-row items-start md:items-center gap-4 animate-enter delay-500"
-            >
-              <button
-                class="flex items-center gap-3 bg-white text-black pl-6 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-neutral-100 transition-all font-geist group shadow-lg shadow-white/10"
-              >
-                Explore Menu
-                <span
-                  class="bg-black text-white p-2 rounded-full transition-transform group-hover:rotate-45 duration-300 flex items-center justify-center"
-                >
-                  <iconify-icon
-                    icon="solar:arrow-right-up-linear"
-                    width="18"
-                    height="18"
-                    stroke-width="1.5"
-                  ></iconify-icon>
-                </span>
-              </button>
-              <button
-                class="flex items-center gap-3 glass-panel text-white pl-6 pr-2 py-2 rounded-full font-medium text-sm hover:bg-white/10 transition-all font-geist group backdrop-blur-md"
-              >
-                Reserve a Table
-                <span
-                  class="bg-white/10 text-white p-2 rounded-full border border-white/10 flex items-center justify-center"
-                >
-                  <iconify-icon
-                    icon="solar:calendar-add-linear"
-                    width="18"
-                    height="18"
-                    stroke-width="1.5"
-                  ></iconify-icon>
-                </span>
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- SECTION 1: Narrative & Menu Grid -->
-      <section class="bg-white w-full px-8 md:px-20 py-24 md:py-32">
-        <div
-          class="grid grid-cols-1 lg:grid-cols-12 items-start gap-20 lg:gap-24"
-        >
-          <!-- Narrative Column -->
-          <div class="lg:col-span-5 flex flex-col gap-8 reveal">
-            <div>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-neutral-200 bg-neutral-50 text-[10px] font-semibold text-neutral-500 font-geist tracking-widest uppercase mb-8"
-              >
-                <span class="w-1 h-1 bg-neutral-400 rounded-full"></span>
-                Since May 3, 2022
+<div class="flex flex-col md:flex-row items-start md:items-center gap-4 animate-enter delay-500">
+<button class="flex items-center gap-3 bg-white text-black pl-6 pr-2 py-2 rounded-full font-semibold text-sm hover:bg-neutral-100 transition-all font-geist group shadow-lg shadow-white/10">
+                Смотреть меню
+                <span class="bg-black text-white p-2 rounded-full transition-transform group-hover:rotate-45 duration-300 flex items-center justify-center">
+<iconify-icon height="18" icon="solar:arrow-right-up-linear" stroke-width="1.5" width="18"></iconify-icon>
+</span>
+</button>
+<button class="flex items-center gap-3 glass-panel text-white pl-6 pr-2 py-2 rounded-full font-medium text-sm hover:bg-white/10 transition-all font-geist group backdrop-blur-md">
+                Забронировать столик
+                <span class="bg-white/10 text-white p-2 rounded-full border border-white/10 flex items-center justify-center">
+<iconify-icon height="18" icon="solar:calendar-add-linear" stroke-width="1.5" width="18"></iconify-icon>
+</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- SECTION 1: Narrative & Menu Grid -->
+<section class="bg-white w-full px-8 md:px-20 py-24 md:py-32">
+<div class="grid grid-cols-1 lg:grid-cols-12 items-start gap-20 lg:gap-24">
+<!-- Narrative Column -->
+<div class="lg:col-span-5 flex flex-col gap-8 reveal">
+<div>
+<span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full border border-neutral-200 bg-neutral-50 text-[10px] font-semibold text-neutral-500 font-geist tracking-widest uppercase mb-8">
+<span class="w-1 h-1 bg-neutral-400 rounded-full"></span>
+                С 3 мая 2022 года
               </span>
-              <h2
-                class="text-4xl lg:text-5xl font-medium tracking-tight leading-[1.1] text-neutral-900 font-jakarta mb-6"
-              >
-                Where every bite
-                <br />
-                tells a story.
+<h2 class="text-4xl lg:text-5xl font-medium tracking-tight leading-[1.1] text-neutral-900 font-jakarta mb-6">
+                Где каждый кусочек
+                <br/>
+                рассказывает историю.
               </h2>
-              <p
-                class="text-neutral-500 font-geist leading-relaxed text-lg mb-8 font-light"
-              >
-                Modak-Cafe n Restaurant is Sanawad's sanctuary for flavor
-                enthusiasts. We blend the warmth of traditional hospitality with
-                the sleekness of modern cafe culture, guided by our motto: Good
-                Food...Good Life.
+<p class="text-neutral-500 font-geist leading-relaxed text-lg mb-8 font-light">
+                Modak-Cafe n Restaurant — убежище для любителей вкусного в Санаваде. Мы сочетаем тепло традиционного гостеприимства с элегантностью современной кафе-культуры, следуя девизу: Вкусная еда...Счастливая жизнь.
               </p>
-
-              <div class="space-y-4">
-                <div
-                  class="flex items-start gap-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-100 transition-colors hover:border-neutral-200"
-                >
-                  <div
-                    class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center shrink-0"
-                  >
-                    <iconify-icon
-                      icon="solar:chef-hat-heart-linear"
-                      width="20"
-                      height="20"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-sm font-semibold font-jakarta text-neutral-900"
-                    >
-                      Handcrafted Sweets
+<div class="space-y-4">
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-100 transition-colors hover:border-neutral-200">
+<div class="w-10 h-10 rounded-full bg-orange-100 text-orange-600 flex items-center justify-center shrink-0">
+<iconify-icon height="20" icon="solar:chef-hat-heart-linear" stroke-width="1.5" width="20"></iconify-icon>
+</div>
+<div>
+<h4 class="text-sm font-semibold font-jakarta text-neutral-900">
+                      Ручные сладости
                     </h4>
-                    <p
-                      class="text-xs text-neutral-500 font-geist mt-1 leading-relaxed"
-                    >
-                      Signature Modaks made fresh daily with premium saffron and
-                      cardamom.
+<p class="text-xs text-neutral-500 font-geist mt-1 leading-relaxed">
+                      Фирменные модаки, свежеприготовленные ежедневно с премиальным шафраном и кардамоном.
                     </p>
-                  </div>
-                </div>
-                <div
-                  class="flex items-start gap-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-100 transition-colors hover:border-neutral-200"
-                >
-                  <div
-                    class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0"
-                  >
-                    <iconify-icon
-                      icon="solar:cup-hot-linear"
-                      width="20"
-                      height="20"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <div>
-                    <h4
-                      class="text-sm font-semibold font-jakarta text-neutral-900"
-                    >
-                      Artisan Coffee
+</div>
+</div>
+<div class="flex items-start gap-4 p-4 rounded-2xl bg-neutral-50 border border-neutral-100 transition-colors hover:border-neutral-200">
+<div class="w-10 h-10 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+<iconify-icon height="20" icon="solar:cup-hot-linear" stroke-width="1.5" width="20"></iconify-icon>
+</div>
+<div>
+<h4 class="text-sm font-semibold font-jakarta text-neutral-900">
+                      Авторский кофе
                     </h4>
-                    <p
-                      class="text-xs text-neutral-500 font-geist mt-1 leading-relaxed"
-                    >
-                      Single-origin beans roasted to perfection for the ultimate
-                      brew.
+<p class="text-xs text-neutral-500 font-geist mt-1 leading-relaxed">
+                      Зёрна одного происхождения, обжаренные до совершенства для лучшего напитка.
                     </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <!-- Interactive Menu Grid -->
-          <div class="lg:col-span-7">
-            <div
-              class="bg-neutral-50/50 rounded-[2.5rem] border border-neutral-100 h-full reveal reveal-delay-200 relative overflow-hidden p-10 md:p-14"
-            >
-              <!-- Decorative bg -->
-              <div
-                class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-orange-100 rounded-full blur-3xl opacity-30"
-              ></div>
-
-              <div class="relative z-10 flex justify-between items-end mb-10">
-                <h3
-                  class="text-2xl font-medium font-jakarta tracking-tight text-neutral-900"
-                >
-                  Curated Menu
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interactive Menu Grid -->
+<div class="lg:col-span-7">
+<div class="bg-neutral-50/50 rounded-[2.5rem] border border-neutral-100 h-full reveal reveal-delay-200 relative overflow-hidden p-10 md:p-14">
+<!-- Decorative bg -->
+<div class="absolute top-0 right-0 -mt-10 -mr-10 w-64 h-64 bg-orange-100 rounded-full blur-3xl opacity-30"></div>
+<div class="relative z-10 flex justify-between items-end mb-10">
+<h3 class="text-2xl font-medium font-jakarta tracking-tight text-neutral-900">
+                  Избранное меню
                 </h3>
-                <a
-                  href="#"
-                  class="text-xs font-semibold border-b border-neutral-300 pb-0.5 hover:text-orange-600 hover:border-orange-600 transition-colors font-geist flex items-center gap-1"
-                >
-                  View Full Menu
-                  <iconify-icon
-                    icon="solar:arrow-right-linear"
-                    width="12"
-                    height="12"
-                  ></iconify-icon>
-                </a>
-              </div>
-
-              <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-                <!-- Category Item -->
-                <div
-                  class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-100"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center"
-                  >
-                    <iconify-icon
-                      icon="solar:tea-cup-linear"
-                      width="24"
-                      height="24"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <span class="font-medium font-geist text-sm text-neutral-800">
-                    Breakfast
+<a class="text-xs font-semibold border-b border-neutral-300 pb-0.5 hover:text-orange-600 hover:border-orange-600 transition-colors font-geist flex items-center gap-1" href="#">
+                  Полное меню
+                  <iconify-icon height="12" icon="solar:arrow-right-linear" width="12"></iconify-icon>
+</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+<!-- Category Item -->
+<div class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-100">
+<div class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center">
+<iconify-icon height="24" icon="solar:tea-cup-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<span class="font-medium font-geist text-sm text-neutral-800">
+                    Завтрак
                   </span>
-                </div>
-
-                <div
-                  class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-100"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center"
-                  >
-                    <iconify-icon
-                      icon="solar:donut-linear"
-                      width="24"
-                      height="24"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <span class="font-medium font-geist text-sm text-neutral-800">
-                    Sweets
+</div>
+<div class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-100">
+<div class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center">
+<iconify-icon height="24" icon="solar:donut-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<span class="font-medium font-geist text-sm text-neutral-800">
+                    Сладости
                   </span>
-                </div>
-
-                <div
-                  class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-200"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center"
-                  >
-                    <iconify-icon
-                      icon="solar:hamburger-menu-linear"
-                      width="24"
-                      height="24"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <span class="font-medium font-geist text-sm text-neutral-800">
-                    Bistro
+</div>
+<div class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-200">
+<div class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center">
+<iconify-icon height="24" icon="solar:hamburger-menu-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<span class="font-medium font-geist text-sm text-neutral-800">
+                    Бистро
                   </span>
-                </div>
-
-                <div
-                  class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-200"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center"
-                  >
-                    <iconify-icon
-                      icon="solar:wineglass-linear"
-                      width="24"
-                      height="24"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <span class="font-medium font-geist text-sm text-neutral-800">
-                    Beverages
+</div>
+<div class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-200">
+<div class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center">
+<iconify-icon height="24" icon="solar:wineglass-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<span class="font-medium font-geist text-sm text-neutral-800">
+                    Напитки
                   </span>
-                </div>
-
-                <div
-                  class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-300"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center"
-                  >
-                    <iconify-icon
-                      icon="solar:fire-linear"
-                      width="24"
-                      height="24"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <span class="font-medium font-geist text-sm text-neutral-800">
-                    Specials
+</div>
+<div class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-300">
+<div class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center">
+<iconify-icon height="24" icon="solar:fire-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<span class="font-medium font-geist text-sm text-neutral-800">
+                    Специальные предложения
                   </span>
-                </div>
-
-                <div
-                  class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-300"
-                >
-                  <div
-                    class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center"
-                  >
-                    <iconify-icon
-                      icon="solar:leaf-linear"
-                      width="24"
-                      height="24"
-                      stroke-width="1.5"
-                    ></iconify-icon>
-                  </div>
-                  <span class="font-medium font-geist text-sm text-neutral-800">
-                    Vegan
+</div>
+<div class="group bg-white p-6 rounded-2xl shadow-sm border border-neutral-100 flex flex-col items-center text-center gap-4 hover-lift cursor-pointer reveal reveal-delay-300">
+<div class="w-12 h-12 rounded-full bg-neutral-50 group-hover:bg-orange-50 text-neutral-600 group-hover:text-orange-600 transition-colors flex items-center justify-center">
+<iconify-icon height="24" icon="solar:leaf-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<span class="font-medium font-geist text-sm text-neutral-800">
+                    Веганское
                   </span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 2: Bento Facilities (Dark Mode) -->
-      <section
-        class="bg-[#0A0A0A] w-full text-white px-8 md:px-20 py-24 md:py-32"
-      >
-        <div
-          class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 reveal"
-        >
-          <div class="max-w-2xl">
-            <h2
-              class="text-4xl lg:text-5xl font-medium tracking-tight font-jakarta leading-[1.1] mb-6"
-            >
-              Designed for
-              <span class="text-neutral-500">Connection.</span>
-            </h2>
-            <p class="text-neutral-400 text-lg font-light max-w-lg font-geist">
-              Whether you need a quiet corner to work or a large table for
-              celebration, our space adapts to your needs.
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 2: Bento Facilities (Dark Mode) -->
+<section class="bg-[#0A0A0A] w-full text-white px-8 md:px-20 py-24 md:py-32">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8 reveal">
+<div class="max-w-2xl">
+<h2 class="text-4xl lg:text-5xl font-medium tracking-tight font-jakarta leading-[1.1] mb-6">
+              Создано для
+              <span class="text-neutral-500">общения.</span>
+</h2>
+<p class="text-neutral-400 text-lg font-light max-w-lg font-geist">
+              Нужен ли вам тихий уголок для работы или большой стол для праздника — наше пространство адаптируется к вашим нуждам.
             </p>
-          </div>
-        </div>
-
-        <!-- Bento Grid -->
-        <div
-          class="grid grid-cols-1 md:grid-cols-6 grid-rows-[auto_auto] gap-8"
-        >
-          <!-- Card 1: Services (Tall) -->
-          <div
-            class="md:col-span-2 md:row-span-2 relative bg-neutral-900 rounded-[2rem] p-8 border border-white/5 transition-all hover:border-white/10 flex flex-col justify-between min-h-[360px] reveal group"
-          >
-            <div
-              class="w-12 h-12 glass-panel-dark rounded-full flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform"
-            >
-              <iconify-icon
-                icon="solar:bell-bing-linear"
-                width="24"
-                height="24"
-                stroke-width="1.5"
-              ></iconify-icon>
-            </div>
-            <div>
-              <h3 class="text-2xl font-medium font-jakarta tracking-tight mb-6">
-                Premium Services
+</div>
+</div>
+<!-- Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-6 grid-rows-[auto_auto] gap-8">
+<!-- Card 1: Services (Tall) -->
+<div class="md:col-span-2 md:row-span-2 relative bg-neutral-900 rounded-[2rem] p-8 border border-white/5 transition-all hover:border-white/10 flex flex-col justify-between min-h-[360px] reveal group">
+<div class="w-12 h-12 glass-panel-dark rounded-full flex items-center justify-center text-white mb-6 group-hover:scale-110 transition-transform">
+<iconify-icon height="24" icon="solar:bell-bing-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<div>
+<h3 class="text-2xl font-medium font-jakarta tracking-tight mb-6">
+                Премиальные услуги
               </h3>
-              <ul class="space-y-4">
-                <li
-                  class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors"
-                >
-                  <iconify-icon
-                    icon="solar:check-circle-linear"
-                    class="text-white"
-                    width="16"
-                  ></iconify-icon>
-                  Table Service
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors">
+<iconify-icon class="text-white" icon="solar:check-circle-linear" width="16"></iconify-icon>
+                  Обслуживание за столом
                 </li>
-                <li
-                  class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors"
-                >
-                  <iconify-icon
-                    icon="solar:check-circle-linear"
-                    class="text-white"
-                    width="16"
-                  ></iconify-icon>
-                  Curbside Pickup
+<li class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors">
+<iconify-icon class="text-white" icon="solar:check-circle-linear" width="16"></iconify-icon>
+                  Самовывоз у обочины
                 </li>
-                <li
-                  class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors"
-                >
-                  <iconify-icon
-                    icon="solar:check-circle-linear"
-                    class="text-white"
-                    width="16"
-                  ></iconify-icon>
-                  Event Catering
+<li class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors">
+<iconify-icon class="text-white" icon="solar:check-circle-linear" width="16"></iconify-icon>
+                  Кейтеринг для мероприятий
                 </li>
-                <li
-                  class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors"
-                >
-                  <iconify-icon
-                    icon="solar:check-circle-linear"
-                    class="text-white"
-                    width="16"
-                  ></iconify-icon>
-                  Private Booking
+<li class="flex items-center gap-3 text-neutral-400 font-geist text-sm hover:text-white transition-colors">
+<iconify-icon class="text-white" icon="solar:check-circle-linear" width="16"></iconify-icon>
+                  Частное бронирование
                 </li>
-              </ul>
-            </div>
-          </div>
-
-          <!-- Card 2: Visual (Wide) -->
-          <div
-            class="md:col-span-4 relative bg-neutral-900 rounded-[2rem] overflow-hidden p-10 group border border-white/5 min-h-[300px] reveal reveal-delay-200"
-          >
-            <img
-              src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1600&amp;q=80"
-              alt="Cafe Vibes"
-              class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-1000"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"
-            ></div>
-
-            <div class="relative z-10 flex flex-col h-full justify-between">
-              <div class="flex justify-end">
-                <span
-                  class="px-3 py-1 rounded-full bg-white/10 text-[10px] tracking-wider uppercase font-semibold backdrop-blur-md border border-white/10"
-                >
-                  Ambience
+</ul>
+</div>
+</div>
+<!-- Card 2: Visual (Wide) -->
+<div class="md:col-span-4 relative bg-neutral-900 rounded-[2rem] overflow-hidden p-10 group border border-white/5 min-h-[300px] reveal reveal-delay-200">
+<img alt="Атмосфера кафе" class="absolute inset-0 w-full h-full object-cover opacity-60 group-hover:scale-105 transition duration-1000" src="https://images.unsplash.com/photo-1521017432531-fbd92d768814?w=1600&amp;q=80"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent"></div>
+<div class="relative z-10 flex flex-col h-full justify-between">
+<div class="flex justify-end">
+<span class="px-3 py-1 rounded-full bg-white/10 text-[10px] tracking-wider uppercase font-semibold backdrop-blur-md border border-white/10">
+                  Атмосфера
                 </span>
-              </div>
-              <div>
-                <h3
-                  class="text-3xl font-medium font-jakarta tracking-tight mb-2"
-                >
-                  Modern Comfort
+</div>
+<div>
+<h3 class="text-3xl font-medium font-jakarta tracking-tight mb-2">
+                  Современный комфорт
                 </h3>
-                <p class="text-white/70 font-geist text-sm max-w-sm">
-                  Aesthetic interiors meeting cozy functionality.
+<p class="text-white/70 font-geist text-sm max-w-sm">
+                  Эстетичные интерьеры и уютная функциональность.
                 </p>
-              </div>
-            </div>
-          </div>
-
-          <!-- Card 3: Amenities (Small) -->
-          <div
-            class="md:col-span-2 bg-neutral-800/40 rounded-[2rem] p-8 border border-white/5 flex flex-col justify-between reveal reveal-delay-300 hover:bg-neutral-800/60 transition-colors"
-          >
-            <div class="flex justify-between items-start">
-              <iconify-icon
-                icon="solar:wi-fi-square-linear"
-                class="text-white"
-                width="32"
-                height="32"
-                stroke-width="1.5"
-              ></iconify-icon>
-              <span class="text-xs text-neutral-500 font-geist">Free</span>
-            </div>
-            <div>
-              <h4 class="text-lg font-medium font-jakarta mt-4">
-                High-Speed WiFi
+</div>
+</div>
+</div>
+<!-- Card 3: Amenities (Small) -->
+<div class="md:col-span-2 bg-neutral-800/40 rounded-[2rem] p-8 border border-white/5 flex flex-col justify-between reveal reveal-delay-300 hover:bg-neutral-800/60 transition-colors">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-white" height="32" icon="solar:wi-fi-square-linear" stroke-width="1.5" width="32"></iconify-icon>
+<span class="text-xs text-neutral-500 font-geist">Бесплатный</span>
+</div>
+<div>
+<h4 class="text-lg font-medium font-jakarta mt-4">
+                Высокоскоростной Wi-Fi
               </h4>
-              <p class="text-xs text-neutral-400 mt-1 font-geist">
-                Perfect for remote work.
+<p class="text-xs text-neutral-400 mt-1 font-geist">
+                Идеально для удалённой работы.
               </p>
-            </div>
-          </div>
-
-          <!-- Card 4: Accessibility (Small) -->
-          <div
-            class="md:col-span-2 bg-neutral-800/40 rounded-[2rem] p-8 border border-white/5 flex flex-col justify-between reveal reveal-delay-300 hover:bg-neutral-800/60 transition-colors"
-          >
-            <div class="flex justify-between items-start">
-              <iconify-icon
-                icon="solar:wheelchair-linear"
-                class="text-white"
-                width="32"
-                height="32"
-                stroke-width="1.5"
-              ></iconify-icon>
-              <span class="text-xs text-neutral-500 font-geist">100%</span>
-            </div>
-            <div>
-              <h4 class="text-lg font-medium font-jakarta mt-4">Accessible</h4>
-              <p class="text-xs text-neutral-400 mt-1 font-geist">
-                Ramps and facilities.
+</div>
+</div>
+<!-- Card 4: Accessibility (Small) -->
+<div class="md:col-span-2 bg-neutral-800/40 rounded-[2rem] p-8 border border-white/5 flex flex-col justify-between reveal reveal-delay-300 hover:bg-neutral-800/60 transition-colors">
+<div class="flex justify-between items-start">
+<iconify-icon class="text-white" height="32" icon="solar:wheelchair-linear" stroke-width="1.5" width="32"></iconify-icon>
+<span class="text-xs text-neutral-500 font-geist">100%</span>
+</div>
+<div>
+<h4 class="text-lg font-medium font-jakarta mt-4">Доступная среда</h4>
+<p class="text-xs text-neutral-400 mt-1 font-geist">
+                Пандусы и необходимые объекты.
               </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- SECTION 3: Location & Time -->
-      <section
-        class="bg-neutral-50 w-full relative overflow-hidden px-8 md:px-20 py-24 md:py-32"
-      >
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
-          <!-- Location Card -->
-          <div
-            class="bg-white rounded-[2rem] p-10 border border-neutral-200/60 shadow-sm flex flex-col justify-between h-full min-h-[320px] reveal hover:shadow-md transition-shadow"
-          >
-            <div>
-              <div
-                class="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center mb-8 text-neutral-800"
-              >
-                <iconify-icon
-                  icon="solar:map-point-linear"
-                  width="24"
-                  height="24"
-                  stroke-width="1.5"
-                ></iconify-icon>
-              </div>
-              <h3
-                class="text-2xl font-medium text-neutral-900 font-jakarta mb-3 tracking-tight"
-              >
-                Visit Us
+</div>
+</div>
+</div>
+</section>
+<!-- SECTION 3: Location & Time -->
+<section class="bg-neutral-50 w-full relative overflow-hidden px-8 md:px-20 py-24 md:py-32">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 relative z-10">
+<!-- Location Card -->
+<div class="bg-white rounded-[2rem] p-10 border border-neutral-200/60 shadow-sm flex flex-col justify-between h-full min-h-[320px] reveal hover:shadow-md transition-shadow">
+<div>
+<div class="w-12 h-12 rounded-full bg-neutral-100 flex items-center justify-center mb-8 text-neutral-800">
+<iconify-icon height="24" icon="solar:map-point-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<h3 class="text-2xl font-medium text-neutral-900 font-jakarta mb-3 tracking-tight">
+                Посетите нас
               </h3>
-              <p
-                class="text-neutral-500 font-geist text-lg leading-relaxed max-w-xs"
-              >
+<p class="text-neutral-500 font-geist text-lg leading-relaxed max-w-xs">
                 Modak-Cafe n Restaurant,
-                <br />
-                Sanawad,
-                <br />
-                Madhya Pradesh
+                <br/>
+                Санавад,
+                <br/>
+                Мадхья-Прадеш
               </p>
-            </div>
-            <div class="mt-8 pt-8 border-t border-neutral-100">
-              <div
-                class="flex items-center gap-2 text-xs font-medium text-neutral-500 font-geist uppercase tracking-wide"
-              >
-                <iconify-icon
-                  icon="solar:car-linear"
-                  width="16"
-                  height="16"
-                ></iconify-icon>
-                Valet Parking Available
+</div>
+<div class="mt-8 pt-8 border-t border-neutral-100">
+<div class="flex items-center gap-2 text-xs font-medium text-neutral-500 font-geist uppercase tracking-wide">
+<iconify-icon height="16" icon="solar:car-linear" width="16"></iconify-icon>
+                Парковка с обслуживанием
               </div>
-            </div>
-          </div>
-
-          <!-- Hours Card -->
-          <div
-            class="bg-neutral-900 text-white rounded-[2rem] p-10 border border-neutral-800 shadow-2xl flex flex-col justify-between h-full min-h-[320px] relative overflow-hidden reveal reveal-delay-200"
-          >
-            <!-- Decor -->
-            <div
-              class="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-bl-full blur-2xl pointer-events-none"
-            ></div>
-
-            <div class="relative z-10">
-              <div
-                class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/10"
-              >
-                <iconify-icon
-                  icon="solar:history-linear"
-                  width="24"
-                  height="24"
-                  stroke-width="1.5"
-                ></iconify-icon>
-              </div>
-              <h3 class="text-2xl font-medium font-jakarta mb-2 tracking-tight">
-                Opening Hours
+</div>
+</div>
+<!-- Hours Card -->
+<div class="bg-neutral-900 text-white rounded-[2rem] p-10 border border-neutral-800 shadow-2xl flex flex-col justify-between h-full min-h-[320px] relative overflow-hidden reveal reveal-delay-200">
+<!-- Decor -->
+<div class="absolute top-0 right-0 w-48 h-48 bg-orange-500/10 rounded-bl-full blur-2xl pointer-events-none"></div>
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center mb-8 backdrop-blur-md border border-white/10">
+<iconify-icon height="24" icon="solar:history-linear" stroke-width="1.5" width="24"></iconify-icon>
+</div>
+<h3 class="text-2xl font-medium font-jakarta mb-2 tracking-tight">
+                Часы работы
               </h3>
-              <p class="text-white/50 font-geist text-xs mb-8">
-                *Kitchen closes 30m before closing
+<p class="text-white/50 font-geist text-xs mb-8">
+                *Кухня закрывается за 30 мин до закрытия
               </p>
-
-              <div class="space-y-4 font-geist text-sm">
-                <div
-                  class="flex justify-between items-center border-b border-white/5 pb-3"
-                >
-                  <span class="text-white/70">Mon - Thu</span>
-                  <span class="text-white font-medium">8:00 AM - 9:00 PM</span>
-                </div>
-                <div
-                  class="flex justify-between items-center border-b border-white/5 pb-3"
-                >
-                  <span class="text-white/70">Fri - Sat</span>
-                  <span class="text-white font-medium">8:00 AM - 11:00 PM</span>
-                </div>
-                <div
-                  class="flex justify-between items-center border-b border-white/5 pb-3"
-                >
-                  <span class="text-white/70">Sunday</span>
-                  <span class="text-white font-medium">9:00 AM - 9:00 PM</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FOOTER & CTA -->
-      <section
-        class="bg-white w-full border-t border-neutral-100 px-8 md:px-20 py-24 md:py-32"
-      >
-        <div
-          class="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden reveal shadow-2xl"
-        >
-          <!-- Pattern -->
-          <div
-            class="absolute inset-0 opacity-10"
-            style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"
-          ></div>
-
-          <div class="relative z-10 max-w-3xl mx-auto">
-            <h2
-              class="text-4xl md:text-6xl font-medium font-jakarta text-white mb-6 tracking-tight"
-            >
-              Craving something sweet?
+<div class="space-y-4 font-geist text-sm">
+<div class="flex justify-between items-center border-b border-white/5 pb-3">
+<span class="text-white/70">Пн — Чт</span>
+<span class="text-white font-medium">8:00 — 21:00</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/5 pb-3">
+<span class="text-white/70">Пт — Сб</span>
+<span class="text-white font-medium">8:00 — 23:00</span>
+</div>
+<div class="flex justify-between items-center border-b border-white/5 pb-3">
+<span class="text-white/70">Воскресенье</span>
+<span class="text-white font-medium">9:00 — 21:00</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER & CTA -->
+<section class="bg-white w-full border-t border-neutral-100 px-8 md:px-20 py-24 md:py-32">
+<div class="bg-gradient-to-br from-neutral-900 to-neutral-800 rounded-[2.5rem] p-10 md:p-20 text-center relative overflow-hidden reveal shadow-2xl">
+<!-- Pattern -->
+<div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(#ffffff 1px, transparent 1px); background-size: 32px 32px;"></div>
+<div class="relative z-10 max-w-3xl mx-auto">
+<h2 class="text-4xl md:text-6xl font-medium font-jakarta text-white mb-6 tracking-tight">
+              Хотите чего-нибудь сладкого?
             </h2>
-            <p class="text-neutral-400 text-lg font-geist mb-12 font-light">
-              Book a table for the weekend or order our signature Modak boxes
-              for your next event.
+<p class="text-neutral-400 text-lg font-geist mb-12 font-light">
+              Забронируйте столик на выходные или закажите фирменные коробки Modak для вашего следующего мероприятия.
             </p>
-
-            <div
-              class="flex flex-col md:flex-row items-center justify-center gap-4"
-            >
-              <button
-                class="w-full md:w-auto bg-white text-black px-8 py-4 rounded-full font-semibold font-geist hover:bg-neutral-200 transition flex items-center justify-center gap-3"
-              >
-                <iconify-icon
-                  icon="solar:phone-calling-linear"
-                  width="20"
-                  height="20"
-                  stroke-width="2"
-                ></iconify-icon>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4">
+<button class="w-full md:w-auto bg-white text-black px-8 py-4 rounded-full font-semibold font-geist hover:bg-neutral-200 transition flex items-center justify-center gap-3">
+<iconify-icon height="20" icon="solar:phone-calling-linear" stroke-width="2" width="20"></iconify-icon>
                 +91 96302 84444
               </button>
-              <button
-                class="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-full font-semibold font-geist hover:bg-green-700 transition flex items-center justify-center gap-3 border border-green-500/50 shadow-lg shadow-green-900/30"
-              >
-                <iconify-icon
-                  icon="solar:chat-round-dots-linear"
-                  width="20"
-                  height="20"
-                  stroke-width="2"
-                ></iconify-icon>
-                WhatsApp Us
+<button class="w-full md:w-auto bg-green-600 text-white px-8 py-4 rounded-full font-semibold font-geist hover:bg-green-700 transition flex items-center justify-center gap-3 border border-green-500/50 shadow-lg shadow-green-900/30">
+<iconify-icon height="20" icon="solar:chat-round-dots-linear" stroke-width="2" width="20"></iconify-icon>
+                Написать в WhatsApp
               </button>
-            </div>
-          </div>
-
-          <!-- Payment Methods -->
-          <div
-            class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-6 text-neutral-500 text-xs font-geist uppercase tracking-widest"
-          >
-            <span class="text-neutral-600">Secure Payment Options</span>
-            <div class="flex gap-6 text-neutral-400">
-              <iconify-icon
-                icon="solar:card-linear"
-                width="20"
-                height="20"
-              ></iconify-icon>
-              <iconify-icon
-                icon="solar:wallet-money-linear"
-                width="20"
-                height="20"
-              ></iconify-icon>
-              <iconify-icon
-                icon="solar:smartphone-linear"
-                width="20"
-                height="20"
-              ></iconify-icon>
-            </div>
-          </div>
-        </div>
-
-        <!-- Bottom Strip -->
-        <div
-          class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-400 font-geist"
-        >
-          <p>© 2024 Modak-Cafe n Restaurant. All rights reserved.</p>
-          <div class="flex gap-6">
-            <a href="#" class="hover:text-neutral-900 transition-colors">
-              Privacy
+</div>
+</div>
+<!-- Payment Methods -->
+<div class="mt-20 pt-8 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-6 text-neutral-500 text-xs font-geist uppercase tracking-widest">
+<span class="text-neutral-600">Безопасные способы оплаты</span>
+<div class="flex gap-6 text-neutral-400">
+<iconify-icon height="20" icon="solar:card-linear" width="20"></iconify-icon>
+<iconify-icon height="20" icon="solar:wallet-money-linear" width="20"></iconify-icon>
+<iconify-icon height="20" icon="solar:smartphone-linear" width="20"></iconify-icon>
+</div>
+</div>
+</div>
+<!-- Bottom Strip -->
+<div class="mt-12 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-neutral-400 font-geist">
+<p>© 2024 Modak-Cafe n Restaurant. Все права защищены.</p>
+<div class="flex gap-6">
+<a class="hover:text-neutral-900 transition-colors" href="#">
+              Конфиденциальность
             </a>
-            <a href="#" class="hover:text-neutral-900 transition-colors">
-              Terms
+<a class="hover:text-neutral-900 transition-colors" href="#">
+              Условия
             </a>
-            <a href="#" class="hover:text-neutral-900 transition-colors">
+<a class="hover:text-neutral-900 transition-colors" href="#">
               Instagram
             </a>
-          </div>
-        </div>
-      </section>
-    </div>
-
-    <script>
+</div>
+</div>
+</section>
+</div>
+<script>
       // Smooth Reveal on Scroll
       document.addEventListener('DOMContentLoaded', () => {
           const observerOptions = {
@@ -850,5 +520,5 @@ transform: translateY(0);
           scrollElements.forEach(el => observer.observe(el));
       });
     </script>
-  </body>
+</body>
 </html>

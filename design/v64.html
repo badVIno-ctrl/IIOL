@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"><head><script id="aura-preview-performance-controller">
+<html class="scroll-smooth" lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,9 +89,9 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura | Context Before Canvas</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aura | Контекст прежде холста</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -101,11 +101,11 @@ setPaused(event.data.paused);
 .font-google-sans-flex { font-family: 'Manrope', sans-serif !important; }
 .font-sans { font-family: 'Manrope', sans-serif !important; }
 </style>
-<meta name="aura-font-heading-class" content="font-gloock">
-<meta name="aura-font-body-class" content="font-manrope">
-<meta name="aura-font-heading-label" content="Gloock">
-<meta name="aura-font-body-label" content="Manrope">
-<meta name="disabled-font-classes" content="font-anton,font-dm-sans,font-aboreto">
+<meta content="font-gloock" name="aura-font-heading-class"/>
+<meta content="font-manrope" name="aura-font-body-class"/>
+<meta content="Gloock" name="aura-font-heading-label"/>
+<meta content="Manrope" name="aura-font-body-label"/>
+<meta content="font-anton,font-dm-sans,font-aboreto" name="disabled-font-classes"/>
 <style>
 /* Custom Noise Overlay */
 .noise-bg {
@@ -194,15 +194,15 @@ ease: "power3.out"
 });
 });
 </script>
-<link id="all-fonts-link-font-gloock" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&display=swap">
-<link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Gloock&amp;display=swap" id="all-fonts-link-font-gloock" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" id="all-fonts-link-font-manrope" rel="stylesheet"/>
 <style id="all-fonts-style-font-manrope">
 .font-manrope { font-family: 'Manrope', sans-serif !important; }
 </style>
 <style id="all-fonts-style-font-gloock">
 .font-gloock { font-family: 'Gloock', serif !important; }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -210,401 +210,403 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="bg-[#070707] text-white font-sans antialiased selection:bg-[#e8c382] selection:text-[#351e10] overflow-x-hidden min-h-screen" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-image: linear-gradient(135deg, rgba(255,255,255,0.035) 1px, transparent 1px), radial-gradient(circle at 20% 10%, rgba(255,255,255,0.07), transparent 28%), radial-gradient(circle at 80% 0%, rgba(120,120,120,0.12), transparent 30%); background-size: 3rem 3rem, 100% 100%, 100% 100%;">
-    <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-screen noise-bg"></div>
-    <div class="pointer-events-none fixed inset-0 z-0 opacity-30" style="background-image: linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 5rem 5rem;"></div>
-    <div class="pointer-events-none fixed inset-x-0 top-0 z-0 h-48 opacity-60" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);"></div>
-
-    <header class="relative z-20 border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl">
-      <div class="mx-auto flex max-w-7xl items-stretch justify-between px-4 sm:px-6 lg:px-8">
-        <a href="#" aria-label="Vectorline home" class="group relative flex min-h-20 items-center gap-3 border-x border-white/10 px-4 sm:px-6">
-          <span class="absolute -left-1 top-4 h-2 w-2 bg-zinc-500"></span>
-          <span class="absolute -right-1 bottom-4 h-2 w-2 bg-zinc-500"></span>
-          <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-sm font-medium text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.045)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1rem 2rem rgba(0,0,0,0.35); text-shadow: 0 1px 0 rgba(0,0,0,0.8);">
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="bg-[#070707] text-white font-sans antialiased selection:bg-[#e8c382] selection:text-[#351e10] overflow-x-hidden min-h-screen" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background-image: linear-gradient(135deg, rgba(255,255,255,0.035) 1px, transparent 1px), radial-gradient(circle at 20% 10%, rgba(255,255,255,0.07), transparent 28%), radial-gradient(circle at 80% 0%, rgba(120,120,120,0.12), transparent 30%); background-size: 3rem 3rem, 100% 100%, 100% 100%;">
+<div class="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-screen noise-bg"></div>
+<div class="pointer-events-none fixed inset-0 z-0 opacity-30" style="background-image: linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 5rem 5rem;"></div>
+<div class="pointer-events-none fixed inset-x-0 top-0 z-0 h-48 opacity-60" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), transparent);"></div>
+<header class="relative z-20 border-b border-white/10 bg-neutral-950/80 backdrop-blur-xl">
+<div class="mx-auto flex max-w-7xl items-stretch justify-between px-4 sm:px-6 lg:px-8">
+<a aria-label="Главная Vectorline" class="group relative flex min-h-20 items-center gap-3 border-x border-white/10 px-4 sm:px-6" href="#">
+<span class="absolute -left-1 top-4 h-2 w-2 bg-zinc-500"></span>
+<span class="absolute -right-1 bottom-4 h-2 w-2 bg-zinc-500"></span>
+<span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-sm font-medium text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.045)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1rem 2rem rgba(0,0,0,0.35); text-shadow: 0 1px 0 rgba(0,0,0,0.8);">
             VL
           </span>
-          <span class="hidden leading-none sm:block">
-            <span class="block text-sm font-medium tracking-tight text-white font-sans">
+<span class="hidden leading-none sm:block">
+<span class="block text-sm font-medium tracking-tight text-white font-sans">
               Vectorline
             </span>
-            <span class="mt-1 block text-xs font-normal uppercase tracking-widest text-zinc-500 font-sans">
-              Spec console
+<span class="mt-1 block text-xs font-normal uppercase tracking-widest text-zinc-500 font-sans">
+              Spec-консоль
             </span>
-          </span>
-        </a>
-
-        <nav aria-label="Primary navigation" class="hidden items-stretch lg:flex">
-          <a href="#model" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
-            <iconify-icon icon="solar:box-minimalistic-linear" class="text-lg"></iconify-icon>
-            Model
+</span>
+</a>
+<nav aria-label="Основная навигация" class="hidden items-stretch lg:flex">
+<a class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans" href="#model">
+<iconify-icon class="text-lg" icon="solar:box-minimalistic-linear"></iconify-icon>
+            Модель
           </a>
-          <a href="#signals" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
-            <iconify-icon icon="solar:chart-square-linear" class="text-lg"></iconify-icon>
-            Signals
+<a class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans" href="#signals">
+<iconify-icon class="text-lg" icon="solar:chart-square-linear"></iconify-icon>
+            Сигналы
           </a>
-          <a href="#assets" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
-            <iconify-icon icon="solar:gallery-wide-linear" class="text-lg"></iconify-icon>
-            Assets
+<a class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans" href="#assets">
+<iconify-icon class="text-lg" icon="solar:gallery-wide-linear"></iconify-icon>
+            Ассеты
           </a>
-          <a href="#protocol" class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans">
-            <iconify-icon icon="solar:code-square-linear" class="text-lg"></iconify-icon>
-            Protocol
+<a class="flex items-center gap-2 border-r border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-400 transition hover:text-white font-sans" href="#protocol">
+<iconify-icon class="text-lg" icon="solar:code-square-linear"></iconify-icon>
+            Протокол
           </a>
-        </nav>
-
-        <div class="hidden items-center gap-3 py-4 lg:flex">
-          <a href="#" class="inline-flex h-10 items-center justify-center rounded-lg border border-white/10 px-4 text-xs font-medium uppercase tracking-widest text-zinc-300 transition hover:border-white/25 hover:text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.85);">
-            Log in
+</nav>
+<div class="hidden items-center gap-3 py-4 lg:flex">
+<a class="inline-flex h-10 items-center justify-center rounded-lg border border-white/10 px-4 text-xs font-medium uppercase tracking-widest text-zinc-300 transition hover:border-white/25 hover:text-white font-sans" href="#" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.85);">
+            Войти
           </a>
-          <a href="#" class="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/20 px-4 text-xs font-medium uppercase tracking-widest text-black font-sans" style="background: linear-gradient(to bottom, #f8fafc, #a1a1aa); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.35), 0 1rem 2.5rem rgba(255,255,255,0.08);">
-            Open console
-            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
-          </a>
-        </div>
-
-        <button type="button" aria-label="Open menu" class="my-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-zinc-300 lg:hidden" style="background: linear-gradient(to bottom, rgba(255,255,255,0.11), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.8);">
-          <iconify-icon icon="solar:hamburger-menu-linear" class="text-xl"></iconify-icon>
-        </button>
-      </div>
-    </header>
-
-    <main class="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-      <section id="model" class="frame-section relative overflow-hidden border border-white/10" style="background: linear-gradient(180deg, rgba(39,39,42,0.72), rgba(10,10,10,0.88)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95), 0 2rem 5rem rgba(0,0,0,0.45);">
-        <span class="pointer-events-none absolute left-0 top-0 h-10 w-10 border-l border-t border-indigo-500/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-10 w-10 border-r border-t border-indigo-500/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-10 w-10 border-b border-l border-indigo-500/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-10 w-10 border-b border-r border-indigo-500/40"></span>
-
-        <div class="absolute left-4 top-4 h-2 w-2 bg-indigo-500/50"></div>
-        <div class="absolute right-4 top-4 h-2 w-2 bg-indigo-500/50"></div>
-        <div class="absolute bottom-4 left-4 h-2 w-2 bg-indigo-500/50"></div>
-        <div class="absolute bottom-4 right-4 h-2 w-2 bg-indigo-500/50"></div>
-
-        <div class="grid min-h-[calc(100vh-8rem)] grid-cols-1 lg:grid-cols-[0.72fr_1.28fr]">
-          <aside class="relative border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
-            <div class="reveal-block max-w-xl">
-              <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.7);">
-                <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-[0_0_1rem_rgba(129,140,248,0.65)]"></span>
-                Diagnostic layer active
+<a class="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/20 px-4 text-xs font-medium uppercase tracking-widest text-black font-sans" href="#" style="background: linear-gradient(to bottom, #f8fafc, #a1a1aa); box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), inset 0 -1px 0 rgba(0,0,0,0.35), 0 1rem 2.5rem rgba(255,255,255,0.08);">
+            Открыть консоль
+            <iconify-icon class="text-base" icon="solar:arrow-right-linear"></iconify-icon>
+</a>
+</div>
+<button aria-label="Открыть меню" class="my-4 inline-flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-zinc-300 lg:hidden" style="background: linear-gradient(to bottom, rgba(255,255,255,0.11), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.18), inset 0 -1px 0 rgba(0,0,0,0.8);" type="button">
+<iconify-icon class="text-xl" icon="solar:hamburger-menu-linear"></iconify-icon>
+</button>
+</div>
+</header>
+<main class="relative z-10 mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+<section class="frame-section relative overflow-hidden border border-white/10" id="model" style="background: linear-gradient(180deg, rgba(39,39,42,0.72), rgba(10,10,10,0.88)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95), 0 2rem 5rem rgba(0,0,0,0.45);">
+<span class="pointer-events-none absolute left-0 top-0 h-10 w-10 border-l border-t border-indigo-500/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-10 w-10 border-r border-t border-indigo-500/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-10 w-10 border-b border-l border-indigo-500/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-10 w-10 border-b border-r border-indigo-500/40"></span>
+<div class="absolute left-4 top-4 h-2 w-2 bg-indigo-500/50"></div>
+<div class="absolute right-4 top-4 h-2 w-2 bg-indigo-500/50"></div>
+<div class="absolute bottom-4 left-4 h-2 w-2 bg-indigo-500/50"></div>
+<div class="absolute bottom-4 right-4 h-2 w-2 bg-indigo-500/50"></div>
+<div class="grid min-h-[calc(100vh-8rem)] grid-cols-1 lg:grid-cols-[0.72fr_1.28fr]">
+<aside class="relative border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+<div class="reveal-block max-w-xl">
+<div class="mb-8 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.7);">
+<span class="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-[0_0_1rem_rgba(129,140,248,0.65)]"></span>
+                Диагностический слой активен
               </div>
-
-              <p class="mb-4 text-xs font-medium uppercase tracking-widest text-neutral-500 font-sans">
-                Build node 08.42 / viewport 1366
+<p class="mb-4 text-xs font-medium uppercase tracking-widest text-neutral-500 font-sans">
+                Сборочный узел 08.42 / вьюпорт 1366
               </p>
-              <h1 class="max-w-2xl text-5xl tracking-tighter text-white sm:text-6xl lg:text-7xl leading-[1.1] font-bebas-neue font-normal">
-                Map ideas as a
-                <br>
-                <span class="text-indigo-400 tracking-tighter font-bebas-neue font-normal" style="background: linear-gradient(to right, #818cf8, #c7d2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
-                  measured
+<h1 class="max-w-2xl text-5xl tracking-tighter text-white sm:text-6xl lg:text-7xl leading-[1.1] font-bebas-neue font-normal">
+                Картируйте идеи как
+                <br/>
+<span class="text-indigo-400 tracking-tighter font-bebas-neue font-normal" style="background: linear-gradient(to right, #818cf8, #c7d2fe); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                  измеримую
                 </span>
-                <br>
-                system.
+<br/>
+                система.
               </h1>
-              <p class="mt-6 max-w-lg text-sm leading-6 text-neutral-400 sm:text-base font-sans">
-                Vectorline turns planning sessions into annotated structures:
-                live frames, spatial notes, asset references, ownership signals,
-                and route-level context rendered in one calm workspace.
+<p class="mt-6 max-w-lg text-sm leading-6 text-neutral-400 sm:text-base font-sans">
+                Vectorline превращает сессии планирования в аннотированные структуры: живые фреймы, пространственные заметки, ссылки на ассеты, сигналы владения и контекст уровня маршрутов — в одном спокойном рабочем пространстве.
               </p>
-
-              <div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-white/10 pt-6">
-                <div class="flex flex-col items-start">
-                  <div class="flex items-center justify-center w-10 h-10 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-2">
-                    <div class="w-4 h-4 bg-indigo-400 rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"></div>
-                  </div>
-                  <h3 class="text-lg text-neutral-200 mt-2 font-light tracking-tighter font-sans">
-                    Latency Limits
+<div class="mt-8 grid grid-cols-1 sm:grid-cols-2 gap-6 border-t border-white/10 pt-6">
+<div class="flex flex-col items-start">
+<div class="flex items-center justify-center w-10 h-10 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-2">
+<div class="w-4 h-4 bg-indigo-400 rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"></div>
+</div>
+<h3 class="text-lg text-neutral-200 mt-2 font-light tracking-tighter font-sans">
+                    Лимиты задержки
                   </h3>
-                  <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
-                    Optimized 12ms target allocation across environments.
+<p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                    Оптимизированное распределение с целевыми 12 мс во всех средах.
                   </p>
-                </div>
-                <div class="flex flex-col items-start">
-                  <div class="flex items-center justify-center w-10 h-10 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-2">
-                    <div class="w-4 h-4 bg-indigo-400 rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"></div>
-                  </div>
-                  <h3 class="text-lg text-neutral-200 mt-2 font-light tracking-tighter font-sans">
-                    Frame Topology
+</div>
+<div class="flex flex-col items-start">
+<div class="flex items-center justify-center w-10 h-10 bg-indigo-500/10 rounded-full border border-indigo-500/20 mb-2">
+<div class="w-4 h-4 bg-indigo-400 rounded-full shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]"></div>
+</div>
+<h3 class="text-lg text-neutral-200 mt-2 font-light tracking-tighter font-sans">
+                    Топология фреймов
                   </h3>
-                  <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
-                    Uncovering 624 hidden data vectors for decisions.
+<p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                    Обнаружение 624 скрытых векторов данных для решений.
                   </p>
-                </div>
-              </div>
-
-              <div class="mt-8 flex flex-col gap-3 sm:flex-row">
-                <a href="#" class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-5 text-xs font-medium uppercase tracking-widest text-black font-sans" style="background: linear-gradient(to bottom, #fafafa, #a3a3a3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(0,0,0,0.35), 0 1rem 2rem rgba(255,255,255,0.08);">
-                  Start mapping
-                  <iconify-icon icon="solar:map-arrow-right-linear" class="text-lg"></iconify-icon>
-                </a>
-                <a href="#assets" class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.02)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.13), inset 0 -1px 0 rgba(0,0,0,0.85);">
-                  Inspect assets
-                  <iconify-icon icon="solar:magnifer-linear" class="text-lg"></iconify-icon>
-                </a>
-              </div>
-            </div>
-
-            <div class="mt-10 rounded-2xl border border-white/10 p-4" style="background: linear-gradient(to bottom, rgba(255,255,255,0.075), rgba(0,0,0,0.2)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.9);">
-              <div class="flex items-center justify-between border-b border-white/10 pb-3">
-                <p class="text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans">
-                  Session operators
+</div>
+</div>
+<div class="mt-8 flex flex-col gap-3 sm:flex-row">
+<a class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/20 px-5 text-xs font-medium uppercase tracking-widest text-black font-sans" href="#" style="background: linear-gradient(to bottom, #fafafa, #a3a3a3); box-shadow: inset 0 1px 0 rgba(255,255,255,0.85), inset 0 -1px 0 rgba(0,0,0,0.35), 0 1rem 2rem rgba(255,255,255,0.08);">
+                  Начать картирование
+                  <iconify-icon class="text-lg" icon="solar:map-arrow-right-linear"></iconify-icon>
+</a>
+<a class="inline-flex h-12 items-center justify-center gap-2 rounded-xl border border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans" href="#assets" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.02)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.13), inset 0 -1px 0 rgba(0,0,0,0.85);">
+                  Изучить ассеты
+                  <iconify-icon class="text-lg" icon="solar:magnifer-linear"></iconify-icon>
+</a>
+</div>
+</div>
+<div class="mt-10 rounded-2xl border border-white/10 p-4" style="background: linear-gradient(to bottom, rgba(255,255,255,0.075), rgba(0,0,0,0.2)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), inset 0 -1px 0 rgba(0,0,0,0.9);">
+<div class="flex items-center justify-between border-b border-white/10 pb-3">
+<p class="text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans">
+                  Операторы сессии
                 </p>
-                <span class="text-xs text-zinc-500 font-sans">05 online</span>
-              </div>
-              <div class="mt-4 flex -space-x-2">
-                <img alt="Operator Maya headshot" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b94b411a-e647-4262-bb32-dd6dd64ce236_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b94b411a-e647-4262-bb32-dd6dd64ce236_1600w.png">
-                <img alt="Operator Theo headshot" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e8160c9-b485-42e9-bd6b-25a41e4ebda2_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e8160c9-b485-42e9-bd6b-25a41e4ebda2_1600w.png">
-                <img alt="Operator Ilya headshot" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51103d1b-20cf-4050-bc90-32838f19e2e2_3840w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51103d1b-20cf-4050-bc90-32838f19e2e2_3840w.png">
-                <span class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-950 bg-zinc-800 text-xs text-zinc-300 font-sans">
+<span class="text-xs text-zinc-500 font-sans">05 онлайн</span>
+</div>
+<div class="mt-4 flex -space-x-2">
+<img alt="Портрет оператора Майи" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b94b411a-e647-4262-bb32-dd6dd64ce236_1600w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b94b411a-e647-4262-bb32-dd6dd64ce236_1600w.png"/>
+<img alt="Портрет оператора Тео" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e8160c9-b485-42e9-bd6b-25a41e4ebda2_1600w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2e8160c9-b485-42e9-bd6b-25a41e4ebda2_1600w.png"/>
+<img alt="Портрет оператора Ильи" class="h-9 w-9 rounded-full border border-neutral-950 object-cover grayscale" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51103d1b-20cf-4050-bc90-32838f19e2e2_3840w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/51103d1b-20cf-4050-bc90-32838f19e2e2_3840w.png"/>
+<span class="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-950 bg-zinc-800 text-xs text-zinc-300 font-sans">
                   +2
                 </span>
-              </div>
-            </div>
-          </aside>
-
-          <div class="relative min-h-[38rem] overflow-hidden">
-            <div class="absolute inset-0 opacity-30 mix-blend-overlay" style="background-image: linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 4rem 4rem;"></div>
-
-            <canvas id="wireframeCanvas" aria-label="Animated structural wireframe model" class="absolute inset-0 h-full w-full" width="1553" height="2015"></canvas>
-
-            <svg class="pointer-events-none absolute inset-0 h-full w-full text-zinc-300/50" viewBox="0 0 1000 700" preserveAspectRatio="none" aria-hidden="true">
-              <path class="connector-line" d="M188 158 H316 V254" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
-              <path class="connector-line" d="M816 172 H686 V278" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
-              <path class="connector-line" d="M196 526 H356 V426" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
-              <path class="connector-line" d="M790 552 H636 V446" fill="none" stroke="currentColor" stroke-width="1" stroke-dasharray="6 8" style=" stroke-dashoffset: 0px;"></path>
-            </svg>
-
-            <div class="absolute top-6 left-6 z-20 flex items-center gap-3">
-              <div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse shadow-[0_0_10px_#818cf8]"></div>
-              <span class="text-xs tracking-widest uppercase font-medium text-indigo-400/80 font-sans">
-                Active Simulation
+</div>
+</div>
+</aside>
+<div class="relative min-h-[38rem] overflow-hidden">
+<div class="absolute inset-0 opacity-30 mix-blend-overlay" style="background-image: linear-gradient(to right, rgba(255,255,255,0.055) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.045) 1px, transparent 1px); background-size: 4rem 4rem;"></div>
+<canvas aria-label="Анимированная структурная каркасная модель" class="absolute inset-0 h-full w-full" height="2015" id="wireframeCanvas" width="1553"></canvas>
+<svg aria-hidden="true" class="pointer-events-none absolute inset-0 h-full w-full text-zinc-300/50" preserveaspectratio="none" viewbox="0 0 1000 700">
+<path class="connector-line" d="M188 158 H316 V254" fill="none" stroke="currentColor" stroke-dasharray="6 8" stroke-width="1" style=" stroke-dashoffset: 0px;"></path>
+<path class="connector-line" d="M816 172 H686 V278" fill="none" stroke="currentColor" stroke-dasharray="6 8" stroke-width="1" style=" stroke-dashoffset: 0px;"></path>
+<path class="connector-line" d="M196 526 H356 V426" fill="none" stroke="currentColor" stroke-dasharray="6 8" stroke-width="1" style=" stroke-dashoffset: 0px;"></path>
+<path class="connector-line" d="M790 552 H636 V446" fill="none" stroke="currentColor" stroke-dasharray="6 8" stroke-width="1" style=" stroke-dashoffset: 0px;"></path>
+</svg>
+<div class="absolute top-6 left-6 z-20 flex items-center gap-3">
+<div class="w-2 h-2 bg-indigo-500 rounded-full animate-pulse shadow-[0_0_10px_#818cf8]"></div>
+<span class="text-xs tracking-widest uppercase font-medium text-indigo-400/80 font-sans">
+                Активная симуляция
               </span>
-            </div>
-
-            <div class="label-pill absolute right-5 top-12 w-52 rounded-xl border border-white/10 p-3 sm:right-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
-              <div class="flex items-center justify-between">
-                <p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-                  Sync mesh
+</div>
+<div class="label-pill absolute right-5 top-12 w-52 rounded-xl border border-white/10 p-3 sm:right-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
+<div class="flex items-center justify-between">
+<p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+                  Синхронизация меша
                 </p>
-                <span class="text-xs text-zinc-500 font-sans">98%</span>
-              </div>
-              <div class="mt-3 grid grid-cols-8 gap-1">
-                <span class="h-8 rounded bg-zinc-300/70"></span>
-                <span class="h-6 self-end rounded bg-zinc-500/70"></span>
-                <span class="h-10 self-end rounded bg-zinc-200/80"></span>
-                <span class="h-5 self-end rounded bg-zinc-600/70"></span>
-                <span class="h-9 self-end rounded bg-zinc-400/80"></span>
-                <span class="h-7 self-end rounded bg-zinc-500/70"></span>
-                <span class="h-11 self-end rounded bg-zinc-200/80"></span>
-                <span class="h-4 self-end rounded bg-zinc-700"></span>
-              </div>
-            </div>
-
-            <div class="label-pill absolute bottom-24 left-5 w-52 rounded-xl border border-white/10 p-3 sm:left-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
-              <p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-                Route memory
+<span class="text-xs text-zinc-500 font-sans">98%</span>
+</div>
+<div class="mt-3 grid grid-cols-8 gap-1">
+<span class="h-8 rounded bg-zinc-300/70"></span>
+<span class="h-6 self-end rounded bg-zinc-500/70"></span>
+<span class="h-10 self-end rounded bg-zinc-200/80"></span>
+<span class="h-5 self-end rounded bg-zinc-600/70"></span>
+<span class="h-9 self-end rounded bg-zinc-400/80"></span>
+<span class="h-7 self-end rounded bg-zinc-500/70"></span>
+<span class="h-11 self-end rounded bg-zinc-200/80"></span>
+<span class="h-4 self-end rounded bg-zinc-700"></span>
+</div>
+</div>
+<div class="label-pill absolute bottom-24 left-5 w-52 rounded-xl border border-white/10 p-3 sm:left-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
+<p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+                Память маршрутов
               </p>
-              <p class="mt-2 text-2xl tracking-tight text-white font-bebas-neue font-normal">
+<p class="mt-2 text-2xl tracking-tight text-white font-bebas-neue font-normal">
                 41.8k
               </p>
-              <p class="mt-1 text-xs text-zinc-500 font-sans">
-                visible relations indexed
+<p class="mt-1 text-xs text-zinc-500 font-sans">
+                видимых связей проиндексировано
               </p>
-            </div>
-
-            <div class="label-pill absolute bottom-16 right-5 w-60 rounded-xl border border-white/10 p-3 sm:right-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
-              <div class="flex items-center justify-between">
-                <p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-                  Canvas load
+</div>
+<div class="label-pill absolute bottom-16 right-5 w-60 rounded-xl border border-white/10 p-3 sm:right-8" style="background: linear-gradient(to bottom, rgba(24,24,27,0.92), rgba(0,0,0,0.68)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1.5rem 3rem rgba(0,0,0,0.35);">
+<div class="flex items-center justify-between">
+<p class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+                  Нагрузка холста
                 </p>
-                <iconify-icon icon="solar:cpu-linear" class="text-lg text-zinc-400"></iconify-icon>
-              </div>
-              <div class="mt-3 space-y-2">
-                <div class="flex items-center gap-2">
-                  <span class="w-16 text-xs text-zinc-500 font-sans">
-                    Notes
+<iconify-icon class="text-lg text-zinc-400" icon="solar:cpu-linear"></iconify-icon>
+</div>
+<div class="mt-3 space-y-2">
+<div class="flex items-center gap-2">
+<span class="w-16 text-xs text-zinc-500 font-sans">
+                    Заметки
                   </span>
-                  <span class="h-1.5 flex-1 rounded-full bg-black/60">
-                    <span class="block h-full w-9/12 rounded-full bg-zinc-200"></span>
+<span class="h-1.5 flex-1 rounded-full bg-black/60">
+<span class="block h-full w-9/12 rounded-full bg-zinc-200"></span>
+</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-16 text-xs text-zinc-500 font-sans">
+                    Медиа
                   </span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-16 text-xs text-zinc-500 font-sans">
-                    Media
+<span class="h-1.5 flex-1 rounded-full bg-black/60">
+<span class="block h-full w-6/12 rounded-full bg-zinc-400"></span>
+</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="w-16 text-xs text-zinc-500 font-sans">
+                    Задачи
                   </span>
-                  <span class="h-1.5 flex-1 rounded-full bg-black/60">
-                    <span class="block h-full w-6/12 rounded-full bg-zinc-400"></span>
+<span class="h-1.5 flex-1 rounded-full bg-black/60">
+<span class="block h-full w-8/12 rounded-full bg-zinc-300"></span>
+</span>
+</div>
+</div>
+</div>
+<div class="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/35 px-5 py-4 backdrop-blur-xl sm:px-8">
+<div class="grid grid-cols-2 gap-3 text-xs text-zinc-500 sm:grid-cols-4">
+<div>
+<span class="block uppercase tracking-widest font-sans">
+                    Сеть
                   </span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="w-16 text-xs text-zinc-500 font-sans">
-                    Tasks
-                  </span>
-                  <span class="h-1.5 flex-1 rounded-full bg-black/60">
-                    <span class="block h-full w-8/12 rounded-full bg-zinc-300"></span>
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            <div class="absolute inset-x-0 bottom-0 border-t border-white/10 bg-black/35 px-5 py-4 backdrop-blur-xl sm:px-8">
-              <div class="grid grid-cols-2 gap-3 text-xs text-zinc-500 sm:grid-cols-4">
-                <div>
-                  <span class="block uppercase tracking-widest font-sans">
-                    Grid
-                  </span>
-                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+<strong class="mt-1 block font-medium text-zinc-200 font-sans">
                     128 × 72
                   </strong>
-                </div>
-                <div>
-                  <span class="block uppercase tracking-widest font-sans">
-                    Vectors
+</div>
+<div>
+<span class="block uppercase tracking-widest font-sans">
+                    Векторы
                   </span>
-                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+<strong class="mt-1 block font-medium text-zinc-200 font-sans">
                     7,504
                   </strong>
-                </div>
-                <div>
-                  <span class="block uppercase tracking-widest font-sans">
-                    Assets
+</div>
+<div>
+<span class="block uppercase tracking-widest font-sans">
+                    Ассеты
                   </span>
-                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+<strong class="mt-1 block font-medium text-zinc-200 font-sans">
                     319
                   </strong>
-                </div>
-                <div>
-                  <span class="block uppercase tracking-widest font-sans">
-                    Revision
+</div>
+<div>
+<span class="block uppercase tracking-widest font-sans">
+                    Ревизия
                   </span>
-                  <strong class="mt-1 block font-medium text-zinc-200 font-sans">
+<strong class="mt-1 block font-medium text-zinc-200 font-sans">
                     R-27C
                   </strong>
-                </div>
-              </div>
-            </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="frame-section relative mt-6 border border-white/10" id="core-architecture" style="background: linear-gradient(180deg, rgba(24,24,27,0.86), rgba(10,10,10,0.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+<span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+<div class="border-b border-white/10 p-5 sm:p-8">
+<div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.7);">
+<span class="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-[0_0_1rem_rgba(129,140,248,0.65)] animate-pulse"></span>
+            Система активна
           </div>
-        </div>
-      </section>
-      <section id="core-architecture" class="frame-section relative mt-6 border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.86), rgba(10,10,10,0.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
-        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
-
-        <div class="border-b border-white/10 p-5 sm:p-8">
-          <div class="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-2 text-xs font-medium uppercase tracking-widest text-zinc-400 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.09), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.12), inset 0 -1px 0 rgba(0,0,0,0.7);">
-            <span class="h-1.5 w-1.5 rounded-full bg-indigo-400 shadow-[0_0_1rem_rgba(129,140,248,0.65)] animate-pulse"></span>
-            System Active
-          </div>
-          <h2 class="text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
-            Core Architecture Mapping
+<h2 class="text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+            Картирование базовой архитектуры
           </h2>
-          <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
-            Distributed network topology utilizing isometric spatial consensus
-            and multi-tier cryptographic layers.
+<p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+            Распределённая сетевая топология на основе изометрического пространственного консенсуса и многоуровневых криптографических слоёв.
           </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-12 auto-rows-fr">
-          <article class="ui-card flex flex-col md:col-span-5 relative border-b border-white/10 md:border-r group">
-            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
-              <div id="canvas-1" class="absolute inset-0"></div>
-              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
-                  <iconify-icon icon="lucide:shield" class="text-xl text-indigo-400"></iconify-icon>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
-              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
-                Quantum Lattice Array
+</div>
+<div class="grid grid-cols-1 md:grid-cols-12 auto-rows-fr">
+<article class="ui-card flex flex-col md:col-span-5 relative border-b border-white/10 md:border-r group">
+<div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+<div class="absolute inset-0" id="canvas-1"></div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+<div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+<iconify-icon class="text-xl text-indigo-400" icon="lucide:shield"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+<h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Квантовый решёточный массив
               </h3>
-              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
-                Military-grade isometric encryption protocols ensuring
-                zero-knowledge spatial security across all nodes.
+<p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                Изометрические протоколы шифрования военного уровня, обеспечивающие пространственную безопасность с нулевым разглашением на всех узлах.
               </p>
-            </div>
-          </article>
-
-          <article class="ui-card flex flex-col md:col-span-7 relative border-b border-white/10 group">
-            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
-              <div id="canvas-2" class="absolute inset-0"></div>
-              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
-                  <iconify-icon icon="lucide:network" class="text-xl text-indigo-400"></iconify-icon>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
-              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
-                Distributed Node Consensus
+</div>
+</article>
+<article class="ui-card flex flex-col md:col-span-7 relative border-b border-white/10 group">
+<div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+<div class="absolute inset-0" id="canvas-2"></div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+<div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+<iconify-icon class="text-xl text-indigo-400" icon="lucide:network"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+<h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Распределённый консенсус узлов
               </h3>
-              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans pr-8">
-                Automated propagation and validation of credentials across the
-                decentralized subnet. Eliminates single points of failure.
+<p class="text-sm text-neutral-500 leading-snug mt-1 font-sans pr-8">
+                Автоматическое распространение и валидация учётных данных по децентрализованной подсети. Устраняет единые точки отказа.
               </p>
-            </div>
-          </article>
-
-          <article class="ui-card flex flex-col md:col-span-7 relative border-b border-white/10 md:border-b-0 md:border-r group">
-            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
-              <div id="canvas-3" class="absolute inset-0"></div>
-              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
-                  <iconify-icon icon="lucide:users" class="text-xl text-indigo-400"></iconify-icon>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
-              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
-                Multi-Tenant Access Control
+</div>
+</article>
+<article class="ui-card flex flex-col md:col-span-7 relative border-b border-white/10 md:border-b-0 md:border-r group">
+<div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+<div class="absolute inset-0" id="canvas-3"></div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+<div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+<iconify-icon class="text-xl text-indigo-400" icon="lucide:users"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+<h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Мультиарендный контроль доступа
               </h3>
-              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans pr-8">
-                Granular role-based permissions governing secure inter-team
-                structural sharing and logic segregation.
+<p class="text-sm text-neutral-500 leading-snug mt-1 font-sans pr-8">
+                Гранулярные ролевые разрешения, управляющие безопасным межкомандным обменом структурами и разделением логики.
               </p>
-            </div>
-          </article>
-
-          <article class="ui-card flex flex-col md:col-span-5 relative group">
-            <div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-
-            <div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
-              <div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
-              <div id="canvas-4" class="absolute inset-0"></div>
-              <div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
-                <div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
-                  <iconify-icon icon="lucide:file-text" class="text-xl text-indigo-400"></iconify-icon>
-                </div>
-              </div>
-            </div>
-
-            <div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
-              <h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
-                Immutable Audit Trails
+</div>
+</article>
+<article class="ui-card flex flex-col md:col-span-5 relative group">
+<div class="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-indigo-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+<div class="relative h-[240px] w-full flex items-center justify-center overflow-hidden">
+<div class="absolute inset-0 opacity-[0.15] mix-blend-overlay pointer-events-none" style="background-image: linear-gradient(to right, rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(to bottom, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 2rem 2rem;"></div>
+<div class="absolute inset-0" id="canvas-4"></div>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+<div class="w-12 h-12 rounded-xl bg-black/60 backdrop-blur-md border border-indigo-500/30 flex items-center justify-center shadow-[0_0_20px_rgba(129,140,248,0.15)]">
+<iconify-icon class="text-xl text-indigo-400" icon="lucide:file-text"></iconify-icon>
+</div>
+</div>
+</div>
+<div class="relative z-10 p-5 sm:p-8 pt-4 mt-auto border-t border-white/5 bg-black/20">
+<h3 class="text-lg text-neutral-200 font-light tracking-tighter font-sans">
+                Неизменяемые аудит-трейлы
               </h3>
-              <p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
-                Continuous cryptographic logging of all volumetric operations,
-                stored in non-volatile structural arrays.
+<p class="text-sm text-neutral-500 leading-snug mt-1 font-sans">
+                Непрерывное криптографическое журналирование всех объёмных операций с хранением в энергонезависимых структурных массивах.
               </p>
-            </div>
-          </article>
-        </div>
-
-        <script>
+</div>
+</article>
+</div>
+<script>
           (function() {
             if (typeof THREE === 'undefined') return;
 
@@ -831,354 +833,330 @@ gtag('config', 'G-2M6V79H761');
 
           })();
         </script>
-      </section>
-
-      <section id="signals" class="frame-section relative mt-6 border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.86), rgba(10,10,10,0.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
-        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
-
-        <div class="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr]">
-          <div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
-            <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
-              Signal overview
+</section>
+<section class="frame-section relative mt-6 border border-white/10" id="signals" style="background: linear-gradient(180deg, rgba(24,24,27,0.86), rgba(10,10,10,0.92)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+<span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+<div class="grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr]">
+<div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+<p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+              Обзор сигналов
             </p>
-            <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
-              A workspace with measurable intent.
+<h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+              Рабочее пространство с измеримым замыслом.
             </h2>
-            <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
-              Every object carries state, ownership, and history. Instead of
-              scattered sticky notes, the console exposes how ideas connect and
-              where decisions are slowing down.
+<p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+              Каждый объект несёт состояние, владельца и историю. Вместо разбросанных стикеров консоль показывает, как связаны идеи и где замедляются решения.
             </p>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-3">
-            <article class="metric-card border-b border-white/10 p-5 sm:border-b-0 sm:border-r sm:p-6">
-              <iconify-icon icon="solar:users-group-rounded-linear" class="text-2xl text-zinc-300"></iconify-icon>
-              <p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
-                Collaborators
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-3">
+<article class="metric-card border-b border-white/10 p-5 sm:border-b-0 sm:border-r sm:p-6">
+<iconify-icon class="text-2xl text-zinc-300" icon="solar:users-group-rounded-linear"></iconify-icon>
+<p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
+                Участников
               </p>
-              <p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
+<p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
                 86
               </p>
-              <p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
-                across four planning rooms
+<p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
+                в четырёх комнатах планирования
               </p>
-            </article>
-            <article class="metric-card border-b border-white/10 p-5 sm:border-b-0 sm:border-r sm:p-6">
-              <iconify-icon icon="solar:branching-paths-up-linear" class="text-2xl text-zinc-300"></iconify-icon>
-              <p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
-                Decision routes
+</article>
+<article class="metric-card border-b border-white/10 p-5 sm:border-b-0 sm:border-r sm:p-6">
+<iconify-icon class="text-2xl text-zinc-300" icon="solar:branching-paths-up-linear"></iconify-icon>
+<p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
+                Маршрутов решений
               </p>
-              <p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
+<p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
                 1,248
               </p>
-              <p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
-                mapped with source context
+<p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
+                картировано с контекстом источника
               </p>
-            </article>
-            <article class="metric-card p-5 sm:p-6">
-              <iconify-icon icon="solar:clock-circle-linear" class="text-2xl text-zinc-300"></iconify-icon>
-              <p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
-                Time recovered
+</article>
+<article class="metric-card p-5 sm:p-6">
+<iconify-icon class="text-2xl text-zinc-300" icon="solar:clock-circle-linear"></iconify-icon>
+<p class="mt-5 text-xs uppercase tracking-widest text-zinc-500 font-sans">
+                Времени возвращено
               </p>
-              <p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
+<p class="mt-2 text-3xl tracking-tight text-white font-bebas-neue font-normal">
                 34h
               </p>
-              <p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
-                per product cycle average
+<p class="mt-2 text-xs leading-5 text-zinc-500 font-sans">
+                в среднем за продуктовый цикл
               </p>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section id="assets" class="frame-section relative mt-6 border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.82), rgba(10,10,10,0.94)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
-        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
-
-        <div class="border-b border-white/10 p-5 sm:p-8">
-          <div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-            <div>
-              <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
-                Asset acquisition
+</article>
+</div>
+</div>
+</section>
+<section class="frame-section relative mt-6 border border-white/10" id="assets" style="background: linear-gradient(180deg, rgba(24,24,27,0.82), rgba(10,10,10,0.94)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+<span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+<div class="border-b border-white/10 p-5 sm:p-8">
+<div class="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+<div>
+<p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+                Получение ассетов
               </p>
-              <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
-                Five candidate visuals indexed for the board.
+<h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+                Пять визуалов-кандидатов проиндексировано для борда.
               </h2>
-            </div>
-            <div class="relative max-w-md">
-              <label for="asset-search" class="sr-only font-sans">
-                Search asset library
+</div>
+<div class="relative max-w-md">
+<label class="sr-only font-sans" for="asset-search">
+                Поиск по библиотеке ассетов
               </label>
-              <iconify-icon icon="solar:magnifer-linear" class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-lg text-zinc-500"></iconify-icon>
-              <input id="asset-search" type="search" value="abstract architecture headshot" class="h-12 w-full rounded-xl border border-white/10 bg-black/40 pl-11 pr-4 text-sm text-zinc-300 outline-none ring-0 placeholder:text-zinc-600 focus:border-white/25" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.9);" aria-label="Search assets">
-            </div>
-          </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-5">
-          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
-            <img alt="Abstract neon light wave on black" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg">
-            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-              Abstract wave
+<iconify-icon class="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2 text-lg text-zinc-500" icon="solar:magnifer-linear"></iconify-icon>
+<input aria-label="Поиск ассетов" class="h-12 w-full rounded-xl border border-white/10 bg-black/40 pl-11 pr-4 text-sm text-zinc-300 outline-none ring-0 placeholder:text-zinc-600 focus:border-white/25" id="asset-search" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.9);" type="search" value="абстрактная архитектура, портрет"/>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-5">
+<article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+<img alt="Абстрактная неоновая световая волна на чёрном" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fa51902b-c2a4-4c33-a96e-a8f1ef67edc6_1600w.jpg"/>
+<p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Абстрактная волна
             </p>
-            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+<p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
               fa51902b..._1600w.jpg
             </p>
-          </article>
-          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
-            <img alt="Modern glass villa at dusk in lush landscape" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ad43cd6-06fd-4688-8d31-1255a49e65b6_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ad43cd6-06fd-4688-8d31-1255a49e65b6_1600w.png">
-            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-              Glass habitat
+</article>
+<article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+<img alt="Современная стеклянная вилла в сумерках среди пышного ландшафта" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ad43cd6-06fd-4688-8d31-1255a49e65b6_1600w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ad43cd6-06fd-4688-8d31-1255a49e65b6_1600w.png"/>
+<p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Стеклянная среда обитания
             </p>
-            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+<p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
               005600e5..._1600w.jpg
             </p>
-          </article>
-          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
-            <img alt="Futuristic deconstructed pyramid in grayscale" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0381c1be-4833-400e-8980-ba655a35c355_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0381c1be-4833-400e-8980-ba655a35c355_1600w.png">
-            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-              Pyramid study
+</article>
+<article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+<img alt="Футуристичная деконструированная пирамида в оттенках серого" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0381c1be-4833-400e-8980-ba655a35c355_1600w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0381c1be-4833-400e-8980-ba655a35c355_1600w.png"/>
+<p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Этюд пирамиды
             </p>
-            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+<p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
               724142aa..._1600w.jpg
             </p>
-          </article>
-          <article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
-            <img alt="Studio portrait of woman with striking blue eyes" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad4abe08-8cf7-4aff-8f68-7b905586a39f_1600w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad4abe08-8cf7-4aff-8f68-7b905586a39f_1600w.png">
-            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-              Studio subject
+</article>
+<article class="asset-card border-b border-white/10 p-4 md:border-b-0 md:border-r">
+<img alt="Студийный портрет женщины с яркими голубыми глазами" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad4abe08-8cf7-4aff-8f68-7b905586a39f_1600w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad4abe08-8cf7-4aff-8f68-7b905586a39f_1600w.png"/>
+<p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Студийный объект
             </p>
-            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+<p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
               77415a2e..._1600w.jpg
             </p>
-          </article>
-          <article class="asset-card p-4">
-            <img alt="Abstract blue wave at dusk" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/35f471e8-2800-451e-9d01-6ee6d33c395d_3840w.png" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/35f471e8-2800-451e-9d01-6ee6d33c395d_3840w.png">
-            <p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
-              Dusk waveform
+</article>
+<article class="asset-card p-4">
+<img alt="Абстрактная синяя волна в сумерках" class="h-40 w-full rounded-xl object-cover opacity-80 grayscale transition duration-500 hover:grayscale-0" data-element-src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/35f471e8-2800-451e-9d01-6ee6d33c395d_3840w.png" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/35f471e8-2800-451e-9d01-6ee6d33c395d_3840w.png"/>
+<p class="mt-4 text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans">
+              Волновая форма в сумерках
             </p>
-            <p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
+<p class="mt-2 break-all text-xs leading-5 text-zinc-600 font-sans">
               e534354d..._1600w.jpg
             </p>
-          </article>
-        </div>
-      </section>
-
-      <section id="protocol" class="frame-section relative mt-6 overflow-hidden border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.84), rgba(10,10,10,0.96)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
-        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
-
-        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr]">
-          <div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
-            <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
-              Operating protocol
+</article>
+</div>
+</section>
+<section class="frame-section relative mt-6 overflow-hidden border border-white/10" id="protocol" style="background: linear-gradient(180deg, rgba(24,24,27,0.84), rgba(10,10,10,0.96)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+<span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr]">
+<div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+<p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+              Операционный протокол
             </p>
-            <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
-              From workshop noise to structured output.
+<h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+              От шума воркшопа к структурированному результату.
             </h2>
-            <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
-              Use frames as containers, attach assets as evidence, assign paths
-              to owners, then export a decision map with the metadata still
-              intact.
+<p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+              Используйте фреймы как контейнеры, прикрепляйте ассеты как доказательства, назначайте пути владельцам, а затем экспортируйте карту решений с сохранёнными метаданными.
             </p>
-          </div>
-
-          <div class="divide-y divide-white/10">
-            <div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
-              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
+</div>
+<div class="divide-y divide-white/10">
+<div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
+<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
                 01
               </span>
-              <div>
-                <h3 class="text-sm font-medium text-white font-sans">
-                  Capture signals
+<div>
+<h3 class="text-sm font-medium text-white font-sans">
+                  Фиксируйте сигналы
                 </h3>
-                <p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
-                  Import sketches, notes, product screenshots, and reference
-                  visuals without flattening context.
+<p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
+                  Импортируйте скетчи, заметки, скриншоты продукта и референсные визуалы без потери контекста.
                 </p>
-              </div>
-            </div>
-            <div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
-              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
+</div>
+</div>
+<div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
+<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
                 02
               </span>
-              <div>
-                <h3 class="text-sm font-medium text-white font-sans">
-                  Connect dependencies
+<div>
+<h3 class="text-sm font-medium text-white font-sans">
+                  Связывайте зависимости
                 </h3>
-                <p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
-                  Route issues, assumptions, and commitments through visible
-                  relationship lines.
+<p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
+                  Проводите задачи, допущения и обязательства через видимые линии связей.
                 </p>
-              </div>
-            </div>
-            <div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
-              <span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
+</div>
+</div>
+<div class="protocol-row flex items-start gap-4 p-5 sm:p-6">
+<span class="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 text-xs font-medium text-zinc-200 font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.12), rgba(255,255,255,0.035)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.16), inset 0 -1px 0 rgba(0,0,0,0.88);">
                 03
               </span>
-              <div>
-                <h3 class="text-sm font-medium text-white font-sans">
-                  Export decisions
+<div>
+<h3 class="text-sm font-medium text-white font-sans">
+                  Экспортируйте решения
                 </h3>
-                <p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
-                  Generate a clean spec trail for stakeholders, engineering,
-                  design, and operations.
+<p class="mt-1 text-xs leading-5 text-zinc-500 font-sans">
+                  Генерируйте чистый спецификационный след для стейкхолдеров, инженеров, дизайна и операций.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      <section id="deployment" class="frame-section relative mt-6 overflow-hidden border border-white/10" style="background: linear-gradient(180deg, rgba(24,24,27,0.84), rgba(10,10,10,0.96)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
-        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
-
-        <div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr]">
-          <div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
-            <p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
-              System deployment
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="frame-section relative mt-6 overflow-hidden border border-white/10" id="deployment" style="background: linear-gradient(180deg, rgba(24,24,27,0.84), rgba(10,10,10,0.96)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.95);">
+<span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+<div class="grid grid-cols-1 lg:grid-cols-[1fr_1fr]">
+<div class="border-b border-white/10 p-5 sm:p-8 lg:border-b-0 lg:border-r">
+<p class="text-xs font-medium uppercase tracking-[0.32em] text-zinc-500 font-sans">
+              Развёртывание системы
             </p>
-            <h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
-              Push structural changes directly to production.
+<h2 class="mt-3 text-3xl tracking-tighter text-white sm:text-4xl font-bebas-neue font-normal">
+              Отправляйте структурные изменения прямо в продакшен.
             </h2>
-            <p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
-              Export decision vectors seamlessly. Vectorline generates
-              ready-to-deploy metadata that syncs directly with your existing
-              pipeline and infrastructure.
+<p class="mt-4 max-w-xl text-sm leading-6 text-zinc-400 font-sans">
+              Экспортируйте векторы решений бесшовно. Vectorline генерирует готовые к развёртыванию метаданные, которые синхронизируются напрямую с вашим существующим пайплайном и инфраструктурой.
             </p>
-          </div>
-
-          <div class="flex min-h-[16rem] items-center justify-center p-5 sm:p-8">
-            <div class="flex flex-col items-center gap-6">
-              <div class="flex items-center gap-3">
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
-                  <iconify-icon icon="solar:server-square-update-linear"></iconify-icon>
-                </div>
-                <div class="h-px w-8 bg-white/10"></div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
-                  <iconify-icon icon="solar:code-square-linear"></iconify-icon>
-                </div>
-                <div class="h-px w-8 bg-white/10"></div>
-                <div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
-                  <iconify-icon icon="solar:cloud-upload-linear"></iconify-icon>
-                </div>
-              </div>
-              <a href="#" class="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-300 transition hover:border-white/25 hover:text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.85);">
-                Initialize sync
+</div>
+<div class="flex min-h-[16rem] items-center justify-center p-5 sm:p-8">
+<div class="flex flex-col items-center gap-6">
+<div class="flex items-center gap-3">
+<div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+<iconify-icon icon="solar:server-square-update-linear"></iconify-icon>
+</div>
+<div class="h-px w-8 bg-white/10"></div>
+<div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+<iconify-icon icon="solar:code-square-linear"></iconify-icon>
+</div>
+<div class="h-px w-8 bg-white/10"></div>
+<div class="flex h-12 w-12 items-center justify-center rounded-xl border border-white/10 bg-black/50 text-2xl text-zinc-300" style="box-shadow: inset 0 1px 0 rgba(255,255,255,0.05);">
+<iconify-icon icon="solar:cloud-upload-linear"></iconify-icon>
+</div>
+</div>
+<a class="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-white/10 px-5 text-xs font-medium uppercase tracking-widest text-zinc-300 transition hover:border-white/25 hover:text-white font-sans" href="#" style="background: linear-gradient(to bottom, rgba(255,255,255,0.08), rgba(255,255,255,0.025)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.14), inset 0 -1px 0 rgba(0,0,0,0.85);">
+                Инициализировать синхронизацию
               </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="relative z-10 mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8 pt-12">
-      <div class="frame-section border border-white/10 p-8 sm:p-12 mb-6 relative overflow-hidden" style="background: linear-gradient(180deg, rgba(24,24,27,0.4), rgba(10,10,10,0.6)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.8);">
-        <span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
-        <span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
-          <div class="md:col-span-2">
-            <a href="#" aria-label="Vectorline home" class="group relative inline-flex items-center gap-3">
-              <span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-sm font-medium text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.045)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1rem 2rem rgba(0,0,0,0.35); text-shadow: 0 1px 0 rgba(0,0,0,0.8);">
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="relative z-10 mx-auto max-w-7xl px-4 pb-8 sm:px-6 lg:px-8 pt-12">
+<div class="frame-section border border-white/10 p-8 sm:p-12 mb-6 relative overflow-hidden" style="background: linear-gradient(180deg, rgba(24,24,27,0.4), rgba(10,10,10,0.6)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.05), inset 0 -1px 0 rgba(0,0,0,0.8);">
+<span class="pointer-events-none absolute left-0 top-0 h-8 w-8 border-l border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute right-0 top-0 h-8 w-8 border-r border-t border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 left-0 h-8 w-8 border-b border-l border-zinc-300/40"></span>
+<span class="pointer-events-none absolute bottom-0 right-0 h-8 w-8 border-b border-r border-zinc-300/40"></span>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+<div class="md:col-span-2">
+<a aria-label="Главная Vectorline" class="group relative inline-flex items-center gap-3" href="#">
+<span class="flex h-10 w-10 items-center justify-center rounded-xl border border-white/15 text-sm font-medium text-white font-sans" style="background: linear-gradient(to bottom, rgba(255,255,255,0.16), rgba(255,255,255,0.045)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.25), inset 0 -1px 0 rgba(0,0,0,0.9), 0 1rem 2rem rgba(0,0,0,0.35); text-shadow: 0 1px 0 rgba(0,0,0,0.8);">
                 VL
               </span>
-              <span class="leading-none block">
-                <span class="block text-sm font-medium tracking-tight text-white font-sans">
+<span class="leading-none block">
+<span class="block text-sm font-medium tracking-tight text-white font-sans">
                   Vectorline
                 </span>
-                <span class="mt-1 block text-xs font-normal uppercase tracking-widest text-zinc-500 font-sans">
-                  Spec console
+<span class="mt-1 block text-xs font-normal uppercase tracking-widest text-zinc-500 font-sans">
+                  Spec-консоль
                 </span>
-              </span>
-            </a>
-            <p class="mt-6 text-sm text-zinc-400 max-w-sm leading-relaxed font-sans">
-              Vectorline turns planning sessions into annotated structures: live
-              frames, spatial notes, and route-level context rendered in one
-              workspace.
+</span>
+</a>
+<p class="mt-6 text-sm text-zinc-400 max-w-sm leading-relaxed font-sans">
+              Vectorline превращает сессии планирования в аннотированные структуры: живые фреймы, пространственные заметки и контекст уровня маршрутов — в одном рабочем пространстве.
             </p>
-          </div>
-          <div>
-            <h3 class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans mb-5">
-              Platform
+</div>
+<div>
+<h3 class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans mb-5">
+              Платформа
             </h3>
-            <ul class="space-y-3">
-              <li>
-                <a href="#model" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Model
+<ul class="space-y-3">
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#model">
+                  Модель
                 </a>
-              </li>
-              <li>
-                <a href="#signals" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Signals
+</li>
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#signals">
+                  Сигналы
                 </a>
-              </li>
-              <li>
-                <a href="#assets" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Assets
+</li>
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#assets">
+                  Ассеты
                 </a>
-              </li>
-              <li>
-                <a href="#protocol" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Protocol
+</li>
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#protocol">
+                  Протокол
                 </a>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h3 class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans mb-5">
-              Company
+</li>
+</ul>
+</div>
+<div>
+<h3 class="text-xs font-medium uppercase tracking-widest text-zinc-300 font-sans mb-5">
+              Компания
             </h3>
-            <ul class="space-y-3">
-              <li>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  About
+<ul class="space-y-3">
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#">
+                  О нас
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Changelog
+</li>
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#">
+                  Список изменений
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Careers
+</li>
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#">
+                  Карьера
                 </a>
-              </li>
-              <li>
-                <a href="#" class="text-sm text-zinc-500 hover:text-white transition font-sans">
-                  Contact
+</li>
+<li>
+<a class="text-sm text-zinc-500 hover:text-white transition font-sans" href="#">
+                  Контакты
                 </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="flex flex-col gap-3 border border-white/10 px-5 py-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between" style="background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.18)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.85);">
-        <p class="font-sans">Vectorline structural console / build 08.42</p>
-        <div class="flex flex-wrap gap-4">
-          <a href="#" class="hover:text-white transition font-sans">
-            Privacy Policy
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-3 border border-white/10 px-5 py-4 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between" style="background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0,0,0,0.18)); box-shadow: inset 0 1px 0 rgba(255,255,255,0.08), inset 0 -1px 0 rgba(0,0,0,0.85);">
+<p class="font-sans">Структурная консоль Vectorline / сборка 08.42</p>
+<div class="flex flex-wrap gap-4">
+<a class="hover:text-white transition font-sans" href="#">
+            Политика конфиденциальности
           </a>
-          <a href="#" class="hover:text-white transition font-sans">
-            Terms of Service
+<a class="hover:text-white transition font-sans" href="#">
+            Условия использования
           </a>
-        </div>
-      </div>
-    </footer>
-
-    <script>
+</div>
+</div>
+</footer>
+<script>
       document.addEventListener("DOMContentLoaded", function () {
         gsap.registerPlugin(ScrollTrigger);
 
@@ -1307,5 +1285,4 @@ gtag('config', 'G-2M6V79H761');
         animate();
       });
     </script>
-  
 </body></html>

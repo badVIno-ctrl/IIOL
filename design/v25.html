@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,12 +89,12 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Nexora Digital</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -235,7 +235,7 @@ animation: logoFade 800ms cubic-bezier(.16, 1, .3, 1) 2200ms both;
 animation: pedestalPulse 5.5s ease-in-out infinite;
 }
 </style><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -243,305 +243,322 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="min-h-screen overflow-x-hidden bg-black text-white" style="font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;">
-  <main class="relative min-h-screen overflow-hidden bg-black">
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.74)_100%)]">
-    </div>
-    <div class="pointer-events-none absolute inset-0 opacity-[0.045] mix-blend-screen" style="background-image: linear-gradient(rgba(255,255,255,0.7) 0.0625rem, transparent 0.0625rem), linear-gradient(90deg, rgba(255,255,255,0.7) 0.0625rem, transparent 0.0625rem); background-size: 4rem 4rem;">
-    </div>
-    <div class="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/[0.035] to-transparent">
-    </div>
-
-    <header class="nav-animate relative z-30 mx-auto flex w-full max-w-[92rem] items-center justify-between px-5 py-6 sm:px-8 lg:px-10 xl:px-12">
-
-  <a href="#" class="group flex items-center gap-3.5" aria-label="Hyperbolt Studio home">
-    <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-violet-400/45 bg-white/[0.045] text-blue-400 shadow-[0_0_1.5rem_rgba(124,58,237,0.28)] backdrop-blur-xl">
-      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-6 w-6 fill-blue-500/20">
-        <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
-      </svg>
-    </span>
-
-    <span class="leading-none">
-      <span class="block text-sm font-semibold uppercase tracking-[0.28em] text-white">
+<main class="relative min-h-screen overflow-hidden bg-black">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_35%,rgba(0,0,0,0.74)_100%)]">
+</div>
+<div class="pointer-events-none absolute inset-0 opacity-[0.045] mix-blend-screen" style="background-image: linear-gradient(rgba(255,255,255,0.7) 0.0625rem, transparent 0.0625rem), linear-gradient(90deg, rgba(255,255,255,0.7) 0.0625rem, transparent 0.0625rem); background-size: 4rem 4rem;">
+</div>
+<div class="pointer-events-none absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-white/[0.035] to-transparent">
+</div>
+<header class="nav-animate relative z-30 mx-auto flex w-full max-w-[92rem] items-center justify-between px-5 py-6 sm:px-8 lg:px-10 xl:px-12">
+<a aria-label="Главная Hyperbolt Studio" class="group flex items-center gap-3.5" href="#">
+<span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-violet-400/45 bg-white/[0.045] text-blue-400 shadow-[0_0_1.5rem_rgba(124,58,237,0.28)] backdrop-blur-xl">
+<svg class="h-6 w-6 fill-blue-500/20" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path>
+</svg>
+</span>
+<span class="leading-none">
+<span class="block text-sm font-semibold uppercase tracking-[0.28em] text-white">
         HYPERBOLT
       </span>
-      <span class="mt-1 block text-[0.625rem] font-medium uppercase tracking-[0.42em] text-slate-400">
+<span class="mt-1 block text-[0.625rem] font-medium uppercase tracking-[0.42em] text-slate-400">
         STUDIO
       </span>
-    </span>
-  </a>
-
-  <nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-2 text-xs font-medium uppercase tracking-[0.18em] text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl lg:flex">
-
-    <a href="#work" class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]">
-      <span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
-      <span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
-      <span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
-      <span class="relative z-10">Work</span>
-    </a>
-
-    <a href="#services" class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]">
-      <span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
-      <span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
-      <span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
-      <span class="relative z-10">Services</span>
-    </a>
-
-    <a href="#testimonials" class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]">
-      <span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
-      <span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
-      <span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
-      <span class="relative z-10">About</span>
-    </a>
-
-    <a href="#process" class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]">
-      <span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
-      <span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
-      <span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
-      <span class="relative z-10">Process</span>
-    </a>
-
-    <a href="#features" class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]">
-      <span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
-      <span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
-      <span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
-      <span class="relative z-10">Insights</span>
-    </a>
-  </nav>
-
-  <a href="#pricing" class="group hidden items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.17em] text-white backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-violet-400/40 hover:bg-violet-500/10 hover:shadow-[0_0_2rem_rgba(139,92,246,0.25)] sm:flex">
-    LET'S CREATE
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-      <path d="M7 7h10v10"></path>
-      <path d="M7 17 17 7"></path>
-    </svg>
-  </a>
-
-  <button class="flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white backdrop-blur-xl lg:hidden" aria-label="Open menu">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-5 w-5">
-      <path d="M4 5h16"></path>
-      <path d="M4 12h16"></path>
-      <path d="M4 19h16"></path>
-    </svg>
-  </button>
+</span>
+</a>
+<nav class="absolute left-1/2 hidden -translate-x-1/2 items-center gap-2 rounded-full border border-white/[0.08] bg-white/[0.035] px-3 py-2 text-xs font-medium uppercase tracking-[0.18em] text-slate-300 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl lg:flex">
+<a class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]" href="#work">
+<span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
+<span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
+<span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
+<span class="relative z-10">Работы</span>
+</a>
+<a class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]" href="#services">
+<span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
+<span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
+<span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
+<span class="relative z-10">Услуги</span>
+</a>
+<a class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]" href="#testimonials">
+<span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
+<span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
+<span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
+<span class="relative z-10">О нас</span>
+</a>
+<a class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]" href="#process">
+<span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
+<span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
+<span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
+<span class="relative z-10">Процесс</span>
+</a>
+<a class="group/nav relative overflow-hidden rounded-full px-5 py-2.5 transition-all duration-500 hover:text-white hover:shadow-[0_0_28px_rgba(139,92,246,0.22)]" href="#features">
+<span class="absolute inset-0 rounded-full bg-violet-500/0 transition-all duration-500 group-hover/nav:bg-violet-500/10"></span>
+<span class="absolute left-1/2 top-1/2 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-400/0 blur-xl transition-all duration-500 group-hover/nav:bg-blue-400/25"></span>
+<span class="absolute bottom-0 left-1/2 h-px w-0 -translate-x-1/2 bg-gradient-to-r from-transparent via-violet-300 to-transparent transition-all duration-500 group-hover/nav:w-3/4"></span>
+<span class="relative z-10">Инсайты</span>
+</a>
+</nav>
+<a class="group hidden items-center gap-2 rounded-full border border-white/20 bg-white/5 px-5 py-3 text-xs font-semibold uppercase tracking-[0.17em] text-white backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-violet-400/40 hover:bg-violet-500/10 hover:shadow-[0_0_2rem_rgba(139,92,246,0.25)] sm:flex" href="#pricing">
+    ДАВАЙТЕ ТВОРИТЬ
+    <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</a>
+<button aria-label="Открыть меню" class="flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.04] text-white backdrop-blur-xl lg:hidden">
+<svg class="h-5 w-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 5h16"></path>
+<path d="M4 12h16"></path>
+<path d="M4 19h16"></path>
+</svg>
+</button>
 </header>
-
-    <section class="grid min-h-[calc(100vh-7rem)] grid-cols-1 sm:px-8 sm:pt-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-4 lg:px-10 lg:pb-6 lg:pt-10 xl:px-12 w-full max-w-[92rem] z-20 mr-auto ml-auto pt-12 pr-5 pb-10 pl-5 relative gap-x-12 gap-y-12 items-center">
-      <div class="pointer-events-none absolute inset-0 z-0" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 34%, rgba(0,0,0,0.22) 62%, rgba(0,0,0,0.08) 100%), url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e04d3e4d-8705-4b52-973b-f886f528af69_1600w.png'); background-size: cover; background-position: center right; background-repeat: no-repeat;; overflow:hidden; isolation:isolate">
-        <video src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1779701761618-56a5e556-4fcb-4d80-8fcf-a03aa76ce68b.mp4" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e04d3e4d-8705-4b52-973b-f886f528af69_1600w.png" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" muted="" playsinline="" preload="metadata" loop="" data-aura-generated-video-bg="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
-      </div>
-      <div class="relative z-20 max-w-3xl">
-        <p class="eyebrow-animate mb-6 inline-flex items-center gap-4 text-xs font-medium uppercase tracking-[0.28em] text-violet-400">
-          <span class="h-px w-9 bg-violet-500"></span>
-          Digital products. real impact.
+<section class="grid min-h-[calc(100vh-7rem)] grid-cols-1 sm:px-8 sm:pt-16 lg:grid-cols-[0.92fr_1.08fr] lg:gap-4 lg:px-10 lg:pb-6 lg:pt-10 xl:px-12 w-full max-w-[92rem] z-20 mr-auto ml-auto pt-12 pr-5 pb-10 pl-5 relative gap-x-12 gap-y-12 items-center">
+<div class="pointer-events-none absolute inset-0 z-0" style="background-image: linear-gradient(90deg, rgba(0,0,0,0.96) 0%, rgba(0,0,0,0.82) 34%, rgba(0,0,0,0.22) 62%, rgba(0,0,0,0.08) 100%), url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e04d3e4d-8705-4b52-973b-f886f528af69_1600w.png'); background-size: cover; background-position: center right; background-repeat: no-repeat;; overflow:hidden; isolation:isolate">
+<video data-aura-generated-video="true" data-aura-generated-video-bg="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e04d3e4d-8705-4b52-973b-f886f528af69_1600w.png" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/8bd0314a-9525-4a13-996e-2c37cbd9e514/1779701761618-56a5e556-4fcb-4d80-8fcf-a03aa76ce68b.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
+</div>
+<div class="relative z-20 max-w-3xl">
+<p class="eyebrow-animate mb-6 inline-flex items-center gap-4 text-xs font-medium uppercase tracking-[0.28em] text-violet-400">
+<span class="h-px w-9 bg-violet-500"></span>
+          Цифровые продукты. настоящий результат.
         </p>
-        <h1 class="max-w-4xl text-5xl font-medium uppercase tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5.35rem] xl:leading-[0.95]">
-          <span class="line-animate-1 block">We build</span>
-          <span class="line-animate-2 block">digital products</span>
-          <span class="line-animate-3 block">
-              that
+<h1 class="max-w-4xl text-5xl font-medium uppercase tracking-tight text-white sm:text-6xl lg:text-7xl xl:text-[5.35rem] xl:leading-[0.95]">
+<span class="line-animate-1 block">Мы создаём</span>
+<span class="line-animate-2 block">цифровые продукты,</span>
+<span class="line-animate-3 block">
+              которые
               <span class="bg-gradient-to-r from-blue-500 via-indigo-400 to-fuchsia-500 bg-clip-text text-transparent gradient-shimmer">
-                drive results.
+                которые приносят результат.
               </span>
-          </span>
-        </h1>
-        <p class="paragraph-animate mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
-          We partner with ambitious brands to design and build intuitive,
-          scalable, and high-performing digital experiences.
+</span>
+</h1>
+<p class="paragraph-animate mt-7 max-w-2xl text-base leading-8 text-slate-300 sm:text-lg">
+          Мы объединяемся с амбициозными брендами, чтобы проектировать и создавать интуитивный,
+          масштабируемый и высокоэффективный цифровой опыт.
         </p>
-        <div class="cta-animate flex flex-col gap-4 sm:flex-row sm:items-center mt-9 gap-x-4 gap-y-4">
-          <a href="#pricing" class="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:border-white/30 hover:bg-white/10 hover:shadow-[0_0_2.5rem_rgba(139,92,246,0.25)]">
-            <span class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"></span>
-            <span class="relative flex items-center gap-2">
-              Start a project
+<div class="cta-animate flex flex-col gap-4 sm:flex-row sm:items-center mt-9 gap-x-4 gap-y-4">
+<a class="group relative inline-flex items-center justify-center overflow-hidden rounded-full border border-white/20 bg-white/5 px-8 py-4 text-sm font-medium uppercase tracking-[0.16em] text-white backdrop-blur-md transition-all duration-500 hover:scale-[1.02] hover:border-white/30 hover:bg-white/10 hover:shadow-[0_0_2.5rem_rgba(139,92,246,0.25)]" href="#pricing">
+<span class="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-700 ease-out group-hover:translate-x-full"></span>
+<span class="relative flex items-center gap-2">
+              Начать проект
               <span class="relative flex h-4 w-4 overflow-hidden">
-                <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
-                <i data-lucide="arrow-up-right" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"></i>
-              </span>
-            </span>
-          </a>
-          <a href="#work" class="group inline-flex items-center justify-center uppercase transition-all duration-500 hover:border-white/10 hover:bg-white/[0.05] hover:text-white text-sm font-medium text-slate-300 tracking-[0.16em] border-white/5 border rounded-full pt-4 pr-6 pb-4 pl-6 backdrop-blur-xl">
-            <span class="mr-3 flex h-6 w-6 items-center justify-center rounded-full border border-white/5 bg-white/5 transition-all duration-500 group-hover:scale-110 group-hover:border-white/15 group-hover:bg-white/10">
-                <i data-lucide="play" class="h-3 w-3 fill-white/60"></i>
-              </span>
-            <span class="transition-transform duration-500 group-hover:translate-x-1">See our work</span>
-          </a>
-        </div>
-        <div class="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-white/10 pt-6 text-left">
-          <div>
-            <p class="text-2xl font-medium tracking-tight text-white">
+<i class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" data-lucide="arrow-up-right"></i>
+<i class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" data-lucide="arrow-up-right"></i>
+</span>
+</span>
+</a>
+<a class="group inline-flex items-center justify-center uppercase transition-all duration-500 hover:border-white/10 hover:bg-white/[0.05] hover:text-white text-sm font-medium text-slate-300 tracking-[0.16em] border-white/5 border rounded-full pt-4 pr-6 pb-4 pl-6 backdrop-blur-xl" href="#work">
+<span class="mr-3 flex h-6 w-6 items-center justify-center rounded-full border border-white/5 bg-white/5 transition-all duration-500 group-hover:scale-110 group-hover:border-white/15 group-hover:bg-white/10">
+<i class="h-3 w-3 fill-white/60" data-lucide="play"></i>
+</span>
+<span class="transition-transform duration-500 group-hover:translate-x-1">Смотреть работы</span>
+</a>
+</div>
+<div class="mt-10 grid max-w-xl grid-cols-3 gap-4 border-t border-white/10 pt-6 text-left">
+<div>
+<p class="text-2xl font-medium tracking-tight text-white">
               120+
             </p>
-            <p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-              Launches
+<p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+              Запуски
             </p>
-          </div>
-          <div class="">
-            <p class="text-2xl font-medium tracking-tight text-white">
+</div>
+<div class="">
+<p class="text-2xl font-medium tracking-tight text-white">
               4.9/5
             </p>
-            <p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-              Client score
+<p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+              Оценка клиентов
             </p>
-          </div>
-          <div class="">
-            <p class="text-2xl font-medium tracking-tight text-white">
+</div>
+<div class="">
+<p class="text-2xl font-medium tracking-tight text-white">
               38%
             </p>
-            <p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
-              Avg. lift
+<p class="mt-1 text-xs font-medium uppercase tracking-[0.18em] text-slate-500">
+              Средний прирост
             </p>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative z-10 min-h-[28rem] lg:min-h-[44rem]">
-        <div class="absolute bottom-[10%] right-0 flex items-center gap-5 rounded-3xl border border-white/10 bg-white/[0.055] px-7 py-6 shadow-[0_1.5rem_4rem_rgba(0,0,0,0.45)] backdrop-blur-xl">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl text-violet-400">
-            <i data-lucide="trending-up" class="h-8 w-8"></i>
-          </div>
-          <div>
-            <p class="text-3xl font-semibold tracking-tight text-white">
+</div>
+</div>
+</div>
+<div class="relative z-10 min-h-[28rem] lg:min-h-[44rem]">
+<div class="absolute bottom-[10%] right-0 flex items-center gap-5 rounded-3xl border border-white/10 bg-white/[0.055] px-7 py-6 shadow-[0_1.5rem_4rem_rgba(0,0,0,0.45)] backdrop-blur-xl">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl text-violet-400">
+<i class="h-8 w-8" data-lucide="trending-up"></i>
+</div>
+<div>
+<p class="text-3xl font-semibold tracking-tight text-white">
               200+
             </p>
-            <p class="mt-1 max-w-[10rem] text-[0.65rem] font-medium uppercase tracking-[0.18em] leading-4 text-slate-400">
-              Products launched across the globe
+<p class="mt-1 max-w-[10rem] text-[0.65rem] font-medium uppercase tracking-[0.18em] leading-4 text-slate-400">
+              Продуктов запущено по всему миру
             </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 pb-8 sm:px-8 lg:px-10 xl:px-12">
-      <div class="border-t border-white/10 pt-7">
-        <div class="flex flex-col items-center gap-7 lg:flex-row lg:justify-between">
-          <p class="text-left text-xs font-normal uppercase tracking-[0.22em] text-violet-400">
-            Trusted by
-            <br>
-              innovative brands
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 pb-8 sm:px-8 lg:px-10 xl:px-12">
+<div class="border-t border-white/10 pt-7">
+<div class="flex flex-col items-center gap-7 lg:flex-row lg:justify-between">
+<p class="text-left text-xs font-normal uppercase tracking-[0.22em] text-violet-400">
+            Нам доверяют
+            <br/>
+              инновационные бренды
           </p>
-          
-          <style>
+<style>
             @keyframes scrollMarquee {
               0% { transform: translateX(0); }
               100% { transform: translateX(-100%); }
             }
           </style>
-          
-          <div class="group flex flex-1 min-w-0 overflow-hidden" style="-webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
-            <div class="flex shrink-0 items-center gap-10 sm:gap-12 lg:gap-16 pr-10 sm:pr-12 lg:pr-16 group-hover:[animation-play-state:paused]" style="animation: scrollMarquee 20s linear infinite;">
-              <span class="brand-1 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<div class="group flex flex-1 min-w-0 overflow-hidden" style="-webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent); mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);">
+<div class="flex shrink-0 items-center gap-10 sm:gap-12 lg:gap-16 pr-10 sm:pr-12 lg:pr-16 group-hover:[animation-play-state:paused]" style="animation: scrollMarquee 20s linear infinite;">
+<span class="brand-1 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 cloudly
               </span>
-              <span class="brand-2 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-2 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 echo
               </span>
-              <span class="brand-3 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-3 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 Pulse
               </span>
-              <span class="brand-4 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-4 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 vertex
               </span>
-              <span class="brand-5 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-5 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 loop
               </span>
-              <span class="brand-6 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-6 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 Spark
               </span>
-            </div>
-            <div class="flex shrink-0 items-center gap-10 sm:gap-12 lg:gap-16 pr-10 sm:pr-12 lg:pr-16 group-hover:[animation-play-state:paused]" aria-hidden="true" style="animation: scrollMarquee 20s linear infinite;">
-              <span class="brand-1 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+</div>
+<div aria-hidden="true" class="flex shrink-0 items-center gap-10 sm:gap-12 lg:gap-16 pr-10 sm:pr-12 lg:pr-16 group-hover:[animation-play-state:paused]" style="animation: scrollMarquee 20s linear infinite;">
+<span class="brand-1 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 cloudly
               </span>
-              <span class="brand-2 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-2 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 echo
               </span>
-              <span class="brand-3 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-3 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 Pulse
               </span>
-              <span class="brand-4 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-4 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 vertex
               </span>
-              <span class="brand-5 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-5 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 loop
               </span>
-              <span class="brand-6 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
+<span class="brand-6 text-xl font-normal tracking-tight text-slate-400/45 transition-all duration-300 hover:-translate-y-1 hover:text-white cursor-pointer hover:drop-shadow-[0_0_8px_rgba(255,255,255,0.3)]">
                 Spark
               </span>
-            </div>
-          </div>
-
-          <div class="hidden items-center gap-3 border-l border-white/10 pl-8 text-left text-xs uppercase tracking-[0.16em] text-violet-300 lg:flex">
-            <i data-lucide="trophy" class="h-5 w-5"></i>
-            <span>
-                <span class="block text-violet-300">Award-winning studio</span>
-            <span class="mt-1 block text-[0.65rem] normal-case tracking-normal text-slate-500">
+</div>
+</div>
+<div class="hidden items-center gap-3 border-l border-white/10 pl-8 text-left text-xs uppercase tracking-[0.16em] text-violet-300 lg:flex">
+<i class="h-5 w-5" data-lucide="trophy"></i>
+<span>
+<span class="block text-violet-300">Отмеченная наградами студия</span>
+<span class="mt-1 block text-[0.65rem] normal-case tracking-normal text-slate-500">
                   Awwwards · Clutch · CSS Design Awards
                 </span>
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-32 sm:px-8 lg:px-10 xl:px-12 flex flex-col items-center justify-center text-center min-h-[70vh] overflow-hidden" id="vision">
-
-  <div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.12)_0%,transparent_46%)]">
-  </div>
-
-  <div class="relative z-10 mb-10 flex items-center justify-center">
-    <div class="absolute inset-0 rounded-3xl bg-purple-500/30 blur-2xl animate-pulse"></div>
-
-    <div class="relative flex h-24 w-24 items-center justify-center rounded-3xl border border-purple-400/40 bg-purple-500/20 text-purple-300 shadow-[0_0_70px_rgba(168,85,247,0.45)] backdrop-blur-xl">
-      <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-zap fill-purple-400/30">
-        <path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
-        </path>
-      </svg>
-    </div>
-  </div>
-
-  <div class="relative z-10 mb-7 flex items-center justify-center gap-4">
-    <span class="h-px w-12 bg-purple-400/50"></span>
-    <p class="text-xs font-semibold uppercase tracking-[0.45em] text-purple-300">
-      Our Vision
+</span>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-32 sm:px-8 lg:px-10 xl:px-12 flex flex-col items-center justify-center text-center min-h-[70vh] overflow-hidden" id="vision">
+<div class="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_center,rgba(168,85,247,0.12)_0%,transparent_46%)]">
+</div>
+<div class="relative z-10 mb-10 flex items-center justify-center">
+<div class="absolute inset-0 rounded-3xl bg-purple-500/30 blur-2xl animate-pulse"></div>
+<div class="relative flex h-24 w-24 items-center justify-center rounded-3xl border border-purple-400/40 bg-purple-500/20 text-purple-300 shadow-[0_0_70px_rgba(168,85,247,0.45)] backdrop-blur-xl">
+<svg class="lucide lucide-zap fill-purple-400/30" fill="none" height="44" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="44" xmlns="http://www.w3.org/2000/svg">
+<path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z">
+</path>
+</svg>
+</div>
+</div>
+<div class="relative z-10 mb-7 flex items-center justify-center gap-4">
+<span class="h-px w-12 bg-purple-400/50"></span>
+<p class="text-xs font-semibold uppercase tracking-[0.45em] text-purple-300">
+      Наше видение
     </p>
-    <span class="h-px w-12 bg-purple-400/50"></span>
-  </div>
-
-  <h2 id="lyric-container" class="relative z-10 mx-auto max-w-7xl text-center text-[clamp(2rem,4vw,6rem)] font-black uppercase tracking-[-0.055em] leading-[0.95] text-white">
-
-    <span class="lyric-word">We</span>
-    <span class="lyric-word">believe</span>
-    <span class="lyric-word">great</span>
-    <span class="lyric-word">design</span>
-    <span class="lyric-word">isn't</span>
-    <span class="lyric-word">decoration</span>
-    <span class="lyric-word">—</span>
-    <span class="lyric-word">it's</span>
-    <span class="lyric-word">a</span>
-    <span class="lyric-word">force.</span>
-    <br class="hidden md:block">
-    <span class="lyric-word">Every</span>
-    <span class="lyric-word">product</span>
-    <span class="lyric-word">we</span>
-    <span class="lyric-word">craft</span>
-    <span class="lyric-word">is</span>
-    <span class="lyric-word">built</span>
-    <span class="lyric-word">to</span>
-    <span class="lyric-word">spark</span>
-    <span class="lyric-word">curiosity,</span>
-    <span class="lyric-word">move</span>
-    <br class="hidden md:block">
-    <span class="lyric-word">with</span>
-    <span class="lyric-word">intent,</span>
-    <span class="lyric-word">and</span>
-    <span class="lyric-word">strike</span>
-    <span class="lyric-word">with</span>
-    <span class="lyric-word">precision.</span>
-  </h2>
-
-  <style>
+<span class="h-px w-12 bg-purple-400/50"></span>
+</div>
+<h2 class="relative z-10 mx-auto max-w-7xl text-center text-[clamp(2rem,4vw,6rem)] font-black uppercase tracking-[-0.055em] leading-[0.95] text-white" id="lyric-container">
+<span class="lyric-word">Мы</span>
+<span class="lyric-word">верим, что</span>
+<span class="lyric-word">великолепный</span>
+<span class="lyric-word">замыслу</span>
+<span class="lyric-word">не</span>
+<span class="lyric-word">украшение —</span>
+<span class="lyric-word">—</span>
+<span class="lyric-word">это</span>
+<span class="lyric-word">a</span>
+<span class="lyric-word">сила.</span>
+<br class="hidden md:block"/>
+<span class="lyric-word">Каждый</span>
+<span class="lyric-word">продукт,</span>
+<span class="lyric-word">который мы</span>
+<span class="lyric-word">создаём,</span>
+<span class="lyric-word">—</span>
+<span class="lyric-word">призван</span>
+<span class="lyric-word">чтобы</span>
+<span class="lyric-word">пробуждать</span>
+<span class="lyric-word">любопытство</span>
+<span class="lyric-word">и побуждать</span>
+<br class="hidden md:block"/>
+<span class="lyric-word">с</span>
+<span class="lyric-word">замысел,</span>
+<span class="lyric-word">и</span>
+<span class="lyric-word">удар</span>
+<span class="lyric-word">с</span>
+<span class="lyric-word">точностью.</span>
+</h2>
+<style>
     #vision .lyric-word {
       display: inline-block;
       opacity: 0.16;
@@ -574,8 +591,7 @@ gtag('config', 'G-2M6V79H761');
       text-shadow: 0 0 18px rgba(255, 255, 255, 0.08);
     }
   </style>
-
-  <script>
+<script>
     (function () {
       const initLyric = () => {
         const container = document.getElementById('lyric-container');
@@ -642,96 +658,86 @@ gtag('config', 'G-2M6V79H761');
     })();
   </script>
 </section>
-    <section id="features" class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12">
-      <div class="mx-auto max-w-3xl text-center">
-        <p class="text-xs font-semibold uppercase tracking-[0.22em] text-violet-300/90">
-          Features
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12" id="features">
+<div class="mx-auto max-w-3xl text-center">
+<p class="text-xs font-semibold uppercase tracking-[0.22em] text-violet-300/90">
+          Возможности
         </p>
-        <h2 class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-          Everything your digital launch needs.
+<h2 class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+          Всё, что нужно вашему цифровому запуску.
         </h2>
-        <p class="mt-5 text-base leading-8 text-slate-400">
-          Strategy, design, engineering, and optimization delivered as one
-          focused growth system.
+<p class="mt-5 text-base leading-8 text-slate-400">
+          Стратегия, дизайн, разработка и оптимизация — единая сфокусированная система роста.
         </p>
-      </div>
-      <div class="mt-12 grid gap-5 md:grid-cols-3 items-start">
-        <article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl group transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-400/10 text-blue-200 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
-            <i data-lucide="sparkles" class="h-5 w-5"></i>
-          </div>
-          <h3 class="mt-6 text-xl font-semibold tracking-tight text-white">
-            Brand systems
+</div>
+<div class="mt-12 grid gap-5 md:grid-cols-3 items-start">
+<article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl group transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-400/10 text-blue-200 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
+<i class="h-5 w-5" data-lucide="sparkles"></i>
+</div>
+<h3 class="mt-6 text-xl font-semibold tracking-tight text-white">
+            Бренд-системы
           </h3>
-          <p class="mt-3 text-sm leading-7 text-slate-400">
-            Positioning, visual identity, and messaging built to make your
-            product instantly memorable.
+<p class="mt-3 text-sm leading-7 text-slate-400">
+            Позиционирование, визуальная айдентика и сообщения, которые делают ваш продукт мгновенно запоминающимся.
           </p>
-        </article>
-        <article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl group transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-400/10 text-violet-200 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
-            <i data-lucide="layout-dashboard" class="h-5 w-5"></i>
-          </div>
-          <h3 class="mt-6 text-xl font-semibold tracking-tight text-white">
-            Conversion websites
+</article>
+<article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl group transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-violet-400/10 text-violet-200 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
+<i class="h-5 w-5" data-lucide="layout-dashboard"></i>
+</div>
+<h3 class="mt-6 text-xl font-semibold tracking-tight text-white">
+            Конверсионные сайты
           </h3>
-          <p class="mt-3 text-sm leading-7 text-slate-400">
-            High-performance landing pages and websites designed for clarity,
-            speed, and signups.
+<p class="mt-3 text-sm leading-7 text-slate-400">
+            Высокопроизводительные лендинги и сайты, созданные ради ясности, скорости и регистраций.
           </p>
-        </article>
-        <article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl group transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-200 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
-            <i data-lucide="line-chart" class="h-5 w-5"></i>
-          </div>
-          <h3 class="mt-6 text-xl font-semibold tracking-tight text-white">
-            Growth loops
+</article>
+<article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-7 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl group transition-all duration-700 hover:-translate-y-2 hover:bg-white/[0.05] hover:border-white/20">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-200 transition-transform duration-700 group-hover:scale-110 group-hover:rotate-3">
+<i class="h-5 w-5" data-lucide="line-chart"></i>
+</div>
+<h3 class="mt-6 text-xl font-semibold tracking-tight text-white">
+            Циклы роста
           </h3>
-          <p class="mt-3 text-sm leading-7 text-slate-400">
-            Analytics, experiments, and campaign assets that keep improving
-            after launch day.
+<p class="mt-3 text-sm leading-7 text-slate-400">
+            Аналитика, эксперименты и рекламные материалы, которые продолжают улучшаться после дня запуска.
           </p>
-        </article>
-      </div>
-    </section>
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12" id="interactive-visual">
-  <div class="absolute inset-0 pointer-events-none overflow-hidden">
-    <div class="absolute left-[18%] top-[45%] h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-[130px]"></div>
-    <div class="absolute right-[12%] top-[42%] h-[34rem] w-[34rem] rounded-full bg-cyan-500/10 blur-[150px]"></div>
-  </div>
-
-  <div class="mx-auto max-w-3xl text-center mb-16 relative z-10">
-    <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
-      <span class="relative flex h-2 w-2">
-        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-        <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+</article>
+</div>
+</section>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12" id="interactive-visual">
+<div class="absolute inset-0 pointer-events-none overflow-hidden">
+<div class="absolute left-[18%] top-[45%] h-[28rem] w-[28rem] rounded-full bg-violet-500/10 blur-[130px]"></div>
+<div class="absolute right-[12%] top-[42%] h-[34rem] w-[34rem] rounded-full bg-cyan-500/10 blur-[150px]"></div>
+</div>
+<div class="mx-auto max-w-3xl text-center mb-16 relative z-10">
+<div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+</span>
+<span class="text-[0.7rem] font-normal uppercase tracking-[0.22em] text-cyan-200">
+        WebGL-интерактив
       </span>
-      <span class="text-[0.7rem] font-normal uppercase tracking-[0.22em] text-cyan-200">
-        WebGL Interactive
-      </span>
-    </div>
-
-    <h2 class="text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-      Global
+</div>
+<h2 class="text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+      Глобально
       <span class="text-transparent bg-clip-text bg-gradient-to-br from-cyan-300 to-blue-500">
-        scale.
+        до масштаба.
       </span>
-    </h2>
-
-    <p class="mt-6 text-base leading-8 text-slate-400">
-      Interact with the schema below. We build immersive 3D experiences
-      that elevate your brand and captivate users worldwide.
+</h2>
+<p class="mt-6 text-base leading-8 text-slate-400">
+      Взаимодействуйте со схемой ниже. Мы создаём иммерсивный 3D-опыт, который поднимает ваш бренд и увлекает пользователей по всему миру.
     </p>
-  </div>
-
-  <div class="flex flex-col lg:flex-row gap-10 lg:gap-14 items-center relative z-10">
-    <div class="relative min-w-0 w-full lg:flex-1 h-[30rem] sm:h-[40rem] rounded-[3rem] border border-cyan-400/15 bg-[#050505] overflow-hidden group cursor-move shadow-[0_0_90px_rgba(34,211,238,0.08),inset_0_1px_0_rgba(255,255,255,0.05)] shrink-0">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.08)_0%,transparent_32%,#050505_82%)] z-10 pointer-events-none"></div>
-      <div class="absolute left-1/2 top-1/2 z-10 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[90px] pointer-events-none"></div>
-      <div class="absolute left-1/2 top-1/2 z-10 h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[80px] pointer-events-none"></div>
-      <canvas id="webgl-canvas-wow" class="w-full h-full relative z-0" data-engine="three.js r160" width="1736" height="1276" style="width: 868px; height: 638px;"></canvas>
-
-      <script type="module">
+</div>
+<div class="flex flex-col lg:flex-row gap-10 lg:gap-14 items-center relative z-10">
+<div class="relative min-w-0 w-full lg:flex-1 h-[30rem] sm:h-[40rem] rounded-[3rem] border border-cyan-400/15 bg-[#050505] overflow-hidden group cursor-move shadow-[0_0_90px_rgba(34,211,238,0.08),inset_0_1px_0_rgba(255,255,255,0.05)] shrink-0">
+<div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(34,211,238,0.08)_0%,transparent_32%,#050505_82%)] z-10 pointer-events-none"></div>
+<div class="absolute left-1/2 top-1/2 z-10 h-[32rem] w-[32rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[90px] pointer-events-none"></div>
+<div class="absolute left-1/2 top-1/2 z-10 h-[24rem] w-[24rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-violet-500/10 blur-[80px] pointer-events-none"></div>
+<canvas class="w-full h-full relative z-0" data-engine="three.js r160" height="1276" id="webgl-canvas-wow" style="width: 868px; height: 638px;" width="1736"></canvas>
+<script type="module">
         import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js';
 
         const canvas = document.getElementById('webgl-canvas-wow');
@@ -993,255 +999,232 @@ gtag('config', 'G-2M6V79H761');
           animate();
         }
       </script>
-    </div>
-
-    <div id="sliding-text" class="w-full lg:w-[400px] xl:w-[450px] shrink-0 flex flex-col items-start text-left transition-all duration-1000 ease-out opacity-100 translate-x-0">
-      <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
-        <span class="text-[0.7rem] font-light uppercase tracking-[0.22em] text-blue-200">
-          3D Integration
+</div>
+<div class="w-full lg:w-[400px] xl:w-[450px] shrink-0 flex flex-col items-start text-left transition-all duration-1000 ease-out opacity-100 translate-x-0" id="sliding-text">
+<div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-6 backdrop-blur-md">
+<span class="text-[0.7rem] font-light uppercase tracking-[0.22em] text-blue-200">
+          3D-интеграция
         </span>
-      </div>
-
-      <h3 class="text-3xl sm:text-4xl font-light tracking-tight text-white leading-[1.2] mb-5">
-        Immersive
-        <br>
-        <span class="text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600 font-light">
-          data stories.
+</div>
+<h3 class="text-3xl sm:text-4xl font-light tracking-tight text-white leading-[1.2] mb-5">
+        Иммерсивные
+        <br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-br from-cyan-400 to-blue-600 font-light">
+          истории данных.
         </span>
-      </h3>
-
-      <p class="text-base leading-8 text-slate-400 mb-10 font-light">
-        Transcend traditional flat interfaces. Our WebGL experiences
-        deliver fluid, high-performance interactions that communicate
-        complex concepts with immediate visual clarity.
+</h3>
+<p class="text-base leading-8 text-slate-400 mb-10 font-light">
+        Выходите за рамки традиционных плоских интерфейсов. Наши WebGL-решения обеспечивают плавные, высокопроизводительные взаимодействия, которые передают сложные концепции с мгновенной визуальной ясностью.
       </p>
-
-      <ul class="space-y-6 w-full">
-        <li class="flex items-center gap-5">
-          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400">
+<ul class="space-y-6 w-full">
+<li class="flex items-center gap-5">
+<div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-cyan-500/10 flex items-center justify-center border border-cyan-500/20 text-cyan-400">
             ⚡
           </div>
-          <div class="flex flex-col">
-            <span class="text-white font-light text-xl tracking-tight">60FPS Performance</span>
-            <span class="text-slate-500 text-sm mt-1 font-light">Optimized seamlessly for every device.</span>
-          </div>
-        </li>
-
-        <li class="flex items-center gap-5">
-          <div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 text-blue-400">
+<div class="flex flex-col">
+<span class="text-white font-light text-xl tracking-tight">Производительность 60 FPS</span>
+<span class="text-slate-500 text-sm mt-1 font-light">Безупречная оптимизация для любого устройства.</span>
+</div>
+</li>
+<li class="flex items-center gap-5">
+<div class="flex-shrink-0 w-12 h-12 rounded-2xl bg-blue-500/10 flex items-center justify-center border border-blue-500/20 text-blue-400">
             ⬡
           </div>
-          <div class="flex flex-col">
-            <span class="text-white font-light text-xl tracking-tight">Native Web Tech</span>
-            <span class="text-slate-500 text-sm mt-1 font-light">Built with modern web standards.</span>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
+<div class="flex flex-col">
+<span class="text-white font-light text-xl tracking-tight">Нативные веб-технологии</span>
+<span class="text-slate-500 text-sm mt-1 font-light">Создано на современных веб-стандартах.</span>
+</div>
+</li>
+</ul>
+</div>
+</div>
 </section>
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12" id="process">
-      <div class="relative w-full rounded-[3rem] bg-[#050505] border border-white/5 px-6 py-16 md:px-12 md:py-20 lg:px-16 lg:py-24 overflow-hidden group/section shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
-        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40 transition-opacity duration-1000 group-hover/section:opacity-80">
-          <div class="absolute -top-[30%] -left-[10%] w-[60%] h-[60%] bg-violet-600/10 rounded-full blur-[120px] mix-blend-screen transition-transform duration-1000 group-hover/section:translate-x-10 group-hover/section:translate-y-10">
-          </div>
-          <div class="absolute bottom-[0%] -right-[10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen transition-transform duration-1000 group-hover/section:-translate-x-10 group-hover/section:-translate-y-10">
-          </div>
-        </div>
-
-        <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_30%_50%,#000_20%,transparent_100%)] z-0 pointer-events-none">
-        </div>
-
-        <div class="relative z-10 flex flex-col lg:flex-row gap-20 lg:gap-12 items-center">
-          <div class="lg:w-[40%] w-full flex flex-col items-start text-left">
-            <div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-8 backdrop-blur-md">
-              <span class="relative flex h-2 w-2">
-                  <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
-              </span>
-              <span class="text-[0.7rem] font-medium uppercase tracking-[0.22em] text-violet-200">
-                  Process
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12" id="process">
+<div class="relative w-full rounded-[3rem] bg-[#050505] border border-white/5 px-6 py-16 md:px-12 md:py-20 lg:px-16 lg:py-24 overflow-hidden group/section shadow-[inset_0_1px_0_rgba(255,255,255,0.03)]">
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-40 transition-opacity duration-1000 group-hover/section:opacity-80">
+<div class="absolute -top-[30%] -left-[10%] w-[60%] h-[60%] bg-violet-600/10 rounded-full blur-[120px] mix-blend-screen transition-transform duration-1000 group-hover/section:translate-x-10 group-hover/section:translate-y-10">
+</div>
+<div class="absolute bottom-[0%] -right-[10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[120px] mix-blend-screen transition-transform duration-1000 group-hover/section:-translate-x-10 group-hover/section:-translate-y-10">
+</div>
+</div>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:3rem_3rem] [mask-image:radial-gradient(ellipse_80%_80%_at_30%_50%,#000_20%,transparent_100%)] z-0 pointer-events-none">
+</div>
+<div class="relative z-10 flex flex-col lg:flex-row gap-20 lg:gap-12 items-center">
+<div class="lg:w-[40%] w-full flex flex-col items-start text-left">
+<div class="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-white/[0.03] border border-white/10 mb-8 backdrop-blur-md">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-violet-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-violet-500"></span>
+</span>
+<span class="text-[0.7rem] font-medium uppercase tracking-[0.22em] text-violet-200">
+                  Процесс
                 </span>
-            </div>
-
-            <h2 class="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
-              A clear path from idea
+</div>
+<h2 class="text-4xl font-medium tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.15]">
+              Понятный путь от идеи
               <span class="text-transparent bg-clip-text bg-gradient-to-br from-white/90 to-white/30">
-                  to launch.
+                  до запуска.
                 </span>
-            </h2>
-
-            <p class="mt-6 text-base leading-8 text-slate-400 max-w-md">
-              We keep momentum high with focused sprints, direct
-              collaboration, and visible progress every week.
+</h2>
+<p class="mt-6 text-base leading-8 text-slate-400 max-w-md">
+              Мы держим высокий темп благодаря сфокусированным спринтам, прямому взаимодействию и видимому прогрессу каждую неделю.
             </p>
-
-            <div class="hidden lg:flex items-center gap-4 mt-16 opacity-50 group-hover/section:opacity-100 transition-opacity duration-700">
-              <div class="w-16 h-[1px] bg-gradient-to-r from-violet-500 to-transparent"></div>
-              <span class="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-white/50">
-                  System Architecture
+<div class="hidden lg:flex items-center gap-4 mt-16 opacity-50 group-hover/section:opacity-100 transition-opacity duration-700">
+<div class="w-16 h-[1px] bg-gradient-to-r from-violet-500 to-transparent"></div>
+<span class="text-[0.65rem] font-medium tracking-[0.2em] uppercase text-white/50">
+                  Архитектура системы
                 </span>
-            </div>
-          </div>
-
-          <div class="lg:w-[60%] w-full flex flex-col md:flex-row gap-6 lg:gap-6 [perspective:1400px] [transform-style:preserve-3d]">
-            <div class="absolute top-1/2 left-[10%] w-[80%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent hidden md:block -rotate-12 z-0 pointer-events-none">
-            </div>
-
-            <div class="group relative flex-1 rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 md:p-6 lg:p-8 transition-all duration-700 ease-out hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(139,92,246,0.15)] md:[transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] hover:md:[transform:rotateY(0deg)_rotateX(0deg)_translateZ(40px)_scale(1.05)] z-10 hover:z-30 overflow-hidden backdrop-blur-2xl">
-              <div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-              </div>
-              <span class="absolute -bottom-4 -right-4 text-[10rem] font-bold text-white/[0.02] transition-all duration-700 group-hover:text-white/[0.04] group-hover:-translate-y-4 group-hover:-translate-x-2 leading-none select-none pointer-events-none">
+</div>
+</div>
+<div class="lg:w-[60%] w-full flex flex-col md:flex-row gap-6 lg:gap-6 [perspective:1400px] [transform-style:preserve-3d]">
+<div class="absolute top-1/2 left-[10%] w-[80%] h-px bg-gradient-to-r from-transparent via-white/10 to-transparent hidden md:block -rotate-12 z-0 pointer-events-none">
+</div>
+<div class="group relative flex-1 rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 md:p-6 lg:p-8 transition-all duration-700 ease-out hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(139,92,246,0.15)] md:[transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] hover:md:[transform:rotateY(0deg)_rotateX(0deg)_translateZ(40px)_scale(1.05)] z-10 hover:z-30 overflow-hidden backdrop-blur-2xl">
+<div class="absolute inset-0 bg-gradient-to-b from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+</div>
+<span class="absolute -bottom-4 -right-4 text-[10rem] font-bold text-white/[0.02] transition-all duration-700 group-hover:text-white/[0.04] group-hover:-translate-y-4 group-hover:-translate-x-2 leading-none select-none pointer-events-none">
                   1
                 </span>
-
-              <div class="relative z-10">
-                <div class="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 group-hover:scale-110 group-hover:bg-blue-500/20 group-hover:border-blue-500/30">
-                  <span class="text-xs font-medium text-blue-200">01</span>
-                </div>
-                <h3 class="text-xl font-medium tracking-tight text-white mb-3">
-                  Discover
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 group-hover:scale-110 group-hover:bg-blue-500/20 group-hover:border-blue-500/30">
+<span class="text-xs font-medium text-blue-200">01</span>
+</div>
+<h3 class="text-xl font-medium tracking-tight text-white mb-3">
+                  Исследование
                 </h3>
-                <p class="text-sm leading-loose text-slate-400 group-hover:text-slate-300 transition-colors">
-                  Clarify the audience, offer, goals, and creative direction.
+<p class="text-sm leading-loose text-slate-400 group-hover:text-slate-300 transition-colors">
+                  Проясняем аудиторию, оффер, цели и креативное направление.
                 </p>
-              </div>
-            </div>
-
-            <div class="group relative flex-1 rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 md:p-6 lg:p-8 transition-all duration-700 ease-out hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(139,92,246,0.15)] md:mt-12 lg:mt-20 md:[transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] hover:md:[transform:rotateY(0deg)_rotateX(0deg)_translateZ(40px)_scale(1.05)] z-10 hover:z-30 overflow-hidden backdrop-blur-2xl">
-              <div class="absolute inset-0 bg-gradient-to-b from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-              </div>
-              <span class="absolute -bottom-4 -right-4 text-[10rem] font-bold text-white/[0.02] transition-all duration-700 group-hover:text-white/[0.04] group-hover:-translate-y-4 group-hover:-translate-x-2 leading-none select-none pointer-events-none">
+</div>
+</div>
+<div class="group relative flex-1 rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 md:p-6 lg:p-8 transition-all duration-700 ease-out hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(139,92,246,0.15)] md:mt-12 lg:mt-20 md:[transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] hover:md:[transform:rotateY(0deg)_rotateX(0deg)_translateZ(40px)_scale(1.05)] z-10 hover:z-30 overflow-hidden backdrop-blur-2xl">
+<div class="absolute inset-0 bg-gradient-to-b from-violet-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+</div>
+<span class="absolute -bottom-4 -right-4 text-[10rem] font-bold text-white/[0.02] transition-all duration-700 group-hover:text-white/[0.04] group-hover:-translate-y-4 group-hover:-translate-x-2 leading-none select-none pointer-events-none">
                   2
                 </span>
-
-              <div class="relative z-10">
-                <div class="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 group-hover:scale-110 group-hover:bg-violet-500/20 group-hover:border-violet-500/30">
-                  <span class="text-xs font-medium text-violet-200">02</span>
-                </div>
-                <h3 class="text-xl font-medium tracking-tight text-white mb-3">
-                  Design
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 group-hover:scale-110 group-hover:bg-violet-500/20 group-hover:border-violet-500/30">
+<span class="text-xs font-medium text-violet-200">02</span>
+</div>
+<h3 class="text-xl font-medium tracking-tight text-white mb-3">
+                  Дизайн
                 </h3>
-                <p class="text-sm leading-loose text-slate-400 group-hover:text-slate-300 transition-colors">
-                  Shape the experience, content system, and conversion flow.
+<p class="text-sm leading-loose text-slate-400 group-hover:text-slate-300 transition-colors">
+                  Формируем опыт, контентную систему и конверсионный сценарий.
                 </p>
-              </div>
-            </div>
-
-            <div class="group relative flex-1 rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 md:p-6 lg:p-8 transition-all duration-700 ease-out hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(139,92,246,0.15)] md:mt-24 lg:mt-40 md:[transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] hover:md:[transform:rotateY(0deg)_rotateX(0deg)_translateZ(40px)_scale(1.05)] z-10 hover:z-30 overflow-hidden backdrop-blur-2xl">
-              <div class="absolute inset-0 bg-gradient-to-b from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
-              </div>
-              <span class="absolute -bottom-4 -right-4 text-[10rem] font-bold text-white/[0.02] transition-all duration-700 group-hover:text-white/[0.04] group-hover:-translate-y-4 group-hover:-translate-x-2 leading-none select-none pointer-events-none">
+</div>
+</div>
+<div class="group relative flex-1 rounded-[2.5rem] bg-white/[0.02] border border-white/10 p-8 md:p-6 lg:p-8 transition-all duration-700 ease-out hover:bg-white/[0.06] hover:border-white/20 hover:shadow-[0_20px_40px_-20px_rgba(139,92,246,0.15)] md:mt-24 lg:mt-40 md:[transform:rotateY(-15deg)_rotateX(5deg)_translateZ(0px)] hover:md:[transform:rotateY(0deg)_rotateX(0deg)_translateZ(40px)_scale(1.05)] z-10 hover:z-30 overflow-hidden backdrop-blur-2xl">
+<div class="absolute inset-0 bg-gradient-to-b from-fuchsia-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700">
+</div>
+<span class="absolute -bottom-4 -right-4 text-[10rem] font-bold text-white/[0.02] transition-all duration-700 group-hover:text-white/[0.04] group-hover:-translate-y-4 group-hover:-translate-x-2 leading-none select-none pointer-events-none">
                   3
                 </span>
-
-              <div class="relative z-10">
-                <div class="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 group-hover:scale-110 group-hover:bg-fuchsia-500/20 group-hover:border-fuchsia-500/30">
-                  <span class="text-xs font-medium text-fuchsia-200">03</span>
-                </div>
-                <h3 class="text-xl font-medium tracking-tight text-white mb-3">
-                  Launch
+<div class="relative z-10">
+<div class="w-12 h-12 rounded-2xl bg-white/[0.03] border border-white/10 flex items-center justify-center mb-10 shadow-[inset_0_1px_0_rgba(255,255,255,0.1)] transition-all duration-700 group-hover:scale-110 group-hover:bg-fuchsia-500/20 group-hover:border-fuchsia-500/30">
+<span class="text-xs font-medium text-fuchsia-200">03</span>
+</div>
+<h3 class="text-xl font-medium tracking-tight text-white mb-3">
+                  Запуск
                 </h3>
-                <p class="text-sm leading-loose text-slate-400 group-hover:text-slate-300 transition-colors">
-                  Build, test, publish, and optimize with performance data.
+<p class="text-sm leading-loose text-slate-400 group-hover:text-slate-300 transition-colors">
+                  Собираем, тестируем, публикуем и оптимизируем на основе данных о производительности.
                 </p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <section id="work" class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12">
-      <div class="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
-        <div class="">
-          <p class="text-xs font-semibold uppercase tracking-[0.22em] text-violet-300/90">
-            Selected work
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-20 sm:px-8 lg:px-10 xl:px-12" id="work">
+<div class="grid gap-10 lg:grid-cols-[0.78fr_1.22fr] lg:items-end">
+<div class="">
+<p class="text-xs font-semibold uppercase tracking-[0.22em] text-violet-300/90">
+            Избранные работы
           </p>
-          <h2 class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
-            Bento-built launches with measurable lift.
+<h2 class="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+            Запуски в bento-стиле с измеримым приростом.
           </h2>
-          <p class="mt-5 text-base leading-8 text-slate-400">
-            A snapshot of brand systems, conversion sites, and product
-            experiences shaped for teams moving from idea to traction.
+<p class="mt-5 text-base leading-8 text-slate-400">
+            Срез бренд-систем, конверсионных сайтов и продуктовых решений, созданных для команд, идущих от идеи к трекшену.
           </p>
-        </div>
-        <div class="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
-          <div>
-            <p class="text-sm font-semibold tracking-tight text-white">
-              Recent outcomes
+</div>
+<div class="flex flex-col gap-4 rounded-[2rem] border border-white/10 bg-white/[0.035] p-5 backdrop-blur-xl sm:flex-row sm:items-center sm:justify-between">
+<div>
+<p class="text-sm font-semibold tracking-tight text-white">
+              Недавние результаты
             </p>
-            <p class="mt-1 text-sm text-slate-500">
-              Fintech, SaaS, AI tooling, and creator platforms.
+<p class="mt-1 text-sm text-slate-500">
+              Финтех, SaaS, AI-инструменты и платформы для креаторов.
             </p>
-          </div>
-          <a href="#pricing" class="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:border-blue-300/35 hover:bg-white/[0.065]">
-            Plan yours
-            <i data-lucide="arrow-up-right" class="h-4 w-4"></i>
-          </a>
-        </div>
-      </div>
-      <div class="mt-12 grid auto-rows-[16rem] gap-5 lg:grid-cols-4 lg:auto-rows-[13.5rem]">
-        <article class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl lg:col-span-2 lg:row-span-2">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/b41ed9cc-930b-4625-9af2-4a478108704b/1600w.jpg" alt="Analytics dashboard interface" class="absolute inset-0 h-full w-full object-cover opacity-60 transition duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
-          <div class="relative z-10 flex h-full flex-col justify-end">
-            <span class="mb-4 w-fit rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-blue-100 backdrop-blur-xl">
-                SaaS dashboard
+</div>
+<a class="inline-flex items-center justify-center gap-2 rounded-full border border-white/12 px-5 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-white transition duration-300 hover:border-blue-300/35 hover:bg-white/[0.065]" href="#pricing">
+            Запланируйте свой
+            <i class="h-4 w-4" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+</div>
+<div class="mt-12 grid auto-rows-[16rem] gap-5 lg:grid-cols-4 lg:auto-rows-[13.5rem]">
+<article class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.06)] backdrop-blur-xl lg:col-span-2 lg:row-span-2">
+<img alt="Интерфейс аналитического дашборда" class="absolute inset-0 h-full w-full object-cover opacity-60 transition duration-500 group-hover:scale-105" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/b41ed9cc-930b-4625-9af2-4a478108704b/1600w.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent"></div>
+<div class="relative z-10 flex h-full flex-col justify-end">
+<span class="mb-4 w-fit rounded-full border border-white/15 bg-black/35 px-3 py-1 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-blue-100 backdrop-blur-xl">
+                SaaS-дашборд
               </span>
-            <h3 class="max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
-              Cloudly command center for faster trial activation.
+<h3 class="max-w-xl text-3xl font-semibold tracking-tight text-white sm:text-4xl">
+              Командный центр Cloudly для более быстрой активации триала.
             </h3>
-            <p class="mt-4 max-w-lg text-sm leading-7 text-slate-300">
-              Product strategy, UI system, and launch site aligned around
-              onboarding clarity.
+<p class="mt-4 max-w-lg text-sm leading-7 text-slate-300">
+              Продуктовая стратегия, UI-система и сайт запуска, выстроенные вокруг понятного онбординга.
             </p>
-          </div>
-        </article>
-        <article class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl lg:col-span-2">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg" alt="Creative brand moodboard" class="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"></div>
-          <div class="relative z-10 max-w-sm">
-            <p class="text-xs font-semibold uppercase tracking-[0.18em] text-violet-200">
-              Brand refresh
+</div>
+</article>
+<article class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl lg:col-span-2">
+<img alt="Креативный мудборд бренда" class="absolute inset-0 h-full w-full object-cover opacity-50 transition duration-500 group-hover:scale-105" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-r from-black/85 via-black/45 to-transparent"></div>
+<div class="relative z-10 max-w-sm">
+<p class="text-xs font-semibold uppercase tracking-[0.18em] text-violet-200">
+              Обновление бренда
             </p>
-            <h3 class="mt-3 text-2xl font-semibold tracking-tight text-white">
-              Pulse identity system
+<h3 class="mt-3 text-2xl font-semibold tracking-tight text-white">
+              Система айдентики Pulse
             </h3>
-            <p class="mt-3 text-sm leading-7 text-slate-300">
-              A premium visual language for a fast-growing data team.
+<p class="mt-3 text-sm leading-7 text-slate-300">
+              Премиальный визуальный язык для быстрорастущей команды данных.
             </p>
-          </div>
-        </article>
-        <article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:bg-white/[0.05] hover:scale-[1.02]">
-          <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-200">
-            <i data-lucide="mouse-pointer-click" class="h-5 w-5"></i>
-          </div>
-          <p class="mt-8 text-4xl font-semibold tracking-tight text-white">
+</div>
+</article>
+<article class="rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl transition-all duration-500 hover:border-white/20 hover:bg-white/[0.05] hover:scale-[1.02]">
+<div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-400/10 text-cyan-200">
+<i class="h-5 w-5" data-lucide="mouse-pointer-click"></i>
+</div>
+<p class="mt-8 text-4xl font-semibold tracking-tight text-white">
             42%
           </p>
-          <p class="mt-2 text-sm leading-7 text-slate-400">
-            Increase in qualified demo clicks after the new conversion flow.
+<p class="mt-2 text-sm leading-7 text-slate-400">
+            Рост целевых кликов на демо после нового конверсионного сценария.
           </p>
-        </article>
-        <article class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl">
-          <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cca1b731-0621-4994-a36c-b2f5d5fed43b_800w.webp" alt="Laptop with product website" class="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105">
-          <div class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"></div>
-          <div class="relative z-10 flex h-full items-end">
-            <div>
-              <p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-100">
-                Web launch
+</article>
+<article class="group relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.035] p-6 backdrop-blur-xl">
+<img alt="Ноутбук с сайтом продукта" class="absolute inset-0 h-full w-full object-cover opacity-55 transition duration-500 group-hover:scale-105" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cca1b731-0621-4994-a36c-b2f5d5fed43b_800w.webp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black via-black/35 to-transparent"></div>
+<div class="relative z-10 flex h-full items-end">
+<div>
+<p class="text-xs font-semibold uppercase tracking-[0.18em] text-blue-100">
+                Веб-запуск
               </p>
-              <h3 class="mt-2 text-2xl font-semibold tracking-tight text-white">
-                Vertex growth site
+<h3 class="mt-2 text-2xl font-semibold tracking-tight text-white">
+                Сайт роста Vertex
               </h3>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 lg:px-10 xl:px-12 flex flex-col lg:flex-row items-center justify-between min-h-[80vh] overflow-hidden" id="services">
-      <style>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 lg:px-10 xl:px-12 flex flex-col lg:flex-row items-center justify-between min-h-[80vh] overflow-hidden" id="services">
+<style>
         @keyframes rotateCubeY {
           0% {
             transform: rotateX(-8deg) rotateY(0deg);
@@ -1252,180 +1235,166 @@ gtag('config', 'G-2M6V79H761');
           }
         }
       </style>
-
-      <!-- Purple glow background matching tone request -->
-      <div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div class="absolute -left-[10%] top-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-violet-600/10 rounded-full blur-[120px] mix-blend-screen">
-        </div>
-        <div class="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-fuchsia-600/10 rounded-full blur-[120px] mix-blend-screen">
-        </div>
-      </div>
-
-      <div class="grid lg:grid-cols-2 gap-20 lg:gap-8 items-center w-full">
-        <!-- Left Content -->
-        <div class="relative z-10 w-full flex flex-col justify-center">
-          <div class="flex items-center gap-4 text-violet-300 mb-8">
-            <div class="h-px w-10 bg-violet-500/50"></div>
-            <span class="text-xs font-semibold uppercase tracking-[0.25em]">
-                What we build
+<!-- Purple glow background matching tone request -->
+<div class="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+<div class="absolute -left-[10%] top-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-violet-600/10 rounded-full blur-[120px] mix-blend-screen">
+</div>
+<div class="absolute -right-[10%] top-1/2 -translate-y-1/2 w-[50rem] h-[50rem] bg-fuchsia-600/10 rounded-full blur-[120px] mix-blend-screen">
+</div>
+</div>
+<div class="grid lg:grid-cols-2 gap-20 lg:gap-8 items-center w-full">
+<!-- Left Content -->
+<div class="relative z-10 w-full flex flex-col justify-center">
+<div class="flex items-center gap-4 text-violet-300 mb-8">
+<div class="h-px w-10 bg-violet-500/50"></div>
+<span class="text-xs font-semibold uppercase tracking-[0.25em]">
+                Что мы создаём
               </span>
-            <div class="h-px w-10 bg-violet-500/50"></div>
-          </div>
-
-          <h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-[0.9] uppercase mb-10 drop-shadow-lg">
-            Services that
-            <br>
-            <span class="text-violet-400 drop-shadow-[0_0_25px_rgba(167,139,250,0.4)]">
-                Strike.
+<div class="h-px w-10 bg-violet-500/50"></div>
+</div>
+<h2 class="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white leading-[0.9] uppercase mb-10 drop-shadow-lg">
+            Услуги, которые
+            <br/>
+<span class="text-violet-400 drop-shadow-[0_0_25px_rgba(167,139,250,0.4)]">
+                Бьют в цель.
               </span>
-          </h2>
-
-          <div class="flex items-center gap-4 text-slate-500">
-            <div class="h-px w-10 bg-white/10"></div>
-            <span class="text-xs font-semibold uppercase tracking-[0.25em]">
-                Hover to pause
+</h2>
+<div class="flex items-center gap-4 text-slate-500">
+<div class="h-px w-10 bg-white/10"></div>
+<span class="text-xs font-semibold uppercase tracking-[0.25em]">
+                Наведите, чтобы приостановить
               </span>
-          </div>
-        </div>
-
-        <!-- Right Content: 3D Cube Container -->
-        <div class="relative z-10 w-full flex justify-center py-10 [perspective:1500px]">
-          <div class="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[400px] lg:h-[400px] [transform-style:preserve-3d] hover:[animation-play-state:paused]" style="animation: rotateCubeY 24s infinite linear;">
-            <!-- FACE 1 -->
-            <div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-violet-500/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(139,92,246,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(0deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(0deg)_translateZ(180px)] lg:[transform:rotateY(0deg)_translateZ(200px)]">
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-violet-400 font-semibold text-lg sm:text-xl tracking-widest">
+</div>
+</div>
+<!-- Right Content: 3D Cube Container -->
+<div class="relative z-10 w-full flex justify-center py-10 [perspective:1500px]">
+<div class="relative w-[280px] h-[280px] sm:w-[360px] sm:h-[360px] lg:w-[400px] lg:h-[400px] [transform-style:preserve-3d] hover:[animation-play-state:paused]" style="animation: rotateCubeY 24s infinite linear;">
+<!-- FACE 1 -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-violet-500/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(139,92,246,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(0deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(0deg)_translateZ(180px)] lg:[transform:rotateY(0deg)_translateZ(200px)]">
+<div class="flex justify-between items-start mb-6">
+<span class="text-violet-400 font-semibold text-lg sm:text-xl tracking-widest">
                     01
                   </span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 text-violet-400 drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
-                Brand
-                <br>
-                  Design
+<svg class="w-5 h-5 sm:w-6 sm:h-6 text-violet-400 drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</div>
+<h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
+                Бренд
+                <br/>
+                  Дизайн
               </h3>
-              <p class="text-slate-400 text-base leading-8 mb-auto pr-4">
-                Identity systems, logos, and visual language that gives your
-                product an unfair advantage in crowded markets.
+<p class="text-slate-400 text-base leading-8 mb-auto pr-4">
+                Системы айдентики, логотипы и визуальный язык, дающие вашему продукту нечестное преимущество на переполненных рынках.
               </p>
-              <div class="flex flex-wrap gap-2 mt-6">
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
-                    Identity
+<div class="flex flex-wrap gap-2 mt-6">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+                    Айдентика
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
-                    Logos
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+                    Логотипы
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
-                    Strategy
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+                    Стратегия
                   </span>
-              </div>
-            </div>
-
-            <!-- FACE 2 -->
-            <div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-fuchsia-500/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(217,70,239,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(90deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(90deg)_translateZ(180px)] lg:[transform:rotateY(90deg)_translateZ(200px)]">
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-fuchsia-400 font-semibold text-lg sm:text-xl tracking-widest">
+</div>
+</div>
+<!-- FACE 2 -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-fuchsia-500/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(217,70,239,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(90deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(90deg)_translateZ(180px)] lg:[transform:rotateY(90deg)_translateZ(200px)]">
+<div class="flex justify-between items-start mb-6">
+<span class="text-fuchsia-400 font-semibold text-lg sm:text-xl tracking-widest">
                     02
                   </span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
-                Product
-                <br>
-                  Design
+<svg class="w-5 h-5 sm:w-6 sm:h-6 text-fuchsia-400 drop-shadow-[0_0_8px_rgba(217,70,239,0.8)]" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</div>
+<h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
+                Продукт
+                <br/>
+                  Дизайн
               </h3>
-              <p class="text-slate-400 text-base leading-8 mb-auto pr-4">
-                From discovery to dev handoff — UX research, wireframes,
-                prototypes, and full design systems that ship at sprint speed.
+<p class="text-slate-400 text-base leading-8 mb-auto pr-4">
+                От исследования до передачи в разработку — UX-исследования, вайрфреймы, прототипы и полные дизайн-системы со скоростью спринта.
               </p>
-              <div class="flex flex-wrap gap-2 mt-6">
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+<div class="flex flex-wrap gap-2 mt-6">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
                     UX
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
                     UI
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
-                    Prototyping
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+                    Прототипирование
                   </span>
-              </div>
-            </div>
-
-            <!-- FACE 3 -->
-            <div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-purple-500/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(168,85,247,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(180deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(180deg)_translateZ(180px)] lg:[transform:rotateY(180deg)_translateZ(200px)]">
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-purple-400 font-semibold text-lg sm:text-xl tracking-widest">
+</div>
+</div>
+<!-- FACE 3 -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-purple-500/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(168,85,247,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(180deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(180deg)_translateZ(180px)] lg:[transform:rotateY(180deg)_translateZ(200px)]">
+<div class="flex justify-between items-start mb-6">
+<span class="text-purple-400 font-semibold text-lg sm:text-xl tracking-widest">
                     03
                   </span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
-                Web
-                <br>
-                  Engineering
+<svg class="w-5 h-5 sm:w-6 sm:h-6 text-purple-400 drop-shadow-[0_0_8px_rgba(168,85,247,0.8)]" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</div>
+<h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
+                Веб
+                <br/>
+                  Инженерия
               </h3>
-              <p class="text-slate-400 text-base leading-8 mb-auto pr-4">
-                Responsive builds, CMS setup, analytics, and performance
-                tuning for lightning-fast digital experiences.
+<p class="text-slate-400 text-base leading-8 mb-auto pr-4">
+                Адаптивная вёрстка, настройка CMS, аналитика и тюнинг производительности для молниеносных цифровых продуктов.
               </p>
-              <div class="flex flex-wrap gap-2 mt-6">
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+<div class="flex flex-wrap gap-2 mt-6">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
                     React
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
                     Next.js
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
                     Headless
                   </span>
-              </div>
-            </div>
-
-            <!-- FACE 4 -->
-            <div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-violet-400/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(167,139,250,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(-90deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(-90deg)_translateZ(180px)] lg:[transform:rotateY(-90deg)_translateZ(200px)]">
-              <div class="flex justify-between items-start mb-6">
-                <span class="text-violet-300 font-semibold text-lg sm:text-xl tracking-widest">
+</div>
+</div>
+<!-- FACE 4 -->
+<div class="absolute inset-0 w-full h-full backface-hidden rounded-[1.5rem] border border-violet-400/20 bg-gradient-to-br from-[#120b1c] to-[#050505] shadow-[inset_0_0_80px_rgba(167,139,250,0.1),0_25px_50px_-12px_rgba(0,0,0,0.5)] p-8 sm:p-10 flex flex-col max-sm:[transform:rotateY(-90deg)_translateZ(140px)] sm:max-lg:[transform:rotateY(-90deg)_translateZ(180px)] lg:[transform:rotateY(-90deg)_translateZ(200px)]">
+<div class="flex justify-between items-start mb-6">
+<span class="text-violet-300 font-semibold text-lg sm:text-xl tracking-widest">
                     04
                   </span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="w-5 h-5 sm:w-6 sm:h-6 text-violet-300 drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
+<svg class="w-5 h-5 sm:w-6 sm:h-6 text-violet-300 drop-shadow-[0_0_8px_rgba(167,139,250,0.8)]" fill="currentColor" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</div>
+<h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white uppercase mb-4 drop-shadow-sm">
                 Growth
-                <br>
-                  Strategy
+                <br/>
+                  Стратегия
               </h3>
-              <p class="text-slate-400 text-base leading-8 mb-auto pr-4">
-                Experiment plans, campaign assets, reporting, and iteration
-                sprints to maximize your conversion rates.
+<p class="text-slate-400 text-base leading-8 mb-auto pr-4">
+                Планы экспериментов, рекламные материалы, отчётность и итерационные спринты для максимизации конверсии.
               </p>
-              <div class="flex flex-wrap gap-2 mt-6">
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
-                    A/B Testing
+<div class="flex flex-wrap gap-2 mt-6">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+                    A/B-тестирование
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
-                    Analytics
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+                    Аналитика
                   </span>
-                <span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
+<span class="px-3 py-1.5 rounded-full border border-white/10 text-xs font-medium text-slate-300 uppercase tracking-widest bg-white/[0.03]">
                     CRO
                   </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 lg:px-10 xl:px-12 is-visible"
-  id="testimonials">
-  <style>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 lg:px-10 xl:px-12 is-visible" id="testimonials">
+<style>
     #testimonials .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -1466,345 +1435,256 @@ gtag('config', 'G-2M6V79H761');
       transition-delay: 0.12s;
     }
   </style>
-
-  <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-    <div
-      class="absolute top-[12%] left-1/2 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-500/[0.08] blur-[140px]">
-    </div>
-  </div>
-
-  <div class="mx-auto max-w-4xl flex flex-col items-center justify-center mb-16 md:mb-24 relative z-10 text-center">
-    <div class="flex items-center gap-4 mb-8 reveal-fade">
-      <div class="h-[1px] w-8 md:w-12 bg-violet-400/40"></div>
-      <span class="text-violet-200 text-[0.7rem] font-normal uppercase tracking-[0.22em]">
-        Testimonials
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+<div class="absolute top-[12%] left-1/2 h-[30rem] w-[30rem] -translate-x-1/2 rounded-full bg-violet-500/[0.08] blur-[140px]">
+</div>
+</div>
+<div class="mx-auto max-w-4xl flex flex-col items-center justify-center mb-16 md:mb-24 relative z-10 text-center">
+<div class="flex items-center gap-4 mb-8 reveal-fade">
+<div class="h-[1px] w-8 md:w-12 bg-violet-400/40"></div>
+<span class="text-violet-200 text-[0.7rem] font-normal uppercase tracking-[0.22em]">
+        Отзывы
       </span>
-      <div class="h-[1px] w-8 md:w-12 bg-violet-400/40"></div>
-    </div>
-
-    <h2 class="text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.05]">
-      <span class="overflow-hidden block pb-1">
-        <span class="block reveal-word">Reactions From</span>
-      </span>
-      <span class="overflow-hidden block pb-2">
-        <span class="block reveal-word reveal-word-delay text-slate-300">Innovative Brands.</span>
-      </span>
-    </h2>
-  </div>
-
-  <div class="relative group z-10 -mx-5 sm:-mx-8 lg:-mx-10 xl:-mx-12">
-    <div
-      class="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none">
-    </div>
-    <div
-      class="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none">
-    </div>
-
-    <div id="scroll-container"
-      class="flex gap-5 md:gap-6 overflow-x-auto [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-5 md:px-10 py-10 items-center snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing"
-      style="cursor: grab;">
-
-      <!-- Card 1 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-1">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div class="">
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "Nexora translated a messy product story into a site customers understood immediately. Our demo
-              requests
-              doubled within weeks."
+<div class="h-[1px] w-8 md:w-12 bg-violet-400/40"></div>
+</div>
+<h2 class="text-4xl font-normal tracking-tight text-white sm:text-5xl lg:text-6xl leading-[1.05]">
+<span class="overflow-hidden block pb-1">
+<span class="block reveal-word">Реакции</span>
+</span>
+<span class="overflow-hidden block pb-2">
+<span class="block reveal-word reveal-word-delay text-slate-300">Инновационных брендов.</span>
+</span>
+</h2>
+</div>
+<div class="relative group z-10 -mx-5 sm:-mx-8 lg:-mx-10 xl:-mx-12">
+<div class="absolute left-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-r from-black to-transparent z-20 pointer-events-none">
+</div>
+<div class="absolute right-0 top-0 bottom-0 w-8 md:w-32 bg-gradient-to-l from-black to-transparent z-20 pointer-events-none">
+</div>
+<div class="flex gap-5 md:gap-6 overflow-x-auto [&amp;::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] px-5 md:px-10 py-10 items-center snap-x snap-mandatory scroll-smooth cursor-grab active:cursor-grabbing" id="scroll-container" style="cursor: grab;">
+<!-- Card 1 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-1">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div class="">
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Nexora превратила запутанную историю продукта в сайт, который клиенты поняли сразу. Число запросов на демо удвоилось за считанные недели."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/72adc0f8-ad1f-4732-a5bf-c000b45152a2_800w.webp" alt="Maya Chen" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Maya Chen</span>
-                <span class="text-slate-500 text-xs">Founder, Cloudly</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-2">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "The process was crisp, collaborative, and fast. We launched a premium brand without slowing our
-              product
-              roadmap."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Maya Chen" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/72adc0f8-ad1f-4732-a5bf-c000b45152a2_800w.webp"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Maya Chen</span>
+<span class="text-slate-500 text-xs">Основатель, Cloudly</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-2">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Процесс был чётким, совместным и быстрым. Мы запустили премиальный бренд, не замедляя продуктовый роадмап."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9fc26ef9-ae15-4f56-ac63-077c7659dafa_320w.png" alt="Eli Morgan" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Eli Morgan</span>
-                <span class="text-slate-500 text-xs">CMO, Pulse</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-1">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "Their growth system gave us the confidence to ship campaigns, measure impact, and keep improving
-              every
-              month."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Илай Морган" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9fc26ef9-ae15-4f56-ac63-077c7659dafa_320w.png"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Илай Морган</span>
+<span class="text-slate-500 text-xs">CMO, Pulse</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-1">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Их система роста дала нам уверенность запускать кампании, измерять эффект и улучшаться каждый месяц."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ec6a5cab-715c-44c6-9cd8-aff440c886f6_320w.webp" alt="Noor Patel" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Noor Patel</span>
-                <span class="text-slate-500 text-xs">Head of Growth, Vertex</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-3">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "If you want something safe, go elsewhere. If you want something unforgettable, follow the brief and
-              trust
-              their instincts implicitly."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Нур Патель" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ec6a5cab-715c-44c6-9cd8-aff440c886f6_320w.webp"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Нур Патель</span>
+<span class="text-slate-500 text-xs">Директор по росту, Vertex</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-3">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Если вам нужно что-то безопасное — идите к другим. Если хотите что-то незабываемое — следуйте брифу и безоговорочно доверяйте их чутью."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/b5d747ab-b9b0-4379-9347-fd0661e8f119/320w.png" alt="Tariq Hassan" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Tariq Hassan</span>
-                <span class="text-slate-500 text-xs">Founder, Volt Systems</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 5 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-2">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "The architecture was pristine. We scaled to 100k users without a single hiccup in performance or
-              latency."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Тарик Хассан" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/b5d747ab-b9b0-4379-9347-fd0661e8f119/320w.png"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Тарик Хассан</span>
+<span class="text-slate-500 text-xs">Основатель, Volt Systems</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-2">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Архитектура была безупречной. Мы выросли до 100 тыс. пользователей без единого сбоя в производительности или задержках."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4b4a91c-eb34-493f-93c5-9b21e5150b6f_320w.webp" alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Sarah Jenkins</span>
-                <span class="text-slate-500 text-xs">CTO, Nexus</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 6 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-1">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "Their design system unified our entire product suite. Development speed increased by 40% in just two
-              months."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Sarah Jenkins" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a4b4a91c-eb34-493f-93c5-9b21e5150b6f_320w.webp"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Sarah Jenkins</span>
+<span class="text-slate-500 text-xs">CTO, Nexus</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-1">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Их дизайн-система объединила всю нашу линейку продуктов. Скорость разработки выросла на 40% всего за два месяца."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5866f61c-e537-452b-9d35-053e985d625b_320w.webp" alt="David Chen" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">David Chen</span>
-                <span class="text-slate-500 text-xs">VPE, Quantum</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 7 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-2">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "Finally, an engineering partner that understands business metrics. Our conversion rate jumped
-              significantly."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="David Chen" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5866f61c-e537-452b-9d35-053e985d625b_320w.webp"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">David Chen</span>
+<span class="text-slate-500 text-xs">VPE, Quantum</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 7 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform rotate-2">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "Наконец-то инженерный партнёр, который понимает бизнес-метрики. Наша конверсия заметно выросла."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7debb119-f845-4a33-8704-883ab284b52c_320w.webp" alt="Elena Rodriguez" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Elena Rodriguez</span>
-                <span class="text-slate-500 text-xs">Director, Shift</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 8 -->
-      <div
-        class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-1">
-        <div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
-          <div
-            class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
-          </div>
-        </div>
-
-        <div class="relative z-10 p-8 h-full flex flex-col justify-between">
-          <div>
-            <svg class="h-6 w-6 text-violet-300 mb-6" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-              viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-              stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-
-            <p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
-              "From concept to deployment, the workflow was incredibly transparent. A masterclass in modern digital
-              execution."
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Елена Родригес" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7debb119-f845-4a33-8704-883ab284b52c_320w.webp"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Елена Родригес</span>
+<span class="text-slate-500 text-xs">Директор, Shift</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+<!-- Card 8 -->
+<div class="snap-center shrink-0 w-[20rem] md:w-[24rem] h-[26rem] rounded-[1.75rem] relative purple-card-border transition-transform duration-700 ease-out hover:-translate-y-2 group/card transform -rotate-1">
+<div class="absolute inset-0 bg-[#0b0b0d] rounded-[1.75rem] z-0 overflow-hidden">
+<div class="absolute -top-20 -left-20 w-56 h-56 bg-violet-500 rounded-full blur-[85px] opacity-[0.13] group-hover/card:opacity-[0.22] transition-opacity duration-700">
+</div>
+</div>
+<div class="relative z-10 p-8 h-full flex flex-col justify-between">
+<div>
+<svg class="h-6 w-6 text-violet-300 mb-6" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<p class="text-slate-300 text-sm md:text-base leading-relaxed font-light">
+              "От концепции до деплоя процесс был невероятно прозрачным. Мастер-класс современного цифрового исполнения."
             </p>
-          </div>
-
-          <div class="flex items-center justify-between w-full mt-8">
-            <div class="flex items-center gap-3">
-              <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ce5a380c-785b-4ec0-9cd9-486d09b03a12_320w.webp" alt="Marcus Johnson" class="w-10 h-10 rounded-full object-cover border border-violet-400/20">
-              <div class="flex flex-col">
-                <span class="text-white text-sm font-normal tracking-tight">Marcus Johnson</span>
-                <span class="text-slate-500 text-xs">CEO, Apex</span>
-              </div>
-            </div>
-            <div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <div class="w-full mt-12 px-6 relative z-10">
-    <div class="max-w-[90%] mx-auto h-[1px] bg-gradient-to-r from-transparent via-violet-500/35 to-transparent">
-    </div>
-  </div>
-
-  <script>
+</div>
+<div class="flex items-center justify-between w-full mt-8">
+<div class="flex items-center gap-3">
+<img alt="Маркус Джонсон" class="w-10 h-10 rounded-full object-cover border border-violet-400/20" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ce5a380c-785b-4ec0-9cd9-486d09b03a12_320w.webp"/>
+<div class="flex flex-col">
+<span class="text-white text-sm font-normal tracking-tight">Маркус Джонсон</span>
+<span class="text-slate-500 text-xs">CEO, Apex</span>
+</div>
+</div>
+<div class="flex gap-0.5 text-violet-300 text-sm">★★★★★</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="w-full mt-12 px-6 relative z-10">
+<div class="max-w-[90%] mx-auto h-[1px] bg-gradient-to-r from-transparent via-violet-500/35 to-transparent">
+</div>
+</div>
+<script>
     (function () {
       const section = document.getElementById('testimonials');
       const slider = document.getElementById('scroll-container');
@@ -1866,10 +1746,8 @@ gtag('config', 'G-2M6V79H761');
     })();
   </script>
 </section>
-
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-10 xl:px-12 overflow-hidden" id="pricing">
-
-      <style>
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 sm:py-32 lg:px-10 xl:px-12 overflow-hidden" id="pricing">
+<style>
         @media (min-width: 1024px) {
           .pricing-stage {
             perspective: 2500px;
@@ -1937,201 +1815,182 @@ gtag('config', 'G-2M6V79H761');
           }
         }
       </style>
-
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[500px] pointer-events-none z-0 flex justify-between opacity-30 mix-blend-screen">
-        <div class="w-80 h-80 bg-fuchsia-600/30 rounded-full blur-[120px]"></div>
-        <div class="w-96 h-96 bg-blue-600/30 rounded-full blur-[120px]"></div>
-        <div class="w-80 h-80 bg-slate-400/20 rounded-full blur-[120px]"></div>
-      </div>
-
-      <div class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[200%] h-[500px] [transform:rotateX(70deg)_translateZ(-200px)] pointer-events-none opacity-40 lg:opacity-60 z-0" style="mask-image: radial-gradient(ellipse at top, black 10%, transparent 60%); -webkit-mask-image: radial-gradient(ellipse at top, black 10%, transparent 60%);">
-        <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(139,92,246,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(139,92,246,0.15)_1px,transparent_1px)] bg-[size:50px_50px]">
-        </div>
-        <div class="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-[150px] rounded-full">
-        </div>
-      </div>
-
-      <div class="mx-auto max-w-3xl text-center relative z-20">
-        <p class="text-xs font-medium uppercase tracking-[0.22em] text-violet-300/90">
-          Pricing
+<div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-5xl h-[500px] pointer-events-none z-0 flex justify-between opacity-30 mix-blend-screen">
+<div class="w-80 h-80 bg-fuchsia-600/30 rounded-full blur-[120px]"></div>
+<div class="w-96 h-96 bg-blue-600/30 rounded-full blur-[120px]"></div>
+<div class="w-80 h-80 bg-slate-400/20 rounded-full blur-[120px]"></div>
+</div>
+<div class="absolute bottom-[-100px] left-1/2 -translate-x-1/2 w-[200%] h-[500px] [transform:rotateX(70deg)_translateZ(-200px)] pointer-events-none opacity-40 lg:opacity-60 z-0" style="mask-image: radial-gradient(ellipse at top, black 10%, transparent 60%); -webkit-mask-image: radial-gradient(ellipse at top, black 10%, transparent 60%);">
+<div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(139,92,246,0.15)_1px,transparent_1px),linear-gradient(to_bottom,rgba(139,92,246,0.15)_1px,transparent_1px)] bg-[size:50px_50px]">
+</div>
+<div class="absolute left-1/2 top-0 -translate-x-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-[150px] rounded-full">
+</div>
+</div>
+<div class="mx-auto max-w-3xl text-center relative z-20">
+<p class="text-xs font-medium uppercase tracking-[0.22em] text-violet-300/90">
+          Цены
         </p>
-        <h2 class="mt-4 text-4xl font-medium tracking-tight text-white sm:text-5xl drop-shadow-sm">
-          Flexible packages for every stage.
+<h2 class="mt-4 text-4xl font-medium tracking-tight text-white sm:text-5xl drop-shadow-sm">
+          Гибкие пакеты для каждого этапа.
         </h2>
-        <p class="mt-5 text-base leading-8 text-slate-400">
-          Pick a focused sprint or an ongoing growth partnership.
+<p class="mt-5 text-base leading-8 text-slate-400">
+          Выберите сфокусированный спринт или постоянное партнёрство для роста.
         </p>
-      </div>
-
-      <div class="pricing-stage relative z-20 mt-20 lg:mt-32 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 w-full max-w-7xl mx-auto">
-
-        <article class="pricing-card pricing-card-1 group relative w-full lg:w-[340px] xl:w-[380px] shrink-0 rounded-[2.5rem] border border-white/10 bg-[#0a0a0c]/80 p-8 xl:p-10 backdrop-blur-2xl overflow-hidden">
-          <div class="absolute -top-[100px] -left-[100px] w-[250px] h-[250px] rounded-full bg-fuchsia-500/10 blur-[70px] group-hover:bg-fuchsia-500/20 transition-colors duration-700">
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none">
-          </div>
-
-          <div class="flex flex-col h-full relative z-10">
-            <div class="mb-6 border-b border-white/5 pb-6">
-              <h3 class="text-2xl font-medium tracking-tight text-white">Launch Sprint</h3>
-              <p class="mt-3 text-sm leading-6 text-slate-400 min-h-[48px]">
-                For new ideas, landing pages, and campaign launches.
+</div>
+<div class="pricing-stage relative z-20 mt-20 lg:mt-32 flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-0 w-full max-w-7xl mx-auto">
+<article class="pricing-card pricing-card-1 group relative w-full lg:w-[340px] xl:w-[380px] shrink-0 rounded-[2.5rem] border border-white/10 bg-[#0a0a0c]/80 p-8 xl:p-10 backdrop-blur-2xl overflow-hidden">
+<div class="absolute -top-[100px] -left-[100px] w-[250px] h-[250px] rounded-full bg-fuchsia-500/10 blur-[70px] group-hover:bg-fuchsia-500/20 transition-colors duration-700">
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none">
+</div>
+<div class="flex flex-col h-full relative z-10">
+<div class="mb-6 border-b border-white/5 pb-6">
+<h3 class="text-2xl font-medium tracking-tight text-white">Запускной спринт</h3>
+<p class="mt-3 text-sm leading-6 text-slate-400 min-h-[48px]">
+                Для новых идей, лендингов и запуска кампаний.
               </p>
-            </div>
-
-            <div class="mb-8">
-              <span class="text-5xl font-medium tracking-tight text-white">$4.8k</span>
-            </div>
-
-            <div class="flex-1 mt-auto">
-              <p class="text-[0.65rem] font-medium uppercase tracking-[0.25em] text-fuchsia-300/80 mb-6">Includes</p>
-              <ul class="space-y-5 relative before:absolute before:inset-y-3 before:left-[7px] before:w-[2px] before:bg-gradient-to-b before:from-fuchsia-500/40 before:to-transparent">
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.4)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-fuchsia-400">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-300">Brand direction</span>
-                </li>
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.4)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-fuchsia-400">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-300">Landing page design</span>
-                </li>
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.4)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-fuchsia-400">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-300">Responsive build</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-card pricing-card-2 group relative w-full lg:w-[380px] xl:w-[420px] shrink-0 rounded-[2.5rem] border border-blue-400/30 bg-[#0c101a]/90 p-10 xl:p-12 backdrop-blur-2xl overflow-hidden">
-          <div class="absolute -top-[150px] -right-[150px] w-[350px] h-[350px] rounded-full bg-blue-500/15 blur-[90px] group-hover:bg-blue-500/25 transition-colors duration-700">
-          </div>
-          <div class="absolute bottom-0 left-0 w-[250px] h-[250px] rounded-full bg-cyan-500/10 blur-[80px] group-hover:bg-cyan-500/20 transition-colors duration-700">
-          </div>
-          <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.1),transparent_60%)] pointer-events-none">
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none">
-          </div>
-
-          <div class="flex flex-col h-full relative z-10">
-            <div class="mb-6 border-b border-blue-500/20 pb-6">
-              <div class="flex items-start sm:items-center justify-between gap-4 mb-4 flex-col sm:flex-row">
-                <h3 class="text-3xl font-medium tracking-tight text-white drop-shadow-md">Growth Studio</h3>
-                <span class="inline-flex items-center gap-2 rounded-full border border-blue-400/40 bg-blue-500/10 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-blue-200 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.3)]">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
+</div>
+<div class="mb-8">
+<span class="text-5xl font-medium tracking-tight text-white">$4.8k</span>
+</div>
+<div class="flex-1 mt-auto">
+<p class="text-[0.65rem] font-medium uppercase tracking-[0.25em] text-fuchsia-300/80 mb-6">Включает</p>
+<ul class="space-y-5 relative before:absolute before:inset-y-3 before:left-[7px] before:w-[2px] before:bg-gradient-to-b before:from-fuchsia-500/40 before:to-transparent">
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.4)] z-10">
+<svg class="w-2.5 h-2.5 text-fuchsia-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-300">Направление бренда</span>
+</li>
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.4)] z-10">
+<svg class="w-2.5 h-2.5 text-fuchsia-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-300">Дизайн лендинга</span>
+</li>
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-fuchsia-500 shadow-[0_0_10px_rgba(217,70,239,0.4)] z-10">
+<svg class="w-2.5 h-2.5 text-fuchsia-400" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-300">Адаптивная вёрстка</span>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="pricing-card pricing-card-2 group relative w-full lg:w-[380px] xl:w-[420px] shrink-0 rounded-[2.5rem] border border-blue-400/30 bg-[#0c101a]/90 p-10 xl:p-12 backdrop-blur-2xl overflow-hidden">
+<div class="absolute -top-[150px] -right-[150px] w-[350px] h-[350px] rounded-full bg-blue-500/15 blur-[90px] group-hover:bg-blue-500/25 transition-colors duration-700">
+</div>
+<div class="absolute bottom-0 left-0 w-[250px] h-[250px] rounded-full bg-cyan-500/10 blur-[80px] group-hover:bg-cyan-500/20 transition-colors duration-700">
+</div>
+<div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(96,165,250,0.1),transparent_60%)] pointer-events-none">
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none">
+</div>
+<div class="flex flex-col h-full relative z-10">
+<div class="mb-6 border-b border-blue-500/20 pb-6">
+<div class="flex items-start sm:items-center justify-between gap-4 mb-4 flex-col sm:flex-row">
+<h3 class="text-3xl font-medium tracking-tight text-white drop-shadow-md">Студия роста</h3>
+<span class="inline-flex items-center gap-2 rounded-full border border-blue-400/40 bg-blue-500/10 px-3 py-1.5 text-[0.65rem] font-bold uppercase tracking-[0.16em] text-blue-200 backdrop-blur-md shadow-[0_0_15px_rgba(59,130,246,0.3)]">
+<span class="relative flex h-2 w-2">
+<span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+<span class="relative inline-flex rounded-full h-2 w-2 bg-blue-400"></span>
+</span>
+                Популярное
                 </span>
-                Popular
-                </span>
-              </div>
-              <p class="mt-3 text-sm leading-6 text-slate-300 min-h-[48px]">
-                For teams ready to scale brand, website, and experiments.
+</div>
+<p class="mt-3 text-sm leading-6 text-slate-300 min-h-[48px]">
+                Для команд, готовых масштабировать бренд, сайт и эксперименты.
               </p>
-            </div>
-
-            <div class="mb-10">
-              <span class="text-6xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 drop-shadow-sm">$9.5k</span>
-            </div>
-
-            <div class="flex-1 mt-auto">
-              <p class="text-[0.65rem] font-medium uppercase tracking-[0.25em] text-blue-300/90 mb-6">Core System</p>
-              <ul class="space-y-5 relative before:absolute before:inset-y-3 before:left-[7px] before:w-[2px] before:bg-gradient-to-b before:from-blue-500/50 before:to-transparent">
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0c101a] border-2 border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.6)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-blue-300">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-200">Full website system</span>
-                </li>
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0c101a] border-2 border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.6)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-blue-300">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-200">Conversion copy</span>
-                </li>
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0c101a] border-2 border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.6)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-blue-300">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-200">Analytics setup</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-        <article class="pricing-card pricing-card-3 group relative w-full lg:w-[340px] xl:w-[380px] shrink-0 rounded-[2.5rem] border border-white/10 bg-[#0a0a0c]/80 p-8 xl:p-10 backdrop-blur-2xl overflow-hidden">
-          <div class="absolute -bottom-[100px] -right-[100px] w-[250px] h-[250px] rounded-full bg-slate-400/10 blur-[70px] group-hover:bg-slate-400/20 transition-colors duration-700">
-          </div>
-          <div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none">
-          </div>
-
-          <div class="flex flex-col h-full relative z-10">
-            <div class="mb-6 border-b border-white/5 pb-6">
-              <h3 class="text-2xl font-medium tracking-tight text-white">Partner Retainer</h3>
-              <p class="mt-3 text-sm leading-6 text-slate-400 min-h-[48px]">
-                For continuous creative, optimization, and campaign support.
+</div>
+<div class="mb-10">
+<span class="text-6xl font-medium tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-blue-200 drop-shadow-sm">$9.5k</span>
+</div>
+<div class="flex-1 mt-auto">
+<p class="text-[0.65rem] font-medium uppercase tracking-[0.25em] text-blue-300/90 mb-6">Базовая система</p>
+<ul class="space-y-5 relative before:absolute before:inset-y-3 before:left-[7px] before:w-[2px] before:bg-gradient-to-b before:from-blue-500/50 before:to-transparent">
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0c101a] border-2 border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.6)] z-10">
+<svg class="w-2.5 h-2.5 text-blue-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-200">Полная система сайта</span>
+</li>
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0c101a] border-2 border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.6)] z-10">
+<svg class="w-2.5 h-2.5 text-blue-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-200">Конверсионные тексты</span>
+</li>
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0c101a] border-2 border-blue-400 shadow-[0_0_12px_rgba(96,165,250,0.6)] z-10">
+<svg class="w-2.5 h-2.5 text-blue-300" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-200">Настройка аналитики</span>
+</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="pricing-card pricing-card-3 group relative w-full lg:w-[340px] xl:w-[380px] shrink-0 rounded-[2.5rem] border border-white/10 bg-[#0a0a0c]/80 p-8 xl:p-10 backdrop-blur-2xl overflow-hidden">
+<div class="absolute -bottom-[100px] -right-[100px] w-[250px] h-[250px] rounded-full bg-slate-400/10 blur-[70px] group-hover:bg-slate-400/20 transition-colors duration-700">
+</div>
+<div class="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 rounded-[2.5rem] pointer-events-none">
+</div>
+<div class="flex flex-col h-full relative z-10">
+<div class="mb-6 border-b border-white/5 pb-6">
+<h3 class="text-2xl font-medium tracking-tight text-white">Партнёрский ретейнер</h3>
+<p class="mt-3 text-sm leading-6 text-slate-400 min-h-[48px]">
+                Для постоянного креатива, оптимизации и поддержки кампаний.
               </p>
-            </div>
-
-            <div class="mb-8">
-              <span class="text-5xl font-medium tracking-tight text-white">Custom</span>
-            </div>
-
-            <div class="flex-1 mt-auto">
-              <p class="text-[0.65rem] font-medium uppercase tracking-[0.25em] text-slate-400/80 mb-6">Includes</p>
-              <ul class="space-y-5 relative before:absolute before:inset-y-3 before:left-[7px] before:w-[2px] before:bg-gradient-to-b before:from-slate-400/40 before:to-transparent">
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-slate-300 shadow-[0_0_10px_rgba(203,213,225,0.3)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-slate-200">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-300">Monthly design sprints</span>
-                </li>
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-slate-300 shadow-[0_0_10px_rgba(203,213,225,0.3)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-slate-200">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-300">Experiment roadmap</span>
-                </li>
-                <li class="relative flex items-center gap-4 pl-8">
-                  <div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-slate-300 shadow-[0_0_10px_rgba(203,213,225,0.3)] z-10">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" class="w-2.5 h-2.5 text-slate-200">
-                      <polyline points="20 6 9 17 4 12"></polyline>
-                    </svg>
-                  </div>
-                  <span class="text-sm font-medium text-slate-300">Priority support</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </article>
-
-      </div>
-
-
-      <script>
+</div>
+<div class="mb-8">
+<span class="text-5xl font-medium tracking-tight text-white">Индивидуально</span>
+</div>
+<div class="flex-1 mt-auto">
+<p class="text-[0.65rem] font-medium uppercase tracking-[0.25em] text-slate-400/80 mb-6">Включает</p>
+<ul class="space-y-5 relative before:absolute before:inset-y-3 before:left-[7px] before:w-[2px] before:bg-gradient-to-b before:from-slate-400/40 before:to-transparent">
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-slate-300 shadow-[0_0_10px_rgba(203,213,225,0.3)] z-10">
+<svg class="w-2.5 h-2.5 text-slate-200" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-300">Ежемесячные дизайн-спринты</span>
+</li>
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-slate-300 shadow-[0_0_10px_rgba(203,213,225,0.3)] z-10">
+<svg class="w-2.5 h-2.5 text-slate-200" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-300">Роадмап экспериментов</span>
+</li>
+<li class="relative flex items-center gap-4 pl-8">
+<div class="absolute left-[7px] top-1/2 -translate-y-1/2 -translate-x-1/2 flex items-center justify-center w-4 h-4 rounded-full bg-[#0a0a0c] border-2 border-slate-300 shadow-[0_0_10px_rgba(203,213,225,0.3)] z-10">
+<svg class="w-2.5 h-2.5 text-slate-200" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<polyline points="20 6 9 17 4 12"></polyline>
+</svg>
+</div>
+<span class="text-sm font-medium text-slate-300">Приоритетная поддержка</span>
+</li>
+</ul>
+</div>
+</div>
+</article>
+</div>
+<script>
         (function () {
       const stage = document.querySelector('#pricing .pricing-stage');
       if (!stage) return;
@@ -2180,130 +2039,118 @@ gtag('config', 'G-2M6V79H761');
       });
     })();
       </script>
-
-    </section>
-    <section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 lg:px-10 xl:px-12" id="cta">
-  <div class="relative overflow-hidden rounded-[3rem] border border-white/10 bg-gradient-to-b from-white/[0.045] via-white/[0.025] to-transparent p-10 text-center sm:p-16 lg:p-20 backdrop-blur-2xl transition-all duration-700 hover:border-violet-300/25 hover:shadow-[0_0_90px_rgba(139,92,246,0.12)]">
-
-    <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(96,165,250,0.13)_0%,rgba(139,92,246,0.08)_34%,transparent_68%)]">
-    </div>
-
-    <div class="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[110px]">
-    </div>
-
-    <div class="pointer-events-none absolute bottom-[-8rem] left-1/2 h-[18rem] w-[42rem] -translate-x-1/2 rounded-full bg-violet-500/10 blur-[100px]">
-    </div>
-
-    <div class="pointer-events-none absolute inset-[1px] rounded-[3rem] border border-white/[0.04]"></div>
-
-    <div class="relative z-10 mx-auto max-w-2xl">
-      <h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
-        Ready to build something extraordinary?
-      </h2>
-
-      <p class="mt-6 text-lg leading-8 text-slate-400">
-        Let's collaborate to bring your digital vision to life. Fast
-        sprints, clear communication, and measurable results.
-      </p>
-
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="#pricing" class="group inline-flex items-center justify-center gap-2 rounded-full border border-violet-300/20 bg-white/[0.06] px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:border-violet-300/35 hover:shadow-[0_0_2.5rem_rgba(139,92,246,0.22)]">
-          Start Your Project
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
-            <path d="M7 7h10v10"></path>
-            <path d="M7 17 17 7"></path>
-          </svg>
-        </a>
-      </div>
-    </div>
-  </div>
 </section>
-  </main>
-  <footer class="relative overflow-hidden bg-black px-5 py-12 text-white sm:px-8 lg:px-10 xl:px-12">
-    <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
-    <div class="pointer-events-none absolute left-1/2 top-0 h-80 w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/15 blur-[5rem]">
-    </div>
-    <div class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/[0.035] to-transparent">
-    </div>
-    <div class="relative mx-auto flex w-full max-w-[92rem] flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
-      <div class="max-w-md">
-        <a href="#" class="group flex items-center gap-3.5" aria-label="Hyperbolt Studio home">
-          <span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-violet-400/45 bg-white/[0.045] text-blue-400 shadow-[0_0_1.5rem_rgba(124,58,237,0.28)] backdrop-blur-xl">
-              <i data-lucide="zap" class="h-6 w-6 fill-blue-500/20"></i>
-            </span>
-          <span class="leading-none">
-              <span class="block text-sm font-medium uppercase tracking-[0.28em] text-white">
+<section class="relative z-30 mx-auto w-full max-w-[92rem] px-5 py-24 sm:px-8 lg:px-10 xl:px-12" id="cta">
+<div class="relative overflow-hidden rounded-[3rem] border border-white/10 bg-gradient-to-b from-white/[0.045] via-white/[0.025] to-transparent p-10 text-center sm:p-16 lg:p-20 backdrop-blur-2xl transition-all duration-700 hover:border-violet-300/25 hover:shadow-[0_0_90px_rgba(139,92,246,0.12)]">
+<div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(96,165,250,0.13)_0%,rgba(139,92,246,0.08)_34%,transparent_68%)]">
+</div>
+<div class="pointer-events-none absolute left-1/2 top-1/2 h-[28rem] w-[28rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/10 blur-[110px]">
+</div>
+<div class="pointer-events-none absolute bottom-[-8rem] left-1/2 h-[18rem] w-[42rem] -translate-x-1/2 rounded-full bg-violet-500/10 blur-[100px]">
+</div>
+<div class="pointer-events-none absolute inset-[1px] rounded-[3rem] border border-white/[0.04]"></div>
+<div class="relative z-10 mx-auto max-w-2xl">
+<h2 class="text-4xl font-semibold tracking-tight text-white sm:text-5xl lg:text-6xl">
+        Готовы создать нечто выдающееся?
+      </h2>
+<p class="mt-6 text-lg leading-8 text-slate-400">
+        Давайте вместе воплотим ваше цифровое видение в жизнь. Быстрые спринты, ясная коммуникация и измеримые результаты.
+      </p>
+<div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+<a class="group inline-flex items-center justify-center gap-2 rounded-full border border-violet-300/20 bg-white/[0.06] px-8 py-4 text-sm font-semibold uppercase tracking-[0.16em] text-white backdrop-blur-md transition duration-300 hover:-translate-y-0.5 hover:bg-white/10 hover:border-violet-300/35 hover:shadow-[0_0_2.5rem_rgba(139,92,246,0.22)]" href="#pricing">
+          Начать проект
+          <svg class="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="relative overflow-hidden bg-black px-5 py-12 text-white sm:px-8 lg:px-10 xl:px-12">
+<div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+<div class="pointer-events-none absolute left-1/2 top-0 h-80 w-[40rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-500/15 blur-[5rem]">
+</div>
+<div class="pointer-events-none absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-white/[0.035] to-transparent">
+</div>
+<div class="relative mx-auto flex w-full max-w-[92rem] flex-col gap-10 lg:flex-row lg:items-start lg:justify-between">
+<div class="max-w-md">
+<a aria-label="Главная Hyperbolt Studio" class="group flex items-center gap-3.5" href="#">
+<span class="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-violet-400/45 bg-white/[0.045] text-blue-400 shadow-[0_0_1.5rem_rgba(124,58,237,0.28)] backdrop-blur-xl">
+<i class="h-6 w-6 fill-blue-500/20" data-lucide="zap"></i>
+</span>
+<span class="leading-none">
+<span class="block text-sm font-medium uppercase tracking-[0.28em] text-white">
                 HYPERBOLT
               </span>
-          <span class="mt-1 block text-[0.625rem] font-normal uppercase tracking-[0.42em] text-slate-400">
+<span class="mt-1 block text-[0.625rem] font-normal uppercase tracking-[0.42em] text-slate-400">
                 STUDIO
               </span>
-          </span>
-        </a>
-        <p class="mt-6 text-sm leading-7 text-slate-400">
-          We design and build digital products, launch systems, and growth
-          experiences for ambitious teams.
+</span>
+</a>
+<p class="mt-6 text-sm leading-7 text-slate-400">
+          Мы проектируем и создаём цифровые продукты, системы запуска и решения для роста для амбициозных команд.
         </p>
-      </div>
-      <div class="grid gap-8 text-sm sm:grid-cols-3 lg:gap-14">
-        <div>
-          <p class="font-medium uppercase tracking-[0.18em] text-white">
-            Explore
+</div>
+<div class="grid gap-8 text-sm sm:grid-cols-3 lg:gap-14">
+<div>
+<p class="font-medium uppercase tracking-[0.18em] text-white">
+            Смотреть
           </p>
-          <div class="mt-4 grid gap-3 text-slate-500">
-            <a href="#work" class="transition hover:text-white">Work</a>
-            <a href="#services" class="transition hover:text-white">
-              Services
+<div class="mt-4 grid gap-3 text-slate-500">
+<a class="transition hover:text-white" href="#work">Работы</a>
+<a class="transition hover:text-white" href="#services">
+              Услуги
             </a>
-            <a href="#process" class="transition hover:text-white">Process</a>
-          </div>
-        </div>
-        <div>
-          <p class="font-medium uppercase tracking-[0.18em] text-white">
-            Company
+<a class="transition hover:text-white" href="#process">Процесс</a>
+</div>
+</div>
+<div>
+<p class="font-medium uppercase tracking-[0.18em] text-white">
+            Компания
           </p>
-          <div class="mt-4 grid gap-3 text-slate-500">
-            <a href="#testimonials" class="transition hover:text-white">
-              Testimonials
+<div class="mt-4 grid gap-3 text-slate-500">
+<a class="transition hover:text-white" href="#testimonials">
+              Отзывы
             </a>
-            <a href="#features" class="transition hover:text-white">
-              Features
+<a class="transition hover:text-white" href="#features">
+              Возможности
             </a>
-            <a href="#pricing" class="transition hover:text-white">Pricing</a>
-          </div>
-        </div>
-        <div>
-          <p class="font-medium uppercase tracking-[0.18em] text-white">
-            Contact
+<a class="transition hover:text-white" href="#pricing">Цены</a>
+</div>
+</div>
+<div>
+<p class="font-medium uppercase tracking-[0.18em] text-white">
+            Контакты
           </p>
-          <div class="mt-4 grid gap-3 text-slate-500">
-            <a href="mailto:hello@hyperbolt.studio" class="transition hover:text-white">
+<div class="mt-4 grid gap-3 text-slate-500">
+<a class="transition hover:text-white" href="mailto:hello@hyperbolt.studio">
               hello@hyperbolt.studio
             </a>
-            <span>Remote worldwide</span>
-            <span>Mon–Fri, 9am–5pm</span>
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="relative mx-auto mt-10 flex w-full max-w-[92rem] flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
-      <p>© 2025 Hyperbolt Studio. All rights reserved.</p>
-      <div class="flex gap-5">
-        <a href="#" class="transition hover:text-slate-300">Privacy</a>
-        <a href="#" class="transition hover:text-slate-300">Terms</a>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+<span>Удалённо по всему миру</span>
+<span>Пн–Пт, 9:00–17:00</span>
+</div>
+</div>
+</div>
+</div>
+<div class="relative mx-auto mt-10 flex w-full max-w-[92rem] flex-col gap-4 border-t border-white/10 pt-6 text-xs text-slate-600 sm:flex-row sm:items-center sm:justify-between">
+<p>© 2025 Hyperbolt Studio. Все права защищены.</p>
+<div class="flex gap-5">
+<a class="transition hover:text-slate-300" href="#">Конфиденциальность</a>
+<a class="transition hover:text-slate-300" href="#">Условия</a>
+</div>
+</div>
+</footer>
+<script>
     lucide.createIcons({
         attrs: {
           "stroke-width": 1.5
         }
       });
   </script>
-
-  <script data-aura-video-controller="true" class="">
+<script class="" data-aura-video-controller="true">
     (function () {
         function playVideo(video) {
           var promise = video.play();
@@ -2372,7 +2219,4 @@ gtag('config', 'G-2M6V79H761');
         }
       })();
   </script>
-
-
-
 </body></html>

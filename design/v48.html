@@ -1,4 +1,4 @@
-<html lang="en"><head><script id="aura-preview-performance-controller">
+<html lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -88,12 +88,12 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Apex — Creative Growth Studio</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Syncopate:wght@400;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Apex — студия креативного роста</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Syncopate:wght@400;700&amp;family=Space+Grotesk:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
 <style>
 :root{
 --bg:#080808;
@@ -422,7 +422,7 @@ animation:coreBob 2.4s ease-in-out infinite;
 @media(max-width:680px){.studio-bento{grid-template-columns:1fr}.s-tile.span4,.s-tile.span2{grid-column:span 1}}
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -430,156 +430,192 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
-  <body class="">
-    <div class="progress" id="progress" style="width: 84.2005%;"></div>
-    <div class="cursor" id="cursor"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
-
-    <!-- NAV -->
-    <header class="nav" id="nav">
-      <div class="wrap nav-inner">
-        <a href="#" class="logo">
-          <span class="mark">A</span>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
+<body class="">
+<div class="progress" id="progress" style="width: 84.2005%;"></div>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<!-- NAV -->
+<header class="nav" id="nav">
+<div class="wrap nav-inner">
+<a class="logo" href="#">
+<span class="mark">A</span>
           Apex
         </a>
-        <nav class="nav-links">
-          <a href="#services" class="">Services</a>
-          <a href="#process" class="">Process</a>
-          <a href="#work" class="">Work</a>
-          <a href="#pricing">Pricing</a>
-          <a href="#faq">FAQ</a>
-        </nav>
-        <div class="nav-cta">
-          <a href="#" class="login">Log in</a>
-          <a href="#pricing" class="btn btn-lime" style="padding:11px 22px;font-size:14px">
-            Get Started
+<nav class="nav-links">
+<a class="" href="#services">Услуги</a>
+<a class="" href="#process">Процесс</a>
+<a class="" href="#work">Работы</a>
+<a href="#pricing">Цены</a>
+<a href="#faq">FAQ</a>
+</nav>
+<div class="nav-cta">
+<a class="login" href="#">Войти</a>
+<a class="btn btn-lime" href="#pricing" style="padding:11px 22px;font-size:14px">
+            Начать
           </a>
-          <div class="burger" id="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!-- HERO -->
-    <section class="hero">
-      <canvas id="bubbleCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none" width="3024" height="1493"></canvas>
-      <span class="blob b1"></span>
-      <span class="blob b2"></span>
-      <div class="wrap hero-inner" style="position: relative; z-index: 2;">
-        <span class="pill reveal in">✦ Creative growth studio — Est. 2018</span>
-        <h1 class="" style="--ml-delay:.05s">
-          <span class="mask-line in"><span>UNLOCK</span></span>
-          <span class="mask-line in">
-            <span class="">
-              POTENTIAL
+<div class="burger" id="burger">
+<span></span>
+<span></span>
+<span></span>
+</div>
+</div>
+</div>
+</header>
+<!-- HERO -->
+<section class="hero">
+<canvas height="1493" id="bubbleCanvas" style="position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none" width="3024"></canvas>
+<span class="blob b1"></span>
+<span class="blob b2"></span>
+<div class="wrap hero-inner" style="position: relative; z-index: 2;">
+<span class="pill reveal in">✦ Студия креативного роста — осн. в 2018</span>
+<h1 class="" style="--ml-delay:.05s">
+<span class="mask-line in"><span>РАСКРОЙТЕ</span></span>
+<span class="mask-line in">
+<span class="">
+              ПОТЕНЦИАЛ
               <span class="plus">+</span>
-            </span>
-          </span>
-        </h1>
-        <div class="hero-row">
-          <p class="sub reveal d1 in">
-            We design, build and scale digital products with powerful features,
-            advanced analytics, and priority support — everything your brand
-            needs to move faster.
+</span>
+</span>
+</h1>
+<div class="hero-row">
+<p class="sub reveal d1 in">
+            Мы проектируем, создаём и масштабируем цифровые продукты с мощными функциями,
+            продвинутой аналитикой и приоритетной поддержкой — всем, что нужно вашему бренду,
+            чтобы двигаться быстрее.
           </p>
-          <div class="hero-actions reveal d2 in" style="margin-right:auto">
-            <a href="#pricing" class="btn btn-lime">
-              Start a Project
+<div class="hero-actions reveal d2 in" style="margin-right:auto">
+<a class="btn btn-lime" href="#pricing">
+              Начать проект
               <span class="arrow">→</span>
-            </a>
-            <a href="#work" class="btn btn-ghost">View Work</a>
-          </div>
-        </div>
-      </div>
-      <div class="orbit-badge reveal d3 in" aria-hidden="true">
-        <svg class="ring" viewBox="0 0 120 120">
-          <defs>
-            <path id="orbitPath" d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0"></path>
-          </defs>
-
-          <text fill="#9a9a93" font-size="10.5" letter-spacing="3.2" font-family="Inter,sans-serif">
-            <textPath href="#orbitPath">
-              SCROLL TO EXPLORE • SCROLL TO EXPLORE •
-            </textPath>
-          </text>
-        </svg>
-
-        <span class="core">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 5v14M19 12l-7 7-7-7"></path>
-          </svg>
-        </span>
-      </div>
-      <script>
+</a>
+<a class="btn btn-ghost" href="#work">Смотреть работы</a>
+</div>
+</div>
+</div>
+<div aria-hidden="true" class="orbit-badge reveal d3 in">
+<svg class="ring" viewbox="0 0 120 120">
+<defs>
+<path d="M60,60 m-47,0 a47,47 0 1,1 94,0 a47,47 0 1,1 -94,0" id="orbitPath"></path>
+</defs>
+<text fill="#9a9a93" font-family="Inter,sans-serif" font-size="10.5" letter-spacing="3.2">
+<textpath href="#orbitPath">
+              ЛИСТАЙТЕ, ЧТОБЫ ИССЛЕДОВАТЬ • ЛИСТАЙТЕ, ЧТОБЫ ИССЛЕДОВАТЬ •
+            </textpath>
+</text>
+</svg>
+<span class="core">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M12 5v14M19 12l-7 7-7-7"></path>
+</svg>
+</span>
+</div>
+<script>
         (function(){var h=document.querySelector('.hero h1');if(!h)return;requestAnimationFrame(function(){requestAnimationFrame(function(){h.querySelectorAll('.mask-line').forEach(function(l,i){setTimeout(function(){l.classList.add('in');},120+i*180);});});});})();
       </script>
-    </section>
-
-    <!-- MARQUEE -->
-    <div class="marquee">
-      <div class="marquee-track">
-        <span class="">
-          Branding
+</section>
+<!-- MARQUEE -->
+<div class="marquee">
+<div class="marquee-track">
+<span class="">
+          Брендинг
           <b>✦</b>
-          Web Design
+          Веб-дизайн
           <span class="dot"></span>
-          Analytics
+          Аналитика
           <b class="">✦</b>
-          Product Strategy
+          Продуктовая стратегия
           <span class="dot"></span>
-          Motion
+          Моушн
           <b>✦</b>
-          Development
+          Разработка
           <span class="dot"></span>
-        </span>
-        <span>
-          Branding
+</span>
+<span>
+          Брендинг
           <b>✦</b>
-          Web Design
+          Веб-дизайн
           <span class="dot"></span>
-          Analytics
+          Аналитика
           <b>✦</b>
-          Product Strategy
+          Продуктовая стратегия
           <span class="dot"></span>
-          Motion
+          Моушн
           <b>✦</b>
-          Development
+          Разработка
           <span class="dot"></span>
-        </span>
-      </div>
-    </div>
-
-    <!-- STATS -->
-    <section class="section" style="padding:90px 0">
-      <div class="wrap">
-        <div class="stats reveal in">
-          <div class="stat-cell">
-            <div class="num" data-count="240" data-suffix="+">0</div>
-            <div class="lbl">Projects shipped</div>
-          </div>
-          <div class="stat-cell">
-            <div class="num" data-count="98" data-suffix="%">
-              <span class="lime">0</span>
-            </div>
-            <div class="lbl">Client retention</div>
-          </div>
-          <div class="stat-cell">
-            <div class="num" data-count="12" data-suffix="k+">0</div>
-            <div class="lbl">Active teams</div>
-          </div>
-          <div class="stat-cell">
-            <div class="num" data-count="18" data-suffix="x">0</div>
-            <div class="lbl">Avg. ROI delivered</div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="manifesto" style="padding:0">
-      <style>
+</span>
+</div>
+</div>
+<!-- STATS -->
+<section class="section" style="padding:90px 0">
+<div class="wrap">
+<div class="stats reveal in">
+<div class="stat-cell">
+<div class="num" data-count="240" data-suffix="+">0</div>
+<div class="lbl">Запущенных проектов</div>
+</div>
+<div class="stat-cell">
+<div class="num" data-count="98" data-suffix="%">
+<span class="lime">0</span>
+</div>
+<div class="lbl">Удержание клиентов</div>
+</div>
+<div class="stat-cell">
+<div class="num" data-count="12" data-suffix="k+">0</div>
+<div class="lbl">Активных команд</div>
+</div>
+<div class="stat-cell">
+<div class="num" data-count="18" data-suffix="x">0</div>
+<div class="lbl">Средний достигнутый ROI</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="manifesto" style="padding:0">
+<style>
         #manifesto .mz-pin{position:relative}
         #manifesto .mz-sticky{padding:90px 28px}
         #manifesto .mz-frame{position:relative;width:100%;max-width:var(--maxw);margin:0 auto;background:linear-gradient(150deg,#11160a,#080808);border:1px solid rgba(200,242,62,.25);border-radius:var(--radius);overflow:hidden;display:grid;place-items:center;text-align:center;padding:70px 32px}
@@ -590,25 +626,25 @@ gtag('config', 'G-2M6V79H761');
         #manifesto .mz-pin.mz-on .mz-sticky{position:sticky;top:0;height:100vh;display:grid;place-items:center;overflow:hidden;padding:0}
         #manifesto .mz-pin.mz-on .mz-frame{max-width:none;margin:0;width:62vw;height:56vh;border-radius:28px;will-change:width,height,border-radius}
       </style>
-      <div class="mz-pin mz-on" id="mzPin">
-        <div class="mz-sticky">
-          <div class="mz-frame" id="mzFrame" style="width: 100vw; height: 100vh; border-radius: 0px;">
-            <span class="mz-veil" id="mzVeil" aria-hidden="true"></span>
-            <div class="mz-inner">
-              <span class="eyebrow">Our manifesto</span>
-              <p class="mz-text">
-                We believe great products aren't designed — they're
-                <span class="lime">unlocked.</span>
-                Strategy sets the direction, craft gives it soul, and relentless
-                <span class="lime">momentum</span>
-                turns bold ideas into measurable
-                <span class="lime">outcomes.</span>
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script>
+<div class="mz-pin mz-on" id="mzPin">
+<div class="mz-sticky">
+<div class="mz-frame" id="mzFrame" style="width: 100vw; height: 100vh; border-radius: 0px;">
+<span aria-hidden="true" class="mz-veil" id="mzVeil"></span>
+<div class="mz-inner">
+<span class="eyebrow">Наш манифест</span>
+<p class="mz-text">
+                Мы верим: великие продукты не проектируются — их
+                <span class="lime">раскрывают.</span>
+                Стратегия задаёт направление, мастерство вкладывает душу, а неустанная
+                <span class="lime">инерции каждому</span>
+                превращает смелые идеи в измеримые
+                <span class="lime">результаты.</span>
+</p>
+</div>
+</div>
+</div>
+</div>
+<script>
         (function(){
         var pin=document.getElementById('mzPin'),frame=document.getElementById('mzFrame'),veil=document.getElementById('mzVeil');
         if(!pin||!frame)return;
@@ -632,270 +668,265 @@ gtag('config', 'G-2M6V79H761');
         measure();
         })();
       </script>
-    </section>
-    <section id="kinetic-reveal" class="section" style="padding:140px 0;overflow:hidden;position:relative">
-      <div class="wrap">
-        <span class="eyebrow" style="display:block;text-align:center;margin-bottom:30px">
-          Why we exist
+</section>
+<section class="section" id="kinetic-reveal" style="padding:140px 0;overflow:hidden;position:relative">
+<div class="wrap">
+<span class="eyebrow" style="display:block;text-align:center;margin-bottom:30px">
+          Зачем мы существуем
         </span>
-        <div id="kineticType" style="font-family:var(--grok);font-weight:700;letter-spacing:-.03em;line-height:1.04;text-align:center;font-size:clamp(34px,7vw,98px);max-width:1100px;margin:0 auto" class="">
-          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
-            We&nbsp;
+<div class="" id="kineticType" style="font-family:var(--grok);font-weight:700;letter-spacing:-.03em;line-height:1.04;text-align:center;font-size:clamp(34px,7vw,98px);max-width:1100px;margin:0 auto">
+<span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            Мы 
           </span>
-          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
-            turn&nbsp;
+<span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            превращать 
           </span>
-          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
-            bold&nbsp;
+<span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            смелые 
           </span>
-          <span class="kw" style="display:inline-block;color:var(--lime);transition:color .5s ease,transform .5s ease;transform:translateY(20px)" data-accent="1">
-            ideas&nbsp;
+<span class="kw" data-accent="1" style="display:inline-block;color:var(--lime);transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            идеи 
           </span>
-          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
-            into&nbsp;
+<span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            в 
           </span>
-          <span class="kw" style="display:inline-block;color:var(--lime);transition:color .5s ease,transform .5s ease;transform:translateY(20px)" data-accent="1">
-            measurable&nbsp;
+<span class="kw" data-accent="1" style="display:inline-block;color:var(--lime);transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            в измеримый 
           </span>
-          <span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
-            momentum.
+<span class="kw" style="display:inline-block;color:#1c1c1c;transition:color .5s ease,transform .5s ease;transform:translateY(20px)">
+            импульс.
           </span>
-        </div>
-      </div>
-      <script>
+</div>
+</div>
+<script>
         (function(){var sec=document.getElementById('kinetic-reveal');if(!sec)return;var words=sec.querySelectorAll('.kw');function reveal(){var r=sec.getBoundingClientRect();var p=Math.min(1,Math.max(0,(window.innerHeight*0.85-r.top)/(r.height+window.innerHeight*0.4)));var n=Math.round(p*words.length);words.forEach(function(w,i){if(i<n){w.style.color=w.style.color.indexOf('200')>-1||w.dataset.accent?w.style.color:w.style.color;w.style.transform='translateY(0)';if(!w.dataset.accent&&w.style.color.indexOf('rgb(28')>-1){}var orig=w.getAttribute('data-orig');}else{w.style.transform='translateY(20px)';}});words.forEach(function(w,i){var isAccent=w.getAttribute('data-accent')==='1';if(i<n){w.style.color=isAccent?'#c8f23e':'#f4f4f0';w.style.transform='translateY(0)';}else{w.style.color='#1c1c1c';w.style.transform='translateY(20px)';}});}words.forEach(function(w){if(w.style.color.indexOf('lime')>-1||w.textContent.indexOf('ideas')>-1||w.textContent.indexOf('measurable')>-1){w.setAttribute('data-accent','1');}});window.addEventListener('scroll',reveal,{passive:true});reveal();})();
       </script>
-    </section>
-
-    <!-- SERVICES BENTO -->
-    <section class="section" id="services">
-      <div class="wrap">
-        <div class="section-head center sbr" style="margin:0 auto 60px;max-width:780px">
-          <span class="pill">✦ Built for performance. Designed for scale.</span>
-          <h2 class="tracking-tight" style="margin-top:22px">
-            Everything you need to
-            <br>
-            build, ship &amp;
-            <span class="lime">unlock potential</span>
-          </h2>
-          <p class="">
-            Powerful strategy, design and engineering primitives. Production
-            ready — designed for speed, built for the future.
+</section>
+<!-- SERVICES BENTO -->
+<section class="section" id="services">
+<div class="wrap">
+<div class="section-head center sbr" style="margin:0 auto 60px;max-width:780px">
+<span class="pill">✦ Создано для производительности. Спроектировано для масштаба.</span>
+<h2 class="tracking-tight" style="margin-top:22px">
+            Всё, что нужно, чтобы
+            <br/>
+            создавайте, запускайте и
+            <span class="lime">раскрывайте потенциал</span>
+</h2>
+<p class="">
+            Мощные примитивы стратегии, дизайна и разработки. Готово к продакшену —
+            спроектировано для скорости, создано для будущего.
           </p>
-        </div>
-        <style>
+</div>
+<style>
           #services .sbr{opacity:0;transform:translateY(36px);transition:opacity .85s cubic-bezier(.2,.8,.2,1),transform .85s cubic-bezier(.2,.8,.2,1)}#services .sbr.sb-in{opacity:1;transform:none}.svc-bento{display:grid;grid-template-columns:repeat(10,1fr);gap:18px}.svc-bento>.sb:nth-child(2){transition-delay:.08s}.svc-bento>.sb:nth-child(3){transition-delay:.16s}.svc-bento>.sb:nth-child(4){transition-delay:.24s}.svc-bento>.sb:nth-child(5){transition-delay:.3s}.svc-bento>.sb:nth-child(6){transition-delay:.36s}.sb{position:relative;background:linear-gradient(180deg,var(--panel-2),var(--panel));border:1px solid var(--line);border-radius:var(--radius);padding:30px;overflow:hidden}.sb:hover{border-color:rgba(200,242,62,.45)}.sb .glow{position:absolute;width:260px;height:260px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,62,.16),transparent 70%);top:-120px;right:-120px;opacity:0;transition:opacity .5s;pointer-events:none}.sb:hover .glow{opacity:1}.sb .eyeb{display:block;font-size:11px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--lime);margin-bottom:10px}.sb h3{font-family:var(--grok);font-size:23px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-bottom:10px}.sb p{color:var(--muted);font-size:14px}.sb-ico{width:46px;height:46px;border-radius:13px;display:grid;place-items:center;background:rgba(200,242,62,.08);border:1px solid rgba(200,242,62,.25);color:var(--lime);margin-bottom:22px;flex:none}.sb-a{grid-column:span 3;grid-row:span 2;display:flex;flex-direction:column}.sb-b{grid-column:span 4;padding-right:215px;min-height:250px}.sb-b h3{font-size:26px}.sb-c{grid-column:span 3;grid-row:span 2;display:flex;flex-direction:column}.sb-s{grid-column:span 2;padding-bottom:70px}.sb-s h3{font-size:19px}.sb-band{grid-column:span 10;display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap}.sb-stats{display:flex;margin-top:auto;border-top:1px solid var(--line);padding-top:22px}.sb-stats>div{flex:1}.sb-stats>div+div{border-left:1px solid var(--line);padding-left:22px}.sb-stats .v{font-family:var(--grok);font-size:27px;font-weight:600;letter-spacing:-.02em;color:var(--lime)}.sb-stats .l{font-size:12px;color:var(--muted-2);margin-top:3px}.sb-pill{display:inline-flex;align-items:center;gap:8px;border:1px solid var(--line);background:#0a0a0a;border-radius:999px;padding:7px 14px;font-size:12px;color:var(--muted);margin-top:18px}.sb-pill .dot{width:7px;height:7px;border-radius:50%;background:var(--lime);animation:sbPulse 1.8s ease-in-out infinite}@keyframes sbPulse{50%{opacity:.25;transform:scale(.75)}}.sb-cube{position:absolute;right:-10px;top:50%;width:215px;margin-top:-108px;pointer-events:none}.sb-cube .bob{animation:sbBob 5s ease-in-out infinite}@keyframes sbBob{50%{transform:translateY(-10px)}}.sb-chart{width:100%;height:auto;display:block;margin-top:auto}.sb-chart .line{stroke-dasharray:620;stroke-dashoffset:620}.sbr.sb-in .sb-chart .line{animation:sbDraw 2.4s ease-out .4s forwards}@keyframes sbDraw{to{stroke-dashoffset:0}}.sb-chart .area{opacity:0;transition:opacity 1.2s ease 1.4s}.sbr.sb-in .sb-chart .area{opacity:1}.sb-chart .cdot{animation:sbPulse 2s ease-in-out infinite}.sb-badge{align-self:flex-end;background:#0a0a0a;border:1px solid #222;border-radius:12px;padding:8px 14px;text-align:right;margin:14px 0 6px}.sb-badge .bv{font-family:var(--grok);font-size:16px;font-weight:600;color:#fff;line-height:1.1}.sb-badge .bl{font-size:11px;color:var(--muted-2)}.sb-foot{display:flex;align-items:center;justify-content:space-between;margin-top:16px;border-top:1px solid var(--line);padding-top:16px}.sb-foot .gr{color:var(--lime);font-weight:600;font-size:14px}.sb-foot .gl{color:var(--muted-2);font-size:13px;margin-left:6px}.sb-arrow{width:36px;height:36px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;color:var(--lime);transition:background .3s,color .3s,transform .3s;flex:none}.sb:hover .sb-arrow{background:var(--lime);color:#0a0a0a;transform:rotate(-45deg)}.sb-s .sb-arrow{position:absolute;right:22px;bottom:22px}.sb-tools{display:flex;align-items:center;gap:12px;flex-wrap:wrap}.sb-tool{width:56px;height:56px;border-radius:16px;background:#101010;border:1px solid #202020;display:grid;place-items:center;color:var(--muted);transition:transform .3s,border-color .3s,color .3s}.sb-tool:hover{transform:translateY(-4px);border-color:rgba(200,242,62,.4);color:var(--lime)}@media(max-width:980px){.svc-bento{grid-template-columns:1fr 1fr}.sb-a,.sb-b,.sb-c,.sb-band{grid-column:span 2}.sb-s{grid-column:span 1}.sb-b{padding-right:30px;min-height:0}.sb-cube{display:none}}@media(max-width:680px){.svc-bento{grid-template-columns:1fr}.sb-a,.sb-b,.sb-c,.sb-s,.sb-band{grid-column:span 1}}
         </style>
-        <style id="svcPuzzleStyle">
+<style id="svcPuzzleStyle">
           #services .svc-bento .sb{opacity:0;transform:translate(var(--pz-x,0),var(--pz-y,0)) rotate(var(--pz-r,0deg)) scale(.86);transition:opacity .9s cubic-bezier(.2,.8,.2,1),transform 1s cubic-bezier(.2,.8,.2,1)}#services .svc-bento .sb.sb-in{opacity:1;transform:translate(0,0) rotate(0deg) scale(1)}#services .svc-bento .sb:nth-child(2).sb-in{transition-delay:.08s}#services .svc-bento .sb:nth-child(3).sb-in{transition-delay:.16s}#services .svc-bento .sb:nth-child(4).sb-in{transition-delay:.24s}#services .svc-bento .sb:nth-child(5).sb-in{transition-delay:.32s}#services .svc-bento .sb:nth-child(6).sb-in{transition-delay:.4s}
         </style>
-        <div class="svc-bento" id="svcBento">
-          <div class="sb sb-a sbr" style="--pz-x:-120px;--pz-y:-90px;--pz-r:-7deg">
-            <span class="glow"></span>
-            <div class="sb-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-              </svg>
-            </div>
-            <span class="eyeb">High performance</span>
-            <h3 class="">Blazing fast delivery</h3>
-            <p class="">
-              Optimized strategy, design and engineering pipelines for ultra-low
-              friction launches at any scale.
+<div class="svc-bento" id="svcBento">
+<div class="sb sb-a sbr" style="--pz-x:-120px;--pz-y:-90px;--pz-r:-7deg">
+<span class="glow"></span>
+<div class="sb-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</div>
+<span class="eyeb">Высокая производительность</span>
+<h3 class="">Молниеносная доставка</h3>
+<p class="">
+              Оптимизированные стратегические, дизайнерские и инженерные пайплайны для запусков с минимальным трением в любом масштабе.
             </p>
-            <div class="sb-stats">
-              <div>
-                <div class="v">98%</div>
-                <div class="l">Client retention</div>
-              </div>
-              <div>
-                <div class="v">6 wks</div>
-                <div class="l">Idea to launch</div>
-              </div>
-            </div>
-          </div>
-          <div class="sb sb-b sbr" style="--pz-x:130px;--pz-y:-70px;--pz-r:6deg">
-            <span class="glow"></span>
-            <div class="sb-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
-                <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
-                <line x1="12" y1="22.08" x2="12" y2="12"></line>
-              </svg>
-            </div>
-            <span class="eyeb">Flexible &amp; scalable</span>
-            <h3 class="">Scale without limits</h3>
-            <p>
-              Auto-scale seamlessly from prototype to production with one
-              embedded Apex team.
+<div class="sb-stats">
+<div>
+<div class="v">98%</div>
+<div class="l">Удержание клиентов</div>
+</div>
+<div>
+<div class="v">6 нед.</div>
+<div class="l">От идеи до запуска</div>
+</div>
+</div>
+</div>
+<div class="sb sb-b sbr" style="--pz-x:130px;--pz-y:-70px;--pz-r:6deg">
+<span class="glow"></span>
+<div class="sb-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+<polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+<line x1="12" x2="12" y1="22.08" y2="12"></line>
+</svg>
+</div>
+<span class="eyeb">Гибко и масштабируемо</span>
+<h3 class="">Масштабируйтесь без ограничений</h3>
+<p>
+              Плавный автомасштаб от прототипа до продакшена с одной встроенной командой Apex.
             </p>
-            <span class="sb-pill">
-              <span class="dot"></span>
-              Momentum enabled
+<span class="sb-pill">
+<span class="dot"></span>
+              Импульс включён
             </span>
-            <svg class="sb-cube" viewBox="0 0 220 220" fill="none" aria-hidden="true">
-              <ellipse cx="110" cy="152" rx="80" ry="34" fill="rgba(200,242,62,.10)"></ellipse>
-              <polygon points="110,110 196,152 110,194 24,152" fill="#101010" stroke="#262626"></polygon>
-              <g stroke="#c8f23e" fill="none" opacity=".35">
-                <ellipse cx="110" cy="152" rx="26" ry="12"></ellipse>
-                <ellipse cx="110" cy="152" rx="52" ry="23"></ellipse>
-              </g>
-              <g class="bob">
-                <polygon points="110,96 158,120 110,144 62,120" fill="#3a4413"></polygon>
-                <polygon points="110,58 158,82 110,106 62,82" fill="#5d6e1c"></polygon>
-                <polygon points="62,44 110,68 110,106 62,82" fill="#a9d92b"></polygon>
-                <polygon points="158,44 110,68 110,106 158,82" fill="#c8f23e"></polygon>
-                <polygon points="110,20 158,44 110,68 62,44" fill="#dff79a"></polygon>
-              </g>
-            </svg>
-          </div>
-          <div class="sb sb-c sbr" style="--pz-x:140px;--pz-y:80px;--pz-r:7deg">
-            <span class="glow"></span>
-            <div class="sb-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 3v18h18"></path>
-                <path d="M18 17V9"></path>
-                <path d="M13 17V5"></path>
-                <path d="M8 17v-3"></path>
-              </svg>
-            </div>
-            <span class="eyeb">Real-time insights</span>
-            <h3>Monitor. Analyze. Optimize.</h3>
-            <p>
-              Real-time observability and deep insights to keep your brand
-              performing.
+<svg aria-hidden="true" class="sb-cube" fill="none" viewbox="0 0 220 220">
+<ellipse cx="110" cy="152" fill="rgba(200,242,62,.10)" rx="80" ry="34"></ellipse>
+<polygon fill="#101010" points="110,110 196,152 110,194 24,152" stroke="#262626"></polygon>
+<g fill="none" opacity=".35" stroke="#c8f23e">
+<ellipse cx="110" cy="152" rx="26" ry="12"></ellipse>
+<ellipse cx="110" cy="152" rx="52" ry="23"></ellipse>
+</g>
+<g class="bob">
+<polygon fill="#3a4413" points="110,96 158,120 110,144 62,120"></polygon>
+<polygon fill="#5d6e1c" points="110,58 158,82 110,106 62,82"></polygon>
+<polygon fill="#a9d92b" points="62,44 110,68 110,106 62,82"></polygon>
+<polygon fill="#c8f23e" points="158,44 110,68 110,106 158,82"></polygon>
+<polygon fill="#dff79a" points="110,20 158,44 110,68 62,44"></polygon>
+</g>
+</svg>
+</div>
+<div class="sb sb-c sbr" style="--pz-x:140px;--pz-y:80px;--pz-r:7deg">
+<span class="glow"></span>
+<div class="sb-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M3 3v18h18"></path>
+<path d="M18 17V9"></path>
+<path d="M13 17V5"></path>
+<path d="M8 17v-3"></path>
+</svg>
+</div>
+<span class="eyeb">Аналитика в реальном времени</span>
+<h3>Мониторинг. Анализ. Оптимизация.</h3>
+<p>
+              Наблюдаемость в реальном времени и глубокая аналитика для стабильной производительности бренда.
             </p>
-            <div class="sb-badge">
-              <div class="bv">74.2K</div>
-              <div class="bl">Signals tracked</div>
-            </div>
-            <svg class="sb-chart" viewBox="0 0 260 110" fill="none" aria-hidden="true">
-              <defs>
-                <linearGradient id="sbChartFill" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#c8f23e" stop-opacity=".28"></stop>
-                  <stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
-                </linearGradient>
-              </defs>
-              <path class="area" d="M0 86 C28 82 44 62 68 68 C92 74 108 46 132 52 C156 58 172 28 202 24 C226 21 244 34 260 26 V110 H0 Z" fill="url(#sbChartFill)"></path>
-              <path class="line" d="M0 86 C28 82 44 62 68 68 C92 74 108 46 132 52 C156 58 172 28 202 24 C226 21 244 34 260 26" stroke="#c8f23e" stroke-width="2" stroke-linecap="round"></path>
-              <circle class="cdot" cx="202" cy="24" r="4" fill="#c8f23e"></circle>
-            </svg>
-            <div class="sb-foot">
-              <span>
-                <span class="gr">+18.6%</span>
-                <span class="gl">vs last 7 days</span>
-              </span>
-              <span class="sb-arrow">
-                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M7 7h10v10"></path>
-                  <path d="M7 17 17 7"></path>
-                </svg>
-              </span>
-            </div>
-          </div>
-          <div class="sb sb-s sbr" style="--pz-x:-150px;--pz-y:60px;--pz-r:-9deg">
-            <span class="glow"></span>
-            <div class="sb-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
-                <polyline points="9 12 11 14 15 10"></polyline>
-              </svg>
-            </div>
-            <span class="eyeb">Enterprise grade</span>
-            <h3>Secure by default</h3>
-            <p>
-              Built-in security, compliance and data privacy at every layer.
+<div class="sb-badge">
+<div class="bv">74.2K</div>
+<div class="bl">Отслеживаемых сигналов</div>
+</div>
+<svg aria-hidden="true" class="sb-chart" fill="none" viewbox="0 0 260 110">
+<defs>
+<lineargradient id="sbChartFill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#c8f23e" stop-opacity=".28"></stop>
+<stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path class="area" d="M0 86 C28 82 44 62 68 68 C92 74 108 46 132 52 C156 58 172 28 202 24 C226 21 244 34 260 26 V110 H0 Z" fill="url(#sbChartFill)"></path>
+<path class="line" d="M0 86 C28 82 44 62 68 68 C92 74 108 46 132 52 C156 58 172 28 202 24 C226 21 244 34 260 26" stroke="#c8f23e" stroke-linecap="round" stroke-width="2"></path>
+<circle class="cdot" cx="202" cy="24" fill="#c8f23e" r="4"></circle>
+</svg>
+<div class="sb-foot">
+<span>
+<span class="gr">+18.6%</span>
+<span class="gl">vs последние 7 дней</span>
+</span>
+<span class="sb-arrow">
+<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</span>
+</div>
+</div>
+<div class="sb sb-s sbr" style="--pz-x:-150px;--pz-y:60px;--pz-r:-9deg">
+<span class="glow"></span>
+<div class="sb-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path>
+<polyline points="9 12 11 14 15 10"></polyline>
+</svg>
+</div>
+<span class="eyeb">Корпоративный уровень</span>
+<h3>Безопасность по умолчанию</h3>
+<p>
+              Встроенная безопасность, соответствие требованиям и конфиденциальность данных на каждом уровне.
             </p>
-            <span class="sb-arrow">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </span>
-          </div>
-          <div class="sb sb-s sbr" style="--pz-x:160px;--pz-y:120px;--pz-r:8deg">
-            <span class="glow"></span>
-            <div class="sb-ico">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="16 18 22 12 16 6"></polyline>
-                <polyline points="8 6 2 12 8 18"></polyline>
-              </svg>
-            </div>
-            <span class="eyeb">Developer first</span>
-            <h3>Built for builders</h3>
-            <p>
-              Clean systems, design tokens and quickstarts to ship faster, every
-              time.
+<span class="sb-arrow">
+<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<path d="M5 12h14"></path>
+<path d="m12 5 7 7-7 7"></path>
+</svg>
+</span>
+</div>
+<div class="sb sb-s sbr" style="--pz-x:160px;--pz-y:120px;--pz-r:8deg">
+<span class="glow"></span>
+<div class="sb-ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+</svg>
+</div>
+<span class="eyeb">Сначала разработчики</span>
+<h3>Создано для строителей</h3>
+<p>
+              Чистые системы, дизайн-токены и быстрые старты для более быстрой отгрузки каждый раз.
             </p>
-            <span class="sb-arrow">
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M5 12h14"></path>
-                <path d="m12 5 7 7-7 7"></path>
-              </svg>
-            </span>
-          </div>
-          <div class="sb sb-band sbr" style="--pz-x: 0px; --pz-y: 140px; --pz-r: -4deg;">
-            <span class="glow"></span>
-            <div style="display:flex;align-items:center;gap:22px;flex-wrap:wrap" class="">
-              <div class="sb-ico" style="margin-bottom:0;width:54px;height:54px">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 22v-5"></path>
-                  <path d="M9 8V2"></path>
-                  <path d="M15 8V2"></path>
-                  <path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"></path>
-                </svg>
-              </div>
-              <div style="max-width:420px" class="">
-                <span class="eyeb" style="margin-bottom:6px">
-                  Seamless integrations
+<span class="sb-arrow">
+<svg fill="none" height="15" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="15">
+<path d="M5 12h14"></path>
+<path d="m12 5 7 7-7 7"></path>
+</svg>
+</span>
+</div>
+<div class="sb sb-band sbr" style="--pz-x: 0px; --pz-y: 140px; --pz-r: -4deg;">
+<span class="glow"></span>
+<div class="" style="display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+<div class="sb-ico" style="margin-bottom:0;width:54px;height:54px">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 22v-5"></path>
+<path d="M9 8V2"></path>
+<path d="M15 8V2"></path>
+<path d="M18 8v5a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8Z"></path>
+</svg>
+</div>
+<div class="" style="max-width:420px">
+<span class="eyeb" style="margin-bottom:6px">
+                  Бесшовные интеграции
                 </span>
-                <h3 style="margin-bottom:6px" class="">Connect your favorite tools</h3>
-                <p class="">
-                  Integrate effortlessly with your existing stack and
-                  supercharge your workflows.
+<h3 class="" style="margin-bottom:6px">Подключите любимые инструменты</h3>
+<p class="">
+                  Интегрируйтесь без усилий с вашим существующим стеком и
+                  прокачайте рабочие процессы.
                 </p>
-              </div>
-            </div>
-            <div class="sb-tools">
-              <span class="sb-tool">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="4" y1="9" x2="20" y2="9"></line>
-                  <line x1="4" y1="15" x2="20" y2="15"></line>
-                  <line x1="10" y1="3" x2="8" y2="21"></line>
-                  <line x1="16" y1="3" x2="14" y2="21"></line>
-                </svg>
+</div>
+</div>
+<div class="sb-tools">
+<span class="sb-tool">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<line x1="4" x2="20" y1="9" y2="9"></line>
+<line x1="4" x2="20" y1="15" y2="15"></line>
+<line x1="10" x2="8" y1="3" y2="21"></line>
+<line x1="16" x2="14" y1="3" y2="21"></line>
+</svg>
+</span>
+<span class="sb-tool">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
+<path d="M9 18c-4.51 2-5-2-7-2"></path>
+</svg>
+</span>
+<span class="sb-tool">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
+</svg>
+</span>
+<span class="sb-tool">
+<svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="22">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+<polyline points="2 17 12 22 22 17"></polyline>
+<polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</span>
+<span style="color:var(--lime);font-weight:600;font-size:14px;margin-left:8px">
+                + ещё 25
               </span>
-              <span class="sb-tool">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"></path>
-                  <path d="M9 18c-4.51 2-5-2-7-2"></path>
-                </svg>
-              </span>
-              <span class="sb-tool">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 3a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3H6a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3V6a3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3h12a3 3 0 0 0 3-3 3 3 0 0 0-3-3z"></path>
-                </svg>
-              </span>
-              <span class="sb-tool">
-                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
-              </span>
-              <span style="color:var(--lime);font-weight:600;font-size:14px;margin-left:8px">
-                + 25 more
-              </span>
-            </div>
-          </div>
-        </div>
-        <script>
+</div>
+</div>
+</div>
+<script>
           (function(){var els=document.querySelectorAll('#services .sbr');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('sb-in');io.unobserve(e.target);}});},{threshold:.15});els.forEach(function(el){io.observe(el)});document.querySelectorAll('#svcBento .sb').forEach(function(card){card.addEventListener('mousemove',function(e){var r=card.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5;var y=(e.clientY-r.top)/r.height-.5;card.style.transform='perspective(900px) rotateX('+(-y*4)+'deg) rotateY('+(x*4)+'deg) translateY(-3px)';});card.addEventListener('mouseleave',function(){card.style.transform='';});card.addEventListener('mouseenter',function(){document.body.classList.add('hovering')});card.addEventListener('mouseleave',function(){document.body.classList.remove('hovering')});});})();
         </script>
-      </div>
-    </section>
-    <section class="section caps-on" id="capabilities" style="padding:0">
-      <style>
+</div>
+</section>
+<section class="section caps-on" id="capabilities" style="padding:0">
+<style>
         #capabilities.caps-on .caps-pin { position: relative; }
         #capabilities.caps-on .caps-sticky { position: sticky; top: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; overflow: hidden; padding: 0; }
         #capabilities.caps-on .caps-track { flex-direction: row; gap: 24px; will-change: transform; display: flex; padding: 0 5vw; width: max-content; }
@@ -908,172 +939,150 @@ gtag('config', 'G-2M6V79H761');
           #capabilities .caps-pin { height: auto !important; }
         }
       </style>
-
-      <div class="caps-pin w-full" id="capsPin" style="height: 1209px;">
-        <div class="caps-sticky w-full" id="capsSticky">
-          <div class="w-full mb-12 lg:mb-16" style="padding: 0 5vw;">
-            <div class="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
-              <div class="max-w-xl">
-                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#c8f23e] text-[11px] font-medium tracking-widest uppercase mb-6">
-                  <span class="w-1.5 h-1.5 rounded-full bg-[#c8f23e] animate-pulse"></span>
-                  Capabilities reel
+<div class="caps-pin w-full" id="capsPin" style="height: 1209px;">
+<div class="caps-sticky w-full" id="capsSticky">
+<div class="w-full mb-12 lg:mb-16" style="padding: 0 5vw;">
+<div class="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-end justify-between gap-8 md:gap-12">
+<div class="max-w-xl">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[#c8f23e] text-[11px] font-medium tracking-widest uppercase mb-6">
+<span class="w-1.5 h-1.5 rounded-full bg-[#c8f23e] animate-pulse"></span>
+                  Демо возможностей
                 </div>
-                <h2 class="text-4xl md:text-5xl lg:text-[56px] font-medium tracking-tight text-white leading-[1.05]" style="font-family: var(--grok);">
-                  Four ways we move
-                  <br>
-                  brands forward
+<h2 class="text-4xl md:text-5xl lg:text-[56px] font-medium tracking-tight text-white leading-[1.05]" style="font-family: var(--grok);">
+                  Четыре способа, которыми мы двигаем
+                  <br/>
+                  бренды вперёд
                 </h2>
+</div>
+<div class="w-full md:w-[260px] h-[3px] bg-[#1d1d1d] rounded-full overflow-hidden flex-shrink-0 relative hidden md:block mb-3">
+<span class="absolute top-0 left-0 h-full w-full bg-[#c8f23e] origin-left" id="capsBar" style="width: 0%;"></span>
+</div>
+</div>
+</div>
+<div class="caps-track" id="capsTrack">
+<div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M12 19l7-7 3 3-7 7-3-3z"></path>
+<path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
+<path d="M2 2l7.586 7.586"></path>
+<circle cx="11" cy="11" r="2"></circle>
+</svg>
+</div>
+<div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                01 — БРЕНД
               </div>
-
-              <div class="w-full md:w-[260px] h-[3px] bg-[#1d1d1d] rounded-full overflow-hidden flex-shrink-0 relative hidden md:block mb-3">
-                <span id="capsBar" class="absolute top-0 left-0 h-full w-full bg-[#c8f23e] origin-left" style="width: 0%;"></span>
-              </div>
-            </div>
-          </div>
-
-          <div class="caps-track" id="capsTrack">
-            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
-              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-
-              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M12 19l7-7 3 3-7 7-3-3z"></path>
-                  <path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"></path>
-                  <path d="M2 2l7.586 7.586"></path>
-                  <circle cx="11" cy="11" r="2"></circle>
-                </svg>
-              </div>
-
-              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
-                01 — BRAND
-              </div>
-              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
-                Brand systems
+<h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Бренд-системы
               </h3>
-              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
-                Identities, voice and design languages built to flex across
-                every surface your brand touches.
+<p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                Айдентики, голоса и дизайн-языки, созданные гибкими для каждой поверхности, которой касается ваш бренд.
               </p>
-
-              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Identity
+<div class="flex flex-wrap gap-2 mt-auto relative z-10">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Айдентика
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Guidelines
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Гайдлайны
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Art direction
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Арт-дирекция
                 </span>
+</div>
+</div>
+<div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+<svg class="" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<rect class="" height="18" rx="2" width="18" x="3" y="3"></rect>
+<line x1="3" x2="21" y1="9" y2="9"></line>
+<line x1="9" x2="9" y1="21" y2="9"></line>
+</svg>
+</div>
+<div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                02 — ПРОДУКТ
               </div>
-            </div>
-
-            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
-              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-
-              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
-                  <rect x="3" y="3" width="18" height="18" rx="2" class=""></rect>
-                  <line x1="3" y1="9" x2="21" y2="9"></line>
-                  <line x1="9" y1="21" x2="9" y2="9"></line>
-                </svg>
-              </div>
-
-              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
-                02 — PRODUCT
-              </div>
-              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
-                Product design
+<h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Продуктовый дизайн
               </h3>
-              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
-                UX flows, interfaces and prototypes validated with real users —
-                designed to convert from day one.
+<p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                UX-флоу, интерфейсы и прототипы, проверенные с реальными пользователями — спроектированные для конверсии с первого дня.
               </p>
-
-              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+<div class="flex flex-wrap gap-2 mt-auto relative z-10">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
                   UX
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
                   UI
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Prototyping
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Прототипирование
                 </span>
+</div>
+</div>
+<div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+</svg>
+</div>
+<div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                03 — РАЗРАБОТКА
               </div>
-            </div>
-
-            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
-              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-
-              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-              </div>
-
-              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
-                03 — BUILD
-              </div>
-              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
-                Engineering
+<h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Инженерия
               </h3>
-              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
-                Clean, scalable platforms with analytics wired in from the
-                start. Ship in weeks, not quarters.
+<p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                Чистые, масштабируемые платформы со встроенной аналитикой с самого начала. Запуск за недели, а не кварталы.
               </p>
-
-              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Web
+<div class="flex flex-wrap gap-2 mt-auto relative z-10">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Веб
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Mobile
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Мобайл
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
                   APIs
                 </span>
+</div>
+</div>
+<div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
+<div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+<div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
+<svg fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24">
+<path d="M16 7h6v6"></path>
+<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+</svg>
+</div>
+<div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
+                04 — РОСТ
               </div>
-            </div>
-
-            <div class="caps-panel relative bg-gradient-to-b from-[#121212] to-[#0a0a0a] border border-white/10 hover:border-[#c8f23e]/40 rounded-3xl p-8 md:p-10 overflow-hidden transition-colors duration-300 group">
-              <div class="absolute -top-24 -right-24 w-64 h-64 bg-[#c8f23e]/10 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
-
-              <div class="w-14 h-14 rounded-2xl bg-[#c8f23e]/5 border border-[#c8f23e]/20 flex items-center justify-center text-[#c8f23e] mb-8 group-hover:scale-105 group-hover:bg-[#c8f23e]/10 transition-all duration-300">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 7h6v6"></path>
-                  <path d="m22 7-8.5 8.5-5-5L2 17"></path>
-                </svg>
-              </div>
-
-              <div class="text-[12px] font-semibold tracking-[0.24em] text-[#c8f23e] mb-4 uppercase" style="font-family: 'Syncopate', sans-serif;">
-                04 — GROWTH
-              </div>
-              <h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
-                Growth &amp; motion
+<h3 class="text-[28px] font-medium tracking-tight text-white mb-4" style="font-family: var(--grok);">
+                Рост и моушен
               </h3>
-              <p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
-                Measurement, iteration and motion craft that turn launch
-                momentum into compounding results.
+<p class="text-white/60 text-[15px] leading-relaxed mb-10 flex-grow max-w-[360px]">
+                Аналитика, итерация и моушен-крафт, превращающие импульс после запуска в нарастающие результаты.
               </p>
-
-              <div class="flex flex-wrap gap-2 mt-auto relative z-10">
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Analytics
+<div class="flex flex-wrap gap-2 mt-auto relative z-10">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Аналитика
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
-                  Motion
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+                  Моушн
                 </span>
-                <span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
+<span class="px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-white/80 text-[13px] font-medium backdrop-blur-sm">
                   CRO
                 </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script>
+</div>
+</div>
+</div>
+</div>
+</div>
+<script>
         (function(){
           var sec = document.getElementById('capabilities'),
               pin = document.getElementById('capsPin'),
@@ -1116,387 +1125,379 @@ gtag('config', 'G-2M6V79H761');
           measure();
         })();
       </script>
-    </section>
-
-    <!-- PROCESS -->
-    <section class="section process" id="process">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">How we work</span>
-          <h2 class="">A process designed for momentum</h2>
-          <p class="">
-            Four focused phases that take you from idea to impact — fast.
+</section>
+<!-- PROCESS -->
+<section class="section process" id="process">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="eyebrow">Как мы работаем</span>
+<h2 class="">Процесс, созданный для импульса</h2>
+<p class="">
+            Четыре сфокусированных этапа от идеи до результата — быстро.
           </p>
-        </div>
-        <div class="steps">
-          <div class="step reveal">
-            <div class="idx">01</div>
-            <div class="">
-              <h3 class="">Discover</h3>
-              <p class="">
-                We dig into your goals, users, and data to map the real
-                opportunity before a single pixel is drawn.
+</div>
+<div class="steps">
+<div class="step reveal">
+<div class="idx">01</div>
+<div class="">
+<h3 class="">Исследование</h3>
+<p class="">
+                Мы погружаемся в ваши цели, пользователей и данные, чтобы нанести реальную возможность на карту — прежде чем нарисован хотя бы один пиксель.
               </p>
-              <div class="tags">
-                <span class="tag">Research</span>
-                <span class="tag">Audit</span>
-                <span class="tag">Strategy</span>
-              </div>
-            </div>
-          </div>
-          <div class="step reveal">
-            <div class="idx">02</div>
-            <div class="">
-              <h3 class="">Design</h3>
-              <p class="">
-                Concepts, systems and prototypes that look sharp and convert —
-                validated with your users early.
+<div class="tags">
+<span class="tag">Исследования</span>
+<span class="tag">Аудит</span>
+<span class="tag">Стратегия</span>
+</div>
+</div>
+</div>
+<div class="step reveal">
+<div class="idx">02</div>
+<div class="">
+<h3 class="">Дизайн</h3>
+<p class="">
+                Концепции, системы и прототипы, которые выглядят чётко и конвертируют — проверены с вашими пользователями заранее.
               </p>
-              <div class="tags">
-                <span class="tag">UX</span>
-                <span class="tag">UI</span>
-                <span class="tag">Brand</span>
-              </div>
-            </div>
-          </div>
-          <div class="step reveal">
-            <div class="idx">03</div>
-            <div class="">
-              <h3 class="">Build</h3>
-              <p class="">
-                Clean, scalable engineering with analytics wired in from day
-                one. Ship in weeks, not quarters.
+<div class="tags">
+<span class="tag">UX</span>
+<span class="tag">UI</span>
+<span class="tag">Бренд</span>
+</div>
+</div>
+</div>
+<div class="step reveal">
+<div class="idx">03</div>
+<div class="">
+<h3 class="">Сборка</h3>
+<p class="">
+                Чистая, масштабируемая разработка со встроенной аналитикой с первого дня. Запуск за недели, а не кварталы.
               </p>
-              <div class="tags">
-                <span class="tag">Development</span>
-                <span class="tag">QA</span>
-                <span class="tag">Analytics</span>
-              </div>
-            </div>
-          </div>
-          <div class="step reveal">
-            <div class="idx">04</div>
-            <div class="">
-              <h3 class="">Scale</h3>
-              <p class="">
-                We measure, iterate and grow — turning launch momentum into
-                compounding results.
+<div class="tags">
+<span class="tag">Разработка</span>
+<span class="tag">QA</span>
+<span class="tag">Аналитика</span>
+</div>
+</div>
+</div>
+<div class="step reveal">
+<div class="idx">04</div>
+<div class="">
+<h3 class="">Масштабируйтесь,</h3>
+<p class="">
+                Мы измеряем, итерируем и растём — превращая импульс после запуска в нарастающие результаты.
               </p>
-              <div class="tags">
-                <span class="tag">Optimize</span>
-                <span class="tag">Support</span>
-                <span class="tag">Growth</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- WORK SHOWCASE -->
-    <section class="section" id="work">
-      <div class="wrap">
-        <div class="section-head reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;">
-          <div class="">
-            <span class="eyebrow">Selected work</span>
-            <h2 class="tracking-tight">Results we're proud of</h2>
-            <p class="">
-              A glimpse at brands we've helped unlock their potential.
+<div class="tags">
+<span class="tag">Оптимизация</span>
+<span class="tag">Поддержка</span>
+<span class="tag">Growth</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- WORK SHOWCASE -->
+<section class="section" id="work">
+<div class="wrap">
+<div class="section-head reveal" style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:20px;">
+<div class="">
+<span class="eyebrow">Избранные работы</span>
+<h2 class="tracking-tight">Результаты, которыми мы гордимся</h2>
+<p class="">
+              Взгляд на бренды, которым мы помогли раскрыть потенциал.
             </p>
-          </div>
-          <a href="#" class="group inline-flex items-center gap-2 text-sm font-medium transition-colors duration-300" style="color:#c8f23e;border:1px solid rgba(200,242,62,.35);border-radius:999px;padding:10px 20px;backdrop-filter:blur(4px);">
-            View all case studies
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="transition-transform duration-300 group-hover:translate-x-1">
-              <path d="M5 12h14"></path>
-              <path d="m12 5 7 7-7 7"></path>
-            </svg>
-          </a>
-        </div>
-        <div class="deck-spread relative" id="workDeck">
-          <div class="show-card sc1 reveal group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6f2845a6-b5d7-4ad4-8be5-0c5c19759d45_1600w.webp" alt="Lumen Dashboard analytics interface" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
-            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 7h10v10"></path>
-                <path d="M7 17 17 7"></path>
-              </svg>
-            </span>
-            <div class="relative">
-              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
-                SaaS · Analytics
+</div>
+<a class="group inline-flex items-center gap-2 text-sm font-medium transition-colors duration-300" href="#" style="color:#c8f23e;border:1px solid rgba(200,242,62,.35);border-radius:999px;padding:10px 20px;backdrop-filter:blur(4px);">
+            Смотреть все кейсы
+            <svg class="transition-transform duration-300 group-hover:translate-x-1" fill="none" height="16" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="16">
+<path d="M5 12h14"></path>
+<path d="m12 5 7 7-7 7"></path>
+</svg>
+</a>
+</div>
+<div class="deck-spread relative" id="workDeck">
+<div class="show-card sc1 reveal group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+<img alt="Интерфейс аналитики Lumen Dashboard" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6f2845a6-b5d7-4ad4-8be5-0c5c19759d45_1600w.webp"/>
+<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+<span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</span>
+<div class="relative">
+<div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                SaaS · Аналитика
               </div>
-              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+<h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
                 Lumen Dashboard
               </h3>
-              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 7h6v6"></path>
-                  <path d="m22 7-8.5 8.5-5-5L2 17"></path>
-                </svg>
-                +212% activation in 90 days
+<div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+<svg fill="none" height="14" stroke="#c8f23e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<path d="M16 7h6v6"></path>
+<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+</svg>
+                +212% активации за 90 дней
               </div>
-            </div>
-          </div>
-          <div class="show-card sc2 reveal d1 group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/7d765bdd-2d6a-4433-a716-7cff00c86850/1600w.jpg" alt="Vertex Wallet mobile fintech app" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
-            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
-                <path d="M7 7h10v10"></path>
-                <path d="M7 17 17 7"></path>
-              </svg>
-            </span>
-            <div class="relative">
-              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
-                Fintech · Mobile
+</div>
+</div>
+<div class="show-card sc2 reveal d1 group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+<img alt="Мобильное fintech-приложение Vertex Wallet" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/7d765bdd-2d6a-4433-a716-7cff00c86850/1600w.jpg"/>
+<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+<span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+<svg class="" fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</span>
+<div class="relative">
+<div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                Fintech · Мобайл
               </div>
-              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+<h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
                 Vertex Wallet
               </h3>
-              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="#c8f23e" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-                </svg>
-                4.9★ launch, 50k installs
+<div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+<svg fill="#c8f23e" height="14" stroke="#c8f23e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+                Запуск 4.9★, 50 тыс. установок
               </div>
-            </div>
-          </div>
-          <div class="show-card sc3 reveal group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c78a081-43fc-417f-9d0f-b87ee6b9bf6a_1600w.jpg" alt="Quantia Store e-commerce brand" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
-            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 7h10v10"></path>
-                <path d="M7 17 17 7"></path>
-              </svg>
-            </span>
-            <div class="relative">
-              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
-                E-commerce · Brand
+</div>
+</div>
+<div class="show-card sc3 reveal group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+<img alt="Бренд интернет-магазина Quantia Store" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9c78a081-43fc-417f-9d0f-b87ee6b9bf6a_1600w.jpg"/>
+<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+<span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</span>
+<div class="relative">
+<div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                E-commerce · Бренд
               </div>
-              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+<h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
                 Quantia Store
               </h3>
-              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="8" cy="21" r="1"></circle>
-                  <circle cx="19" cy="21" r="1"></circle>
-                  <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
-                </svg>
-                3.1x conversion rate
+<div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+<svg fill="none" height="14" stroke="#c8f23e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<circle cx="8" cy="21" r="1"></circle>
+<circle cx="19" cy="21" r="1"></circle>
+<path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"></path>
+</svg>
+                Конверсия x3.1
               </div>
-            </div>
-          </div>
-          <div class="show-card sc4 reveal d1 group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4ca1e73a-69c6-49d2-b4d2-339c3a121dda_1600w.webp" alt="Helios Cloud B2B platform" loading="lazy" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105">
-            <div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
-            <span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M7 7h10v10"></path>
-                <path d="M7 17 17 7"></path>
-              </svg>
-            </span>
-            <div class="relative">
-              <div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
-                B2B · Platform
+</div>
+</div>
+<div class="show-card sc4 reveal d1 group relative overflow-hidden cursor-pointer" style="border-radius: 24px; border: 1px solid rgba(255, 255, 255, 0.08); min-height: 340px; display: flex; flex-direction: column; justify-content: flex-end; padding: 28px; --parY: 151.9px;">
+<img alt="B2B-платформа Helios Cloud" class="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4ca1e73a-69c6-49d2-b4d2-339c3a121dda_1600w.webp"/>
+<div class="absolute inset-0" style="background:linear-gradient(180deg,rgba(10,10,10,.1) 0%,rgba(10,10,10,.55) 55%,rgba(10,10,10,.92) 100%);"></div>
+<span class="absolute top-5 right-5 inline-flex h-11 w-11 items-center justify-center rounded-full transition-all duration-300 opacity-0 group-hover:opacity-100 group-hover:rotate-45" style="background:#c8f23e;color:#0d0d0d;">
+<svg fill="none" height="18" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="18">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</span>
+<div class="relative">
+<div class="text-xs font-medium uppercase tracking-widest mb-2" style="color:#c8f23e;">
+                B2B · Платформа
               </div>
-              <h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
+<h3 class="text-xl md:text-2xl font-semibold tracking-tight text-white mb-2">
                 Helios Cloud
               </h3>
-              <div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <line x1="12" x2="12" y1="2" y2="22"></line>
-                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
-                </svg>
-                $2.4M pipeline sourced
+<div class="inline-flex items-center gap-2 text-sm" style="color:rgba(255,255,255,.85);background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:999px;padding:6px 14px;backdrop-filter:blur(6px);">
+<svg fill="none" height="14" stroke="#c8f23e" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<line x1="12" x2="12" y1="2" y2="22"></line>
+<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+</svg>
+                Пайплайн на $2,4 млн
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <style>
+</div>
+</div>
+</div>
+</div>
+<style>
         #work .deck-spread{position:relative;min-height:600px;display:flex;align-items:center;justify-content:center;perspective:1600px;margin-top:20px}#work .deck-spread .show-card{position:absolute!important;width:min(70%,520px);min-height:380px!important;opacity:0;transform-style:preserve-3d;transform:translate(0,80px) rotate(0deg) scale(.7);transition:transform 1.1s cubic-bezier(.16,1,.3,1),opacity .8s ease,box-shadow .6s ease;will-change:transform;box-shadow:0 30px 60px rgba(0,0,0,.55)}#work .deck-spread .show-card:nth-child(1){z-index:1;--rot:-15deg;--tx:-260px;--ty:38px}#work .deck-spread .show-card:nth-child(2){z-index:2;--rot:-5deg;--tx:-90px;--ty:6px}#work .deck-spread .show-card:nth-child(3){z-index:3;--rot:6deg;--tx:90px;--ty:6px}#work .deck-spread .show-card:nth-child(4){z-index:4;--rot:16deg;--tx:260px;--ty:38px}#work .deck-spread.dealt .show-card{opacity:1;transform:translate(var(--tx),var(--ty)) rotate(var(--rot)) scale(1)}#work .deck-spread.dealt .show-card:nth-child(1){transition-delay:.1s}#work .deck-spread.dealt .show-card:nth-child(2){transition-delay:.32s}#work .deck-spread.dealt .show-card:nth-child(3){transition-delay:.54s}#work .deck-spread.dealt .show-card:nth-child(4){transition-delay:.76s}#work .deck-spread .show-card.lifted{z-index:60!important;transform:translate(var(--tx),calc(var(--ty) - 46px)) rotate(0deg) scale(1.12)!important;box-shadow:0 50px 110px rgba(0,0,0,.7),0 0 0 1px rgba(200,242,62,.25)!important;transition-delay:0s!important}@media(max-width:860px){#work .deck-spread{flex-direction:column;min-height:0;perspective:none}#work .deck-spread .show-card{position:relative!important;width:100%;transform:translate(0,40px) rotate(0deg) scale(.9)}#work .deck-spread.dealt .show-card{transform:none}#work .deck-spread .show-card.lifted{transform:scale(1.02)!important}}
       </style>
-      <script>
+<script>
         (function(){var deck=document.getElementById('workDeck');if(!deck)return;var cards=Array.prototype.slice.call(deck.querySelectorAll('.show-card'));var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){deck.classList.add('dealt');io.unobserve(e.target);}});},{threshold:.25});io.observe(deck);var desktop=window.matchMedia('(min-width:861px)').matches;function onScroll(){if(!desktop)return;var vh=window.innerHeight;cards.forEach(function(c,i){var r=c.getBoundingClientRect();var center=r.top+r.height/2;var dist=Math.abs(center-vh/2);var lift=dist<vh*0.22;c.classList.toggle('lifted',lift);var p=(vh/2-center)/vh;c.style.setProperty('--parY',(p*18).toFixed(1)+'px');});}window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',function(){desktop=window.matchMedia('(min-width:861px)').matches;});onScroll();})();
       </script>
-    </section>
-    <section class="section" id="studio">
-      <div class="wrap">
-        <div class="section-head reveal">
-          <span class="eyebrow">Inside the studio</span>
-          <h2 class="">Where the magic actually happens</h2>
-          <p class="">
-            A look behind the curtain — the people, spaces and rituals powering
-            every launch.
+</section>
+<section class="section" id="studio">
+<div class="wrap">
+<div class="section-head reveal">
+<span class="eyebrow">Внутри студии</span>
+<h2 class="">Где на самом деле происходит магия</h2>
+<p class="">
+            Взгляд за кулисы — люди, пространства и ритуалы, питающие каждый запуск.
           </p>
-        </div>
-        <div class="studio-bento">
-          <div class="s-tile span4 reveal">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg" alt="Design lab critique session" loading="lazy">
-            <div class="ovl"></div>
-            <div class="meta">
-              <span class="s-ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
-                  <polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
-                  <polyline points="2 17 12 22 22 17"></polyline>
-                  <polyline points="2 12 12 17 22 12"></polyline>
-                </svg>
-              </span>
-              <h3 class="">The Design Lab</h3>
-              <p class="">
-                Weekly critique rituals where every pixel earns its place —
-                strategy, design and engineering around one table.
+</div>
+<div class="studio-bento">
+<div class="s-tile span4 reveal">
+<img alt="Сессия критики в дизайн-лаборатории" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/30ff8562-5a2d-46c8-8aa2-ab717e79153a_1600w.jpg"/>
+<div class="ovl"></div>
+<div class="meta">
+<span class="s-ico">
+<svg class="" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<polygon points="12 2 2 7 12 12 22 7 12 2"></polygon>
+<polyline points="2 17 12 22 22 17"></polyline>
+<polyline points="2 12 12 17 22 12"></polyline>
+</svg>
+</span>
+<h3 class="">Дизайн-лаборатория</h3>
+<p class="">
+                Еженедельные ритуалы критики, где каждый пиксель зарабатывает своё место — стратегия, дизайн и разработка за одним столом.
               </p>
-              <div class="tags">
-                <span class="tag">Berlin HQ</span>
-                <span class="tag">28 craftspeople</span>
-              </div>
-            </div>
-          </div>
-          <div class="s-tile span2 reveal d1">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c7c582f0-2e26-487e-ae18-fee9da10561d_1600w.jpg" alt="Engineering floor" loading="lazy">
-            <div class="ovl"></div>
-            <div class="meta">
-              <span class="s-ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-              </span>
-              <h3 class="">Engineering Floor</h3>
-              <p class="">Ship-ready code, reviewed twice.</p>
-            </div>
-          </div>
-          <div class="s-tile span2 reveal d2">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ebb79511-26fb-462e-9c38-b1bef4ad3707_1600w.webp" alt="Strategy war room" loading="lazy">
-            <div class="ovl"></div>
-            <div class="meta">
-              <span class="s-ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="6"></circle>
-                  <circle cx="12" cy="12" r="2"></circle>
-                </svg>
-              </span>
-              <h3 class="">The War Room</h3>
-              <p class="">Where roadmaps are torn apart and rebuilt.</p>
-            </div>
-          </div>
-          <div class="s-tile span2 s-lime reveal">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-            <div class="">
-              <div class="s-num">
+<div class="tags">
+<span class="tag">Berlin HQ</span>
+<span class="tag">28 мастеров своего дела</span>
+</div>
+</div>
+</div>
+<div class="s-tile span2 reveal d1">
+<img alt="Инженерный этаж" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c7c582f0-2e26-487e-ae18-fee9da10561d_1600w.jpg"/>
+<div class="ovl"></div>
+<div class="meta">
+<span class="s-ico">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+</svg>
+</span>
+<h3 class="">Инженерный этаж</h3>
+<p class="">Код, готовый к отгрузке, проверенный дважды.</p>
+</div>
+</div>
+<div class="s-tile span2 reveal d2">
+<img alt="Стратегическая военная комната" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ebb79511-26fb-462e-9c38-b1bef4ad3707_1600w.webp"/>
+<div class="ovl"></div>
+<div class="meta">
+<span class="s-ico">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<circle cx="12" cy="12" r="10"></circle>
+<circle cx="12" cy="12" r="6"></circle>
+<circle cx="12" cy="12" r="2"></circle>
+</svg>
+</span>
+<h3 class="">Военная комната</h3>
+<p class="">Где дорожные карты разрывают на части и собирают заново.</p>
+</div>
+</div>
+<div class="s-tile span2 s-lime reveal">
+<svg class="" fill="none" height="28" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+<div class="">
+<div class="s-num">
                 6
-                <span>wks</span>
-              </div>
-              <p class="">
-                Average idea-to-launch time across every 2025 project.
+                <span>нед.</span>
+</div>
+<p class="">
+                Среднее время от идеи до запуска по всем проектам 2025 года.
               </p>
-            </div>
-          </div>
-          <div class="s-tile span2 reveal d1">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/a3ad5791-19e9-4399-be36-74624cb027cd/1600w.jpg" alt="Motion studio" loading="lazy">
-            <div class="ovl"></div>
-            <div class="meta">
-              <span class="s-ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="">
-                  <polygon points="5 3 19 12 5 21 5 3"></polygon>
-                </svg>
-              </span>
-              <h3 class="">Motion Studio</h3>
-              <p class="">Stories told at 60 frames per second.</p>
-            </div>
-          </div>
-          <div class="s-tile span2 reveal d2">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/20190aa3-b468-4e00-880a-fb6c6779f3be_1600w.webp" alt="Studio café" loading="lazy">
-            <div class="ovl"></div>
-            <div class="meta">
-              <span class="s-ico">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
-                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"></path>
-                  <line x1="6" y1="1" x2="6" y2="4"></line>
-                  <line x1="10" y1="1" x2="10" y2="4"></line>
-                  <line x1="14" y1="1" x2="14" y2="4"></line>
-                </svg>
-              </span>
-              <h3 class="">Third Floor Café</h3>
-              <p class="">Where the best ideas get caffeinated.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section id="gsap-creative" class="section" style="padding:0;position:relative">
-      <style>
+</div>
+</div>
+<div class="s-tile span2 reveal d1">
+<img alt="Моушен-студия" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/a3ad5791-19e9-4399-be36-74624cb027cd/1600w.jpg"/>
+<div class="ovl"></div>
+<div class="meta">
+<span class="s-ico">
+<svg class="" fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<polygon points="5 3 19 12 5 21 5 3"></polygon>
+</svg>
+</span>
+<h3 class="">Моушен-студия</h3>
+<p class="">Истории, рассказанные со скоростью 60 FPS.</p>
+</div>
+</div>
+<div class="s-tile span2 reveal d2">
+<img alt="Кафе студии" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/20190aa3-b468-4e00-880a-fb6c6779f3be_1600w.webp"/>
+<div class="ovl"></div>
+<div class="meta">
+<span class="s-ico">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+<path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4z"></path>
+<line x1="6" x2="6" y1="1" y2="4"></line>
+<line x1="10" x2="10" y1="1" y2="4"></line>
+<line x1="14" x2="14" y1="1" y2="4"></line>
+</svg>
+</span>
+<h3 class="">Кафе на третьем этаже</h3>
+<p class="">Где лучшие идеи получают кофеин.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="gsap-creative" style="padding:0;position:relative">
+<style>
         #gsap-creative .gc-pin{position:relative;height:340vh}#gsap-creative .gc-sticky{position:sticky;top:0;height:100vh;overflow:hidden;display:grid;place-items:center;background:radial-gradient(circle at 50% 50%,#11160a,#080808)}#gsap-creative .gc-stage{position:relative;width:100%;height:100%}#gsap-creative .gc-word{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--grok);font-weight:700;letter-spacing:-.03em;font-size:clamp(48px,12vw,180px);white-space:nowrap;will-change:transform,opacity}#gsap-creative .gc-ring{position:absolute;top:50%;left:50%;border:1px solid rgba(200,242,62,.18);border-radius:50%;transform:translate(-50%,-50%);will-change:transform}#gsap-creative .gc-card{position:absolute;width:240px;border-radius:22px;border:1px solid rgba(200,242,62,.3);background:linear-gradient(180deg,#141414,#0c0c0c);padding:26px;will-change:transform,opacity}#gsap-creative .gc-card .gci{width:44px;height:44px;border-radius:13px;display:grid;place-items:center;background:rgba(200,242,62,.1);border:1px solid rgba(200,242,62,.3);color:var(--lime);margin-bottom:16px}#gsap-creative .gc-card h4{font-family:var(--grok);font-size:18px;font-weight:600;margin-bottom:6px}#gsap-creative .gc-card p{color:var(--muted);font-size:13px}@media(max-width:860px){#gsap-creative .gc-pin{height:auto}#gsap-creative .gc-sticky{position:relative;height:auto;padding:90px 24px;display:block}#gsap-creative .gc-word{position:relative;transform:none;top:auto;left:auto;white-space:normal;text-align:center;font-size:clamp(40px,12vw,80px);margin:0 auto 40px}#gsap-creative .gc-ring{display:none}#gsap-creative .gc-card{position:relative;width:100%;margin:0 auto 16px;transform:none!important;opacity:1!important}}
       </style>
-      <div class="gc-pin" id="gcPin">
-        <div class="gc-sticky">
-          <div class="gc-stage" id="gcStage">
-            <span class="gc-ring" data-ring="1" style="width:360px;height:360px"></span>
-            <span class="gc-ring" data-ring="2" style="width:620px;height:620px"></span>
-            <span class="gc-ring" data-ring="3" style="width:920px;height:920px"></span>
-            <span class="gc-word" id="gcWord1" style=" filter: blur(8px);">
-              UNLOCK
+<div class="gc-pin" id="gcPin">
+<div class="gc-sticky">
+<div class="gc-stage" id="gcStage">
+<span class="gc-ring" data-ring="1" style="width:360px;height:360px"></span>
+<span class="gc-ring" data-ring="2" style="width:620px;height:620px"></span>
+<span class="gc-ring" data-ring="3" style="width:920px;height:920px"></span>
+<span class="gc-word" id="gcWord1" style=" filter: blur(8px);">
+              РАСКРОЙТЕ
             </span>
-            <span class="gc-word lime" id="gcWord2" style="opacity:0">
-              MOMENTUM
+<span class="gc-word lime" id="gcWord2" style="opacity:0">
+              ИМПУЛЬС
             </span>
-            <div class="gc-card" data-card="1" style="top:18%;left:14%">
-              <div class="gci">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                </svg>
-              </div>
-              <h4>Strategy first</h4>
-              <p>Direction before pixels — every move earns its place.</p>
-            </div>
-            <div class="gc-card" data-card="2" style="top:20%;right:14%">
-              <div class="gci">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <circle cx="12" cy="12" r="10"></circle>
-                  <circle cx="12" cy="12" r="4"></circle>
-                </svg>
-              </div>
-              <h4>Craft with soul</h4>
-              <p>Interfaces tuned to delight and convert.</p>
-            </div>
-            <div class="gc-card" data-card="3" style="bottom:18%;left:18%">
-              <div class="gci">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <path d="M16 7h6v6"></path>
-                  <path d="m22 7-8.5 8.5-5-5L2 17"></path>
-                </svg>
-              </div>
-              <h4>Relentless growth</h4>
-              <p>Measure, iterate, compound the results.</p>
-            </div>
-            <div class="gc-card" data-card="4" style="bottom:20%;right:18%">
-              <div class="gci">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <polyline points="16 18 22 12 16 6"></polyline>
-                  <polyline points="8 6 2 12 8 18"></polyline>
-                </svg>
-              </div>
-              <h4>Built to ship</h4>
-              <p>Clean systems that launch in weeks, not quarters.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-      <script>
+<div class="gc-card" data-card="1" style="top:18%;left:14%">
+<div class="gci">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</div>
+<h4>Сначала стратегия</h4>
+<p>Направление прежде пикселей — каждый шаг зарабатывает своё место.</p>
+</div>
+<div class="gc-card" data-card="2" style="top:20%;right:14%">
+<div class="gci">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<circle cx="12" cy="12" r="10"></circle>
+<circle cx="12" cy="12" r="4"></circle>
+</svg>
+</div>
+<h4>Крафт с душой</h4>
+<p>Интерфейсы, настроенные восхищать и конвертировать.</p>
+</div>
+<div class="gc-card" data-card="3" style="bottom:18%;left:18%">
+<div class="gci">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<path d="M16 7h6v6"></path>
+<path d="m22 7-8.5 8.5-5-5L2 17"></path>
+</svg>
+</div>
+<h4>Неустанный рост</h4>
+<p>Измеряй, итерируй, наращивай результаты.</p>
+</div>
+<div class="gc-card" data-card="4" style="bottom:20%;right:18%">
+<div class="gci">
+<svg fill="none" height="20" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="20">
+<polyline points="16 18 22 12 16 6"></polyline>
+<polyline points="8 6 2 12 8 18"></polyline>
+</svg>
+</div>
+<h4>Создано для отгрузки</h4>
+<p>Чистые системы, запускаемые за недели, а не кварталы.</p>
+</div>
+</div>
+</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
         (function(){function init(){if(!window.gsap||!window.ScrollTrigger){return setTimeout(init,120);}var mq=window.matchMedia('(min-width:861px)');if(!mq.matches)return;gsap.registerPlugin(ScrollTrigger);var tl=gsap.timeline({scrollTrigger:{trigger:'#gcPin',start:'top top',end:'bottom bottom',scrub:1}});tl.fromTo('#gcWord1',{scale:.6,opacity:0,rotate:-8},{scale:1,opacity:1,rotate:0,duration:1},0);tl.fromTo('[data-card]',{opacity:0,scale:.5,y:60},{opacity:1,scale:1,y:0,duration:1,stagger:.15},0.4);tl.fromTo('[data-ring]',{scale:0,opacity:0},{scale:1,opacity:1,duration:1,stagger:.1},0.2);tl.to('[data-ring]',{rotate:90,duration:2},1);tl.to('#gcWord1',{scale:2.4,opacity:0,filter:'blur(8px)',duration:1.2},1.4);tl.to('[data-card]',{x:function(i){return (i%2===0?-1:1)*420;},y:function(i){return (i<2?-1:1)*260;},opacity:0,scale:.4,duration:1.2},1.4);tl.fromTo('#gcWord2',{scale:.4,opacity:0},{scale:1,opacity:1,duration:1.2},1.9);}init();})();
       </script>
-    </section>
-    <section class="section" style="padding:110px 0;overflow:hidden" id="integrations">
-      <style>
+</section>
+<section class="section" id="integrations" style="padding:110px 0;overflow:hidden">
+<style>
         .int-diagram{position:relative;max-width:1200px;margin:0 auto;height:500px;background-image:radial-gradient(rgba(255,255,255,.05) 1px,transparent 1px);background-size:20px 20px}
         .int-node{position:absolute;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 32% 28%,#1e1e1e,#0b0b0b);border:1px solid #262626;display:grid;place-items:center;z-index:2}
         .serif-accent{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-weight:300;color:var(--lime)}
@@ -1513,226 +1514,222 @@ gtag('config', 'G-2M6V79H761');
 
         @media(max-width:980px){.trust-grid{grid-template-columns:1fr}.int-diagram{height:380px}.int-node{width:48px;height:48px}}
       </style>
-      <div class="wrap" style="text-align:center">
-        <span class="pill reveal">✦ Integrations</span>
-        <h2 class="reveal d1 tracking-tight" style="font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:22px auto 64px">
-          Integrate with your
-          <em class="serif-accent">favorite tool</em>
-        </h2>
-        <div class="int-diagram reveal d2">
-          <svg style="position:absolute;inset:0;width:100%;height:100%" viewBox="0 0 1200 500" preserveAspectRatio="none" fill="none" aria-hidden="true" class="">
-            <g stroke="#2e3340" stroke-width="1.3" stroke-dasharray="2 5">
-              <path d="M120 60 C360 60 400 250 550 250"></path>
-              <path d="M120 155 C360 155 400 250 550 250"></path>
-              <path d="M120 250 H550"></path>
-              <path d="M120 345 C360 345 400 250 550 250"></path>
-              <path d="M120 440 C360 440 400 250 550 250"></path>
-              <path d="M1080 60 C840 60 800 250 650 250"></path>
-              <path d="M1080 155 C840 155 800 250 650 250"></path>
-              <path d="M1080 250 H650"></path>
-              <path d="M1080 345 C840 345 800 250 650 250"></path>
-              <path d="M1080 440 C840 440 800 250 650 250"></path>
-            </g>
-            <g stroke-width="2.5" stroke-linecap="round" class="conn-node-group">
-              <path class="conn-node" stroke="#c8f23e" style="animation-delay: 0.2s" d="M120 60 C360 60 400 250 550 250"></path>
-              <path class="conn-node" stroke="#ff9f43" style="animation-delay: 1.5s" d="M120 155 C360 155 400 250 550 250"></path>
-              <path class="conn-node" stroke="#a78bfa" style="animation-delay: 0.7s" d="M120 250 H550"></path>
-              <path class="conn-node" stroke="#2dd4bf" style="animation-delay: 2.1s" d="M120 345 C360 345 400 250 550 250"></path>
-              <path class="conn-node" stroke="#e879f9" style="animation-delay: 1.1s" d="M120 440 C360 440 400 250 550 250"></path>
-              <path class="conn-node" stroke="#facc15" style="animation-delay: 0.9s" d="M1080 60 C840 60 800 250 650 250"></path>
-              <path class="conn-node" stroke="#c8f23e" style="animation-delay: 2.3s" d="M1080 155 C840 155 800 250 650 250"></path>
-              <path class="conn-node" stroke="#4ade80" style="animation-delay: 0.4s" d="M1080 250 H650"></path>
-              <path class="conn-node" stroke="#22d3ee" style="animation-delay: 1.8s" d="M1080 345 C840 345 800 250 650 250"></path>
-              <path class="conn-node" stroke="#34d399" style="animation-delay: 0.1s" d="M1080 440 C840 440 800 250 650 250"></path>
-            </g>
-          </svg>
-          <span class="int-node" style="left:calc(9.5% - 28px);top:24px;box-shadow:0 0 20px rgba(200,242,62,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2" stroke-linecap="round">
-              <line x1="12" y1="2" x2="12" y2="6"></line>
-              <line x1="12" y1="18" x2="12" y2="22"></line>
-              <line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
-              <line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
-              <line x1="2" y1="12" x2="6" y2="12"></line>
-              <line x1="18" y1="12" x2="22" y2="12"></line>
-              <line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
-              <line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
-            </svg>
-          </span>
-          <span class="int-node" style="left:calc(9.5% - 28px);top:103px;box-shadow:0 0 20px rgba(255,159,67,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#ff9f43" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
-            </svg>
-          </span>
-          <span class="int-node" style="left:calc(9.5% - 28px);top:182px;box-shadow:0 0 20px rgba(167,139,250,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#a78bfa" stroke-width="2.4" stroke-linecap="round">
-              <line x1="4" y1="7" x2="20" y2="7"></line>
-              <line x1="4" y1="12" x2="14" y2="12"></line>
-              <line x1="4" y1="17" x2="17" y2="17"></line>
-            </svg>
-          </span>
-          <span class="int-node" style="left:calc(9.5% - 28px);top:261px;box-shadow:0 0 20px rgba(45,212,191,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#2dd4bf" stroke-width="2.4">
-              <circle cx="12" cy="12" r="7"></circle>
-            </svg>
-          </span>
-          <span class="int-node" style="left:calc(9.5% - 28px);top:340px;box-shadow:0 0 20px rgba(232,121,249,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e879f9" stroke-width="2.4" stroke-linecap="round">
-              <path d="M12 6v12"></path>
-              <path d="M17.2 9 6.8 15"></path>
-              <path d="m6.8 9 10.4 6"></path>
-            </svg>
-          </span>
-          <span class="int-node" style="right:calc(9.5% - 28px);top:24px;box-shadow:0 0 20px rgba(250,204,21,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#facc15" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
-              <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
-            </svg>
-          </span>
-          <span class="int-node" style="right:calc(9.5% - 28px);top:103px;box-shadow:0 0 20px rgba(200,242,62,.25)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c8f23e" stroke-width="2.2" stroke-linejoin="round">
-              <path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z"></path>
-              <circle cx="12" cy="12" r="3"></circle>
-            </svg>
-          </span>
-          <span class="int-node" style="right:calc(9.5% - 28px);top:182px;box-shadow:0 0 20px rgba(74,222,128,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#4ade80" stroke-width="2">
-              <circle cx="12" cy="12" r="9"></circle>
-              <path d="M3 12h18"></path>
-              <path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path>
-            </svg>
-          </span>
-          <span class="int-node" style="right:calc(9.5% - 28px);top:261px;box-shadow:0 0 20px rgba(34,211,238,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8z"></path>
-            </svg>
-          </span>
-          <span class="int-node" style="right:calc(9.5% - 28px);top:340px;box-shadow:0 0 20px rgba(52,211,153,.2)">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#34d399" stroke-width="2.2" stroke-linejoin="round">
-              <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-            </svg>
-          </span>
-          <div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3">
-            <span style="position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,62,.3),transparent 70%);filter:blur(16px)" aria-hidden="true"></span>
-            <span style="position:relative;width:100px;height:100px;border-radius:28px;background:linear-gradient(180deg,#222,#0a0a0a);border:1px solid #383838;display:grid;place-items:center">
-              <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="m2 9 3-3 3 3"></path>
-                <path d="M13 18H7a2 2 0 0 1-2-2V6"></path>
-                <path d="m22 15-3 3-3-3"></path>
-                <path d="M11 6h6a2 2 0 0 1 2 2v10"></path>
-              </svg>
-            </span>
-          </div>
-        </div>
-      </div>
-    </section>
-    <section class="section" id="trust" style="padding-top:0">
-      <div class="wrap">
-        <h2 class="reveal tracking-tight" style="text-align:center;font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1.05;margin:0 auto 56px">
-          Why businesses trust
-          <em class="serif-accent">Apex solutions</em>
-        </h2>
-        <div class="trust-grid">
-          <div class="trust-card reveal">
-            <h3 class="">Sentiment analysis</h3>
-            <p class="desc">
-              Gauge customer interest using AI-driven insights across every Apex
-              project.
+<div class="wrap" style="text-align:center">
+<span class="pill reveal">✦ Интеграции</span>
+<h2 class="reveal d1 tracking-tight" style="font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:400;letter-spacing:-.02em;line-height:1.05;margin:22px auto 64px">
+          Интегрируйтесь с вашим
+          <em class="serif-accent">любимым инструментом</em>
+</h2>
+<div class="int-diagram reveal d2">
+<svg aria-hidden="true" class="" fill="none" preserveaspectratio="none" style="position:absolute;inset:0;width:100%;height:100%" viewbox="0 0 1200 500">
+<g stroke="#2e3340" stroke-dasharray="2 5" stroke-width="1.3">
+<path d="M120 60 C360 60 400 250 550 250"></path>
+<path d="M120 155 C360 155 400 250 550 250"></path>
+<path d="M120 250 H550"></path>
+<path d="M120 345 C360 345 400 250 550 250"></path>
+<path d="M120 440 C360 440 400 250 550 250"></path>
+<path d="M1080 60 C840 60 800 250 650 250"></path>
+<path d="M1080 155 C840 155 800 250 650 250"></path>
+<path d="M1080 250 H650"></path>
+<path d="M1080 345 C840 345 800 250 650 250"></path>
+<path d="M1080 440 C840 440 800 250 650 250"></path>
+</g>
+<g class="conn-node-group" stroke-linecap="round" stroke-width="2.5">
+<path class="conn-node" d="M120 60 C360 60 400 250 550 250" stroke="#c8f23e" style="animation-delay: 0.2s"></path>
+<path class="conn-node" d="M120 155 C360 155 400 250 550 250" stroke="#ff9f43" style="animation-delay: 1.5s"></path>
+<path class="conn-node" d="M120 250 H550" stroke="#a78bfa" style="animation-delay: 0.7s"></path>
+<path class="conn-node" d="M120 345 C360 345 400 250 550 250" stroke="#2dd4bf" style="animation-delay: 2.1s"></path>
+<path class="conn-node" d="M120 440 C360 440 400 250 550 250" stroke="#e879f9" style="animation-delay: 1.1s"></path>
+<path class="conn-node" d="M1080 60 C840 60 800 250 650 250" stroke="#facc15" style="animation-delay: 0.9s"></path>
+<path class="conn-node" d="M1080 155 C840 155 800 250 650 250" stroke="#c8f23e" style="animation-delay: 2.3s"></path>
+<path class="conn-node" d="M1080 250 H650" stroke="#4ade80" style="animation-delay: 0.4s"></path>
+<path class="conn-node" d="M1080 345 C840 345 800 250 650 250" stroke="#22d3ee" style="animation-delay: 1.8s"></path>
+<path class="conn-node" d="M1080 440 C840 440 800 250 650 250" stroke="#34d399" style="animation-delay: 0.1s"></path>
+</g>
+</svg>
+<span class="int-node" style="left:calc(9.5% - 28px);top:24px;box-shadow:0 0 20px rgba(200,242,62,.2)">
+<svg fill="none" height="28" stroke="#c8f23e" stroke-linecap="round" stroke-width="2" viewbox="0 0 24 24" width="28">
+<line x1="12" x2="12" y1="2" y2="6"></line>
+<line x1="12" x2="12" y1="18" y2="22"></line>
+<line x1="4.93" x2="7.76" y1="4.93" y2="7.76"></line>
+<line x1="16.24" x2="19.07" y1="16.24" y2="19.07"></line>
+<line x1="2" x2="6" y1="12" y2="12"></line>
+<line x1="18" x2="22" y1="12" y2="12"></line>
+<line x1="4.93" x2="7.76" y1="19.07" y2="16.24"></line>
+<line x1="16.24" x2="19.07" y1="7.76" y2="4.93"></line>
+</svg>
+</span>
+<span class="int-node" style="left:calc(9.5% - 28px);top:103px;box-shadow:0 0 20px rgba(255,159,67,.2)">
+<svg fill="none" height="28" stroke="#ff9f43" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28">
+<polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+</svg>
+</span>
+<span class="int-node" style="left:calc(9.5% - 28px);top:182px;box-shadow:0 0 20px rgba(167,139,250,.2)">
+<svg fill="none" height="28" stroke="#a78bfa" stroke-linecap="round" stroke-width="2.4" viewbox="0 0 24 24" width="28">
+<line x1="4" x2="20" y1="7" y2="7"></line>
+<line x1="4" x2="14" y1="12" y2="12"></line>
+<line x1="4" x2="17" y1="17" y2="17"></line>
+</svg>
+</span>
+<span class="int-node" style="left:calc(9.5% - 28px);top:261px;box-shadow:0 0 20px rgba(45,212,191,.2)">
+<svg fill="none" height="28" stroke="#2dd4bf" stroke-width="2.4" viewbox="0 0 24 24" width="28">
+<circle cx="12" cy="12" r="7"></circle>
+</svg>
+</span>
+<span class="int-node" style="left:calc(9.5% - 28px);top:340px;box-shadow:0 0 20px rgba(232,121,249,.2)">
+<svg fill="none" height="28" stroke="#e879f9" stroke-linecap="round" stroke-width="2.4" viewbox="0 0 24 24" width="28">
+<path d="M12 6v12"></path>
+<path d="M17.2 9 6.8 15"></path>
+<path d="m6.8 9 10.4 6"></path>
+</svg>
+</span>
+<span class="int-node" style="right:calc(9.5% - 28px);top:24px;box-shadow:0 0 20px rgba(250,204,21,.2)">
+<svg fill="none" height="28" stroke="#facc15" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="28">
+<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+</svg>
+</span>
+<span class="int-node" style="right:calc(9.5% - 28px);top:103px;box-shadow:0 0 20px rgba(200,242,62,.25)">
+<svg fill="none" height="28" stroke="#c8f23e" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="28">
+<path d="M12 2.5 20.2 7.25v9.5L12 21.5l-8.2-4.75v-9.5z"></path>
+<circle cx="12" cy="12" r="3"></circle>
+</svg>
+</span>
+<span class="int-node" style="right:calc(9.5% - 28px);top:182px;box-shadow:0 0 20px rgba(74,222,128,.2)">
+<svg fill="none" height="28" stroke="#4ade80" stroke-width="2" viewbox="0 0 24 24" width="28">
+<circle cx="12" cy="12" r="9"></circle>
+<path d="M3 12h18"></path>
+<path d="M12 3a14 14 0 0 1 0 18a14 14 0 0 1 0-18"></path>
+</svg>
+</span>
+<span class="int-node" style="right:calc(9.5% - 28px);top:261px;box-shadow:0 0 20px rgba(34,211,238,.2)">
+<svg fill="none" height="28" stroke="#22d3ee" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="28">
+<path d="M21 11.5a8.38 8.38 0 0 1-9 8.4 8.5 8.5 0 0 1-3.8-.9L3 21l1.9-5.2a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8z"></path>
+</svg>
+</span>
+<span class="int-node" style="right:calc(9.5% - 28px);top:340px;box-shadow:0 0 20px rgba(52,211,153,.2)">
+<svg fill="none" height="28" stroke="#34d399" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24" width="28">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</span>
+<div style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:3">
+<span aria-hidden="true" style="position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(200,242,62,.3),transparent 70%);filter:blur(16px)"></span>
+<span style="position:relative;width:100px;height:100px;border-radius:28px;background:linear-gradient(180deg,#222,#0a0a0a);border:1px solid #383838;display:grid;place-items:center">
+<svg fill="none" height="42" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="42">
+<path d="m2 9 3-3 3 3"></path>
+<path d="M13 18H7a2 2 0 0 1-2-2V6"></path>
+<path d="m22 15-3 3-3-3"></path>
+<path d="M11 6h6a2 2 0 0 1 2 2v10"></path>
+</svg>
+</span>
+</div>
+</div>
+</div>
+</section>
+<section class="section" id="trust" style="padding-top:0">
+<div class="wrap">
+<h2 class="reveal tracking-tight" style="text-align:center;font-family:var(--grok);font-size:clamp(32px,4.4vw,52px);font-weight:600;letter-spacing:-.02em;line-height:1.05;margin:0 auto 56px">
+          Почему бизнес доверяет
+          <em class="serif-accent">решениям Apex</em>
+</h2>
+<div class="trust-grid">
+<div class="trust-card reveal">
+<h3 class="">Анализ настроений</h3>
+<p class="desc">
+              Измеряйте интерес клиентов с помощью аналитики на базе AI по каждому проекту Apex.
             </p>
-            <div class="trust-panel">
-              <div style="font-size:14px;font-weight:600;margin-bottom:14px" class="">
-                User Growth
+<div class="trust-panel">
+<div class="" style="font-size:14px;font-weight:600;margin-bottom:14px">
+                Рост пользователей
               </div>
-              <div style="display:flex;gap:8px;margin-bottom:18px" class="">
-                <span class="mini-tab on">12h</span>
-                <span class="mini-tab">24h</span>
-                <span class="mini-tab">A week</span>
-              </div>
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px" class="">
-                <span style="font-family:var(--grok);font-size:26px;font-weight:600;letter-spacing:-.02em" class="">
+<div class="" style="display:flex;gap:8px;margin-bottom:18px">
+<span class="mini-tab on">12h</span>
+<span class="mini-tab">24h</span>
+<span class="mini-tab">В неделю</span>
+</div>
+<div class="" style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px">
+<span class="" style="font-family:var(--grok);font-size:26px;font-weight:600;letter-spacing:-.02em">
                   192,269
                 </span>
-                <span style="font-size:11px;font-weight:700;color:#0a0a0a;background:var(--lime);border-radius:999px;padding:4px 10px">
+<span style="font-size:11px;font-weight:700;color:#0a0a0a;background:var(--lime);border-radius:999px;padding:4px 10px">
                   ↗ +24%
                 </span>
-              </div>
-              <div style="height:10px;border-radius:999px;background:linear-gradient(90deg,#3b82f6,#7dd3fc,#c8f23e)" class=""></div>
-              <div style="display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--muted-2)" class="">
-                <span>Tracking totals</span>
-                <span>+120 today</span>
-              </div>
-            </div>
-          </div>
-          <div class="trust-card reveal d1">
-            <h3 class="">AI driven insights</h3>
-            <p class="desc">
-              AI-driven insights in Apex empower teams with real-time data
-              analysis.
+</div>
+<div class="" style="height:10px;border-radius:999px;background:linear-gradient(90deg,#3b82f6,#7dd3fc,#c8f23e)"></div>
+<div class="" style="display:flex;justify-content:space-between;margin-top:12px;font-size:12px;color:var(--muted-2)">
+<span>Суммарное отслеживание</span>
+<span>+120 сегодня</span>
+</div>
+</div>
+</div>
+<div class="trust-card reveal d1">
+<h3 class="">Аналитика на базе AI</h3>
+<p class="desc">
+              Аналитика на базе AI в Apex даёт командам возможность анализировать данные в реальном времени.
             </p>
-            <div class="trust-panel">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
-                <span style="font-size:14px;font-weight:600">
-                  Highest Sales Record
+<div class="trust-panel">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+<span style="font-size:14px;font-weight:600">
+                  Рекорд продаж
                 </span>
-                <span style="font-size:11px;font-weight:700;color:#fff;background:#2563eb;border-radius:999px;padding:4px 10px">
+<span style="font-size:11px;font-weight:700;color:#fff;background:#2563eb;border-radius:999px;padding:4px 10px">
                   +89%
                 </span>
-              </div>
-              <svg viewBox="0 0 260 90" style="width:100%;height:auto;display:block" fill="none" aria-hidden="true">
-                <defs>
-                  <linearGradient id="trustChartFill" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stop-color="#3b82f6" stop-opacity=".35"></stop>
-                    <stop offset="100%" stop-color="#3b82f6" stop-opacity="0"></stop>
-                  </linearGradient>
-                </defs>
-                <path d="M0 70 C30 68 45 60 70 62 C95 64 105 40 130 44 C155 48 165 18 195 14 C220 11 240 20 260 16 V90 H0 Z" fill="url(#trustChartFill)"></path>
-                <path d="M0 70 C30 68 45 60 70 62 C95 64 105 40 130 44 C155 48 165 18 195 14 C220 11 240 20 260 16" stroke="#3b82f6" stroke-width="2"></path>
-              </svg>
-              <div style="margin-top:12px">
-                <span style="font-family:var(--grok);font-size:26px;font-weight:600;letter-spacing:-.02em">
+</div>
+<svg aria-hidden="true" fill="none" style="width:100%;height:auto;display:block" viewbox="0 0 260 90">
+<defs>
+<lineargradient id="trustChartFill" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#3b82f6" stop-opacity=".35"></stop>
+<stop offset="100%" stop-color="#3b82f6" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M0 70 C30 68 45 60 70 62 C95 64 105 40 130 44 C155 48 165 18 195 14 C220 11 240 20 260 16 V90 H0 Z" fill="url(#trustChartFill)"></path>
+<path d="M0 70 C30 68 45 60 70 62 C95 64 105 40 130 44 C155 48 165 18 195 14 C220 11 240 20 260 16" stroke="#3b82f6" stroke-width="2"></path>
+</svg>
+<div style="margin-top:12px">
+<span style="font-family:var(--grok);font-size:26px;font-weight:600;letter-spacing:-.02em">
                   $491K
                 </span>
-                <span style="font-size:13px;color:var(--muted-2)">/day</span>
-              </div>
-            </div>
-          </div>
-          <div class="trust-card reveal d2">
-            <h3>Performance dashboard</h3>
-            <p class="desc">
-              The performance dashboard in Apex provides real-time insights at a
-              glance.
+<span style="font-size:13px;color:var(--muted-2)">/день</span>
+</div>
+</div>
+</div>
+<div class="trust-card reveal d2">
+<h3>Дашборд эффективности</h3>
+<p class="desc">
+              Дашборд производительности в Apex предоставляет аналитику в реальном времени с первого взгляда.
             </p>
-            <div class="trust-panel">
-              <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
-                <span style="font-size:14px;font-weight:600">
-                  Total Insights
+<div class="trust-panel">
+<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:28px">
+<span style="font-size:14px;font-weight:600">
+                  Суммарная аналитика
                 </span>
-                <span style="width:30px;height:30px;border-radius:50%;border:1px solid #2a2a2a;background:#141414;display:grid;place-items:center;color:var(--lime)">
-                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M7 17 17 7"></path>
-                    <path d="M7 7h10v10"></path>
-                  </svg>
-                </span>
-              </div>
-              <div style="font-family:var(--grok);font-size:34px;font-weight:600;letter-spacing:-.02em;margin-bottom:20px">
+<span style="width:30px;height:30px;border-radius:50%;border:1px solid #2a2a2a;background:#141414;display:grid;place-items:center;color:var(--lime)">
+<svg fill="none" height="14" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="14">
+<path d="M7 17 17 7"></path>
+<path d="M7 7h10v10"></path>
+</svg>
+</span>
+</div>
+<div style="font-family:var(--grok);font-size:34px;font-weight:600;letter-spacing:-.02em;margin-bottom:20px">
                 $159,789
               </div>
-              <div style="display:flex;align-items:center;gap:10px">
-                <span style="font-size:11px;font-weight:700;color:#0a0a0a;background:var(--lime);border-radius:999px;padding:4px 10px">
+<div style="display:flex;align-items:center;gap:10px">
+<span style="font-size:11px;font-weight:700;color:#0a0a0a;background:var(--lime);border-radius:999px;padding:4px 10px">
                   +1.5%
                 </span>
-                <span style="font-size:12px;color:var(--muted-2)">
-                  Than last month
+<span style="font-size:12px;color:var(--muted-2)">
+                  К прошлому месяцу
                 </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PRICING -->
-    <section class="section" id="pricing">
-      <style>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+ ЦЕНЫ 
+<section class="section" id="pricing">
+<style>
         #pricing {
           --lime: #c8f23e;
           --black: #0b0b0b;
@@ -2312,319 +2309,287 @@ gtag('config', 'G-2M6V79H761');
           }
         }
       </style>
-    
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <span class="eyebrow font-medium">Pricing</span>
-          <h2 class="tracking-tight font-medium">
-            One simple plan. Everything included.
+<div class="wrap">
+<div class="section-head center reveal">
+<span class="eyebrow font-medium">Цены</span>
+<h2 class="tracking-tight font-medium">
+            Один простой план. Всё включено.
           </h2>
-          <p class="text-lg">
-            Drag the diagonal comparison handle to reveal the upgrade from Basic to Pro.
+<p class="text-lg">
+            Перетащите диагональный ползунок сравнения, чтобы увидеть разницу между Basic и Pro.
           </p>
-    
-          <div class="billing-toggle">
-            <span class="text-base font-medium text-neutral-400">Monthly</span>
-            <button type="button" class="toggle" role="switch" aria-checked="true">
-              <span aria-hidden="true"></span>
-            </button>
-            <span class="flex items-center gap-2 text-base font-medium text-white">
-              Annually
-              <span class="save-badge">SAVE 20%</span>
-            </span>
-          </div>
-        </div>
-    
-        <div class="comparison-card reveal mt-8" data-comparison-wipe="">
-          <!-- BASIC PLAN LAYER -->
-          <div class="plan-layer basic-layer">
-            <div class="price-left">
-              <span class="pill">✦ Current Plan</span>
-              <h2>
+<div class="billing-toggle">
+<span class="text-base font-medium text-neutral-400">Ежемесячно</span>
+<button aria-checked="true" class="toggle" role="switch" type="button">
+<span aria-hidden="true"></span>
+</button>
+<span class="flex items-center gap-2 text-base font-medium text-white">
+              Ежегодно
+              <span class="save-badge">СКИДКА 20%</span>
+</span>
+</div>
+</div>
+<div class="comparison-card reveal mt-8" data-comparison-wipe="">
+<!-- BASIC PLAN LAYER -->
+<div class="plan-layer basic-layer">
+<div class="price-left">
+<span class="pill">✦ Текущий план</span>
+<h2>
                 BASIC
                 <span class="plus">+</span>
-                <br>
-                ACCESS
+<br/>
+                ДОСТУП
               </h2>
-              <p class="lead">
-                Start with the essentials, simple analytics, and everything you need to launch.
+<p class="lead">
+                Начните с основного: простая аналитика и всё необходимое для запуска.
               </p>
-    
-              <div class="feat-list">
-                <div class="feat-item">
-                  <span class="ico">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                    </svg>
-                  </span>
-                  <div>
-                    <h4>Basic Analytics</h4>
-                    <p>Simple reports and insights</p>
-                  </div>
-                </div>
-    
-                <div class="feat-item">
-                  <span class="ico">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    </svg>
-                  </span>
-                  <div>
-                    <h4>Solo Workspace</h4>
-                    <p>Perfect for small projects</p>
-                  </div>
-                </div>
-    
-                <div class="feat-item">
-                  <span class="ico">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                    </svg>
-                  </span>
-                  <div>
-                    <h4>Standard Support</h4>
-                    <p>Help when you need it</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="price-graphic">
-              <svg class="layerG" viewBox="0 0 380 440" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="basicDark" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#2b2b2b"></stop>
-                    <stop offset="100%" stop-color="#101010"></stop>
-                  </linearGradient>
-                  <radialGradient id="basicGlow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#c8f23e" stop-opacity=".55"></stop>
-                    <stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
-                  </radialGradient>
-                </defs>
-                <g transform="translate(190 350)">
-                  <polygon points="0,-78 150,0 0,78 -150,0" fill="url(#basicDark)" stroke="#333"></polygon>
-                  <g stroke="#c8f23e" fill="none" opacity=".25">
-                    <ellipse cx="0" cy="0" rx="30" ry="15"></ellipse>
-                    <ellipse cx="0" cy="0" rx="62" ry="31"></ellipse>
-                    <ellipse cx="0" cy="0" rx="92" ry="46"></ellipse>
-                  </g>
-                </g>
-                <g transform="translate(190 255)">
-                  <polygon points="0,-66 128,0 0,66 -128,0" fill="none" stroke="#555"></polygon>
-                </g>
-                <g transform="translate(190 170)">
-                  <polygon points="0,-66 128,0 0,66 -128,0" fill="none" stroke="#555"></polygon>
-                </g>
-                <circle cx="190" cy="350" r="12" fill="url(#basicGlow)"></circle>
-              </svg>
-            </div>
-    
-            <div class="price-right">
-              <div class="plan-name">
-                <span class="lime">BASIC</span>
-                <span class="dark">PLAN</span>
-              </div>
-    
-              <div class="price-amount">
-                <span class="cur">$</span>
-                <span class="big">19</span>
-                <span class="per">/mo</span>
-              </div>
-    
-              <div class="billing">
-                <span class="txt">Billed annually</span>
-                <span class="badge-save">STARTER</span>
-              </div>
-    
-              <a href="#" class="btn btn-dark">
-                Current Plan
+<div class="feat-list">
+<div class="feat-item">
+<span class="ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="22">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</span>
+<div>
+<h4>Базовая аналитика</h4>
+<p>Простые отчёты и аналитика</p>
+</div>
+</div>
+<div class="feat-item">
+<span class="ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="22">
+<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+</svg>
+</span>
+<div>
+<h4>Одиночное рабочее пространство</h4>
+<p>Идеально для небольших проектов</p>
+</div>
+</div>
+<div class="feat-item">
+<span class="ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="22">
+<path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+<path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+</svg>
+</span>
+<div>
+<h4>Стандартная поддержка</h4>
+<p>Помощь, когда нужна</p>
+</div>
+</div>
+</div>
+</div>
+<div class="price-graphic">
+<svg class="layerG" viewbox="0 0 380 440" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="basicDark" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#2b2b2b"></stop>
+<stop offset="100%" stop-color="#101010"></stop>
+</lineargradient>
+<radialgradient cx="50%" cy="50%" id="basicGlow" r="50%">
+<stop offset="0%" stop-color="#c8f23e" stop-opacity=".55"></stop>
+<stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
+</radialgradient>
+</defs>
+<g transform="translate(190 350)">
+<polygon fill="url(#basicDark)" points="0,-78 150,0 0,78 -150,0" stroke="#333"></polygon>
+<g fill="none" opacity=".25" stroke="#c8f23e">
+<ellipse cx="0" cy="0" rx="30" ry="15"></ellipse>
+<ellipse cx="0" cy="0" rx="62" ry="31"></ellipse>
+<ellipse cx="0" cy="0" rx="92" ry="46"></ellipse>
+</g>
+</g>
+<g transform="translate(190 255)">
+<polygon fill="none" points="0,-66 128,0 0,66 -128,0" stroke="#555"></polygon>
+</g>
+<g transform="translate(190 170)">
+<polygon fill="none" points="0,-66 128,0 0,66 -128,0" stroke="#555"></polygon>
+</g>
+<circle cx="190" cy="350" fill="url(#basicGlow)" r="12"></circle>
+</svg>
+</div>
+<div class="price-right">
+<div class="plan-name">
+<span class="lime">BASIC</span>
+<span class="dark">ПЛАН</span>
+</div>
+<div class="price-amount">
+<span class="cur">$</span>
+<span class="big">19</span>
+<span class="per">/мес</span>
+</div>
+<div class="billing">
+<span class="txt">Оплата ежегодно</span>
+<span class="badge-save">STARTER</span>
+</div>
+<a class="btn btn-dark" href="#">
+                Текущий план
                 <span class="arrow">→</span>
-              </a>
-    
-              <div class="guarantee">Basic workspace included</div>
-    
-              <div class="includes">
-                <h5>Plan Includes</h5>
-                <div class="inc-grid">
-                  <div class="inc-item"><span class="inc-check">✓</span> 5 Projects</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Basic Support</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Basic Analytics</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> 1 Workspace</div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <!-- PRO PLAN LAYER -->
-          <div class="plan-layer pro-layer">
-            <div class="price-left">
-              <span class="pill">✦ Limited Offer</span>
-              <h2>
-                UNLOCK
+</a>
+<div class="guarantee">Базовое рабочее пространство включено</div>
+<div class="includes">
+<h5>Включено в план</h5>
+<div class="inc-grid">
+<div class="inc-item"><span class="inc-check">✓</span> 5 проектов</div>
+<div class="inc-item"><span class="inc-check">✓</span> Базовая поддержка</div>
+<div class="inc-item"><span class="inc-check">✓</span> Базовая аналитика</div>
+<div class="inc-item"><span class="inc-check">✓</span> 1 рабочее пространство</div>
+</div>
+</div>
+</div>
+</div>
+<!-- PRO PLAN LAYER -->
+<div class="plan-layer pro-layer">
+<div class="price-left">
+<span class="pill">✦ Ограниченное предложение</span>
+<h2>
+                РАСКРОЙТЕ
                 <span class="plus">+</span>
-                <br>
-                POTENTIAL
+<br/>
+                ПОТЕНЦИАЛ
               </h2>
-              <p class="lead">
-                Access powerful features, advanced analytics, and priority support.
+<p class="lead">
+                Получите доступ к мощным функциям, продвинутой аналитике и приоритетной поддержке.
               </p>
-    
-              <div class="feat-list">
-                <div class="feat-item">
-                  <span class="ico">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-                    </svg>
-                  </span>
-                  <div>
-                    <h4>Advanced Analytics</h4>
-                    <p>Deep insights, unlimited reports</p>
-                  </div>
-                </div>
-    
-                <div class="feat-item">
-                  <span class="ico">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                      <circle cx="9" cy="7" r="4"></circle>
-                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                    </svg>
-                  </span>
-                  <div>
-                    <h4>Team Collaboration</h4>
-                    <p>Work together seamlessly</p>
-                  </div>
-                </div>
-    
-                <div class="feat-item">
-                  <span class="ico">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                      <path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
-                      <path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
-                    </svg>
-                  </span>
-                  <div>
-                    <h4>Priority Support</h4>
-                    <p>Get help when you need it</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-    
-            <div class="price-graphic">
-              <svg class="layerG" viewBox="0 0 380 440" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                  <linearGradient id="glassLime" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#e7ff8a"></stop>
-                    <stop offset="55%" stop-color="#c8f23e"></stop>
-                    <stop offset="100%" stop-color="#9fce2a"></stop>
-                  </linearGradient>
-                  <linearGradient id="glassDark" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#2b2b2b"></stop>
-                    <stop offset="100%" stop-color="#141414"></stop>
-                  </linearGradient>
-                  <linearGradient id="glassDark2" x1="0" y1="0" x2="1" y2="1">
-                    <stop offset="0%" stop-color="#222"></stop>
-                    <stop offset="100%" stop-color="#0d0d0d"></stop>
-                  </linearGradient>
-                  <radialGradient id="glow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stop-color="#c8f23e" stop-opacity=".9"></stop>
-                    <stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
-                  </radialGradient>
-                  <filter id="soft" x="-40%" y="-40%" width="180%" height="180%">
-                    <feGaussianBlur stdDeviation="6"></feGaussianBlur>
-                  </filter>
-                </defs>
-    
-                <line x1="190" y1="20" x2="190" y2="150" stroke="#c8f23e" stroke-width="1.4" opacity=".7"></line>
-                <circle cx="190" cy="20" r="6" fill="#c8f23e"></circle>
-                <circle cx="190" cy="20" r="16" fill="url(#glow)"></circle>
-    
-                <g transform="translate(190 360)">
-                  <polygon points="0,-78 150,0 0,78 -150,0" fill="url(#glassDark2)" stroke="#2a2a2a"></polygon>
-                  <g stroke="#c8f23e" fill="none" opacity=".55">
-                    <ellipse cx="0" cy="0" rx="20" ry="10"></ellipse>
-                    <ellipse cx="0" cy="0" rx="42" ry="21"></ellipse>
-                    <ellipse cx="0" cy="0" rx="66" ry="33"></ellipse>
-                    <ellipse cx="0" cy="0" rx="92" ry="46"></ellipse>
-                  </g>
-                  <circle cx="0" cy="0" r="5" fill="#c8f23e"></circle>
-                  <circle cx="0" cy="0" r="14" fill="url(#glow)"></circle>
-                </g>
-    
-                <g transform="translate(190 270)">
-                  <polygon points="0,-66 128,0 0,66 -128,0" fill="url(#glassDark)" stroke="#333"></polygon>
-                </g>
-    
-                <g transform="translate(190 215)">
-                  <polygon points="0,-62 120,0 0,62 -120,0" fill="url(#glassDark)" stroke="#3a3a3a"></polygon>
-                </g>
-    
-                <ellipse cx="190" cy="150" rx="120" ry="60" fill="url(#glow)" opacity=".5" filter="url(#soft)"></ellipse>
-    
-                <g transform="translate(190 150)">
-                  <polygon points="0,-66 128,0 0,66 -128,0" fill="url(#glassLime)" stroke="#dff79a" stroke-width="1.2" opacity=".95"></polygon>
-                  <polygon points="0,-66 128,0 0,0 -128,0" fill="#ffffff" opacity=".18"></polygon>
-                </g>
-              </svg>
-            </div>
-    
-            <div class="price-right">
-              <div class="plan-name">
-                <span class="lime">PRO</span>
-                <span class="dark">PLAN</span>
-              </div>
-    
-              <div class="price-amount">
-                <span class="cur">$</span>
-                <span class="big">49</span>
-                <span class="per">/mo</span>
-              </div>
-    
-              <div class="billing">
-                <span class="txt">Billed annually</span>
-                <span class="badge-save">SAVE 20%</span>
-              </div>
-    
-              <a href="#" class="btn btn-dark">
-                Get Started
+<div class="feat-list">
+<div class="feat-item">
+<span class="ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="22">
+<polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+</svg>
+</span>
+<div>
+<h4>Продвинутая аналитика</h4>
+<p>Глубокая аналитика, неограниченные отчёты</p>
+</div>
+</div>
+<div class="feat-item">
+<span class="ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="22">
+<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+<circle cx="9" cy="7" r="4"></circle>
+<path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+</svg>
+</span>
+<div>
+<h4>Командная работа</h4>
+<p>Работайте вместе без усилий</p>
+</div>
+</div>
+<div class="feat-item">
+<span class="ico">
+<svg fill="none" height="22" stroke="currentColor" stroke-width="1.5" viewbox="0 0 24 24" width="22">
+<path d="M3 18v-6a9 9 0 0 1 18 0v6"></path>
+<path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"></path>
+</svg>
+</span>
+<div>
+<h4>Приоритетная поддержка</h4>
+<p>Получите помощь, когда нужна</p>
+</div>
+</div>
+</div>
+</div>
+<div class="price-graphic">
+<svg class="layerG" viewbox="0 0 380 440" xmlns="http://www.w3.org/2000/svg">
+<defs>
+<lineargradient id="glassLime" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#e7ff8a"></stop>
+<stop offset="55%" stop-color="#c8f23e"></stop>
+<stop offset="100%" stop-color="#9fce2a"></stop>
+</lineargradient>
+<lineargradient id="glassDark" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#2b2b2b"></stop>
+<stop offset="100%" stop-color="#141414"></stop>
+</lineargradient>
+<lineargradient id="glassDark2" x1="0" x2="1" y1="0" y2="1">
+<stop offset="0%" stop-color="#222"></stop>
+<stop offset="100%" stop-color="#0d0d0d"></stop>
+</lineargradient>
+<radialgradient cx="50%" cy="50%" id="glow" r="50%">
+<stop offset="0%" stop-color="#c8f23e" stop-opacity=".9"></stop>
+<stop offset="100%" stop-color="#c8f23e" stop-opacity="0"></stop>
+</radialgradient>
+<filter height="180%" id="soft" width="180%" x="-40%" y="-40%">
+<fegaussianblur stddeviation="6"></fegaussianblur>
+</filter>
+</defs>
+<line opacity=".7" stroke="#c8f23e" stroke-width="1.4" x1="190" x2="190" y1="20" y2="150"></line>
+<circle cx="190" cy="20" fill="#c8f23e" r="6"></circle>
+<circle cx="190" cy="20" fill="url(#glow)" r="16"></circle>
+<g transform="translate(190 360)">
+<polygon fill="url(#glassDark2)" points="0,-78 150,0 0,78 -150,0" stroke="#2a2a2a"></polygon>
+<g fill="none" opacity=".55" stroke="#c8f23e">
+<ellipse cx="0" cy="0" rx="20" ry="10"></ellipse>
+<ellipse cx="0" cy="0" rx="42" ry="21"></ellipse>
+<ellipse cx="0" cy="0" rx="66" ry="33"></ellipse>
+<ellipse cx="0" cy="0" rx="92" ry="46"></ellipse>
+</g>
+<circle cx="0" cy="0" fill="#c8f23e" r="5"></circle>
+<circle cx="0" cy="0" fill="url(#glow)" r="14"></circle>
+</g>
+<g transform="translate(190 270)">
+<polygon fill="url(#glassDark)" points="0,-66 128,0 0,66 -128,0" stroke="#333"></polygon>
+</g>
+<g transform="translate(190 215)">
+<polygon fill="url(#glassDark)" points="0,-62 120,0 0,62 -120,0" stroke="#3a3a3a"></polygon>
+</g>
+<ellipse cx="190" cy="150" fill="url(#glow)" filter="url(#soft)" opacity=".5" rx="120" ry="60"></ellipse>
+<g transform="translate(190 150)">
+<polygon fill="url(#glassLime)" opacity=".95" points="0,-66 128,0 0,66 -128,0" stroke="#dff79a" stroke-width="1.2"></polygon>
+<polygon fill="#ffffff" opacity=".18" points="0,-66 128,0 0,0 -128,0"></polygon>
+</g>
+</svg>
+</div>
+<div class="price-right">
+<div class="plan-name">
+<span class="lime">PRO</span>
+<span class="dark">ПЛАН</span>
+</div>
+<div class="price-amount">
+<span class="cur">$</span>
+<span class="big">49</span>
+<span class="per">/мес</span>
+</div>
+<div class="billing">
+<span class="txt">Оплата ежегодно</span>
+<span class="badge-save">СКИДКА 20%</span>
+</div>
+<a class="btn btn-dark" href="#">
+                Начать
                 <span class="arrow">→</span>
-              </a>
-    
-              <div class="guarantee">30-Day Money Back Guarantee</div>
-    
-              <div class="includes">
-                <h5>Plan Includes</h5>
-                <div class="inc-grid">
-                  <div class="inc-item"><span class="inc-check">✓</span> Unlimited Projects</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Priority Support</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Advanced Analytics</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Custom Integrations</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Team Collaboration</div>
-                  <div class="inc-item"><span class="inc-check">✓</span> Early Access</div>
-                </div>
-              </div>
-            </div>
-          </div>
-    
-          <!-- DRAGGABLE DIAGONAL HANDLE -->
-          <div class="wipe-ui">
-            <div class="wipe-line"></div>
-            <div class="wipe-label">Drag to compare</div>
-            <button class="wipe-handle" type="button" aria-label="Drag pricing comparison handle">
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M8 5L3 12L8 19"></path>
-                <path d="M16 5L21 12L16 19"></path>
-              </svg>
-            </button>
-          </div>
-        </div>
-      </div>
-    
-      <script>
+</a>
+<div class="guarantee">30-дневная гарантия возврата денег</div>
+<div class="includes">
+<h5>Включено в план</h5>
+<div class="inc-grid">
+<div class="inc-item"><span class="inc-check">✓</span> Неограниченные проекты</div>
+<div class="inc-item"><span class="inc-check">✓</span> Приоритетная поддержка</div>
+<div class="inc-item"><span class="inc-check">✓</span> Продвинутая аналитика</div>
+<div class="inc-item"><span class="inc-check">✓</span> Кастомные интеграции</div>
+<div class="inc-item"><span class="inc-check">✓</span> Командная работа</div>
+<div class="inc-item"><span class="inc-check">✓</span> Ранний доступ</div>
+</div>
+</div>
+</div>
+</div>
+<!-- DRAGGABLE DIAGONAL HANDLE -->
+<div class="wipe-ui">
+<div class="wipe-line"></div>
+<div class="wipe-label">Перетащите для сравнения</div>
+<button aria-label="Перетащите ползунок сравнения тарифов" class="wipe-handle" type="button">
+<svg fill="none" height="26" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="26">
+<path d="M8 5L3 12L8 19"></path>
+<path d="M16 5L21 12L16 19"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+<script>
         (() => {
           const cards = document.querySelectorAll("[data-comparison-wipe]");
     
@@ -2673,285 +2638,278 @@ gtag('config', 'G-2M6V79H761');
           });
         })();
       </script>
-    </section>
-
-    <!-- TESTIMONIALS -->
-    <section class="section" id="testimonials">
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <span class="eyebrow">Loved by teams</span>
-          <h2 class="">Don't just take our word for it</h2>
-          <div style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px" class="">
-            <div style="display:flex">
-              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px">
-              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px">
-              <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="" loading="lazy" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px">
-            </div>
-            <span style="font-size:14px;color:var(--muted)">
-              <span style="color:var(--lime);font-weight:600">4.9/5</span>
-              from 200+ teams
+</section>
+<!-- TESTIMONIALS -->
+<section class="section" id="testimonials">
+<div class="wrap">
+<div class="section-head center reveal">
+<span class="eyebrow">Нравится командам</span>
+<h2 class="">Не просто верьте нам на слово</h2>
+<div class="" style="display:flex;align-items:center;justify-content:center;gap:14px;margin-top:24px">
+<div style="display:flex">
+<img alt="" loading="lazy" src="https://randomuser.me/api/portraits/women/44.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e"/>
+<img alt="" loading="lazy" src="https://randomuser.me/api/portraits/men/32.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px"/>
+<img alt="" loading="lazy" src="https://randomuser.me/api/portraits/women/68.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px"/>
+<img alt="" loading="lazy" src="https://randomuser.me/api/portraits/men/22.jpg" style="width:36px;height:36px;border-radius:50%;object-fit:cover;border:2px solid #0e0e0e;margin-left:-10px"/>
+</div>
+<span style="font-size:14px;color:var(--muted)">
+<span style="color:var(--lime);font-weight:600">4.9/5</span>
+              от 200+ команд
             </span>
-          </div>
-        </div>
-      </div>
-      <div class="test-wrap reveal">
-        <div class="test-track">
-          <div class="test-card" style="position:relative">
-            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+</div>
+</div>
+</div>
+<div class="test-wrap reveal">
+<div class="test-track">
+<div class="test-card" style="position:relative">
+<span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
               ”
             </span>
-            <div class="stars">★★★★★</div>
-            <p class="">
-              "Apex replaced four tools we paid for separately. The analytics
-              alone paid for itself in month one."
+<div class="stars">★★★★★</div>
+<p class="">
+              "Apex заменил четыре инструмента, за которые мы платили отдельно. Одна только аналитика
+              окупилась за первый месяц."
             </p>
-            <div class="test-who">
-              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara Kim" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
-              <div class="">
-                <div class="nm">Sara Kim</div>
-                <div class="rl">Head of Ops, Lumen</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card" style="position:relative">
-            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+<div class="test-who">
+<img alt="Sara Kim" loading="lazy" src="https://randomuser.me/api/portraits/women/44.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)"/>
+<div class="">
+<div class="nm">Sara Kim</div>
+<div class="rl">Руководитель операций, Lumen</div>
+</div>
+</div>
+</div>
+<div class="test-card" style="position:relative">
+<span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
               ”
             </span>
-            <div class="stars">★★★★★</div>
-            <p>
-              "The collaboration features are unreal. Our remote team finally
-              feels in the same room."
+<div class="stars">★★★★★</div>
+<p>
+              "Функции совместной работы нереальны. Наша удалённая команда наконец
+              чувствует себя в одной комнате."
             </p>
-            <div class="test-who">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marco Torres" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
-              <div>
-                <div class="nm">Marco Torres</div>
-                <div class="rl">CTO, Vertex</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card" style="position:relative;border-color:rgba(200,242,62,.4);background:linear-gradient(165deg,#141a09,#0e0e0e)">
-            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.28);user-select:none">
+<div class="test-who">
+<img alt="Marco Torres" loading="lazy" src="https://randomuser.me/api/portraits/men/32.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)"/>
+<div>
+<div class="nm">Marco Torres</div>
+<div class="rl">CTO, Vertex</div>
+</div>
+</div>
+</div>
+<div class="test-card" style="position:relative;border-color:rgba(200,242,62,.4);background:linear-gradient(165deg,#141a09,#0e0e0e)">
+<span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.28);user-select:none">
               ”
             </span>
-            <div class="stars">★★★★★</div>
-            <p class="">
-              "Priority support is no joke — every question answered in minutes.
-              Most responsive team I've worked with."
+<div class="stars">★★★★★</div>
+<p class="">
+              "Приоритетная поддержка — не шутки: каждый вопрос отвечается за минуты.
+              Самая отзывчивая команда, с которой я работал."
             </p>
-            <div class="test-who">
-              <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Aisha Hassan" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--lime)">
-              <div>
-                <div class="nm">Aisha Hassan</div>
-                <div class="rl">Founder, Quantia</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card" style="position:relative">
-            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+<div class="test-who">
+<img alt="Aisha Hassan" loading="lazy" src="https://randomuser.me/api/portraits/women/68.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid var(--lime)"/>
+<div>
+<div class="nm">Aisha Hassan</div>
+<div class="rl">Основатель, Quantia</div>
+</div>
+</div>
+</div>
+<div class="test-card" style="position:relative">
+<span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
               ”
             </span>
-            <div class="stars">★★★★★</div>
-            <p>
-              "We shipped a full rebrand and platform in six weeks. The momentum
-              was contagious."
+<div class="stars">★★★★★</div>
+<p>
+              "Мы выпустили полный ребрендинг и платформу за шесть недель. Импульс был 
+              заразительным."
             </p>
-            <div class="test-who">
-              <img src="https://randomuser.me/api/portraits/men/22.jpg" alt="Jonas Lind" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
-              <div>
-                <div class="nm">Jonas Lind</div>
-                <div class="rl">CEO, Helios</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card" style="position:relative">
-            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+<div class="test-who">
+<img alt="Jonas Lind" loading="lazy" src="https://randomuser.me/api/portraits/men/22.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)"/>
+<div>
+<div class="nm">Jonas Lind</div>
+<div class="rl">CEO, Helios</div>
+</div>
+</div>
+</div>
+<div class="test-card" style="position:relative">
+<span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
               ”
             </span>
-            <div class="stars">★★★★★</div>
-            <p>
-              "Apex replaced four tools we paid for separately. The analytics
-              alone paid for itself in month one."
+<div class="stars">★★★★★</div>
+<p>
+              "Apex заменил четыре инструмента, за которые мы платили отдельно. Одна только аналитика
+              окупилась за первый месяц."
             </p>
-            <div class="test-who">
-              <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Sara Kim" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
-              <div>
-                <div class="nm">Sara Kim</div>
-                <div class="rl">Head of Ops, Lumen</div>
-              </div>
-            </div>
-          </div>
-          <div class="test-card" style="position:relative">
-            <span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
+<div class="test-who">
+<img alt="Sara Kim" loading="lazy" src="https://randomuser.me/api/portraits/women/44.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)"/>
+<div>
+<div class="nm">Sara Kim</div>
+<div class="rl">Руководитель операций, Lumen</div>
+</div>
+</div>
+</div>
+<div class="test-card" style="position:relative">
+<span aria-hidden="true" style="position:absolute;top:12px;right:24px;font-family:'Space Grotesk',sans-serif;font-size:72px;line-height:1;color:rgba(200,242,62,.16);user-select:none">
               ”
             </span>
-            <div class="stars">★★★★★</div>
-            <p>
-              "The collaboration features are unreal. Our remote team finally
-              feels in the same room."
+<div class="stars">★★★★★</div>
+<p>
+              "Функции совместной работы нереальны. Наша удалённая команда наконец
+              чувствует себя в одной комнате."
             </p>
-            <div class="test-who">
-              <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Marco Torres" loading="lazy" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)">
-              <div>
-                <div class="nm">Marco Torres</div>
-                <div class="rl">CTO, Vertex</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section class="section" id="faq">
-      <div class="wrap">
-        <div class="section-head center reveal">
-          <span class="eyebrow">FAQ</span>
-          <h2>Questions, answered</h2>
-        </div>
-        <div class="faq reveal">
-          <div class="faq-item">
-            <div class="faq-q">
-              What's included in the Pro plan?
+<div class="test-who">
+<img alt="Marco Torres" loading="lazy" src="https://randomuser.me/api/portraits/men/32.jpg" style="width:44px;height:44px;border-radius:50%;object-fit:cover;border:2px solid rgba(200,242,62,.5)"/>
+<div>
+<div class="nm">Marco Torres</div>
+<div class="rl">CTO, Vertex</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ -->
+<section class="section" id="faq">
+<div class="wrap">
+<div class="section-head center reveal">
+<span class="eyebrow">FAQ</span>
+<h2>Ответы на вопросы</h2>
+</div>
+<div class="faq reveal">
+<div class="faq-item">
+<div class="faq-q">
+              Что входит в план Pro?
               <span class="pm">+</span>
-            </div>
-            <div class="faq-a">
-              <p>
-                Everything: unlimited projects, advanced analytics, team
-                collaboration, custom integrations, priority support, and early
-                access to new features. No hidden tiers.
+</div>
+<div class="faq-a">
+<p>
+                Всё: неограниченные проекты, продвинутая аналитика, командное сотрудничество, кастомные
+                интеграции, приоритетная поддержка и ранний доступ к новым функциям. Никаких скрытых уровней.
               </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Can I cancel anytime?
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">
+              Можно отменить в любой момент?
               <span class="pm">+</span>
-            </div>
-            <div class="faq-a">
-              <p>
-                Yes. There are no long-term contracts. Cancel whenever you like,
-                and you're covered by our 30-day money-back guarantee.
+</div>
+<div class="faq-a">
+<p>
+                Да. Никаких долгосрочных договоров. Отменяйте когда угодно,
+                защищенные 30-дневной гарантией возврата денег.
               </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Do you offer onboarding support?
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">
+              Есть ли поддержка при онбординге?
               <span class="pm">+</span>
-            </div>
-            <div class="faq-a">
-              <p>
-                Every plan includes priority support with response times
-                measured in minutes, plus a guided onboarding to get your team
-                up and running fast.
+</div>
+<div class="faq-a">
+<p>
+                Каждый план включает приоритетную поддержку со временем ответа
+                в минутах, а также пошаговый онбординг для быстрого вхождения команды.
               </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Is my data secure?
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">
+              Мои данные в безопасности?
               <span class="pm">+</span>
-            </div>
-            <div class="faq-a">
-              <p>
-                We use bank-grade encryption, regular audits, and are fully GDPR
-                and SOC 2 compliant. Your data is always yours.
+</div>
+<div class="faq-a">
+<p>
+                Мы используем банковское шифрование, регулярные аудиты и полностью
+                соответствуем GDPR и SOC 2. Ваши данные всегда принадлежат вам.
               </p>
-            </div>
-          </div>
-          <div class="faq-item">
-            <div class="faq-q">
-              Can I integrate my existing tools?
+</div>
+</div>
+<div class="faq-item">
+<div class="faq-q">
+              Могу ли я интегрировать существующие инструменты?
               <span class="pm">+</span>
-            </div>
-            <div class="faq-a">
-              <p>
-                Absolutely. Apex connects with a growing library of native
-                integrations and offers a flexible API for anything custom.
+</div>
+<div class="faq-a">
+<p>
+                Абсолютно. Apex подключается к растущей библиотеке нативных
+                интеграций и предлагает гибкий API для любых кастомных настроек.
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA -->
-    <section class="section" style="padding-top:0">
-      <div class="wrap">
-        <div class="cta-band reveal">
-          <span class="pill">✦ Limited Offer — Save 20%</span>
-          <h2 style="margin-top:18px" class="">
-            Ready to unlock
-            <br>
-            your potential?
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="section" style="padding-top:0">
+<div class="wrap">
+<div class="cta-band reveal">
+<span class="pill">✦ Ограниченное предложение — скидка 20%</span>
+<h2 class="" style="margin-top:18px">
+            Готовы раскрыть
+            <br/>
+            ваш потенциал?
           </h2>
-          <p>
-            Join 12,000+ teams already building faster with Apex. Start today
-            with a 30-day money-back guarantee.
+<p>
+            Присоединяйтесь к 12 000+ команд, которые уже работают быстрее с Apex. Начните сегодня
+            с 30-дневной гарантией возврата денег.
           </p>
-          <div class="hero-actions" style="justify-content:center">
-            <a href="#pricing" class="btn btn-lime">
-              Start a Project
+<div class="hero-actions" style="justify-content:center">
+<a class="btn btn-lime" href="#pricing">
+              Начать проект
               <span class="arrow">→</span>
-            </a>
-            <a href="#" class="btn btn-ghost">Talk to Sales</a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="">
-      <div class="foot-huge">APEX</div>
-      <div class="wrap">
-        <div class="foot-top">
-          <div class="foot-brand">
-            <a href="#" class="logo">
-              <span class="mark">A</span>
+</a>
+<a class="btn btn-ghost" href="#">Связаться с продажами</a>
+</div>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="">
+<div class="foot-huge">APEX</div>
+<div class="wrap">
+<div class="foot-top">
+<div class="foot-brand">
+<a class="logo" href="#">
+<span class="mark">A</span>
               Apex
             </a>
-            <p class="">
-              The creative growth studio that designs, builds and scales digital
-              products — without the friction.
+<p class="">
+              Студия креативного роста, которая проектирует, создаёт и масштабирует цифровые продукты
+              — без трения.
             </p>
-          </div>
-          <div class="foot-col">
-            <h6>Services</h6>
-            <a href="#services">Analytics</a>
-            <a href="#services">Design</a>
-            <a href="#services">Development</a>
-            <a href="#services">Strategy</a>
-          </div>
-          <div class="foot-col">
-            <h6>Company</h6>
-            <a href="#work">Work</a>
-            <a href="#process">Process</a>
-            <a href="#">Careers</a>
-            <a href="#">Contact</a>
-          </div>
-          <div class="foot-col">
-            <h6>Legal</h6>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
-            <a href="#">Security</a>
-            <a href="#">Status</a>
-          </div>
-        </div>
-        <div class="foot-bottom">
-          <span class="">© 2026 Apex Studio. All rights reserved.</span>
-          <div class="socials">
-            <a href="#">Twitter</a>
-            <a href="#">LinkedIn</a>
-            <a href="#">Dribbble</a>
-            <a href="#">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-
-    <script>
+</div>
+<div class="foot-col">
+<h6>Услуги</h6>
+<a href="#services">Аналитика</a>
+<a href="#services">Дизайн</a>
+<a href="#services">Разработка</a>
+<a href="#services">Стратегия</a>
+</div>
+<div class="foot-col">
+<h6>Компания</h6>
+<a href="#work">Работы</a>
+<a href="#process">Процесс</a>
+<a href="#">Карьера</a>
+<a href="#">Контакты</a>
+</div>
+<div class="foot-col">
+<h6>Правовая информация</h6>
+<a href="#">Конфиденциальность</a>
+<a href="#">Условия</a>
+<a href="#">Безопасность</a>
+<a href="#">Статус</a>
+</div>
+</div>
+<div class="foot-bottom">
+<span class="">© 2026 Apex Studio. Все права защищены.</span>
+<div class="socials">
+<a href="#">Twitter</a>
+<a href="#">LinkedIn</a>
+<a href="#">Dribbble</a>
+<a href="#">GitHub</a>
+</div>
+</div>
+</div>
+</footer>
+<script>
       // scroll progress
       const progress=document.getElementById('progress');
       // nav scrolled state
@@ -3019,8 +2977,7 @@ gtag('config', 'G-2M6V79H761');
         Object.assign(links.style,{position:'absolute',top:'76px',left:'0',right:'0',flexDirection:'column',background:'#080808',padding:'22px 28px',borderBottom:'1px solid rgba(255,255,255,.08)',gap:'18px'});
       });
     </script>
-
-    <script>
+<script>
       // kinetic manifesto — words light up as you scroll
       (function(){
         const kin=document.querySelector('#manifesto .kinetic');
@@ -3047,9 +3004,7 @@ gtag('config', 'G-2M6V79H761');
         window.addEventListener('scroll',par,{passive:true});par();
       })();
     </script>
-
-    <script>
+<script>
       (function(){var canvas=document.getElementById('bubbleCanvas');if(!canvas)return;var hero=canvas.parentElement;var ctx=canvas.getContext('2d');var W=0,H=0,dpr=Math.min(window.devicePixelRatio||1,2);var bubbles=[];var mouse={x:-9999,y:-9999,active:false};var obstacles=[];function rand(a,b){return a+Math.random()*(b-a);}function resize(){var r=hero.getBoundingClientRect();W=r.width;H=r.height;canvas.width=W*dpr;canvas.height=H*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);}function collectObstacles(){obstacles=[];var heroRect=hero.getBoundingClientRect();var sels=['.hero h1','.hero .sub','.hero-actions .btn','.logo','.pill'];sels.forEach(function(sel){document.querySelectorAll(sel).forEach(function(el){var r=el.getBoundingClientRect();if(r.bottom<heroRect.top||r.top>heroRect.bottom)return;obstacles.push({x:r.left-heroRect.left,y:r.top-heroRect.top,w:r.width,h:r.height});});});}function makeBubbles(){bubbles=[];var n=Math.max(14,Math.round(W/52));for(var i=0;i<n;i++){var rad=rand(10,38);bubbles.push({x:rand(rad,W-rad),y:-rand(rad,H*.8),r:rad,vx:rand(-.25,.25),vy:rand(0,.4)});}}function resolveObstacles(b){for(var k=0;k<obstacles.length;k++){var o=obstacles[k];var cx=Math.max(o.x,Math.min(b.x,o.x+o.w));var cy=Math.max(o.y,Math.min(b.y,o.y+o.h));var dx=b.x-cx,dy=b.y-cy;var d2=dx*dx+dy*dy;if(d2<b.r*b.r){var d=Math.sqrt(d2)||0.0001;var nx=dx/d,ny=dy/d;if(d2===0){nx=0;ny=-1;}var overlap=b.r-d;b.x+=nx*overlap;b.y+=ny*overlap;var dot=b.vx*nx+b.vy*ny;if(dot<0){b.vx-=(1+0.7)*dot*nx;b.vy-=(1+0.7)*dot*ny;}}}}function step(){ctx.clearRect(0,0,W,H);for(var i=0;i<bubbles.length;i++){var b=bubbles[i];var mdx=b.x-mouse.x,mdy=b.y-mouse.y;var mdist=Math.sqrt(mdx*mdx+mdy*mdy);if(mouse.active&&mdist<b.r+90){var f=(b.r+90-mdist)/(b.r+90);var ang=Math.atan2(mdy,mdx);b.vx+=Math.cos(ang)*f*1.6;b.vy+=Math.sin(ang)*f*1.6;}b.vy+=0.04;b.vx*=0.99;b.vy*=0.99;b.x+=b.vx;b.y+=b.vy;if(b.x<b.r){b.x=b.r;b.vx*=-.6;}if(b.x>W-b.r){b.x=W-b.r;b.vx*=-.6;}if(b.y>H-b.r){b.y=H-b.r;b.vy*=-.55;b.vx*=.92;}resolveObstacles(b);for(var j=i+1;j<bubbles.length;j++){var o=bubbles[j];var ddx=o.x-b.x,ddy=o.y-b.y;var d=Math.sqrt(ddx*ddx+ddy*ddy);var min=b.r+o.r;if(d>0&&d<min){var ov=(min-d)/2;var nx=ddx/d,ny=ddy/d;b.x-=nx*ov;b.y-=ny*ov;o.x+=nx*ov;o.y+=ny*ov;var p=(b.vx-o.vx)*nx+(b.vy-o.vy)*ny;b.vx-=p*nx;b.vy-=p*ny;o.vx+=p*nx;o.vy+=p*ny;}}var grad=ctx.createRadialGradient(b.x-b.r*.35,b.y-b.r*.35,b.r*.1,b.x,b.y,b.r);grad.addColorStop(0,'rgba(223,247,154,.32)');grad.addColorStop(.7,'rgba(200,242,62,.10)');grad.addColorStop(1,'rgba(200,242,62,.02)');ctx.beginPath();ctx.arc(b.x,b.y,b.r,0,Math.PI*2);ctx.fillStyle=grad;ctx.fill();ctx.strokeStyle='rgba(200,242,62,.35)';ctx.lineWidth=1;ctx.stroke();ctx.beginPath();ctx.arc(b.x-b.r*.32,b.y-b.r*.32,b.r*.18,0,Math.PI*2);ctx.fillStyle='rgba(241,242,231,.4)';ctx.fill();}requestAnimationFrame(step);}function setMouse(x,y){var r=canvas.getBoundingClientRect();mouse.x=x-r.left;mouse.y=y-r.top;mouse.active=true;}window.addEventListener('mousemove',function(e){setMouse(e.clientX,e.clientY);});hero.addEventListener('mouseleave',function(){mouse.active=false;});hero.addEventListener('touchmove',function(e){if(e.touches[0]){setMouse(e.touches[0].clientX,e.touches[0].clientY);}},{passive:true});hero.addEventListener('touchstart',function(e){if(e.touches[0]){setMouse(e.touches[0].clientX,e.touches[0].clientY);}},{passive:true});hero.addEventListener('touchend',function(){mouse.active=false;});window.addEventListener('resize',function(){resize();collectObstacles();makeBubbles();});window.addEventListener('scroll',collectObstacles,{passive:true});resize();collectObstacles();makeBubbles();step();})();
     </script>
-  
 </body></html>

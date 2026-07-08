@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth"><head><script id="aura-preview-performance-controller">
+<html class="scroll-smooth" lang="ru"><head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
 const nativeRequestAnimationFrame = window.requestAnimationFrame
@@ -89,9 +89,9 @@ setPaused(event.data.paused);
 });
 })();
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Aura | Context Before Canvas</title>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Aura | Контекст прежде холста</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <style>/* Custom Noise Overlay */
@@ -181,7 +181,7 @@ ease: "power3.out"
 );
 });
 });
-</script><meta name="aura-font-heading-class" content="font-gloock"><meta name="aura-font-body-class" content="font-manrope"><meta name="aura-font-heading-label" content="Gloock"><meta name="aura-font-body-label" content="Manrope"><meta name="disabled-font-classes" content="font-anton,font-dm-sans,font-aboreto"><link id="all-fonts-link-font-gloock" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Gloock&display=swap"><style id="all-fonts-style-font-gloock">.font-gloock { font-family: 'Gloock', serif !important; }</style><link id="all-fonts-link-font-manrope" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap"><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style>  <style>
+</script><meta content="font-gloock" name="aura-font-heading-class"/><meta content="font-manrope" name="aura-font-body-class"/><meta content="Gloock" name="aura-font-heading-label"/><meta content="Manrope" name="aura-font-body-label"/><meta content="font-anton,font-dm-sans,font-aboreto" name="disabled-font-classes"/><link href="https://fonts.googleapis.com/css2?family=Gloock&amp;display=swap" id="all-fonts-link-font-gloock" rel="stylesheet"/><style id="all-fonts-style-font-gloock">.font-gloock { font-family: 'Gloock', serif !important; }</style><link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&amp;display=swap" id="all-fonts-link-font-manrope" rel="stylesheet"/><style id="all-fonts-style-font-manrope">.font-manrope { font-family: 'Manrope', sans-serif !important; }</style> <style>
 /* 3D Transform utilities */
 </style>
 <script>
@@ -316,7 +316,7 @@ addUtilities({
 ]
 };
 </script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -324,869 +324,823 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body class="bg-[#070707] text-white font-sans antialiased selection:bg-[#e8c382] selection:text-[#351e10] overflow-x-hidden">
-
-    <!-- Global Noise Overlay -->
-    <div class="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-screen noise-bg"></div>
-
-    <!-- Global Center Grid Line -->
-    
-
-    <!-- Header -->
-    <header class="fixed top-0 w-full h-[4.5rem] z-40 flex items-center justify-between px-4 md:px-8 border-b border-transparent bg-[#070707]/50 backdrop-blur-md transition-all duration-300">
-        <div class="flex items-center gap-4 md:w-1/3">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                <path d="M2 22L12 2L22 22H17L12 12L7 22H2Z" fill="currentColor"></path>
-            </svg>
-            <span class="text-xs uppercase tracking-widest font-medium font-manrope">AURA</span>
-            <span class="text-xs uppercase text-neutral-500 tracking-widest hidden lg:block border-l border-white/20 pl-4 ml-2 font-manrope">AI landing pages with context</span>
-        </div>
-        <nav class="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest text-neutral-400 w-1/3 justify-center">
-            <a href="#gallery" class="hover:text-white transition-colors font-manrope">Gallery</a><span class="text-neutral-700 font-manrope">/</span>
-            <a href="#workflow" class="hover:text-white transition-colors font-manrope">Workflow</a><span class="text-neutral-700 font-manrope">/</span>
-            <a href="#learn" class="hover:text-white transition-colors font-manrope">Learn</a><span class="text-neutral-700 font-manrope">/</span>
-            <a href="#pricing" class="hover:text-white transition-colors font-manrope">Pricing</a>
-        </nav>
-        <div class="flex justify-end md:w-1/3">
-            <a href="#build" class="bg-[#e8c382] text-[#351e10] text-xs uppercase tracking-widest px-6 py-3 font-medium hover:bg-white hover:text-black transition-colors rounded-none hidden md:inline-block font-manrope">Build a Page</a>
-            <button class="md:hidden text-white text-2xl">
-                <iconify-icon icon="solar:hamburger-menu-linear" stroke-width="1.5"></iconify-icon>
-            </button>
-        </div>
-    </header>
-
-    <main class="relative z-10 w-full">
-
-        <!-- Hero Section -->
-        <section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#070707]">
-            <div class="absolute inset-0 z-0" style="overflow: hidden;">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a3651ed8-d2d6-48b8-9c02-6d44c615d9c4_3840w.webp" alt="Cinematic Portrait" class="w-full h-full object-cover scale-105">
-                
-                <!-- Grid Lines -->
-                <div class="absolute top-1/4 w-full h-[1px] bg-white/10"></div>
-                <div class="absolute bottom-1/4 w-full h-[1px] bg-white/10"></div>
-            </div>
-
-            <div class="relative z-10 w-full max-w-5xl h-[50vh] sm:h-[55vh] md:h-[60vh] flex justify-center items-center perspective-[1200px]" id="cards-stage">
-    <!-- Card 1 (Far Left, Back) -->
-    <div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-[#2d1f18]" data-index="0" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
-        <div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
-        <div class="absolute inset-0" style="overflow: hidden;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fcd18bbd-0b31-4414-881d-56ec54c02d72_800w.webp" class="w-full h-full object-cover grayscale opacity-60 mix-blend-overlay" alt="Abstract Blue">
-            <div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
-        </div>
-        <div class="relative w-full h-full p-4 sm:p-6 flex flex-col justify-between z-10 pointer-events-none">
-            <p class="text-[8px] sm:text-[10px] font-medium tracking-wider text-amber-200 uppercase" style=" filter: blur(0px);">STAY INFORMED</p>
-            <div>
-                <h3 class="text-sm sm:text-lg md:text-xl font-medium tracking-tight text-white leading-tight">A completely<br>new interaction</h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- Card 2 (Mid Left) -->
-    <div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-white" data-index="1" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
-    <div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
-    <div class="absolute inset-0 flex flex-col pointer-events-none">
-        <div class="h-full w-full relative" style="overflow: hidden;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c9151d42-d755-4ed2-8f34-097ecfd4320e_800w.webp" class="w-full h-full object-cover opacity-80" alt="Purple Gradient">
-        </div>
-    </div>
-    <div class="relative w-full h-full p-4 sm:p-6 flex flex-col z-10 pointer-events-none">
-        <p class="text-[8px] sm:text-[10px] font-medium tracking-wider text-amber-950 uppercase" style=" filter: blur(0px);">
-            LESS IS MORE</p>
-        <h3 class="text-sm sm:text-xl md:text-2xl font-medium tracking-tight text-white mt-1 leading-[1.1]">
-            Motion<br>through<br>Gestures</h3>
-    </div>
+<!-- Global Noise Overlay -->
+<div class="fixed inset-0 z-50 pointer-events-none opacity-[0.02] mix-blend-screen noise-bg"></div>
+<!-- Global Center Grid Line -->
+<!-- Header -->
+<header class="fixed top-0 w-full h-[4.5rem] z-40 flex items-center justify-between px-4 md:px-8 border-b border-transparent bg-[#070707]/50 backdrop-blur-md transition-all duration-300">
+<div class="flex items-center gap-4 md:w-1/3">
+<svg class="text-white" fill="none" height="24" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 22L12 2L22 22H17L12 12L7 22H2Z" fill="currentColor"></path>
+</svg>
+<span class="text-xs uppercase tracking-widest font-medium font-manrope">AURA</span>
+<span class="text-xs uppercase text-neutral-500 tracking-widest hidden lg:block border-l border-white/20 pl-4 ml-2 font-manrope">AI-лендинги с контекстом</span>
 </div>
-
-    <!-- Card 4 (Mid Right) -->
-    <div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-[#3a4d32]" data-index="3" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
-        <div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
-        <div class="absolute inset-0 flex flex-col pointer-events-none">
-            <div class="h-3/5 w-full relative flex items-center justify-center p-2" style="overflow: hidden;">
-                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cf7ca9cf-c49c-434f-b5cb-119b06114144_800w.webp" class="w-full h-full object-cover rounded-xl shadow-lg grayscale" alt="3D Structure">
-            </div>
-            <div class="h-2/5 w-full bg-white relative rounded-tl-[30px] flex items-center p-3 sm:p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.15)]">
-                <h3 class="text-[9px] sm:text-xs md:text-sm font-medium tracking-tight text-[#2f3e26] uppercase leading-tight"><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">INTERFACES&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">THAT&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">DEVELOPERS&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">CARE&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">ABOUT&nbsp;</span></span></h3>
-            </div>
-        </div>
-    </div>
-
-    <!-- Card 5 (Far Right, Back) -->
-    <div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-[#4d2715]" data-index="4" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
-        <div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
-        <div class="absolute inset-0 pointer-events-none" style="overflow: hidden;">
-            <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92b77739-972d-4184-bac9-0785d0307b16_800w.png" class="w-full h-full object-cover grayscale opacity-50 mix-blend-multiply filter contrast-125" alt="Silhouette">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
-        </div>
-        <div class="relative w-full h-full p-4 sm:p-6 flex flex-col justify-end items-end z-10 pointer-events-none">
-            <h3 class="text-lg sm:text-2xl md:text-3xl font-medium tracking-tight text-white/90 text-right uppercase leading-none">77<br>UI<br>Kit</h3>
-        </div>
-    </div>
-
-    <!-- Card 3 (Center, Front) -->
-    <div class="card-wrapper absolute w-[170px] h-[230px] sm:w-[220px] sm:h-[300px] md:w-[260px] md:h-[350px] rounded-[24px] overflow-hidden z-50 outline outline-1 outline-white/20 -outline-offset-1" data-index="2" style="background-clip: padding-box; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
-        <div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
-        <div class="absolute inset-0 pointer-events-none bg-[#2c1d11]" style="overflow: hidden;">
-            <img src="https://wypspaektjjiccarxrgy.supabase.co/storage/v1/object/public/generated-page-media/6b63bdd8-c365-4ccf-9537-fafc57329c8c/2026-05-20/1779266383471-125de48c-dfee-4529-b292-f1862d7dad44.png" class="w-full h-full object-cover grayscale mix-blend-luminosity" alt="Portrait Backdrop">
-            <div class="absolute inset-0 bg-white/10 backdrop-blur-[12px] bg-gradient-to-b from-[#fed7aa]/50 via-[#c2410c]/70 to-[#451a03]/90 mix-blend-hard-light outline outline-1 outline-white/20 -outline-offset-1"></div>
-            <div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 4px 4px; mask-image: linear-gradient(to bottom, black 40%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);"></div>
-        </div>
-        <div class="relative w-full h-full p-4 sm:p-6 flex flex-col justify-end z-10 pb-6 sm:pb-8 pointer-events-none">
-            <p class="text-[8px] sm:text-[10px] font-medium tracking-widest text-white/90 uppercase mb-1" style=" filter: blur(0px);">Kinetic Framework</p>
-            <h2 class="text-lg sm:text-2xl md:text-3xl font-medium tracking-tighter text-white leading-[1.0] mb-2 sm:mb-3 drop-shadow-md">Elevating<br>drag<br>interfaces</h2>
-            <div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-[3px] sm:border-[4px] border-[#fdba74] bg-transparent shadow-[0_0_15px_rgba(253,186,116,0.5)]"></div>
-        </div>
-    </div>
+<nav class="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest text-neutral-400 w-1/3 justify-center">
+<a class="hover:text-white transition-colors font-manrope" href="#gallery">Галерея</a><span class="text-neutral-700 font-manrope">/</span>
+<a class="hover:text-white transition-colors font-manrope" href="#workflow">Воркфлоу</a><span class="text-neutral-700 font-manrope">/</span>
+<a class="hover:text-white transition-colors font-manrope" href="#learn">Изучить</a><span class="text-neutral-700 font-manrope">/</span>
+<a class="hover:text-white transition-colors font-manrope" href="#pricing">Цены</a>
+</nav>
+<div class="flex justify-end md:w-1/3">
+<a class="bg-[#e8c382] text-[#351e10] text-xs uppercase tracking-widest px-6 py-3 font-medium hover:bg-white hover:text-black transition-colors rounded-none hidden md:inline-block font-manrope" href="#build">Создать страницу</a>
+<button class="md:hidden text-white text-2xl">
+<iconify-icon icon="solar:hamburger-menu-linear" stroke-width="1.5"></iconify-icon>
+</button>
 </div>
-
-            <!-- Outside Frame Meta -->
-            <div class="absolute bottom-8 left-4 md:left-8 flex flex-col gap-2">
-                <span class="text-xs uppercase tracking-widest text-neutral-500 font-manrope">Prompt Credits:</span>
-                <div class="flex items-center gap-1">
-                    <div class="w-1.5 h-3 bg-[#e8c382]"></div>
-                    <div class="w-1.5 h-3 bg-[#e8c382]"></div>
-                    <div class="w-1.5 h-3 bg-[#e8c382]"></div>
-                    <div class="w-1.5 h-3 bg-[#e8c382]"></div>
-                    <span class="text-xs uppercase tracking-widest text-white ml-2 font-manrope">18 Left</span>
-                </div>
-            </div>
-            <div class="absolute bottom-8 right-4 md:right-8 text-right flex flex-col items-end gap-2">
-                <span class="text-xs uppercase tracking-widest text-neutral-500 font-manrope">Workspace Status:</span>
-                <div class="flex items-center gap-2">
-                    <div class="w-2 h-2 rounded-full bg-[#e8c382] animate-ping"></div>
-                    <span class="text-xs uppercase tracking-widest text-white font-manrope">Live Mode: Drafting</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- Orange Context Section -->
-        <section class="relative w-full bg-[#e8c382] text-[#351e10] border-y border-black overflow-hidden pt-24 pb-0 md:py-32">
-            <!-- Grid Lines -->
-            <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-
-            <div class="relative z-10 w-full px-4 md:px-8">
-                <!-- Top Meta Row -->
-                <div class="flex flex-wrap justify-between text-xs uppercase tracking-widest border-b border-[#351e10]/20 pb-4 mb-16 gap-4">
-                    <span class="font-manrope">Workspaces: Active</span>
-                    <span class="hidden md:block font-manrope">Prompt Runs: Authenticated</span>
-                    <span class="font-manrope">Publish Status: Ready</span>
-                </div>
-
-                <div class="flex flex-col md:flex-row w-full gap-12 md:gap-0">
-                    <!-- Left Column -->
-                    <div class="text-sm md:text-base uppercase tracking-widest leading-relaxed text-[#351e10]/90 max-w-md font-manrope">
-                        <p class="md:text-base uppercase leading-relaxed text-sm text-stone-700/90 tracking-widest font-manrope max-w-md" style=" filter: blur(0px);">
-                            A screenshot, a product note, and a saved style system beat a blank prompt. Aura keeps the page grounded before it starts generating.
+</header>
+<main class="relative z-10 w-full">
+ Hero-секция 
+<section class="relative h-screen w-full flex items-center justify-center overflow-hidden bg-[#070707]">
+<div class="absolute inset-0 z-0" style="overflow: hidden;">
+<img alt="Кинематографичный портрет" class="w-full h-full object-cover scale-105" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a3651ed8-d2d6-48b8-9c02-6d44c615d9c4_3840w.webp"/>
+<!-- Grid Lines -->
+<div class="absolute top-1/4 w-full h-[1px] bg-white/10"></div>
+<div class="absolute bottom-1/4 w-full h-[1px] bg-white/10"></div>
+</div>
+<div class="relative z-10 w-full max-w-5xl h-[50vh] sm:h-[55vh] md:h-[60vh] flex justify-center items-center perspective-[1200px]" id="cards-stage">
+<!-- Card 1 (Far Left, Back) -->
+<div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-[#2d1f18]" data-index="0" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
+<div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
+<div class="absolute inset-0" style="overflow: hidden;">
+<img alt="Абстрактный синий" class="w-full h-full object-cover grayscale opacity-60 mix-blend-overlay" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/fcd18bbd-0b31-4414-881d-56ec54c02d72_800w.webp"/>
+<div class="absolute inset-0" style="background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px); background-size: 20px 20px;"></div>
+</div>
+<div class="relative w-full h-full p-4 sm:p-6 flex flex-col justify-between z-10 pointer-events-none">
+<p class="text-[8px] sm:text-[10px] font-medium tracking-wider text-amber-200 uppercase" style=" filter: blur(0px);">БЫТЬ В КУРСЕ</p>
+<div>
+<h3 class="text-sm sm:text-lg md:text-xl font-medium tracking-tight text-white leading-tight">Совершенно<br/>новое взаимодействие</h3>
+</div>
+</div>
+</div>
+<!-- Card 2 (Mid Left) -->
+<div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-white" data-index="1" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
+<div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
+<div class="absolute inset-0 flex flex-col pointer-events-none">
+<div class="h-full w-full relative" style="overflow: hidden;">
+<img alt="Фиолетовый градиент" class="w-full h-full object-cover opacity-80" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c9151d42-d755-4ed2-8f34-097ecfd4320e_800w.webp"/>
+</div>
+</div>
+<div class="relative w-full h-full p-4 sm:p-6 flex flex-col z-10 pointer-events-none">
+<p class="text-[8px] sm:text-[10px] font-medium tracking-wider text-amber-950 uppercase" style=" filter: blur(0px);">
+            МЕНЬШЕ — ЗНАЧИТ БОЛЬШЕ</p>
+<h3 class="text-sm sm:text-xl md:text-2xl font-medium tracking-tight text-white mt-1 leading-[1.1]">
+            Моушн<br/>через<br/>Жесты</h3>
+</div>
+</div>
+<!-- Card 4 (Mid Right) -->
+<div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-[#3a4d32]" data-index="3" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
+<div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
+<div class="absolute inset-0 flex flex-col pointer-events-none">
+<div class="h-3/5 w-full relative flex items-center justify-center p-2" style="overflow: hidden;">
+<img alt="3D-структура" class="w-full h-full object-cover rounded-xl shadow-lg grayscale" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/cf7ca9cf-c49c-434f-b5cb-119b06114144_800w.webp"/>
+</div>
+<div class="h-2/5 w-full bg-white relative rounded-tl-[30px] flex items-center p-3 sm:p-4 shadow-[0_-10px_20px_rgba(0,0,0,0.15)]">
+<h3 class="text-[9px] sm:text-xs md:text-sm font-medium tracking-tight text-[#2f3e26] uppercase leading-tight"><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">ИНТЕРФЕЙСЫ, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">КОТОРЫЕ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">РАЗРАБОТЧИКИ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">ЦЕНЯТ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word" style="display: inline-block; filter: blur(0px);">О НАС </span></span></h3>
+</div>
+</div>
+</div>
+<!-- Card 5 (Far Right, Back) -->
+<div class="card-wrapper absolute w-[150px] h-[210px] sm:w-[200px] sm:h-[280px] md:w-[240px] md:h-[320px] rounded-2xl overflow-hidden bg-[#4d2715]" data-index="4" style="background-clip: padding-box; outline: 1px solid transparent; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
+<div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
+<div class="absolute inset-0 pointer-events-none" style="overflow: hidden;">
+<img alt="Силуэт" class="w-full h-full object-cover grayscale opacity-50 mix-blend-multiply filter contrast-125" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/92b77739-972d-4184-bac9-0785d0307b16_800w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"></div>
+</div>
+<div class="relative w-full h-full p-4 sm:p-6 flex flex-col justify-end items-end z-10 pointer-events-none">
+<h3 class="text-lg sm:text-2xl md:text-3xl font-medium tracking-tight text-white/90 text-right uppercase leading-none">77<br/>UI<br/>Kit</h3>
+</div>
+</div>
+<!-- Card 3 (Center, Front) -->
+<div class="card-wrapper absolute w-[170px] h-[230px] sm:w-[220px] sm:h-[300px] md:w-[260px] md:h-[350px] rounded-[24px] overflow-hidden z-50 outline outline-1 outline-white/20 -outline-offset-1" data-index="2" style="background-clip: padding-box; transform-style: preserve-3d; will-change: transform, opacity; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 40px rgba(217, 119, 6, 0.1);">
+<div class="absolute inset-0 z-[-1] -m-[1px] rounded-[inherit] pointer-events-none" style="background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.05) 100%);"></div>
+<div class="absolute inset-0 pointer-events-none bg-[#2c1d11]" style="overflow: hidden;">
+<img alt="Фон портрета" class="w-full h-full object-cover grayscale mix-blend-luminosity" src="https://wypspaektjjiccarxrgy.supabase.co/storage/v1/object/public/generated-page-media/6b63bdd8-c365-4ccf-9537-fafc57329c8c/2026-05-20/1779266383471-125de48c-dfee-4529-b292-f1862d7dad44.png"/>
+<div class="absolute inset-0 bg-white/10 backdrop-blur-[12px] bg-gradient-to-b from-[#fed7aa]/50 via-[#c2410c]/70 to-[#451a03]/90 mix-blend-hard-light outline outline-1 outline-white/20 -outline-offset-1"></div>
+<div class="absolute inset-0 opacity-20" style="background-image: radial-gradient(#fff 1px, transparent 1px); background-size: 4px 4px; mask-image: linear-gradient(to bottom, black 40%, transparent 100%); -webkit-mask-image: linear-gradient(to bottom, black 40%, transparent 100%);"></div>
+</div>
+<div class="relative w-full h-full p-4 sm:p-6 flex flex-col justify-end z-10 pb-6 sm:pb-8 pointer-events-none">
+<p class="text-[8px] sm:text-[10px] font-medium tracking-widest text-white/90 uppercase mb-1" style=" filter: blur(0px);">Kinetic Framework</p>
+<h2 class="text-lg sm:text-2xl md:text-3xl font-medium tracking-tighter text-white leading-[1.0] mb-2 sm:mb-3 drop-shadow-md">Поднимая<br/>перетаскивание<br/>интерфейсы</h2>
+<div class="w-6 h-6 sm:w-8 sm:h-8 rounded-full border-[3px] sm:border-[4px] border-[#fdba74] bg-transparent shadow-[0_0_15px_rgba(253,186,116,0.5)]"></div>
+</div>
+</div>
+</div>
+<!-- Outside Frame Meta -->
+<div class="absolute bottom-8 left-4 md:left-8 flex flex-col gap-2">
+<span class="text-xs uppercase tracking-widest text-neutral-500 font-manrope">Кредиты промптов:</span>
+<div class="flex items-center gap-1">
+<div class="w-1.5 h-3 bg-[#e8c382]"></div>
+<div class="w-1.5 h-3 bg-[#e8c382]"></div>
+<div class="w-1.5 h-3 bg-[#e8c382]"></div>
+<div class="w-1.5 h-3 bg-[#e8c382]"></div>
+<span class="text-xs uppercase tracking-widest text-white ml-2 font-manrope">Осталось 18</span>
+</div>
+</div>
+<div class="absolute bottom-8 right-4 md:right-8 text-right flex flex-col items-end gap-2">
+<span class="text-xs uppercase tracking-widest text-neutral-500 font-manrope">Статус рабочего пространства:</span>
+<div class="flex items-center gap-2">
+<div class="w-2 h-2 rounded-full bg-[#e8c382] animate-ping"></div>
+<span class="text-xs uppercase tracking-widest text-white font-manrope">Режим: Черновик</span>
+</div>
+</div>
+</section>
+<!-- Orange Context Section -->
+<section class="relative w-full bg-[#e8c382] text-[#351e10] border-y border-black overflow-hidden pt-24 pb-0 md:py-32">
+<!-- Grid Lines -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff0a_1px,transparent_1px),linear-gradient(to_bottom,#ffffff0a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+<div class="relative z-10 w-full px-4 md:px-8">
+<!-- Top Meta Row -->
+<div class="flex flex-wrap justify-between text-xs uppercase tracking-widest border-b border-[#351e10]/20 pb-4 mb-16 gap-4">
+<span class="font-manrope">Рабочие пространства: Активны</span>
+<span class="hidden md:block font-manrope">Запуски промптов: Авторизованы</span>
+<span class="font-manrope">Статус публикации: Готово</span>
+</div>
+<div class="flex flex-col md:flex-row w-full gap-12 md:gap-0">
+<!-- Left Column -->
+<div class="text-sm md:text-base uppercase tracking-widest leading-relaxed text-[#351e10]/90 max-w-md font-manrope">
+<p class="md:text-base uppercase leading-relaxed text-sm text-stone-700/90 tracking-widest font-manrope max-w-md" style=" filter: blur(0px);">
+                            Скриншот, заметка о продукте и сохранённая система стилей лучше, чем пустой промпт. Aura удерживает страницу в контексте ещё до начала генерации.
                         </p>
-                        
-                        <div class="mt-24 flex flex-col gap-8">
-                            <a href="#workflow" class="flex items-center gap-2 text-xs uppercase tracking-widest hover:pl-2 transition-all w-max group font-manrope" style=" filter: blur(0px);">
-                                See the workflow <iconify-icon icon="solar:arrow-right-linear" stroke-width="1.5" class="group-hover:translate-x-1 transition-transform"></iconify-icon>
-                            </a>
-                        </div>
-                    </div>
-
-                    <!-- Right Column -->
-                    <div class="w-full md:w-1/2 pl-0 md:pl-16 flex flex-col justify-between">
-                        <h2 class="text-[12vw] md:text-[7vw] font-medium leading-[0.85] tracking-tighter uppercase text-right w-full flex flex-col">
-                            <span style=" filter: blur(0px);" class="font-gloock font-normal">Context</span>
-                            <span style=" filter: blur(0px);" class="font-gloock font-normal">Before</span>
-                            <span class="text-black font-gloock font-normal" style=" filter: blur(0px);">Canvas.</span>
-                        </h2>
-
-                        <div class="mt-16 md:mt-32 flex flex-col md:flex-row items-end justify-between gap-8">
-                            <div class="w-full md:w-64 h-80 relative border border-[#351e10]/20 overflow-hidden bg-black" style="overflow: hidden;">
-                                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d3dbc0b1-906a-4f37-a104-3f45e190cd8e_800w.jpg" alt="Portrait" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:scale-105 transition-transform duration-1000">
-                                <div class="absolute bottom-4 left-4 flex gap-1">
-                                    <div class="w-1 h-1 bg-[#351e10] rounded-full"></div>
-                                    <div class="w-1 h-1 bg-[#351e10] rounded-full"></div>
-                                </div>
-                            </div>
-                            
-                            <div class="text-xs uppercase tracking-widest text-[#351e10]/80 mt-2 max-w-[200px] ml-auto font-manrope">
-                                <div class="text-[15vw] md:text-[8vw] leading-none tracking-tighter text-black font-gloock font-normal">42K</div>
-                                <p class="uppercase text-xs text-stone-900/80 tracking-widest font-manrope max-w-[200px] mt-2 ml-auto" style=" filter: blur(0px);">Sample pages drafted from saved context</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- White Product Section -->
-        <section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 md:py-40">
-            <div class="w-full px-4 md:px-8 flex flex-col md:flex-row gap-16 md:gap-0">
-                <div class="w-full md:w-1/2 pr-0 md:pr-16 flex flex-col justify-between">
-                    <h2 class="text-[14vw] md:text-[9vw] font-medium leading-[0.85] tracking-tighter uppercase flex flex-col">
-                        <span style=" filter: blur(0px);" class="font-gloock font-normal">Build</span>
-                        <span style=" filter: blur(0px);" class="font-gloock font-normal">Better</span>
-                        <span style=" filter: blur(0px);" class="font-gloock font-normal">Pages.</span>
-                    </h2>
-                    
-                    <div class="mt-16 md:mt-32">
-                        <a href="#build" class="text-xs uppercase tracking-widest border-b border-black pb-1 hover:pr-4 transition-all w-max inline-block font-medium font-manrope">Open Builder</a>
-                    </div>
-                </div>
-
-                <div class="w-full md:w-1/2 pl-0 md:pl-16 flex flex-col justify-between md:border-l border-black/10">
-                    <p class="text-sm md:text-base uppercase tracking-widest leading-relaxed text-neutral-600 max-w-md font-manrope" style=" filter: blur(0px);">
-                        Turn rough product context into a page that already knows the offer, tone, imagery, and conversion goal. No more fighting the model to align with your brand.
+<div class="mt-24 flex flex-col gap-8">
+<a class="flex items-center gap-2 text-xs uppercase tracking-widest hover:pl-2 transition-all w-max group font-manrope" href="#workflow" style=" filter: blur(0px);">
+                                Посмотреть процесс <iconify-icon class="group-hover:translate-x-1 transition-transform" icon="solar:arrow-right-linear" stroke-width="1.5"></iconify-icon>
+</a>
+</div>
+</div>
+<!-- Right Column -->
+<div class="w-full md:w-1/2 pl-0 md:pl-16 flex flex-col justify-between">
+<h2 class="text-[12vw] md:text-[7vw] font-medium leading-[0.85] tracking-tighter uppercase text-right w-full flex flex-col">
+<span class="font-gloock font-normal" style=" filter: blur(0px);">Контекст</span>
+<span class="font-gloock font-normal" style=" filter: blur(0px);">До</span>
+<span class="text-black font-gloock font-normal" style=" filter: blur(0px);">Холста.</span>
+</h2>
+<div class="mt-16 md:mt-32 flex flex-col md:flex-row items-end justify-between gap-8">
+<div class="w-full md:w-64 h-80 relative border border-[#351e10]/20 overflow-hidden bg-black" style="overflow: hidden;">
+<img alt="Портрет" class="w-full h-full object-cover opacity-80 mix-blend-luminosity hover:scale-105 transition-transform duration-1000" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d3dbc0b1-906a-4f37-a104-3f45e190cd8e_800w.jpg"/>
+<div class="absolute bottom-4 left-4 flex gap-1">
+<div class="w-1 h-1 bg-[#351e10] rounded-full"></div>
+<div class="w-1 h-1 bg-[#351e10] rounded-full"></div>
+</div>
+</div>
+<div class="text-xs uppercase tracking-widest text-[#351e10]/80 mt-2 max-w-[200px] ml-auto font-manrope">
+<div class="text-[15vw] md:text-[8vw] leading-none tracking-tighter text-black font-gloock font-normal">42K</div>
+<p class="uppercase text-xs text-stone-900/80 tracking-widest font-manrope max-w-[200px] mt-2 ml-auto" style=" filter: blur(0px);">Примеры страниц, созданных из сохранённого контекста</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- White Product Section -->
+<section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 md:py-40">
+<div class="w-full px-4 md:px-8 flex flex-col md:flex-row gap-16 md:gap-0">
+<div class="w-full md:w-1/2 pr-0 md:pr-16 flex flex-col justify-between">
+<h2 class="text-[14vw] md:text-[9vw] font-medium leading-[0.85] tracking-tighter uppercase flex flex-col">
+<span class="font-gloock font-normal" style=" filter: blur(0px);">Сборка</span>
+<span class="font-gloock font-normal" style=" filter: blur(0px);">Лучше</span>
+<span class="font-gloock font-normal" style=" filter: blur(0px);">Страницы.</span>
+</h2>
+<div class="mt-16 md:mt-32">
+<a class="text-xs uppercase tracking-widest border-b border-black pb-1 hover:pr-4 transition-all w-max inline-block font-medium font-manrope" href="#build">Открыть конструктор</a>
+</div>
+</div>
+<div class="w-full md:w-1/2 pl-0 md:pl-16 flex flex-col justify-between md:border-l border-black/10">
+<p class="text-sm md:text-base uppercase tracking-widest leading-relaxed text-neutral-600 max-w-md font-manrope" style=" filter: blur(0px);">
+                        Превратите сырой контекст продукта в страницу, которая уже знает оффер, тон, визуал и цель конверсии. Больше не нужно бороться с моделью, чтобы она соответствовала вашему бренду.
                     </p>
-
-                    <div class="mt-16 relative w-full aspect-[4/3] bg-neutral-200 border border-black/10 overflow-hidden group" style="overflow: hidden; filter: blur(0px);">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e8434c85-a821-467d-8899-e9f0d5e32184_1600w.webp" alt="Abstract Silhouette" class="w-full h-full object-cover contrast-150 group-hover:scale-105 transition-transform duration-1000">
-                        <div class="absolute inset-0 flex items-center justify-center">
-                            <button class="flex flex-col items-center gap-4 group/btn" style=" filter: blur(0px);">
-                                <div class="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white group-hover/btn:scale-110 transition-transform">
-                                    <iconify-icon icon="solar:play-linear" stroke-width="1.5" class="text-3xl ml-1"></iconify-icon>
+<div class="mt-16 relative w-full aspect-[4/3] bg-neutral-200 border border-black/10 overflow-hidden group" style="overflow: hidden; filter: blur(0px);">
+<img alt="Абстрактный силуэт" class="w-full h-full object-cover contrast-150 group-hover:scale-105 transition-transform duration-1000" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e8434c85-a821-467d-8899-e9f0d5e32184_1600w.webp"/>
+<div class="absolute inset-0 flex items-center justify-center">
+<button class="flex flex-col items-center gap-4 group/btn" style=" filter: blur(0px);">
+<div class="w-20 h-20 bg-black rounded-full flex items-center justify-center text-white group-hover/btn:scale-110 transition-transform">
+<iconify-icon class="text-3xl ml-1" icon="solar:play-linear" stroke-width="1.5"></iconify-icon>
+</div>
+<span class="text-xs uppercase tracking-widest font-medium bg-white px-3 py-1 border border-black/10 font-manrope">Смотреть демо</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Example Stack (Parallax Panels) -->
+<section class="relative w-full bg-[#070707] text-white" id="gallery">
+<!-- Panel 01 -->
+<div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center border-b border-white/10">
+<!-- Blurred BG -->
+<div class="absolute inset-0 z-0" style="overflow: hidden;">
+<img alt="" class="w-full h-full object-cover blur-3xl opacity-40 scale-110" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9b92df11-f573-47bf-8456-b9b5e804e02d_3840w.webp"/>
+</div>
+<!-- Massive Background Text -->
+<div class="absolute z-10 w-[200vw] text-center pointer-events-none opacity-30 mix-blend-overlay">
+<h3 class="text-[25vw] font-medium leading-[0.8] tracking-tighter uppercase whitespace-nowrap"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CEDAR </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CHECKOUT </span></span></h3>
+</div>
+<!-- Foreground Image -->
+<div class="relative z-20 w-[85%] md:w-[65%] h-[50vh] md:h-[60vh] border border-white/20 bg-black overflow-hidden shadow-2xl" style="overflow: hidden;">
+<img alt="Cedar Project" class="w-full h-full object-cover opacity-90" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad086340-d0f8-4ac6-a4f6-7feb37c07aa3_1600w.jpg"/>
+</div>
+<!-- Meta Labels -->
+<div class="absolute top-8 left-8 z-30 text-xs uppercase tracking-widest font-medium font-manrope">(01)</div>
+<div class="absolute top-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">Галерея</div>
+<div class="absolute bottom-8 left-8 z-30 text-xs uppercase tracking-widest font-medium w-32 font-manrope">Cedar Checkout</div>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-xs uppercase tracking-widest text-neutral-500 hidden md:block font-manrope">AI-страница</div>
+<div class="absolute bottom-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">2026</div>
+</div>
+<!-- Panel 02 -->
+<div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center border-b border-white/10">
+<div class="absolute inset-0 z-0 bg-[#070707]" style="overflow: hidden;">
+<img alt="" class="w-full h-full object-cover blur-3xl opacity-40 scale-110" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/7d64f359-68e3-476b-aa9c-20a08cde8a4e/3840w.jpg"/>
+</div>
+<div class="absolute z-10 w-[200vw] text-center pointer-events-none opacity-30 mix-blend-overlay">
+<h3 class="text-[25vw] font-medium leading-[0.8] tracking-tighter uppercase whitespace-nowrap"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">NOVA </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">COURSE </span></span></h3>
+</div>
+<div class="relative z-20 w-[85%] md:w-[65%] h-[50vh] md:h-[60vh] border border-white/20 bg-black overflow-hidden shadow-2xl" style="overflow: hidden;">
+<img alt="Nova Project" class="w-full h-full object-cover opacity-90" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4285ade0-de31-4951-a125-665bacf4a361_1600w.webp"/>
+</div>
+<div class="absolute top-8 left-8 z-30 text-xs uppercase tracking-widest font-medium font-manrope">(02)</div>
+<div class="absolute top-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">Галерея</div>
+<div class="absolute bottom-8 left-8 z-30 text-xs uppercase tracking-widest font-medium w-32 font-manrope">Nova Course</div>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-xs uppercase tracking-widest text-neutral-500 hidden md:block font-manrope">Design System</div>
+<div class="absolute bottom-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">2026</div>
+</div>
+<!-- Panel 03 -->
+<div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center border-b border-white/10">
+<div class="absolute inset-0 z-0 bg-[#070707]" style="overflow: hidden;">
+<img alt="" class="w-full h-full object-cover blur-3xl opacity-40 scale-110" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b80cf7d6-8613-4129-8a39-56fd799192ed_3840w.webp"/>
+</div>
+<div class="absolute z-10 w-[200vw] text-center pointer-events-none opacity-30 mix-blend-overlay">
+<h3 class="text-[25vw] font-medium leading-[0.8] tracking-tighter uppercase whitespace-nowrap text-[#e8c382]"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ATLAS </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CRM </span></span></h3>
+</div>
+<div class="relative z-20 w-[85%] md:w-[65%] h-[50vh] md:h-[60vh] border border-[#e8c382]/30 bg-black overflow-hidden shadow-2xl" style="overflow: hidden;">
+<img alt="Atlas Project" class="w-full h-full object-cover opacity-90 contrast-125" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d879cd0-1dee-4ebf-8c05-b72233478939_1600w.jpg"/>
+</div>
+<div class="absolute top-8 left-8 z-30 text-xs uppercase tracking-widest font-medium text-[#e8c382] font-manrope">(03)</div>
+<div class="absolute top-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">Галерея</div>
+<div class="absolute bottom-8 left-8 z-30 text-xs uppercase tracking-widest font-medium w-32 font-manrope">Atlas CRM</div>
+<div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-xs uppercase tracking-widest text-[#e8c382] hidden md:block font-manrope">Опубликовать</div>
+<div class="absolute bottom-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">2026</div>
+</div>
+</section>
+<!-- Proof & Transition Section -->
+<section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 px-4 md:px-8">
+<div class="max-w-7xl mx-auto relative h-[400px]">
+<!-- Black Stat Card -->
+<div class="absolute top-0 left-0 md:left-12 w-[85%] md:w-[45%] bg-[#070707] text-white p-8 border border-black z-10 hover:-translate-y-2 transition-transform duration-500">
+<div class="text-[12vw] md:text-[6vw] leading-none tracking-tighter font-gloock font-normal">9.1/10</div>
+<div class="mt-8 flex justify-between items-end border-t border-white/20 pt-4">
+<span class="text-xs uppercase tracking-widest text-neutral-400 font-manrope">Рейтинг создателей</span>
+<iconify-icon class="text-xl" icon="solar:arrow-right-up-linear"></iconify-icon>
+</div>
+</div>
+<!-- Brand Mark Tile -->
+<div class="absolute top-32 left-[70%] md:left-[40%] w-24 h-24 bg-[#351e10] flex items-center justify-center z-30 border border-black shadow-xl">
+<svg class="text-white" fill="none" height="40" viewbox="0 0 24 24" width="40" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 22L12 2L22 22H17L12 12L7 22H2Z" fill="currentColor"></path>
+</svg>
+</div>
+<!-- White Stat Card -->
+<div class="absolute top-24 md:top-16 right-0 md:right-12 w-[85%] md:w-[45%] bg-white text-[#070707] p-8 border border-black/10 z-20 shadow-2xl hover:-translate-y-2 transition-transform duration-500">
+<div class="text-[12vw] md:text-[6vw] leading-none tracking-tighter font-gloock font-normal">72%</div>
+<p class="text-xs uppercase tracking-widest text-neutral-500 mt-2 font-manrope" style=" filter: blur(0px);">Примерный процент одобрения с первой правки</p>
+<div class="mt-8 border-t border-black/10 pt-4">
+<a class="text-xs uppercase tracking-widest font-medium hover:text-[#e8c382] transition-colors flex items-center gap-2 font-manrope" href="#build">
+                            Создать страницу <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Workflow Accordion Section -->
+<section class="relative w-full bg-[#070707] text-white py-24 md:py-32 px-4 md:px-8 border-t border-white/10" id="workflow">
+<div class="flex flex-col md:flex-row gap-16 md:gap-8">
+<!-- Left Title -->
+<div class="w-full md:w-1/4">
+<h2 class="text-xs uppercase tracking-widest text-neutral-500 sticky top-32"><span style="display:inline-block; overflow:hidden;"><span class="word font-manrope" style="display: inline-block; filter: blur(0px);">ПРОЦЕСС </span></span></h2>
+</div>
+<!-- Right Content -->
+<div class="w-full md:w-3/4">
+<h3 class="text-[6vw] md:text-[3vw] font-medium leading-[0.9] tracking-tighter uppercase mb-16 md:mb-24"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">КАЖДАЯ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">СИЛЬНАЯ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ГЕНЕРАЦИЯ </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">НАЧИНАЕТСЯ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">С </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">КОНТЕКСТА, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">КОТОРЫЙ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">МОДЕЛЬ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ДЕЙСТВИТЕЛЬНО </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">МОЖЕТ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ИСПОЛЬЗОВАТЬ: </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">АУДИТОРИЯ, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ОФФЕР, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ДОКАЗАТЕЛЬСТВА, </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">РЕФЕРЕНСЫ, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">МАТЕРИАЛЫ, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">И </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ПРАВИЛА </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ВКУСА. </span></span></h3>
+<div class="border-t border-white/10">
+<!-- Accordion Row 01 -->
+<details class="group border-b border-white/10" open="" style=" filter: blur(0px);">
+<summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
+<div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">01</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Ввод контекста</span></div>
+<div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Стартовый план</div>
+<div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
+<iconify-icon class="group-open:hidden" icon="solar:add-circle-linear"></iconify-icon>
+<iconify-icon class="hidden group-open:block text-[#e8c382]" icon="solar:minus-circle-linear"></iconify-icon>
+</div>
+</summary>
+<div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400">
+<div class="md:w-1/2 text-sm leading-relaxed font-manrope">
+                                    Загрузите скриншоты понравившихся страниц, вставьте сырые заметки о продукте или подключите живой URL. Aura анализирует тон, плотность оффера и целевую аудиторию до того, как напишет хоть слово.
                                 </div>
-                                <span class="text-xs uppercase tracking-widest font-medium bg-white px-3 py-1 border border-black/10 font-manrope">Watch Demo</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Example Stack (Parallax Panels) -->
-        <section id="gallery" class="relative w-full bg-[#070707] text-white">
-            
-            <!-- Panel 01 -->
-            <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center border-b border-white/10">
-                <!-- Blurred BG -->
-                <div class="absolute inset-0 z-0" style="overflow: hidden;">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/9b92df11-f573-47bf-8456-b9b5e804e02d_3840w.webp" class="w-full h-full object-cover blur-3xl opacity-40 scale-110" alt="">
-                </div>
-                <!-- Massive Background Text -->
-                <div class="absolute z-10 w-[200vw] text-center pointer-events-none opacity-30 mix-blend-overlay">
-                    <h3 class="text-[25vw] font-medium leading-[0.8] tracking-tighter uppercase whitespace-nowrap"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CEDAR&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CHECKOUT&nbsp;</span></span></h3>
-                </div>
-                <!-- Foreground Image -->
-                <div class="relative z-20 w-[85%] md:w-[65%] h-[50vh] md:h-[60vh] border border-white/20 bg-black overflow-hidden shadow-2xl" style="overflow: hidden;">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ad086340-d0f8-4ac6-a4f6-7feb37c07aa3_1600w.jpg" alt="Cedar Project" class="w-full h-full object-cover opacity-90">
-                </div>
-                <!-- Meta Labels -->
-                <div class="absolute top-8 left-8 z-30 text-xs uppercase tracking-widest font-medium font-manrope">(01)</div>
-                <div class="absolute top-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">Gallery</div>
-                <div class="absolute bottom-8 left-8 z-30 text-xs uppercase tracking-widest font-medium w-32 font-manrope">Cedar Checkout</div>
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-xs uppercase tracking-widest text-neutral-500 hidden md:block font-manrope">AI Page</div>
-                <div class="absolute bottom-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">2026</div>
-            </div>
-
-            <!-- Panel 02 -->
-            <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center border-b border-white/10">
-                <div class="absolute inset-0 z-0 bg-[#070707]" style="overflow: hidden;">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/7d64f359-68e3-476b-aa9c-20a08cde8a4e/3840w.jpg" class="w-full h-full object-cover blur-3xl opacity-40 scale-110" alt="">
-                </div>
-                <div class="absolute z-10 w-[200vw] text-center pointer-events-none opacity-30 mix-blend-overlay">
-                    <h3 class="text-[25vw] font-medium leading-[0.8] tracking-tighter uppercase whitespace-nowrap"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">NOVA&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">COURSE&nbsp;</span></span></h3>
-                </div>
-                <div class="relative z-20 w-[85%] md:w-[65%] h-[50vh] md:h-[60vh] border border-white/20 bg-black overflow-hidden shadow-2xl" style="overflow: hidden;">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4285ade0-de31-4951-a125-665bacf4a361_1600w.webp" alt="Nova Project" class="w-full h-full object-cover opacity-90">
-                </div>
-                <div class="absolute top-8 left-8 z-30 text-xs uppercase tracking-widest font-medium font-manrope">(02)</div>
-                <div class="absolute top-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">Gallery</div>
-                <div class="absolute bottom-8 left-8 z-30 text-xs uppercase tracking-widest font-medium w-32 font-manrope">Nova Course</div>
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-xs uppercase tracking-widest text-neutral-500 hidden md:block font-manrope">Design System</div>
-                <div class="absolute bottom-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">2026</div>
-            </div>
-
-            <!-- Panel 03 -->
-            <div class="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center border-b border-white/10">
-                <div class="absolute inset-0 z-0 bg-[#070707]" style="overflow: hidden;">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b80cf7d6-8613-4129-8a39-56fd799192ed_3840w.webp" class="w-full h-full object-cover blur-3xl opacity-40 scale-110" alt="">
-                </div>
-                <div class="absolute z-10 w-[200vw] text-center pointer-events-none opacity-30 mix-blend-overlay">
-                    <h3 class="text-[25vw] font-medium leading-[0.8] tracking-tighter uppercase whitespace-nowrap text-[#e8c382]"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ATLAS&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CRM&nbsp;</span></span></h3>
-                </div>
-                <div class="relative z-20 w-[85%] md:w-[65%] h-[50vh] md:h-[60vh] border border-[#e8c382]/30 bg-black overflow-hidden shadow-2xl" style="overflow: hidden;">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/6d879cd0-1dee-4ebf-8c05-b72233478939_1600w.jpg" alt="Atlas Project" class="w-full h-full object-cover opacity-90 contrast-125">
-                </div>
-                <div class="absolute top-8 left-8 z-30 text-xs uppercase tracking-widest font-medium text-[#e8c382] font-manrope">(03)</div>
-                <div class="absolute top-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">Gallery</div>
-                <div class="absolute bottom-8 left-8 z-30 text-xs uppercase tracking-widest font-medium w-32 font-manrope">Atlas CRM</div>
-                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 text-xs uppercase tracking-widest text-[#e8c382] hidden md:block font-manrope">Publish</div>
-                <div class="absolute bottom-8 right-8 z-30 text-xs uppercase tracking-widest text-neutral-500 font-manrope">2026</div>
-            </div>
-
-        </section>
-
-        <!-- Proof & Transition Section -->
-        <section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 px-4 md:px-8">
-            <div class="max-w-7xl mx-auto relative h-[400px]">
-                
-                <!-- Black Stat Card -->
-                <div class="absolute top-0 left-0 md:left-12 w-[85%] md:w-[45%] bg-[#070707] text-white p-8 border border-black z-10 hover:-translate-y-2 transition-transform duration-500">
-                    <div class="text-[12vw] md:text-[6vw] leading-none tracking-tighter font-gloock font-normal">9.1/10</div>
-                    <div class="mt-8 flex justify-between items-end border-t border-white/20 pt-4">
-                        <span class="text-xs uppercase tracking-widest text-neutral-400 font-manrope">Creator Rating</span>
-                        <iconify-icon icon="solar:arrow-right-up-linear" class="text-xl"></iconify-icon>
-                    </div>
-                </div>
-
-                <!-- Brand Mark Tile -->
-                <div class="absolute top-32 left-[70%] md:left-[40%] w-24 h-24 bg-[#351e10] flex items-center justify-center z-30 border border-black shadow-xl">
-                    <svg width="40" height="40" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-white">
-                        <path d="M2 22L12 2L22 22H17L12 12L7 22H2Z" fill="currentColor"></path>
-                    </svg>
-                </div>
-
-                <!-- White Stat Card -->
-                <div class="absolute top-24 md:top-16 right-0 md:right-12 w-[85%] md:w-[45%] bg-white text-[#070707] p-8 border border-black/10 z-20 shadow-2xl hover:-translate-y-2 transition-transform duration-500">
-                    <div class="text-[12vw] md:text-[6vw] leading-none tracking-tighter font-gloock font-normal">72%</div>
-                    <p class="text-xs uppercase tracking-widest text-neutral-500 mt-2 font-manrope" style=" filter: blur(0px);">Sample first-revision approval rate</p>
-                    <div class="mt-8 border-t border-black/10 pt-4">
-                        <a href="#build" class="text-xs uppercase tracking-widest font-medium hover:text-[#e8c382] transition-colors flex items-center gap-2 font-manrope">
-                            Build a Page <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-                        </a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Workflow Accordion Section -->
-        <section id="workflow" class="relative w-full bg-[#070707] text-white py-24 md:py-32 px-4 md:px-8 border-t border-white/10">
-            <div class="flex flex-col md:flex-row gap-16 md:gap-8">
-                <!-- Left Title -->
-                <div class="w-full md:w-1/4">
-                    <h2 class="text-xs uppercase tracking-widest text-neutral-500 sticky top-32"><span style="display:inline-block; overflow:hidden;"><span class="word font-manrope" style="display: inline-block; filter: blur(0px);">WORKFLOW&nbsp;</span></span></h2>
-                </div>
-                
-                <!-- Right Content -->
-                <div class="w-full md:w-3/4">
-                    <h3 class="text-[6vw] md:text-[3vw] font-medium leading-[0.9] tracking-tighter uppercase mb-16 md:mb-24"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">EVERY&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">STRONG&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">GENERATION&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">STARTS&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">WITH&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CONTEXT&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">THE&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">MODEL&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CAN&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ACTUALLY&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">USE:&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">AUDIENCE,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">OFFER,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">PROOF,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">REFERENCES,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ASSETS,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">AND&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">TASTE&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">RULES.&nbsp;</span></span></h3>
-
-                    <div class="border-t border-white/10">
-                        <!-- Accordion Row 01 -->
-                        <details open="" class="group border-b border-white/10" style=" filter: blur(0px);">
-                            <summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
-                                <div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">01</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Context Intake</span></div>
-                                <div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Starter Plan</div>
-                                <div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
-                                    <iconify-icon icon="solar:add-circle-linear" class="group-open:hidden"></iconify-icon>
-                                    <iconify-icon icon="solar:minus-circle-linear" class="hidden group-open:block text-[#e8c382]"></iconify-icon>
+<div class="md:w-1/2 text-sm leading-relaxed font-manrope">
+                                    Результат — структурированный бриф. Конструктор ограничен вашей бизнес-логикой, что исключает шаблонный AI-вывод и выдуманные функции.
                                 </div>
-                            </summary>
-                            <div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400">
-                                <div class="md:w-1/2 text-sm leading-relaxed font-manrope">
-                                    Upload screenshots of pages you like, paste raw product notes, or connect a live URL. Aura analyzes the tone, offer density, and target audience before it writes a single word.
+</div>
+<div class="pb-12 pl-0 md:pl-[33%]">
+<div class="w-full h-64 bg-neutral-900 border border-white/10 overflow-hidden relative" style="overflow: hidden;">
+<img alt="Ввод контекста" class="w-full h-full object-cover opacity-60 mix-blend-luminosity" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/279445b3-fbf4-488d-aca5-8e458970dd1a_3840w.png"/>
+<div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:100%_2rem]"></div>
+</div>
+</div>
+</details>
+<!-- Accordion Row 02 -->
+<details class="group border-b border-white/10" style=" filter: blur(0px);">
+<summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
+<div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">02</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Design System</span></div>
+<div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Pro план</div>
+<div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
+<iconify-icon class="group-open:hidden" icon="solar:add-circle-linear"></iconify-icon>
+<iconify-icon class="hidden group-open:block text-[#e8c382]" icon="solar:minus-circle-linear"></iconify-icon>
+</div>
+</summary>
+<div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400">
+<div class="w-full text-sm leading-relaxed font-manrope">
+                                    Загрузите файл DESIGN.md или позвольте Aura извлечь типографику, ритм отступов и цветовые токены из ваших референсов. Система строго следует этим правилам, выдавая переменные Tailwind, соответствующие вашему визуальному вкусу.
                                 </div>
-                                <div class="md:w-1/2 text-sm leading-relaxed font-manrope">
-                                    The outcome is a structured brief. The builder is constrained to your specific business logic, preventing generic AI output and hallucinatory features.
-                                </div>
-                            </div>
-                            <div class="pb-12 pl-0 md:pl-[33%]">
-                                <div class="w-full h-64 bg-neutral-900 border border-white/10 overflow-hidden relative" style="overflow: hidden;">
-                                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/279445b3-fbf4-488d-aca5-8e458970dd1a_3840w.png" class="w-full h-full object-cover opacity-60 mix-blend-luminosity" alt="Context Intake">
-                                    <div class="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:100%_2rem]"></div>
-                                </div>
-                            </div>
-                        </details>
-
-                        <!-- Accordion Row 02 -->
-                        <details class="group border-b border-white/10" style=" filter: blur(0px);">
-                            <summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
-                                <div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">02</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Design System</span></div>
-                                <div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Pro Plan</div>
-                                <div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
-                                    <iconify-icon icon="solar:add-circle-linear" class="group-open:hidden"></iconify-icon>
-                                    <iconify-icon icon="solar:minus-circle-linear" class="hidden group-open:block text-[#e8c382]"></iconify-icon>
-                                </div>
-                            </summary>
-                            <div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400">
-                                <div class="w-full text-sm leading-relaxed font-manrope">
-                                    Load a DESIGN.md file or let Aura extract typography, spacing rhythm, and color tokens from your references. The system strictly adheres to these rules, outputting Tailwind variables mapped to your exact visual taste.
-                                </div>
-                            </div>
-                        </details>
-
-                        <!-- Accordion Row 03 -->
-                        <details class="group border-b border-white/10" style=" filter: blur(0px);">
-                            <summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
-                                <div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">03</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Page Generation</span></div>
-                                <div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">All Plans</div>
-                                <div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
-                                    <iconify-icon icon="solar:add-circle-linear" class="group-open:hidden"></iconify-icon>
-                                    <iconify-icon icon="solar:minus-circle-linear" class="hidden group-open:block text-[#e8c382]"></iconify-icon>
-                                </div>
-                            </summary>
-                            <div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400">
-                                <div class="w-full text-sm leading-relaxed font-manrope">Drafts are generated instantly in clean, standard HTML/Tailwind. No proprietary builder lock-in.</div>
-                            </div>
-                        </details>
-
-                        <!-- Accordion Row 04 & 05 (Simplified for brevity) -->
-                        <details class="group border-b border-white/10" style=" filter: blur(0px);">
-                            <summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
-                                <div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">04</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Media Direction</span></div>
-                                <div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Studio Plan</div>
-                                <div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
-                                    <iconify-icon icon="solar:add-circle-linear" class="group-open:hidden"></iconify-icon>
-                                    <iconify-icon icon="solar:minus-circle-linear" class="hidden group-open:block text-[#e8c382]"></iconify-icon>
-                                </div>
-                            </summary>
-                            <div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400"><div class="w-full text-sm leading-relaxed font-manrope">Automated high-contrast asset curation based on copy context.</div></div>
-                        </details>
-                        
-                        <details class="group" style=" filter: blur(0px);">
-                            <summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
-                                <div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">05</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Publish &amp; Export</span></div>
-                                <div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">All Plans</div>
-                                <div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
-                                    <iconify-icon icon="solar:add-circle-linear" class="group-open:hidden"></iconify-icon>
-                                    <iconify-icon icon="solar:minus-circle-linear" class="hidden group-open:block text-[#e8c382]"></iconify-icon>
-                                </div>
-                            </summary>
-                            <div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400"><div class="w-full text-sm leading-relaxed font-manrope">One-click publish to a custom domain or copy the raw code directly to your codebase.</div></div>
-                        </details>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Orange Results Section -->
-        <section class="relative w-full bg-[#351e10] text-[#e8c382] overflow-hidden z-10 pt-24 pb-40 md:py-40">
-            <!-- Grid Lines -->
-            <div class="absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
-
-            <div class="relative z-10 w-full px-4 md:px-8 flex flex-col md:flex-row gap-16 md:gap-0">
-                
-                <!-- Left Stats Grid -->
-                <div class="w-full md:w-[40%] relative flex flex-col gap-16 md:border-r border-[#e8c382]/20 pr-0 md:pr-16">
-                    <div class="relative border-l border-[#e8c382]/20 pl-6">
-                        <div class="absolute -left-[3px] top-2 w-1.5 h-1.5 bg-[#e8c382] rounded-full"></div>
-                        <div class="text-[10vw] md:text-[5vw] leading-none tracking-tighter text-white font-gloock font-normal">42K</div>
-                        <p class="text-xs uppercase tracking-widest text-white/80 mt-2 font-manrope" style=" filter: blur(0px);">Sample pages generated from saved context.</p>
-                    </div>
-                    <div class="relative border-l border-[#e8c382]/20 pl-6 ml-0 md:ml-12">
-                        <div class="absolute -left-[3px] top-2 w-1.5 h-1.5 bg-[#e8c382] rounded-full"></div>
-                        <div class="text-[10vw] md:text-[5vw] leading-none tracking-tighter text-white font-gloock font-normal">18M</div>
-                        <p class="text-xs uppercase tracking-widest text-white/80 mt-2 font-manrope" style=" filter: blur(0px);">Sample median time from prompt to shareable draft.</p>
-                    </div>
-                    <div class="relative border-l border-[#e8c382]/20 pl-6">
-                        <div class="absolute -left-[3px] top-2 w-1.5 h-1.5 bg-[#e8c382] rounded-full"></div>
-                        <div class="text-[10vw] md:text-[5vw] leading-none tracking-tighter text-white font-gloock font-normal">73%</div>
-                        <p class="text-xs uppercase tracking-widest text-white/80 mt-2 font-manrope" style=" filter: blur(0px);">Sample projects that reuse a saved DESIGN.md.</p>
-                    </div>
-                </div>
-
-                <!-- Right Manifesto -->
-                <div class="w-full md:w-[60%] pl-0 md:pl-16 flex flex-col justify-center">
-                    <h2 class="text-white font-gloock font-normal">
-                        <span style=" filter: blur(0px);" class="font-gloock font-normal">Every Great</span>
-                        <span style=" filter: blur(0px);" class="font-gloock font-normal">Page Starts</span>
-                        <span class="font-normal text-stone-400 font-gloock" style=" filter: blur(0px);">With Context</span>
-                        <span style=" filter: blur(0px);" class="font-gloock font-normal">Worth Keeping.</span>
-                    </h2>
-                    <div class="mt-12 flex flex-col items-start gap-8">
-                        <p class="text-sm md:text-base uppercase tracking-widest leading-relaxed text-white/90 max-w-lg font-manrope" style=" filter: blur(0px);">
-                            Aura is not here to make more empty pages. It keeps your product story, references, assets, and design rules close enough for the next draft to matter.
+</div>
+</details>
+<!-- Accordion Row 03 -->
+<details class="group border-b border-white/10" style=" filter: blur(0px);">
+<summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
+<div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">03</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Генерация страницы</span></div>
+<div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Все планы</div>
+<div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
+<iconify-icon class="group-open:hidden" icon="solar:add-circle-linear"></iconify-icon>
+<iconify-icon class="hidden group-open:block text-[#e8c382]" icon="solar:minus-circle-linear"></iconify-icon>
+</div>
+</summary>
+<div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400">
+<div class="w-full text-sm leading-relaxed font-manrope">Черновики генерируются мгновенно в чистом стандартном HTML/Tailwind. Никакой привязки к проприетарному конструктору.</div>
+</div>
+</details>
+<!-- Accordion Row 04 & 05 (Simplified for brevity) -->
+<details class="group border-b border-white/10" style=" filter: blur(0px);">
+<summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
+<div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">04</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Медиа-направление</span></div>
+<div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Studio план</div>
+<div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
+<iconify-icon class="group-open:hidden" icon="solar:add-circle-linear"></iconify-icon>
+<iconify-icon class="hidden group-open:block text-[#e8c382]" icon="solar:minus-circle-linear"></iconify-icon>
+</div>
+</summary>
+<div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400"><div class="w-full text-sm leading-relaxed font-manrope">Автоматический подбор высококонтрастных материалов на основе контекста копирайтинга.</div></div>
+</details>
+<details class="group" style=" filter: blur(0px);">
+<summary class="flex flex-col md:flex-row md:items-center justify-between py-8 cursor-pointer select-none">
+<div class="flex items-center gap-8 md:w-1/3"><span class="text-xs uppercase tracking-widest text-neutral-500 font-mono font-manrope">05</span><span class="text-lg md:text-xl uppercase tracking-tight group-hover:text-[#e8c382] transition-colors font-gloock font-normal">Публикация и экспорт</span></div>
+<div class="hidden md:block text-xs uppercase tracking-widest text-neutral-500 w-1/4 font-manrope">Все планы</div>
+<div class="hidden md:flex justify-end w-12 text-2xl text-neutral-500 group-hover:text-white transition-colors">
+<iconify-icon class="group-open:hidden" icon="solar:add-circle-linear"></iconify-icon>
+<iconify-icon class="hidden group-open:block text-[#e8c382]" icon="solar:minus-circle-linear"></iconify-icon>
+</div>
+</summary>
+<div class="pb-8 flex flex-col md:flex-row gap-8 pl-0 md:pl-[33%] text-neutral-400"><div class="w-full text-sm leading-relaxed font-manrope">Публикация в один клик на кастомный домен или копирование кода прямо в вашу кодовую базу.</div></div>
+</details>
+</div>
+</div>
+</div>
+</section>
+<!-- Orange Results Section -->
+<section class="relative w-full bg-[#351e10] text-[#e8c382] overflow-hidden z-10 pt-24 pb-40 md:py-40">
+<!-- Grid Lines -->
+<div class="absolute inset-0 bg-[linear-gradient(to_right,#0000000a_1px,transparent_1px),linear-gradient(to_bottom,#0000000a_1px,transparent_1px)] bg-[size:4rem_4rem]"></div>
+<div class="relative z-10 w-full px-4 md:px-8 flex flex-col md:flex-row gap-16 md:gap-0">
+<!-- Left Stats Grid -->
+<div class="w-full md:w-[40%] relative flex flex-col gap-16 md:border-r border-[#e8c382]/20 pr-0 md:pr-16">
+<div class="relative border-l border-[#e8c382]/20 pl-6">
+<div class="absolute -left-[3px] top-2 w-1.5 h-1.5 bg-[#e8c382] rounded-full"></div>
+<div class="text-[10vw] md:text-[5vw] leading-none tracking-tighter text-white font-gloock font-normal">42K</div>
+<p class="text-xs uppercase tracking-widest text-white/80 mt-2 font-manrope" style=" filter: blur(0px);">Примеры страниц, сгенерированных из сохранённого контекста.</p>
+</div>
+<div class="relative border-l border-[#e8c382]/20 pl-6 ml-0 md:ml-12">
+<div class="absolute -left-[3px] top-2 w-1.5 h-1.5 bg-[#e8c382] rounded-full"></div>
+<div class="text-[10vw] md:text-[5vw] leading-none tracking-tighter text-white font-gloock font-normal">18M</div>
+<p class="text-xs uppercase tracking-widest text-white/80 mt-2 font-manrope" style=" filter: blur(0px);">Примерное медианное время от промпта до готового черновика.</p>
+</div>
+<div class="relative border-l border-[#e8c382]/20 pl-6">
+<div class="absolute -left-[3px] top-2 w-1.5 h-1.5 bg-[#e8c382] rounded-full"></div>
+<div class="text-[10vw] md:text-[5vw] leading-none tracking-tighter text-white font-gloock font-normal">73%</div>
+<p class="text-xs uppercase tracking-widest text-white/80 mt-2 font-manrope" style=" filter: blur(0px);">Примеры проектов, повторно использующих сохранённый DESIGN.md.</p>
+</div>
+</div>
+<!-- Right Manifesto -->
+<div class="w-full md:w-[60%] pl-0 md:pl-16 flex flex-col justify-center">
+<h2 class="text-white font-gloock font-normal">
+<span class="font-gloock font-normal" style=" filter: blur(0px);">Каждая великая</span>
+<span class="font-gloock font-normal" style=" filter: blur(0px);">страница начинается</span>
+<span class="font-normal text-stone-400 font-gloock" style=" filter: blur(0px);">с контекста,</span>
+<span class="font-gloock font-normal" style=" filter: blur(0px);">достойного сохранения.</span>
+</h2>
+<div class="mt-12 flex flex-col items-start gap-8">
+<p class="text-sm md:text-base uppercase tracking-widest leading-relaxed text-white/90 max-w-lg font-manrope" style=" filter: blur(0px);">
+                            Aura существует не для того, чтобы плодить пустые страницы. Она удерживает историю продукта, референсы, материалы и правила дизайна достаточно близко, чтобы следующий черновик имел значение.
                         </p>
-                        <div class="flex items-center gap-3 bg-black text-white px-4 py-2 rounded-none">
-                            <div class="w-2 h-2 bg-[#e8c382] rounded-full animate-pulse"></div>
-                            <span class="text-xs uppercase tracking-widest font-medium font-manrope">System Core Activated</span>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- FAQ Section (Overlaps Orange Section) -->
-        <section id="learn" class="relative w-full bg-[#EDEDEC] text-[#070707] z-20 -mt-16 border-t border-black px-4 md:px-8 py-24 md:py-32 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]">
-            <div class="flex flex-col md:flex-row gap-16 md:gap-8">
-                <!-- Left -->
-                <div class="w-full md:w-[40%] pr-0 md:pr-16 flex flex-col justify-between">
-                    <h2 class="text-[16vw] md:text-[8vw] leading-[0.8] tracking-tighter uppercase -mt-4 break-words font-gloock font-normal">
-                        Before<br>You<br>Generate.
+<div class="flex items-center gap-3 bg-black text-white px-4 py-2 rounded-none">
+<div class="w-2 h-2 bg-[#e8c382] rounded-full animate-pulse"></div>
+<span class="text-xs uppercase tracking-widest font-medium font-manrope">Ядро системы активировано</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- FAQ Section (Overlaps Orange Section) -->
+<section class="relative w-full bg-[#EDEDEC] text-[#070707] z-20 -mt-16 border-t border-black px-4 md:px-8 py-24 md:py-32 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]" id="learn">
+<div class="flex flex-col md:flex-row gap-16 md:gap-8">
+<!-- Left -->
+<div class="w-full md:w-[40%] pr-0 md:pr-16 flex flex-col justify-between">
+<h2 class="text-[16vw] md:text-[8vw] leading-[0.8] tracking-tighter uppercase -mt-4 break-words font-gloock font-normal">
+                        До<br/>Вы<br/>Генерируйте.
                     </h2>
-                    <div class="mt-16">
-                        <a href="#build" class="bg-black text-white text-xs uppercase tracking-widest px-8 py-4 font-medium hover:bg-[#351e10] transition-colors rounded-none inline-block font-manrope">Open Aura</a>
-                    </div>
-                </div>
-
-                <!-- Right Accordion -->
-                <div class="w-full md:w-[60%] border-t border-black/20">
-                    <details open="" class="group border-b border-black/20" style=" filter: blur(0px);">
-                        <summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
-                            <span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">01</span>
-                            <div class="flex-1">
-                                <h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Do I need a finished brand guide?</h4>
-                                <div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
-                                    No. Aura can start with a screenshot, a rough product note, a color direction, or a DESIGN.md file. Better context gives better drafts, but you do not need a complete system before you begin.
+<div class="mt-16">
+<a class="bg-black text-white text-xs uppercase tracking-widest px-8 py-4 font-medium hover:bg-[#351e10] transition-colors rounded-none inline-block font-manrope" href="#build">Открыть Aura</a>
+</div>
+</div>
+<!-- Right Accordion -->
+<div class="w-full md:w-[60%] border-t border-black/20">
+<details class="group border-b border-black/20" open="" style=" filter: blur(0px);">
+<summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
+<span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">01</span>
+<div class="flex-1">
+<h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Нужен ли мне готовый брендбук?</h4>
+<div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
+                                    Нет. Aura может начать со скриншота, сырой заметки о продукте, цветового направления или файла DESIGN.md. Лучший контекст даёт лучшие черновики, но завершённая система не нужна, чтобы начать.
                                 </div>
-                            </div>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xl group-open:-rotate-180 transition-transform mt-1"></iconify-icon>
-                        </summary>
-                    </details>
-                    
-                    <details class="group border-b border-black/20" style=" filter: blur(0px);">
-                        <summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
-                            <span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">02</span>
-                            <div class="flex-1">
-                                <h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Can Aura use screenshots or existing sites as references?</h4>
-                                <div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
-                                    Yes. Upload imagery or paste URLs, and the vision model will extract structural layouts, padding rhythms, and typographic hierarchy to inform the initial generation prompt.
+</div>
+<iconify-icon class="text-xl group-open:-rotate-180 transition-transform mt-1" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</summary>
+</details>
+<details class="group border-b border-black/20" style=" filter: blur(0px);">
+<summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
+<span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">02</span>
+<div class="flex-1">
+<h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Может ли Aura использовать скриншоты или существующие сайты как референсы?</h4>
+<div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
+                                    Да. Загрузите изображения или вставьте URL, и визуальная модель извлечёт структурные макеты, ритмы отступов и типографическую иерархию для начального промпта генерации.
                                 </div>
-                            </div>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xl group-open:-rotate-180 transition-transform mt-1"></iconify-icon>
-                        </summary>
-                    </details>
-
-                    <details class="group border-b border-black/20" style=" filter: blur(0px);">
-                        <summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
-                            <span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">03</span>
-                            <div class="flex-1">
-                                <h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Can I export the page?</h4>
-                                <div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
-                                    Absolutely. Aura generates raw HTML, React components, and standard Tailwind CSS. You own the code. Copy it directly or connect your repository.
+</div>
+<iconify-icon class="text-xl group-open:-rotate-180 transition-transform mt-1" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</summary>
+</details>
+<details class="group border-b border-black/20" style=" filter: blur(0px);">
+<summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
+<span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">03</span>
+<div class="flex-1">
+<h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Можно ли экспортировать страницу?</h4>
+<div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
+                                    Абсолютно. Aura генерирует сырой HTML, React-компоненты и стандартный Tailwind CSS. Код принадлежит вам. Копируйте напрямую или подключите репозиторий.
                                 </div>
-                            </div>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xl group-open:-rotate-180 transition-transform mt-1"></iconify-icon>
-                        </summary>
-                    </details>
-
-                    <details class="group border-b border-black/20" style=" filter: blur(0px);">
-                        <summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
-                            <span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">04</span>
-                            <div class="flex-1">
-                                <h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">What if the first generation misses?</h4>
-                                <div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
-                                    Iterate locally. Use natural language to adjust sections, tweak variables in the visual editor, or replace the context document and regenerate specific components without losing the whole layout.
+</div>
+<iconify-icon class="text-xl group-open:-rotate-180 transition-transform mt-1" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</summary>
+</details>
+<details class="group border-b border-black/20" style=" filter: blur(0px);">
+<summary class="flex items-start gap-6 py-6 cursor-pointer select-none">
+<span class="text-xs uppercase tracking-widest text-neutral-400 font-mono mt-1 font-manrope">04</span>
+<div class="flex-1">
+<h4 class="text-base md:text-xl uppercase tracking-tight group-hover:text-[#351e10] transition-colors pr-8 font-gloock font-normal">Что делать, если первая генерация не попала?</h4>
+<div class="mt-4 text-sm leading-relaxed text-neutral-600 max-w-lg hidden group-open:block font-manrope">
+                                    Итерируйте локально. Используйте естественный язык для коррекции секций, настройки переменных в визуальном редакторе или замените контекстный документ и перегенерируйте конкретные компоненты, не теряя общий макет.
                                 </div>
-                            </div>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" class="text-xl group-open:-rotate-180 transition-transform mt-1"></iconify-icon>
-                        </summary>
-                    </details>
-                </div>
-            </div>
-        </section>
-
-        <!-- Philosophy & Pricing -->
-        <section id="pricing" class="relative w-full bg-[#070707] text-white py-24 md:py-32 px-4 md:px-8">
-            <!-- Philosophy Quote -->
-            <div class="w-full max-w-4xl mx-auto text-center mb-32 flex flex-col items-center">
-                <iconify-icon icon="solar:quote-left-linear" class="text-4xl text-[#e8c382] mb-8"></iconify-icon>
-                <h3 class="text-2xl md:text-4xl font-medium leading-tight tracking-tight uppercase"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">"THE&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">HARDEST&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">PART&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">OF&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">AI&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">DESIGN&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">IS&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">NOT&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">GENERATION.&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">IT&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">IS&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">GIVING&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">THE&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">MODEL&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ENOUGH&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">TASTE,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">PROOF,&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">AND&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">CONSTRAINT&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">TO&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">STOP&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">GUESSING."&nbsp;</span></span></h3>
-                <p class="text-xs uppercase tracking-widest text-neutral-400 mt-8 font-manrope" style=" filter: blur(0px);">
-                    Aura treats context as a product surface, not a prompt afterthought.
+</div>
+<iconify-icon class="text-xl group-open:-rotate-180 transition-transform mt-1" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</summary>
+</details>
+</div>
+</div>
+</section>
+<!-- Philosophy & Pricing -->
+<section class="relative w-full bg-[#070707] text-white py-24 md:py-32 px-4 md:px-8" id="pricing">
+<!-- Philosophy Quote -->
+<div class="w-full max-w-4xl mx-auto text-center mb-32 flex flex-col items-center">
+<iconify-icon class="text-4xl text-[#e8c382] mb-8" icon="solar:quote-left-linear"></iconify-icon>
+<h3 class="text-2xl md:text-4xl font-medium leading-tight tracking-tight uppercase"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">"САМОЕ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">СЛОЖНОЕ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">В </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ДИЗАЙНЕ — </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">AI </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">НЕ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ГЕНЕРАЦИЯ. </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ЭТО </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ДАТЬ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ДОСТАТОЧНО </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ГЕНЕРАЦИЯ. </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ВКУСА, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">КОТОРЫЙ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">МОДЕЛЬ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ОГРАНИЧЕНИЙ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">И </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ДОКАЗАТЕЛЬСТВА, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">И </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ПРАВИЛ, </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ЧТОБЫ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">СТОП </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">УГАДЫВАНИЯ." </span></span></h3>
+<p class="text-xs uppercase tracking-widest text-neutral-400 mt-8 font-manrope" style=" filter: blur(0px);">
+                    Aura рассматривает контекст как продуктовую поверхность, а не как запоздалую мысль к промпту.
                 </p>
-            </div>
-
-            <!-- Pricing Grid -->
-            <div class="w-full max-w-7xl mx-auto">
-                <h2 class="text-[12vw] md:text-[8vw] font-medium leading-[0.8] tracking-tighter uppercase text-right mb-16 pr-4 md:pr-8 text-neutral-800"><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">PRICING.&nbsp;</span></span></h2>
-                
-                <div class="grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/10 text-sm uppercase tracking-widest">
-                    
-                    <!-- Feature Labels (Hidden on Mobile) -->
-                    <div class="hidden md:flex flex-col border-r border-white/10 text-neutral-500 bg-white/5">
-                        <div class="h-40 p-6 border-b border-white/10 flex items-end font-manrope">Plan Features</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Prompt Credits</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Private Projects</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">DESIGN.md Memory</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Image Direction</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">HTML Export</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Figma Handoff</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Custom Domains</div>
-                        <div class="p-4 h-16 flex items-center font-manrope">Team Seats</div>
-                    </div>
-
-                    <!-- Creator Plan -->
-                    <div class="flex flex-col border-r border-b md:border-b-0 border-white/10 group hover:bg-white/[0.02] transition-colors" style=" filter: blur(0px);">
-                        <div class="h-auto md:h-40 p-6 border-b border-white/10 flex flex-col justify-between gap-4">
-                            <div>
-                                <h4 class="text-xl text-white mb-1 font-gloock font-normal">Creator</h4>
-                                <span class="text-[10px] text-neutral-500 font-manrope">For fast iterations</span>
-                            </div>
-                            <div class="text-3xl tracking-tighter text-white font-gloock font-normal">$19<span class="text-xs text-neutral-500 ml-1 font-manrope">/mo</span></div>
-                        </div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Credits:</span>100/mo</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Projects:</span>5</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center text-neutral-600 font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Memory:</span>-</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Images:</span>Basic</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Export:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center text-neutral-600 font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Figma:</span>-</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center text-neutral-600 font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Domains:</span>-</div>
-                        <div class="p-4 border-b border-white/10 md:border-b-0 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Seats:</span>1 Seat</div>
-                        <div class="p-6">
-                            <button class="w-full border border-white/20 text-white text-xs py-3 hover:bg-white hover:text-black transition-colors rounded-none font-manrope" style=" filter: blur(0px);">Start Creator</button>
-                        </div>
-                    </div>
-
-                    <!-- Pro Plan -->
-                    <div class="flex flex-col border-r border-b md:border-b-0 border-white/10 bg-white/[0.03] relative">
-                        <div class="absolute top-0 left-0 w-full h-[2px] bg-[#e8c382]"></div>
-                        <div class="h-auto md:h-40 p-6 border-b border-white/10 flex flex-col justify-between gap-4">
-                            <div>
-                                <h4 class="text-xl text-[#e8c382] mb-1 font-gloock font-normal">Pro</h4>
-                                <span class="text-[10px] text-neutral-500 font-manrope">For active builders</span>
-                            </div>
-                            <div class="text-3xl tracking-tighter text-white font-gloock font-normal">$49<span class="text-xs text-neutral-500 ml-1 font-manrope">/mo</span></div>
-                        </div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Credits:</span>500/mo</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Projects:</span>Unlimited</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Memory:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Images:</span>Full</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Export:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Figma:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Domains:</span>3</div>
-                        <div class="p-4 border-b border-white/10 md:border-b-0 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Seats:</span>1 Seat</div>
-                        <div class="p-6">
-                            <button class="w-full bg-[#e8c382] text-[#351e10] text-xs py-3 hover:bg-white hover:text-black transition-colors rounded-none font-manrope" style=" filter: blur(0px);">Upgrade to Pro</button>
-                        </div>
-                    </div>
-
-                    <!-- Studio Plan -->
-                    <div class="flex flex-col border-r border-b md:border-b-0 border-white/10 group hover:bg-white/[0.02] transition-colors" style=" filter: blur(0px);">
-                        <div class="h-auto md:h-40 p-6 border-b border-white/10 flex flex-col justify-between gap-4">
-                            <div>
-                                <h4 class="text-xl text-white mb-1 font-gloock font-normal">Studio</h4>
-                                <span class="text-[10px] text-neutral-500 font-manrope">For design teams</span>
-                            </div>
-                            <div class="text-3xl tracking-tighter text-white font-gloock font-normal">$149<span class="text-xs text-neutral-500 ml-1 font-manrope">/mo</span></div>
-                        </div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Credits:</span>Unlimited</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Projects:</span>Unlimited</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Memory:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Images:</span>Custom Model</div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Export:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Figma:</span><iconify-icon icon="solar:check-circle-linear" class="text-lg text-[#e8c382]"></iconify-icon></div>
-                        <div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Domains:</span>Unlimited</div>
-                        <div class="p-4 border-b border-white/10 md:border-b-0 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Seats:</span>5 Seats</div>
-                        <div class="p-6">
-                            <button class="w-full border border-white/20 text-white text-xs py-3 hover:bg-white hover:text-black transition-colors rounded-none font-manrope" style=" filter: blur(0px);">Contact Sales</button>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- Testimonials -->
-        <section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 md:py-32 px-4 md:px-8 border-y border-black">
-            <div class="flex flex-col md:flex-row gap-16 md:gap-0">
-                <!-- Left Title & Quote -->
-                <div class="w-full md:w-[55%] flex flex-col justify-between pr-0 md:pr-16 md:border-r border-black/10">
-                    <h2 class="text-[12vw] md:text-[8vw] leading-[0.8] tracking-tighter uppercase mb-16 md:mb-0 font-gloock font-normal">
-                        What<br>Builders<br>Say.
+</div>
+<!-- Pricing Grid -->
+<div class="w-full max-w-7xl mx-auto">
+<h2 class="text-[12vw] md:text-[8vw] font-medium leading-[0.8] tracking-tighter uppercase text-right mb-16 pr-4 md:pr-8 text-neutral-800"><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ЦЕНЫ. </span></span></h2>
+<div class="grid grid-cols-1 md:grid-cols-4 border-t border-l border-white/10 text-sm uppercase tracking-widest">
+<!-- Feature Labels (Hidden on Mobile) -->
+<div class="hidden md:flex flex-col border-r border-white/10 text-neutral-500 bg-white/5">
+<div class="h-40 p-6 border-b border-white/10 flex items-end font-manrope">Возможности плана</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Кредиты промптов</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Приватные проекты</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Память DESIGN.md</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Медиа-направление</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Экспорт HTML</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Передача в Figma</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center font-manrope">Кастомные домены</div>
+<div class="p-4 h-16 flex items-center font-manrope">Командные места</div>
+</div>
+<!-- Creator Plan -->
+<div class="flex flex-col border-r border-b md:border-b-0 border-white/10 group hover:bg-white/[0.02] transition-colors" style=" filter: blur(0px);">
+<div class="h-auto md:h-40 p-6 border-b border-white/10 flex flex-col justify-between gap-4">
+<div>
+<h4 class="text-xl text-white mb-1 font-gloock font-normal">Creator</h4>
+<span class="text-[10px] text-neutral-500 font-manrope">Для быстрых итераций</span>
+</div>
+<div class="text-3xl tracking-tighter text-white font-gloock font-normal">$19<span class="text-xs text-neutral-500 ml-1 font-manrope">/мес</span></div>
+</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Кредиты:</span>100/мес.</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Проекты:</span>5</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center text-neutral-600 font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Память:</span>-</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Изображения:</span>Basic</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Экспорт:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center text-neutral-600 font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Figma:</span>-</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center text-neutral-600 font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Домены:</span>-</div>
+<div class="p-4 border-b border-white/10 md:border-b-0 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Места:</span>1 место</div>
+<div class="p-6">
+<button class="w-full border border-white/20 text-white text-xs py-3 hover:bg-white hover:text-black transition-colors rounded-none font-manrope" style=" filter: blur(0px);">Начать Creator</button>
+</div>
+</div>
+ Pro план 
+<div class="flex flex-col border-r border-b md:border-b-0 border-white/10 bg-white/[0.03] relative">
+<div class="absolute top-0 left-0 w-full h-[2px] bg-[#e8c382]"></div>
+<div class="h-auto md:h-40 p-6 border-b border-white/10 flex flex-col justify-between gap-4">
+<div>
+<h4 class="text-xl text-[#e8c382] mb-1 font-gloock font-normal">Pro</h4>
+<span class="text-[10px] text-neutral-500 font-manrope">Для активных создателей</span>
+</div>
+<div class="text-3xl tracking-tighter text-white font-gloock font-normal">$49<span class="text-xs text-neutral-500 ml-1 font-manrope">/мес</span></div>
+</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Кредиты:</span>500/мес.</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Проекты:</span>Неограниченно</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Память:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Изображения:</span>Полный</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Экспорт:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Figma:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Домены:</span>3</div>
+<div class="p-4 border-b border-white/10 md:border-b-0 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Места:</span>1 место</div>
+<div class="p-6">
+<button class="w-full bg-[#e8c382] text-[#351e10] text-xs py-3 hover:bg-white hover:text-black transition-colors rounded-none font-manrope" style=" filter: blur(0px);">Перейти на Pro</button>
+</div>
+</div>
+ Studio план 
+<div class="flex flex-col border-r border-b md:border-b-0 border-white/10 group hover:bg-white/[0.02] transition-colors" style=" filter: blur(0px);">
+<div class="h-auto md:h-40 p-6 border-b border-white/10 flex flex-col justify-between gap-4">
+<div>
+<h4 class="text-xl text-white mb-1 font-gloock font-normal">Студия</h4>
+<span class="text-[10px] text-neutral-500 font-manrope">Для дизайн-команд</span>
+</div>
+<div class="text-3xl tracking-tighter text-white font-gloock font-normal">$149<span class="text-xs text-neutral-500 ml-1 font-manrope">/мес</span></div>
+</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Кредиты:</span>Неограниченно</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Проекты:</span>Неограниченно</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Память:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Изображения:</span>Кастомная модель</div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Экспорт:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center"><span class="md:hidden text-neutral-500 font-manrope">Figma:</span><iconify-icon class="text-lg text-[#e8c382]" icon="solar:check-circle-linear"></iconify-icon></div>
+<div class="p-4 border-b border-white/10 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Домены:</span>Неограниченно</div>
+<div class="p-4 border-b border-white/10 md:border-b-0 h-16 flex items-center justify-between md:justify-center font-manrope"><span class="md:hidden text-neutral-500 font-manrope">Места:</span>5 мест</div>
+<div class="p-6">
+<button class="w-full border border-white/20 text-white text-xs py-3 hover:bg-white hover:text-black transition-colors rounded-none font-manrope" style=" filter: blur(0px);">Связаться с отделом продаж</button>
+</div>
+</div>
+</div>
+</div>
+</section>
+ Отзывы 
+<section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 md:py-32 px-4 md:px-8 border-y border-black">
+<div class="flex flex-col md:flex-row gap-16 md:gap-0">
+<!-- Left Title & Quote -->
+<div class="w-full md:w-[55%] flex flex-col justify-between pr-0 md:pr-16 md:border-r border-black/10">
+<h2 class="text-[12vw] md:text-[8vw] leading-[0.8] tracking-tighter uppercase mb-16 md:mb-0 font-gloock font-normal">
+                        Что<br/>говорят<br/>создатели.
                     </h2>
-                    
-                    <div class="mt-16 relative pl-8 md:pl-12">
-                        <iconify-icon icon="solar:quote-left-bold" class="absolute -left-2 md:-left-4 -top-8 text-6xl md:text-8xl text-black/5"></iconify-icon>
-                        <p class="text-xl md:text-2xl uppercase tracking-tight leading-snug font-gloock font-normal" style=" filter: blur(0px);">
-                            "We turned a messy launch doc into a polished landing page before our design review. The first draft already understood the product."
+<div class="mt-16 relative pl-8 md:pl-12">
+<iconify-icon class="absolute -left-2 md:-left-4 -top-8 text-6xl md:text-8xl text-black/5" icon="solar:quote-left-bold"></iconify-icon>
+<p class="text-xl md:text-2xl uppercase tracking-tight leading-snug font-gloock font-normal" style=" filter: blur(0px);">
+                            "Мы превратили хаотичный запускной документ в отполированный лендинг ещё до дизайн-ревью. Первый черновик уже понимал продукт."
                         </p>
-                        <div class="mt-8 flex items-center gap-4">
-                            <div class="w-10 h-10 bg-neutral-300 rounded-full overflow-hidden" style="overflow: hidden;">
-                                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=200&auto=format&fit=crop&sat=-100" class="w-full h-full object-cover" alt="Leah Moreno">
-                            </div>
-                            <div class="flex flex-col">
-                                <span class="text-sm font-medium uppercase tracking-tight font-manrope">Leah Moreno</span>
-                                <span class="text-xs uppercase tracking-widest text-neutral-500 font-manrope">Founder</span>
-                            </div>
-                        </div>
-
-                        <!-- Carousel Controls -->
-                        <div class="mt-12 flex items-center gap-4">
-                            <button class="w-10 h-10 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors" style=" filter: blur(0px);">
-                                <iconify-icon icon="solar:arrow-left-linear" class="text-xl"></iconify-icon>
-                            </button>
-                            <button class="w-10 h-10 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors" style=" filter: blur(0px);">
-                                <iconify-icon icon="solar:arrow-right-linear" class="text-xl"></iconify-icon>
-                            </button>
-                            <div class="flex gap-2 ml-4">
-                                <div class="w-1.5 h-1.5 bg-black rounded-full"></div>
-                                <div class="w-1.5 h-1.5 bg-black/20 rounded-full"></div>
-                                <div class="w-1.5 h-1.5 bg-black/20 rounded-full"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Context -->
-                <div class="w-full md:w-[45%] pl-0 md:pl-16 flex flex-col justify-between">
-                    <div class="flex justify-between items-start mb-8 md:mb-0">
-                        <span class="text-xs uppercase tracking-widest text-neutral-500 mt-2 hidden md:block font-manrope">Creator Stories</span>
-                        <p class="text-sm uppercase tracking-widest leading-relaxed text-neutral-600 max-w-xs text-right ml-auto font-manrope" style=" filter: blur(0px);">
-                            The best feedback is a page that ships before the launch window closes.
+<div class="mt-8 flex items-center gap-4">
+<div class="w-10 h-10 bg-neutral-300 rounded-full overflow-hidden" style="overflow: hidden;">
+<img alt="Leah Moreno" class="w-full h-full object-cover" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=200&amp;auto=format&amp;fit=crop&amp;sat=-100"/>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-medium uppercase tracking-tight font-manrope">Leah Moreno</span>
+<span class="text-xs uppercase tracking-widest text-neutral-500 font-manrope">Основатель</span>
+</div>
+</div>
+<!-- Carousel Controls -->
+<div class="mt-12 flex items-center gap-4">
+<button class="w-10 h-10 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors" style=" filter: blur(0px);">
+<iconify-icon class="text-xl" icon="solar:arrow-left-linear"></iconify-icon>
+</button>
+<button class="w-10 h-10 border border-black rounded-full flex items-center justify-center hover:bg-black hover:text-white transition-colors" style=" filter: blur(0px);">
+<iconify-icon class="text-xl" icon="solar:arrow-right-linear"></iconify-icon>
+</button>
+<div class="flex gap-2 ml-4">
+<div class="w-1.5 h-1.5 bg-black rounded-full"></div>
+<div class="w-1.5 h-1.5 bg-black/20 rounded-full"></div>
+<div class="w-1.5 h-1.5 bg-black/20 rounded-full"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Context -->
+<div class="w-full md:w-[45%] pl-0 md:pl-16 flex flex-col justify-between">
+<div class="flex justify-between items-start mb-8 md:mb-0">
+<span class="text-xs uppercase tracking-widest text-neutral-500 mt-2 hidden md:block font-manrope">Истории создателей</span>
+<p class="text-sm uppercase tracking-widest leading-relaxed text-neutral-600 max-w-xs text-right ml-auto font-manrope" style=" filter: blur(0px);">
+                            Лучшая обратная связь — страница, отправленная до закрытия окна запуска.
                         </p>
-                    </div>
-
-                    <div class="w-full aspect-[3/4] bg-neutral-200 border border-black overflow-hidden relative shadow-2xl mt-8 md:mt-0 grayscale" style="overflow: hidden;">
-                        <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/93c95acc-cd15-4198-8512-ea3abe105620_1600w.png" class="w-full h-full object-cover" alt="Portrait">
-                        <!-- Technical Corner Marks -->
-                        
-                        <div class="absolute top-4 left-4 w-[1px] h-4 bg-black"></div>
-                        
-                        <div class="absolute bottom-4 right-4 w-[1px] h-4 bg-black"></div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- News & Updates Grid -->
-        <section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 px-4 md:px-8 border-b border-black">
-            <div class="flex justify-between items-end mb-16">
-                <h2 class="text-[8vw] md:text-[5vw] font-medium leading-[0.85] tracking-tighter uppercase"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">STUDIO&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">NOTES.&nbsp;</span></span></h2>
-                <a href="#" class="bg-black text-white text-xs uppercase tracking-widest px-6 py-3 font-medium hover:bg-[#351e10] transition-colors rounded-none font-manrope">See More</a>
-            </div>
-
-            <!-- Asymmetric Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 md:gap-8 h-auto md:h-[600px]">
-                
-                <!-- Card 1: Large Vertical Image -->
-                <a href="#" class="md:col-span-2 md:row-span-2 group relative block border border-black overflow-hidden bg-black" style="overflow: hidden; filter: blur(0px);">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/de911960-07fc-46a3-9586-c22c5f61971e_3840w.png" class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" alt="Texture">
-                    <div class="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
-                        <span class="text-[10px] uppercase tracking-widest text-neutral-300 block mb-2 font-manrope">OCT 12, 2026</span>
-                        <h4 class="text-xl md:text-3xl uppercase tracking-tight leading-tight font-gloock font-normal">Mastering the DESIGN.md File for Exact Generative Outputs</h4>
-                    </div>
-                </a>
-
-                <!-- Card 2: Text Block -->
-                <a href="#" class="md:col-span-1 md:row-span-1 border border-black bg-white p-6 md:p-8 flex flex-col justify-between group hover:bg-[#351e10] hover:text-white transition-colors" style=" filter: blur(0px);">
-                    <div>
-                        <span class="text-[10px] uppercase tracking-widest text-neutral-500 group-hover:text-white/80 block mb-4 font-manrope">SEP 28, 2026</span>
-                        <h4 class="text-lg font-medium uppercase tracking-tight leading-snug font-manrope">Why context is the only prompt engineering you need</h4>
-                    </div>
-                    <div class="flex justify-between items-end mt-8">
-                        <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&auto=format&fit=crop&sat=-100" class="w-8 h-8 rounded-full border border-black group-hover:border-white grayscale" alt="Avatar">
-                        <iconify-icon icon="solar:arrow-right-up-linear" class="text-2xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform"></iconify-icon>
-                    </div>
-                </a>
-
-                <!-- Card 3: Tall Portrait -->
-                <a href="#" class="md:col-span-1 md:row-span-2 border border-black relative overflow-hidden group" style="overflow: hidden; filter: blur(0px);">
-                    <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f3e744c3-ea42-4a7d-9224-d98162aee099_1600w.png" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" alt="Fashion Portrait">
-                    <div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
-                    <div class="absolute top-6 left-6 text-white mix-blend-difference">
-                        <span class="text-[10px] uppercase tracking-widest block mb-2 font-manrope">SEP 15, 2026</span>
-                        <h4 class="text-lg font-medium uppercase tracking-tight leading-snug max-w-[80%] font-manrope">Directional Imagery in AI</h4>
-                    </div>
-                </a>
-
-                <!-- Card 4: Small Text Block -->
-                <a href="#" class="md:col-span-1 md:row-span-1 border border-black bg-[#351e10] text-white p-6 flex flex-col justify-end group" style=" filter: blur(0px);">
-                    <span class="text-[10px] uppercase tracking-widest text-white/80 block mb-2 font-manrope">AUG 02, 2026</span>
-                    <h4 class="text-base font-medium uppercase tracking-tight leading-snug font-manrope">Reducing the launch loop from weeks to hours</h4>
-                    <div class="mt-4 w-8 h-[1px] bg-white group-hover:w-12 transition-all"></div>
-                </a>
-
-            </div>
-        </section>
-
-        <!-- Contact & Footer -->
-        <section id="build" class="relative w-full bg-[#070707] text-white pt-24 pb-8 px-4 md:px-8 overflow-hidden">
-            <!-- Center Line -->
-            <div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-white/10 hidden md:block"></div>
-
-            <div class="flex flex-col md:flex-row gap-24 md:gap-0 pb-24 border-b border-white/10">
-                
-                <!-- Left Column (Support) -->
-                <div class="w-full md:w-1/2 pr-0 md:pr-16 flex flex-col justify-between">
-                    <div>
-                        <div class="w-full max-w-sm border border-white/10 bg-white/5 p-6 backdrop-blur-sm mb-16 relative overflow-hidden group" style=" filter: blur(0px);">
-                            <div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity grayscale group-hover:opacity-60 transition-opacity" style="overflow: hidden;">
-                                <img src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/abbd07ba-1bf0-4352-844a-95b56b2278a4_3840w.png" class="w-full h-full object-cover" alt="Studio Chair">
-                            </div>
-                            <div class="relative z-10 flex flex-col h-full justify-between gap-8">
-                                <div class="bg-white text-black p-4 inline-block self-start shadow-xl">
-                                    <p class="text-sm font-medium uppercase tracking-tight font-manrope" style=" filter: blur(0px);">"Aura is our permanent first step."</p>
-                                </div>
-                                <div class="flex items-center gap-2 self-end bg-black border border-white/20 px-3 py-1.5">
-                                    <div class="w-2 h-2 bg-white rounded-full"></div>
-                                    <span class="text-[10px] uppercase tracking-widest font-manrope">Studio Memory Active</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <span class="text-xs uppercase tracking-widest text-neutral-500 block mb-2 font-manrope">Support</span>
-                        <a href="mailto:help@aura.page" class="text-xl md:text-3xl tracking-tight uppercase hover:text-[#e8c382] transition-colors inline-block mb-4 font-gloock font-normal">help@aura.page</a>
-                        <p class="text-xs uppercase tracking-widest text-neutral-500 font-manrope" style=" filter: blur(0px);">We usually reply within one business day.</p>
-                    </div>
-
-                    <div class="mt-24 flex items-center gap-4">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" class="text-[#E2482D]">
-                            <path d="M2 22L12 2L22 22H17L12 12L7 22H2Z" fill="currentColor"></path>
-                        </svg>
-                        <span class="text-2xl uppercase tracking-tighter font-gloock font-normal">AURA</span>
-                    </div>
-                </div>
-
-                <!-- Right Column (Form) -->
-                <div class="w-full md:w-1/2 pl-0 md:pl-16">
-                    <h2 class="text-[12vw] md:text-[6vw] font-medium leading-[0.85] tracking-tighter uppercase mb-8"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">START&nbsp;</span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">A&nbsp;</span></span><span style="display:inline-block; overflow:hidden;" class=""><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">PAGE.&nbsp;</span></span></h2>
-                    <p class="text-sm uppercase tracking-widest leading-relaxed text-neutral-400 max-w-md mb-12 font-manrope" style=" filter: blur(0px);">
-                        Bring a rough idea, a screenshot, or a product note. Aura will help turn it into a page you can edit, export, and publish.
+</div>
+<div class="w-full aspect-[3/4] bg-neutral-200 border border-black overflow-hidden relative shadow-2xl mt-8 md:mt-0 grayscale" style="overflow: hidden;">
+<img alt="Портрет" class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/93c95acc-cd15-4198-8512-ea3abe105620_1600w.png"/>
+<!-- Technical Corner Marks -->
+<div class="absolute top-4 left-4 w-[1px] h-4 bg-black"></div>
+<div class="absolute bottom-4 right-4 w-[1px] h-4 bg-black"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- News & Updates Grid -->
+<section class="relative w-full bg-[#EDEDEC] text-[#070707] py-24 px-4 md:px-8 border-b border-black">
+<div class="flex justify-between items-end mb-16">
+<h2 class="text-[8vw] md:text-[5vw] font-medium leading-[0.85] tracking-tighter uppercase"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">STUDIO </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">ЗАМЕТКИ. </span></span></h2>
+<a class="bg-black text-white text-xs uppercase tracking-widest px-6 py-3 font-medium hover:bg-[#351e10] transition-colors rounded-none font-manrope" href="#">Узнать больше</a>
+</div>
+<!-- Asymmetric Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 md:gap-8 h-auto md:h-[600px]">
+<!-- Card 1: Large Vertical Image -->
+<a class="md:col-span-2 md:row-span-2 group relative block border border-black overflow-hidden bg-black" href="#" style="overflow: hidden; filter: blur(0px);">
+<img alt="Текстура" class="w-full h-full object-cover opacity-80 group-hover:scale-105 group-hover:opacity-100 transition-all duration-700" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/de911960-07fc-46a3-9586-c22c5f61971e_3840w.png"/>
+<div class="absolute bottom-0 left-0 w-full p-6 md:p-8 bg-gradient-to-t from-black/80 to-transparent text-white">
+<span class="text-[10px] uppercase tracking-widest text-neutral-300 block mb-2 font-manrope">12 ОКТ 2026</span>
+<h4 class="text-xl md:text-3xl uppercase tracking-tight leading-tight font-gloock font-normal">Мастерство работы с файлом DESIGN.md для точных генеративных результатов</h4>
+</div>
+</a>
+<!-- Card 2: Text Block -->
+<a class="md:col-span-1 md:row-span-1 border border-black bg-white p-6 md:p-8 flex flex-col justify-between group hover:bg-[#351e10] hover:text-white transition-colors" href="#" style=" filter: blur(0px);">
+<div>
+<span class="text-[10px] uppercase tracking-widest text-neutral-500 group-hover:text-white/80 block mb-4 font-manrope">28 СЕН 2026</span>
+<h4 class="text-lg font-medium uppercase tracking-tight leading-snug font-manrope">Почему контекст — единственная инженерия промптов, которая вам нужна</h4>
+</div>
+<div class="flex justify-between items-end mt-8">
+<img alt="Аватар" class="w-8 h-8 rounded-full border border-black group-hover:border-white grayscale" src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&amp;w=100&amp;auto=format&amp;fit=crop&amp;sat=-100"/>
+<iconify-icon class="text-2xl group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" icon="solar:arrow-right-up-linear"></iconify-icon>
+</div>
+</a>
+<!-- Card 3: Tall Portrait -->
+<a class="md:col-span-1 md:row-span-2 border border-black relative overflow-hidden group" href="#" style="overflow: hidden; filter: blur(0px);">
+<img alt="Модный портрет" class="w-full h-full object-cover grayscale group-hover:scale-105 transition-transform duration-700" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f3e744c3-ea42-4a7d-9224-d98162aee099_1600w.png"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-transparent transition-colors"></div>
+<div class="absolute top-6 left-6 text-white mix-blend-difference">
+<span class="text-[10px] uppercase tracking-widest block mb-2 font-manrope">15 СЕН 2026</span>
+<h4 class="text-lg font-medium uppercase tracking-tight leading-snug max-w-[80%] font-manrope">Направляющие изображения в AI</h4>
+</div>
+</a>
+<!-- Card 4: Small Text Block -->
+<a class="md:col-span-1 md:row-span-1 border border-black bg-[#351e10] text-white p-6 flex flex-col justify-end group" href="#" style=" filter: blur(0px);">
+<span class="text-[10px] uppercase tracking-widest text-white/80 block mb-2 font-manrope">02 АВГ 2026</span>
+<h4 class="text-base font-medium uppercase tracking-tight leading-snug font-manrope">Сокращение цикла запуска с недель до часов</h4>
+<div class="mt-4 w-8 h-[1px] bg-white group-hover:w-12 transition-all"></div>
+</a>
+</div>
+</section>
+<!-- Contact & Footer -->
+<section class="relative w-full bg-[#070707] text-white pt-24 pb-8 px-4 md:px-8 overflow-hidden" id="build">
+<!-- Center Line -->
+<div class="absolute left-1/2 top-0 bottom-0 w-[1px] bg-white/10 hidden md:block"></div>
+<div class="flex flex-col md:flex-row gap-24 md:gap-0 pb-24 border-b border-white/10">
+<!-- Left Column (Support) -->
+<div class="w-full md:w-1/2 pr-0 md:pr-16 flex flex-col justify-between">
+<div>
+<div class="w-full max-w-sm border border-white/10 bg-white/5 p-6 backdrop-blur-sm mb-16 relative overflow-hidden group" style=" filter: blur(0px);">
+<div class="absolute inset-0 z-0 opacity-40 mix-blend-luminosity grayscale group-hover:opacity-60 transition-opacity" style="overflow: hidden;">
+<img alt="Студийное кресло" class="w-full h-full object-cover" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/abbd07ba-1bf0-4352-844a-95b56b2278a4_3840w.png"/>
+</div>
+<div class="relative z-10 flex flex-col h-full justify-between gap-8">
+<div class="bg-white text-black p-4 inline-block self-start shadow-xl">
+<p class="text-sm font-medium uppercase tracking-tight font-manrope" style=" filter: blur(0px);">"Aura — наш постоянный первый шаг."</p>
+</div>
+<div class="flex items-center gap-2 self-end bg-black border border-white/20 px-3 py-1.5">
+<div class="w-2 h-2 bg-white rounded-full"></div>
+<span class="text-[10px] uppercase tracking-widest font-manrope">Память студии активна</span>
+</div>
+</div>
+</div>
+<span class="text-xs uppercase tracking-widest text-neutral-500 block mb-2 font-manrope">Поддержка</span>
+<a class="text-xl md:text-3xl tracking-tight uppercase hover:text-[#e8c382] transition-colors inline-block mb-4 font-gloock font-normal" href="mailto:help@aura.page">help@aura.page</a>
+<p class="text-xs uppercase tracking-widest text-neutral-500 font-manrope" style=" filter: blur(0px);">Мы обычно отвечаем в течение одного рабочего дня.</p>
+</div>
+<div class="mt-24 flex items-center gap-4">
+<svg class="text-[#E2482D]" fill="none" height="32" viewbox="0 0 24 24" width="32" xmlns="http://www.w3.org/2000/svg">
+<path d="M2 22L12 2L22 22H17L12 12L7 22H2Z" fill="currentColor"></path>
+</svg>
+<span class="text-2xl uppercase tracking-tighter font-gloock font-normal">AURA</span>
+</div>
+</div>
+<!-- Right Column (Form) -->
+<div class="w-full md:w-1/2 pl-0 md:pl-16">
+<h2 class="text-[12vw] md:text-[6vw] font-medium leading-[0.85] tracking-tighter uppercase mb-8"><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">НАЧАТЬ </span></span><span style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">A </span></span><span class="" style="display:inline-block; overflow:hidden;"><span class="word font-gloock font-normal" style="display: inline-block; filter: blur(0px);">СТРАНИЦУ. </span></span></h2>
+<p class="text-sm uppercase tracking-widest leading-relaxed text-neutral-400 max-w-md mb-12 font-manrope" style=" filter: blur(0px);">
+                        Принесите грубую идею, скриншот или заметку о продукте. Aura поможет превратить это в страницу, которую можно редактировать, экспортировать и публиковать.
                     </p>
-
-                    <form class="flex flex-col gap-6 max-w-lg relative z-20">
-                        <div class="flex flex-col gap-2">
-                            <label class="text-[10px] uppercase tracking-widest text-neutral-500 font-manrope">Workspace Name</label>
-                            <input type="text" placeholder="Acme Corp" class="bg-transparent border-b border-white/20 py-3 text-white text-sm uppercase placeholder:text-neutral-700 outline-none focus:border-[#e8c382] transition-colors rounded-none">
-                        </div>
-                        <div class="flex flex-col gap-2">
-                            <label class="text-[10px] uppercase tracking-widest text-neutral-500 font-manrope">Work Email</label>
-                            <input type="email" placeholder="you@company.com" class="bg-transparent border-b border-white/20 py-3 text-white text-sm uppercase placeholder:text-neutral-700 outline-none focus:border-[#e8c382] transition-colors rounded-none">
-                        </div>
-                        <div class="flex flex-col gap-2 relative">
-                            <label class="text-[10px] uppercase tracking-widest text-neutral-500 font-manrope">Page Goal</label>
-                            <select class="appearance-none bg-transparent border-b border-white/20 py-3 text-white text-sm uppercase outline-none focus:border-[#e8c382] transition-colors rounded-none cursor-pointer">
-                                <option class="bg-black text-white font-manrope">Lead Generation</option>
-                                <option class="bg-black text-white font-manrope">SaaS Product Launch</option>
-                                <option class="bg-black text-white font-manrope">Waitlist Registration</option>
-                                <option class="bg-black text-white font-manrope">Event Sign-up</option>
-                            </select>
-                            <iconify-icon icon="solar:alt-arrow-down-linear" class="absolute right-0 bottom-4 text-neutral-500 pointer-events-none"></iconify-icon>
-                        </div>
-
-                        <div class="flex items-start gap-3 mt-4">
-                            <input type="checkbox" id="terms" class="appearance-none w-4 h-4 border border-white/20 checked:bg-[#e8c382] checked:border-[#e8c382] cursor-pointer mt-1 rounded-none flex-shrink-0 relative after:content-[''] after:absolute after:inset-0 after:bg-[url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23351e10%22%3E%3Cpath d=%22M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%22/%3E%3C/svg%3E')] after:bg-center after:bg-no-repeat after:opacity-0 checked:after:opacity-100 transition-all font-manrope"><path d="\&quot;M9" 16.17l4.83="" 12l-1.42="" 1.41l9="" 19="" 21="" 7l-1.41-1.41z\"="" class="font-manrope">')] after:bg-center after:bg-no-repeat after:opacity-0 checked:after:opacity-100 transition-all"&gt;
-                            <label for="terms" class="text-[10px] uppercase tracking-widest text-neutral-500 cursor-pointer leading-relaxed font-manrope">
-                                I agree to the <a href="#" class="text-white hover:text-[#E2482D] border-b border-white/20 font-manrope">Terms of Service</a> and acknowledge the <a href="#" class="text-white hover:text-[#E2482D] border-b border-white/20 font-manrope">Privacy Policy</a>.
+<form class="flex flex-col gap-6 max-w-lg relative z-20">
+<div class="flex flex-col gap-2">
+<label class="text-[10px] uppercase tracking-widest text-neutral-500 font-manrope">Название рабочего пространства</label>
+<input class="bg-transparent border-b border-white/20 py-3 text-white text-sm uppercase placeholder:text-neutral-700 outline-none focus:border-[#e8c382] transition-colors rounded-none" placeholder="Acme Corp" type="text"/>
+</div>
+<div class="flex flex-col gap-2">
+<label class="text-[10px] uppercase tracking-widest text-neutral-500 font-manrope">Рабочий email</label>
+<input class="bg-transparent border-b border-white/20 py-3 text-white text-sm uppercase placeholder:text-neutral-700 outline-none focus:border-[#e8c382] transition-colors rounded-none" placeholder="you@company.com" type="email"/>
+</div>
+<div class="flex flex-col gap-2 relative">
+<label class="text-[10px] uppercase tracking-widest text-neutral-500 font-manrope">Цель страницы</label>
+<select class="appearance-none bg-transparent border-b border-white/20 py-3 text-white text-sm uppercase outline-none focus:border-[#e8c382] transition-colors rounded-none cursor-pointer">
+<option class="bg-black text-white font-manrope">Лидогенерация</option>
+<option class="bg-black text-white font-manrope">Запуск SaaS-продукта</option>
+<option class="bg-black text-white font-manrope">Регистрация в лист ожидания</option>
+<option class="bg-black text-white font-manrope">Запись на мероприятие</option>
+</select>
+<iconify-icon class="absolute right-0 bottom-4 text-neutral-500 pointer-events-none" icon="solar:alt-arrow-down-linear"></iconify-icon>
+</div>
+<div class="flex items-start gap-3 mt-4">
+<input class="appearance-none w-4 h-4 border border-white/20 checked:bg-[#e8c382] checked:border-[#e8c382] cursor-pointer mt-1 rounded-none flex-shrink-0 relative after:content-[''] after:absolute after:inset-0 after:bg-[url('data:image/svg+xml;utf8,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22 fill=%22%23351e10%22%3E%3Cpath d=%22M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z%22/%3E%3C/svg%3E')] after:bg-center after:bg-no-repeat after:opacity-0 checked:after:opacity-100 transition-all font-manrope" id="terms" type="checkbox"/><path 1.41l9="" 12l-1.42="" 16.17l4.83="" 19="" 21="" 7l-1.41-1.41z\"="" class="font-manrope" d='\"M9'>')] after:bg-center after:bg-no-repeat after:opacity-0 checked:after:opacity-100 transition-all"&gt;
+                            <label class="text-[10px] uppercase tracking-widest text-neutral-500 cursor-pointer leading-relaxed font-manrope" for="terms">
+                                Я согласен с <a class="text-white hover:text-[#E2482D] border-b border-white/20 font-manrope" href="#">Условия использования</a> и принимаю <a class="text-white hover:text-[#E2482D] border-b border-white/20 font-manrope" href="#">Политика конфиденциальности</a>.
                             </label>
-                        </path></div>
-
-                        <button type="button" class="mt-8 bg-white text-black text-xs uppercase tracking-widest py-4 font-medium hover:bg-[#e8c382] hover:text-[#351e10] transition-colors rounded-none text-center block w-full font-manrope" style=" filter: blur(0px);">
-                            Create Page
+</path></div>
+<button class="mt-8 bg-white text-black text-xs uppercase tracking-widest py-4 font-medium hover:bg-[#e8c382] hover:text-[#351e10] transition-colors rounded-none text-center block w-full font-manrope" style=" filter: blur(0px);" type="button">
+                            Создать страницу
                         </button>
-                    </form>
+</form>
+</div>
+</div>
+<!-- Footer Bottom -->
+<footer class="pt-8 flex flex-col md:flex-row justify-between items-center md:items-end gap-8 md:gap-0">
+<div class="flex flex-wrap justify-center md:justify-start gap-6 md:gap-12 text-[10px] uppercase tracking-widest text-neutral-500">
+<a class="hover:text-white transition-colors font-manrope" href="#">Главная</a>
+<a class="hover:text-white transition-colors font-manrope" href="#gallery">Галерея</a>
+<a class="hover:text-white transition-colors font-manrope" href="#workflow">Воркфлоу</a>
+<a class="hover:text-white transition-colors font-manrope" href="#learn">Изучить</a>
+<a class="hover:text-white transition-colors font-manrope" href="#pricing">Цены</a>
+</div>
+<div class="flex flex-wrap justify-center md:justify-start gap-6 md:gap-12 text-[10px] uppercase tracking-widest text-neutral-500">
+<a class="hover:text-white transition-colors font-manrope" href="#">Шаблоны</a>
+<a class="hover:text-white transition-colors font-manrope" href="#">Список изменений</a>
+<a class="hover:text-white transition-colors font-manrope" href="#">Документация</a>
+</div>
+<div class="flex items-center gap-4 text-neutral-500">
+<a class="hover:text-white transition-colors" href="#"><iconify-icon class="text-lg" icon="solar:letter-linear"></iconify-icon></a>
+<a class="hover:text-white transition-colors" href="#"><iconify-icon class="text-lg" icon="solar:hashtag-linear"></iconify-icon></a>
+</div>
+<div class="text-[10px] uppercase tracking-widest text-neutral-600 text-center md:text-right font-manrope">
+                    © 2026 Aura Systems. <br class="md:hidden"/> Создано с Aura.
                 </div>
-            </div>
-
-            <!-- Footer Bottom -->
-            <footer class="pt-8 flex flex-col md:flex-row justify-between items-center md:items-end gap-8 md:gap-0">
-                <div class="flex flex-wrap justify-center md:justify-start gap-6 md:gap-12 text-[10px] uppercase tracking-widest text-neutral-500">
-                    <a href="#" class="hover:text-white transition-colors font-manrope">Home</a>
-                    <a href="#gallery" class="hover:text-white transition-colors font-manrope">Gallery</a>
-                    <a href="#workflow" class="hover:text-white transition-colors font-manrope">Workflow</a>
-                    <a href="#learn" class="hover:text-white transition-colors font-manrope">Learn</a>
-                    <a href="#pricing" class="hover:text-white transition-colors font-manrope">Pricing</a>
-                </div>
-                
-                <div class="flex flex-wrap justify-center md:justify-start gap-6 md:gap-12 text-[10px] uppercase tracking-widest text-neutral-500">
-                    <a href="#" class="hover:text-white transition-colors font-manrope">Templates</a>
-                    <a href="#" class="hover:text-white transition-colors font-manrope">Changelog</a>
-                    <a href="#" class="hover:text-white transition-colors font-manrope">Docs</a>
-                </div>
-
-                <div class="flex items-center gap-4 text-neutral-500">
-                    <a href="#" class="hover:text-white transition-colors"><iconify-icon icon="solar:letter-linear" class="text-lg"></iconify-icon></a>
-                    <a href="#" class="hover:text-white transition-colors"><iconify-icon icon="solar:hashtag-linear" class="text-lg"></iconify-icon></a>
-                </div>
-
-                <div class="text-[10px] uppercase tracking-widest text-neutral-600 text-center md:text-right font-manrope">
-                    © 2026 Aura Systems. <br class="md:hidden"> Built with Aura.
-                </div>
-            </footer>
-        </section>
-
-    </main>
-
+</footer>
+</section>
+</main>
 <script>
 document.addEventListener("DOMContentLoaded", () => {
     const cards = document.querySelectorAll('.card-wrapper');

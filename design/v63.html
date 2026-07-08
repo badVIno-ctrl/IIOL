@@ -1,14 +1,14 @@
-<html lang="en"><head>
+<html lang="ru"><head>
 <script>
 try{if(window.parent&&window.parent!==window){window.parent.promotekit_referral="1fd2949a-d22c-431b-92bf-02d4ad04ee24";window.parent.document.cookie="promotekit_referral=1fd2949a-d22c-431b-92bf-02d4ad04ee24;path=/;domain=.aura.build;max-age=31536000"}}catch(e){}
 </script>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Forge — Premium Fitness &amp; Performance</title>
-<meta name="description" content="Forge — Premium fitness and athletic performance training. Science-backed programming, progressive overload tracking, and recovery intelligence.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Forge — Премиальный фитнес и производительность</title>
+<meta content="Forge — премиальный фитнес и тренинг атлетической производительности. Научно обоснованное программирование, отслеживание прогрессивной перегрузки и интеллект восстановления." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;display=swap" rel="stylesheet"/>
 <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
 <style>
 /* ─── Reset & Base ─────────────────────────────────────────── */
@@ -1869,7 +1869,7 @@ footer { padding: 40px 20px 24px; }
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -1877,793 +1877,771 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
-
-  <!-- ─── NAV ──────────────────────────────────────────────────────── -->
-  <nav id="main-nav">
-    <a href="#" class="nav-logo">
-      <span class="logo-text">FORGE</span>
-    </a>
-
-    <div class="nav-links">
-      <a href="#programs">Programs</a>
-      <a href="#methodology">Methodology</a>
-      <a href="#results">Results</a>
-      <a href="#community">Community</a>
-      <a href="#membership">Membership</a>
-    </div>
-
-    <div class="nav-cta">
-      <a href="#faq">FAQ</a>
-      <a href="#cta" class="btn-nav">Start Free Trial</a>
-    </div>
-
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
-  </nav>
-
-  <!-- Mobile menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <a href="#programs" class="mobile-link">Programs</a>
-    <a href="#methodology" class="mobile-link">Methodology</a>
-    <a href="#results" class="mobile-link">Results</a>
-    <a href="#community" class="mobile-link">Community</a>
-    <a href="#membership" class="mobile-link">Membership</a>
-    <a href="#cta" class="mobile-link">Start Free Trial</a>
-  </div>
-
-  <!-- ─── SECTION 1: HERO ───────────────────────────────────────────── -->
-  <section id="hero">
-    <canvas id="hero-webgl"></canvas>
-    <div class="hero-mesh"></div>
-    <div class="hero-grid-lines"></div>
-    <div class="hero-accent-line"></div>
-
-    <!-- Floating glass metric cards -->
-    <div class="hero-float-metrics">
-      <div class="hero-metric">
-        <div class="hero-metric-icon"><iconify-icon icon="lucide:flame" noobserver=""></iconify-icon></div>
-        <div>
-          <div class="hero-metric-label">Active Streak</div>
-          <div class="hero-metric-value"><span>147</span> days</div>
-        </div>
-      </div>
-      <div class="hero-metric">
-        <div class="hero-metric-icon"><iconify-icon icon="lucide:heart-pulse" noobserver=""></iconify-icon></div>
-        <div>
-          <div class="hero-metric-label">Recovery Score</div>
-          <div class="hero-metric-value"><span>94</span>/100</div>
-        </div>
-      </div>
-      <div class="hero-metric">
-        <div class="hero-metric-icon"><iconify-icon icon="lucide:trophy" noobserver=""></iconify-icon></div>
-        <div>
-          <div class="hero-metric-label">PRs This Month</div>
-          <div class="hero-metric-value"><span>12</span> new</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-split">
-      <!-- Left: Headline + CTA -->
-      <div class="hero-left">
-        <h1 class="hero-headline">
-          <span class="line-1">Forge</span>
-          <span class="line-2">Your</span>
-          <span class="line-3">Limits</span>
-        </h1>
-
-        <div class="hero-desc reveal">
-          <p>
-            Precision programming meets elite performance science.
-            Built for athletes who refuse to accept ordinary results.
+<!-- ─── NAV ──────────────────────────────────────────────────────── -->
+<nav id="main-nav">
+<a class="nav-logo" href="#">
+<span class="logo-text">FORGE</span>
+</a>
+<div class="nav-links">
+<a href="#programs">Программы</a>
+<a href="#methodology">Методология</a>
+<a href="#results">Результаты</a>
+<a href="#community">Сообщество</a>
+<a href="#membership">Членство</a>
+</div>
+<div class="nav-cta">
+<a href="#faq">FAQ</a>
+<a class="btn-nav" href="#cta">Начать бесплатный период</a>
+</div>
+<button aria-label="Переключить меню" class="hamburger" id="hamburger">
+<span></span>
+<span></span>
+<span></span>
+</button>
+</nav>
+<!-- Mobile menu -->
+<div class="mobile-menu" id="mobile-menu">
+<a class="mobile-link" href="#programs">Программы</a>
+<a class="mobile-link" href="#methodology">Методология</a>
+<a class="mobile-link" href="#results">Результаты</a>
+<a class="mobile-link" href="#community">Сообщество</a>
+<a class="mobile-link" href="#membership">Членство</a>
+<a class="mobile-link" href="#cta">Начать бесплатный период</a>
+</div>
+<!-- ─── SECTION 1: HERO ───────────────────────────────────────────── -->
+<section id="hero">
+<canvas id="hero-webgl"></canvas>
+<div class="hero-mesh"></div>
+<div class="hero-grid-lines"></div>
+<div class="hero-accent-line"></div>
+<!-- Floating glass metric cards -->
+<div class="hero-float-metrics">
+<div class="hero-metric">
+<div class="hero-metric-icon"><iconify-icon icon="lucide:flame" noobserver=""></iconify-icon></div>
+<div>
+<div class="hero-metric-label">Активная серия</div>
+<div class="hero-metric-value"><span>147</span> дней</div>
+</div>
+</div>
+<div class="hero-metric">
+<div class="hero-metric-icon"><iconify-icon icon="lucide:heart-pulse" noobserver=""></iconify-icon></div>
+<div>
+<div class="hero-metric-label">Показатель восстановления</div>
+<div class="hero-metric-value"><span>94</span>/100</div>
+</div>
+</div>
+<div class="hero-metric">
+<div class="hero-metric-icon"><iconify-icon icon="lucide:trophy" noobserver=""></iconify-icon></div>
+<div>
+<div class="hero-metric-label">Рекордов в этом месяце</div>
+<div class="hero-metric-value"><span>12</span> новых</div>
+</div>
+</div>
+</div>
+<div class="hero-split">
+<!-- Left: Headline + CTA -->
+<div class="hero-left">
+<h1 class="hero-headline">
+<span class="line-1">Кузня</span>
+<span class="line-2">Твои</span>
+<span class="line-3">пределы</span>
+</h1>
+<div class="hero-desc reveal">
+<p>
+            Точное программирование встречается с элитной наукой о производительности. Создано для атлетов, которые отказываются мириться с обычными результатами.
           </p>
-          <div class="hero-actions">
-            <a href="#cta" class="btn-hero-primary">
-              <span class="btn-text glitch-text">Begin Training</span>
-              <iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
-            </a>
-            <a href="#programs" class="btn-hero-ghost">
-              <iconify-icon icon="lucide:play" noobserver=""></iconify-icon>
-              <span>Explore Programs</span>
-            </a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- Right: Full-bleed image -->
-    <div class="hero-right">
-      <img src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1200&amp;q=80&amp;auto=format&amp;fit=crop" alt="Athlete training with intense focus" loading="eager">
-    </div>
-
-    <!-- HUD stats bar (outside hero-right to avoid mask) -->
-    <div class="hero-hud">
-      <div class="hud-item">
-        <div class="hud-dot"></div>
-        <div>
-          <div class="hud-item-label">Athletes</div>
-          <div class="hud-item-value"><span id="stat-members">0</span><span>K+</span></div>
-        </div>
-      </div>
-      <div class="hud-separator"></div>
-      <div class="hud-item">
-        <div>
-          <div class="hud-item-label">Sessions</div>
-          <div class="hud-item-value"><span id="stat-sessions">0</span><span>M</span></div>
-        </div>
-      </div>
-      <div class="hud-separator"></div>
-      <div class="hud-item">
-        <div>
-          <div class="hud-item-label">PRs Broken</div>
-          <div class="hud-item-value"><span id="stat-prs">0</span><span>K+</span></div>
-        </div>
-      </div>
-    </div>
-
-  </section>
-
-  <!-- ─── SECTION 2: PROGRAMS ────────────────────────────────────────── -->
-  <section id="programs">
-    <div class="programs-header stagger-up">
-      <div class="reveal-child">
-        <span class="section-label">Training Systems</span>
-        <h2>Four paths.<br><em class="text-grad" style="font-style:normal;">One goal.</em></h2>
-      </div>
-      <p class="reveal-child">
-        Every program is precision-designed for your specific adaptation target.
-        Choose your discipline. Own the process.
+<div class="hero-actions">
+<a class="btn-hero-primary" href="#cta">
+<span class="btn-text glitch-text">Начать тренировки</span>
+<iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
+</a>
+<a class="btn-hero-ghost" href="#programs">
+<iconify-icon icon="lucide:play" noobserver=""></iconify-icon>
+<span>Смотреть программы</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+<!-- Right: Full-bleed image -->
+<div class="hero-right">
+<img alt="Атлет тренируется с полной концентрацией" loading="eager" src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=1200&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<!-- HUD stats bar (outside hero-right to avoid mask) -->
+<div class="hero-hud">
+<div class="hud-item">
+<div class="hud-dot"></div>
+<div>
+<div class="hud-item-label">Атлетов</div>
+<div class="hud-item-value"><span id="stat-members">0</span><span>K+</span></div>
+</div>
+</div>
+<div class="hud-separator"></div>
+<div class="hud-item">
+<div>
+<div class="hud-item-label">Сессий</div>
+<div class="hud-item-value"><span id="stat-sessions">0</span><span>M</span></div>
+</div>
+</div>
+<div class="hud-separator"></div>
+<div class="hud-item">
+<div>
+<div class="hud-item-label">Рекордов побито</div>
+<div class="hud-item-value"><span id="stat-prs">0</span><span>K+</span></div>
+</div>
+</div>
+</div>
+</section>
+<!-- ─── SECTION 2: PROGRAMS ────────────────────────────────────────── -->
+<section id="programs">
+<div class="programs-header stagger-up">
+<div class="reveal-child">
+<span class="section-label">Системы тренировок</span>
+<h2>Четыре пути.<br/><em class="text-grad" style="font-style:normal;">Одна цель.</em></h2>
+</div>
+<p class="reveal-child">
+        Каждая программа точно спроектирована под вашу конкретную цель адаптации. Выберите дисциплину. Владейте процессом.
       </p>
-    </div>
-
-    <div class="program-cards">
-      <!-- Card 1 — Foundry -->
-      <div class="program-card reveal-left">
-        <div class="program-card-img">
-          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
-        </div>
-        <div class="program-card-left prog-bg-diagonal">
-          <div class="prog-num">01</div>
-          <div class="prog-name">Foundry</div>
-          <div class="prog-badge">
-            <iconify-icon icon="lucide:dumbbell" noobserver=""></iconify-icon>
-            Strength
+</div>
+<div class="program-cards">
+<!-- Card 1 — Foundry -->
+<div class="program-card reveal-left">
+<div class="program-card-img">
+<img alt="" loading="lazy" src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=600&amp;q=70&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="program-card-left prog-bg-diagonal">
+<div class="prog-num">01</div>
+<div class="prog-name">Foundry</div>
+<div class="prog-badge">
+<iconify-icon icon="lucide:dumbbell" noobserver=""></iconify-icon>
+            Сила
           </div>
-        </div>
-        <div class="program-card-right">
-          <p class="prog-desc">
-            The foundation of everything. A 16-week progressive strength protocol built around compound movements, evidence-based volume, and systematic load progression. Forge the base. Build the engine.
+</div>
+<div class="program-card-right">
+<p class="prog-desc">
+            Фундамент всего. 16-недельный прогрессивный силовой протокол, построенный вокруг базовых движений, научно обоснованного объёма и системной прогрессии нагрузок. Выкуйте базу. Постройте двигатель.
           </p>
-          <div class="prog-meta">
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
-              <span>16 weeks</span>
-            </div>
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
-              <span>4x / week</span>
-            </div>
-          </div>
-          <div class="intensity-label">
-            <div class="intensity-bar"><div class="intensity-fill" data-width="85%"></div></div>
-            <span>Intensity: High</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2 — Ignite -->
-      <div class="program-card reveal-right">
-        <div class="program-card-img">
-          <img src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
-        </div>
-        <div class="program-card-left prog-bg-dots">
-          <div class="prog-num">02</div>
-          <div class="prog-name">Ignite</div>
-          <div class="prog-badge">
-            <iconify-icon icon="lucide:zap" noobserver=""></iconify-icon>
+<div class="prog-meta">
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+<span>16 недель</span>
+</div>
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+<span>4 раза / нед</span>
+</div>
+</div>
+<div class="intensity-label">
+<div class="intensity-bar"><div class="intensity-fill" data-width="85%"></div></div>
+<span>Интенсивность: высокая</span>
+</div>
+</div>
+</div>
+<!-- Card 2 — Ignite -->
+<div class="program-card reveal-right">
+<div class="program-card-img">
+<img alt="" loading="lazy" src="https://images.unsplash.com/photo-1601422407692-ec4eeec1d9b3?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="program-card-left prog-bg-dots">
+<div class="prog-num">02</div>
+<div class="prog-name">Ignite</div>
+<div class="prog-badge">
+<iconify-icon icon="lucide:zap" noobserver=""></iconify-icon>
             HIIT
           </div>
-        </div>
-        <div class="program-card-right">
-          <p class="prog-desc">
-            Maximum output in minimum time. High-intensity interval protocols engineered to torch calories, spike VO2 max, and trigger EPOC for 48-hour afterburn. Fast, brutal, effective.
+</div>
+<div class="program-card-right">
+<p class="prog-desc">
+            Максимальная отдача за минимальное время. Высокоинтенсивные интервальные протоколы, созданные, чтобы сжигать калории, поднимать VO2 max и запускать EPOC с 48-часовым дожигом. Быстро, жёстко, эффективно.
           </p>
-          <div class="prog-meta">
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
-              <span>8 weeks</span>
-            </div>
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
-              <span>5x / week</span>
-            </div>
+<div class="prog-meta">
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+<span>8 недель</span>
+</div>
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+<span>5 раз / нед</span>
+</div>
+</div>
+<div class="intensity-label">
+<div class="intensity-bar"><div class="intensity-fill" data-width="100%"></div></div>
+<span>Интенсивность: максимальная</span>
+</div>
+</div>
+</div>
+<!-- Card 3 — Forge Flow -->
+<div class="program-card reveal-left">
+<div class="program-card-img">
+<img alt="" loading="lazy" src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&amp;q=70&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="program-card-left prog-bg-cross">
+<div class="prog-num">03</div>
+<div class="prog-name">Forge Flow</div>
+<div class="prog-badge">
+<iconify-icon icon="lucide:wind" noobserver=""></iconify-icon>
+            Мобильность
           </div>
-          <div class="intensity-label">
-            <div class="intensity-bar"><div class="intensity-fill" data-width="100%"></div></div>
-            <span>Intensity: Maximum</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3 — Forge Flow -->
-      <div class="program-card reveal-left">
-        <div class="program-card-img">
-          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=600&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
-        </div>
-        <div class="program-card-left prog-bg-cross">
-          <div class="prog-num">03</div>
-          <div class="prog-name">Forge Flow</div>
-          <div class="prog-badge">
-            <iconify-icon icon="lucide:wind" noobserver=""></iconify-icon>
-            Mobility
-          </div>
-        </div>
-        <div class="program-card-right">
-          <p class="prog-desc">
-            The overlooked edge. Systematic mobility, fascial release, and joint integrity work that unlocks range of motion, eliminates compensation patterns, and makes every other program more effective.
+</div>
+<div class="program-card-right">
+<p class="prog-desc">
+            Недооценённое преимущество. Системная работа над мобильностью, фасциальным релизом и здоровьем суставов, которая раскрывает амплитуду движения, устраняет компенсаторные паттерны и делает каждую другую программу эффективнее.
           </p>
-          <div class="prog-meta">
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
-              <span>12 weeks</span>
-            </div>
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
-              <span>6x / week</span>
-            </div>
+<div class="prog-meta">
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+<span>12 недель</span>
+</div>
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+<span>6 раз / нед</span>
+</div>
+</div>
+<div class="intensity-label">
+<div class="intensity-bar"><div class="intensity-fill" data-width="55%"></div></div>
+<span>Интенсивность: средняя</span>
+</div>
+</div>
+</div>
+<!-- Card 4 — Iron Mind -->
+<div class="program-card reveal-right">
+<div class="program-card-img">
+<img alt="" loading="lazy" src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&amp;q=70&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="program-card-left prog-bg-wave">
+<div class="prog-num">04</div>
+<div class="prog-name">Iron Mind</div>
+<div class="prog-badge">
+<iconify-icon icon="lucide:brain" noobserver=""></iconify-icon>
+            Ментальная производительность
           </div>
-          <div class="intensity-label">
-            <div class="intensity-bar"><div class="intensity-fill" data-width="55%"></div></div>
-            <span>Intensity: Medium</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 4 — Iron Mind -->
-      <div class="program-card reveal-right">
-        <div class="program-card-img">
-          <img src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
-        </div>
-        <div class="program-card-left prog-bg-wave">
-          <div class="prog-num">04</div>
-          <div class="prog-name">Iron Mind</div>
-          <div class="prog-badge">
-            <iconify-icon icon="lucide:brain" noobserver=""></iconify-icon>
-            Mental Performance
-          </div>
-        </div>
-        <div class="program-card-right">
-          <p class="prog-desc">
-            The final frontier of athletic performance. Breathwork, cognitive conditioning, visualization protocols, and stress inoculation. Because every PR is broken in the mind before the body follows.
+</div>
+<div class="program-card-right">
+<p class="prog-desc">
+            Последний рубеж атлетической производительности. Дыхательные практики, когнитивная подготовка, протоколы визуализации и стресс-инокуляция. Потому что каждый рекорд сначала бьётся в голове, и только потом тело следует за ней.
           </p>
-          <div class="prog-meta">
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
-              <span>10 weeks</span>
-            </div>
-            <div class="prog-meta-item">
-              <iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
-              <span>Daily</span>
-            </div>
-          </div>
-          <div class="intensity-label">
-            <div class="intensity-bar"><div class="intensity-fill" data-width="70%"></div></div>
-            <span>Intensity: Focused</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SECTION 3: METHODOLOGY ─────────────────────────────────────── -->
-  <section id="methodology">
-    <div class="method-header">
-      <span class="section-label reveal">How We Build Athletes</span>
-      <h2 class="reveal">The Forge Framework</h2>
-    </div>
-
-    <div class="method-showcase reveal">
-      <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&amp;q=75&amp;auto=format&amp;fit=crop" alt="Gym training environment" loading="lazy">
-      <div class="method-showcase-overlay">
-        <div class="method-showcase-stat">
-          <iconify-icon icon="lucide:microscope" noobserver=""></iconify-icon>
-          <span><strong>200+</strong> peer-reviewed studies referenced</span>
-        </div>
-        <div class="method-showcase-stat">
-          <iconify-icon icon="lucide:users" noobserver=""></iconify-icon>
-          <span><strong>12</strong> sport scientists on staff</span>
-        </div>
-        <div class="method-showcase-stat">
-          <iconify-icon icon="lucide:refresh-cw" noobserver=""></iconify-icon>
-          <span>Protocols updated <strong>quarterly</strong></span>
-        </div>
-      </div>
-    </div>
-
-    <div class="method-blocks">
-      <div class="method-block">
-        <div class="method-num reveal-left">01</div>
-        <div class="method-content reveal">
-          <h3>Science-Backed Programming</h3>
-          <p>
-            Every session is built on peer-reviewed exercise science. Rep ranges, rest periods, volume landmarks, and intensity percentages are not guesswork — they are extracted from decades of performance research and validated through thousands of athlete outcomes. We don't follow trends. We follow data.
+<div class="prog-meta">
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:clock" noobserver=""></iconify-icon>
+<span>10 недель</span>
+</div>
+<div class="prog-meta-item">
+<iconify-icon icon="lucide:calendar" noobserver=""></iconify-icon>
+<span>Ежедневно</span>
+</div>
+</div>
+<div class="intensity-label">
+<div class="intensity-bar"><div class="intensity-fill" data-width="70%"></div></div>
+<span>Интенсивность: сфокусированная</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ─── SECTION 3: METHODOLOGY ─────────────────────────────────────── -->
+<section id="methodology">
+<div class="method-header">
+<span class="section-label reveal">Как мы строим атлетов</span>
+<h2 class="reveal">Фреймворк Forge</h2>
+</div>
+<div class="method-showcase reveal">
+<img alt="Тренировочная среда зала" loading="lazy" src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=1200&amp;q=75&amp;auto=format&amp;fit=crop"/>
+<div class="method-showcase-overlay">
+<div class="method-showcase-stat">
+<iconify-icon icon="lucide:microscope" noobserver=""></iconify-icon>
+<span><strong>200+</strong> рецензируемых исследований в основе</span>
+</div>
+<div class="method-showcase-stat">
+<iconify-icon icon="lucide:users" noobserver=""></iconify-icon>
+<span><strong>12</strong> спортивных учёных в штате</span>
+</div>
+<div class="method-showcase-stat">
+<iconify-icon icon="lucide:refresh-cw" noobserver=""></iconify-icon>
+<span>Протоколы обновляются <strong>ежеквартально</strong></span>
+</div>
+</div>
+</div>
+<div class="method-blocks">
+<div class="method-block">
+<div class="method-num reveal-left">01</div>
+<div class="method-content reveal">
+<h3>Программирование на основе науки</h3>
+<p>
+            Каждая сессия построена на рецензируемой спортивной науке. Диапазоны повторений, периоды отдыха, ориентиры объёма и проценты интенсивности — не догадки: они извлечены из десятилетий исследований производительности и подтверждены тысячами результатов атлетов. Мы не следуем трендам. Мы следуем данным.
           </p>
-          <div class="method-tag">
-            <iconify-icon icon="lucide:flask-conical" noobserver=""></iconify-icon>
-            <span>Research-Validated Protocols</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="method-block">
-        <div class="method-num reveal-left">02</div>
-        <div class="method-content reveal">
-          <h3>Progressive Overload Tracking</h3>
-          <p>
-            Adaptation requires progressive stress. Our tracking system records every set, rep, and load — calculating weekly volume, intensity zones, and fatigue markers to ensure you're always training at the precise edge of your current capacity. Never too easy. Never overtrained. Always progressing.
+<div class="method-tag">
+<iconify-icon icon="lucide:flask-conical" noobserver=""></iconify-icon>
+<span>Протоколы, подтверждённые исследованиями</span>
+</div>
+</div>
+</div>
+<div class="method-block">
+<div class="method-num reveal-left">02</div>
+<div class="method-content reveal">
+<h3>Отслеживание прогрессивной перегрузки</h3>
+<p>
+            Адаптация требует прогрессирующего стресса. Наша система трекинга записывает каждый подход, повтор и вес, рассчитывая недельный объём, зоны интенсивности и маркеры усталости, чтобы вы всегда тренировались на точной границе текущих возможностей. Никогда слишком легко. Никогда с перетренированностью. Всегда с прогрессом.
           </p>
-          <div class="method-tag">
-            <iconify-icon icon="lucide:trending-up" noobserver=""></iconify-icon>
-            <span>Automated Load Progression</span>
-          </div>
-        </div>
-      </div>
-
-      <div class="method-block">
-        <div class="method-num reveal-left">03</div>
-        <div class="method-content reveal">
-          <h3>Recovery Intelligence</h3>
-          <p>
-            You don't grow during training. You grow during recovery. Forge's Recovery Intelligence system monitors HRV trends, sleep quality scores, subjective readiness, and training load to prescribe optimal recovery windows. Deload weeks, active recovery sessions, and rest days are not optional — they are programmed with the same precision as your hardest workouts.
+<div class="method-tag">
+<iconify-icon icon="lucide:trending-up" noobserver=""></iconify-icon>
+<span>Автоматическая прогрессия нагрузок</span>
+</div>
+</div>
+</div>
+<div class="method-block">
+<div class="method-num reveal-left">03</div>
+<div class="method-content reveal">
+<h3>Интеллект восстановления</h3>
+<p>
+            Вы растёте не во время тренировки. Вы растёте во время восстановления. Система Recovery Intelligence от Forge отслеживает тренды HRV, показатели качества сна, субъективную готовность и тренировочную нагрузку, чтобы назначать оптимальные окна восстановления. Разгрузочные недели, сессии активного восстановления и дни отдыха — не опция: они программируются с той же точностью, что и ваши самые тяжёлые тренировки.
           </p>
-          <div class="method-tag">
-            <iconify-icon icon="lucide:activity" noobserver=""></iconify-icon>
-            <span>HRV-Informed Recovery Windows</span>
-          </div>
+<div class="method-tag">
+<iconify-icon icon="lucide:activity" noobserver=""></iconify-icon>
+<span>Окна восстановления на основе HRV</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ─── SECTION 4: RESULTS ─────────────────────────────────────────── -->
+<section id="results">
+<div class="results-header">
+<span class="section-label reveal">Доказательство работой</span>
+<h2 class="reveal">Цифры, стоящие за<br/><em class="text-grad" style="font-style:normal;">упорным трудом</em></h2>
+</div>
+<div class="results-split">
+<div class="stat-rows">
+<div class="stat-row reveal" data-stat="">
+<div class="stat-row-top">
+<span class="stat-row-label">Средний прирост силы</span>
+<span class="stat-row-value"><span class="stat-num counter" data-target="34">0</span>%</span>
+</div>
+<div class="stat-progress-track">
+<div class="stat-progress-fill" data-width="34%"></div>
+</div>
+<span class="stat-row-sub">Измерено по всем участникам Foundry, первый 16-недельный цикл</span>
+</div>
+<div class="stat-row reveal" data-stat="">
+<div class="stat-row-top">
+<span class="stat-row-label">Удержание участников</span>
+<span class="stat-row-value"><span class="stat-num counter" data-target="94">0</span>%</span>
+</div>
+<div class="stat-progress-track">
+<div class="stat-progress-fill" data-width="94%"></div>
+</div>
+<span class="stat-row-sub">Скользящее среднее за 12 месяцев по всем уровням членства</span>
+</div>
+<div class="stat-row reveal" data-stat="">
+<div class="stat-row-top">
+<span class="stat-row-label">Улучшение показателя восстановления</span>
+<span class="stat-row-value"><span class="stat-num counter" data-target="89">0</span>/100</span>
+</div>
+<div class="stat-progress-track">
+<div class="stat-progress-fill" data-width="89%"></div>
+</div>
+<span class="stat-row-sub">Средний показатель восстановления на основе HRV после 8 недель на платформе</span>
+</div>
+<div class="stat-row reveal" data-stat="">
+<div class="stat-row-top">
+<span class="stat-row-label">Сессий завершено</span>
+<span class="stat-row-value"><span class="stat-num counter" data-format="compact" data-target="1200000">0</span></span>
+</div>
+<div class="stat-progress-track">
+<div class="stat-progress-fill" data-width="78%"></div>
+</div>
+<span class="stat-row-sub">Всего тренировок записано с момента запуска платформы</span>
+</div>
+<div class="stat-row reveal" data-stat="">
+<div class="stat-row-top">
+<span class="stat-row-label">Личных рекордов побито</span>
+<span class="stat-row-value"><span class="stat-num counter" data-format="compact" data-target="847000">0</span></span>
+</div>
+<div class="stat-progress-track">
+<div class="stat-progress-fill" data-width="65%"></div>
+</div>
+<span class="stat-row-sub">Индивидуальные рекорды, установленные и записанные участниками Forge</span>
+</div>
+</div>
+<div class="results-image-col reveal-right">
+<img alt="Атлет отслеживает результаты" loading="lazy" src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&amp;q=80&amp;auto=format&amp;fit=crop"/>
+<div class="results-image-badge">
+<iconify-icon icon="lucide:trending-up" noobserver=""></iconify-icon>
+<div class="results-image-badge-text">
+<strong>Трекинг в реальном времени</strong>
+          Каждый повтор, подход и вес записываются автоматически
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SECTION 4: RESULTS ─────────────────────────────────────────── -->
-  <section id="results">
-    <div class="results-header">
-      <span class="section-label reveal">Proof of Work</span>
-      <h2 class="reveal">The numbers behind<br><em class="text-grad" style="font-style:normal;">the grind</em></h2>
-    </div>
-
-    <div class="results-split">
-    <div class="stat-rows">
-      <div class="stat-row reveal" data-stat="">
-        <div class="stat-row-top">
-          <span class="stat-row-label">Average Strength Gain</span>
-          <span class="stat-row-value"><span class="stat-num counter" data-target="34">0</span>%</span>
-        </div>
-        <div class="stat-progress-track">
-          <div class="stat-progress-fill" data-width="34%"></div>
-        </div>
-        <span class="stat-row-sub">Measured across all Foundry participants, first 16-week cycle</span>
-      </div>
-
-      <div class="stat-row reveal" data-stat="">
-        <div class="stat-row-top">
-          <span class="stat-row-label">Member Retention Rate</span>
-          <span class="stat-row-value"><span class="stat-num counter" data-target="94">0</span>%</span>
-        </div>
-        <div class="stat-progress-track">
-          <div class="stat-progress-fill" data-width="94%"></div>
-        </div>
-        <span class="stat-row-sub">12-month rolling average across all membership tiers</span>
-      </div>
-
-      <div class="stat-row reveal" data-stat="">
-        <div class="stat-row-top">
-          <span class="stat-row-label">Recovery Score Improvement</span>
-          <span class="stat-row-value"><span class="stat-num counter" data-target="89">0</span>/100</span>
-        </div>
-        <div class="stat-progress-track">
-          <div class="stat-progress-fill" data-width="89%"></div>
-        </div>
-        <span class="stat-row-sub">Average HRV-based recovery score after 8 weeks on platform</span>
-      </div>
-
-      <div class="stat-row reveal" data-stat="">
-        <div class="stat-row-top">
-          <span class="stat-row-label">Sessions Completed</span>
-          <span class="stat-row-value"><span class="stat-num counter" data-target="1200000" data-format="compact">0</span></span>
-        </div>
-        <div class="stat-progress-track">
-          <div class="stat-progress-fill" data-width="78%"></div>
-        </div>
-        <span class="stat-row-sub">Total workouts logged since platform launch</span>
-      </div>
-
-      <div class="stat-row reveal" data-stat="">
-        <div class="stat-row-top">
-          <span class="stat-row-label">Personal Records Broken</span>
-          <span class="stat-row-value"><span class="stat-num counter" data-target="847000" data-format="compact">0</span></span>
-        </div>
-        <div class="stat-progress-track">
-          <div class="stat-progress-fill" data-width="65%"></div>
-        </div>
-        <span class="stat-row-sub">Individual lifetime PRs set and logged by Forge members</span>
-      </div>
-    </div>
-
-    <div class="results-image-col reveal-right">
-      <img src="https://images.unsplash.com/photo-1581009146145-b5ef050c2e1e?w=800&amp;q=80&amp;auto=format&amp;fit=crop" alt="Athlete tracking performance" loading="lazy">
-      <div class="results-image-badge">
-        <iconify-icon icon="lucide:trending-up" noobserver=""></iconify-icon>
-        <div class="results-image-badge-text">
-          <strong>Real-time tracking</strong>
-          Every rep, set, and load logged automatically
-        </div>
-      </div>
-    </div>
-    </div>
-  </section>
-
-  <!-- ─── SECTION 5: COMMUNITY ───────────────────────────────────────── -->
-  <section id="community">
-    <div class="community-header">
-      <span class="section-label reveal">Member Stories</span>
-      <h2 class="reveal">Built different.<br><em class="text-grad" style="font-style:normal;">Proven results.</em></h2>
-    </div>
-
-    <div class="testimonial-stack">
-      <div class="testimonial-item reveal">
-        <p class="testimonial-quote">
-          "After four years of plateauing, Foundry gave me a 47kg squat PR in twelve weeks.
-          The progressive overload tracking removed every excuse I ever had.
-          The only variable left was <em>showing up</em>."
+</div>
+</div>
+</div>
+</section>
+<!-- ─── SECTION 5: COMMUNITY ───────────────────────────────────────── -->
+<section id="community">
+<div class="community-header">
+<span class="section-label reveal">Истории участников</span>
+<h2 class="reveal">Сделаны иначе.<br/><em class="text-grad" style="font-style:normal;">Доказанные результаты.</em></h2>
+</div>
+<div class="testimonial-stack">
+<div class="testimonial-item reveal">
+<p class="testimonial-quote">
+          "После четырёх лет плато Foundry дал мне рекорд в приседе +47 кг за двенадцать недель. Отслеживание прогрессивной перегрузки убрало все отговорки, какие у меня когда-либо были. Единственной переменной осталось <em>просто приходить</em>."
         </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Marcus D." loading="lazy">
-          </div>
-          <div class="author-line"></div>
-          <div class="author-info">
-            <div class="author-name">Marcus D.</div>
-            <div class="author-detail">Competitive Powerlifter — Foundry Program, Cycle 3</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-item reveal">
-        <p class="testimonial-quote">
-          "Iron Mind is the program nobody talks about but every athlete needs.
-          My race anxiety dropped. My focus blocks doubled.
-          I stopped <em>training</em> and started performing."
+<div class="testimonial-author">
+<div class="author-avatar">
+<img alt="Маркус Д." loading="lazy" src="https://images.unsplash.com/photo-1568602471122-7832951cc4c5?w=100&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=face"/>
+</div>
+<div class="author-line"></div>
+<div class="author-info">
+<div class="author-name">Маркус Д.</div>
+<div class="author-detail">Соревнующийся пауэрлифтер — программа Foundry, цикл 3</div>
+</div>
+</div>
+</div>
+<div class="testimonial-item reveal">
+<p class="testimonial-quote">
+          "Iron Mind — программа, о которой никто не говорит, но которая нужна каждому атлету. Предстартовая тревожность снизилась. Блоки концентрации удвоились. Теперь вместо того, чтобы просто <em>тренироваться</em> — я показываю результат."
         </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=100&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Priya S." loading="lazy">
-          </div>
-          <div class="author-line"></div>
-          <div class="author-info">
-            <div class="author-name">Priya S.</div>
-            <div class="author-detail">Marathon Runner — Iron Mind + Forge Flow Stack</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="testimonial-item reveal">
-        <p class="testimonial-quote">
-          "The recovery intelligence feature alone is worth the price.
-          I used to grind myself into the ground and wonder why I wasn't improving.
-          Now I understand: <em>rest is programming</em>."
+<div class="testimonial-author">
+<div class="author-avatar">
+<img alt="Прия С." loading="lazy" src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=100&amp;q=70&amp;auto=format&amp;fit=crop&amp;crop=face"/>
+</div>
+<div class="author-line"></div>
+<div class="author-info">
+<div class="author-name">Прия С.</div>
+<div class="author-detail">Марафонский бег — связка Iron Mind + Forge Flow</div>
+</div>
+</div>
+</div>
+<div class="testimonial-item reveal">
+<p class="testimonial-quote">
+          "Одна только функция интеллекта восстановления стоит своих денег. Раньше моей стратегией было загонять себя в землю и удивляться, почему нет прогресса. Теперь понимаю: <em>отдых — это тоже программа</em>."
         </p>
-        <div class="testimonial-author">
-          <div class="author-avatar">
-            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&amp;q=80&amp;auto=format&amp;fit=crop&amp;crop=face" alt="Jordan T." loading="lazy">
+<div class="testimonial-author">
+<div class="author-avatar">
+<img alt="Джордан Т." loading="lazy" src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&amp;q=80&amp;auto=format&amp;fit=crop&amp;crop=face"/>
+</div>
+<div class="author-line"></div>
+<div class="author-info">
+<div class="author-name">Джордан Т.</div>
+<div class="author-detail">Атлет CrossFit — членство Elite, 14 месяцев</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ─── SECTION 6: MEMBERSHIP ──────────────────────────────────────── -->
+<section id="membership">
+<div class="membership-header">
+<span class="section-label reveal">Уровни членства</span>
+<h2 class="reveal">Инвестируйте в своё<br/><em class="text-grad" style="font-style:normal;">показного</em></h2>
+</div>
+<div class="plans-wrapper reveal">
+<!-- Essential -->
+<div class="plan-col essential">
+<div class="plan-name">Essential</div>
+<div class="plan-price">
+<span class="plan-price-num">$39</span>
+<span class="plan-price-period">/ месяц</span>
+</div>
+<p class="plan-desc">Полный доступ к нашей основной библиотеке программ. Идеально для атлетов, готовых начать строить свой фундамент.</p>
+<div class="plan-features">
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Все 4 основные тренировочные программы</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Дашборд отслеживания прогресса</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Доступ к форуму сообщества</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Видеобиблиотека упражнений (400+ движений)</span>
+</div>
+<div class="plan-feature excluded">
+<iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+<span>HRV и интеллект восстановления</span>
+</div>
+<div class="plan-feature excluded">
+<iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+<span>Чек-ины с тренером 1:1</span>
+</div>
+<div class="plan-feature excluded">
+<iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+<span>Конструктор собственных программ</span>
+</div>
+<div class="plan-feature excluded">
+<iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
+<span>Приоритетная поддержка</span>
+</div>
+</div>
+<a class="btn-plan" href="#cta">Начать с Essential</a>
+</div>
+<div class="plan-divider">
+<div class="plan-divider-line"></div>
+</div>
+<!-- Elite -->
+<div class="plan-col elite">
+<div class="plan-name">Elite</div>
+<div class="plan-price">
+<span class="plan-price-num">$89</span>
+<span class="plan-price-period">/ месяц</span>
+</div>
+<p class="plan-desc">Полная экосистема производительности. Всё из Essential плюс инструменты, которые отличают хороших атлетов от исключительных.</p>
+<div class="plan-features">
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Все 4 основные тренировочные программы</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Дашборд отслеживания прогресса</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Доступ к форуму сообщества</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Видеобиблиотека упражнений (400+ движений)</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>HRV и интеллект восстановления</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Ежемесячные чек-ины с тренером 1:1</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Конструктор собственных программ</span>
+</div>
+<div class="plan-feature included">
+<iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
+<span>Приоритетная поддержка + ранний доступ</span>
+</div>
+</div>
+<a class="btn-plan primary" href="#cta">Начать с Elite</a>
+</div>
+</div>
+<div class="membership-cta-banner reveal">
+<div class="banner-text">
+<h3>Не уверены, какой план вам подходит?</h3>
+<p>Начните с 14-дневного бесплатного периода. Банковская карта не нужна. Отмена в любой момент.</p>
+</div>
+<a class="btn-banner" href="#cta">
+<span class="btn-text">Получить бесплатный период</span>
+<iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
+</a>
+</div>
+</section>
+<!-- ─── SECTION 7: FAQ ─────────────────────────────────────────────── -->
+<section id="faq">
+<div class="faq-header">
+<span class="section-label reveal">Ответы на вопросы</span>
+<h2 class="reveal">Всё, что вам<br/><em class="text-grad" style="font-style:normal;">нужно знать</em></h2>
+</div>
+<div class="faq-grid stagger-up">
+<div class="faq-item reveal-child">
+<div class="faq-question">
+<span>Какой уровень подготовки нужен для старта?</span>
+<div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">
+            Каждая программа Forge включает оценку Level Selector при онбординге. У Foundry, например, есть треки для новичков (0–1 год тренировок), среднего уровня (1–3 года) и продвинутых. Программа адаптируется под ваши текущие показатели. Если вы можете приседать, жать и тянуть с базовой техникой, вы готовы к любой программе на этой платформе.
           </div>
-          <div class="author-line"></div>
-          <div class="author-info">
-            <div class="author-name">Jordan T.</div>
-            <div class="author-detail">CrossFit Competitor — Elite Membership, 14 months</div>
+</div>
+</div>
+<div class="faq-item reveal-child">
+<div class="faq-question">
+<span>Нужен ли полноценный зал или можно тренироваться дома?</span>
+<div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">
+            Foundry и Ignite рассчитаны на полностью оборудованный зал со штангами, стойками и тренажёрами. Forge Flow и Iron Mind требуют только коврик и свободное место на полу. В библиотеке программ также есть домашние варианты Foundry с гантелями, резинками и заменами на упражнения с собственным весом.
           </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SECTION 6: MEMBERSHIP ──────────────────────────────────────── -->
-  <section id="membership">
-    <div class="membership-header">
-      <span class="section-label reveal">Membership Tiers</span>
-      <h2 class="reveal">Invest in your<br><em class="text-grad" style="font-style:normal;">performance</em></h2>
-    </div>
-
-    <div class="plans-wrapper reveal">
-      <!-- Essential -->
-      <div class="plan-col essential">
-        <div class="plan-name">Essential</div>
-        <div class="plan-price">
-          <span class="plan-price-num">$39</span>
-          <span class="plan-price-period">/ month</span>
-        </div>
-        <p class="plan-desc">Full access to our core programming library. Perfect for athletes ready to start building their foundation.</p>
-        <div class="plan-features">
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>All 4 core training programs</span>
+</div>
+</div>
+<div class="faq-item reveal-child">
+<div class="faq-question">
+<span>Можно ли совмещать несколько программ одновременно?</span>
+<div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">
+            Да — и мы это поощряем. Самая популярная комбинация — Foundry + Forge Flow: силовая работа в паре с ежедневными сессиями мобильности. Iron Mind задуман как дополнительный слой к любой программе. Связка Foundry + Ignite — продвинутый вариант, и пробовать её стоит только после прохождения хотя бы одного полного цикла каждой программы по отдельности.
           </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Progress tracking dashboard</span>
+</div>
+</div>
+<div class="faq-item reveal-child">
+<div class="faq-question">
+<span>Как работает система интеллекта восстановления?</span>
+<div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">
+            Recovery Intelligence объединяет ваш ежедневный показатель HRV (через совместимые носимые устройства или ручной чек-ин), продолжительность сна, субъективную оценку готовности и скользящую 7-дневную тренировочную нагрузку. Алгоритм выдаёт ежедневный показатель готовности и рекомендует, тренироваться ли в полную силу, снизить нагрузку на 20% или взять день активного восстановления. Эта функция доступна только в членстве Elite.
           </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Community forum access</span>
+</div>
+</div>
+<div class="faq-item reveal-child">
+<div class="faq-question">
+<span>С какими носимыми устройствами интегрируется Forge?</span>
+<div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">
+            Forge нативно подключается к Whoop, Garmin, Apple Health и Google Fit. Интеграция с Oura Ring — в бете для участников Elite. Все данные синхронизируются автоматически каждое утро и обновляют ваш показатель восстановления до первой сессии дня.
           </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Exercise video library (400+ movements)</span>
+</div>
+</div>
+<div class="faq-item reveal-child">
+<div class="faq-question">
+<span>Какова политика отмены?</span>
+<div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
+</div>
+<div class="faq-answer">
+<div class="faq-answer-inner">
+            Отменяйте в любой момент, без вопросов, прямо в настройках аккаунта. Доступ сохраняется до конца текущего расчётного периода. Мы не берём комиссий за отмену, а все ваши записанные данные — тренировки, рекорды, заметки о прогрессе — остаются доступными в течение 12 месяцев после отмены.
           </div>
-          <div class="plan-feature excluded">
-            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
-            <span>HRV &amp; recovery intelligence</span>
-          </div>
-          <div class="plan-feature excluded">
-            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
-            <span>1:1 coach check-ins</span>
-          </div>
-          <div class="plan-feature excluded">
-            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
-            <span>Custom program builder</span>
-          </div>
-          <div class="plan-feature excluded">
-            <iconify-icon icon="lucide:minus" noobserver=""></iconify-icon>
-            <span>Priority support</span>
-          </div>
-        </div>
-        <a href="#cta" class="btn-plan">Start Essential</a>
-      </div>
-
-      <div class="plan-divider">
-        <div class="plan-divider-line"></div>
-      </div>
-
-      <!-- Elite -->
-      <div class="plan-col elite">
-        <div class="plan-name">Elite</div>
-        <div class="plan-price">
-          <span class="plan-price-num">$89</span>
-          <span class="plan-price-period">/ month</span>
-        </div>
-        <p class="plan-desc">The complete performance ecosystem. Everything in Essential, plus the tools that separate good athletes from exceptional ones.</p>
-        <div class="plan-features">
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>All 4 core training programs</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Progress tracking dashboard</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Community forum access</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Exercise video library (400+ movements)</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>HRV &amp; recovery intelligence</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Monthly 1:1 coach check-ins</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Custom program builder</span>
-          </div>
-          <div class="plan-feature included">
-            <iconify-icon icon="lucide:check" noobserver=""></iconify-icon>
-            <span>Priority support + early access</span>
-          </div>
-        </div>
-        <a href="#cta" class="btn-plan primary">Start Elite</a>
-      </div>
-    </div>
-
-    <div class="membership-cta-banner reveal">
-      <div class="banner-text">
-        <h3>Not sure which plan is right for you?</h3>
-        <p>Start with a 14-day free trial. No credit card required. Cancel anytime.</p>
-      </div>
-      <a href="#cta" class="btn-banner">
-        <span class="btn-text">Claim Free Trial</span>
-        <iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
-      </a>
-    </div>
-  </section>
-
-  <!-- ─── SECTION 7: FAQ ─────────────────────────────────────────────── -->
-  <section id="faq">
-    <div class="faq-header">
-      <span class="section-label reveal">Questions Answered</span>
-      <h2 class="reveal">Everything you<br><em class="text-grad" style="font-style:normal;">need to know</em></h2>
-    </div>
-
-    <div class="faq-grid stagger-up">
-      <div class="faq-item reveal-child">
-        <div class="faq-question">
-          <span>What fitness level do I need to start?</span>
-          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Every Forge program includes a Level Selector assessment during onboarding. Foundry, for example, has Beginner (0–1 yr training), Intermediate (1–3 yrs), and Advanced tracks. The programming adapts to your current numbers. If you can squat, press, and deadlift with basic form, you're ready for any program on this platform.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item reveal-child">
-        <div class="faq-question">
-          <span>Do I need a full gym, or can I train at home?</span>
-          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Foundry and Ignite are designed for a fully-equipped gym with barbells, racks, and machines. Forge Flow and Iron Mind require only a mat and open floor space. The program library also includes home gym variants for Foundry that use dumbbells, bands, and bodyweight substitutions.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item reveal-child">
-        <div class="faq-question">
-          <span>Can I stack multiple programs simultaneously?</span>
-          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Yes — and we encourage it. Our most popular combination is Foundry + Forge Flow, which pairs strength work with daily mobility sessions. Iron Mind is designed as a supplementary layer to any program. Stacking Foundry + Ignite is advanced and should only be attempted after completing at least one full cycle of each individually.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item reveal-child">
-        <div class="faq-question">
-          <span>How does the recovery intelligence system work?</span>
-          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Recovery Intelligence aggregates your daily HRV reading (via compatible wearables or our manual check-in), sleep duration, subjective readiness score, and rolling 7-day training load. The algorithm outputs a daily readiness score and recommends whether to train at full intensity, reduce load by 20%, or take an active recovery day. This feature is exclusive to Elite membership.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item reveal-child">
-        <div class="faq-question">
-          <span>What wearables does Forge integrate with?</span>
-          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Forge connects natively with Whoop, Garmin, Apple Health, and Google Fit. Oura Ring integration is in beta for Elite members. All data syncs automatically every morning and updates your recovery score before your first session of the day.
-          </div>
-        </div>
-      </div>
-
-      <div class="faq-item reveal-child">
-        <div class="faq-question">
-          <span>What's your cancellation policy?</span>
-          <div class="faq-icon"><iconify-icon icon="lucide:plus" noobserver=""></iconify-icon></div>
-        </div>
-        <div class="faq-answer">
-          <div class="faq-answer-inner">
-            Cancel any time, no questions asked, directly from your account settings. Your access continues until the end of your current billing period. We don't charge cancellation fees, and all your logged data — workouts, PRs, progress notes — remains accessible for 12 months after cancellation.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ─── SECTION 8: CTA ─────────────────────────────────────────────── -->
-  <section id="cta">
-    <div class="cta-bg-image">
-      <img src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1400&amp;q=70&amp;auto=format&amp;fit=crop" alt="" loading="lazy">
-    </div>
-    <span class="section-label cta-label reveal">The First Rep Is Free</span>
-
-    <h2 class="cta-headline reveal">
-      <span class="line-a">Start</span>
-      <span class="line-b text-grad glitch-text">Forging</span>
-    </h2>
-
-    <form class="cta-form reveal" onsubmit="handleCtaSubmit(event)">
-      <input type="email" class="cta-input" placeholder="your@email.com" required="" autocomplete="email">
-      <button type="submit" class="btn-cta-submit">
-        <span>Start Free Trial</span>
-        <iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
-      </button>
-    </form>
-
-    <p class="cta-fine reveal">14-day free trial. No credit card required. Cancel anytime.</p>
-  </section>
-
-  <!-- ─── FOOTER ─────────────────────────────────────────────────────── -->
-  <footer>
-    <div class="footer-grid">
-      <div class="footer-brand">
-        <div class="footer-logo">
-          <span class="logo-text">FORGE</span>
-        </div>
-        <p>Premium athletic performance programming. Built for athletes who demand more from themselves.</p>
-        <div class="footer-social">
-          <a href="#" aria-label="Instagram">
-            <iconify-icon icon="lucide:instagram" noobserver=""></iconify-icon>
-          </a>
-          <a href="#" aria-label="Twitter">
-            <iconify-icon icon="lucide:twitter" noobserver=""></iconify-icon>
-          </a>
-          <a href="#" aria-label="YouTube">
-            <iconify-icon icon="lucide:youtube" noobserver=""></iconify-icon>
-          </a>
-          <a href="#" aria-label="LinkedIn">
-            <iconify-icon icon="lucide:linkedin" noobserver=""></iconify-icon>
-          </a>
-        </div>
-      </div>
-
-      <div class="footer-col">
-        <h4>Programs</h4>
-        <ul>
-          <li><a href="#programs">Foundry — Strength</a></li>
-          <li><a href="#programs">Ignite — HIIT</a></li>
-          <li><a href="#programs">Forge Flow — Mobility</a></li>
-          <li><a href="#programs">Iron Mind — Mental Performance</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Company</h4>
-        <ul>
-          <li><a href="#">About Forge</a></li>
-          <li><a href="#">Our Coaches</a></li>
-          <li><a href="#">Research Partners</a></li>
-          <li><a href="#">Press Kit</a></li>
-          <li><a href="#">Careers</a></li>
-        </ul>
-      </div>
-
-      <div class="footer-col">
-        <h4>Support</h4>
-        <ul>
-          <li><a href="#faq">FAQ</a></li>
-          <li><a href="#">Help Center</a></li>
-          <li><a href="#">Contact Us</a></li>
-          <li><a href="#">Community</a></li>
-          <li><a href="#">System Status</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
-      <span class="footer-copy">
-        © <span id="footer-year"></span> Forge Performance, Inc. All rights reserved.
+</div>
+</div>
+</div>
+</section>
+<!-- ─── SECTION 8: CTA ─────────────────────────────────────────────── -->
+<section id="cta">
+<div class="cta-bg-image">
+<img alt="" loading="lazy" src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=1400&amp;q=70&amp;auto=format&amp;fit=crop"/>
+</div>
+<span class="section-label cta-label reveal">Первый подход — бесплатно</span>
+<h2 class="cta-headline reveal">
+<span class="line-a">Начать</span>
+<span class="line-b text-grad glitch-text">Куйте</span>
+</h2>
+<form class="cta-form reveal" onsubmit="handleCtaSubmit(event)">
+<input autocomplete="email" class="cta-input" placeholder="your@email.com" required="" type="email"/>
+<button class="btn-cta-submit" type="submit">
+<span>Начать бесплатный период</span>
+<iconify-icon icon="lucide:arrow-right" noobserver=""></iconify-icon>
+</button>
+</form>
+<p class="cta-fine reveal">14-дневный бесплатный период. Банковская карта не нужна. Отмена в любой момент.</p>
+</section>
+<!-- ─── FOOTER ─────────────────────────────────────────────────────── -->
+<footer>
+<div class="footer-grid">
+<div class="footer-brand">
+<div class="footer-logo">
+<span class="logo-text">FORGE</span>
+</div>
+<p>Премиальное программирование атлетической производительности. Создано для атлетов, которые требуют от себя большего.</p>
+<div class="footer-social">
+<a aria-label="Instagram" href="#">
+<iconify-icon icon="lucide:instagram" noobserver=""></iconify-icon>
+</a>
+<a aria-label="Twitter" href="#">
+<iconify-icon icon="lucide:twitter" noobserver=""></iconify-icon>
+</a>
+<a aria-label="YouTube" href="#">
+<iconify-icon icon="lucide:youtube" noobserver=""></iconify-icon>
+</a>
+<a aria-label="LinkedIn" href="#">
+<iconify-icon icon="lucide:linkedin" noobserver=""></iconify-icon>
+</a>
+</div>
+</div>
+<div class="footer-col">
+<h4>Программы</h4>
+<ul>
+<li><a href="#programs">Foundry — Сила</a></li>
+<li><a href="#programs">Ignite — HIIT</a></li>
+<li><a href="#programs">Forge Flow — Мобильность</a></li>
+<li><a href="#programs">Iron Mind — Ментальная производительность</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Компания</h4>
+<ul>
+<li><a href="#">О Forge</a></li>
+<li><a href="#">Наши тренеры</a></li>
+<li><a href="#">Исследовательские партнёры</a></li>
+<li><a href="#">Пресс-кит</a></li>
+<li><a href="#">Карьера</a></li>
+</ul>
+</div>
+<div class="footer-col">
+<h4>Поддержка</h4>
+<ul>
+<li><a href="#faq">FAQ</a></li>
+<li><a href="#">Центр помощи</a></li>
+<li><a href="#">Свяжитесь с нами</a></li>
+<li><a href="#">Сообщество</a></li>
+<li><a href="#">Статус системы</a></li>
+</ul>
+</div>
+</div>
+<div class="footer-bottom">
+<span class="footer-copy">
+        © <span id="footer-year"></span> Forge Performance, Inc. Все права защищены.
       </span>
-      <div class="footer-legal">
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Service</a>
-        <a href="#">Cookie Policy</a>
-      </div>
-    </div>
-  </footer>
-
-  <!-- ─── JAVASCRIPT ─────────────────────────────────────────────────── -->
-  <script>
+<div class="footer-legal">
+<a href="#">Политика конфиденциальности</a>
+<a href="#">Условия использования</a>
+<a href="#">Политика cookie</a>
+</div>
+</div>
+</footer>
+<!-- ─── JAVASCRIPT ─────────────────────────────────────────────────── -->
+<script>
     // ── Dynamic year ───────────────────────────────────────────────
     document.getElementById('footer-year').textContent = new Date().getFullYear();
 
@@ -2961,6 +2939,4 @@ gtag('config', 'G-2M6V79H761');
       requestAnimationFrame(render);
     })();
   </script>
-
-
 </body></html>

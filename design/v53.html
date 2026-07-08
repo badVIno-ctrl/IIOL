@@ -1,5 +1,5 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html lang="ru">
 <head><script id="aura-preview-performance-controller">
 (function() {
 if (window.__auraPreviewPerformanceController) return;
@@ -91,12 +91,12 @@ setPaused(event.data.paused);
 })();
 </script>
 <meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"/>
-<title>SERENE · A private island</title>
-<meta name="description" content="SERENE, a private island. Twelve overwater villas, one island, nowhere else. A scroll-driven escape, reached only by seaplane."/>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<title>SERENE · Частный остров</title>
+<meta content="SERENE, частный остров. Двенадцать вилл над водой, один остров — и больше нигде. Скролл-путешествие, куда можно добраться только гидросамолётом." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&amp;family=Inter:wght@300;400;500&amp;display=swap" rel="stylesheet"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
@@ -292,7 +292,7 @@ nav.on-light .wm,nav.on-light .mn a{text-shadow:none}
 }
 </style>
 <script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
@@ -300,162 +300,189 @@ gtag('js', new Date());
 gtag('config', 'G-2M6V79H761');
 </script>
 <!-- aura-ga4-end -->
-</head>
+<style>
+/* ===== МОБИЛЬНАЯ АДАПТАЦИЯ ===== */
+* { box-sizing: border-box; }
+body { overflow-x: hidden; }
+img, video, canvas, iframe, svg, picture {
+    max-width: 100% !important;
+    height: auto;
+}
+overflowx { overflow-x: hidden; }
+@media (max-width: 768px) {
+    body { font-size: 15px; }
+    h1 { font-size: clamp(24px, 8vw, 52px) !important; }
+    h2 { font-size: clamp(20px, 6vw, 38px) !important; }
+    h3 { font-size: clamp(16px, 5vw, 28px) !important; }
+    [class*="grid"], [class*="cols"], [class*="columns"],
+    [class*="flex-row"], [class*="row-"], .row {
+        display: block !important;
+        grid-template-columns: 1fr !important;
+        flex-direction: column !important;
+    }
+    [class*="col-"], [class*="column"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        flex: 0 0 100% !important;
+    }
+    nav, [class*="nav"], [class*="menu"], header {
+        flex-wrap: wrap !important;
+    }
+    table { display: block; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    [class*="container"], [class*="wrapper"] {
+        padding-left: 16px !important;
+        padding-right: 16px !important;
+        max-width: 100% !important;
+    }
+    .hero, [class*="hero"], [class*="banner"] {
+        padding: 40px 16px !important;
+        min-height: auto !important;
+    }
+    [style*="height"] { height: auto !important; min-height: 0 !important; }
+    [class*="hide-mobile"], [class*="desktop-only"] { display: none !important; }
+}
+/* ========================== */
+</style></head>
 <body>
 <div class="loader" id="loader"><div class="mk">SERENE</div></div>
-
 <nav>
-  <div class="wm">SERENE</div>
-  <div class="mn"><a href="#villa">The Villas</a><a href="#exp">Experiences</a><a href="#gallery">Gallery</a><a href="#reserve">Reserve</a></div>
+<div class="wm">SERENE</div>
+<div class="mn"><a href="#villa">Виллы</a><a href="#exp">Впечатления</a><a href="#gallery">Галерея</a><a href="#reserve">Забронировать</a></div>
 </nav>
-
 <!-- COLD OPEN -->
 <header class="open">
-  <div class="bg"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/aerial-hero.jpg" alt="SERENE private island from the air" decoding="async"></div>
-  <canvas class="caus" id="causHero"></canvas>
-  <div class="ct">
-    <span class="eyebrow">A private island</span>
-    <h1><span class="ln"><span>Nowhere,</span></span><span class="ln"><span><em>perfected.</em></span></span></h1>
-    <div class="sub">Twelve villas. One island. No one else.</div>
-  </div>
+<div class="bg"><img alt="Частный остров SERENE с высоты" decoding="async" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/aerial-hero.jpg"/></div>
+<canvas class="caus" id="causHero"></canvas>
+<div class="ct">
+<span class="eyebrow">Частный остров</span>
+<h1><span class="ln"><span>Нигде,</span></span><span class="ln"><span><em>доведённое до совершенства.</em></span></span></h1>
+<div class="sub">Двенадцать вилл. Один остров. И больше никого.</div>
+</div>
 </header>
-
 <!-- INTRO -->
 <section class="sec intro"><div class="wrap">
-  <span class="eyebrow rv">The island</span>
-  <h2 class="disp wipe">An island at the <em>end of the map.</em></h2>
-  <p class="rv">Forty-seven acres of palm and white sand, ringed by a private reef. A single resort of twelve overwater villas, reached only by seaplane. Here the day has no schedule but the tide.</p>
-  <div class="rule" id="introRule"></div>
+<span class="eyebrow rv">Остров</span>
+<h2 class="disp wipe">Остров на <em>краю карты.</em></h2>
+<p class="rv">Сорок семь акров пальм и белого песка в кольце частного рифа. Единственный курорт из двенадцати вилл над водой, куда можно добраться только гидросамолётом. Здесь у дня нет расписания, кроме прилива.</p>
+<div class="rule" id="introRule"></div>
 </div></section>
-
 <!-- ARRIVAL -->
 <section class="bleed" id="arrival">
-  <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/seaplane.jpg" alt="A seaplane arriving at the island" class="par" loading="lazy" decoding="async">
-  <div class="cap rv"><span class="k">The arrival</span><span class="t disp">An hour from the world,<br>and then gone from it.</span><p>A single seaplane crosses the lagoon at golden hour. From the float to your deck is forty steps. There is no road, no lobby, no one waiting but the sea.</p></div>
+<img alt="Гидросамолёт прибывает на остров" class="par" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/seaplane.jpg"/>
+<div class="cap rv"><span class="k">Прибытие</span><span class="t disp">Час от мира,<br/>а затем — вне его.</span><p>Единственный гидросамолёт пересекает лагуну в золотой час. От понтона до вашей террасы — сорок шагов. Здесь нет ни дороги, ни лобби, и никто не ждёт, кроме моря.</p></div>
 </section>
-
 <!-- THE VILLA -->
 <section class="sec" id="villa" style="padding-bottom:clamp(4rem,9vh,7rem)"><div class="wrap feat">
-  <div class="media rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/suite-interior.jpg" alt="An overwater villa suite" class="par" loading="lazy" decoding="async"></div>
-  <div class="copy">
-    <span class="eyebrow rv">The villas</span>
-    <h2 class="disp wipe">A room that opens<br>to the sea</h2>
-    <p class="rv">Each villa stands alone over the lagoon, glass walls folding away to a private deck and steps straight into the water. Natural wood, stone and linen, cooled by the trade wind.</p>
-    <div class="det rv">
-      <div><span class="l">Villas</span><span class="v">12, overwater</span></div>
-      <div><span class="l">Living space</span><span class="v">From 220 m2</span></div>
-      <div><span class="l">Access</span><span class="v">Seaplane, 40 min</span></div>
-    </div>
-  </div>
+<div class="media rv"><img alt="Сьют виллы над водой" class="par" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/suite-interior.jpg"/></div>
+<div class="copy">
+<span class="eyebrow rv">Виллы</span>
+<h2 class="disp wipe">Комната, открытая<br/>морю</h2>
+<p class="rv">Каждая вилла стоит особняком над лагуной: стеклянные стены складываются, открывая частную террасу и ступени прямо в воду. Натуральное дерево, камень и лён, охлаждаемые пассатом.</p>
+<div class="det rv">
+<div><span class="l">Виллы</span><span class="v">12, над водой</span></div>
+<div><span class="l">Жилая площадь</span><span class="v">От 220 м2</span></div>
+<div><span class="l">Доступ</span><span class="v">Гидросамолёт, 40 мин</span></div>
+</div>
+</div>
 </div></section>
-
 <!-- VILLA TYPES -->
 <section class="sec vtypes"><div class="wrap">
-  <div class="head"><span class="eyebrow rv">Choose your water</span><h2 class="disp wipe">Three ways to stay</h2></div>
-  <div class="vt-grid">
-    <div class="vt rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/infinity-pool.jpg" alt="Pool villa" loading="lazy" decoding="async"><div class="lab"><span class="k">01</span><span class="t">The Pool Villa</span><span class="d">A private infinity pool that spills into the lagoon.</span></div></div>
-    <div class="vt rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/hammock.jpg" alt="Lagoon villa" loading="lazy" decoding="async"><div class="lab"><span class="k">02</span><span class="t">The Lagoon Villa</span><span class="d">Hammock over glass-clear water, steps to the reef.</span></div></div>
-    <div class="vt rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg" alt="Sunset villa" loading="lazy" decoding="async"><div class="lab"><span class="k">03</span><span class="t">The Sunset Villa</span><span class="d">The far point of the island, kept for the stars.</span></div></div>
-  </div>
+<div class="head"><span class="eyebrow rv">Выберите свою воду</span><h2 class="disp wipe">Три способа остановиться</h2></div>
+<div class="vt-grid">
+<div class="vt rv"><img alt="Вилла с бассейном" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/infinity-pool.jpg"/><div class="lab"><span class="k">01</span><span class="t">Вилла с бассейном</span><span class="d">Частный инфинити-бассейн, перетекающий в лагуну.</span></div></div>
+<div class="vt rv"><img alt="Вилла у лагуны" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/hammock.jpg"/><div class="lab"><span class="k">02</span><span class="t">Вилла у лагуны</span><span class="d">Гамак над прозрачной, как стекло, водой, в паре шагов от рифа.</span></div></div>
+<div class="vt rv"><img alt="Вилла заката" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg"/><div class="lab"><span class="k">03</span><span class="t">Вилла заката</span><span class="d">Дальняя точка острова, оставленная звёздам.</span></div></div>
+</div>
 </div></section>
-
 <!-- THE WATER (full bleed) -->
 <section class="bleed" id="water">
-  <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/infinity-pool.jpg" alt="Private infinity pool over the lagoon" class="par" loading="lazy" decoding="async">
-  <canvas class="caus" id="causWater"></canvas>
-  <div class="cap rv"><span class="k">Your own horizon</span><span class="t disp">A pool that ends<br>where the ocean begins.</span></div>
+<img alt="Частный инфинити-бассейн над лагуной" class="par" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/infinity-pool.jpg"/>
+<canvas class="caus" id="causWater"></canvas>
+<div class="cap rv"><span class="k">Ваш собственный горизонт</span><span class="t disp">Бассейн, который заканчивается<br/>там, где начинается океан.</span></div>
 </section>
-
 <!-- REEF -->
 <section class="sec" id="reef"><div class="wrap feat rev">
-  <div class="media rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg" alt="The house reef" class="par" loading="lazy" decoding="async"></div>
-  <div class="copy">
-    <span class="eyebrow rv">The house reef</span>
-    <h2 class="disp wipe">A garden, just<br>beneath the surface</h2>
-    <p class="rv">Slip off your deck into a living reef of coral and colour. Turtles drift the drop-off at dawn; the lagoon keeps the water still and warm and impossibly clear.</p>
-    <div class="det rv">
-      <div><span class="l">Reef</span><span class="v">Private, house</span></div>
-      <div><span class="l">Visibility</span><span class="v">To 30 m</span></div>
-      <div><span class="l">Water</span><span class="v">28°C, year-round</span></div>
-    </div>
-  </div>
+<div class="media rv"><img alt="Домашний риф" class="par" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg"/></div>
+<div class="copy">
+<span class="eyebrow rv">Домашний риф</span>
+<h2 class="disp wipe">Сад, прямо<br/>под поверхностью воды</h2>
+<p class="rv">Соскользните с террасы в живой риф из кораллов и красок. На рассвете у свала дрейфуют черепахи; лагуна хранит воду тихой, тёплой и невозможно прозрачной.</p>
+<div class="det rv">
+<div><span class="l">Риф</span><span class="v">Частный, домашний</span></div>
+<div><span class="l">Видимость</span><span class="v">До 30 м</span></div>
+<div><span class="l">Вода</span><span class="v">28°C, круглый год</span></div>
+</div>
+</div>
 </div></section>
-
 <!-- A DAY (cinematic crossfade sequence) -->
 <section class="film" id="gallery">
-  <div class="film-stage">
-    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/aerial-hero.jpg" alt="First light over the island" decoding="async"></div>
-    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/hammock.jpg" alt="Midday over the lagoon" loading="lazy" decoding="async"></div>
-    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg" alt="Beneath the surface" loading="lazy" decoding="async"></div>
-    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/dining.jpg" alt="The blue hour" loading="lazy" decoding="async"></div>
-    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/beach-dusk.jpg" alt="Sundown" loading="lazy" decoding="async"></div>
-    <div class="frame"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg" alt="And then, stars" loading="lazy" decoding="async"></div>
-    <div class="film-grad"></div>
-    <div class="film-ui">
-      <span class="film-ey">A day, in passing</span>
-      <div class="film-clock"><span class="time">06:00</span><span class="label disp">First light</span></div>
-      <div class="film-track"><i id="filmProg"></i></div>
-      <div class="film-dots"><b class="on"></b><b></b><b></b><b></b><b></b><b></b></div>
-    </div>
-  </div>
+<div class="film-stage">
+<div class="frame"><img alt="Первый свет над островом" decoding="async" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/aerial-hero.jpg"/></div>
+<div class="frame"><img alt="Полдень над лагуной" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/hammock.jpg"/></div>
+<div class="frame"><img alt="Под поверхностью" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg"/></div>
+<div class="frame"><img alt="Синий час" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/dining.jpg"/></div>
+<div class="frame"><img alt="Закат" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/beach-dusk.jpg"/></div>
+<div class="frame"><img alt="А затем — звёзды" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg"/></div>
+<div class="film-grad"></div>
+<div class="film-ui">
+<span class="film-ey">День, мимоходом</span>
+<div class="film-clock"><span class="time">06:00</span><span class="label disp">Первый свет</span></div>
+<div class="film-track"><i id="filmProg"></i></div>
+<div class="film-dots"><b class="on"></b><b></b><b></b><b></b><b></b><b></b></div>
+</div>
+</div>
 </section>
-
 <!-- EXPERIENCES -->
 <section class="sec exp" id="exp"><div class="wrap">
-  <div class="head"><span class="eyebrow rv">Experiences</span><h2 class="disp wipe">Days made of small perfect things</h2></div>
-  <div class="grid">
-    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/dining.jpg" alt="Overwater private dining" loading="lazy" decoding="async"><figcaption><span class="k">Dining</span><span class="t">A table on the water</span><span class="d">A chef, a lantern-lit deck, and the tide for company.</span></figcaption></figure>
-    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/spa.jpg" alt="Overwater spa" loading="lazy" decoding="async"><figcaption><span class="k">Wellness</span><span class="t">The overwater spa</span><span class="d">Treatments above the lagoon, scored by water.</span></figcaption></figure>
-    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg" alt="Diving the reef" loading="lazy" decoding="async"><figcaption><span class="k">The water</span><span class="t">Dive the house reef</span><span class="d">Guided from your deck, or alone at first light.</span></figcaption></figure>
-    <figure class="rv"><img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/beach-dusk.jpg" alt="The shore at dusk" loading="lazy" decoding="async"><figcaption><span class="k">The shore</span><span class="t">Sunset, kept for you</span><span class="d">A lantern, two chairs, and no one for a mile.</span></figcaption></figure>
-  </div>
+<div class="head"><span class="eyebrow rv">Впечатления</span><h2 class="disp wipe">Дни из маленьких идеальных мгновений</h2></div>
+<div class="grid">
+<figure class="rv"><img alt="Частный ужин над водой" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/dining.jpg"/><figcaption><span class="k">Гастрономия</span><span class="t">Стол на воде</span><span class="d">Шеф, освещённая фонарями терраса и прилив в качестве компании.</span></figcaption></figure>
+<figure class="rv"><img alt="Спа над водой" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/spa.jpg"/><figcaption><span class="k">Велнес</span><span class="t">Спа над водой</span><span class="d">Процедуры над лагуной под аккомпанемент воды.</span></figcaption></figure>
+<figure class="rv"><img alt="Дайвинг на рифе" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/reef.jpg"/><figcaption><span class="k">Вода</span><span class="t">Дайвинг на домашнем рифе</span><span class="d">С гидом прямо с вашей террасы — или в одиночку на первом свету.</span></figcaption></figure>
+<figure class="rv"><img alt="Берег в сумерках" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/beach-dusk.jpg"/><figcaption><span class="k">Берег</span><span class="t">Закат, оставленный вам</span><span class="d">Фонарь, два кресла и ни души на милю вокруг.</span></figcaption></figure>
+</div>
 </div></section>
-
 <!-- NUMBERS -->
 <section class="sec house"><div class="wrap"><div class="grid">
-  <div class="cell rv"><div class="v disp num" data-count="12"></div><div class="l">Overwater villas</div></div>
-  <div class="cell rv"><div class="v disp num" data-count="47"></div><div class="l">Private acres</div></div>
-  <div class="cell rv"><div class="v disp">5:1</div><div class="l">Staff to guest</div></div>
-  <div class="cell rv"><div class="v disp num" data-count="1"></div><div class="l">Island, entirely</div></div>
+<div class="cell rv"><div class="v disp num" data-count="12"></div><div class="l">Виллы над водой</div></div>
+<div class="cell rv"><div class="v disp num" data-count="47"></div><div class="l">Частных акров</div></div>
+<div class="cell rv"><div class="v disp">5:1</div><div class="l">Персонала на гостя</div></div>
+<div class="cell rv"><div class="v disp num" data-count="1"></div><div class="l">Остров, целиком</div></div>
 </div></div></section>
-
 <!-- QUOTE -->
 <section class="sec quote"><div class="wrap">
-  <span class="mk disp">“</span>
-  <blockquote class="wipe">We have travelled everywhere. This is the only place we have ever truly arrived.</blockquote>
-  <div class="by rv">Travel + Leisure · Reader's choice</div>
+<span class="mk disp">“</span>
+<blockquote class="wipe">Мы объездили весь мир. Это единственное место, куда мы по-настоящему прибыли.</blockquote>
+<div class="by rv">Travel + Leisure · Выбор читателей</div>
 </div></section>
-
 <!-- RESERVE -->
 <section class="reserve" id="reserve">
-  <img src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg" alt="SERENE at night" class="par" loading="lazy" decoding="async">
-  <div class="ct">
-    <span class="eyebrow" style="color:#fff;opacity:.9">Reserve</span>
-    <h2 class="disp wipe">The island is <em>yours.</em></h2>
-    <p>We take a single party at a time on request, or one villa among few. Tell us your dates and we will hold the tide.</p>
-    <form class="resv" onsubmit="return false">
-      <div class="f"><label>Arrive</label><input type="text" placeholder="Add dates" aria-label="Arrival date"></div>
-      <div class="f"><label>Depart</label><input type="text" placeholder="Add dates" aria-label="Departure date"></div>
-      <div class="f"><label>Guests</label><input type="text" placeholder="2 adults" aria-label="Guests"></div>
-      <div class="f"><label>Villa</label><input type="text" placeholder="Pool villa" aria-label="Villa"></div>
-      <div class="f full"><label>Email</label><input type="email" placeholder="you@elsewhere.com" aria-label="Email"></div>
-    </form>
-    <a href="#reserve" class="btn">Request a stay <span class="ar">→</span></a>
-  </div>
+<img alt="SERENE ночью" class="par" decoding="async" loading="lazy" src="https://cdn.jsdelivr.net/gh/VanhDc/aura-assets@atoll-v2/atoll/img/night.jpg"/>
+<div class="ct">
+<span class="eyebrow" style="color:#fff;opacity:.9">Забронировать</span>
+<h2 class="disp wipe">Остров — <em>ваш.</em></h2>
+<p>По запросу мы принимаем только одну компанию гостей — или одну виллу из немногих. Назовите даты, и мы придержим прилив.</p>
+<form class="resv" onsubmit="return false">
+<div class="f"><label>Прибытие</label><input aria-label="Дата прибытия" placeholder="Добавить даты" type="text"/></div>
+<div class="f"><label>Отъезд</label><input aria-label="Дата отъезда" placeholder="Добавить даты" type="text"/></div>
+<div class="f"><label>Гости</label><input aria-label="Гости" placeholder="2 взрослых" type="text"/></div>
+<div class="f"><label>Вилла</label><input aria-label="Вилла" placeholder="Вилла с бассейном" type="text"/></div>
+<div class="f full"><label>Email</label><input aria-label="Email" placeholder="you@elsewhere.com" type="email"/></div>
+</form>
+<a class="btn" href="#reserve">Запросить проживание <span class="ar">→</span></a>
+</div>
 </section>
-
 <footer class="foot">
-  <div class="top">
-    <div class="brand"><span class="wm">SERENE</span><p>A private island in the Indian Ocean. Twelve overwater villas, one reef, nowhere else.</p></div>
-    <div><h4>Explore</h4><ul><li><a href="#villa">The Villas</a></li><li><a href="#reef">The Reef</a></li><li><a href="#exp">Experiences</a></li><li><a href="#gallery">Gallery</a></li></ul></div>
-    <div><h4>Visit</h4><ul><li><a href="#arrival">Getting here</a></li><li><a href="#reef">The reef</a></li><li><a href="#reserve">Reserve</a></li><li><a href="#reserve">Private buyout</a></li></ul></div>
-    <div class="news"><h4>The tide letter</h4><p style="font-size:.84rem;margin-bottom:1rem">Word from the island, a few times a year.</p>
-      <form onsubmit="return false"><input type="email" placeholder="you@elsewhere.com" aria-label="Email"><button type="submit">Subscribe</button></form>
-    </div>
-  </div>
-  <div class="bot"><span>© 2026 Serene Island · Nowhere, perfected.</span><span>By seaplane, on request</span></div>
+<div class="top">
+<div class="brand"><span class="wm">SERENE</span><p>Частный остров в Индийском океане. Двенадцать вилл над водой, один риф — и больше нигде.</p></div>
+<div><h4>Смотреть</h4><ul><li><a href="#villa">Виллы</a></li><li><a href="#reef">Риф</a></li><li><a href="#exp">Впечатления</a></li><li><a href="#gallery">Галерея</a></li></ul></div>
+<div><h4>Визит</h4><ul><li><a href="#arrival">Как добраться</a></li><li><a href="#reef">Риф</a></li><li><a href="#reserve">Забронировать</a></li><li><a href="#reserve">Полный выкуп острова</a></li></ul></div>
+<div class="news"><h4>Письмо прилива</h4><p style="font-size:.84rem;margin-bottom:1rem">Вести с острова, несколько раз в год.</p>
+<form onsubmit="return false"><input aria-label="Email" placeholder="you@elsewhere.com" type="email"/><button type="submit">Подписаться</button></form>
+</div>
+</div>
+<div class="bot"><span>© 2026 Serene Island · Нигде, доведённое до совершенства.</span><span>Гидросамолётом, по запросу</span></div>
 </footer>
-
 <script>
 (function(){
   const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;

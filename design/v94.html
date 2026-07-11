@@ -1,0 +1,1401 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>Музей Египта — Кинематографичный скролл</title>
+<meta content="Закреплённый скролл-опыт Музея Египта, превращающий рассвет над пирамидами в иммерсивное вступление к выставке." name="description"/>
+<style>
+:root {
+--ink: #f9efe2;
+--sand: #e5b373;
+--amber: #f2a64c;
+--deep: #071019;
+--night: #0a121a;
+--mist: rgba(255, 213, 153, 0.34);
+--progress: 0;
+--scene-x: 0px;
+--scene-y: 0px;
+--scene-scale: 1;
+--warmth: 0.42;
+--vignette: 0.5;
+--dust-left: 0.75;
+--dust-ramp: 0;
+--letterbox: 0px;
+--copy-1: 1;
+--copy-2: 0;
+--copy-3: 0;
+--copy-4: 0;
+}
+* {
+box-sizing: border-box;
+}
+html {
+scroll-behavior: smooth;
+background: var(--night);
+}
+body {
+margin: 0;
+min-width: 320px;
+color: var(--ink);
+background: var(--night);
+font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+overflow-x: hidden;
+}
+a,
+button {
+color: inherit;
+}
+button {
+font: inherit;
+}
+.topbar {
+position: fixed;
+z-index: 30;
+top: 0;
+left: 0;
+right: 0;
+height: 68px;
+display: flex;
+align-items: center;
+justify-content: space-between;
+gap: 24px;
+padding: 0 clamp(18px, 4vw, 56px);
+background: linear-gradient(180deg, rgba(7, 16, 25, 0.72), rgba(7, 16, 25, 0));
+pointer-events: none;
+}
+.brand,
+.topbar nav {
+pointer-events: auto;
+}
+.brand {
+display: inline-flex;
+align-items: center;
+gap: 12px;
+text-decoration: none;
+color: rgba(255, 241, 219, 0.88);
+font-size: 12px;
+font-weight: 800;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+}
+.brand-mark {
+width: 18px;
+height: 18px;
+border: 1px solid rgba(255, 210, 151, 0.72);
+border-radius: 50%;
+box-shadow: inset 0 0 0 5px rgba(255, 210, 151, 0.1), 0 0 24px rgba(247, 172, 77, 0.28);
+}
+.topbar nav {
+display: flex;
+gap: clamp(14px, 2.6vw, 34px);
+}
+.topbar nav a {
+position: relative;
+text-decoration: none;
+color: rgba(255, 241, 219, 0.64);
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+transition: color 180ms ease;
+}
+.topbar nav a:hover,
+.topbar nav a:focus-visible {
+color: var(--ink);
+}
+.cinematic-scroll {
+position: relative;
+height: 680vh;
+min-height: 4200px;
+background: var(--night);
+}
+.entrance-scroll {
+height: 780vh;
+min-height: 5600px;
+background: #071018;
+}
+.desert-scroll {
+height: 720vh;
+min-height: 5000px;
+background: #120d17;
+}
+.pin-stage {
+position: sticky;
+top: 0;
+width: 100%;
+height: 100svh;
+min-height: 560px;
+overflow: hidden;
+isolation: isolate;
+background: #05080c;
+}
+.scrub-video {
+position: absolute;
+z-index: 0;
+inset: -2%;
+width: 104%;
+height: 104%;
+object-fit: cover;
+object-position: center;
+transform: translate3d(var(--scene-x), var(--scene-y), 0) scale(var(--scene-scale));
+filter: saturate(1.08) contrast(1.04) brightness(0.94);
+will-change: transform;
+}
+.grade,
+.dust,
+.sun-bloom,
+.letterbox {
+position: absolute;
+pointer-events: none;
+}
+.grade-warm {
+z-index: 2;
+inset: 0;
+background:
+radial-gradient(circle at 6% 26%, rgba(255, 210, 131, 0.54), transparent 24%),
+linear-gradient(90deg, rgba(255, 182, 83, 0.22), transparent 48%),
+linear-gradient(180deg, rgba(255, 207, 142, 0.1), rgba(17, 28, 39, 0.12));
+opacity: var(--warmth);
+mix-blend-mode: screen;
+}
+.grade-vignette {
+z-index: 3;
+inset: 0;
+background:
+radial-gradient(circle at 45% 42%, transparent 34%, rgba(4, 7, 10, 0.18) 72%, rgba(0, 0, 0, 0.58) 100%),
+linear-gradient(90deg, rgba(0, 0, 0, 0.18), transparent 22%, rgba(0, 0, 0, 0.16));
+opacity: var(--vignette);
+}
+.dust-left {
+z-index: 4;
+left: -12vw;
+top: 12vh;
+width: 58vw;
+height: 68vh;
+border-radius: 50%;
+background:
+radial-gradient(circle at 42% 42%, rgba(255, 236, 193, 0.54), rgba(252, 188, 96, 0.22) 38%, transparent 70%);
+filter: blur(24px);
+opacity: var(--dust-left);
+transform: translate3d(calc(var(--progress) * 13vw), calc(var(--progress) * 4vh), 0) rotate(-8deg);
+mix-blend-mode: screen;
+}
+.dust-ramp {
+z-index: 4;
+left: 23vw;
+top: 2vh;
+width: 38vw;
+height: 120vh;
+background: linear-gradient(92deg, transparent, rgba(255, 221, 168, 0.44) 48%, transparent 78%);
+filter: blur(18px);
+opacity: var(--dust-ramp);
+transform: translate3d(calc((1 - var(--progress)) * -8vw), 0, 0) rotate(13deg);
+mix-blend-mode: screen;
+}
+.sun-bloom {
+z-index: 5;
+left: -18vw;
+top: -14vh;
+width: 46vw;
+height: 54vh;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(255, 239, 199, 0.9), rgba(255, 201, 115, 0.36) 30%, transparent 68%);
+filter: blur(28px);
+opacity: calc(0.36 + var(--warmth) * 0.48);
+mix-blend-mode: screen;
+}
+.entrance-scroll .grade-warm {
+background:
+radial-gradient(circle at 50% 42%, rgba(255, 238, 187, 0.5), transparent 28%),
+radial-gradient(circle at 74% 16%, rgba(95, 206, 255, 0.16), transparent 20%),
+linear-gradient(90deg, rgba(252, 176, 78, 0.2), transparent 50%);
+}
+.entrance-scroll .dust-left {
+left: 22vw;
+top: 10vh;
+width: 48vw;
+height: 72vh;
+background:
+radial-gradient(circle at 50% 44%, rgba(255, 239, 194, 0.52), rgba(255, 194, 94, 0.18) 34%, transparent 72%);
+}
+.entrance-scroll .dust-ramp {
+left: 38vw;
+top: -4vh;
+width: 34vw;
+background: linear-gradient(96deg, transparent, rgba(117, 220, 255, 0.23) 38%, rgba(255, 230, 176, 0.32) 58%, transparent 82%);
+}
+.entrance-scroll .sun-bloom {
+left: 34vw;
+top: 12vh;
+width: 36vw;
+height: 46vh;
+}
+.desert-scroll .grade-warm {
+background:
+radial-gradient(circle at 4% 20%, rgba(255, 220, 150, 0.7), transparent 30%),
+radial-gradient(circle at 78% 70%, rgba(255, 151, 67, 0.28), transparent 24%),
+linear-gradient(100deg, rgba(255, 174, 86, 0.34), rgba(246, 142, 103, 0.14) 42%, transparent 72%);
+}
+.desert-scroll .dust-left {
+left: -16vw;
+top: 4vh;
+width: 74vw;
+height: 82vh;
+background:
+radial-gradient(circle at 38% 42%, rgba(255, 229, 178, 0.62), rgba(255, 164, 72, 0.24) 42%, transparent 74%);
+filter: blur(30px);
+}
+.desert-scroll .dust-ramp {
+left: 52vw;
+top: 8vh;
+width: 42vw;
+background: linear-gradient(92deg, transparent, rgba(255, 182, 106, 0.42) 44%, rgba(255, 216, 164, 0.28) 62%, transparent 84%);
+transform: translate3d(calc((1 - var(--progress)) * -12vw), calc(var(--progress) * 3vh), 0) rotate(18deg);
+}
+.desert-scroll .sun-bloom {
+left: -15vw;
+top: -10vh;
+width: 52vw;
+height: 62vh;
+}
+.letterbox {
+left: 0;
+right: 0;
+z-index: 12;
+height: var(--letterbox);
+background: #020407;
+transition: height 80ms linear;
+}
+.letterbox-top {
+top: 0;
+}
+.letterbox-bottom {
+bottom: 0;
+}
+.scene-copy {
+position: absolute;
+z-index: 10;
+width: min(520px, calc(100vw - 40px));
+color: var(--ink);
+text-shadow: 0 18px 48px rgba(0, 0, 0, 0.5);
+transform: translate3d(0, calc((1 - var(--copy-opacity, 0)) * 22px), 0);
+opacity: var(--copy-opacity, 0);
+will-change: opacity, transform;
+}
+.scene-copy-1 {
+--copy-opacity: var(--copy-1);
+left: clamp(22px, 5vw, 76px);
+bottom: clamp(90px, 16vh, 160px);
+}
+.scene-copy-2 {
+--copy-opacity: var(--copy-2);
+right: clamp(22px, 6vw, 86px);
+bottom: clamp(86px, 15vh, 150px);
+text-align: right;
+}
+.scene-copy-3 {
+--copy-opacity: var(--copy-3);
+left: clamp(22px, 5vw, 76px);
+top: clamp(96px, 18vh, 170px);
+}
+.scene-copy-4 {
+--copy-opacity: var(--copy-4);
+right: clamp(22px, 5vw, 76px);
+top: clamp(92px, 15vh, 148px);
+text-align: right;
+}
+.kicker {
+margin: 0 0 14px;
+color: rgba(255, 203, 125, 0.88);
+font-size: 11px;
+font-weight: 850;
+letter-spacing: 0.28em;
+line-height: 1;
+text-transform: uppercase;
+}
+.scene-copy h1,
+.scene-copy h2,
+.analysis-panel h2,
+.resume-section h2 {
+margin: 0;
+font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+font-weight: 400;
+letter-spacing: -0.035em;
+}
+.scene-copy h1,
+.scene-copy h2 {
+font-size: clamp(52px, 7.4vw, 108px);
+line-height: 0.88;
+}
+.scene-copy p:last-child {
+max-width: 380px;
+margin: 22px 0 0;
+color: rgba(255, 239, 218, 0.72);
+font-size: clamp(14px, 1.25vw, 18px);
+line-height: 1.6;
+}
+.scene-copy-2 p:last-child,
+.scene-copy-4 p:last-child {
+margin-left: auto;
+}
+.timeline {
+position: absolute;
+z-index: 16;
+left: clamp(18px, 4vw, 56px);
+right: clamp(18px, 4vw, 56px);
+bottom: clamp(18px, 4vh, 36px);
+color: rgba(255, 240, 216, 0.76);
+}
+.timeline-meta {
+display: flex;
+justify-content: space-between;
+margin-bottom: 10px;
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+}
+.timeline-track {
+position: relative;
+height: 2px;
+background: rgba(255, 233, 202, 0.22);
+}
+.timeline-fill {
+position: absolute;
+inset: 0 auto 0 0;
+width: calc(var(--progress) * 100%);
+background: linear-gradient(90deg, var(--sand), #fff4d9);
+box-shadow: 0 0 24px rgba(255, 198, 110, 0.55);
+}
+.timeline-dot {
+position: absolute;
+top: 50%;
+width: 13px;
+height: 13px;
+border: 1px solid rgba(255, 232, 196, 0.84);
+border-radius: 50%;
+padding: 0;
+background: rgba(8, 12, 17, 0.7);
+transform: translate(-50%, -50%);
+cursor: pointer;
+transition: background 180ms ease, transform 180ms ease;
+}
+.timeline-dot:hover,
+.timeline-dot:focus-visible {
+background: #f8d29c;
+transform: translate(-50%, -50%) scale(1.25);
+}
+.timeline-dot.is-active {
+background: #f8d29c;
+box-shadow: 0 0 24px rgba(255, 198, 110, 0.55);
+}
+.dot-1 {
+left: 0%;
+}
+.dot-2 {
+left: 28%;
+}
+.dot-3 {
+left: 58%;
+}
+.dot-4 {
+left: 86%;
+}
+.entrance-scroll .dot-2 {
+left: 20%;
+}
+.entrance-scroll .dot-3 {
+left: 44%;
+}
+.entrance-scroll .dot-4 {
+left: 78%;
+}
+.desert-scroll .dot-2 {
+left: 22%;
+}
+.desert-scroll .dot-3 {
+left: 56%;
+}
+.desert-scroll .dot-4 {
+left: 82%;
+}
+.scroll-cue {
+position: absolute;
+z-index: 15;
+left: 50%;
+bottom: clamp(54px, 8vh, 74px);
+display: grid;
+justify-items: center;
+gap: 9px;
+color: rgba(255, 239, 218, 0.58);
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+transform: translateX(-50%);
+opacity: calc(1 - min(var(--progress) * 7, 1));
+}
+.scroll-cue span {
+width: 2px;
+height: 34px;
+background: linear-gradient(180deg, rgba(255, 238, 204, 0), rgba(255, 238, 204, 0.8));
+animation: cue 1.4s ease-in-out infinite;
+}
+.scroll-cue p {
+margin: 0;
+}
+.analysis-panel,
+.resume-section,
+.collection-section {
+padding: clamp(82px, 12vw, 150px) clamp(20px, 6vw, 82px);
+color: var(--ink);
+background:
+radial-gradient(circle at 12% 4%, rgba(239, 154, 59, 0.18), transparent 28%),
+linear-gradient(180deg, #0a121a, #111a22 46%, #0c1117);
+}
+.analysis-panel h2,
+.resume-section h2,
+.collection-section h2 {
+max-width: 980px;
+font-size: clamp(46px, 6.5vw, 94px);
+line-height: 0.95;
+}
+.beat-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(180px, 1fr));
+gap: 1px;
+margin-top: clamp(46px, 7vw, 84px);
+background: rgba(255, 226, 181, 0.13);
+}
+.beat-grid article {
+min-height: 220px;
+padding: 24px;
+background: rgba(255, 239, 218, 0.045);
+}
+.beat-grid span {
+color: rgba(255, 203, 125, 0.78);
+font-size: 11px;
+font-weight: 850;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+}
+.beat-grid h3 {
+margin: 56px 0 14px;
+font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+font-size: 34px;
+font-weight: 400;
+}
+.beat-grid p,
+.resume-section p,
+.collection-section p,
+.site-footer p {
+margin: 0;
+color: rgba(255, 239, 218, 0.66);
+line-height: 1.7;
+}
+.collection-section {
+background:
+radial-gradient(circle at 80% 8%, rgba(242, 166, 76, 0.18), transparent 26%),
+radial-gradient(circle at 10% 82%, rgba(255, 213, 153, 0.14), transparent 30%),
+linear-gradient(180deg, #0c1117, #111923 52%, #080d13);
+}
+.section-heading {
+display: grid;
+gap: 20px;
+max-width: 980px;
+}
+.section-heading>p:last-child {
+max-width: 660px;
+font-size: clamp(16px, 1.35vw, 21px);
+}
+.collection-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: clamp(16px, 2vw, 28px);
+margin-top: clamp(46px, 7vw, 84px);
+}
+.object-card {
+position: relative;
+min-height: 340px;
+overflow: hidden;
+padding: 26px;
+border: 1px solid rgba(255, 226, 181, 0.14);
+border-radius: 8px;
+background:
+linear-gradient(180deg, rgba(255, 239, 218, 0.08), rgba(255, 239, 218, 0.025)),
+rgba(7, 16, 25, 0.84);
+transition: transform 240ms ease, border-color 240ms ease, background 240ms ease;
+}
+.object-card::after {
+content: "";
+position: absolute;
+inset: auto 22px 22px;
+height: 1px;
+background: linear-gradient(90deg, rgba(255, 213, 153, 0.7), transparent);
+opacity: 0.45;
+}
+.object-card:hover,
+.object-card:focus-within {
+border-color: rgba(255, 213, 153, 0.38);
+background:
+linear-gradient(180deg, rgba(255, 239, 218, 0.11), rgba(255, 239, 218, 0.035)),
+rgba(9, 18, 27, 0.92);
+transform: translateY(-8px);
+}
+.object-number {
+color: rgba(255, 203, 125, 0.72);
+font-size: 11px;
+font-weight: 850;
+letter-spacing: 0.22em;
+}
+.object-glow {
+width: min(210px, 52vw);
+aspect-ratio: 1;
+margin: clamp(34px, 5vw, 58px) auto 34px;
+border-radius: 50%;
+filter: blur(0.2px);
+opacity: 0.92;
+transition: transform 260ms ease, opacity 260ms ease;
+}
+.object-card:hover .object-glow,
+.object-card:focus-within .object-glow {
+opacity: 1;
+transform: scale(1.05) rotate(3deg);
+}
+.object-gold {
+background:
+radial-gradient(circle at 50% 44%, rgba(255, 242, 200, 0.96) 0 11%, transparent 12%),
+radial-gradient(circle at 50% 48%, rgba(229, 179, 115, 0.88) 0 29%, rgba(104, 63, 29, 0.78) 30% 42%, transparent 43%),
+conic-gradient(from 40deg, rgba(242, 166, 76, 0.88), rgba(255, 226, 181, 0.96), rgba(126, 75, 34, 0.86), rgba(242, 166, 76, 0.88));
+box-shadow: 0 0 72px rgba(242, 166, 76, 0.26);
+}
+.object-stone {
+border-radius: 12px;
+background:
+linear-gradient(120deg, rgba(255, 239, 218, 0.2), transparent 30%),
+repeating-linear-gradient(90deg, rgba(255, 226, 181, 0.24) 0 2px, transparent 2px 18px),
+linear-gradient(135deg, #8f806c, #4f463d);
+box-shadow: 0 0 70px rgba(255, 213, 153, 0.16);
+}
+.object-papyrus {
+border-radius: 8px;
+background:
+repeating-linear-gradient(90deg, rgba(92, 55, 28, 0.22) 0 1px, transparent 1px 14px),
+repeating-linear-gradient(0deg, rgba(92, 55, 28, 0.16) 0 1px, transparent 1px 20px),
+linear-gradient(135deg, #d7b071, #8e6236);
+box-shadow: 0 0 70px rgba(229, 179, 115, 0.18);
+}
+.object-card h3 {
+margin: 0 0 14px;
+font-family: "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+font-size: clamp(34px, 4vw, 52px);
+font-weight: 400;
+letter-spacing: -0.03em;
+}
+.object-card p {
+max-width: 360px;
+}
+.resume-section {
+min-height: 74vh;
+display: grid;
+align-content: center;
+}
+.resume-section p {
+max-width: 760px;
+margin-top: 28px;
+font-size: clamp(17px, 1.4vw, 22px);
+}
+.site-footer {
+display: grid;
+grid-template-columns: minmax(240px, 1fr) auto minmax(220px, 0.65fr);
+gap: clamp(28px, 5vw, 72px);
+align-items: start;
+padding: clamp(44px, 7vw, 78px) clamp(20px, 6vw, 82px);
+border-top: 1px solid rgba(255, 226, 181, 0.14);
+background: #05090e;
+color: var(--ink);
+}
+.footer-brand {
+margin-bottom: 18px;
+}
+.site-footer nav {
+display: grid;
+gap: 12px;
+}
+.site-footer a {
+text-decoration: none;
+}
+.site-footer nav a {
+color: rgba(255, 241, 219, 0.62);
+font-size: 11px;
+font-weight: 850;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+transition: color 180ms ease, transform 180ms ease;
+}
+.site-footer nav a:hover,
+.site-footer nav a:focus-visible {
+color: var(--ink);
+transform: translateX(4px);
+}
+.footer-note {
+font-size: 12px;
+font-weight: 750;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+}
+@keyframes cue {
+0%,
+100% {
+transform: translateY(-5px);
+opacity: 0.4;
+}
+50% {
+transform: translateY(5px);
+opacity: 1;
+}
+}
+@media (max-width: 900px) {
+.topbar {
+height: 60px;
+}
+.topbar nav {
+display: none;
+}
+.cinematic-scroll {
+height: 620vh;
+}
+.pin-stage {
+min-height: 100svh;
+}
+.scene-copy-1,
+.scene-copy-2,
+.scene-copy-3,
+.scene-copy-4 {
+left: 20px;
+right: 20px;
+top: auto;
+bottom: 112px;
+text-align: left;
+}
+.scene-copy h1,
+.scene-copy h2 {
+font-size: clamp(46px, 13vw, 72px);
+}
+.scene-copy p:last-child,
+.scene-copy-2 p:last-child,
+.scene-copy-4 p:last-child {
+margin-left: 0;
+}
+.beat-grid {
+grid-template-columns: repeat(2, minmax(150px, 1fr));
+}
+.collection-grid,
+.site-footer {
+grid-template-columns: 1fr;
+}
+.object-card {
+min-height: 300px;
+}
+}
+@media (max-width: 560px) {
+.brand {
+font-size: 10px;
+}
+.timeline-meta {
+display: none;
+}
+.beat-grid {
+grid-template-columns: 1fr;
+}
+}
+@media (prefers-reduced-motion: reduce) {
+html {
+scroll-behavior: auto;
+}
+.scroll-cue span {
+animation: none;
+}
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style id="mobile-adapt">
+/* v94 Egypt Museum — лёгкая мобильная доводка (Tailwind + 3 медиазапроса в исходнике) */
+html, body { overflow-x: clip; }
+
+@media (max-width: 640px) {
+  input, select, textarea, button { font-size: 16px !important; }
+  a, button { min-height: 44px; }
+  h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+
+</style>
+</head>
+<body class="">
+<div class="" id="wrapper">
+<!--
+    Progress blur from top. Usage:
+    
+    1) Insert this code in the <body>
+    !-->
+<div class="gradient-blur">
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+<div></div>
+</div>
+<style class="">
+      .gradient-blur {
+        position: fixed;
+        z-index: 5;
+        inset: 0 0 auto 0;
+        height: 12%;
+        pointer-events: none;
+      }
+  
+      .gradient-blur>div,
+      .gradient-blur::before,
+      .gradient-blur::after {
+        position: absolute;
+        inset: 0;
+      }
+  
+      .gradient-blur::before {
+        content: "";
+        z-index: 1;
+        backdrop-filter: blur(0.5px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 1) 12.5%,
+            rgba(0, 0, 0, 1) 25%,
+            rgba(0, 0, 0, 0) 37.5%);
+      }
+  
+      .gradient-blur>div:nth-of-type(1) {
+        z-index: 2;
+        backdrop-filter: blur(1px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 12.5%,
+            rgba(0, 0, 0, 1) 25%,
+            rgba(0, 0, 0, 1) 37.5%,
+            rgba(0, 0, 0, 0) 50%);
+      }
+  
+      .gradient-blur>div:nth-of-type(2) {
+        z-index: 3;
+        backdrop-filter: blur(2px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 1) 37.5%,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(0, 0, 0, 0) 62.5%);
+      }
+  
+      .gradient-blur>div:nth-of-type(3) {
+        z-index: 4;
+        backdrop-filter: blur(4px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 37.5%,
+            rgba(0, 0, 0, 1) 50%,
+            rgba(0, 0, 0, 1) 62.5%,
+            rgba(0, 0, 0, 0) 75%);
+      }
+  
+      .gradient-blur>div:nth-of-type(4) {
+        z-index: 5;
+        backdrop-filter: blur(8px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 50%,
+            rgba(0, 0, 0, 1) 62.5%,
+            rgba(0, 0, 0, 1) 75%,
+            rgba(0, 0, 0, 0) 87.5%);
+      }
+  
+      .gradient-blur>div:nth-of-type(5) {
+        z-index: 6;
+        backdrop-filter: blur(16px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 62.5%,
+            rgba(0, 0, 0, 1) 75%,
+            rgba(0, 0, 0, 1) 87.5%,
+            rgba(0, 0, 0, 0) 100%);
+      }
+  
+      .gradient-blur>div:nth-of-type(6) {
+        z-index: 7;
+        backdrop-filter: blur(32px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 75%,
+            rgba(0, 0, 0, 1) 87.5%,
+            rgba(0, 0, 0, 1) 100%);
+      }
+  
+      .gradient-blur::after {
+        content: "";
+        z-index: 8;
+        backdrop-filter: blur(64px);
+        mask: linear-gradient(to top,
+            rgba(0, 0, 0, 0) 87.5%,
+            rgba(0, 0, 0, 1) 100%);
+      }
+    </style>
+</div>
+<header aria-label="Навигация Музея Египта" class="topbar">
+<a aria-label="Вернуться к началу" class="brand" href="#cinematic">
+<span aria-hidden="true" class="brand-mark"></span>
+<span class="">Музей Египта</span>
+</a>
+<nav aria-label="Разделы музея" class="">
+<a href="#cinematic">Выставка</a>
+<a href="#analysis">Галереи</a>
+<a href="#desert">Пустыня</a>
+<a href="#entrance">Вход</a>
+<a href="#collections">Экспонаты</a>
+<a href="#resume">Визит</a>
+</nav>
+</header>
+<main class="">
+<section aria-label="Кинематографичная скролл-анимация Музея Египта" class="cinematic-scroll" data-cinematic="" data-duration="5.084" id="cinematic">
+<div class="pin-stage" data-stage="">
+<video class="scrub-video" data-video="" muted="" playsinline="" poster="assets/cinematic/pyramid-poster.png" preload="auto" src="https://cdn.midjourney.com/video/bb147e79-7d4a-41a2-92d2-0ab21cae7094/1.mp4"></video>
+<div aria-hidden="true" class="grade grade-warm"></div>
+<div aria-hidden="true" class="grade grade-vignette"></div>
+<div aria-hidden="true" class="dust dust-left"></div>
+<div aria-hidden="true" class="dust dust-ramp"></div>
+<div aria-hidden="true" class="sun-bloom"></div>
+<div aria-hidden="true" class="letterbox letterbox-top"></div>
+<div aria-hidden="true" class="letterbox letterbox-bottom"></div>
+<div class="scene-copy scene-copy-1" data-scene-copy="">
+<p class="kicker">Музей Египта</p>
+<h1>Войдите в историю Древнего Египта.</h1>
+<p>Кинематографичное прибытие через Гизу открывает монументальную коллекцию музея.</p>
+</div>
+<div class="scene-copy scene-copy-2" data-scene-copy="">
+<p class="kicker">Зал прибытия</p>
+<h2>От света пустыни к тени галерей.</h2>
+<p>Путь становится порогом, ведущим посетителей с плато внутрь музея.</p>
+</div>
+<div class="scene-copy scene-copy-3" data-scene-copy="">
+<p class="kicker">Постоянная коллекция</p>
+<h2>Камень, золото, папирус, память.</h2>
+<p>Крупные фактуры перекликаются с артефактами внутри: резные блоки, ритуальные предметы и истории царей.</p>
+</div>
+<div class="scene-copy scene-copy-4" data-scene-copy="">
+<p class="kicker">Живое наследие</p>
+<h2 class="">Шествие сквозь 5000 лет.</h2>
+<p class="">Финальный кадр становится приглашением пройти по залам царей, строителей и верований.</p>
+</div>
+<aside aria-label="Прогресс прокрутки" class="timeline">
+<div class="timeline-meta">
+<span data-frame-label="">00.00s</span>
+<span data-progress-label="">0%</span>
+</div>
+<div aria-hidden="true" class="timeline-track">
+<span class="timeline-fill" data-fill=""></span>
+<button aria-label="Перейти к вступлению музея" class="timeline-dot dot-1" data-seek="0" type="button"></button>
+<button aria-label="Перейти к залу прибытия" class="timeline-dot dot-2" data-seek="0.28" type="button"></button>
+<button aria-label="Перейти к постоянной коллекции" class="timeline-dot dot-3" data-seek="0.58" type="button"></button>
+<button aria-label="Перейти к финалу о наследии" class="timeline-dot dot-4" data-seek="0.86" type="button"></button>
+</div>
+</aside>
+<div aria-hidden="true" class="scroll-cue">
+<span></span>
+<p>Листайте, чтобы войти</p>
+</div>
+</div>
+</section>
+<section class="analysis-panel" id="analysis">
+<p class="kicker">Галереи музея</p>
+<h2 class="">Скролл-вступление к опыту Музея Египта.</h2>
+<div class="beat-grid">
+<article class="">
+<span class="">Галерея 01</span>
+<h3 class="">Истоки</h3>
+<p class="">Начните с ландшафта, архитектуры и космологии, сформировавших жизнь Древнего Египта.</p>
+</article>
+<article class="">
+<span class="">Галерея 02</span>
+<h3 class="">Строители</h3>
+<p class="">Изучите инструменты, каменную кладку, системы труда и инженерию монументальных сооружений.</p>
+</article>
+<article class="">
+<span>Галерея 03</span>
+<h3 class="">Династии</h3>
+<p>Пройдите сквозь царские реликвии, церемониальные фрагменты, надписи и символы власти.</p>
+</article>
+<article class="">
+<span>Галерея 04</span>
+<h3>Загробный мир</h3>
+<p>Откройте погребальные обряды, священные процессии и верования, хранившие память веками.</p>
+</article>
+</div>
+</section>
+<section aria-label="Скролл-анимация: караван в пустыне на закате" class="cinematic-scroll desert-scroll" data-cinematic="" data-duration="9.042" data-profile="desert" id="desert">
+<div class="pin-stage" data-stage="">
+<video class="scrub-video" data-video="" muted="" playsinline="" poster="assets/cinematic/desert-caravan-poster.png" preload="auto" src="https://cdn.midjourney.com/video/af1997e8-c98f-4849-8acc-00939ad7ff66/0.mp4"></video>
+<div aria-hidden="true" class="grade grade-warm"></div>
+<div aria-hidden="true" class="grade grade-vignette"></div>
+<div aria-hidden="true" class="dust dust-left"></div>
+<div aria-hidden="true" class="dust dust-ramp"></div>
+<div aria-hidden="true" class="sun-bloom"></div>
+<div aria-hidden="true" class="letterbox letterbox-top"></div>
+<div aria-hidden="true" class="letterbox letterbox-bottom"></div>
+<div class="scene-copy scene-copy-1" data-scene-copy="">
+<p class="kicker">Путь через пустыню</p>
+<h2 class="">Пересеките дюны в золотой час.</h2>
+<p class="">Караван движется по волнистому песку, а пирамиды проступают сквозь розовую дымку.</p>
+</div>
+<div class="scene-copy scene-copy-2" data-scene-copy="">
+<p class="kicker">Тропа каравана</p>
+<h2>Следуйте за светящимся гребнем.</h2>
+<p>Камера плывёт рядом с верблюдами, пока тёплая пыль ловит низкое солнце позади.</p>
+</div>
+<div class="scene-copy scene-copy-3" data-scene-copy="">
+<p class="kicker">Горизонт монументов</p>
+<h2 class="">Пирамиды держат горизонт.</h2>
+<p class="">Многослойные силуэты, летящий песок и мягкий параллакс создают медленный ритм прибытия.</p>
+</div>
+<div class="scene-copy scene-copy-4" data-scene-copy="">
+<p class="kicker">Перед вратами</p>
+<h2>Путь поворачивает к музею.</h2>
+<p>Финальный кадр держит караван в движении, готовя переход к резному входу.</p>
+</div>
+<aside aria-label="Прогресс прокрутки: пустыня" class="timeline">
+<div class="timeline-meta">
+<span data-frame-label="">00.00s</span>
+<span data-progress-label="">0%</span>
+</div>
+<div aria-hidden="true" class="timeline-track">
+<span class="timeline-fill" data-fill=""></span>
+<button aria-label="Перейти к золотым дюнам" class="timeline-dot dot-1" data-seek="0" type="button"></button>
+<button aria-label="Перейти к тропе каравана" class="timeline-dot dot-2" data-seek="0.22" type="button"></button>
+<button aria-label="Перейти к горизонту монументов" class="timeline-dot dot-3" data-seek="0.56" type="button"></button>
+<button aria-label="Перейти к финальному кадру пустыни" class="timeline-dot dot-4" data-seek="0.82" type="button"></button>
+</div>
+</aside>
+<div aria-hidden="true" class="scroll-cue">
+<span></span>
+<p>Листайте через дюны</p>
+</div>
+</div>
+</section>
+<section aria-label="Скролл-анимация входа в пирамиду" class="cinematic-scroll entrance-scroll" data-cinematic="" data-duration="8.917" data-profile="entrance" id="entrance">
+<div class="pin-stage" data-stage="">
+<video class="scrub-video" data-video="" muted="" playsinline="" poster="assets/cinematic/pyramid-entrance-poster.png" preload="auto" src="https://cdn.midjourney.com/video/8600a3de-50c9-49e9-b63a-0875d4b6fc43/1.mp4"></video>
+<div aria-hidden="true" class="grade grade-warm"></div>
+<div aria-hidden="true" class="grade grade-vignette"></div>
+<div aria-hidden="true" class="dust dust-left"></div>
+<div aria-hidden="true" class="dust dust-ramp"></div>
+<div aria-hidden="true" class="sun-bloom"></div>
+<div aria-hidden="true" class="letterbox letterbox-top"></div>
+<div aria-hidden="true" class="letterbox letterbox-bottom"></div>
+<div class="scene-copy scene-copy-1" data-scene-copy="">
+<p class="kicker">Специальная выставка</p>
+<h2>Вход в пирамиду открывается.</h2>
+<p>Одинокий посетитель подходит к резному порогу, где свет пустыни прорезает камень.</p>
+</div>
+<div class="scene-copy scene-copy-2" data-scene-copy="">
+<p class="kicker">Порог</p>
+<h2>Шагните во внутренний коридор.</h2>
+<p>Камера скользит между стен с иероглифами, переходя от наружного сияния к тёплой тени.</p>
+</div>
+<div class="scene-copy scene-copy-3" data-scene-copy="">
+<p class="kicker">Атриум</p>
+<h2>Раскрывается светящийся музейный город.</h2>
+<p>Коридор выходит в большой двор с пальмами, куполами, лестницами и пирамидой в центре.</p>
+</div>
+<div class="scene-copy scene-copy-4" data-scene-copy="">
+<p class="kicker">Променад посетителей</p>
+<h2>Пройдите по бульвару царей.</h2>
+<p>Финальное движение завершается в живой галерее, где архитектура и посетители делят один кадр.</p>
+</div>
+<aside aria-label="Прогресс прокрутки: вход" class="timeline">
+<div class="timeline-meta">
+<span data-frame-label="">00.00s</span>
+<span data-progress-label="">0%</span>
+</div>
+<div aria-hidden="true" class="timeline-track">
+<span class="timeline-fill" data-fill=""></span>
+<button aria-label="Перейти ко входу в пирамиду" class="timeline-dot dot-1" data-seek="0" type="button"></button>
+<button aria-label="Перейти к резному порогу" class="timeline-dot dot-2" data-seek="0.2" type="button"></button>
+<button aria-label="Перейти к атриуму" class="timeline-dot dot-3" data-seek="0.44" type="button"></button>
+<button aria-label="Перейти к променаду" class="timeline-dot dot-4" data-seek="0.78" type="button"></button>
+</div>
+</aside>
+<div aria-hidden="true" class="scroll-cue">
+<span></span>
+<p>Листайте сквозь вход</p>
+</div>
+</div>
+</section>
+<section aria-label="Избранные экспонаты музея" class="collection-section" id="collections">
+<div class="section-heading">
+<p class="kicker">Избранные экспонаты</p>
+<h2>Артефакты, выстроенные как финальная галерея после кинематографичного путешествия.</h2>
+<p>
+          Тихий раздел, где посетители могут остановиться, сравнить детали и перейти от атмосферы к коллекции.
+        </p>
+</div>
+<div class="collection-grid">
+<article class="object-card">
+<span class="object-number">01</span>
+<div aria-hidden="true" class="object-glow object-gold"></div>
+<h3>Царская маска</h3>
+<p>Золото, оттенки лазурита и ритуальная симметрия знакомят с языком царской власти.</p>
+</article>
+<article class="object-card">
+<span class="object-number">02</span>
+<div aria-hidden="true" class="object-glow object-stone"></div>
+<h3>Резной рельеф</h3>
+<p>Иероглифы и неглубокие каменные тени несут истории через всю стену.</p>
+</article>
+<article class="object-card">
+<span class="object-number">03</span>
+<div aria-hidden="true" class="object-glow object-papyrus"></div>
+<h3>Фрагмент папируса</h3>
+<p>Чернила, волокна, астрономия и обряды сжимают музей до листа в ладони.</p>
+</article>
+</div>
+</section>
+<section class="resume-section" id="resume">
+<p class="kicker">Спланируйте визит</p>
+<h2>Шагните из кинематографичного пролога в залы музея.</h2>
+<p>
+        Этот концепт Музея Египта сохраняет закреплённую скролл-последовательность как иммерсивное вступление, а затем переходит к информации о галереях, выставках и главных экспонатах коллекции.
+      </p>
+</section>
+</main>
+<footer class="site-footer">
+<div>
+<a aria-label="Вернуться к начальному разделу" class="brand footer-brand" href="#cinematic">
+<span aria-hidden="true" class="brand-mark"></span>
+<span>Музей Египта</span>
+</a>
+<p>Иммерсивный скролл-концепт для выставок, экспонатов и памяти Древнего Египта.</p>
+</div>
+<nav aria-label="Навигация в подвале">
+<a href="#analysis">Галереи</a>
+<a href="#desert">Пустыня</a>
+<a href="#entrance">Вход</a>
+<a href="#collections">Экспонаты</a>
+</nav>
+<p class="footer-note">Открыто ежедневно 10:00–18:00 / Концепт-крыло плато Гиза</p>
+</footer>
+<script>
+    const cinematicSections = Array.from(document.querySelectorAll("[data-cinematic]"));
+
+const clamp = (value, min = 0, max = 1) => Math.min(Math.max(value, min), max);
+const lerp = (a, b, t) => a + (b - a) * t;
+const invLerp = (a, b, value) => clamp((value - a) / (b - a));
+const easeInOut = (t) => t * t * (3 - 2 * t);
+
+const keyframeProfiles = {
+  aerial: [
+    { p: 0, x: 0, y: 0, scale: 1.035, warmth: 0.72, vignette: 0.42, dustLeft: 0.9, dustRamp: 0, letterbox: 0 },
+    { p: 0.24, x: -12, y: 4, scale: 1.055, warmth: 0.88, vignette: 0.5, dustLeft: 1, dustRamp: 0.05, letterbox: 16 },
+    { p: 0.52, x: -20, y: -3, scale: 1.08, warmth: 0.66, vignette: 0.62, dustLeft: 0.7, dustRamp: 0.24, letterbox: 28 },
+    { p: 0.74, x: -6, y: -10, scale: 1.06, warmth: 0.76, vignette: 0.7, dustLeft: 0.52, dustRamp: 0.78, letterbox: 34 },
+    { p: 1, x: 0, y: -8, scale: 1.04, warmth: 0.62, vignette: 0.72, dustLeft: 0.35, dustRamp: 0.92, letterbox: 38 },
+  ],
+  entrance: [
+    { p: 0, x: 0, y: 0, scale: 1.025, warmth: 0.72, vignette: 0.5, dustLeft: 0.72, dustRamp: 0.04, letterbox: 0 },
+    { p: 0.2, x: 8, y: 0, scale: 1.07, warmth: 0.86, vignette: 0.62, dustLeft: 0.5, dustRamp: 0.28, letterbox: 14 },
+    { p: 0.42, x: -8, y: -2, scale: 1.04, warmth: 0.9, vignette: 0.38, dustLeft: 0.42, dustRamp: 0.62, letterbox: 20 },
+    { p: 0.68, x: -18, y: -4, scale: 1.065, warmth: 0.82, vignette: 0.34, dustLeft: 0.28, dustRamp: 0.5, letterbox: 26 },
+    { p: 1, x: -4, y: -6, scale: 1.035, warmth: 0.68, vignette: 0.46, dustLeft: 0.2, dustRamp: 0.34, letterbox: 32 },
+  ],
+  desert: [
+    { p: 0, x: 0, y: 0, scale: 1.02, warmth: 0.9, vignette: 0.34, dustLeft: 0.82, dustRamp: 0.28, letterbox: 0 },
+    { p: 0.22, x: -6, y: 1, scale: 1.035, warmth: 0.96, vignette: 0.38, dustLeft: 0.9, dustRamp: 0.42, letterbox: 10 },
+    { p: 0.48, x: -14, y: -2, scale: 1.055, warmth: 0.88, vignette: 0.42, dustLeft: 0.7, dustRamp: 0.58, letterbox: 18 },
+    { p: 0.72, x: -20, y: -3, scale: 1.075, warmth: 0.82, vignette: 0.5, dustLeft: 0.58, dustRamp: 0.68, letterbox: 24 },
+    { p: 1, x: -24, y: -4, scale: 1.085, warmth: 0.76, vignette: 0.56, dustLeft: 0.42, dustRamp: 0.52, letterbox: 30 },
+  ],
+};
+
+const copyProfiles = {
+  aerial: [
+    [-0.12, 0, 0.25],
+    [0.18, 0.33, 0.5],
+    [0.43, 0.58, 0.73],
+    [0.68, 0.86, 1],
+  ],
+  entrance: [
+    [-0.12, 0, 0.18],
+    [0.13, 0.25, 0.4],
+    [0.36, 0.52, 0.7],
+    [0.64, 0.82, 1],
+  ],
+  desert: [
+    [-0.12, 0, 0.22],
+    [0.16, 0.32, 0.5],
+    [0.44, 0.62, 0.78],
+    [0.72, 0.88, 1],
+  ],
+};
+
+function interpolateKeyframes(keyframes, progress) {
+  let from = keyframes[0];
+  let to = keyframes[keyframes.length - 1];
+
+  for (let index = 0; index < keyframes.length - 1; index += 1) {
+    if (progress >= keyframes[index].p && progress <= keyframes[index + 1].p) {
+      from = keyframes[index];
+      to = keyframes[index + 1];
+      break;
+    }
+  }
+
+  const local = easeInOut(invLerp(from.p, to.p, progress));
+  return {
+    x: lerp(from.x, to.x, local),
+    y: lerp(from.y, to.y, local),
+    scale: lerp(from.scale, to.scale, local),
+    warmth: lerp(from.warmth, to.warmth, local),
+    vignette: lerp(from.vignette, to.vignette, local),
+    dustLeft: lerp(from.dustLeft, to.dustLeft, local),
+    dustRamp: lerp(from.dustRamp, to.dustRamp, local),
+    letterbox: lerp(from.letterbox, to.letterbox, local),
+  };
+}
+
+function pulse(start, peak, end, progress) {
+  if (progress <= start || progress >= end) return 0;
+  if (progress <= peak) return easeInOut(invLerp(start, peak, progress));
+  return 1 - easeInOut(invLerp(peak, end, progress));
+}
+
+function setSectionNumber(section, name, value) {
+  section.style.setProperty(name, Number(value).toFixed(4));
+}
+
+function getSectionProgress(section) {
+  const rect = section.getBoundingClientRect();
+  const scrollable = section.offsetHeight - window.innerHeight;
+  const traveled = -rect.top;
+  return scrollable > 0 ? clamp(traveled / scrollable) : 0;
+}
+
+function createCinematicInstance(section) {
+  const video = section.querySelector("[data-video]");
+  const fill = section.querySelector("[data-fill]");
+  const frameLabel = section.querySelector("[data-frame-label]");
+  const progressLabel = section.querySelector("[data-progress-label]");
+  const seekButtons = section.querySelectorAll("[data-seek]");
+  const profileName = section.dataset.profile || "aerial";
+  const keyframes = keyframeProfiles[profileName] || keyframeProfiles.aerial;
+  const copyWindows = copyProfiles[profileName] || copyProfiles.aerial;
+  const sourceDuration = Number(section.dataset.duration || video?.duration || 5);
+
+  const instance = {
+    section,
+    video,
+    fill,
+    frameLabel,
+    progressLabel,
+    seekButtons,
+    keyframes,
+    copyWindows,
+    sourceDuration,
+    targetProgress: 0,
+    renderedProgress: 0,
+    videoReady: Boolean(video && video.readyState >= 1),
+  };
+
+  if (video) {
+    video.pause();
+    if (instance.videoReady) {
+      video.currentTime = 0;
+    }
+    video.addEventListener("loadedmetadata", () => {
+      instance.videoReady = true;
+      if (Number.isFinite(video.duration) && video.duration > 0) {
+        instance.sourceDuration = video.duration;
+        section.dataset.duration = video.duration.toFixed(3);
+      }
+      video.pause();
+      video.currentTime = 0;
+    });
+    video.addEventListener("canplay", () => {
+      instance.videoReady = true;
+    });
+  }
+
+  seekButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const progress = clamp(Number(button.dataset.seek || 0));
+      const scrollable = section.offsetHeight - window.innerHeight;
+      const top = section.offsetTop + scrollable * progress;
+      window.scrollTo({ top, behavior: "smooth" });
+    });
+  });
+
+  return instance;
+}
+
+const instances = cinematicSections.map(createCinematicInstance);
+
+function updateTargetProgress() {
+  instances.forEach((instance) => {
+    instance.targetProgress = getSectionProgress(instance.section);
+  });
+}
+
+function renderInstance(instance) {
+  instance.renderedProgress += (instance.targetProgress - instance.renderedProgress) * 0.115;
+
+  if (Math.abs(instance.targetProgress - instance.renderedProgress) < 0.0006) {
+    instance.renderedProgress = instance.targetProgress;
+  }
+
+  const frame = interpolateKeyframes(instance.keyframes, instance.renderedProgress);
+  const currentTime = clamp(instance.renderedProgress) * instance.sourceDuration;
+  const section = instance.section;
+
+  setSectionNumber(section, "--progress", instance.renderedProgress);
+  section.style.setProperty("--scene-x", `${frame.x.toFixed(2)}px`);
+  section.style.setProperty("--scene-y", `${frame.y.toFixed(2)}px`);
+  section.style.setProperty("--scene-scale", frame.scale.toFixed(4));
+  section.style.setProperty("--warmth", frame.warmth.toFixed(4));
+  section.style.setProperty("--vignette", frame.vignette.toFixed(4));
+  section.style.setProperty("--dust-left", frame.dustLeft.toFixed(4));
+  section.style.setProperty("--dust-ramp", frame.dustRamp.toFixed(4));
+  section.style.setProperty("--letterbox", `${frame.letterbox.toFixed(2)}px`);
+
+  instance.copyWindows.forEach((window, index) => {
+    setSectionNumber(section, `--copy-${index + 1}`, pulse(window[0], window[1], window[2], instance.renderedProgress));
+  });
+
+  if (instance.videoReady && instance.video) {
+    try {
+      if (Math.abs(instance.video.currentTime - currentTime) > 0.018) {
+        instance.video.currentTime = currentTime;
+      }
+    } catch {
+      // Some browsers briefly reject seeks during initial media decode.
+    }
+  }
+
+  if (instance.fill) instance.fill.style.width = `${instance.renderedProgress * 100}%`;
+  if (instance.frameLabel) instance.frameLabel.textContent = `${currentTime.toFixed(2).padStart(5, "0")}s`;
+  if (instance.progressLabel) instance.progressLabel.textContent = `${Math.round(instance.renderedProgress * 100)}%`;
+
+  instance.seekButtons.forEach((button) => {
+    const seekPoint = clamp(Number(button.dataset.seek || 0));
+    button.classList.toggle("is-active", instance.renderedProgress >= seekPoint - 0.015);
+  });
+}
+
+function render() {
+  instances.forEach(renderInstance);
+  requestAnimationFrame(render);
+}
+
+window.addEventListener("scroll", updateTargetProgress, { passive: true });
+window.addEventListener("resize", updateTargetProgress);
+updateTargetProgress();
+requestAnimationFrame(render);
+
+  </script>
+</body></html>

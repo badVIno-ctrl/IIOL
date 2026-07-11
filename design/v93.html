@@ -1,0 +1,5792 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<!-- Cleaned by ChatGPT: base64 images extracted to /assets and decorative clutter hidden. -->
+<head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AQUARIA — Последняя поверхность</title>
+<meta content="Спаси поверхность. Правь глубинами. Кинематографичное подводное фэнтези-приключение." name="description"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<style>
+:root {
+--navy: #020b16;
+--navy-2: #041426;
+--black: #010409;
+--aqua: #41e6ff;
+--cyan: #22c8e6;
+--teal: #0e8f9c;
+--pearl: #eef7f9;
+--gold: #e8c66a;
+--abyss-red: #ff3b57;
+--ink: #b06dff;
+--ink-dark: #170a24;
+--mono: 'IBM Plex Mono', ui-monospace, monospace;
+--display: 'Anton', Impact, sans-serif;
+--serif: 'Cormorant Garamond', serif;
+}
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+html {
+background: var(--black);
+min-height: 100%;
+}
+body {
+min-height: 100%;
+background: var(--black);
+color: var(--pearl);
+font-family: var(--mono);
+overflow-x: hidden;
+overflow-y: auto;
+min-height: 100%;
+-webkit-font-smoothing: antialiased;
+}
+::selection {
+background: var(--aqua);
+color: var(--black);
+}
+button {
+font-family: var(--mono);
+cursor: pointer;
+}
+.scroll-space {
+display: block;
+min-height: 1900vh;
+height: 1900vh;
+pointer-events: none;
+}
+.stage {
+position: fixed;
+inset: 0;
+overflow: clip;
+background: var(--black);
+}
+.scene {
+position: absolute;
+inset: 0;
+visibility: hidden;
+opacity: 0;
+overflow: clip;
+}
+.cam {
+position: absolute;
+inset: -6%;
+will-change: transform;
+}
+.scene-bg {
+position: absolute;
+inset: 0;
+background-size: cover;
+background-position: center;
+filter: brightness(0.52) saturate(0.72) contrast(1.08);
+}
+.sc-surface .scene-bg {
+filter: brightness(0.42) saturate(0.55) contrast(1.12);
+}
+.scene-tint {
+position: absolute;
+inset: 0;
+}
+.copy {
+position: absolute;
+z-index: 6;
+max-width: min(760px, 84vw);
+}
+.kicker {
+font-size: 11px;
+letter-spacing: 0.42em;
+text-transform: uppercase;
+color: var(--aqua);
+margin-bottom: 18px;
+display: flex;
+align-items: center;
+gap: 12px;
+}
+.kicker::before {
+content: '';
+width: 34px;
+height: 1px;
+background: var(--aqua);
+display: inline-block;
+}
+.headline {
+font-family: var(--display);
+font-size: clamp(44px, 7.4vw, 118px);
+line-height: 0.94;
+text-transform: uppercase;
+color: var(--pearl);
+letter-spacing: 0.01em;
+text-shadow: 0 0 28px rgba(65, 230, 255, 0.35), 0 0 90px rgba(65, 230, 255, 0.18);
+will-change: filter, transform;
+}
+.headline.red {
+text-shadow: 0 0 28px rgba(255, 59, 87, 0.45), 0 0 90px rgba(255, 59, 87, 0.22);
+}
+.headline.ink {
+text-shadow: 0 0 28px rgba(176, 109, 255, 0.45), 0 0 90px rgba(176, 109, 255, 0.22);
+}
+.subline {
+margin-top: 22px;
+font-size: clamp(12px, 1.1vw, 15px);
+letter-spacing: 0.14em;
+text-transform: uppercase;
+line-height: 1.9;
+color: rgba(238, 247, 249, 0.72);
+max-width: 520px;
+}
+.hud-data {
+margin-top: 30px;
+display: inline-block;
+border: 1px solid rgba(65, 230, 255, 0.28);
+background: rgba(2, 11, 22, 0.55);
+backdrop-filter: blur(6px);
+padding: 14px 20px;
+font-size: 10.5px;
+letter-spacing: 0.22em;
+line-height: 2.1;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.85);
+position: relative;
+}
+.hud-data::before,
+.hud-data::after {
+content: '';
+position: absolute;
+width: 10px;
+height: 10px;
+border-color: var(--aqua);
+border-style: solid;
+}
+.hud-data::before {
+top: -1px;
+left: -1px;
+border-width: 1px 0 0 1px;
+}
+.hud-data::after {
+bottom: -1px;
+right: -1px;
+border-width: 0 1px 1px 0;
+}
+.hud-data em {
+font-style: normal;
+color: var(--aqua);
+}
+.hud-data.red {
+border-color: rgba(255, 59, 87, 0.35);
+}
+.hud-data.red em,
+.hud-data.red::before,
+.hud-data.red::after {
+color: var(--abyss-red);
+border-color: var(--abyss-red);
+}
+.hud-data.ink {
+border-color: rgba(176, 109, 255, 0.35);
+}
+.hud-data.ink em,
+.hud-data.ink::before,
+.hud-data.ink::after {
+color: var(--ink);
+border-color: var(--ink);
+}
+.caustics {
+position: absolute;
+inset: -20%;
+z-index: 4;
+pointer-events: none;
+opacity: 0.35;
+background:
+radial-gradient(ellipse 60% 40% at 30% 20%, rgba(65, 230, 255, 0.08), transparent 60%),
+radial-gradient(ellipse 50% 35% at 75% 60%, rgba(34, 200, 230, 0.06), transparent 60%);
+mix-blend-mode: screen;
+animation: causticDrift 14s ease-in-out infinite alternate;
+}
+@keyframes causticDrift {
+from {
+transform: translate3d(-2%, -1%, 0) scale(1);
+}
+to {
+transform: translate3d(2%, 2%, 0) scale(1.08);
+}
+}
+.lightrays {
+position: absolute;
+inset: -10% -20%;
+z-index: 4;
+pointer-events: none;
+opacity: 0.22;
+background: repeating-linear-gradient(100deg, transparent 0px, transparent 90px,
+rgba(127, 245, 225, 0.05) 120px, rgba(65, 230, 255, 0.09) 150px, transparent 210px);
+mix-blend-mode: screen;
+animation: rayShift 11s ease-in-out infinite alternate;
+}
+@keyframes rayShift {
+from {
+transform: translateX(-3%) skewX(-4deg);
+}
+to {
+transform: translateX(3%) skewX(-6deg);
+}
+}
+.vignette {
+position: absolute;
+inset: 0;
+z-index: 8;
+pointer-events: none;
+background: radial-gradient(ellipse 105% 85% at 50% 45%, transparent 55%, rgba(1, 4, 9, 0.75) 100%);
+}
+.grain {
+position: absolute;
+inset: 0;
+z-index: 9;
+pointer-events: none;
+opacity: 0.5;
+background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.bubbles-canvas {
+position: absolute;
+inset: 0;
+z-index: 5;
+pointer-events: none;
+}
+.flash {
+position: absolute;
+inset: 0;
+z-index: 20;
+pointer-events: none;
+opacity: 0;
+background: radial-gradient(circle at 50% 50%, rgba(191, 250, 255, 0.95), rgba(65, 230, 255, 0.5) 45%, transparent 75%);
+}
+.portal-ring {
+position: absolute;
+z-index: 19;
+left: 50%;
+top: 50%;
+width: 30vmax;
+height: 30vmax;
+margin: -15vmax 0 0 -15vmax;
+border-radius: 50%;
+border: 2px solid rgba(127, 245, 225, 0.9);
+box-shadow: 0 0 60px rgba(65, 230, 255, 0.7), inset 0 0 60px rgba(65, 230, 255, 0.5);
+opacity: 0;
+pointer-events: none;
+will-change: transform, opacity;
+}
+.hud {
+position: fixed;
+inset: 0;
+z-index: 40;
+pointer-events: none;
+font-family: var(--mono);
+}
+.hud-tilt {
+position: absolute;
+inset: 0;
+will-change: transform;
+}
+.logo {
+position: absolute;
+top: 26px;
+left: 30px;
+pointer-events: auto;
+cursor: pointer;
+}
+.logo h1 {
+font-family: var(--display);
+font-size: 26px;
+letter-spacing: 0.28em;
+color: var(--pearl);
+text-shadow: 0 0 18px rgba(65, 230, 255, 0.45);
+}
+.logo span {
+display: block;
+font-size: 9px;
+letter-spacing: 0.5em;
+color: var(--aqua);
+margin-top: 4px;
+}
+.menu-btn {
+position: absolute;
+top: 28px;
+right: 30px;
+pointer-events: auto;
+background: rgba(2, 11, 22, 0.55);
+border: 1px solid rgba(65, 230, 255, 0.3);
+backdrop-filter: blur(8px);
+color: var(--pearl);
+font-size: 10px;
+letter-spacing: 0.4em;
+padding: 12px 22px 12px 26px;
+text-transform: uppercase;
+transition: all 0.25s ease;
+}
+.menu-btn:hover {
+border-color: var(--aqua);
+box-shadow: 0 0 24px rgba(65, 230, 255, 0.35);
+color: var(--aqua);
+}
+.rail-left {
+position: absolute;
+left: 30px;
+top: 50%;
+transform: translateY(-50%);
+pointer-events: auto;
+}
+.rail-left .rail-chapter {
+font-size: 9px;
+letter-spacing: 0.34em;
+color: var(--aqua);
+margin-bottom: 6px;
+}
+.rail-left .rail-title {
+font-size: 12px;
+letter-spacing: 0.24em;
+color: var(--pearl);
+margin-bottom: 18px;
+min-height: 15px;
+}
+.rail-left ul {
+list-style: none;
+border-left: 1px solid rgba(65, 230, 255, 0.22);
+}
+.rail-left li button {
+display: block;
+background: none;
+border: none;
+color: rgba(238, 247, 249, 0.4);
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+padding: 6px 0 6px 16px;
+position: relative;
+transition: color 0.25s ease;
+text-align: left;
+}
+.rail-left li button::before {
+content: '';
+position: absolute;
+left: -1px;
+top: 50%;
+transform: translateY(-50%);
+width: 2px;
+height: 0;
+background: var(--aqua);
+transition: height 0.25s ease;
+}
+.rail-left li button:hover {
+color: var(--pearl);
+}
+.rail-left li.active button {
+color: var(--aqua);
+text-shadow: 0 0 12px rgba(65, 230, 255, 0.6);
+}
+.rail-left li.active button::before {
+height: 70%;
+box-shadow: 0 0 10px var(--aqua);
+}
+.rail-right {
+position: absolute;
+right: 34px;
+top: 50%;
+transform: translateY(-50%);
+height: 52vh;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 14px;
+}
+.rail-right .track {
+position: relative;
+flex: 1;
+width: 1px;
+background: rgba(65, 230, 255, 0.2);
+}
+.rail-right .fill {
+position: absolute;
+top: 0;
+left: 0;
+width: 1px;
+height: 0%;
+background: linear-gradient(var(--aqua), var(--cyan));
+box-shadow: 0 0 8px rgba(65, 230, 255, 0.8);
+}
+.rail-right .dot {
+position: absolute;
+left: 50%;
+top: 0%;
+width: 7px;
+height: 7px;
+border-radius: 50%;
+background: var(--aqua);
+transform: translate(-50%, -50%);
+box-shadow: 0 0 14px var(--aqua);
+}
+.rail-right .pct {
+font-size: 9px;
+letter-spacing: 0.2em;
+color: rgba(238, 247, 249, 0.6);
+writing-mode: vertical-rl;
+}
+.hud-label {
+position: absolute;
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.42);
+}
+.hud-label em {
+font-style: normal;
+color: var(--aqua);
+}
+.hud-label.tl2 {
+top: 96px;
+left: 30px;
+}
+.hud-label.tr2 {
+top: 96px;
+right: 30px;
+text-align: right;
+}
+.hud-label.bl {
+bottom: 28px;
+left: 30px;
+}
+.hud-label.br {
+bottom: 28px;
+right: 30px;
+text-align: right;
+}
+.vertical-label {
+position: absolute;
+right: 76px;
+top: 50%;
+transform: translateY(-50%);
+writing-mode: vertical-rl;
+font-size: 9px;
+letter-spacing: 0.55em;
+color: rgba(65, 230, 255, 0.5);
+text-transform: uppercase;
+}
+.scroll-hint {
+position: absolute;
+bottom: 30px;
+left: 50%;
+transform: translateX(-50%);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+font-size: 10px;
+letter-spacing: 0.5em;
+color: var(--pearl);
+text-transform: uppercase;
+transition: opacity 0.5s ease;
+}
+.scroll-hint .line {
+width: 1px;
+height: 34px;
+background: linear-gradient(var(--aqua), transparent);
+position: relative;
+overflow: hidden;
+}
+.scroll-hint .line::after {
+content: '';
+position: absolute;
+left: 0;
+top: -50%;
+width: 100%;
+height: 50%;
+background: var(--pearl);
+animation: hintDrop 1.8s ease-in-out infinite;
+}
+@keyframes hintDrop {
+to {
+top: 110%;
+}
+}
+.scroll-hint.hidden {
+opacity: 0;
+}
+.menu-overlay {
+position: fixed;
+inset: 0;
+z-index: 60;
+background: rgba(1, 6, 12, 0.9);
+backdrop-filter: blur(18px);
+display: flex;
+align-items: center;
+justify-content: center;
+}
+.menu-overlay.hidden {
+display: none;
+}
+.menu-overlay .inner {
+text-align: center;
+}
+.menu-overlay .menu-kicker {
+font-size: 10px;
+letter-spacing: 0.5em;
+color: var(--aqua);
+margin-bottom: 34px;
+text-transform: uppercase;
+}
+.menu-overlay nav {
+display: flex;
+flex-direction: column;
+gap: 4px;
+}
+.menu-overlay nav button {
+background: none;
+border: none;
+font-family: var(--display);
+font-size: clamp(30px, 4.6vw, 56px);
+text-transform: uppercase;
+letter-spacing: 0.06em;
+color: rgba(238, 247, 249, 0.45);
+transition: all 0.25s ease;
+line-height: 1.2;
+}
+.menu-overlay nav button:hover {
+color: var(--pearl);
+text-shadow: 0 0 30px rgba(65, 230, 255, 0.7);
+letter-spacing: 0.1em;
+}
+.menu-overlay .close {
+position: absolute;
+top: 28px;
+right: 30px;
+background: rgba(2, 11, 22, 0.55);
+border: 1px solid rgba(65, 230, 255, 0.3);
+color: var(--pearl);
+font-size: 10px;
+letter-spacing: 0.4em;
+padding: 12px 22px 12px 26px;
+text-transform: uppercase;
+}
+.menu-overlay .close:hover {
+color: var(--abyss-red);
+border-color: var(--abyss-red);
+}
+.preloader {
+position: fixed;
+inset: 0;
+z-index: 100;
+background: var(--black);
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+gap: 40px;
+transition: opacity 0.9s ease;
+}
+.preloader.done {
+opacity: 0;
+pointer-events: none;
+}
+.core-glyph {
+position: relative;
+width: 120px;
+height: 120px;
+}
+.core-glyph .pearl {
+position: absolute;
+inset: 42px;
+border-radius: 50%;
+background: radial-gradient(circle at 40% 35%, #bffaff, var(--aqua) 55%, #0b6c8c);
+box-shadow: 0 0 30px rgba(65, 230, 255, 0.9), 0 0 90px rgba(65, 230, 255, 0.5);
+animation: corePulse 2.2s ease-in-out infinite;
+}
+.core-glyph .ring {
+position: absolute;
+inset: 0;
+border-radius: 50%;
+border: 1px solid rgba(65, 230, 255, 0.5);
+border-top-color: transparent;
+border-bottom-color: transparent;
+animation: coreSpin 3.4s linear infinite;
+}
+.core-glyph .ring.r2 {
+inset: 14px;
+animation-duration: 2.4s;
+animation-direction: reverse;
+border-color: rgba(127, 245, 225, 0.4);
+border-left-color: transparent;
+border-right-color: transparent;
+}
+.core-glyph .ring.r3 {
+inset: 28px;
+animation-duration: 5s;
+}
+@keyframes coreSpin {
+to {
+transform: rotate(360deg);
+}
+}
+@keyframes corePulse {
+0%,
+100% {
+transform: scale(1);
+}
+50% {
+transform: scale(1.12);
+}
+}
+.preloader .boot-msg {
+font-size: 10px;
+letter-spacing: 0.45em;
+color: rgba(238, 247, 249, 0.7);
+text-transform: uppercase;
+min-height: 14px;
+}
+.preloader .bar {
+position: absolute;
+bottom: 60px;
+left: 50%;
+transform: translateX(-50%);
+width: min(320px, 60vw);
+height: 1px;
+background: rgba(65, 230, 255, 0.18);
+}
+.preloader .bar .fill {
+height: 100%;
+width: 0%;
+background: var(--aqua);
+box-shadow: 0 0 12px var(--aqua);
+transition: width 0.15s linear;
+}
+.preloader .bar .num {
+position: absolute;
+right: 0;
+top: -22px;
+font-size: 9px;
+letter-spacing: 0.3em;
+color: var(--aqua);
+}
+/* scene 1 — surface */
+.sc-surface .scene-tint {
+background:
+linear-gradient(to bottom, rgba(1, 4, 9, 0.7), rgba(2, 20, 38, 0.45) 45%, rgba(2, 20, 38, 0.85)),
+linear-gradient(to top, rgba(4, 20, 38, 0.9), transparent 40%),
+radial-gradient(ellipse 80% 60% at 50% 30%, rgba(9, 40, 70, 0.35), transparent 80%);
+}
+.sc-surface .copy {
+left: 8vw;
+bottom: 18vh;
+}
+.surface-water {
+/* Removed the old rising gradient panel that looked like a layer during the hero scroll */
+display: none;
+}
+.lightning {
+position: absolute;
+inset: 0;
+z-index: 2;
+background: radial-gradient(ellipse 40% 30% at 70% 15%, rgba(191, 230, 255, 0.55), transparent 70%);
+opacity: 0;
+animation: lightning 7s ease-in-out infinite;
+mix-blend-mode: screen;
+}
+@keyframes lightning {
+0%,
+91%,
+95%,
+100% {
+opacity: 0;
+}
+92%,
+94% {
+opacity: 0.9;
+}
+93% {
+opacity: 0.25;
+}
+}
+.dive-overlay {
+/* Disabled: this was the old sliding panel transition */
+display: none !important;
+}
+.dive-video {
+position: absolute;
+inset: 0;
+z-index: 15;
+width: 100%;
+height: 100%;
+object-fit: cover;
+pointer-events: none;
+opacity: 0;
+transform: scale(1.04);
+filter: saturate(1.15) brightness(0.82);
+mix-blend-mode: normal;
+will-change: transform, opacity, filter;
+}
+/* ================= HERO GATE — inspired by the reference video ================= */
+.hero-gate {
+position: absolute;
+inset: 0;
+z-index: 24;
+overflow: hidden;
+isolation: isolate;
+background: #020707;
+pointer-events: auto;
+opacity: 1;
+visibility: visible;
+will-change: opacity;
+}
+.hero-gate-world,
+.hero-gate-portal,
+.hero-gate-shutter,
+.hero-gate-grain,
+.hero-gate-lines,
+.hero-gate-copy,
+.hero-gate-cards,
+.hero-gate-cta,
+.hero-gate-cue {
+position: absolute;
+will-change: transform, opacity, filter;
+}
+.hero-gate-world {
+z-index: 0;
+inset: -6%;
+transform-origin: 50% 50%;
+}
+.hero-gate-world img,
+.hero-gate-portal img,
+.gate-card img {
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
+}
+.hero-gate-video {
+position: absolute;
+inset: 0;
+z-index: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 1;
+mix-blend-mode: normal;
+filter: saturate(1.18) brightness(0.72) contrast(1.08);
+pointer-events: none;
+}
+.hero-gate-world::after {
+content: '';
+position: absolute;
+inset: 0;
+background:
+radial-gradient(circle at 52% 18%, rgba(65, 230, 255, 0.18), transparent 30%),
+linear-gradient(90deg, rgba(1, 4, 9, 0.48), transparent 31%, transparent 66%, rgba(1, 4, 9, 0.58)),
+linear-gradient(180deg, rgba(2, 11, 22, 0.08), rgba(1, 4, 9, 0.48));
+pointer-events: none;
+}
+.hero-gate-portal {
+z-index: 10;
+inset: -12%;
+transform-origin: 50% 48%;
+mix-blend-mode: screen;
+pointer-events: none;
+}
+.hero-gate-portal::after {
+content: '';
+position: absolute;
+inset: 0;
+pointer-events: none;
+background: radial-gradient(circle at 50% 50%, transparent 0 24%, rgba(2, 7, 7, 0.14) 39%, rgba(1, 4, 9, 0.62) 78%);
+}
+.hero-gate-shutter {
+z-index: 20;
+top: 0;
+bottom: 0;
+width: 58vw;
+background:
+linear-gradient(90deg, rgba(2, 10, 17, 0.98), rgba(5, 30, 36, 0.92)),
+repeating-linear-gradient(90deg, transparent 0 26px, rgba(232, 198, 106, 0.12) 27px 28px);
+border-inline: 1px solid rgba(232, 198, 106, 0.22);
+box-shadow: 0 0 68px rgba(0, 0, 0, 0.78);
+transform: translateX(0%);
+}
+.hero-gate-shutter.left {
+right: 50%;
+clip-path: polygon(0 0, 94% 0, 100% 50%, 94% 100%, 0 100%);
+}
+.hero-gate-shutter.right {
+left: 50%;
+clip-path: polygon(6% 0, 100% 0, 100% 100%, 6% 100%, 0 50%);
+}
+.hero-gate-shutter::before,
+.hero-gate-shutter::after {
+content: '';
+position: absolute;
+inset: 12% 11%;
+border: 1px solid rgba(238, 247, 249, 0.13);
+}
+.hero-gate-shutter::after {
+inset: 24% 18%;
+border-color: rgba(65, 230, 255, 0.24);
+box-shadow: inset 0 0 42px rgba(65, 230, 255, 0.08);
+}
+.hero-gate-lines {
+z-index: 26;
+inset: 0;
+pointer-events: none;
+opacity: 0.32;
+background:
+repeating-linear-gradient(105deg, transparent 0 26px, rgba(65, 230, 255, 0.09) 27px 28px),
+repeating-linear-gradient(18deg, transparent 0 80px, rgba(232, 198, 106, 0.08) 81px 82px);
+animation: heroGateDrift 12s linear infinite;
+}
+@keyframes heroGateDrift {
+from { transform: translate3d(0, 0, 0); }
+to { transform: translate3d(-48px, 28px, 0); }
+}
+.hero-gate-grain {
+z-index: 25;
+inset: 0;
+opacity: 0.2;
+pointer-events: none;
+background-image:
+linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+background-size: 56px 56px;
+mask-image: linear-gradient(180deg, transparent, black 12%, black 86%, transparent);
+}
+.hero-gate-copy {
+z-index: 35;
+left: clamp(22px, 8vw, 120px);
+top: 50%;
+max-width: min(620px, 82vw);
+transform: translateY(calc(-50% + 24px));
+opacity: 0;
+transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.hero-gate-copy.is-visible {
+opacity: 1;
+transform: translateY(-50%);
+}
+.hero-gate-copy .kicker {
+color: rgba(238, 247, 249, 0.76);
+margin-bottom: 16px;
+}
+.hero-gate-copy .headline {
+font-size: clamp(56px, 9.2vw, 146px);
+line-height: 0.83;
+text-shadow: 0 22px 80px rgba(0, 0, 0, 0.64), 0 0 44px rgba(65, 230, 255, 0.24);
+}
+.hero-gate-copy .subline {
+max-width: 470px;
+color: rgba(238, 247, 249, 0.74);
+}
+.hero-gate-actions {
+display: flex;
+align-items: center;
+flex-wrap: wrap;
+gap: 14px;
+margin-top: 30px;
+}
+.hero-gate-actions .btn {
+min-height: 44px;
+border-radius: 999px;
+padding: 0 18px;
+border-color: rgba(238, 247, 249, 0.2);
+background: rgba(2, 11, 22, 0.42);
+backdrop-filter: blur(14px);
+}
+.hero-gate-actions .btn.primary {
+background: var(--pearl);
+color: #021018;
+box-shadow: 0 0 24px rgba(65, 230, 255, 0.18);
+}
+.hero-gate-cards {
+z-index: 34;
+right: clamp(22px, 8vw, 120px);
+top: 50%;
+display: grid;
+grid-template-columns: repeat(2, minmax(138px, 178px));
+gap: 14px;
+opacity: 0;
+transform: translateY(calc(-50% + 24px));
+transition: opacity 0.9s ease, transform 0.9s ease;
+}
+.hero-gate-cards.is-visible {
+opacity: 1;
+transform: translateY(-50%);
+}
+.gate-card {
+position: relative;
+height: 230px;
+overflow: hidden;
+border: 1px solid rgba(238, 247, 249, 0.16);
+border-radius: 10px;
+background: rgba(2, 11, 22, 0.42);
+box-shadow: 0 24px 70px rgba(0, 0, 0, 0.44);
+}
+.gate-card:nth-child(1) {
+transform: translateY(-24px);
+}
+.gate-card::after {
+content: '';
+position: absolute;
+inset: 0;
+background: linear-gradient(180deg, transparent 36%, rgba(1, 4, 9, 0.86));
+}
+.gate-card span {
+position: absolute;
+z-index: 2;
+left: 14px;
+right: 14px;
+bottom: 14px;
+display: flex;
+align-items: center;
+gap: 10px;
+color: var(--pearl);
+font-size: 10px;
+font-weight: 800;
+letter-spacing: 0.16em;
+line-height: 1.35;
+text-transform: uppercase;
+}
+.gate-card span::before {
+content: '';
+width: 24px;
+height: 24px;
+flex: 0 0 auto;
+border-radius: 50%;
+border: 1px solid rgba(65, 230, 255, 0.55);
+box-shadow: 0 0 20px rgba(65, 230, 255, 0.24);
+}
+.hero-gate-cta {
+z-index: 36;
+inset: 0;
+display: grid;
+place-items: center;
+padding: 24px;
+text-align: center;
+opacity: 0;
+pointer-events: none;
+}
+.hero-gate-cta h2 {
+margin: 0;
+font-family: var(--display);
+font-size: clamp(58px, 10vw, 150px);
+line-height: 0.84;
+text-transform: uppercase;
+color: var(--pearl);
+text-shadow: 0 18px 70px rgba(0, 0, 0, 0.76), 0 0 36px rgba(65, 230, 255, 0.28);
+}
+.hero-gate-cta p {
+max-width: 540px;
+margin: 22px auto 0;
+color: rgba(238, 247, 249, 0.76);
+font-size: clamp(13px, 1.3vw, 16px);
+letter-spacing: 0.14em;
+line-height: 1.75;
+text-transform: uppercase;
+}
+.hero-gate-cue {
+z-index: 36;
+left: 50%;
+bottom: 30px;
+display: flex;
+align-items: center;
+gap: 12px;
+color: rgba(238, 247, 249, 0.62);
+font-size: 9px;
+letter-spacing: 0.32em;
+text-transform: uppercase;
+transform: translateX(-50%);
+pointer-events: none;
+}
+.hero-gate-cue::after {
+content: '';
+width: 38px;
+height: 1px;
+background: linear-gradient(90deg, var(--aqua), transparent);
+animation: heroCuePulse 1.8s ease-in-out infinite;
+}
+@keyframes heroCuePulse {
+0%, 100% { opacity: 0.35; transform: translateX(0); }
+50% { opacity: 1; transform: translateX(10px); }
+}
+.dive-video {
+display: none !important;
+}
+@media (max-width: 980px) {
+.hero-gate-copy {
+left: 24px;
+right: 24px;
+top: 46%;
+text-align: center;
+margin-inline: auto;
+}
+.hero-gate-copy .kicker {
+justify-content: center;
+}
+.hero-gate-copy .subline {
+margin-inline: auto;
+}
+.hero-gate-actions {
+justify-content: center;
+}
+.hero-gate-cards {
+display: none;
+}
+}
+@media (max-width: 640px) {
+.hero-gate-shutter { width: 66vw; }
+.hero-gate-copy .headline { font-size: clamp(48px, 17vw, 82px); }
+.hero-gate-copy .subline { font-size: 11px; }
+.hero-gate-actions .btn { min-height: 40px; font-size: 9px; padding: 0 13px; }
+}
+/* Custom Aquaria portal frame — replaces the old inspiration portal asset */
+.hero-gate-world::after {
+display: none !important;
+}
+.hero-gate-video {
+filter: saturate(1.2) brightness(0.92) contrast(1.06) !important;
+}
+.hero-gate-portal {
+z-index: 18;
+inset: 4vh 4vw 2vh;
+transform-origin: 50% 50%;
+mix-blend-mode: normal !important;
+opacity: 1 !important;
+pointer-events: none;
+}
+.hero-gate-portal img {
+width: 100%;
+height: 100%;
+object-fit: contain !important;
+opacity: 1 !important;
+filter: drop-shadow(0 0 32px rgba(65, 230, 255, 0.34)) drop-shadow(0 30px 80px rgba(0, 0, 0, 0.65));
+}
+.hero-gate-portal::after {
+display: none !important;
+}
+.hero-gate-grain {
+display: none !important;
+}
+/* Custom Aquaria shutter assets — replaces CSS-only shutters */
+.hero-gate-shutter {
+z-index: 22;
+top: 0;
+bottom: 0;
+width: min(43vw, 760px);
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+clip-path: none !important;
+overflow: visible;
+transform-origin: center center;
+pointer-events: none;
+}
+.hero-gate-shutter.left {
+right: 50%;
+}
+.hero-gate-shutter.right {
+left: 50%;
+}
+.hero-gate-shutter::before,
+.hero-gate-shutter::after {
+display: none !important;
+content: none !important;
+}
+.hero-gate-shutter img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+object-fit: contain;
+opacity: 1;
+filter: drop-shadow(0 0 22px rgba(65, 230, 255, 0.24)) drop-shadow(0 28px 72px rgba(0, 0, 0, 0.68));
+pointer-events: none;
+user-select: none;
+}
+@media (max-width: 980px) {
+.hero-gate-shutter { width: 52vw; }
+}
+@media (max-width: 640px) {
+.hero-gate-shutter { width: 70vw; }
+}
+/* Layer fix: place Aquaria ruins image behind portal and correctly anchor shutters beside the portal */
+.hero-gate-world {
+inset: 0 !important;
+z-index: 0 !important;
+transform-origin: 50% 50%;
+}
+.hero-gate-bg {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+object-fit: cover;
+object-position: center;
+filter: saturate(1.03) brightness(0.98) contrast(1.02);
+pointer-events: none;
+user-select: none;
+}
+.hero-gate-video {
+display: none !important;
+}
+.hero-gate-portal {
+z-index: 18 !important;
+inset: 8vh 23vw 7vh !important;
+transform-origin: 50% 50%;
+mix-blend-mode: normal !important;
+opacity: 1 !important;
+pointer-events: none;
+}
+.hero-gate-portal img {
+width: 100%;
+height: 100%;
+object-fit: contain !important;
+object-position: center;
+opacity: 1 !important;
+filter: drop-shadow(0 0 32px rgba(65, 230, 255, 0.30)) drop-shadow(0 30px 80px rgba(0, 0, 0, 0.58));
+}
+.hero-gate-shutter {
+z-index: 22 !important;
+top: 50% !important;
+bottom: auto !important;
+width: min(20vw, 340px) !important;
+height: min(84vh, 860px) !important;
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+clip-path: none !important;
+overflow: visible;
+pointer-events: none;
+}
+.hero-gate-shutter.left {
+left: calc(50% - 33vw) !important;
+right: auto !important;
+transform-origin: 100% 50%;
+}
+.hero-gate-shutter.right {
+right: calc(50% - 33vw) !important;
+left: auto !important;
+transform-origin: 0% 50%;
+}
+.hero-gate-shutter img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+object-fit: contain;
+object-position: center;
+opacity: 1;
+filter: drop-shadow(0 0 22px rgba(65, 230, 255, 0.18)) drop-shadow(0 20px 55px rgba(0, 0, 0, 0.50));
+pointer-events: none;
+user-select: none;
+}
+@media (max-width: 1280px) {
+.hero-gate-portal { inset: 9vh 18vw 9vh !important; }
+.hero-gate-shutter.left { left: calc(50% - 35vw) !important; }
+.hero-gate-shutter.right { right: calc(50% - 35vw) !important; }
+}
+@media (max-width: 980px) {
+.hero-gate-portal { inset: 14vh 10vw 14vh !important; }
+.hero-gate-shutter {
+width: min(25vw, 280px) !important;
+height: min(76vh, 700px) !important;
+}
+.hero-gate-shutter.left { left: calc(50% - 42vw) !important; }
+.hero-gate-shutter.right { right: calc(50% - 42vw) !important; }
+}
+@media (max-width: 640px) {
+.hero-gate-portal { inset: 18vh 2vw 18vh !important; }
+.hero-gate-shutter {
+width: min(31vw, 190px) !important;
+height: min(62vh, 480px) !important;
+}
+.hero-gate-shutter.left { left: calc(50% - 48vw) !important; }
+.hero-gate-shutter.right { right: calc(50% - 48vw) !important; }
+}
+/* Fix v2: swap shutter sides, make shutters full-screen height, and enlarge the portal */
+.hero-gate-portal {
+z-index: 18 !important;
+inset: 1.5vh 13vw 1vh !important;
+transform-origin: 50% 50%;
+mix-blend-mode: normal !important;
+opacity: 1 !important;
+pointer-events: none;
+}
+.hero-gate-portal img {
+width: 100%;
+height: 100%;
+object-fit: contain !important;
+object-position: center;
+opacity: 1 !important;
+filter: drop-shadow(0 0 32px rgba(65, 230, 255, 0.30)) drop-shadow(0 30px 80px rgba(0, 0, 0, 0.58));
+}
+.hero-gate-shutter {
+z-index: 22 !important;
+top: 0 !important;
+bottom: 0 !important;
+width: min(24vw, 430px) !important;
+height: auto !important;
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+clip-path: none !important;
+overflow: visible;
+pointer-events: none;
+}
+.hero-gate-shutter.left {
+left: calc(50% - 31vw) !important;
+right: auto !important;
+transform-origin: 100% 50%;
+}
+.hero-gate-shutter.right {
+right: calc(50% - 31vw) !important;
+left: auto !important;
+transform-origin: 0% 50%;
+}
+.hero-gate-shutter img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+object-fit: contain;
+object-position: center;
+opacity: 1;
+filter: drop-shadow(0 0 22px rgba(65, 230, 255, 0.18)) drop-shadow(0 20px 55px rgba(0, 0, 0, 0.50));
+pointer-events: none;
+user-select: none;
+}
+@media (max-width: 1280px) {
+.hero-gate-portal { inset: 3vh 10vw 2vh !important; }
+.hero-gate-shutter { width: min(26vw, 390px) !important; }
+.hero-gate-shutter.left { left: calc(50% - 34vw) !important; }
+.hero-gate-shutter.right { right: calc(50% - 34vw) !important; }
+}
+@media (max-width: 980px) {
+.hero-gate-portal { inset: 10vh 3vw 9vh !important; }
+.hero-gate-shutter { width: min(29vw, 260px) !important; }
+.hero-gate-shutter.left { left: calc(50% - 43vw) !important; }
+.hero-gate-shutter.right { right: calc(50% - 43vw) !important; }
+}
+@media (max-width: 640px) {
+.hero-gate-portal { inset: 16vh 0 15vh !important; }
+.hero-gate-shutter { width: min(33vw, 190px) !important; }
+.hero-gate-shutter.left { left: calc(50% - 47vw) !important; }
+.hero-gate-shutter.right { right: calc(50% - 47vw) !important; }
+}
+/* Fix v3: edge-mounted shutters, full screen height, fully left/right like the reference */
+.hero-gate {
+overflow: hidden;
+}
+.hero-gate-portal {
+inset: 0.5vh 14vw 0.5vh !important;
+z-index: 18 !important;
+}
+.hero-gate-shutter {
+z-index: 24 !important;
+top: 0 !important;
+bottom: 0 !important;
+width: min(22vw, 390px) !important;
+height: 100vh !important;
+max-height: none !important;
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+overflow: visible !important;
+pointer-events: none;
+}
+.hero-gate-shutter.left {
+left: 0 !important;
+right: auto !important;
+transform-origin: 100% 50%;
+}
+.hero-gate-shutter.right {
+right: 0 !important;
+left: auto !important;
+transform-origin: 0% 50%;
+}
+.hero-gate-shutter img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+object-fit: fill !important;
+opacity: 1;
+pointer-events: none;
+user-select: none;
+filter: drop-shadow(0 0 18px rgba(65, 230, 255, 0.12)) drop-shadow(0 18px 46px rgba(0, 0, 0, 0.42));
+}
+.hero-gate-shutter.left img {
+object-position: left center;
+}
+.hero-gate-shutter.right img {
+object-position: right center;
+}
+@media (max-width: 1280px) {
+.hero-gate-portal { inset: 2vh 12vw 2vh !important; }
+.hero-gate-shutter { width: min(24vw, 340px) !important; }
+}
+@media (max-width: 980px) {
+.hero-gate-portal { inset: 10vh 4vw 10vh !important; }
+.hero-gate-shutter { width: min(25vw, 250px) !important; }
+}
+@media (max-width: 640px) {
+.hero-gate-portal { inset: 17vh 0 17vh !important; }
+.hero-gate-shutter { width: min(29vw, 180px) !important; }
+}
+/* Coral side decorations replacing old shutters */
+.hero-gate-shutter {
+z-index: 24 !important;
+top: 0 !important;
+bottom: 0 !important;
+width: clamp(170px, 23vw, 430px) !important;
+height: 100vh !important;
+max-height: 100vh !important;
+overflow: visible !important;
+background: transparent !important;
+border: 0 !important;
+box-shadow: none !important;
+pointer-events: none;
+}
+.hero-gate-shutter.left {
+left: 0 !important;
+right: auto !important;
+transform-origin: 0% 50% !important;
+}
+.hero-gate-shutter.right {
+right: 0 !important;
+left: auto !important;
+transform-origin: 100% 50% !important;
+}
+.hero-gate-shutter img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+display: block;
+object-fit: contain !important;
+opacity: 1;
+pointer-events: none;
+user-select: none;
+filter: drop-shadow(0 0 22px rgba(53, 211, 255, 0.12)) drop-shadow(0 24px 52px rgba(0,0,0,0.34));
+}
+.hero-gate-shutter.left img {
+object-position: left center !important;
+}
+.hero-gate-shutter.right img {
+object-position: right center !important;
+}
+@media (max-width: 1280px) {
+.hero-gate-shutter {
+width: clamp(150px, 24vw, 340px) !important;
+}
+}
+@media (max-width: 980px) {
+.hero-gate-shutter {
+width: clamp(110px, 26vw, 240px) !important;
+}
+}
+@media (max-width: 640px) {
+.hero-gate-shutter {
+width: clamp(88px, 28vw, 170px) !important;
+}
+}
+/* Updated blue side decorations + mermaid character in front of the portal */
+.hero-gate-mermaid {
+position: absolute;
+left: 50%;
+bottom: 0.4vh;
+width: clamp(250px, 31vw, 520px);
+height: min(80vh, 980px);
+transform: translateX(-50%);
+transform-origin: 50% 100%;
+z-index: 20;
+pointer-events: none;
+opacity: 1;
+}
+.hero-gate-mermaid img {
+width: 100%;
+height: 100%;
+object-fit: contain;
+object-position: center bottom;
+display: block;
+filter: drop-shadow(0 14px 32px rgba(0,0,0,0.38)) drop-shadow(0 0 18px rgba(58, 201, 255, 0.16));
+pointer-events: none;
+user-select: none;
+}
+.hero-gate-shutter {
+width: clamp(145px, 19vw, 340px) !important;
+}
+.hero-gate-shutter img {
+filter: drop-shadow(0 0 18px rgba(53, 211, 255, 0.10)) drop-shadow(0 20px 42px rgba(0,0,0,0.28));
+}
+@media (max-width: 1280px) {
+.hero-gate-mermaid { width: clamp(220px, 34vw, 460px); height: min(74vh, 860px); }
+.hero-gate-shutter { width: clamp(130px, 20vw, 300px) !important; }
+}
+@media (max-width: 980px) {
+.hero-gate-mermaid { width: clamp(190px, 40vw, 360px); height: min(66vh, 720px); }
+.hero-gate-shutter { width: clamp(100px, 21vw, 220px) !important; }
+}
+@media (max-width: 640px) {
+.hero-gate-mermaid { width: clamp(160px, 46vw, 280px); height: min(54vh, 520px); }
+.hero-gate-shutter { width: clamp(78px, 22vw, 150px) !important; }
+}
+/* Final sizing update: larger full-height side decorations and new clean mermaid cutout */
+.hero-gate-shutter {
+z-index: 24 !important;
+top: 0 !important;
+bottom: 0 !important;
+width: clamp(220px, 24vw, 430px) !important;
+height: 100vh !important;
+max-height: 100vh !important;
+overflow: visible !important;
+}
+.hero-gate-shutter.left {
+left: 0 !important;
+right: auto !important;
+}
+.hero-gate-shutter.right {
+right: 0 !important;
+left: auto !important;
+}
+.hero-gate-shutter img {
+width: 100% !important;
+height: 100% !important;
+object-fit: contain !important;
+object-position: center bottom !important;
+filter: drop-shadow(0 0 18px rgba(53, 211, 255, 0.10)) drop-shadow(0 20px 42px rgba(0,0,0,0.28));
+}
+.hero-gate-mermaid {
+left: 50% !important;
+bottom: 0 !important;
+width: clamp(280px, 34vw, 560px) !important;
+height: min(84vh, 1050px) !important;
+transform: translateX(-50%);
+transform-origin: 50% 100%;
+z-index: 21 !important;
+}
+.hero-gate-mermaid img {
+width: 100% !important;
+height: 100% !important;
+object-fit: contain !important;
+object-position: center bottom !important;
+filter: drop-shadow(0 16px 34px rgba(0,0,0,0.36)) drop-shadow(0 0 14px rgba(79, 211, 255, 0.12));
+}
+@media (max-width: 1280px) {
+.hero-gate-shutter { width: clamp(190px, 25vw, 360px) !important; }
+.hero-gate-mermaid { width: clamp(240px, 36vw, 480px) !important; height: min(78vh, 900px) !important; }
+}
+@media (max-width: 980px) {
+.hero-gate-shutter { width: clamp(140px, 26vw, 270px) !important; }
+.hero-gate-mermaid { width: clamp(200px, 42vw, 380px) !important; height: min(68vh, 760px) !important; }
+}
+@media (max-width: 640px) {
+.hero-gate-shutter { width: clamp(100px, 28vw, 190px) !important; }
+.hero-gate-mermaid { width: clamp(170px, 48vw, 300px) !important; height: min(58vh, 560px) !important; }
+}
+/* Stable fix: keep hero nodes for JS, but hide the right cards and use the cleaned transparent mermaid */
+.hero-gate-cards {
+display: none !important;
+opacity: 0 !important;
+pointer-events: none !important;
+}
+.hero-gate-mermaid,
+.hero-gate-mermaid img {
+background: transparent !important;
+}
+.hero-gate-mermaid img {
+mix-blend-mode: normal !important;
+filter: drop-shadow(0 16px 34px rgba(0,0,0,0.36)) drop-shadow(0 0 14px rgba(79, 211, 255, 0.12));
+}
+/* scene 2 — kael */
+.sc-kael .scene-tint {
+background:
+linear-gradient(to bottom, rgba(2, 11, 22, 0.75), rgba(2, 20, 38, 0.3) 50%, rgba(1, 4, 9, 0.85)),
+radial-gradient(ellipse 50% 60% at 68% 55%, rgba(65, 230, 255, 0.12), transparent 70%);
+}
+.sc-kael .copy {
+left: 8vw;
+top: 20vh;
+}
+.kael-figure {
+position: absolute;
+right: 6vw;
+bottom: 0;
+width: min(38vw, 480px);
+height: 78vh;
+z-index: 5;
+will-change: transform;
+}
+.figure-frame {
+position: absolute;
+inset: 0;
+border: 1px solid rgba(65, 230, 255, 0.25);
+background: rgba(2, 11, 22, 0.3);
+overflow: hidden;
+}
+.figure-frame img,
+.figure-frame video {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+filter: brightness(0.72) saturate(0.85) contrast(1.06);
+}
+.figure-frame video {
+position: absolute;
+inset: 0;
+pointer-events: none;
+}
+.figure-frame .glow {
+position: absolute;
+left: 50%;
+top: 55%;
+width: 40%;
+aspect-ratio: 1;
+transform: translate(-50%, -50%);
+border-radius: 50%;
+background: radial-gradient(circle, rgba(65, 230, 255, 0.75), rgba(65, 230, 255, 0.15) 55%, transparent 75%);
+mix-blend-mode: screen;
+filter: blur(6px);
+will-change: transform, opacity;
+}
+.figure-tag {
+position: absolute;
+left: -1px;
+bottom: -1px;
+background: rgba(2, 11, 22, 0.85);
+border: 1px solid rgba(65, 230, 255, 0.35);
+padding: 10px 16px;
+font-size: 9px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--aqua);
+}
+/* scene 3 — blue core */
+.sc-core .scene-tint {
+background:
+radial-gradient(ellipse 55% 55% at 50% 45%, rgba(65, 230, 255, 0.2), transparent 65%),
+linear-gradient(to bottom, rgba(1, 4, 9, 0.8), rgba(2, 20, 38, 0.4) 50%, rgba(1, 4, 9, 0.9));
+}
+.sc-core .copy {
+left: 50%;
+top: 56%;
+transform: translateX(-50%);
+text-align: center;
+}
+.sc-core .subline {
+margin-inline: auto;
+}
+.core-orb {
+position: absolute;
+left: 50%;
+top: 34%;
+width: 130px;
+height: 130px;
+transform: translate(-50%, -50%);
+z-index: 5;
+will-change: transform;
+}
+.core-orb .pearl {
+position: absolute;
+inset: 34px;
+border-radius: 50%;
+background: radial-gradient(circle at 40% 35%, #bffaff, var(--aqua) 55%, #0b6c8c);
+box-shadow: 0 0 40px rgba(65, 230, 255, 0.95), 0 0 120px rgba(65, 230, 255, 0.55);
+animation: corePulse 2.6s ease-in-out infinite;
+}
+.core-orb .halo {
+position: absolute;
+inset: 0;
+border-radius: 50%;
+border: 1px solid rgba(127, 245, 225, 0.5);
+animation: coreSpin 6s linear infinite;
+border-top-color: transparent;
+}
+.core-rings span {
+position: absolute;
+left: 50%;
+top: 34%;
+width: 40vmin;
+height: 40vmin;
+margin: -20vmin 0 0 -20vmin;
+border-radius: 50%;
+border: 1px solid rgba(65, 230, 255, 0.4);
+z-index: 4;
+opacity: 0;
+will-change: transform, opacity;
+}
+/* scene 4 — nerissa */
+.sc-nerissa .scene-tint {
+background:
+linear-gradient(to bottom, rgba(2, 11, 22, 0.55), rgba(14, 143, 156, 0.12) 45%, rgba(1, 4, 9, 0.85)),
+radial-gradient(ellipse 60% 45% at 32% 40%, rgba(232, 198, 106, 0.1), transparent 70%);
+}
+.sc-nerissa .copy {
+right: 8vw;
+top: 24vh;
+text-align: right;
+}
+.sc-nerissa .kicker {
+justify-content: flex-end;
+}
+.sc-nerissa .subline {
+margin-left: auto;
+}
+.sc-nerissa .hud-data {
+text-align: left;
+}
+.nerissa-figure {
+position: absolute;
+left: 7vw;
+bottom: 0;
+width: min(36vw, 460px);
+height: 80vh;
+z-index: 5;
+will-change: transform;
+}
+.nerissa-figure .figure-frame {
+border-color: rgba(232, 198, 106, 0.35);
+}
+.nerissa-figure .figure-tag {
+color: var(--gold);
+border-color: rgba(232, 198, 106, 0.4);
+}
+.pearl-gate {
+position: absolute;
+top: 0;
+bottom: 0;
+width: 52%;
+z-index: 7;
+background: linear-gradient(to bottom, var(--navy-2), rgba(4, 20, 38, 0.96));
+will-change: transform;
+}
+.pearl-gate.left {
+left: 0;
+border-right: 1px solid rgba(232, 198, 106, 0.5);
+box-shadow: 20px 0 60px rgba(1, 4, 9, 0.8);
+}
+.pearl-gate.right {
+right: 0;
+border-left: 1px solid rgba(232, 198, 106, 0.5);
+box-shadow: -20px 0 60px rgba(1, 4, 9, 0.8);
+}
+.pearl-gate::after {
+content: '';
+position: absolute;
+top: 20%;
+bottom: 20%;
+width: 44px;
+border: 1px solid rgba(232, 198, 106, 0.25);
+border-radius: 50px;
+}
+.pearl-gate.left::after {
+right: 24px;
+}
+.pearl-gate.right::after {
+left: 24px;
+}
+.water-ribbon {
+position: absolute;
+z-index: 6;
+width: 60vmin;
+height: 60vmin;
+left: 8vw;
+bottom: 4vh;
+border-radius: 50%;
+border: 1px solid rgba(127, 245, 225, 0.35);
+border-left-color: transparent;
+border-right-color: transparent;
+filter: blur(0.6px);
+opacity: 0;
+will-change: transform, opacity;
+}
+.abyss-shadow {
+position: absolute;
+right: -10%;
+top: -10%;
+width: 55%;
+height: 70%;
+z-index: 6;
+background: radial-gradient(ellipse at 70% 30%, rgba(23, 10, 36, 0.85), transparent 70%);
+opacity: 0;
+will-change: opacity;
+}
+/* scene 6 — vaelor */
+.sc-vaelor .scene-tint {
+background:
+linear-gradient(to bottom, rgba(1, 4, 9, 0.82), rgba(20, 4, 10, 0.45) 50%, rgba(1, 4, 9, 0.92)),
+radial-gradient(ellipse 55% 60% at 30% 55%, rgba(255, 59, 87, 0.14), transparent 70%);
+}
+.sc-vaelor .copy {
+right: 8vw;
+top: 22vh;
+text-align: right;
+}
+.sc-vaelor .kicker {
+color: var(--abyss-red);
+justify-content: flex-end;
+}
+.sc-vaelor .kicker::before {
+background: var(--abyss-red);
+}
+.sc-vaelor .subline {
+margin-left: auto;
+}
+.sc-vaelor .hud-data {
+text-align: left;
+}
+.vaelor-figure {
+position: absolute;
+left: 6vw;
+bottom: 0;
+width: min(38vw, 480px);
+height: 82vh;
+z-index: 5;
+will-change: transform;
+}
+.vaelor-figure .figure-frame {
+border-color: rgba(255, 59, 87, 0.35);
+}
+.vaelor-figure .figure-tag {
+color: var(--abyss-red);
+border-color: rgba(255, 59, 87, 0.4);
+}
+.red-shift {
+position: absolute;
+inset: 0;
+z-index: 6;
+background: linear-gradient(160deg, rgba(60, 3, 14, 0.5), transparent 55%, rgba(20, 2, 8, 0.6));
+opacity: 0;
+mix-blend-mode: multiply;
+will-change: opacity;
+}
+.pressure-rings span {
+position: absolute;
+left: 26vw;
+top: 46%;
+width: 50vmin;
+height: 50vmin;
+margin: -25vmin 0 0 -25vmin;
+border-radius: 50%;
+border: 1px solid rgba(255, 59, 87, 0.35);
+z-index: 4;
+opacity: 0;
+will-change: transform, opacity;
+}
+/* scene 7 — morvella */
+.sc-morvella .scene-tint {
+background:
+linear-gradient(to bottom, rgba(1, 4, 9, 0.8), rgba(23, 10, 36, 0.5) 50%, rgba(1, 4, 9, 0.92)),
+radial-gradient(ellipse 55% 60% at 70% 50%, rgba(176, 109, 255, 0.14), transparent 70%);
+}
+.sc-morvella .copy {
+left: 8vw;
+top: 24vh;
+}
+.sc-morvella .kicker {
+color: var(--ink);
+}
+.sc-morvella .kicker::before {
+background: var(--ink);
+}
+.morvella-figure {
+position: absolute;
+right: 6vw;
+bottom: 0;
+width: min(36vw, 460px);
+height: 80vh;
+z-index: 5;
+will-change: transform;
+}
+.morvella-figure .figure-frame {
+border-color: rgba(176, 109, 255, 0.35);
+}
+.morvella-figure .figure-tag {
+color: var(--ink);
+border-color: rgba(176, 109, 255, 0.4);
+}
+.ink-cloud {
+position: absolute;
+z-index: 6;
+width: 60vmax;
+height: 60vmax;
+border-radius: 50%;
+background: radial-gradient(circle, rgba(23, 10, 36, 0.95), rgba(23, 10, 36, 0.5) 50%, transparent 72%);
+filter: blur(12px);
+opacity: 0;
+will-change: transform, opacity;
+}
+.ink-cloud.a {
+left: -30vmax;
+top: -25vmax;
+}
+.ink-cloud.b {
+right: -30vmax;
+bottom: -30vmax;
+}
+.tentacle {
+position: absolute;
+z-index: 6;
+bottom: -12vh;
+width: 16vw;
+height: 70vh;
+background: radial-gradient(ellipse 100% 60% at 50% 100%, rgba(23, 10, 36, 0.9), transparent 75%);
+border-radius: 50% 50% 0 0;
+filter: blur(8px);
+opacity: 0;
+will-change: transform, opacity;
+}
+.tentacle.t1 {
+left: 2vw;
+transform: rotate(-8deg);
+}
+.tentacle.t2 {
+left: 30vw;
+transform: rotate(5deg) scaleY(0.8);
+}
+.witch-eyes {
+position: absolute;
+right: 16vw;
+top: 26vh;
+z-index: 7;
+display: flex;
+gap: 26px;
+opacity: 0;
+will-change: opacity;
+}
+.witch-eyes span {
+width: 12px;
+height: 12px;
+border-radius: 50%;
+background: var(--ink);
+box-shadow: 0 0 18px var(--ink), 0 0 50px rgba(176, 109, 255, 0.8);
+}
+/* scene 8 — world travel */
+.sc-worlds .worlds-head {
+position: absolute;
+z-index: 7;
+top: 9vh;
+left: 8vw;
+}
+.sc-worlds .worlds-head .headline {
+font-size: clamp(30px, 4.2vw, 62px);
+}
+.zones-track {
+position: absolute;
+top: 0;
+bottom: 0;
+left: 0;
+display: flex;
+width: 500vw;
+will-change: transform;
+}
+.zone {
+position: relative;
+width: 100vw;
+height: 100%;
+overflow: hidden;
+border-right: 1px solid rgba(65, 230, 255, 0.12);
+}
+.zone .zone-bg {
+position: absolute;
+inset: -4%;
+background-size: cover;
+background-position: center;
+will-change: transform;
+}
+.zone .zone-video {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+filter: brightness(0.82) saturate(1.05) contrast(1.04);
+pointer-events: none;
+}
+.zone .zone-tint {
+position: absolute;
+inset: 0;
+}
+.zone .zone-copy {
+position: absolute;
+left: 10vw;
+bottom: 16vh;
+z-index: 3;
+max-width: 70vw;
+}
+.zone .zone-coord {
+font-size: 10px;
+letter-spacing: 0.4em;
+color: var(--aqua);
+margin-bottom: 12px;
+}
+.zone .zone-name {
+font-family: var(--display);
+font-size: clamp(40px, 7vw, 110px);
+text-transform: uppercase;
+color: var(--pearl);
+line-height: 0.95;
+text-shadow: 0 0 40px rgba(65, 230, 255, 0.3);
+}
+.zone .zone-desc {
+margin-top: 14px;
+font-size: 11.5px;
+letter-spacing: 0.16em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.7);
+max-width: 420px;
+line-height: 1.9;
+}
+.zone .marker {
+position: absolute;
+top: 30%;
+right: 22%;
+z-index: 3;
+width: 14px;
+height: 14px;
+border: 1px solid var(--aqua);
+transform: rotate(45deg);
+box-shadow: 0 0 16px rgba(65, 230, 255, 0.6);
+}
+.zone .marker::after {
+content: '';
+position: absolute;
+inset: 4px;
+background: var(--aqua);
+}
+/* scene 9 — battle */
+.sc-battle .scene-tint {
+background:
+linear-gradient(to bottom, rgba(1, 4, 9, 0.85), rgba(2, 20, 38, 0.5) 50%, rgba(1, 4, 9, 0.95)),
+radial-gradient(ellipse 40% 50% at 50% 55%, rgba(191, 250, 255, 0.12), transparent 65%);
+}
+.sc-battle .copy {
+left: 50%;
+top: 12vh;
+transform: translateX(-50%);
+text-align: center;
+}
+.sc-battle .subline {
+margin-inline: auto;
+}
+.battle-side {
+position: absolute;
+bottom: 0;
+width: 34vw;
+height: 62vh;
+z-index: 5;
+display: flex;
+gap: 2vw;
+will-change: transform;
+}
+.battle-side.heroes {
+left: 4vw;
+}
+.battle-side.villains {
+right: 4vw;
+}
+.battle-side .fighter {
+position: relative;
+flex: 1;
+border: 1px solid rgba(65, 230, 255, 0.3);
+overflow: hidden;
+background: rgba(2, 11, 22, 0.4);
+}
+.battle-side.villains .fighter {
+border-color: rgba(255, 59, 87, 0.35);
+}
+.battle-side .fighter img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+filter: brightness(0.68) saturate(0.8) contrast(1.08);
+}
+.battle-side .fighter .nm {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+padding: 8px 10px;
+background: rgba(1, 4, 9, 0.8);
+font-size: 8.5px;
+letter-spacing: 0.28em;
+text-transform: uppercase;
+color: var(--aqua);
+}
+.battle-side.villains .fighter .nm {
+color: var(--abyss-red);
+}
+.clash-core {
+position: absolute;
+left: 50%;
+top: 58%;
+width: 90px;
+height: 90px;
+transform: translate(-50%, -50%);
+z-index: 6;
+border-radius: 50%;
+background: radial-gradient(circle at 40% 35%, #bffaff, var(--aqua) 55%, #0b6c8c);
+box-shadow: 0 0 50px rgba(65, 230, 255, 0.95), 0 0 140px rgba(65, 230, 255, 0.5);
+will-change: transform;
+animation: corePulse 1.6s ease-in-out infinite;
+}
+.energy-beam {
+position: absolute;
+top: 57%;
+height: 3px;
+z-index: 5;
+opacity: 0;
+will-change: transform, opacity;
+}
+.energy-beam.blue {
+left: 12vw;
+width: 34vw;
+background: linear-gradient(90deg, transparent, var(--aqua));
+box-shadow: 0 0 22px var(--aqua);
+}
+.energy-beam.red {
+right: 12vw;
+width: 34vw;
+background: linear-gradient(270deg, transparent, var(--abyss-red), var(--ink));
+box-shadow: 0 0 22px var(--abyss-red);
+}
+/* scene 10 — CTA */
+.sc-cta {
+background: radial-gradient(ellipse 70% 60% at 50% 42%, rgba(4, 20, 38, 0.9), var(--black) 80%);
+}
+.sc-cta .copy {
+left: 50%;
+top: 50%;
+transform: translate(-50%, -46%);
+text-align: center;
+max-width: min(680px, 90vw);
+}
+.sc-cta .subline {
+margin-inline: auto;
+}
+.cta-core {
+position: absolute;
+left: 50%;
+top: 22%;
+width: 90px;
+height: 90px;
+transform: translate(-50%, -50%);
+z-index: 5;
+}
+.cta-core .pearl {
+position: absolute;
+inset: 26px;
+border-radius: 50%;
+background: radial-gradient(circle at 40% 35%, #bffaff, var(--aqua) 55%, #0b6c8c);
+box-shadow: 0 0 34px rgba(65, 230, 255, 0.9), 0 0 110px rgba(65, 230, 255, 0.5);
+animation: corePulse 3s ease-in-out infinite;
+}
+.cta-core .halo {
+position: absolute;
+inset: 0;
+border-radius: 50%;
+border: 1px solid rgba(127, 245, 225, 0.45);
+border-top-color: transparent;
+animation: coreSpin 7s linear infinite;
+}
+.cta-core .orbiter {
+position: absolute;
+inset: -26px;
+animation: coreSpin 9s linear infinite reverse;
+}
+.cta-core .orbiter::after {
+content: '';
+position: absolute;
+top: 0;
+left: 50%;
+width: 5px;
+height: 5px;
+border-radius: 50%;
+background: var(--pearl);
+box-shadow: 0 0 10px var(--aqua);
+}
+.cta-actions {
+margin-top: 38px;
+display: flex;
+gap: 18px;
+justify-content: center;
+flex-wrap: wrap;
+}
+.btn {
+background: rgba(2, 11, 22, 0.6);
+border: 1px solid rgba(65, 230, 255, 0.4);
+color: var(--pearl);
+font-size: 11px;
+letter-spacing: 0.34em;
+text-transform: uppercase;
+padding: 16px 30px 16px 34px;
+position: relative;
+transition: all 0.3s ease;
+}
+.btn:hover {
+box-shadow: 0 0 30px rgba(65, 230, 255, 0.4);
+border-color: var(--aqua);
+color: var(--aqua);
+}
+.btn.primary {
+background: linear-gradient(120deg, rgba(65, 230, 255, 0.18), rgba(14, 143, 156, 0.25));
+border-color: var(--aqua);
+animation: btnPulse 2.6s ease-in-out infinite;
+}
+@keyframes btnPulse {
+0%,
+100% {
+box-shadow: 0 0 12px rgba(65, 230, 255, 0.25);
+}
+50% {
+box-shadow: 0 0 34px rgba(65, 230, 255, 0.55);
+}
+}
+.signal-form {
+margin-top: 26px;
+display: flex;
+justify-content: center;
+}
+.signal-form input {
+width: min(340px, 62vw);
+background: rgba(2, 11, 22, 0.7);
+border: 1px solid rgba(65, 230, 255, 0.3);
+border-right: none;
+color: var(--pearl);
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 0.22em;
+padding: 15px 18px;
+outline: none;
+text-transform: uppercase;
+}
+.signal-form input::placeholder {
+color: rgba(238, 247, 249, 0.35);
+}
+.signal-form input:focus {
+border-color: var(--aqua);
+box-shadow: 0 0 22px rgba(65, 230, 255, 0.25);
+}
+.signal-form button {
+background: var(--aqua);
+border: 1px solid var(--aqua);
+color: var(--black);
+font-size: 11px;
+letter-spacing: 0.3em;
+padding: 15px 22px;
+text-transform: uppercase;
+font-weight: 600;
+}
+.signal-form button:hover {
+background: var(--pearl);
+}
+.cta-footer {
+margin-top: 44px;
+font-size: 9px;
+letter-spacing: 0.32em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.4);
+line-height: 2.2;
+}
+.cta-footer em {
+font-style: normal;
+color: var(--aqua);
+}
+/* character select */
+.sc-select {
+background: linear-gradient(to bottom, var(--black), var(--navy) 50%, var(--black));
+}
+.ghost-name {
+position: absolute;
+left: 50%;
+top: 46%;
+transform: translate(-50%, -50%);
+font-family: var(--display);
+font-size: clamp(90px, 17vw, 270px);
+text-transform: uppercase;
+color: transparent;
+-webkit-text-stroke: 1px rgba(65, 230, 255, 0.13);
+white-space: nowrap;
+z-index: 1;
+pointer-events: none;
+}
+.select-head {
+position: absolute;
+top: 7vh;
+left: 0;
+right: 0;
+text-align: center;
+z-index: 3;
+}
+.select-head .headline {
+font-size: clamp(30px, 4.4vw, 60px);
+}
+.select-head .subline {
+margin: 10px auto 0;
+}
+.select-layout {
+position: absolute;
+inset: 22vh 7vw 15vh;
+display: grid;
+grid-template-columns: minmax(300px, 420px) 1fr;
+gap: clamp(24px, 4vw, 64px);
+z-index: 3;
+align-items: stretch;
+}
+.portrait-panel {
+position: relative;
+border: 1px solid rgba(65, 230, 255, 0.35);
+background: rgba(2, 11, 22, 0.35);
+overflow: hidden;
+min-height: 0;
+}
+.portrait-panel::before,
+.portrait-panel::after {
+content: '';
+position: absolute;
+width: 18px;
+height: 18px;
+z-index: 3;
+border-color: var(--aqua);
+border-style: solid;
+}
+.portrait-panel::before {
+top: -1px;
+left: -1px;
+border-width: 2px 0 0 2px;
+}
+.portrait-panel::after {
+bottom: -1px;
+right: -1px;
+border-width: 0 2px 2px 0;
+}
+.portrait-panel img {
+position: absolute;
+inset: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+will-change: transform, opacity, filter;
+}
+.portrait-panel .scanline {
+position: absolute;
+inset: 0;
+z-index: 2;
+background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(65, 230, 255, 0.03) 3px 4px);
+pointer-events: none;
+}
+.portrait-panel .depth-glow {
+position: absolute;
+inset: 0;
+z-index: 2;
+background: linear-gradient(to top, rgba(1, 4, 9, 0.55), transparent 45%);
+pointer-events: none;
+}
+.portrait-panel .p-tag {
+position: absolute;
+z-index: 3;
+left: 14px;
+top: 12px;
+font-size: 9px;
+letter-spacing: 0.34em;
+text-transform: uppercase;
+color: var(--aqua);
+}
+.dossier {
+min-width: 0;
+display: flex;
+flex-direction: column;
+justify-content: center;
+gap: 20px;
+}
+.dossier .char-role {
+font-size: 10px;
+letter-spacing: 0.44em;
+text-transform: uppercase;
+color: var(--aqua);
+}
+.dossier .char-name {
+font-family: var(--display);
+font-size: clamp(34px, 4.6vw, 66px);
+text-transform: uppercase;
+line-height: 1;
+color: var(--pearl);
+text-shadow: 0 0 30px rgba(65, 230, 255, 0.3);
+}
+.dossier .char-desc {
+font-size: 12px;
+letter-spacing: 0.08em;
+line-height: 1.9;
+color: rgba(238, 247, 249, 0.72);
+max-width: 560px;
+text-transform: uppercase;
+}
+.meta-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: 1px;
+background: rgba(65, 230, 255, 0.18);
+border: 1px solid rgba(65, 230, 255, 0.18);
+max-width: 640px;
+}
+.meta-grid div {
+background: rgba(2, 11, 22, 0.85);
+padding: 10px 12px;
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+}
+.meta-grid div b {
+display: block;
+color: rgba(238, 247, 249, 0.45);
+font-weight: 400;
+margin-bottom: 5px;
+}
+.meta-grid div span {
+color: var(--pearl);
+font-size: 10px;
+}
+.abilities {
+display: flex;
+flex-wrap: wrap;
+gap: 10px;
+}
+.abilities span {
+border: 1px solid rgba(65, 230, 255, 0.3);
+background: rgba(65, 230, 255, 0.06);
+color: var(--pearl);
+font-size: 9.5px;
+letter-spacing: 0.24em;
+text-transform: uppercase;
+padding: 8px 14px;
+clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+}
+.stats {
+display: grid;
+gap: 9px;
+max-width: 560px;
+}
+.stat-row {
+display: grid;
+grid-template-columns: 78px 1fr 34px;
+align-items: center;
+gap: 14px;
+font-size: 9px;
+letter-spacing: 0.26em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.6);
+}
+.stat-row .bar {
+height: 3px;
+background: rgba(65, 230, 255, 0.12);
+position: relative;
+}
+.stat-row .bar i {
+position: absolute;
+left: 0;
+top: 0;
+bottom: 0;
+width: 0%;
+background: linear-gradient(90deg, var(--teal), var(--aqua));
+box-shadow: 0 0 10px rgba(65, 230, 255, 0.7);
+}
+.stat-row .val {
+color: var(--aqua);
+text-align: right;
+}
+.char-tabs {
+position: absolute;
+left: 7vw;
+right: 7vw;
+bottom: 4.5vh;
+z-index: 3;
+display: flex;
+gap: 10px;
+justify-content: center;
+}
+.char-tab {
+flex: 0 1 170px;
+background: rgba(2, 11, 22, 0.6);
+border: 1px solid rgba(65, 230, 255, 0.2);
+padding: 10px 12px;
+display: flex;
+align-items: center;
+gap: 10px;
+transition: all 0.25s ease;
+text-align: left;
+}
+.char-tab img {
+width: 34px;
+height: 44px;
+object-fit: cover;
+border: 1px solid rgba(65, 230, 255, 0.25);
+}
+.char-tab .t-name {
+font-size: 9px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.6);
+line-height: 1.6;
+}
+.char-tab .t-name em {
+display: block;
+font-style: normal;
+font-size: 8px;
+color: rgba(238, 247, 249, 0.35);
+}
+.char-tab:hover {
+border-color: rgba(65, 230, 255, 0.6);
+}
+.char-tab.active {
+border-color: var(--aqua);
+background: rgba(65, 230, 255, 0.1);
+box-shadow: 0 0 24px rgba(65, 230, 255, 0.25);
+}
+.char-tab.active .t-name {
+color: var(--aqua);
+}
+/* upgraded sticky horizontal guardian scroll */
+.sc-select .select-head {
+pointer-events: none;
+}
+.sc-select .select-layout {
+will-change: transform, filter, opacity;
+}
+.sc-select .portrait-panel {
+transform-origin: center center;
+will-change: transform, opacity, filter;
+}
+.char-tabs {
+left: 50%;
+right: auto;
+width: max-content;
+min-width: max-content;
+justify-content: flex-start;
+transform: translateX(-50%);
+will-change: transform;
+}
+.char-tab {
+flex: 0 0 210px;
+min-width: 210px;
+opacity: 0.42;
+transform: scale(0.92);
+will-change: transform, opacity, filter;
+}
+.char-tab.active {
+opacity: 1;
+transform: scale(1);
+}
+.char-tab img {
+width: 44px;
+height: 58px;
+}
+.guardian-scroll-hint {
+position: absolute;
+left: 50%;
+bottom: 14.5vh;
+z-index: 4;
+transform: translateX(-50%);
+font-size: 9px;
+letter-spacing: 0.35em;
+text-transform: uppercase;
+color: rgba(127, 245, 225, 0.66);
+pointer-events: none;
+}
+.guardian-scroll-hint::before,
+.guardian-scroll-hint::after {
+content: '';
+display: inline-block;
+width: 42px;
+height: 1px;
+background: linear-gradient(90deg, transparent, rgba(127, 245, 225, 0.75));
+vertical-align: middle;
+margin: 0 14px 2px;
+}
+.guardian-scroll-hint::after {
+background: linear-gradient(90deg, rgba(127, 245, 225, 0.75), transparent);
+}
+@media (max-width: 980px) {
+.rail-left,
+.vertical-label,
+.hud-label.tl2,
+.hud-label.tr2 {
+display: none;
+}
+.select-head {
+top: 13vh;
+}
+.select-head .subline {
+max-width: 84vw;
+}
+.meta-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.rail-right {
+right: 16px;
+height: 34vh;
+}
+.logo {
+left: 18px;
+top: 18px;
+}
+.menu-btn {
+right: 18px;
+top: 20px;
+}
+.copy {
+max-width: 86vw;
+}
+.sc-kael .copy,
+.sc-morvella .copy {
+top: 12vh;
+left: 7vw;
+}
+.sc-nerissa .copy,
+.sc-vaelor .copy {
+top: 12vh;
+right: 7vw;
+}
+.kael-figure,
+.nerissa-figure,
+.vaelor-figure,
+.morvella-figure {
+width: 62vw;
+height: 48vh;
+opacity: 0.85;
+}
+.battle-side {
+width: 44vw;
+height: 42vh;
+}
+.hud-label.bl,
+.hud-label.br {
+display: none;
+}
+.scroll-hint {
+bottom: 54px;
+}
+.char-tabs {
+bottom: 44px;
+}
+.select-layout {
+inset: 21vh 6vw 15vh;
+grid-template-columns: 1fr;
+grid-template-rows: minmax(0, 1.1fr) minmax(0, 1fr);
+gap: 16px;
+overflow: hidden;
+}
+.dossier {
+overflow-y: auto;
+justify-content: flex-start;
+gap: 12px;
+}
+.dossier .char-desc {
+display: none;
+}
+.char-tabs {
+bottom: 2.5vh;
+overflow-x: auto;
+justify-content: flex-start;
+}
+.char-tab {
+flex: 0 0 130px;
+min-width: 130px;
+}
+.char-tab .t-name em {
+display: none;
+}
+.stepper {
+display: flex !important;
+}
+}
+.stepper {
+display: none;
+position: absolute;
+bottom: 16px;
+left: 50%;
+transform: translateX(-50%);
+gap: 8px;
+pointer-events: auto;
+}
+.stepper button {
+width: 8px;
+height: 8px;
+padding: 0;
+border-radius: 50%;
+border: 1px solid rgba(65, 230, 255, 0.4);
+background: transparent;
+}
+.stepper button.active {
+background: var(--aqua);
+box-shadow: 0 0 10px var(--aqua);
+}
+/* Fix pass: cleaner relic chamber, slower scene spacing, and safer left gutters */
+.sc-core .core-orb,
+.sc-core .core-rings,
+.portal-ring {
+display: none !important;
+}
+.sc-surface .copy,
+.sc-kael .copy,
+.sc-morvella .copy,
+.sc-worlds .worlds-head,
+.zone .zone-copy {
+left: clamp(140px, 11vw, 210px);
+}
+.nerissa-figure,
+.vaelor-figure,
+.battle-side.heroes {
+left: clamp(110px, 8.5vw, 170px);
+}
+.sc-select .select-layout {
+inset-inline-start: clamp(140px, 10vw, 190px);
+inset-inline-end: 8vw;
+}
+.final-gate-character {
+position: absolute;
+left: 50%;
+top: 58%;
+width: min(20vw, 250px);
+height: 46vh;
+transform: translate(-50%, -50%);
+z-index: 6;
+border: 1px solid rgba(65, 230, 255, 0.32);
+background: rgba(2, 11, 22, 0.36);
+overflow: hidden;
+box-shadow: 0 0 42px rgba(65, 230, 255, 0.22);
+will-change: transform, opacity, filter;
+}
+.final-gate-character img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+display: block;
+filter: brightness(0.78) saturate(0.9) contrast(1.08);
+}
+.clash-core {
+display: none !important;
+}
+@media (max-width: 980px) {
+.sc-surface .copy,
+.sc-kael .copy,
+.sc-morvella .copy,
+.sc-worlds .worlds-head,
+.zone .zone-copy {
+left: 7vw;
+}
+.nerissa-figure,
+.vaelor-figure,
+.battle-side.heroes {
+left: 4vw;
+}
+.sc-select .select-layout {
+inset-inline-start: 6vw;
+inset-inline-end: 6vw;
+}
+.final-gate-character {
+width: 34vw;
+height: 36vh;
+top: 60%;
+}
+}
+/* Clean Morvella background: remove the two glowing eye dots */
+.witch-eyes {
+display: none !important;
+}
+@media (prefers-reduced-motion: reduce) {
+.caustics,
+.lightrays,
+.lightning,
+.scroll-hint .line::after,
+.core-glyph .ring,
+.cta-core .halo,
+.cta-core .orbiter {
+animation: none !important;
+}
+}
+/* Fix pass 2: Descent Log clean photo, Final Tide cards, footer circle removal */
+.sc-kael .figure-frame .glow {
+display: none !important;
+opacity: 0 !important;
+}
+.sc-kael .figure-frame::after {
+content: none !important;
+display: none !important;
+}
+.sc-kael .figure-frame img,
+.sc-kael .figure-frame video {
+filter: brightness(0.78) saturate(0.98) contrast(1.04) !important;
+}
+.sc-battle .battle-side {
+height: 62vh;
+}
+.sc-battle .fighter,
+.final-gate-character {
+transition: transform 0.35s ease, border-color 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+}
+.final-gate-character {
+width: clamp(150px, 16vw, 230px) !important;
+height: 62vh !important;
+top: auto !important;
+bottom: 0 !important;
+transform: translateX(-50%) !important;
+border-color: rgba(232, 198, 106, 0.45) !important;
+box-shadow: none !important;
+background: rgba(2, 11, 22, 0.42) !important;
+}
+.final-gate-character .nm {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 3;
+padding: 8px 10px;
+background: rgba(1, 4, 9, 0.82);
+font-size: 8.5px;
+letter-spacing: 0.28em;
+text-transform: uppercase;
+color: var(--gold);
+}
+.fighter-desc {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 4;
+padding: 42px 12px 14px;
+font-size: 9px;
+line-height: 1.65;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.86);
+background: linear-gradient(to top, rgba(1, 4, 9, 0.95), rgba(1, 4, 9, 0.72) 58%, transparent);
+transform: translateY(100%);
+opacity: 0;
+transition: transform 0.35s ease, opacity 0.35s ease;
+pointer-events: none;
+}
+.sc-battle .fighter:hover,
+.final-gate-character:hover {
+transform: translateY(-10px);
+border-color: var(--aqua);
+box-shadow: 0 0 28px rgba(65, 230, 255, 0.22);
+filter: brightness(1.05);
+}
+.final-gate-character:hover {
+transform: translate(-50%, -10px) !important;
+border-color: var(--gold) !important;
+box-shadow: 0 0 28px rgba(232, 198, 106, 0.25) !important;
+}
+.sc-battle .fighter:hover .fighter-desc,
+.final-gate-character:hover .fighter-desc {
+transform: translateY(0);
+opacity: 1;
+}
+.sc-battle .fighter:hover img,
+.final-gate-character:hover img {
+filter: brightness(0.9) saturate(1) contrast(1.08);
+transform: scale(1.04);
+transition: transform 0.45s ease, filter 0.45s ease;
+}
+.sc-cta .cta-core {
+display: none !important;
+opacity: 0 !important;
+}
+.sc-cta .copy {
+transform: translate(-50%, -50%) !important;
+}
+@media (max-width: 980px) {
+.final-gate-character {
+width: 25vw !important;
+height: 42vh !important;
+}
+}
+/* V4: remove the extra Relic Chamber → Pearl Kingdom transition completely.
+The Pearl Kingdom scene now opens directly with the existing pearl gates. */
+.portal-ring {
+display: none !important;
+opacity: 0 !important;
+visibility: hidden !important;
+pointer-events: none !important;
+}
+.portal-ring::before,
+.portal-ring::after {
+content: none !important;
+display: none !important;
+}
+/* Keep the Pearl Kingdom portal itself, but make it feel cleaner and direct. */
+.pearl-gate {
+background:
+linear-gradient(to bottom, rgba(7, 22, 32, 0.98), rgba(3, 12, 22, 0.96)),
+radial-gradient(ellipse 80% 55% at 50% 46%, rgba(232, 198, 106, 0.16), transparent 72%);
+border-color: rgba(232, 198, 106, 0.48);
+}
+.flash {
+background: radial-gradient(ellipse 45% 62% at 50% 50%, rgba(238, 247, 249, 0.55), rgba(232, 198, 106, 0.18) 44%, transparent 76%);
+mix-blend-mode: screen;
+}
+.final-gate-character img {
+object-position: center top;
+}
+/* V4: Final Tide father frame matches every other battle character card. */
+.sc-battle .final-gate-character {
+width: calc((34vw - 2vw) / 2) !important;
+height: 62vh !important;
+top: auto !important;
+bottom: 0 !important;
+left: 50% !important;
+transform: translateX(-50%) !important;
+border: 1px solid rgba(232, 198, 106, 0.45) !important;
+box-shadow: none !important;
+background: rgba(2, 11, 22, 0.42) !important;
+overflow: hidden !important;
+}
+.sc-battle .final-gate-character img {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+object-position: center top !important;
+}
+.sc-battle .final-gate-character:hover {
+transform: translate(-50%, -10px) !important;
+}
+@media (max-width: 980px) {
+.sc-battle .final-gate-character {
+width: calc((44vw - 2vw) / 2) !important;
+height: 42vh !important;
+}
+}
+/* V5: Final Tide Gate cleanup from screenshot
+- equal character frames
+- no menu/rail overlap
+- title no longer sits on top of the cards
+- removed battle lines crossing the portraits */
+.sc-battle .copy {
+top: clamp(72px, 8vh, 92px) !important;
+left: 50% !important;
+transform: translateX(-50%) !important;
+max-width: min(780px, 58vw) !important;
+z-index: 12 !important;
+pointer-events: none !important;
+}
+.sc-battle .headline {
+font-size: clamp(46px, 5.8vw, 92px) !important;
+line-height: 0.92 !important;
+letter-spacing: 0.015em !important;
+}
+.sc-battle .subline {
+margin-top: 16px !important;
+max-width: 560px !important;
+margin-inline: auto !important;
+line-height: 1.75 !important;
+background: rgba(1, 4, 9, 0.35) !important;
+border: 1px solid rgba(65, 230, 255, 0.12) !important;
+backdrop-filter: blur(5px) !important;
+padding: 10px 16px !important;
+}
+.sc-battle .battle-side,
+.sc-battle .final-gate-character {
+top: clamp(330px, 40vh, 390px) !important;
+bottom: auto !important;
+height: clamp(390px, 52vh, 570px) !important;
+z-index: 7 !important;
+}
+.sc-battle .battle-side {
+width: min(29vw, 455px) !important;
+gap: clamp(18px, 1.45vw, 26px) !important;
+}
+.sc-battle .battle-side.heroes {
+left: clamp(180px, 12vw, 235px) !important;
+}
+.sc-battle .battle-side.villains {
+right: clamp(42px, 5vw, 86px) !important;
+}
+.sc-battle .fighter,
+.sc-battle .final-gate-character {
+border-radius: 0 !important;
+border-width: 1px !important;
+box-shadow: 0 18px 60px rgba(1, 4, 9, 0.34) !important;
+background: rgba(2, 11, 22, 0.5) !important;
+}
+.sc-battle .final-gate-character {
+width: calc((min(29vw, 455px) - clamp(18px, 1.45vw, 26px)) / 2) !important;
+left: 50% !important;
+transform: translateX(-50%) !important;
+border-color: rgba(232, 198, 106, 0.5) !important;
+}
+.sc-battle .fighter img,
+.sc-battle .final-gate-character img {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+object-position: center top !important;
+}
+.sc-battle .energy-beam,
+.sc-battle .clash-core {
+display: none !important;
+opacity: 0 !important;
+visibility: hidden !important;
+}
+.sc-battle .fighter .nm,
+.sc-battle .final-gate-character .nm {
+z-index: 5 !important;
+min-height: 38px !important;
+display: flex !important;
+align-items: center !important;
+}
+.sc-battle .fighter-desc {
+z-index: 6 !important;
+padding: 56px 14px 16px !important;
+font-size: 8.7px !important;
+line-height: 1.7 !important;
+letter-spacing: 0.12em !important;
+}
+.sc-battle .fighter:hover,
+.sc-battle .final-gate-character:hover {
+transform: translateY(-10px) !important;
+}
+.sc-battle .final-gate-character:hover {
+transform: translate(-50%, -10px) !important;
+}
+@media (max-width: 1180px) {
+.sc-battle .copy {
+max-width: min(760px, 72vw) !important;
+}
+.sc-battle .battle-side.heroes {
+left: clamp(120px, 10vw, 160px) !important;
+}
+.sc-battle .battle-side.villains {
+right: clamp(28px, 4vw, 58px) !important;
+}
+}
+@media (max-width: 980px) {
+.sc-battle .copy {
+top: 12vh !important;
+max-width: 86vw !important;
+}
+.sc-battle .headline {
+font-size: clamp(38px, 10vw, 66px) !important;
+}
+.sc-battle .battle-side,
+.sc-battle .final-gate-character {
+top: auto !important;
+bottom: 9vh !important;
+height: 38vh !important;
+}
+.sc-battle .battle-side {
+width: 39vw !important;
+gap: 10px !important;
+}
+.sc-battle .battle-side.heroes {
+left: 5vw !important;
+}
+.sc-battle .battle-side.villains {
+right: 5vw !important;
+}
+.sc-battle .final-gate-character {
+width: calc((39vw - 10px) / 2) !important;
+}
+}
+/* V6: Final Tide Gate rotating on-scroll gallery
+Inspired by the reference video: a 3D curved image gallery rotates with scroll,
+then scales back to reveal the final title. */
+.sc-battle {
+perspective: 1800px;
+background: radial-gradient(ellipse 70% 55% at 50% 50%, rgba(4, 20, 38, 0.75), var(--black) 78%);
+}
+.sc-battle .copy {
+top: clamp(56px, 7vh, 86px) !important;
+max-width: min(820px, 68vw) !important;
+z-index: 14 !important;
+mix-blend-mode: normal !important;
+}
+.sc-battle .headline {
+font-size: clamp(50px, 6.8vw, 116px) !important;
+line-height: 0.9 !important;
+text-align: center !important;
+}
+.sc-battle .subline {
+margin-top: 14px !important;
+background: rgba(1, 4, 9, 0.22) !important;
+border: 1px solid rgba(65, 230, 255, 0.1) !important;
+backdrop-filter: blur(4px) !important;
+padding: 10px 18px !important;
+text-align: center !important;
+}
+.final-rotator-wrap {
+position: absolute;
+inset: 18vh 0 0;
+z-index: 8;
+perspective: 1900px;
+pointer-events: none;
+overflow: visible;
+}
+.final-rotator {
+position: absolute;
+left: 50%;
+top: 54%;
+width: min(92vw, 1420px);
+height: clamp(380px, 58vh, 620px);
+transform-style: preserve-3d;
+transform-origin: center center;
+will-change: transform, opacity, filter;
+}
+.tide-card {
+position: absolute;
+left: 50%;
+top: 50%;
+width: clamp(210px, 19vw, 320px);
+height: clamp(350px, 55vh, 590px);
+transform: translate3d(calc(-50% + var(--x)), -50%, var(--z)) rotateY(var(--r));
+transform-style: preserve-3d;
+transform-origin: center center;
+border: 1px solid rgba(65, 230, 255, 0.26);
+background: rgba(2, 11, 22, 0.58);
+overflow: hidden;
+box-shadow: 0 26px 90px rgba(1, 4, 9, 0.5);
+will-change: transform, filter, opacity;
+pointer-events: auto;
+transition: border-color 0.35s ease, box-shadow 0.35s ease, filter 0.35s ease;
+}
+.tide-card::before {
+content: '';
+position: absolute;
+inset: 0;
+z-index: 2;
+pointer-events: none;
+background:
+linear-gradient(to bottom, rgba(238, 247, 249, 0.08), transparent 25%),
+linear-gradient(to top, rgba(1, 4, 9, 0.72), transparent 44%);
+opacity: 0.78;
+}
+.tide-card::after {
+content: '';
+position: absolute;
+inset: 14px;
+z-index: 3;
+pointer-events: none;
+border: 1px solid rgba(238, 247, 249, 0.08);
+opacity: 0.85;
+}
+.tide-card img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+object-position: center top;
+display: block;
+filter: brightness(0.78) saturate(0.88) contrast(1.08);
+transition: transform 0.55s ease, filter 0.55s ease;
+}
+.tide-card .nm {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 5;
+min-height: 42px;
+display: flex;
+align-items: center;
+padding: 9px 12px;
+background: rgba(1, 4, 9, 0.84);
+font-size: 8.5px;
+letter-spacing: 0.26em;
+text-transform: uppercase;
+color: var(--aqua);
+}
+.tide-card.father-card {
+border-color: rgba(232, 198, 106, 0.44);
+}
+.tide-card.father-card .nm {
+color: var(--gold);
+}
+.tide-card.villain-card {
+border-color: rgba(255, 59, 87, 0.28);
+}
+.tide-card.villain-card .nm {
+color: var(--abyss-red);
+}
+.tide-card .fighter-desc {
+position: absolute;
+left: 0;
+right: 0;
+bottom: 0;
+z-index: 6;
+padding: 62px 14px 16px;
+font-size: 8.8px;
+line-height: 1.7;
+letter-spacing: 0.13em;
+text-transform: uppercase;
+color: rgba(238, 247, 249, 0.9);
+background: linear-gradient(to top, rgba(1, 4, 9, 0.96), rgba(1, 4, 9, 0.72) 62%, transparent);
+transform: translateY(100%);
+opacity: 0;
+transition: transform 0.36s ease, opacity 0.36s ease;
+pointer-events: none;
+}
+.tide-card:hover {
+z-index: 20;
+border-color: var(--aqua);
+box-shadow: 0 0 36px rgba(65, 230, 255, 0.25), 0 30px 90px rgba(1, 4, 9, 0.55);
+filter: brightness(1.06);
+}
+.tide-card.father-card:hover {
+border-color: var(--gold);
+box-shadow: 0 0 38px rgba(232, 198, 106, 0.27), 0 30px 90px rgba(1, 4, 9, 0.55);
+}
+.tide-card:hover img {
+transform: scale(1.045);
+filter: brightness(0.92) saturate(1) contrast(1.08);
+}
+.tide-card:hover .fighter-desc {
+transform: translateY(0);
+opacity: 1;
+}
+.sc-battle .battle-side,
+.sc-battle .final-gate-character,
+.sc-battle .energy-beam,
+.sc-battle .clash-core {
+display: none !important;
+opacity: 0 !important;
+visibility: hidden !important;
+}
+@media (max-width: 1180px) {
+.tide-card {
+width: clamp(180px, 22vw, 280px);
+}
+.tide-card:nth-child(1) {
+transform: translate3d(calc(-50% - 440px), -50%, -120px) rotateY(32deg);
+}
+.tide-card:nth-child(2) {
+transform: translate3d(calc(-50% - 220px), -50%, 10px) rotateY(16deg);
+}
+.tide-card:nth-child(3) {
+transform: translate3d(-50%, -50%, 80px) rotateY(0deg);
+}
+.tide-card:nth-child(4) {
+transform: translate3d(calc(-50% + 220px), -50%, 10px) rotateY(-16deg);
+}
+.tide-card:nth-child(5) {
+transform: translate3d(calc(-50% + 440px), -50%, -120px) rotateY(-32deg);
+}
+}
+@media (max-width: 980px) {
+.final-rotator-wrap {
+inset: 24vh 0 0;
+}
+.final-rotator {
+top: 52%;
+width: 100vw;
+}
+.tide-card {
+width: 42vw;
+height: 46vh;
+}
+.tide-card:nth-child(1) {
+transform: translate3d(calc(-50% - 52vw), -50%, -100px) rotateY(32deg);
+}
+.tide-card:nth-child(2) {
+transform: translate3d(calc(-50% - 26vw), -50%, 0px) rotateY(16deg);
+}
+.tide-card:nth-child(3) {
+transform: translate3d(-50%, -50%, 70px) rotateY(0deg);
+}
+.tide-card:nth-child(4) {
+transform: translate3d(calc(-50% + 26vw), -50%, 0px) rotateY(-16deg);
+}
+.tide-card:nth-child(5) {
+transform: translate3d(calc(-50% + 52vw), -50%, -100px) rotateY(-32deg);
+}
+}
+/* V7: Working Final Tide Gate DOM 3D gallery
+Uses the same idea as the provided reference gallery: centered panels open into a curved gallery,
+rotate with scroll, then pull back to reveal the final title. */
+.sc-battle {
+perspective: 1900px !important;
+overflow: hidden !important;
+}
+.sc-battle .copy {
+top: clamp(44px, 6.5vh, 76px) !important;
+max-width: min(880px, 78vw) !important;
+pointer-events: none !important;
+}
+.sc-battle .headline {
+font-size: clamp(42px, 6.2vw, 104px) !important;
+}
+.final-rotator-wrap {
+position: absolute !important;
+inset: 16vh 0 0 !important;
+z-index: 8 !important;
+perspective: 1900px !important;
+perspective-origin: 50% 48% !important;
+transform-style: preserve-3d !important;
+pointer-events: none !important;
+overflow: visible !important;
+opacity: 0;
+visibility: hidden;
+}
+.final-rotator {
+position: absolute !important;
+left: 50% !important;
+top: 53% !important;
+width: 100vw !important;
+height: 62vh !important;
+transform-style: preserve-3d !important;
+transform-origin: center center !important;
+will-change: transform, opacity, filter !important;
+}
+.tide-card {
+position: absolute !important;
+left: 50% !important;
+top: 50% !important;
+width: clamp(210px, 18vw, 310px) !important;
+height: clamp(340px, 52vh, 560px) !important;
+transform: translate3d(-50%, -50%, 0) !important;
+transform-style: preserve-3d !important;
+transform-origin: center center !important;
+backface-visibility: hidden !important;
+border: 1px solid rgba(65, 230, 255, 0.28) !important;
+background: rgba(2, 11, 22, 0.62) !important;
+box-shadow: 0 28px 90px rgba(1, 4, 9, 0.55) !important;
+pointer-events: auto !important;
+opacity: 0;
+visibility: hidden;
+}
+.tide-card.is-center,
+.tide-card.father-card {
+height: clamp(340px, 52vh, 560px) !important;
+width: clamp(210px, 18vw, 310px) !important;
+}
+.tide-card img {
+width: 100% !important;
+height: 100% !important;
+object-fit: cover !important;
+object-position: center top !important;
+}
+.tide-card:nth-child(3) img {
+object-position: center top !important;
+}
+@media (max-width: 980px) {
+.final-rotator-wrap {
+inset: 22vh 0 0 !important;
+}
+.final-rotator {
+top: 50% !important;
+height: 56vh !important;
+}
+.tide-card,
+.tide-card.is-center,
+.tide-card.father-card {
+width: 42vw !important;
+height: 45vh !important;
+}
+}
+/* V9: Final Tide Gate real Three.js rotation gallery canvas
+Matches the provided reference: full-screen image panels rotate into a 3D cylinder on scroll,
+then shrink back so the final copy can appear. */
+#final-tide-three {
+position: absolute !important;
+inset: 0 !important;
+width: 100% !important;
+height: 100% !important;
+display: block !important;
+z-index: 11 !important;
+pointer-events: none !important;
+opacity: 0;
+visibility: hidden;
+}
+.sc-battle .scene-bg {
+filter: brightness(0.42) saturate(0.82) contrast(1.08) !important;
+}
+.sc-battle .copy {
+z-index: 14 !important;
+top: clamp(50px, 7vh, 88px) !important;
+pointer-events: none !important;
+}
+.sc-battle .copy .subline {
+max-width: 520px !important;
+}
+/* The DOM fallback cards stay hidden because the active effect now comes from the real Three.js gallery. */
+.final-rotator-wrap,
+.final-rotator,
+.tide-card {
+display: none !important;
+visibility: hidden !important;
+opacity: 0 !important;
+}
+/* === Hero gate refinement: larger portal, centered text, mermaid reveal === */
+.hero-gate-portal {
+inset: 2vh 12vw 2vh !important;
+z-index: 30 !important;
+transform-origin: center center !important;
+}
+.hero-gate-copy {
+z-index: 38 !important;
+left: 50% !important;
+top: 50% !important;
+width: min(860px, 76vw) !important;
+max-width: none !important;
+text-align: center !important;
+transform: translate(-50%, -50%) !important;
+pointer-events: auto;
+}
+.hero-gate-copy.is-visible {
+transform: translate(-50%, -50%) !important;
+}
+.hero-gate-copy .headline {
+font-size: clamp(68px, 8vw, 152px) !important;
+margin: 0 auto !important;
+}
+.hero-gate-copy .kicker,
+.hero-gate-copy .subline {
+margin-left: auto !important;
+margin-right: auto !important;
+max-width: 680px !important;
+}
+.hero-gate-actions {
+justify-content: center !important;
+}
+.hero-gate-cards,
+.hero-gate-cta {
+opacity: 0 !important;
+pointer-events: none !important;
+visibility: hidden !important;
+}
+.hero-gate-mermaid {
+z-index: 37 !important;
+left: 50% !important;
+bottom: -4vh !important;
+width: clamp(300px, 30vw, 540px) !important;
+height: min(82vh, 980px) !important;
+transform: translateX(-50%) translate3d(0, 360px, 0) scale(0.92);
+opacity: 0;
+pointer-events: none;
+}
+.hero-gate-mermaid img {
+object-fit: contain !important;
+mix-blend-mode: normal !important;
+}
+@media (max-width: 1100px) {
+.hero-gate-portal { inset: 6vh 8vw 6vh !important; }
+.hero-gate-copy { width: min(88vw, 720px) !important; }
+.hero-gate-mermaid { width: clamp(250px, 38vw, 460px) !important; height: min(72vh, 820px) !important; }
+}
+@media (max-width: 720px) {
+.hero-gate-portal { inset: 12vh 0 12vh !important; }
+.hero-gate-copy { width: 92vw !important; }
+.hero-gate-copy .headline { font-size: clamp(48px, 15vw, 84px) !important; }
+.hero-gate-mermaid { width: clamp(200px, 58vw, 320px) !important; height: min(62vh, 620px) !important; }
+}
+/* === Sequence update: second centered hero text after mermaid, keep Kael video, remove unnecessary surface video === */
+.dive-video { display: none !important; }
+.hero-gate-cta {
+z-index: 39 !important;
+visibility: visible !important;
+opacity: 0;
+pointer-events: none;
+inset: 0 !important;
+display: grid !important;
+place-items: center !important;
+text-align: center !important;
+padding: 24px !important;
+}
+.hero-gate-cta > div {
+max-width: min(760px, 80vw);
+}
+.hero-gate-cta h2 {
+font-size: clamp(62px, 8.4vw, 138px) !important;
+margin: 0 !important;
+}
+.hero-gate-cta p {
+max-width: 600px !important;
+margin: 20px auto 0 !important;
+}
+/* === Hero sequence polish === */
+#scroll-hint { display: none !important; }
+.hero-gate-cta h2 {
+font-size: clamp(68px, 9vw, 148px) !important;
+line-height: 0.86 !important;
+}
+.hero-gate-cta p {
+letter-spacing: 0.12em !important;
+}
+/* === Final hero sequence override === */
+.hero-gate-portal,
+.hero-gate-shutter,
+.hero-gate-copy,
+.hero-gate-mermaid,
+.hero-gate-cta {
+will-change: transform, opacity;
+}
+.hero-gate-copy {
+opacity: 0;
+transform: translate(-50%, calc(-50% + 24px));
+}
+.hero-gate-portal {
+opacity: 0;
+transform: scale(0.88);
+}
+.hero-gate-shutter {
+opacity: 0;
+}
+.hero-gate-mermaid {
+opacity: 0;
+transform: translateX(-50%) translate3d(0, 440px, 0) scale(0.88);
+}
+.hero-gate-cta {
+z-index: 40 !important;
+visibility: visible !important;
+opacity: 0;
+inset: 0 !important;
+display: grid !important;
+place-items: center !important;
+text-align: center !important;
+padding: 24px !important;
+pointer-events: none;
+}
+.hero-gate-cta > div {
+max-width: min(900px, 82vw);
+}
+.quote-karaoke {
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+gap: 0.14em 0.34em;
+font-family: var(--font-display);
+font-size: clamp(34px, 4.8vw, 78px);
+line-height: 0.98;
+letter-spacing: -0.03em;
+color: rgba(222, 244, 255, 0.2);
+text-wrap: balance;
+}
+.karaoke-word {
+transition: color 220ms ease, opacity 220ms ease, text-shadow 220ms ease, transform 220ms ease;
+opacity: 0.32;
+}
+.karaoke-word.is-active,
+.karaoke-word.is-done {
+color: #f2fbff;
+opacity: 1;
+text-shadow: 0 0 22px rgba(118, 227, 255, 0.24);
+}
+.karaoke-word.is-active {
+transform: translateY(-2px);
+}
+.quote-attrib {
+margin-top: 18px !important;
+font-size: 12px !important;
+letter-spacing: 0.34em !important;
+text-transform: uppercase;
+color: rgba(226,244,255,0.72) !important;
+}
+/* === Fix: decorations behind portal + visible karaoke quote === */
+.hero-gate-portal {
+z-index: 32 !important;
+}
+.hero-gate-shutter {
+z-index: 28 !important;
+pointer-events: none !important;
+}
+.hero-gate-mermaid {
+z-index: 37 !important;
+}
+.hero-gate-copy {
+z-index: 38 !important;
+}
+.hero-gate-cta {
+z-index: 45 !important;
+visibility: visible !important;
+display: grid !important;
+opacity: 0;
+}
+.quote-karaoke {
+font-family: var(--display) !important;
+color: rgba(238, 247, 249, 0.34) !important;
+text-shadow: 0 18px 70px rgba(0, 0, 0, 0.72);
+}
+.karaoke-word {
+color: rgba(238, 247, 249, 0.34) !important;
+opacity: 0.55 !important;
+}
+.karaoke-word.is-active,
+.karaoke-word.is-done {
+color: #f2fbff !important;
+opacity: 1 !important;
+text-shadow: 0 0 28px rgba(118, 227, 255, 0.34), 0 18px 70px rgba(0,0,0,0.72) !important;
+}
+/* Quote stage before next scene */
+.hero-gate-cta {
+z-index: 52 !important;
+display: grid !important;
+place-items: center !important;
+text-align: center !important;
+}
+.hero-gate-cta > div {
+max-width: min(980px, 82vw);
+padding: 20px 24px;
+}
+.quote-karaoke {
+font-size: clamp(40px, 5.4vw, 92px) !important;
+line-height: 0.98 !important;
+gap: 0.16em 0.34em !important;
+}
+.quote-attrib {
+margin-top: 22px !important;
+color: rgba(235,247,255,0.88) !important;
+}
+/* =========================================================
+CLEAN PASS — reduce visual noise + keep only important UI
+========================================================= */
+/* Remove busy HUD elements that compete with the hero */
+.rail-left,
+.rail-right,
+.stepper,
+#scroll-hint,
+.hud-label.tl2,
+.hud-label.tr2,
+.hud-label.ml,
+.hud-label.mr,
+.hud-label.bl,
+.hud-label.br {
+display: none !important;
+}
+/* Keep the frame cleaner */
+.hud {
+pointer-events: none;
+}
+.hud .logo,
+.hud .menu-btn {
+pointer-events: auto;
+}
+.logo {
+left: clamp(20px, 4vw, 54px) !important;
+top: clamp(20px, 4vw, 42px) !important;
+}
+.menu-btn {
+right: clamp(20px, 4vw, 54px) !important;
+top: clamp(20px, 4vw, 42px) !important;
+}
+/* Reduce decorative overlays */
+.hero-gate-lines,
+.hero-gate-grain,
+.grain,
+.caustics,
+.lightrays,
+.flash,
+.portal-ring {
+opacity: 0.08 !important;
+pointer-events: none !important;
+}
+/* Cleaner hero composition */
+.hero-gate-copy {
+width: min(820px, 78vw) !important;
+}
+.hero-gate-copy .kicker {
+opacity: 0.72 !important;
+letter-spacing: 0.22em !important;
+}
+.hero-gate-copy .headline {
+font-size: clamp(64px, 8vw, 138px) !important;
+line-height: 0.86 !important;
+letter-spacing: -0.05em !important;
+}
+.hero-gate-copy .subline {
+max-width: 560px !important;
+opacity: 0.78 !important;
+}
+.hero-gate-actions {
+display: none !important;
+}
+/* Make the quote readable before the next scene */
+.hero-gate-cta {
+z-index: 80 !important;
+}
+.quote-karaoke {
+max-width: 980px !important;
+margin: 0 auto !important;
+font-size: clamp(40px, 5.2vw, 86px) !important;
+line-height: 1.02 !important;
+}
+.karaoke-word {
+color: rgba(228, 246, 255, 0.28) !important;
+opacity: 0.42 !important;
+}
+.karaoke-word.is-active,
+.karaoke-word.is-done {
+color: #f4fbff !important;
+opacity: 1 !important;
+text-shadow: 0 0 26px rgba(93, 226, 255, 0.36) !important;
+}
+.quote-attrib {
+opacity: 0.8 !important;
+}
+/* Clean later scenes: less overlay darkness */
+.scene-tint {
+opacity: 0.28 !important;
+}
+.copy {
+max-width: min(760px, 78vw);
+}
+/* === Make karaoke quote obvious before jumping to next scene === */
+.hero-gate-cta {
+z-index: 120 !important;
+visibility: visible !important;
+display: grid !important;
+place-items: center !important;
+text-align: center !important;
+padding: 24px !important;
+background: radial-gradient(circle at center, rgba(2, 18, 30, 0.46), rgba(2, 9, 16, 0.12) 44%, transparent 70%);
+pointer-events: none;
+}
+.hero-gate-cta > div {
+max-width: min(1040px, 86vw) !important;
+padding: clamp(18px, 3vw, 44px) !important;
+border-radius: 32px;
+background: rgba(1, 12, 22, 0.18);
+backdrop-filter: blur(4px);
+}
+.quote-karaoke {
+display: flex !important;
+flex-wrap: wrap !important;
+justify-content: center !important;
+gap: 0.12em 0.32em !important;
+font-family: var(--display) !important;
+font-size: clamp(44px, 6.2vw, 108px) !important;
+line-height: 0.94 !important;
+letter-spacing: -0.045em !important;
+text-wrap: balance;
+}
+.karaoke-word {
+color: rgba(234, 250, 255, 0.24) !important;
+opacity: 0.46 !important;
+transition: color 180ms ease, opacity 180ms ease, text-shadow 180ms ease, transform 180ms ease !important;
+}
+.karaoke-word.is-active,
+.karaoke-word.is-done {
+color: #f6fdff !important;
+opacity: 1 !important;
+text-shadow: 0 0 22px rgba(96, 230, 255, 0.45), 0 24px 80px rgba(0,0,0,0.72) !important;
+}
+.karaoke-word.is-active {
+transform: translateY(-3px) scale(1.015) !important;
+}
+.quote-attrib {
+margin-top: 24px !important;
+color: rgba(236, 250, 255, 0.88) !important;
+font-size: 12px !important;
+letter-spacing: 0.36em !important;
+text-transform: uppercase !important;
+}
+/* === Final fix: quote visibility controlled by JS variable === */
+.hero-gate-cta {
+opacity: var(--quote-opacity, 0) !important;
+visibility: visible !important;
+z-index: 140 !important;
+}
+.quote-karaoke {
+filter: drop-shadow(0 28px 90px rgba(0,0,0,0.82));
+}
+/* === Quote polish: no background panel + footer-style split text reveal === */
+.hero-gate-cta {
+background: transparent !important;
+}
+.hero-gate-cta > div {
+background: transparent !important;
+backdrop-filter: none !important;
+border: 0 !important;
+box-shadow: none !important;
+padding: 0 !important;
+border-radius: 0 !important;
+}
+.quote-karaoke {
+filter: drop-shadow(0 22px 52px rgba(0, 0, 0, 0.82)) !important;
+}
+.karaoke-word {
+display: inline-block !important;
+overflow: hidden !important;
+vertical-align: top !important;
+opacity: 1 !important;
+color: rgba(236, 250, 255, 0.22) !important;
+transform: translateY(0) !important;
+}
+.quote-char {
+display: inline-block;
+transform: translateY(112%) rotate(4deg);
+opacity: 0;
+transition:
+transform 680ms cubic-bezier(.22, 1, .36, 1),
+opacity 520ms ease,
+color 240ms ease,
+text-shadow 240ms ease;
+transition-delay: calc(var(--char-index, 0) * 18ms);
+will-change: transform, opacity;
+}
+.karaoke-word.is-active .quote-char,
+.karaoke-word.is-done .quote-char {
+transform: translateY(0) rotate(0deg);
+opacity: 1;
+color: #f6fdff;
+text-shadow: 0 0 22px rgba(96, 230, 255, 0.46), 0 24px 70px rgba(0,0,0,0.76);
+}
+.karaoke-word.is-active .quote-char {
+transform: translateY(-2px) rotate(0deg);
+}
+.quote-attrib {
+background: transparent !important;
+text-shadow: 0 12px 34px rgba(0,0,0,0.8), 0 0 18px rgba(96,230,255,0.26) !important;
+}
+/* === Polish: hero text split reveal + stronger side decoration exit === */
+.hero-gate-copy .hero-word {
+display: inline-block;
+overflow: hidden;
+vertical-align: top;
+padding: 0.08em 0.02em 0.04em;
+margin: -0.08em -0.02em -0.04em;
+}
+.hero-gate-copy .hero-char {
+display: inline-block;
+opacity: 0;
+transform: translateY(115%) rotate(4deg);
+transition:
+opacity 620ms ease,
+transform 820ms cubic-bezier(0.22, 1, 0.36, 1);
+transition-delay: calc(var(--hero-char-index, 0) * 20ms);
+will-change: transform, opacity;
+}
+.hero-gate-copy.hero-text-in .hero-char {
+opacity: 1;
+transform: translateY(0) rotate(0deg);
+}
+.hero-gate-copy .kicker,
+.hero-gate-copy .subline,
+.hero-gate-copy .hero-gate-actions {
+opacity: 0;
+transform: translateY(14px);
+transition: opacity 640ms ease, transform 760ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+.hero-gate-copy.hero-text-in .kicker,
+.hero-gate-copy.hero-text-in .subline,
+.hero-gate-copy.hero-text-in .hero-gate-actions {
+opacity: 1;
+transform: translateY(0);
+}
+.hero-gate-copy.hero-text-in .kicker { transition-delay: 80ms; }
+.hero-gate-copy.hero-text-in .subline { transition-delay: 520ms; }
+.hero-gate-copy.hero-text-in .hero-gate-actions { transition-delay: 680ms; }
+/* === Fix: hero text visible fallback === */
+#hero-gate-copy.hero-text-ready {
+opacity: 1;
+visibility: visible;
+display: block;
+}
+#hero-gate-copy.hero-text-ready .hero-char,
+#hero-gate-copy.hero-text-ready .headline,
+#hero-gate-copy.hero-text-ready .kicker,
+#hero-gate-copy.hero-text-ready .subline {
+opacity: 1;
+transform: none;
+visibility: visible;
+}
+/* === Final requested hero fix === */
+/* Hero text appears automatically after the on-load sequence. */
+#hero-gate-copy.hero-text-ready,
+#hero-gate-copy.is-visible {
+opacity: 1;
+visibility: visible;
+display: block;
+}
+/* Side decorations are in FRONT of the portal layer. */
+#hero-gate-world { isolation: isolate !important; }
+#hero-gate-portal,
+.hero-gate-portal {
+z-index: 34 !important;
+pointer-events: none !important;
+}
+#hero-gate-shutter-left,
+#hero-gate-shutter-right,
+.hero-gate-shutter {
+z-index: 52 !important;
+pointer-events: none !important;
+}
+#hero-gate-mermaid,
+.hero-gate-mermaid {
+z-index: 58 !important;
+pointer-events: none !important;
+}
+#hero-gate-copy,
+.hero-gate-copy {
+z-index: 80 !important;
+}
+/* =========================================================
+AQUARIA CLEANUP PATCH — exact file, assets preserved
+Removes visual clutter without changing the original JS/timeline.
+========================================================= */
+.caustics,
+.lightrays,
+.flash,
+.portal-ring,
+.core-rings,
+.core-orb .halo,
+.water-ribbon,
+.abyss-shadow,
+.pearl-gate,
+.hero-gate-lines,
+.hero-gate-grain {
+display: none !important;
+opacity: 0 !important;
+visibility: hidden !important;
+pointer-events: none !important;
+}
+.hero-gate-world::after,
+.hero-gate-portal::after {
+content: none !important;
+display: none !important;
+}
+.hero-gate-bg,
+.hero-gate-portal img,
+.hero-gate-mermaid img,
+.hero-gate-shutter img,
+.gate-card img {
+opacity: 1 !important;
+visibility: visible !important;
+}
+.hero-gate-portal {
+mix-blend-mode: normal !important;
+opacity: 1 !important;
+visibility: visible !important;
+}
+.hero-gate-shutter,
+.hero-gate-mermaid,
+.hero-gate-copy,
+.hero-gate-cta {
+visibility: visible !important;
+}
+.sc-nerissa .scene-bg,
+.sc-pearl .scene-bg,
+.sc-kingdom .scene-bg {
+filter: brightness(0.78) saturate(1.08) contrast(1.04) !important;
+}
+.sc-nerissa .scene-tint,
+.sc-pearl .scene-tint,
+.sc-kingdom .scene-tint {
+background:
+linear-gradient(90deg, rgba(1, 4, 9, 0.48), rgba(1, 4, 9, 0.08) 45%, rgba(1, 4, 9, 0.38)),
+linear-gradient(180deg, rgba(1, 4, 9, 0.14), rgba(1, 4, 9, 0.38)) !important;
+}
+.core-orb {
+filter: none !important;
+}
+.core-orb .pearl {
+box-shadow:
+0 0 32px rgba(65, 230, 255, 0.5),
+0 0 90px rgba(65, 230, 255, 0.16) !important;
+}
+.vignette {
+background: radial-gradient(ellipse 105% 85% at 50% 45%, transparent 62%, rgba(1, 4, 9, 0.56) 100%) !important;
+}
+</style>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+/* 3D Transform utilities */
+</style>
+<script>
+// Configure Tailwind to include our custom 3D transform utilities
+tailwind.config = {
+theme: {
+extend: {
+// Add any custom theme extensions here if needed
+}
+},
+plugins: [
+function({ addUtilities }) {
+const rotateXUtilities = {};
+const rotateYUtilities = {};
+const rotateZUtilities = {};
+const rotateValues = [0, 5, 10, 15, 20, 30, 45, 75];
+// Generate rotate-x utilities
+rotateValues.forEach((value) => {
+rotateXUtilities[`.rotate-x-${value}`] = {
+'--tw-rotate-x': `${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+if (value !== 0) {
+rotateXUtilities[`.-rotate-x-${value}`] = {
+'--tw-rotate-x': `-${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+}
+});
+// Generate rotate-y utilities
+rotateValues.forEach((value) => {
+rotateYUtilities[`.rotate-y-${value}`] = {
+'--tw-rotate-y': `${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+if (value !== 0) {
+rotateYUtilities[`.-rotate-y-${value}`] = {
+'--tw-rotate-y': `-${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+}
+});
+// Generate rotate-z utilities
+rotateValues.forEach((value) => {
+rotateZUtilities[`.rotate-z-${value}`] = {
+'--tw-rotate-z': `${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+if (value !== 0) {
+rotateZUtilities[`.-rotate-z-${value}`] = {
+'--tw-rotate-z': `-${value}deg`,
+transform: `
+translate3d(var(--tw-translate-x, 0), var(--tw-translate-y, 0), var(--tw-translate-z, 0))
+rotateX(var(--tw-rotate-x, 0))
+rotateY(var(--tw-rotate-y, 0))
+rotateZ(var(--tw-rotate-z, 0))
+skewX(var(--tw-skew-x, 0))
+skewY(var(--tw-skew-y, 0))
+scaleX(var(--tw-scale-x, 1))
+scaleY(var(--tw-scale-y, 1))
+`.replace(/\\s+/g, ' ').trim(),
+};
+}
+});
+// Perspective utilities
+const perspectiveUtilities = {
+".perspective-none": { perspective: "none" },
+".perspective-dramatic": { perspective: "100px" },
+".perspective-near": { perspective: "300px" },
+".perspective-normal": { perspective: "500px" },
+".perspective-midrange": { perspective: "800px" },
+".perspective-distant": { perspective: "1200px" },
+};
+// Transform style utilities
+const transformStyleUtilities = {
+".transform-style-preserve-3d": { "transform-style": "preserve-3d" },
+".transform-style-flat": { "transform-style": "flat" },
+};
+addUtilities({
+...rotateXUtilities,
+...rotateYUtilities,
+...rotateZUtilities,
+...perspectiveUtilities,
+...transformStyleUtilities,
+});
+}
+]
+};
+</script><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style id="mobile-adapt">
+/* v93 AQUARIA — лёгкая мобильная доводка (шаблон уже адаптивен, 34 MQ) */
+html, body { overflow-x: clip; }
+
+@media (max-width: 640px) {
+  /* Формы: 16px против авто-зума iOS, удобные цели нажатия */
+  input, select, textarea, button { font-size: 16px !important; }
+  a, button { min-height: 44px; }
+
+  /* Длинные русские слова в крупных заголовках не должны рвать вёрстку */
+  h1, h2, h3, .zone-name { overflow-wrap: break-word; hyphens: auto; }
+
+  /* Безопасные зоны iPhone */
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+
+</style>
+</head>
+<body class="">
+<!-- ================= PRELOADER ================= -->
+<div class="preloader" id="preloader">
+<div aria-hidden="true" class="core-glyph">
+<span class="ring"></span>
+<span class="ring r2"></span>
+<span class="ring r3"></span>
+<span class="pearl"></span>
+</div>
+<div class="boot-msg" id="boot-msg">ИНИЦИАЛИЗАЦИЯ ПОГРУЖЕНИЯ</div>
+<div class="bar">
+<div class="num" id="boot-num">0%</div>
+<div class="fill" id="boot-fill"></div>
+</div>
+</div>
+<!-- ================= STAGE ================= -->
+<div aria-label="Кинематографичная сцена Aquaria" class="stage">
+<!-- Hero gate: shutter + portal sequence from the inspiration video -->
+<section aria-label="Вступительный портал Aquaria" class="hero-gate" id="hero-gate">
+<div aria-hidden="true" class="hero-gate-world" id="hero-gate-world">
+<img alt="" class="hero-gate-bg" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d5f846ba-436b-4d49-8e52-5876d1f65039_3840w.png"/>
+<div aria-hidden="true" class="hero-gate-portal" id="hero-gate-portal">
+<img alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dc4f653c-c3a4-4d59-8002-baa5ed053878_1600w.png"/>
+</div>
+<div aria-hidden="true" class="hero-gate-mermaid" id="hero-gate-mermaid">
+<img alt="Призрачная королева русалок с трезубцем" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4dea709b-bf3e-4185-928f-da6d806e3f8a_1600w.png"/>
+</div>
+<div aria-hidden="true" class="hero-gate-shutter left" id="hero-gate-shutter-left">
+<img alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d1069fc0-83e8-443b-b22d-5d7d469beb46_1600w.png"/>
+</div>
+<div aria-hidden="true" class="hero-gate-shutter right" id="hero-gate-shutter-right">
+<img alt="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4d0f804c-6f36-4672-951f-640f5747dca5_1600w.png"/>
+</div>
+<div aria-hidden="true" class="hero-gate-grain"></div>
+<div aria-hidden="true" class="hero-gate-lines"></div>
+<div class="hero-gate-copy" id="hero-gate-copy">
+<div class="kicker">
+              Обнаружен сигнал ядра // источник под поверхностью
+            </div>
+<h2 class="headline">
+              Спаси
+              <br/>
+              последнюю поверхность
+            </h2>
+<p class="subline">
+              Пройди сквозь врата. Войди в Акварию. Останови прилив, пока мир наверху не исчез.
+            </p>
+<div class="hero-gate-actions">
+<button class="btn primary">Начать погружение</button>
+<button class="btn">Смотреть сигнал</button>
+</div>
+</div>
+<div aria-hidden="true" class="hero-gate-cards" id="hero-gate-cards">
+<article class="gate-card">
+<img alt="" src="assets/aquaria_gate_card_core.webp"/>
+<span>
+                Синее ядро
+                <br/>
+                нестабильно
+              </span>
+</article>
+<article class="gate-card">
+<img alt="" src="assets/aquaria_gate_card_signal.webp"/>
+<span>
+                Аквария
+                <br/>
+                сигнал захвачен
+              </span>
+</article>
+</div>
+<div aria-hidden="true" class="hero-gate-cta" id="hero-gate-cta">
+<div>
+<div class="quote-karaoke" id="quote-karaoke">
+<span class="karaoke-word">Два</span>
+<span class="karaoke-word">мира.</span>
+<span class="karaoke-word">Один</span>
+<span class="karaoke-word">прилив.</span>
+<span class="karaoke-word">Твой</span>
+<span class="karaoke-word">выбор</span>
+<span class="karaoke-word">решит,</span>
+<span class="karaoke-word">кто</span>
+<span class="karaoke-word">выживет.</span>
+</div>
+<p class="quote-attrib">— АКВАРИЯ</p>
+</div>
+</div>
+<div class="hero-gate-cue" id="hero-gate-cue">Листай, чтобы войти</div>
+</div>
+</section>
+<!-- Scene 1: Surface -->
+<section class="scene sc-surface" id="scene-surface">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://cdn.midjourney.com/30f1dea5-8e1c-4dc2-87fe-3409fd338ade/0_0.png'); position:absolute; inset:0; overflow:hidden; isolation:isolate; z-index:0"></div>
+<div class="lightning"></div>
+<div class="scene-tint"></div>
+<div class="surface-water"></div>
+</div>
+<div class="copy">
+<div class="kicker">
+            Обнаружен сигнал ядра // источник: под поверхностью
+          </div>
+<h2 class="headline" data-scramble="">
+            Спаси
+            <br/>
+            последнюю поверхность
+          </h2>
+<p class="subline">
+            Океан поднимается. У мира наверху заканчивается время.
+          </p>
+</div>
+</section>
+<!-- Scene 2: Kael -->
+<section class="scene sc-kael" id="scene-kael">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/711fb13a-7de4-4c77-aad6-97ab937926e8_3840w.jpg')"></div>
+<div class="scene-tint"></div>
+</div>
+<div class="kael-figure">
+<div class="figure-frame">
+<video aria-label="Каэль Вейрон спускается в затонувшие руины" autoplay="" class="descent-log-video" loop="" muted="" playsinline="" preload="auto" src="https://cdn.midjourney.com/video/28f97023-0b30-4220-809d-f60b878b110b/0.mp4"></video>
+<div class="figure-tag">Боец // К-ВЕЙРОН</div>
+</div>
+</div>
+<div class="copy">
+<div class="kicker">Журнал погружения // −1248М</div>
+<h2 class="headline" data-scramble="">
+            Человек,
+            <br/>
+            избранный
+            <br/>
+            глубиной
+          </h2>
+<p class="subline">
+            Каэль Вейрон спускается в Акварию и пробуждает Синее ядро.
+          </p>
+<div class="hud-data">
+            ИМЯ:
+            <em>КАЭЛЬ ВЕЙРОН</em>
+<br/>
+            КЛАСС:
+            <em>СТРАЖ ПОВЕРХНОСТИ</em>
+<br/>
+            СИЛА:
+            <em>СИНЕЕ ЯДРО</em>
+<br/>
+            СТАТУС:
+            <em>НЕСТАБИЛЕН</em>
+</div>
+</div>
+</section>
+<!-- Scene 3: Blue Core -->
+<section class="scene sc-core" id="scene-core">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/93956f01-2510-466d-a0fc-c3b4f6952091_3840w.png')"></div>
+<div class="scene-tint"></div>
+</div>
+<div class="core-rings">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div class="core-orb">
+<span class="halo"></span>
+<span class="pearl"></span>
+</div>
+<div class="copy">
+<div class="kicker" style="justify-content:center">
+            Зал реликвий // давление в норме
+          </div>
+<h2 class="headline" data-scramble="">Синее ядро пробуждается</h2>
+<p class="subline">
+            Сила древнее Акварии теперь живёт внутри него.
+          </p>
+</div>
+</section>
+<!-- Scene 4: Nerissa -->
+<section class="scene sc-nerissa" id="scene-nerissa">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/c7a66b3d-1860-4487-8d43-85b4d1ad84df_3840w.png')"></div>
+<div class="scene-tint"></div>
+</div>
+<div class="nerissa-figure">
+<div class="figure-frame">
+<video aria-label="Нерисса Аквалин в Жемчужном королевстве" autoplay="" class="pearl-kingdom-video" loop="" muted="" playsinline="" preload="auto" src="https://cdn.midjourney.com/video/a975c59c-f156-4c39-8c0f-9894ff264086/0.mp4"></video>
+<div class="figure-tag">Особа королевской крови // Н-АКВАЛИН</div>
+</div>
+</div>
+<div class="water-ribbon"></div>
+<div class="water-ribbon r2" style="width:44vmin;height:44vmin;left:14vw"></div>
+<div class="abyss-shadow"></div>
+<div class="copy">
+<div class="kicker">Жемчужное королевство // королевская частота</div>
+<h2 class="headline" data-scramble="">
+            Принцесса,
+            <br/>
+            предавшая
+            <br/>
+            бездну
+          </h2>
+<p class="subline">
+            Нерисса была обещана Ваэлору, но она не позволит ему утопить мир.
+          </p>
+<div class="hud-data">
+            ИМЯ:
+            <em>НЕРИССА АКВАЛИН</em>
+<br/>
+            КЛАСС:
+            <em>НАСЛЕДНИЦА ОКЕАНА</em>
+<br/>
+            ПРОИСХОЖДЕНИЕ:
+            <em>ЖЕМЧУЖНОЕ КОРОЛЕВСТВО</em>
+<br/>
+            СИЛА:
+            <em>ИСЦЕЛЯЮЩИЕ ПРИЛИВЫ</em>
+</div>
+</div>
+<div class="pearl-gate left"></div>
+<div class="pearl-gate right"></div>
+</section>
+<!-- Scene 5: Character select -->
+<section class="scene sc-select" id="scene-select">
+<div class="ghost-name" id="ghost-name">Каэль</div>
+<div class="select-head">
+<h2 class="headline">Выбери своего стража</h2>
+<p class="subline">Каждый союз меняет судьбу поверхности.</p>
+</div>
+<div class="select-layout">
+<div class="portrait-panel" id="portrait-panel">
+<img alt="Полный портрет персонажа" id="portrait-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/af7086de-e0f1-46ab-9cdc-c64c8a7e131c_1600w.png"/>
+<div class="scanline"></div>
+<div class="depth-glow"></div>
+<div class="p-tag" id="portrait-tag">Досье // KAEL-01</div>
+</div>
+<div class="dossier" id="dossier">
+<div class="d-item char-role" id="d-role">
+              Герой-человек — Синее ядро
+            </div>
+<h3 class="d-item char-name" id="d-name">Каэль Вейрон</h3>
+<p class="d-item char-desc" id="d-desc"></p>
+<div class="d-item meta-grid" id="d-meta"></div>
+<div class="d-item abilities" id="d-abilities"></div>
+<div class="d-item stats" id="d-stats"></div>
+</div>
+</div>
+<div class="guardian-scroll-hint">Листай, чтобы выбрать стража</div>
+<div class="char-tabs" id="char-tabs"></div>
+</section>
+<!-- Scene 6: Vaelor -->
+<section class="scene sc-vaelor" id="scene-vaelor">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/d6dbfd2e-775e-477a-9a4e-d01115461727_3840w.jpg')"></div>
+<div class="scene-tint"></div>
+</div>
+<div class="red-shift"></div>
+<div class="pressure-rings">
+<span></span>
+<span></span>
+<span></span>
+</div>
+<div class="vaelor-figure">
+<div class="figure-frame">
+<video aria-label="Ваэлор Абиссион при Дворе Бездны" autoplay="" class="abyssal-court-video" loop="" muted="" playsinline="" preload="auto" src="https://cdn.midjourney.com/video/540c4f84-3e24-47dc-b526-4a188172434b/2.mp4"></video>
+<div class="figure-tag">Угроза // В-АБИССИОН</div>
+</div>
+</div>
+<div class="copy">
+<div class="kicker">Двор Бездны // враждебные воды</div>
+<h2 class="headline red" data-scramble="">
+            Принц,
+            <br/>
+            который хочет
+            <br/>
+            утопить землю
+          </h2>
+<p class="subline">
+            Ваэлор верит: поверхность должна пасть, чтобы океан снова правил.
+          </p>
+<div class="hud-data red">
+            УРОВЕНЬ УГРОЗЫ:
+            <em>КОРОЛЕВСКАЯ БЕЗДНА</em>
+<br/>
+            ПОСЛЕДНИЙ ПРИЛИВ:
+            <em>ЗАРЯЖАЕТСЯ</em>
+<br/>
+            ЦЕЛЬ:
+            <em>ПОВЕРХНОСТЬ</em>
+</div>
+</div>
+</section>
+<!-- Scene 7: Morvella -->
+<section class="scene sc-morvella" id="scene-morvella">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/73003e21-bd43-4039-80e8-07a4d8c64dfb_3840w.jpg')"></div>
+<div class="scene-tint"></div>
+</div>
+<div class="tentacle t1"></div>
+<div class="tentacle t2"></div>
+<div class="morvella-figure">
+<div class="figure-frame">
+<video aria-label="Морвелла Инкторн в Чёрном рифе" autoplay="" class="black-reef-video" loop="" muted="" playsinline="" preload="auto" src="https://cdn.midjourney.com/video/5e756fcb-398c-41b4-a3cb-6461812f47ed/0.mp4"></video>
+<div class="figure-tag">Ведьма // М-ИНКТОРН</div>
+</div>
+</div>
+<div class="copy">
+<div class="kicker">Чёрный риф // поле иллюзий</div>
+<h2 class="headline ink" data-scramble="">
+            Любовь становится
+            <br/>
+            ядом
+          </h2>
+<p class="subline">
+            Морвелле нужен Ваэлор, и только Нерисса стоит у неё на пути.
+          </p>
+<div class="hud-data ink">
+            ПОЛЕ ЧЕРНИЛ:
+            <em>АКТИВНО</em>
+<br/>
+            ГЛУБИНА ИЛЛЮЗИЙ:
+            <em>ВЫСОКАЯ</em>
+<br/>
+            ЦЕЛЬ:
+            <em>НЕРИССА</em>
+</div>
+</div>
+<div class="ink-cloud a"></div>
+<div class="ink-cloud b"></div>
+</section>
+<!-- Scene 8: Worlds -->
+<section class="scene sc-worlds" id="scene-worlds">
+<div class="zones-track" id="zones-track"></div>
+<div class="worlds-head">
+<div class="kicker">Карта мира // пять королевств</div>
+<h2 class="headline">Исследуй затонувшие королевства</h2>
+</div>
+</section>
+<!-- Scene 9: Battle -->
+<section class="scene sc-battle" id="scene-battle">
+<div class="cam">
+<div class="scene-bg" style="background-image:url('https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b8366943-6fb7-4606-ab39-421f8923d6db_3840w.png')"></div>
+<div class="scene-tint"></div>
+</div>
+<canvas aria-label="Врата Последнего прилива — вращающаяся 3D-галерея персонажей" id="final-tide-three"></canvas>
+<div aria-label="Вращающаяся галерея персонажей у Врат Последнего прилива" class="final-rotator-wrap">
+<div class="final-rotator" id="final-rotator">
+<article class="tide-card hero-card" style="--x:-560px; --r:34deg; --z:-130px;">
+<img alt="Каэль Вейрон" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dfbdc924-44d1-4704-aa9e-efa03cbf373a_320w.png"/>
+<div class="nm">Каэль Вейрон</div>
+<div class="fighter-desc">
+                Страж поверхности, питаемый нестабильным Синим ядром. Создан для скорости, давления и ближнего боя.
+              </div>
+</article>
+<article class="tide-card hero-card" style="--x:-280px; --r:17deg; --z:20px;">
+<img alt="Нерисса Аквалин" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7192fc7d-11ed-466e-a75b-435f67b28f8a_320w.png"/>
+<div class="nm">Нерисса Аквалин</div>
+<div class="fighter-desc">
+                Принцесса Жемчужного королевства: исцеляющие приливы, управление волнами и водяные щиты.
+              </div>
+</article>
+<article class="tide-card father-card is-center" style="--x:0px; --r:0deg; --z:90px;">
+<img alt="Король Талор Аквалин у Врат Последнего прилива" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/da6d3f82-8677-4212-b85d-62fab52163ae_1600w.png"/>
+<div class="nm">Король Талор Аквалин</div>
+<div class="fighter-desc">
+                Отец Нериссы возвращается к Вратам Последнего прилива с Трезубцем Приливов, чтобы защитить Акварию и последнюю поверхность.
+              </div>
+</article>
+<article class="tide-card villain-card" style="--x:280px; --r:-17deg; --z:20px;">
+<img alt="Ваэлор Абиссион" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1cb8b238-e37e-4bcb-8dd0-7863ab8e4510_320w.png"/>
+<div class="nm">Ваэлор Абиссион</div>
+<div class="fighter-desc">
+                Военачальник бездны, пытающийся открыть Врата Последнего прилива и утопить последнюю поверхность.
+              </div>
+</article>
+<article class="tide-card villain-card" style="--x:560px; --r:-34deg; --z:-130px;">
+<img alt="Морвелла Инкторн" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f95303e3-00b2-438d-8bcf-47d717bd8e1f_1600w.png"/>
+<div class="nm">Морвелла Инкторн</div>
+<div class="fighter-desc">
+                Глубоководная ведьма, скрывающая поле боя в чернилах, иллюзиях и древних проклятиях.
+              </div>
+</article>
+</div>
+</div>
+<div class="copy">
+<div class="kicker" style="justify-content:center">
+            Врата Последнего прилива // прорыв неизбежен
+          </div>
+<h2 class="headline" data-scramble="">Останови последний прилив</h2>
+<p class="subline">
+            Если Ваэлор откроет врата, поверхность исчезнет навсегда.
+          </p>
+</div>
+</section>
+<!-- Scene 10: CTA -->
+<section class="scene sc-cta" id="scene-cta">
+<div class="cta-core">
+<span class="halo"></span>
+<span class="orbiter"></span>
+<span class="pearl"></span>
+</div>
+<div class="copy">
+<h2 class="headline" data-scramble="">Готов к погружению?</h2>
+<p class="subline">
+            Присоединяйся к битве за последнюю поверхность.
+            <br/>
+            Спаси поверхность. Правь глубинами.
+          </p>
+<div class="cta-actions">
+<button class="btn primary">В лист ожидания</button>
+<button class="btn">Смотреть геймплей</button>
+</div>
+<form class="signal-form" onsubmit="return false">
+<input aria-label="Адрес электронной почты" placeholder="Введите ваш сигнал (email)" type="email"/>
+<button type="submit">Отправить</button>
+</form>
+<div class="cta-footer">
+            АКВАРИЯ: ПОСЛЕДНЯЯ ПОВЕРХНОСТЬ
+            <br/>
+            СТАТУС:
+            <em>СИНЕЕ ЯДРО АКТИВНО</em>
+            — ГЛУБИНА:
+            <em>НЕИЗВЕСТНА</em>
+            — ПОВЕРХНОСТЬ:
+            <em>КРИТИЧЕСКОЕ СОСТОЯНИЕ</em>
+</div>
+</div>
+</section>
+<video autoplay="" class="dive-video" loop="" muted="" playsinline="" preload="auto" src="https://cdn.midjourney.com/video/1953bbc8-6903-44d6-b05d-43637b090692/3.mp4"></video>
+<div class="portal-ring"></div>
+<div class="flash"></div>
+<div class="lightrays"></div>
+<div class="caustics"></div>
+<canvas aria-hidden="true" class="bubbles-canvas" id="bubbles-canvas"></canvas>
+<div class="vignette"></div>
+<div class="grain"></div>
+</div>
+<!-- ================= HUD ================= -->
+<div class="hud">
+<div class="hud-tilt" id="hud-tilt">
+<div class="logo" id="logo-home">
+<h1>АКВАРИЯ</h1>
+<span>ПОСЛЕДНЯЯ ПОВЕРХНОСТЬ</span>
+</div>
+<button class="menu-btn" id="menu-open-btn">Меню</button>
+<div class="hud-label tl2">
+          ГЛУБИНА:
+          <em id="depth-val">0000M</em>
+</div>
+<div class="hud-label tr2">
+          КИСЛОРОД:
+          <em>СТАБИЛЕН</em>
+<br/>
+          ЯДРО:
+          <em id="core-val">СПИТ</em>
+</div>
+<div class="hud-label bl">
+          СИГНАЛ:
+          <em>АКВАРИЯ</em>
+</div>
+<div class="hud-label br">
+          СТАТУС:
+          <em>ПОГРУЖЕНИЕ АКТИВНО</em>
+</div>
+<div class="vertical-label">СИГНАЛ СИНЕГО ЯДРА</div>
+<div class="rail-left">
+<div class="rail-chapter" id="rail-chapter">ГЛ. 01 / 10</div>
+<div class="rail-title" id="rail-title">ПОСЛЕДНИЙ ГОРОД</div>
+<ul id="rail-list"></ul>
+</div>
+<div class="rail-right">
+<div class="track">
+<div class="fill" id="progress-fill"></div>
+<div class="dot" id="progress-dot"></div>
+</div>
+<div class="pct" id="progress-pct">000%</div>
+</div>
+<div class="stepper" id="stepper"></div>
+<div class="scroll-hint" id="scroll-hint"></div>
+</div>
+</div>
+<!-- ================= MENU OVERLAY ================= -->
+<div class="menu-overlay hidden" id="menu-overlay">
+<button class="close" id="menu-close-btn">Закрыть</button>
+<div class="inner">
+<div class="menu-kicker">Океанское командование // Навигация</div>
+<nav id="menu-nav"></nav>
+</div>
+</div>
+<div aria-hidden="true" class="scroll-space"></div>
+<!-- ================= LIBS (CDN, no build step) ================= -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.17/dist/lenis.min.js"></script>
+<script>
+      (function () {
+          'use strict';
+
+          /* ===================== DATA ===================== */
+          var u = function (id, w) { return 'https://images.unsplash.com/' + id + '?q=80&w=' + (w || 1600) + '&auto=format&fit=crop'; };
+
+          var CHARACTERS = [
+            { id: 'kael', name: 'Каэль Вейрон', role: 'Герой-человек', cls: 'Страж поверхности', origin: 'Поверхность', align: 'Свет', power: 'Синее ядро', accent: '#41e6ff',
+              desc: 'Исследователь-человек, избранный древней силой океана. Только Каэль может остановить Ваэлора, пока поверхность не исчезла.',
+              abilities: ['Импульс Синего ядра', 'Щит давления', 'Приливный удар', 'Кислородная синхронизация'],
+              stats: { power: 88, defense: 74, speed: 70, magic: 92 },
+              img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/46845b98-dadb-4a3d-b38d-2fc834879b9d_1600w.png' },
+            { id: 'nerissa', name: 'Нерисса Аквалин', role: 'Героиня-русалка', cls: 'Наследница океана', origin: 'Жемчужное королевство', align: 'Мятежная принцесса', power: 'Исцеляющие приливы', accent: '#7ff5e1',
+              desc: 'Принцесса-русалка, восставшая против Ваэлора, чтобы защитить и Акварию, и поверхность.',
+              abilities: ['Приливный щит', 'Жемчужное исцеление', 'Оковы воды', 'Королевская волна'],
+              stats: { power: 76, defense: 82, speed: 86, magic: 94 },
+              img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a37c9a4f-dbe9-4421-9e0a-feece67fbc54_1600w.png' },
+            { id: 'vaelor', name: 'Ваэлор Абиссион', role: 'Главный злодей', cls: 'Король бездны', origin: 'Двор Бездны', align: 'Разрушитель', power: 'Давление бездны', accent: '#ff3b57',
+              desc: 'Беловолосый принц-тритон, который хочет утопить Землю и создать единую вечную подводную империю.',
+              abilities: ['Хватка бездны', 'Корона штормов', 'Власть над тварями', 'Последний прилив'],
+              stats: { power: 96, defense: 90, speed: 78, magic: 98 },
+              img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/af7086de-e0f1-46ab-9cdc-c64c8a7e131c_1600w.png' },
+            { id: 'morvella', name: 'Морвелла Инкторн', role: 'Морская ведьма', cls: 'Ведьма бездны', origin: 'Чёрный риф', align: 'Манипулятор', power: 'Чернильные иллюзии', accent: '#b06dff',
+              desc: 'Морская ведьма-осьминог, влюблённая в Ваэлора и мечтающая стереть Нериссу из его сердца.',
+              abilities: ['Чернильная вуаль', 'Спираль разума', 'Хватка щупалец', 'Проклятие Чёрного рифа'],
+              stats: { power: 84, defense: 72, speed: 80, magic: 99 },
+              img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/4fb549f4-bfc1-4db9-b1b5-3b8ad16e6c26_1600w.png' },
+            { id: 'thalor', name: 'Король Талор Аквалин', role: 'Король океана', cls: 'Монарх приливов', origin: 'Жемчужное королевство', align: 'Защитник', power: 'Трезубец Приливов', accent: '#e8c66a',
+              desc: "Отец Нериссы, правитель Акварии, разрывающийся между защитой королевства и верой в бунт дочери.",
+              abilities: ['Королевский приказ', 'Волна трезубца', 'Зов стражей', 'Древний барьер'],
+              stats: { power: 90, defense: 95, speed: 60, magic: 88 },
+              img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/da6d3f82-8677-4212-b85d-62fab52163ae_1600w.png' }
+          ];
+
+          var MASTER_DURATION = 192;
+
+          var CHAPTERS = [
+            { num: '01', label: 'ПОВЕРХНОСТЬ', title: 'ПОСЛЕДНИЙ ГОРОД', at: 0.0 },
+            { num: '02', label: 'КАЭЛЬ', title: 'СПУСК', at: 24 / MASTER_DURATION },
+            { num: '03', label: 'СИНЕЕ ЯДРО', title: 'ПРОБУЖДЕНИЕ', at: 60 / MASTER_DURATION },
+            { num: '04', label: 'НЕРИССА', title: 'ВЫБОР', at: 72 / MASTER_DURATION },
+            { num: '05', label: 'СТРАЖИ', title: 'ВЫБОР ПЕРСОНАЖА', at: 94 / MASTER_DURATION },
+            { num: '06', label: 'ВАЭЛОР', title: 'ПЛАН БЕЗДНЫ', at: 124 / MASTER_DURATION },
+            { num: '07', label: 'МОРВЕЛЛА', title: 'ЧЕРНИЛА И РЕВНОСТЬ', at: 140 / MASTER_DURATION },
+            { num: '08', label: 'МИРЫ', title: 'ЗАТОНУВШИЕ КОРОЛЕВСТВА', at: 154 / MASTER_DURATION },
+            { num: '09', label: 'ПОСЛЕДНИЙ ПРИЛИВ', title: 'ПОСЛЕДНЯЯ БИТВА', at: 170 / MASTER_DURATION },
+            { num: '10', label: 'ПРИСОЕДИНЯЙСЯ', title: 'ГОТОВ К ПОГРУЖЕНИЮ', at: 186 / MASTER_DURATION }
+          ];
+
+          var ZONES = [
+            { name: 'Затонувшая поверхность', coord: 'SEC-01 // −0140M', desc: 'Останки человеческих городов, поглощённых морем.', img: 'https://cdn.midjourney.com/ce63924e-0e99-4b67-b981-838cac8a6e85/0_2.png', tint: 'rgba(10, 40, 60, 0.55)' },
+            { name: 'Жемчужное королевство', coord: 'SEC-02 // −0980M', desc: "Королевский дом Нериссы с коралловыми дворцами и светящимися вратами.", img: 'https://cdn.midjourney.com/e1b921cb-2df5-42a5-a02f-c14cc7867e74/0_3.png', tint: 'rgba(20, 70, 80, 0.45)' },
+            { name: 'Двор Бездны', coord: 'SEC-03 // −4620M', desc: "Тёмное королевство Ваэлора: давление, штормы и древние чудовища.", img: 'https://cdn.midjourney.com/777ef59d-3618-4386-a5db-3cd2a56da806/0_1.png', tint: 'rgba(40, 5, 15, 0.55)' },
+            { name: 'Чёрный риф', coord: 'SEC-04 // −3300M', desc: "Владения Морвеллы, полные чернил, иллюзий и искривлённых кораллов.", img: 'https://cdn.midjourney.com/88e87f23-8002-4f2e-b0f6-85a66c1b3feb/0_3.png', tint: 'rgba(30, 8, 45, 0.55)' },
+            { name: 'Врата Последнего прилива', coord: 'SEC-05 // −9999M', desc: 'Древний портал, который Ваэлор хочет открыть, чтобы утопить Землю.', img: 'https://cdn.midjourney.com/3aef8e46-f713-4e5e-b130-c842bf7ae94c/0_2.png', tint: 'rgba(5, 15, 35, 0.6)' }
+          ];
+
+          var MENU_LINKS = [
+            { label: 'Поверхность', at: 0.0 }, { label: 'Каэль', at: 24 / MASTER_DURATION }, { label: 'Нерисса', at: 72 / MASTER_DURATION },
+            { label: 'Персонажи', at: 94 / MASTER_DURATION }, { label: 'Ваэлор', at: 124 / MASTER_DURATION }, { label: 'Морвелла', at: 140 / MASTER_DURATION },
+            { label: 'Мир', at: 154 / MASTER_DURATION }, { label: 'Последний прилив', at: 170 / MASTER_DURATION }, { label: 'Присоединиться', at: 186 / MASTER_DURATION }
+          ];
+
+          /* ===================== BUILD DYNAMIC MARKUP ===================== */
+
+          // world zones
+          var zonesTrack = document.getElementById('zones-track');
+          ZONES.forEach(function (z) {
+            var el = document.createElement('div');
+            el.className = 'zone';
+            el.innerHTML =
+              (z.video
+                ? '<video class="zone-bg zone-video" src="' + z.video + '" autoplay muted playsinline loop preload="auto"></video>'
+                : '<div class="zone-bg" style="background-image:url(\'' + z.img + '\')"></div>') +
+              '<div class="zone-tint" style="background:linear-gradient(to bottom, rgba(1,4,9,0.75), ' + z.tint + ' 50%, rgba(1,4,9,0.9))"></div>' +
+              '<div class="marker"></div>' +
+              '<div class="zone-copy">' +
+                '<div class="zone-coord">' + z.coord + '</div>' +
+                '<div class="zone-name">' + z.name + '</div>' +
+                '<p class="zone-desc">' + z.desc + '</p>' +
+              '</div>';
+            zonesTrack.appendChild(el);
+          });
+
+          // chapter rail (left)
+          var railList = document.getElementById('rail-list');
+          CHAPTERS.forEach(function (c, i) {
+            var li = document.createElement('li');
+            li.dataset.idx = i;
+            var btn = document.createElement('button');
+            btn.textContent = c.num + ' ' + c.label;
+            btn.addEventListener('click', function () { goTo(c.at); });
+            li.appendChild(btn);
+            railList.appendChild(li);
+          });
+
+          // mobile stepper
+          var stepper = document.getElementById('stepper');
+          CHAPTERS.forEach(function (c, i) {
+            var btn = document.createElement('button');
+            btn.dataset.idx = i;
+            btn.setAttribute('aria-label', c.label);
+            btn.addEventListener('click', function () { goTo(c.at); });
+            stepper.appendChild(btn);
+          });
+
+          // menu overlay nav
+          var menuNav = document.getElementById('menu-nav');
+          MENU_LINKS.forEach(function (l) {
+            var btn = document.createElement('button');
+            btn.textContent = l.label;
+            btn.addEventListener('click', function () { goTo(l.at); closeMenu(); });
+            menuNav.appendChild(btn);
+          });
+
+          // character select tabs
+          var charTabs = document.getElementById('char-tabs');
+          CHARACTERS.forEach(function (c, i) {
+            var btn = document.createElement('button');
+            btn.className = 'char-tab';
+            btn.dataset.idx = i;
+            btn.innerHTML = '<img src="' + c.img + '" alt="" /><span class="t-name">' + c.name + '<em>' + c.cls + '</em></span>';
+            btn.addEventListener('click', function () { setActiveCharacter(i); });
+            charTabs.appendChild(btn);
+          });
+
+          /* ===================== TEXT SCRAMBLE ===================== */
+          var SCRAMBLE_CHARS = 'ABCDEFGHIKLMNOPRSTUVXYZ0123456789<>/\\|=';
+          var scrambling = new WeakSet();
+
+          function collectTextNodes(el, out) {
+            out = out || [];
+            el.childNodes.forEach(function (n) {
+              if (n.nodeType === 3 && n.textContent.trim()) out.push(n);
+              else if (n.nodeType === 1) collectTextNodes(n, out);
+            });
+            return out;
+          }
+
+          function scramble(el) {
+            if (!el || scrambling.has(el)) return;
+            var nodes = collectTextNodes(el);
+            if (!el.__orig) el.__orig = nodes.map(function (n) { return n.textContent; });
+            var orig = el.__orig;
+            scrambling.add(el);
+            var start = performance.now();
+            var DURATION = 750;
+            function step(now) {
+              var p = Math.min(1, (now - start) / DURATION);
+              nodes.forEach(function (n, i) {
+                var text = orig[i];
+                var resolved = Math.floor(text.length * p);
+                var out = text.slice(0, resolved);
+                for (var j = resolved; j < text.length; j++) {
+                  out += text[j] === ' ' ? ' ' : SCRAMBLE_CHARS[(Math.random() * SCRAMBLE_CHARS.length) | 0];
+                }
+                n.textContent = out;
+              });
+              if (p < 1) requestAnimationFrame(step);
+              else scrambling.delete(el);
+            }
+            requestAnimationFrame(step);
+          }
+
+          function scrambleIn(sceneSel) {
+            return function () { scramble(document.querySelector(sceneSel + ' [data-scramble]')); };
+          }
+
+          /* ===================== CHARACTER SELECT ===================== */
+          var STAT_LABELS = ['power', 'defense', 'speed', 'magic'];
+          var STAT_RU = { power: 'МОЩЬ', defense: 'ЗАЩИТА', speed: 'СКОРОСТЬ', magic: 'МАГИЯ' };
+          var activeChar = 0;
+
+          function renderCharacter(i, animate) {
+            var c = CHARACTERS[i];
+            var portrait = document.getElementById('portrait-img');
+            var ghost = document.getElementById('ghost-name');
+            var dossier = document.getElementById('dossier');
+
+            document.getElementById('portrait-panel').style.borderColor = c.accent + '55';
+            document.getElementById('portrait-tag').textContent = 'Досье // ' + c.id.toUpperCase() + '-' + String(i + 1).padStart(2, '0');
+            document.getElementById('portrait-tag').style.color = c.accent;
+
+            document.getElementById('d-role').textContent = c.role + ' — ' + c.power;
+            document.getElementById('d-role').style.color = c.accent;
+            document.getElementById('d-name').textContent = c.name;
+            document.getElementById('d-desc').textContent = c.desc;
+
+            var metaEl = document.getElementById('d-meta');
+            metaEl.innerHTML =
+              '<div><b>Класс</b><span>' + c.cls + '</span></div>' +
+              '<div><b>Происхождение</b><span>' + c.origin + '</span></div>' +
+              '<div><b>Сторона</b><span>' + c.align + '</span></div>' +
+              '<div><b>Сила</b><span>' + c.power + '</span></div>';
+
+            var abilEl = document.getElementById('d-abilities');
+            abilEl.innerHTML = '';
+            c.abilities.forEach(function (a) {
+              var span = document.createElement('span');
+              span.textContent = a;
+              span.style.borderColor = c.accent + '55';
+              abilEl.appendChild(span);
+            });
+
+            var statsEl = document.getElementById('d-stats');
+            statsEl.innerHTML = '';
+            STAT_LABELS.forEach(function (s) {
+              var row = document.createElement('div');
+              row.className = 'stat-row';
+              row.dataset.stat = s;
+              row.innerHTML = '<span>' + (STAT_RU[s] || s) + '</span><span class="bar"><i style="background:linear-gradient(90deg, ' + c.accent + '66, ' + c.accent + ')"></i></span><span class="val">0</span>';
+              statsEl.appendChild(row);
+            });
+
+            ghost.textContent = c.name.split(' ')[0];
+
+            // active tab state
+            document.querySelectorAll('.char-tab').forEach(function (t, idx) {
+              t.classList.toggle('active', idx === i);
+            });
+
+            if (window.gsap && animate) {
+              gsap.fromTo(portrait, { scale: 1.12, autoAlpha: 0, filter: 'blur(14px) saturate(1.6)' },
+                { scale: 1, autoAlpha: 1, filter: 'blur(0px) saturate(1)', duration: 0.8, ease: 'power3.out', onStart: function () { portrait.src = c.img; } });
+              gsap.fromTo(ghost, { autoAlpha: 0, x: 60 }, { autoAlpha: 1, x: 0, duration: 0.9, ease: 'power3.out' });
+              gsap.fromTo(dossier.querySelectorAll('.d-item'), { y: 24, autoAlpha: 0, filter: 'blur(6px)' },
+                { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.55, stagger: 0.07, ease: 'power2.out' });
+              dossier.querySelectorAll('.stat-row').forEach(function (row) {
+                var key = row.dataset.stat;
+                var value = c.stats[key];
+                var bar = row.querySelector('.bar i');
+                var num = row.querySelector('.val');
+                gsap.fromTo(bar, { width: '0%' }, { width: value + '%', duration: 1, ease: 'power3.out', delay: 0.15 });
+                var counter = { v: 0 };
+                gsap.to(counter, { v: value, duration: 1, ease: 'power3.out', delay: 0.15, onUpdate: function () { num.textContent = Math.round(counter.v); } });
+              });
+            } else {
+              portrait.src = c.img;
+              dossier.querySelectorAll('.stat-row').forEach(function (row) {
+                var key = row.dataset.stat;
+                var value = c.stats[key];
+                row.querySelector('.bar i').style.width = value + '%';
+                row.querySelector('.val').textContent = value;
+              });
+            }
+          }
+
+          function setActiveCharacter(i) {
+            if (i === activeChar) return;
+            activeChar = i;
+            renderCharacter(i, true);
+          }
+
+          function setActiveCharacterFromScroll(i) {
+            if (i === activeChar) return;
+            activeChar = i;
+            renderCharacter(i, true);
+          }
+
+          renderCharacter(0, false);
+
+          /* ===================== HUD / MENU ===================== */
+          function updateActiveChapterUI(idx) {
+            var c = CHAPTERS[idx];
+            document.getElementById('rail-chapter').textContent = 'CH. ' + c.num + ' / ' + String(CHAPTERS.length).padStart(2, '0');
+            document.getElementById('rail-title').textContent = c.title;
+            document.querySelectorAll('#rail-list li').forEach(function (li) {
+              li.classList.toggle('active', Number(li.dataset.idx) === idx);
+            });
+            document.querySelectorAll('#stepper button').forEach(function (btn) {
+              btn.classList.toggle('active', Number(btn.dataset.idx) === idx);
+            });
+          }
+          updateActiveChapterUI(0);
+
+          var menuOverlay = document.getElementById('menu-overlay');
+          function openMenu() { menuOverlay.classList.remove('hidden'); if (window.gsap) { gsap.fromTo('.menu-overlay nav button', { y: 40, autoAlpha: 0, filter: 'blur(8px)' }, { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 0.6, stagger: 0.05, ease: 'power3.out' }); } }
+          function closeMenu() { menuOverlay.classList.add('hidden'); }
+          document.getElementById('menu-open-btn').addEventListener('click', openMenu);
+          document.getElementById('menu-close-btn').addEventListener('click', closeMenu);
+          document.getElementById('logo-home').addEventListener('click', function () { goTo(0); });
+          window.addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+
+          /* ===================== BUBBLES CANVAS ===================== */
+          (function () {
+            var canvas = document.getElementById('bubbles-canvas');
+            var ctx = canvas.getContext('2d');
+            var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+            var w, h;
+            var mouse = { x: 0, y: 0 };
+
+            function resize() { w = canvas.width = innerWidth; h = canvas.height = innerHeight; }
+            resize();
+            addEventListener('resize', resize);
+            addEventListener('mousemove', function (e) {
+              mouse.x = e.clientX / innerWidth - 0.5;
+              mouse.y = e.clientY / innerHeight - 0.5;
+            });
+
+            var COUNT = 90;
+            var parts = [];
+            for (var i = 0; i < COUNT; i++) {
+              parts.push({
+                x: Math.random(), y: Math.random(),
+                r: 0.6 + Math.random() * 2.6,
+                v: 0.0004 + Math.random() * 0.0014,
+                drift: (Math.random() - 0.5) * 0.0005,
+                mote: Math.random() < 0.35,
+                a: 0.15 + Math.random() * 0.4
+              });
+            }
+
+            function draw() {
+              ctx.clearRect(0, 0, w, h);
+              var progress = window.__aquariaProgress || 0;
+              var density = Math.min(1, 0.25 + progress * 2.2);
+              var active = Math.floor(COUNT * density);
+
+              for (var i = 0; i < active; i++) {
+                var p = parts[i];
+                if (!reduced) {
+                  p.y -= p.v * (p.mote ? 0.35 : 1);
+                  p.x += p.drift;
+                  if (p.y < -0.05) { p.y = 1.05; p.x = Math.random(); }
+                  if (p.x < -0.05) p.x = 1.05;
+                  if (p.x > 1.05) p.x = -0.05;
+                }
+                var px = p.x * w + mouse.x * -30 * p.r;
+                var py = p.y * h + mouse.y * -18 * p.r;
+                ctx.beginPath();
+                ctx.arc(px, py, p.r, 0, Math.PI * 2);
+                if (p.mote) {
+                  ctx.fillStyle = 'rgba(127, 245, 225, ' + (p.a * 0.5) + ')';
+                  ctx.fill();
+                } else {
+                  ctx.strokeStyle = 'rgba(191, 250, 255, ' + p.a + ')';
+                  ctx.lineWidth = 0.8;
+                  ctx.stroke();
+                }
+              }
+              requestAnimationFrame(draw);
+            }
+            draw();
+          })();
+
+          /* ===================== SCROLL + MASTER TIMELINE ===================== */
+          gsap.registerPlugin(ScrollTrigger);
+          var reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+          var lenis = null;
+
+          function goTo(fraction) {
+            var max = document.documentElement.scrollHeight - innerHeight;
+            window.scrollTo({ top: fraction * max, behavior: reducedMotion ? 'auto' : 'smooth' });
+            closeMenu();
+          }
+
+
+          function initHeroGateExperience() {
+            var gate = document.getElementById('hero-gate');
+            var world = document.getElementById('hero-gate-world');
+            var portal = document.getElementById('hero-gate-portal');
+            var mermaid = document.getElementById('hero-gate-mermaid');
+            var shutterLeft = document.getElementById('hero-gate-shutter-left');
+            var shutterRight = document.getElementById('hero-gate-shutter-right');
+            var copy = document.getElementById('hero-gate-copy');
+            var cards = document.getElementById('hero-gate-cards');
+            var cta = document.getElementById('hero-gate-cta');
+            var cue = document.getElementById('hero-gate-cue');
+            var quoteWords = cta ? Array.prototype.slice.call(cta.querySelectorAll('.karaoke-word')) : [];
+            function splitHeroHeadline() {
+              if (!copy || copy.dataset.heroSplit === 'true') return;
+              var headline = copy.querySelector('.headline');
+              if (!headline) return;
+              var charIndex = 0;
+              function splitNode(node) {
+                if (node.nodeType === 3) {
+                  var frag = document.createDocumentFragment();
+                  node.textContent.split(/(\s+)/).forEach(function (part) {
+                    if (!part) return;
+                    if (/^\s+$/.test(part)) {
+                      frag.appendChild(document.createTextNode(part));
+                      return;
+                    }
+                    var word = document.createElement('span');
+                    word.className = 'hero-word';
+                    part.split('').forEach(function (char) {
+                      var span = document.createElement('span');
+                      span.className = 'hero-char';
+                      span.style.setProperty('--hero-char-index', charIndex++);
+                      span.textContent = char;
+                      word.appendChild(span);
+                    });
+                    frag.appendChild(word);
+                  });
+                  node.parentNode.replaceChild(frag, node);
+                  return;
+                }
+                if (node.nodeType === 1 && node.tagName !== 'BR') {
+                  Array.prototype.slice.call(node.childNodes).forEach(splitNode);
+                }
+              }
+              Array.prototype.slice.call(headline.childNodes).forEach(splitNode);
+              copy.dataset.heroSplit = 'true';
+            }
+            splitHeroHeadline();
+            quoteWords.forEach(function (word) {
+              if (word.dataset.split === 'true') return;
+              var text = word.textContent;
+              word.textContent = '';
+              text.split('').forEach(function (char, index) {
+                var span = document.createElement('span');
+                span.className = 'quote-char';
+                span.style.setProperty('--char-index', index);
+                span.textContent = char;
+                word.appendChild(span);
+              });
+              word.dataset.split = 'true';
+            });
+            if (!gate || gate.dataset.ready === 'true') return;
+            gate.dataset.ready = 'true';
+
+            var clamp = function (value, min, max) { return Math.max(min, Math.min(max, value)); };
+            var lerp = function (start, end, amount) { return start + (end - start) * amount; };
+            var ease = function (t) { return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t; };
+            var targetX = 0;
+            var targetY = 0;
+            var smoothX = 0;
+            var smoothY = 0;
+            var entranceDone = false;
+
+            window.addEventListener('mousemove', function (event) {
+              targetX = (event.clientX / window.innerWidth - 0.5) * 2;
+              targetY = (event.clientY / window.innerHeight - 0.5) * 2;
+            }, { passive: true });
+
+            if (portal) {
+              portal.style.transition = 'opacity 720ms cubic-bezier(0.22, 1, 0.36, 1), transform 720ms cubic-bezier(0.22, 1, 0.36, 1)';
+              portal.style.opacity = '0';
+              portal.style.transform = 'scale(0.88)';
+            }
+            [shutterLeft, shutterRight].forEach(function (el, index) {
+              if (!el) return;
+              var dir = index === 0 ? -1 : 1;
+              el.style.transition = 'opacity 760ms cubic-bezier(0.22, 1, 0.36, 1), transform 760ms cubic-bezier(0.22, 1, 0.36, 1)';
+              el.style.opacity = '0';
+              el.style.transform = 'translateX(' + (dir * 120) + 'px) scale(0.92)';
+            });
+            if (copy) {
+              copy.style.transition = 'opacity 640ms ease, transform 640ms cubic-bezier(0.22, 1, 0.36, 1)';
+              copy.style.opacity = '0';
+              copy.style.transform = 'translate(-50%, calc(-50% + 24px))';
+            }
+            if (cards) {
+              cards.style.opacity = '0';
+              cards.style.pointerEvents = 'none';
+            }
+            if (cta) {
+              cta.style.opacity = '0';
+              cta.style.pointerEvents = 'none';
+            }
+            if (mermaid) {
+              mermaid.style.opacity = '0';
+              mermaid.style.transform = 'translateX(-50%) translate3d(0, 440px, 0) scale(0.88)';
+            }
+
+            setTimeout(function () {
+              if (portal) {
+                portal.style.opacity = '1';
+                portal.style.transform = 'scale(1)';
+              }
+            }, 120);
+
+            setTimeout(function () {
+              if (shutterLeft) {
+                shutterLeft.style.opacity = '1';
+                shutterLeft.style.transform = 'translateX(0) scale(1)';
+              }
+              if (shutterRight) {
+                shutterRight.style.opacity = '1';
+                shutterRight.style.transform = 'translateX(0) scale(1)';
+              }
+            }, 620);
+
+            setTimeout(function () {
+              if (copy) {
+                copy.classList.add('is-visible');
+                copy.classList.add('hero-text-in');
+                copy.classList.add('hero-text-ready');
+                copy.style.opacity = '1';
+                copy.style.visibility = 'visible';
+                copy.style.transform = 'translate(-50%, -50%)';
+                copy.style.pointerEvents = 'auto';
+              }
+            }, 760);
+
+            setTimeout(function () {
+              entranceDone = true;
+              if (copy) copy.style.transition = 'none';
+              if (portal) portal.style.transition = 'none';
+              if (shutterLeft) shutterLeft.style.transition = 'none';
+              if (shutterRight) shutterRight.style.transition = 'none';
+            }, 1800);
+
+            function tickHeroGate() {
+              smoothX = lerp(smoothX, targetX, 0.07);
+              smoothY = lerp(smoothY, targetY, 0.07);
+
+              var masterProgress = window.__aquariaProgress || 0;
+              var introEnd = 24 / MASTER_DURATION;
+              var p = clamp(masterProgress / introEnd, 0, 1);
+              var ep = ease(p);
+
+              var worldScale = lerp(1, 1.05, ep);
+              if (world) world.style.transform = 'scale(' + worldScale + ') translate3d(' + (smoothX * 7) + 'px, ' + (smoothY * 5) + 'px, 0)';
+
+              // Side decorations grow FIRST and sit in front of the portal.
+              var sideT = clamp((p - 0.14) / 0.42, 0, 1);
+              var sideEase = ease(sideT);
+              var sideScale = lerp(1, 2.35, sideEase);
+              var sideOpacity = clamp(1 - (p - 0.58) / 0.16, 0, 1);
+              var sx = entranceDone ? smoothX * 10 : 0;
+              var sy = entranceDone ? smoothY * 4 : 0;
+              if (shutterLeft) {
+                var leftShift = lerp(0, -320, sideEase);
+                shutterLeft.style.zIndex = '52';
+                shutterLeft.style.transform = 'translate3d(' + (leftShift + sx) + 'px, ' + sy + 'px, 0) scale(' + sideScale + ')';
+                shutterLeft.style.opacity = sideOpacity;
+              }
+              if (shutterRight) {
+                var rightShift = lerp(0, 320, sideEase);
+                shutterRight.style.zIndex = '52';
+                shutterRight.style.transform = 'translate3d(' + (rightShift + sx) + 'px, ' + sy + 'px, 0) scale(' + sideScale + ')';
+                shutterRight.style.opacity = sideOpacity;
+              }
+
+              // Portal grows slightly AFTER the side decorations, so the side layer leads the motion.
+              var portalGrowT = clamp((p - 0.28) / 0.38, 0, 1);
+              var portalScale = lerp(1, 4.45, ease(portalGrowT));
+              if (portal) {
+                var portalOpacity = entranceDone ? clamp(1 - (p - 0.94) / 0.06, 0, 1) : 1;
+                portal.style.zIndex = '34';
+                portal.style.transform = 'scale(' + portalScale + ') translate3d(' + (smoothX * 4) + 'px, ' + (smoothY * 3) + 'px, 0)';
+                portal.style.opacity = portalOpacity;
+              }
+
+              var copyFadeIn = entranceDone ? 1 : 0;
+              var copyFadeOut = clamp(1 - (p - 0.08) / 0.16, 0, 1);
+              var copyOpacity = copyFadeIn * copyFadeOut;
+              if (copy) {
+                var copyY = lerp(0, -18, clamp((p - 0.08) / 0.16, 0, 1));
+                copy.style.opacity = copyOpacity;
+                copy.style.transform = 'translate(-50%, calc(-50% + ' + copyY + 'px))';
+                copy.style.pointerEvents = copyOpacity > 0.08 ? 'auto' : 'none';
+              }
+              if (cards) {
+                cards.style.opacity = '0';
+                cards.style.pointerEvents = 'none';
+              }
+
+              if (mermaid) {
+                var mp = clamp((p - 0.20) / 0.30, 0, 1);
+                var me = ease(mp);
+                var mermaidScale = lerp(0.88, 1.08, me);
+                var mermaidY = lerp(440, -46, me);
+                var mermaidFadeIn = clamp((p - 0.20) / 0.10, 0, 1);
+                var mermaidFadeOut = clamp(1 - (p - 0.56) / 0.10, 0, 1);
+                mermaid.style.transform = 'translateX(-50%) translate3d(' + (smoothX * 3) + 'px, ' + (mermaidY + smoothY * 2) + 'px, 0) scale(' + mermaidScale + ')';
+                mermaid.style.opacity = mermaidFadeIn * mermaidFadeOut;
+              }
+
+              if (cta) {
+                // Quote stage appears AFTER the siren disappears and holds before the next scene.
+                var ctaFadeIn = clamp((p - 0.68) / 0.08, 0, 1);
+                var ctaHold = clamp(1 - (p - 0.988) / 0.012, 0, 1);
+                var ctaOpacity = ctaFadeIn * ctaHold;
+                cta.style.setProperty('--quote-opacity', ctaOpacity);
+                cta.style.pointerEvents = ctaOpacity > 0.08 ? 'auto' : 'none';
+                cta.style.transform = 'translateY(' + ((1 - ctaFadeIn) * 10) + 'px) scale(' + (0.985 + ctaFadeIn * 0.015) + ')';
+
+                var karaokeT = clamp((p - 0.70) / 0.20, 0, 1);
+                var activeIndex = Math.min(quoteWords.length - 1, Math.floor(karaokeT * quoteWords.length));
+                quoteWords.forEach(function (word, index) {
+                  word.classList.remove('is-active', 'is-done');
+                  if (karaokeT <= 0) return;
+                  if (index < activeIndex) word.classList.add('is-done');
+                  else if (index === activeIndex) word.classList.add('is-active');
+                });
+              }
+
+              if (cue) cue.style.opacity = clamp(1 - p / 0.12, 0, 1);
+
+              // Keep the hero gate visible long enough for the quote stage.
+              var gateOpacity = clamp(1 - (p - 0.995) / 0.005, 0, 1);
+              gate.style.opacity = gateOpacity;
+              gate.style.pointerEvents = gateOpacity > 0.06 ? 'auto' : 'none';
+
+              requestAnimationFrame(tickHeroGate);
+            }
+            requestAnimationFrame(tickHeroGate);
+          }
+
+          function initTimeline() {
+            // Use native browser scroll for maximum reliability.
+            // Lenis was causing the pinned cinematic timeline to stop responding in some environments.
+            lenis = null;
+            document.documentElement.style.overflowY = 'auto';
+            document.body.style.overflowY = 'auto';
+            window.addEventListener('scroll', ScrollTrigger.update, { passive: true });
+
+
+            initHeroGateExperience();
+
+            var tl = gsap.timeline({
+              defaults: { ease: 'none' },
+              scrollTrigger: {
+                trigger: '.scroll-space',
+                start: 'top top',
+                end: 'bottom bottom',
+                scrub: reducedMotion ? true : 1.1,
+                onUpdate: function (self) {
+                  var p = self.progress;
+                  window.__aquariaProgress = p;
+
+                  document.getElementById('progress-fill').style.height = (p * 100) + '%';
+                  document.getElementById('progress-dot').style.top = (p * 100) + '%';
+                  document.getElementById('progress-pct').textContent = String(Math.round(p * 100)).padStart(3, '0') + '%';
+                  document.getElementById('depth-val').textContent = String(Math.round(p * 11000)).padStart(4, '0') + 'M';
+                  document.getElementById('core-val').textContent = p < 0.24 ? 'DORMANT' : (p < 0.36 ? 'AWAKENING' : 'ONLINE');
+                  document.getElementById('scroll-hint').classList.toggle('hidden', p > 0.02);
+
+                  var idx = 0;
+                  for (var i = 0; i < CHAPTERS.length; i++) {
+                    if (p >= CHAPTERS[i].at - 0.01) idx = i;
+                  }
+                  updateActiveChapterUI(idx);
+
+                  // During the Guardian section, vertical scroll controls the horizontal character selection.
+                  var selectStart = 94 / MASTER_DURATION;
+                  var selectEnd = 124 / MASTER_DURATION;
+                  if (p >= selectStart && p <= selectEnd) {
+                    var local = Math.max(0, Math.min(0.999, (p - selectStart) / (selectEnd - selectStart)));
+                    var charIndex = Math.min(CHARACTERS.length - 1, Math.floor(local * CHARACTERS.length));
+                    setActiveCharacterFromScroll(charIndex);
+                  }
+                }
+              }
+            });
+
+            function show(sel, inAt, outAt) {
+              if (inAt === 0) gsap.set(sel, { autoAlpha: 1 });
+              else tl.fromTo(sel, { autoAlpha: 0 }, { autoAlpha: 1, duration: 1.4 }, inAt);
+              if (outAt != null) tl.to(sel, { autoAlpha: 0, duration: 1.4 }, outAt - 1.4);
+            }
+
+            /* ---- 01 HERO GATE / SURFACE (0–24) ---- */
+            show('.sc-surface', 0, 24);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-surface .cam', { scale: 1, y: '0%' }, { scale: 1.08, y: '-2%', duration: 24, ease: 'none' }, 0);
+              tl.set('.sc-surface .copy', { autoAlpha: 0 }, 0);
+            }
+
+            /* ---- 02 KAEL (10.8–24) ---- */
+            show('.sc-kael', 24, 60);
+            tl.call(scrambleIn('.sc-kael'), null, 30);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-kael .cam', { scale: 1.06 }, { scale: 1.24, duration: 36, ease: 'none' }, 24);
+              tl.fromTo('.kael-figure', { yPercent: 10, scale: 0.96, opacity: 0.1 }, { yPercent: 0, scale: 1, opacity: 1, duration: 12, ease: 'none' }, 30);
+              tl.fromTo('.sc-kael .copy', { y: 60, filter: 'blur(8px)', opacity: 0 }, { y: 0, filter: 'blur(0px)', opacity: 1, duration: 5 }, 30);
+            }
+
+            /* ---- 03 BLUE CORE (24–36) ---- */
+            show('.sc-core', 60, 72);
+            tl.call(scrambleIn('.sc-core'), null, 61);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-core .cam', { scale: 1.28 }, { scale: 1, duration: 12 }, 60);
+              tl.fromTo('.core-orb', { scale: 0.4, autoAlpha: 0 }, { scale: 1.15, autoAlpha: 1, duration: 6 }, 60.5);
+              gsap.utils.toArray('.core-rings span').forEach(function (ring, i) {
+                tl.fromTo(ring, { scale: 0.15, opacity: 0.9 }, { scale: 3.4, opacity: 0, duration: 5 }, 60 + i * 2.6);
+              });
+              tl.fromTo('.sc-core .copy', { y: 50, filter: 'blur(8px)' }, { y: 0, filter: 'blur(0px)', duration: 3.5 }, 61);
+              /* Removed the extra turquoise/portal-ring transition. Pearl Kingdom gates open directly next. */
+            }
+
+            /* ---- 04 NERISSA (36–48) ---- */
+            show('.sc-nerissa', 72, 94);
+            tl.call(scrambleIn('.sc-nerissa'), null, 74);
+            if (!reducedMotion) {
+              tl.fromTo('.pearl-gate.left', { xPercent: 0 }, { xPercent: -105, duration: 4.5 }, 72);
+              tl.fromTo('.pearl-gate.right', { xPercent: 0 }, { xPercent: 105, duration: 4.5 }, 72);
+              tl.fromTo('.sc-nerissa .cam', { scale: 1.16 }, { scale: 1, duration: 22 }, 72);
+              tl.fromTo('.nerissa-figure', { xPercent: -10, autoAlpha: 0, filter: 'blur(6px)' }, { xPercent: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 5 }, 77);
+              gsap.utils.toArray('.water-ribbon').forEach(function (r, i) {
+                tl.fromTo(r, { opacity: 0, rotate: -20 + i * 30, scale: 0.7 }, { opacity: 0.8, rotate: 40 + i * 40, scale: 1.05, duration: 8 }, 75 + i);
+              });
+              tl.fromTo('.sc-nerissa .copy', { y: 50, filter: 'blur(8px)' }, { y: 0, filter: 'blur(0px)', duration: 3.5 }, 74);
+              tl.fromTo('.abyss-shadow', { opacity: 0 }, { opacity: 0.95, duration: 3.5 }, 86);
+            }
+
+            /* ---- 05 CHARACTER SELECT — sticky horizontal guardian scroll (68–92) ---- */
+            show('#scene-select', 94, 124);
+            // Character changes are controlled only by ScrollTrigger.onUpdate to avoid duplicate transitions.
+            if (!reducedMotion) {
+              tl.fromTo('.select-head', { y: 24, autoAlpha: 0, filter: 'blur(8px)' }, { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 3 }, 94.2);
+              tl.fromTo('.select-layout', { y: 60, scale: 0.96, filter: 'blur(8px)' }, { y: 0, scale: 1, filter: 'blur(0px)', duration: 4 }, 94.5);
+              tl.fromTo('.char-tabs', { xPercent: -18 }, { xPercent: -82, duration: 30, ease: 'none' }, 94);
+              tl.fromTo('.ghost-name', { xPercent: 8, opacity: 0.08 }, { xPercent: -8, opacity: 0.18, duration: 30, ease: 'none' }, 94);
+              tl.fromTo('.portrait-panel', { xPercent: -6 }, { xPercent: 6, duration: 30, ease: 'none' }, 94);
+              tl.fromTo('.guardian-scroll-hint', { autoAlpha: 0, y: 10 }, { autoAlpha: 1, y: 0, duration: 2 }, 95);
+              tl.to('.guardian-scroll-hint', { autoAlpha: 0, duration: 2 }, 121);
+            }
+
+            /* ---- 06 VAELOR (92–102) ---- */
+            show('.sc-vaelor', 124, 140);
+            tl.call(scrambleIn('.sc-vaelor'), null, 126);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-vaelor .cam', { scale: 1.02 }, { scale: 1.3, duration: 10 }, 124);
+              tl.fromTo('.red-shift', { opacity: 0 }, { opacity: 1, duration: 4 }, 125);
+              tl.fromTo('.vaelor-figure', { yPercent: 10, autoAlpha: 0 }, { yPercent: 0, autoAlpha: 1, duration: 5 }, 126);
+              gsap.utils.toArray('.pressure-rings span').forEach(function (ring, i) {
+                tl.fromTo(ring, { scale: 0.2, opacity: 0.8 }, { scale: 3, opacity: 0, duration: 4.5 }, 128 + i * 2.5);
+              });
+              tl.fromTo('.sc-vaelor .copy', { y: 50, filter: 'blur(8px)' }, { y: 0, filter: 'blur(0px)', duration: 3.5 }, 126);
+            }
+
+            /* ---- 07 MORVELLA (102–110) ---- */
+            show('.sc-morvella', 140, 154);
+            tl.call(scrambleIn('.sc-morvella'), null, 142);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-morvella .cam', { scale: 1.2 }, { scale: 1.02, duration: 8 }, 140);
+              tl.fromTo('.ink-cloud.a', { scale: 0.4, opacity: 0 }, { scale: 1.25, opacity: 1, duration: 6 }, 140);
+              tl.fromTo('.ink-cloud.b', { scale: 0.4, opacity: 0 }, { scale: 1.3, opacity: 1, duration: 6 }, 143);
+              tl.fromTo('.morvella-figure', { xPercent: 10, autoAlpha: 0, filter: 'blur(6px)' }, { xPercent: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 4.5 }, 142);
+              gsap.utils.toArray('.tentacle').forEach(function (t, i) {
+                tl.fromTo(t, { yPercent: 25, opacity: 0 }, { yPercent: 0, opacity: 0.9, duration: 5 }, 144 + i * 1.6);
+              });
+              tl.fromTo('.sc-morvella .copy', { y: 50, filter: 'blur(8px)' }, { y: 0, filter: 'blur(0px)', duration: 3.5 }, 142);
+            }
+
+            /* ---- 08 WORLDS (110–118) ---- */
+            show('.sc-worlds', 154, 170);
+            if (!reducedMotion) {
+              tl.fromTo('.zones-track', { xPercent: 0 }, { xPercent: -80, duration: 14, ease: 'none' }, 155);
+              gsap.utils.toArray('.zone-bg').forEach(function (zbg) {
+                tl.fromTo(zbg, { xPercent: -5 }, { xPercent: 5, duration: 14, ease: 'none' }, 155);
+              });
+              tl.fromTo('.worlds-head', { y: 30, filter: 'blur(6px)' }, { y: 0, filter: 'blur(0px)', duration: 2 }, 154.5);
+            }
+
+            /* ---- 09 FINAL TIDE GATE — real Three.js gallery (170–188) ---- */
+            show('.sc-battle', 170, 188);
+            tl.call(scrambleIn('.sc-battle'), null, 183);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-battle .cam', { scale: 1.26 }, { scale: 1, duration: 18, ease: 'none' }, 170);
+              tl.fromTo('#final-tide-three',
+                { autoAlpha: 0, filter: 'blur(12px)' },
+                { autoAlpha: 1, filter: 'blur(0px)', duration: 2.4, ease: 'power2.out' },
+                170.15
+              );
+              tl.fromTo('.sc-battle .copy',
+                { y: 54, autoAlpha: 0, filter: 'blur(10px)' },
+                { y: 0, autoAlpha: 1, filter: 'blur(0px)', duration: 3.2 },
+                181.5
+              );
+              tl.to('#final-tide-three', { autoAlpha: 0.86, duration: 2.4, ease: 'power2.out' }, 184.6);
+              tl.fromTo('.flash', { opacity: 0 }, { opacity: 0.35, duration: 0.8 }, 184.4);
+              tl.to('.flash', { opacity: 0, duration: 1.2 }, 185.2);
+            }
+
+            /* ---- 10 CTA (188–192) ---- */
+            show('.sc-cta', 188, null);
+            tl.call(scrambleIn('.sc-cta'), null, 189);
+            if (!reducedMotion) {
+              tl.fromTo('.sc-cta .copy', { y: 60, filter: 'blur(12px)', autoAlpha: 0 }, { y: 0, filter: 'blur(0px)', autoAlpha: 1, duration: 3 }, 189);
+            }
+
+            ScrollTrigger.refresh();
+            requestAnimationFrame(function () { ScrollTrigger.refresh(); });
+            window.addEventListener('load', function () { ScrollTrigger.refresh(); });
+            window.addEventListener('resize', function () { ScrollTrigger.refresh(); });
+
+            /* mouse tilt on the HUD */
+            if (!reducedMotion) {
+              var tiltX = gsap.quickTo('#hud-tilt', 'x', { duration: 0.7, ease: 'power3' });
+              var tiltY = gsap.quickTo('#hud-tilt', 'y', { duration: 0.7, ease: 'power3' });
+              addEventListener('mousemove', function (e) {
+                tiltX((e.clientX / innerWidth - 0.5) * 12);
+                tiltY((e.clientY / innerHeight - 0.5) * 8);
+              });
+            }
+          }
+
+          /* ===================== PRELOADER ===================== */
+          var MESSAGES = ['INITIALIZING DIVE', 'SYNCING BLUE CORE', 'OPENING PEARL GATE', 'LOADING AQUARIA', 'SCANNING ABYSS'];
+          var preloader = document.getElementById('preloader');
+          var bootMsg = document.getElementById('boot-msg');
+          var bootFill = document.getElementById('boot-fill');
+          var bootNum = document.getElementById('boot-num');
+          var msgIdx = 0;
+
+          var msgTimer = setInterval(function () { msgIdx = (msgIdx + 1) % MESSAGES.length; bootMsg.textContent = MESSAGES[msgIdx]; }, 480);
+          var startTime = performance.now();
+          var DURATION = 2600;
+
+          function tick(now) {
+            var p = Math.min(1, (now - startTime) / DURATION);
+            var pct = Math.round((1 - Math.pow(1 - p, 2)) * 100);
+            bootFill.style.width = pct + '%';
+            bootNum.textContent = pct + '%';
+            if (p < 1) {
+              requestAnimationFrame(tick);
+            } else {
+              clearInterval(msgTimer);
+              preloader.classList.add('done');
+              initTimeline();
+              setTimeout(function () { preloader.style.display = 'none'; }, 900);
+            }
+          }
+          requestAnimationFrame(tick);
+        })();
+    </script>
+<script id="final-tide-three-gallery" type="module">
+      import * as THREE from 'https://unpkg.com/three@0.160.0/build/three.module.js';
+
+      (function () {
+        const canvas = document.getElementById('final-tide-three');
+        const battleScene = document.getElementById('scene-battle');
+        if (!canvas || !battleScene || !window.gsap || !window.ScrollTrigger) return;
+
+        const state = {
+          galleryProg: 0,    // unfolds the panels from the center into the circle
+          galleryRing: 0,    // pulls the circle backward into the smaller final ring
+          galleryOpacity: 0  // material opacity
+        };
+        window.finalTideGalleryState = state;
+
+        const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+        renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.75));
+        renderer.setClearColor(0x000000, 0);
+        renderer.toneMapping = THREE.ACESFilmicToneMapping;
+        renderer.toneMappingExposure = 0.96;
+
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(42, window.innerWidth / window.innerHeight, 0.1, 80);
+        camera.position.set(0, 0, 9);
+
+        scene.add(new THREE.AmbientLight(0xbffaff, 0.62));
+        const key = new THREE.DirectionalLight(0xffffff, 1.15);
+        key.position.set(2.6, 3.2, 4.2);
+        scene.add(key);
+        const rim = new THREE.DirectionalLight(0x41e6ff, 0.62);
+        rim.position.set(-3.2, 2.4, 4.5);
+        scene.add(rim);
+
+        function makeGalleryTexture(label, imgUrl, accent) {
+          const c = document.createElement('canvas');
+          c.width = 384;
+          c.height = 640;
+          const g = c.getContext('2d');
+          const tex = new THREE.CanvasTexture(c);
+          tex.colorSpace = THREE.SRGBColorSpace;
+          tex.minFilter = THREE.LinearFilter;
+          tex.magFilter = THREE.LinearFilter;
+
+          function drawBase() {
+            const bg = g.createLinearGradient(0, 0, 0, c.height);
+            bg.addColorStop(0, '#08344a');
+            bg.addColorStop(0.52, '#041426');
+            bg.addColorStop(1, '#010409');
+            g.fillStyle = bg;
+            g.fillRect(0, 0, c.width, c.height);
+            g.strokeStyle = accent;
+            g.lineWidth = 2;
+            g.globalAlpha = 0.78;
+            g.strokeRect(12, 12, c.width - 24, c.height - 24);
+            g.globalAlpha = 1;
+            g.fillStyle = 'rgba(238,247,249,0.9)';
+            g.font = '600 18px IBM Plex Mono, monospace';
+            g.textAlign = 'center';
+            g.fillText(label.toUpperCase(), c.width / 2, c.height - 44);
+            tex.needsUpdate = true;
+          }
+
+          function drawLabel() {
+            const grad = g.createLinearGradient(0, 320, 0, c.height);
+            grad.addColorStop(0, 'rgba(1,4,9,0)');
+            grad.addColorStop(0.55, 'rgba(1,4,9,0.62)');
+            grad.addColorStop(1, 'rgba(1,4,9,0.96)');
+            g.fillStyle = grad;
+            g.fillRect(0, 300, c.width, 340);
+
+            g.strokeStyle = accent;
+            g.globalAlpha = 0.8;
+            g.lineWidth = 2;
+            g.strokeRect(12, 12, c.width - 24, c.height - 24);
+            g.globalAlpha = 1;
+
+            g.fillStyle = 'rgba(238,247,249,0.96)';
+            g.font = '600 18px IBM Plex Mono, monospace';
+            g.textAlign = 'center';
+            const short = label.length > 20 ? label.replace(' Aqualyn', '').replace(' Abyssion', '').replace(' Inkthorn', '') : label;
+            g.fillText(short.toUpperCase(), c.width / 2, c.height - 44);
+          }
+
+          drawBase();
+          const img = new Image();
+          img.crossOrigin = 'anonymous';
+          img.onload = function () {
+            g.clearRect(0, 0, c.width, c.height);
+            const scale = Math.max(c.width / img.width, c.height / img.height);
+            const w = img.width * scale;
+            const h = img.height * scale;
+            const x = (c.width - w) / 2;
+            const y = (c.height - h) / 2;
+            g.drawImage(img, x, y, w, h);
+            drawLabel();
+            tex.needsUpdate = true;
+          };
+          img.onerror = drawBase;
+          img.src = imgUrl;
+          return tex;
+        }
+
+        const characters = [
+          {
+            label: 'Каэль Вейрон',
+            img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/dfbdc924-44d1-4704-aa9e-efa03cbf373a_320w.png',
+            accent: 'rgba(65,230,255,0.9)'
+          },
+          {
+            label: 'Нерисса Аквалин',
+            img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/7192fc7d-11ed-466e-a75b-435f67b28f8a_320w.png',
+            accent: 'rgba(127,245,225,0.95)'
+          },
+          {
+            label: 'Король Талор Аквалин',
+            img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/da6d3f82-8677-4212-b85d-62fab52163ae_1600w.png',
+            accent: 'rgba(232,198,106,0.95)'
+          },
+          {
+            label: 'Ваэлор Абиссион',
+            img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/1cb8b238-e37e-4bcb-8dd0-7863ab8e4510_320w.png',
+            accent: 'rgba(255,59,87,0.9)'
+          },
+          {
+            label: 'Морвелла Инкторн',
+            img: 'https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f95303e3-00b2-438d-8bcf-47d717bd8e1f_1600w.png',
+            accent: 'rgba(176,109,255,0.9)'
+          }
+        ];
+
+        // Repeat the five Aquaria characters to create the same 360° cylinder feeling as the reference gallery.
+        const PANEL_COUNT = 12;
+        const panelGeo = new THREE.PlaneGeometry(1.35, 2.4);
+        const galGroup = new THREE.Group();
+        galGroup.position.set(0, 0, 3.8);
+        scene.add(galGroup);
+
+        const panels = [];
+        const galMats = [];
+        for (let i = 0; i < PANEL_COUNT; i++) {
+          const item = characters[i % characters.length];
+          const mat = new THREE.MeshBasicMaterial({
+            map: makeGalleryTexture(item.label, item.img, item.accent),
+            transparent: true,
+            opacity: 0,
+            side: THREE.FrontSide,
+            depthWrite: false
+          });
+          const mesh = new THREE.Mesh(panelGeo, mat);
+          galGroup.add(mesh);
+          panels.push(mesh);
+          galMats.push(mat);
+        }
+
+        const mouse = { x: 0, y: 0 };
+        window.addEventListener('pointermove', function (e) {
+          mouse.x = (e.clientX / window.innerWidth - 0.5) * 2;
+          mouse.y = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function resize() {
+          const w = window.innerWidth;
+          const h = window.innerHeight;
+          renderer.setSize(w, h, false);
+          camera.aspect = w / h;
+          camera.updateProjectionMatrix();
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        function clamp01(v) { return Math.max(0, Math.min(1, v)); }
+        function smoothstep(v) { v = clamp01(v); return v * v * (3 - 2 * v); }
+
+        const START = 170 / 192;
+        const END = 188 / 192;
+        window.ScrollTrigger.create({
+          start: 0,
+          end: 'max',
+          onUpdate: function (self) {
+            const raw = (self.progress - START) / (END - START);
+            const p = clamp01(raw);
+            if (raw < -0.04 || raw > 1.08) {
+              state.galleryOpacity = 0;
+              return;
+            }
+
+            // Same structure as the reference:
+            // 1) panels appear close and large,
+            // 2) unfold into a rotating circle,
+            // 3) resolve backward into a smaller ring,
+            // 4) fade so the final headline can take focus.
+            state.galleryOpacity = p < 0.86
+              ? smoothstep(p / 0.08)
+              : 1 - smoothstep((p - 0.86) / 0.12);
+            state.galleryProg = smoothstep(p / 0.55);
+            state.galleryRing = smoothstep((p - 0.58) / 0.28);
+          }
+        });
+
+        function render() {
+          const visible = state.galleryOpacity > 0.005;
+          galGroup.visible = visible;
+          if (!visible) {
+            renderer.clear();
+            return;
+          }
+
+          const gp = state.galleryProg;
+          const gr = state.galleryRing;
+          const responsive = window.innerWidth > 820 ? 1 : 0.7;
+
+          // Directly adapted from the provided gallery code: radius expands, then collapses into a compact ring.
+          const radius = (0.25 + gp * 4.1 - gr * 2.4) * responsive;
+          galGroup.rotation.y = -1.35 + gp * 1.75 + gr * 1.6 + mouse.x * 0.08;
+          galGroup.rotation.x = mouse.y * 0.04;
+          galGroup.position.z = 6.3 - gr * 5.4;
+          galGroup.position.y = window.innerWidth > 820 ? -0.1 : -0.48;
+
+          const sc = (1 - gr * 0.42) * responsive;
+          for (let i = 0; i < PANEL_COUNT; i++) {
+            const a = (i / PANEL_COUNT) * Math.PI * 2;
+            panels[i].position.set(Math.sin(a) * radius, 0, Math.cos(a) * radius);
+            panels[i].rotation.y = a + Math.PI;
+            panels[i].scale.setScalar(sc);
+          }
+
+          for (const m of galMats) m.opacity = state.galleryOpacity;
+
+          camera.position.x += (mouse.x * 0.36 - camera.position.x) * 0.04;
+          camera.position.y += (-mouse.y * 0.24 - camera.position.y) * 0.04;
+          camera.lookAt(0, 0, 0);
+          renderer.render(scene, camera);
+        }
+
+        window.gsap.ticker.add(render);
+        window.addEventListener('beforeunload', function () {
+          window.gsap.ticker.remove(render);
+          renderer.dispose();
+        });
+      })();
+    </script>
+<script data-aura-video-controller="true">
+      (function () {
+          function playVideo(video) {
+            var promise = video.play();
+            if (promise && typeof promise.catch === "function") {
+              promise.catch(function () {});
+            }
+          }
+
+          function setupVideo(video) {
+            if (video.__auraVideoReady === true) return;
+            video.__auraVideoReady = true;
+            video.removeAttribute("data-aura-video-ready");
+            video.removeAttribute("data-aura-video-played");
+            video.muted = true;
+            video.playsInline = true;
+
+            var preset = video.dataset.auraVideoPreset || "loop-in-view";
+            if (preset === "hover") {
+              video.addEventListener("mouseenter", function () {
+                playVideo(video);
+              });
+              video.addEventListener("mouseleave", function () {
+                video.pause();
+                video.currentTime = 0;
+              });
+              return;
+            }
+
+            if (!("IntersectionObserver" in window)) {
+              playVideo(video);
+              return;
+            }
+
+            var observer = new IntersectionObserver(function (entries) {
+              entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                  if (preset === "play-once" && video.__auraVideoPlayed === true) {
+                    return;
+                  }
+                  playVideo(video);
+                } else {
+                  video.pause();
+                }
+              });
+            }, { threshold: 0.35 });
+
+            if (preset === "play-once") {
+              video.addEventListener("ended", function () {
+                video.__auraVideoPlayed = true;
+              }, { once: true });
+            }
+
+            observer.observe(video);
+          }
+
+          function setupVideos() {
+            document
+              .querySelectorAll("video[data-aura-video-preset]")
+              .forEach(setupVideo);
+          }
+
+          if (document.readyState === "loading") {
+            document.addEventListener("DOMContentLoaded", setupVideos);
+          } else {
+            setupVideos();
+          }
+        })();
+    </script>
+<script>
+      // Hero text fallback: keeps the opening headline visible even if the split-text timing is interrupted.
+      (function () {
+        function showHeroText() {
+          var copy = document.getElementById('hero-gate-copy');
+          if (!copy) return;
+          copy.classList.add('is-visible', 'hero-text-in', 'hero-text-ready');
+          copy.style.opacity = '1';
+          copy.style.visibility = 'visible';
+          copy.style.transform = 'translate(-50%, -50%)';
+          copy.style.pointerEvents = 'auto';
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(showHeroText, 850);
+            setTimeout(showHeroText, 1650);
+          });
+        } else {
+          setTimeout(showHeroText, 850);
+          setTimeout(showHeroText, 1650);
+        }
+      })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>CoinCompass — ваш главный проводник в мире криптовалют</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Geist:wght@300;400;500;600&amp;display=swap" rel="stylesheet"/>
+<style>
+.font-geist{font-family:'Geist',sans-serif !important;}
+</style><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style id="mobile-adapt">
+/* v97 CoinCompass — мобильная адаптация (в исходнике нет медиазапросов, Tailwind-классы адаптивны) */
+html, body { overflow-x: clip; }
+
+@media (max-width: 640px) {
+  /* Герой-заголовок не вылезает за экран после перевода */
+  h1 { font-size: clamp(1.9rem, 8.5vw, 2.6rem) !important; line-height: 1.15 !important; }
+  h1, h2, h3 { overflow-wrap: break-word; }
+
+  input, select, textarea, button { font-size: 16px !important; }
+  a, button { min-height: 44px; }
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+
+</style>
+</head>
+<body class="min-h-screen antialiased" style="font-family:'Inter',sans-serif;background-color:#e3e8dc;">
+<div class="p-3 sm:p-6 lg:p-10 min-h-screen">
+<main class="relative w-full rounded-[28px] overflow-hidden" style="background:linear-gradient(160deg,#0a2a12 0%,#0d3617 45%,#0a2a12 100%);box-shadow:0 40px 80px -20px rgba(10,42,18,0.45);">
+<!-- WebGL animated backdrop -->
+<canvas aria-hidden="true" class="absolute inset-x-0 top-0 w-full" id="glCanvas" style="opacity:0.9;height:100vh;"></canvas>
+<!-- Diagonal hatch overlay -->
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background-image:repeating-linear-gradient(115deg,rgba(255,255,255,0.025) 0px,rgba(255,255,255,0.025) 1px,transparent 1px,transparent 56px);"></div>
+<!-- NAV -->
+<header class="relative z-10 flex items-center justify-between gap-4 px-5 sm:px-8 lg:px-12 pt-6 lg:pt-7">
+<a aria-label="CoinCompass — на главную" class="flex items-center gap-2.5 group" href="#">
+<svg aria-hidden="true" class="transition-transform duration-300 group-hover:rotate-90" fill="none" height="30" viewbox="0 0 30 30" width="30" xmlns="http://www.w3.org/2000/svg">
+<path d="M25 10.5C23.3 7.2 19.9 5 16 5C10.5 5 6 9.5 6 15C6 20.5 10.5 25 16 25C19.9 25 23.3 22.8 25 19.5" stroke="#c8f542" stroke-linecap="round" stroke-width="3.2"></path>
+<circle cx="16" cy="15" fill="#c8f542" r="3.4"></circle>
+</svg>
+<span class="text-white font-medium text-sm sm:text-base font-geist tracking-tight">
+              CoinCompass
+            </span>
+</a>
+<nav aria-label="Основная навигация" class="hidden md:flex items-center gap-2">
+<a class="flex items-center gap-1.5 rounded-full bg-white text-[#0d3617] px-3.5 py-1.5 text-xs font-medium font-geist transition-transform duration-150 hover:scale-[1.04]" href="#hero">
+<iconify-icon icon="solar:home-2-linear" style="stroke-width:1.5;" width="14"></iconify-icon>
+              Главная
+            </a>
+<a class="flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-150 font-geist" href="#about" style="border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="solar:info-circle-linear" style="stroke-width:1.5;" width="14"></iconify-icon>
+              О нас
+            </a>
+<a class="flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-150 font-geist" href="#story" style="border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="solar:notebook-linear" style="stroke-width:1.5;" width="14"></iconify-icon>
+              История
+            </a>
+<a class="flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-150 font-geist" href="#features" style="border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="solar:book-bookmark-linear" style="stroke-width:1.5;" width="14"></iconify-icon>
+              Гайды
+            </a>
+<a class="flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/80 hover:text-white hover:bg-white/5 transition-colors duration-150 font-geist" href="#testimonials" style="border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="solar:chart-2-linear" style="stroke-width:1.5;" width="14"></iconify-icon>
+              Рынки
+            </a>
+</nav>
+<a class="flex items-center gap-1.5 rounded-full px-4 py-2 text-xs font-medium text-[#12300f] hover:brightness-105 transition-all duration-150 hover:scale-[1.04] font-geist" href="#cta" style="background-color:#c8f542;">
+<iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width:1.5;" width="14"></iconify-icon>
+            Присоединиться
+          </a>
+</header>
+<!-- HERO -->
+<section class="relative z-10 grid lg:grid-cols-2 gap-10 items-center px-5 sm:px-8 lg:px-12 pt-12 lg:pt-16 pb-8 min-h-[80vh]" id="hero">
+<div class="max-w-xl">
+<span class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/90 mb-7 font-geist transition-colors duration-150 hover:bg-[rgba(200,245,66,0.12)] cursor-pointer" style="border:1px solid rgba(200,245,66,0.35);background:rgba(200,245,66,0.06);">
+<iconify-icon icon="solar:play-circle-linear" style="stroke-width:1.5;color:#c8f542;" width="15"></iconify-icon>
+              Как это работает
+            </span>
+<h1 class="text-white text-4xl sm:text-5xl lg:text-[3.4rem] font-geist tracking-tighter" data-reveal-words="" style="line-height:1.12;">
+              Ваш надёжный компас в
+              <span style="color:#c8f542;">эпоху цифровых активов</span>
+</h1>
+<p class="mt-6 text-sm text-white/60 leading-relaxed max-w-md font-geist" data-fade="">
+              Следите за рынками, изучайте основы и переводите средства уверенно — один чистый дашборд для новичков и профи.
+            </p>
+<a class="mt-8 inline-flex items-center gap-2 rounded-full px-5 py-2.5 text-sm font-medium text-[#12300f] hover:brightness-105 transition-all duration-150 hover:scale-[1.03] active:scale-[0.98] font-geist" data-fade="" href="#cta" style="background-color:#c8f542;box-shadow:0 8px 24px -6px rgba(200,245,66,0.4);">
+<span class="inline-flex items-center justify-center rounded-full" style="width:18px;height:18px;background:rgba(18,48,15,0.15);">
+<iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width:1.5;" width="12"></iconify-icon>
+</span>
+              Присоединиться
+            </a>
+</div>
+<!-- Right floating cards -->
+<div class="relative grid grid-cols-1 sm:grid-cols-2 gap-4 lg:block lg:h-[440px]">
+<div class="rounded-2xl p-4 lg:absolute lg:-top-3 lg:left-2 lg:w-60 backdrop-blur-md transition-transform duration-300 hover:!scale-[1.03]" data-float="1" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<div class="flex items-center justify-between text-xs">
+<span class="text-white/75 font-geist">Лимит перевода</span>
+<span class="text-white font-medium font-geist">$12,500</span>
+</div>
+<div aria-label="Лимит перевода" aria-valuemax="20000" aria-valuemin="0" aria-valuenow="12500" class="mt-3 relative h-1.5 rounded-full" role="slider" style="background:rgba(255,255,255,0.15);">
+<div class="absolute left-0 top-0 h-full rounded-full" id="sliderFill" style="width:62%;background-color:#c8f542;"></div>
+<div class="absolute top-1/2 -translate-y-1/2 rounded-full" id="sliderKnob" style="left:62%;width:14px;height:14px;background:#fff;border:3px solid #c8f542;box-shadow:0 2px 6px rgba(0,0,0,0.3);margin-left:-7px;"></div>
+</div>
+</div>
+<div class="rounded-2xl p-3.5 lg:absolute lg:top-24 lg:left-16 lg:w-72 backdrop-blur-md transition-transform duration-300 hover:!scale-[1.03]" data-float="2" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<div class="flex items-center justify-between rounded-xl p-2.5" style="background:rgba(255,255,255,0.06);">
+<div class="flex items-center gap-2.5">
+<span class="flex items-center justify-center rounded-lg" style="width:28px;height:28px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width:1.5;color:#c8f542;" width="14"></iconify-icon>
+</span>
+<div>
+<p class="text-xs font-medium text-white font-geist">
+                      Отправить:
+                    </p>
+<p class="text-xs text-white/50 font-geist">
+                      Кому: 0x4kd…mP92
+                    </p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-medium text-white font-geist">
+                    480 Matic
+                  </p>
+<p class="text-xs text-white/50 font-geist">318.40 USD</p>
+</div>
+</div>
+<div class="mt-2 flex items-center justify-between rounded-xl p-2.5" style="background:rgba(255,255,255,0.06);">
+<div class="flex items-center gap-2.5">
+<span class="flex items-center justify-center rounded-lg" style="width:28px;height:28px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:arrow-left-down-linear" style="stroke-width:1.5;color:#c8f542;" width="14"></iconify-icon>
+</span>
+<div>
+<p class="text-xs font-medium text-white font-geist">
+                      Получить:
+                    </p>
+<p class="text-xs text-white/50 font-geist">
+                      Кому: 0x4kd…mP92
+                    </p>
+</div>
+</div>
+<div class="text-right">
+<p class="text-xs font-medium text-white font-geist">
+                    0.05 Bitcoin
+                  </p>
+<p class="text-xs text-white/50 font-geist">2941.80 USD</p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-5 text-center lg:absolute lg:-top-8 lg:right-0 lg:w-40 backdrop-blur-md transition-transform duration-300 hover:!scale-[1.03]" data-float="3" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<div class="mx-auto flex items-center justify-center rounded-full" style="width:34px;height:34px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:check-circle-linear" style="stroke-width:1.5;color:#c8f542;" width="18"></iconify-icon>
+</div>
+<p class="mt-2.5 text-xs font-medium text-white font-geist">
+                Подключено
+              </p>
+<p class="text-xs text-white/50 font-geist">Nova Wallet</p>
+</div>
+<div class="rounded-2xl p-4 lg:absolute lg:top-40 lg:right-2 lg:w-44 backdrop-blur-md transition-transform duration-300 hover:!scale-[1.03]" data-float="4" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<div class="flex items-center gap-2.5">
+<span class="flex items-center justify-center rounded-full" style="width:28px;height:28px;background:rgba(255,255,255,0.12);">
+<iconify-icon icon="solar:bolt-linear" style="stroke-width:1.5;color:#ffffff;" width="14"></iconify-icon>
+</span>
+<div>
+<p class="text-xs font-medium text-white font-geist">ETH</p>
+<p class="text-xs text-white/50 font-geist">Ethereum</p>
+</div>
+</div>
+<div aria-hidden="true" class="mt-3 flex items-end gap-1 h-12" id="ethBars"></div>
+<p class="mt-3 text-xs font-medium text-white font-geist">
+                1,842.10 USD
+              </p>
+</div>
+<div class="rounded-2xl px-5 py-3.5 lg:absolute lg:bottom-16 lg:left-0 lg:w-48 backdrop-blur-md transition-transform duration-300 hover:!scale-[1.03]" data-float="5" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<div class="flex items-center gap-2">
+<div aria-label="4,8 из 5 звёзд" class="flex items-center gap-0.5">
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="12"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="12"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="12"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="12"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="12"></iconify-icon>
+</div>
+<span class="text-xs font-medium text-white font-geist">
+                  4.8
+                </span>
+</div>
+<p class="mt-1 text-xs text-white/50 font-geist">
+                &gt; 14 600 отзывов
+              </p>
+</div>
+<div class="rounded-2xl p-4 lg:absolute lg:bottom-8 lg:left-56 lg:w-52 backdrop-blur-md transition-transform duration-300 hover:!scale-[1.03]" data-float="6" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="inline-flex items-center justify-center rounded-lg" style="width:32px;height:24px;background:rgba(255,255,255,0.15);">
+<iconify-icon icon="solar:card-linear" style="stroke-width:1.5;color:#ffffff;" width="15"></iconify-icon>
+</span>
+<div class="mt-3 flex items-end justify-between">
+<div>
+<p class="text-xs font-medium text-white font-geist">
+                    Дебетовая карта
+                  </p>
+<p class="text-xs text-white/50 font-geist">7231 ••••</p>
+</div>
+<p class="text-xs text-white/50 font-geist">09/28</p>
+</div>
+</div>
+</div>
+</section>
+<!-- COIN STRIP -->
+<div class="relative z-10 px-5 sm:px-8 lg:px-12 pb-10 pt-2">
+<ul aria-label="Поддерживаемые сети" class="flex items-center justify-center gap-8 sm:gap-12 lg:gap-16 flex-wrap">
+<li>
+<iconify-icon aria-label="Bitcoin" icon="cryptocurrency:btc" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li>
+<iconify-icon aria-label="Ethereum" icon="cryptocurrency:eth" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li>
+<iconify-icon aria-label="Tether" icon="cryptocurrency:usdt" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden sm:block">
+<iconify-icon aria-label="Solana" icon="cryptocurrency:sol" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden sm:block">
+<iconify-icon aria-label="Polygon" icon="cryptocurrency:matic" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden md:block">
+<iconify-icon aria-label="Litecoin" icon="cryptocurrency:ltc" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden md:block">
+<iconify-icon aria-label="BNB" icon="cryptocurrency:bnb" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden lg:block">
+<iconify-icon aria-label="Avalanche" icon="cryptocurrency:avax" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden lg:block">
+<iconify-icon aria-label="Stellar" icon="cryptocurrency:xlm" style="color:rgba(255,255,255,0.28);" width="26"></iconify-icon>
+</li>
+<li class="hidden lg:block">
+<iconify-icon aria-label="Polkadot" icon="cryptocurrency:dot" style="color:rgba(200,245,66,0.55);" width="26"></iconify-icon>
+</li>
+</ul>
+</div>
+<!-- TRUSTED BY -->
+<section class="relative z-10 px-5 sm:px-8 lg:px-12 py-14" style="border-top:1px solid rgba(255,255,255,0.08);">
+<p class="text-center text-xs font-medium uppercase tracking-widest text-white/40 font-geist" data-fade="">
+            Нам доверяют команды, работающие с цифровыми активами в
+          </p>
+<div class="mt-8 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4 max-w-5xl mx-auto" data-stagger="">
+<div class="flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="NASA" height="64" icon="simple-icons:nasa" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="SpaceX" height="64" icon="simple-icons:spacex" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Uber" height="64" icon="simple-icons:uber" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Visa" height="64" icon="simple-icons:visa" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Sony" height="64" icon="simple-icons:sony" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Bose" height="64" icon="simple-icons:bose" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="hidden md:flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Discover" height="64" icon="simple-icons:discover" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="hidden md:flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="DJI" height="64" icon="simple-icons:dji" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="hidden md:flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Nikon" height="64" icon="simple-icons:nikon" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="hidden md:flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Grab" height="64" icon="simple-icons:grab" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="hidden md:flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(255,255,255,0.08);">
+<iconify-icon aria-label="Craftsman" height="64" icon="simple-icons:craftsman" style="color:rgba(255,255,255,0.3);" width="64"></iconify-icon>
+</div>
+<div class="hidden md:flex items-center justify-center rounded-2xl p-4 transition-all duration-300 hover:bg-white/5" style="border:1px solid rgba(200,245,66,0.25);background:rgba(200,245,66,0.05);">
+<span class="text-xs font-medium font-geist" style="color:#c8f542;">
+                +2 400 команд
+              </span>
+</div>
+</div>
+</section>
+<!-- FEATURES -->
+<section class="relative z-10 px-5 sm:px-8 lg:px-12 py-16 lg:py-24" id="features" style="border-top:1px solid rgba(255,255,255,0.08);">
+<div class="max-w-2xl">
+<span class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/90 mb-6 font-geist" style="border:1px solid rgba(200,245,66,0.35);background:rgba(200,245,66,0.06);">
+<iconify-icon icon="solar:compass-linear" style="stroke-width:1.5;color:#c8f542;" width="15"></iconify-icon>
+              Почему CoinCompass
+            </span>
+<h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-geist tracking-tighter" data-reveal-words="" style="line-height:1.15;">
+              Всё, что нужно, чтобы
+              <span style="color:#c8f542;">ориентироваться в крипте</span>
+              с ясностью
+            </h2>
+<p class="mt-5 text-sm text-white/60 leading-relaxed max-w-md font-geist" data-fade="">
+              От первого сатоши до портфелей институционального уровня — понятные инструменты, превращающие хаотичный рынок в читаемую карту.
+            </p>
+</div>
+<div class="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4" data-stagger="">
+<div class="rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110" style="width:40px;height:40px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:chart-2-linear" style="stroke-width:1.5;color:#c8f542;" width="20"></iconify-icon>
+</span>
+<h3 class="mt-5 text-base font-medium text-white font-geist tracking-tight">
+                Живая рыночная аналитика
+              </h3>
+<p class="mt-2 text-sm text-white/55 leading-relaxed font-geist">
+                Цены в реальном времени, биржевые стаканы и ончейн-сигналы по 200+ активам — вы видите движение раньше заголовков.
+              </p>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110" style="width:40px;height:40px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:book-bookmark-linear" style="stroke-width:1.5;color:#c8f542;" width="20"></iconify-icon>
+</span>
+<h3 class="mt-5 text-base font-medium text-white font-geist tracking-tight">
+                Гайды, которые действительно учат
+              </h3>
+<p class="mt-2 text-sm text-white/55 leading-relaxed font-geist">
+                Учебные маршруты простым языком: от кошельков и комиссий за газ до DeFi-стратегий — без жаргона, хайпа и срезанных углов.
+              </p>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110" style="width:40px;height:40px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:shield-check-linear" style="stroke-width:1.5;color:#c8f542;" width="20"></iconify-icon>
+</span>
+<h3 class="mt-5 text-base font-medium text-white font-geist tracking-tight">
+                Безопасность по умолчанию
+              </h3>
+<p class="mt-2 text-sm text-white/55 leading-relaxed font-geist">
+                Некастодиальные подключения, поддержка аппаратных кошельков и предпросмотр транзакций, отмечающий риски до подписи.
+              </p>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110" style="width:40px;height:40px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:wallet-money-linear" style="stroke-width:1.5;color:#c8f542;" width="20"></iconify-icon>
+</span>
+<h3 class="mt-5 text-base font-medium text-white font-geist tracking-tight">
+                Один портфель, все сети
+              </h3>
+<p class="mt-2 text-sm text-white/55 leading-relaxed font-geist">
+                Объединяйте кошельки, биржи и холодные хранилища в единую картину капитала, обновляющуюся каждый блок.
+              </p>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110" style="width:40px;height:40px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:bell-bing-linear" style="stroke-width:1.5;color:#c8f542;" width="20"></iconify-icon>
+</span>
+<h3 class="mt-5 text-base font-medium text-white font-geist tracking-tight">
+                Умные оповещения
+              </h3>
+<p class="mt-2 text-sm text-white/55 leading-relaxed font-geist">
+                Ценовые уровни, движения китов и провалы газа — ровно тогда, когда это важно, и тишина, когда нет.
+              </p>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<span class="flex items-center justify-center rounded-xl transition-transform duration-300 group-hover:scale-110" style="width:40px;height:40px;background:rgba(200,245,66,0.15);">
+<iconify-icon icon="solar:transfer-horizontal-linear" style="stroke-width:1.5;color:#c8f542;" width="20"></iconify-icon>
+</span>
+<h3 class="mt-5 text-base font-medium text-white font-geist tracking-tight">
+                Переводите средства уверенно
+              </h3>
+<p class="mt-2 text-sm text-white/55 leading-relaxed font-geist">
+                Отправляйте, получайте и перебрасывайте активы между сетями с оптимальными комиссиями и понятными подтверждениями.
+              </p>
+</div>
+</div>
+</section>
+<!-- STORY -->
+<section class="relative z-10 px-5 sm:px-8 lg:px-12 py-16 lg:py-24" id="story" style="border-top:1px solid rgba(255,255,255,0.08);">
+<div class="grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+<div class="relative order-2 lg:order-1" data-fade="">
+<div class="rounded-[28px] overflow-hidden" style="border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<img alt="Графики и рыночные данные на экране в тёмной комнате" class="w-full h-72 sm:h-96 object-cover transition-transform duration-500 hover:scale-[1.04]" loading="lazy" src="https://images.unsplash.com/photo-1642104704074-907c0698cbd9?q=80&amp;w=1200&amp;auto=format&amp;fit=crop"/>
+</div>
+<div class="absolute -bottom-5 left-5 sm:left-8 rounded-2xl p-4 backdrop-blur-md" style="background:rgba(10,42,18,0.85);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<p class="text-2xl font-medium text-white font-geist tracking-tight">
+                  2019
+                </p>
+<p class="text-xs text-white/50 font-geist mt-0.5">
+                  Год, когда был начерчен компас
+                </p>
+</div>
+</div>
+<div class="order-1 lg:order-2 max-w-xl">
+<span class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/90 mb-6 font-geist" style="border:1px solid rgba(200,245,66,0.35);background:rgba(200,245,66,0.06);">
+<iconify-icon icon="solar:notebook-linear" style="stroke-width:1.5;color:#c8f542;" width="15"></iconify-icon>
+                Наша история
+              </span>
+<h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-geist tracking-tighter" data-reveal-words="" style="line-height:1.15;">
+                Родился из того, как мы
+                <span style="color:#c8f542;">заблудились</span>
+                на рынке
+              </h2>
+<p class="mt-6 text-sm text-white/60 leading-relaxed font-geist" data-fade="">
+                В 2019 году наши основатели потеряли небольшое состояние не из-за плохой сделки, а из-за плохой информации. Двенадцать вкладок, три биржи, один фишинговый сайт. Их подвёл не рынок — их подвела карта.
+              </p>
+<p class="mt-4 text-sm text-white/60 leading-relaxed font-geist" data-fade="">
+                CoinCompass начинался как таблица выходного дня, которой делились друзья. Сегодня это проводник, которого нам самим не хватало: одна честная поверхность, где данные, обучение и самостоятельное хранение живут вместе, — с верой в то, что богатыми людей со временем делает ясность, а не хайп.
+              </p>
+<div class="mt-8 grid grid-cols-3 gap-4" data-stagger="">
+<div class="rounded-2xl p-4" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+<p class="text-xl font-medium text-white font-geist tracking-tight">
+                    1,2 млн+
+                  </p>
+<p class="text-xs text-white/50 font-geist mt-1">
+                    Активных навигаторов
+                  </p>
+</div>
+<div class="rounded-2xl p-4" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+<p class="text-xl font-medium font-geist tracking-tight" style="color:#c8f542;">
+                    $4,8 млрд
+                  </p>
+<p class="text-xs text-white/50 font-geist mt-1">
+                    Активов под наблюдением
+                  </p>
+</div>
+<div class="rounded-2xl p-4" style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);">
+<p class="text-xl font-medium text-white font-geist tracking-tight">
+                    38
+                  </p>
+<p class="text-xs text-white/50 font-geist mt-1">
+                    Поддерживаемых сетей
+                  </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ABOUT -->
+<section class="relative z-10 px-5 sm:px-8 lg:px-12 py-16 lg:py-24" id="about" style="border-top:1px solid rgba(255,255,255,0.08);">
+<div class="max-w-2xl mx-auto text-center">
+<span class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/90 mb-6 font-geist" style="border:1px solid rgba(200,245,66,0.35);background:rgba(200,245,66,0.06);">
+<iconify-icon icon="solar:users-group-rounded-linear" style="stroke-width:1.5;color:#c8f542;" width="15"></iconify-icon>
+              О нас
+            </span>
+<h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-geist tracking-tighter" data-reveal-words="" style="line-height:1.15;">
+              Команда за
+              <span style="color:#c8f542;">компасом</span>
+</h2>
+<p class="mt-5 text-sm text-white/60 leading-relaxed max-w-lg mx-auto font-geist" data-fade="">
+              Инженеры, аналитики и преподаватели из традиционных финансов и крипто-команд, объединённые одной миссией: сделать цифровые активы понятными каждому.
+            </p>
+</div>
+<div class="mt-12 grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-5xl mx-auto" data-stagger="">
+<div class="rounded-2xl p-5 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<img alt="Портрет Элиаса Моро" class="mx-auto w-20 h-20 rounded-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&amp;w=400&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<p class="mt-4 text-sm font-medium text-white font-geist">
+                Элиас Моро
+              </p>
+<p class="text-xs font-geist mt-0.5" style="color:#c8f542;">
+                Сооснователь и CEO
+              </p>
+<p class="mt-2 text-xs text-white/50 leading-relaxed font-geist">
+                Бывший трейдер деривативов, биткоинер на фултайме с 2016 года.
+              </p>
+</div>
+<div class="rounded-2xl p-5 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<img alt="Портрет Амары Окафор" class="mx-auto w-20 h-20 rounded-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&amp;w=400&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<p class="mt-4 text-sm font-medium text-white font-geist">
+                Амара Окафор
+              </p>
+<p class="text-xs font-geist mt-0.5" style="color:#c8f542;">
+                Сооснователь и CTO
+              </p>
+<p class="mt-2 text-xs text-white/50 leading-relaxed font-geist">
+                Строила расчётную инфраструктуру для двух крупнейших бирж.
+              </p>
+</div>
+<div class="rounded-2xl p-5 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<img alt="Портрет Даниэля Рейеса" class="mx-auto w-20 h-20 rounded-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&amp;w=400&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<p class="mt-4 text-sm font-medium text-white font-geist">
+                Даниэль Рейес
+              </p>
+<p class="text-xs font-geist mt-0.5" style="color:#c8f542;">
+                Руководитель исследований
+              </p>
+<p class="mt-2 text-xs text-white/50 leading-relaxed font-geist">
+                Ончейн-аналитик; написал гайды, по которым училось 400 тысяч человек.
+              </p>
+</div>
+<div class="rounded-2xl p-5 text-center backdrop-blur-md transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13] group" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<img alt="Портрет Лены Васкес" class="mx-auto w-20 h-20 rounded-full object-cover transition-transform duration-300 group-hover:scale-105" loading="lazy" src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&amp;w=400&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<p class="mt-4 text-sm font-medium text-white font-geist">
+                Лена Васкес
+              </p>
+<p class="text-xs font-geist mt-0.5" style="color:#c8f542;">
+                Руководитель дизайна
+              </p>
+<p class="mt-2 text-xs text-white/50 leading-relaxed font-geist">
+                Превращает блок-эксплореры в интерфейсы, которыми смогут пользоваться ваши родители.
+              </p>
+</div>
+</div>
+</section>
+<!-- TESTIMONIALS -->
+<section class="relative z-10 px-5 sm:px-8 lg:px-12 py-16 lg:py-24" id="testimonials" style="border-top:1px solid rgba(255,255,255,0.08);">
+<div class="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+<div class="max-w-xl">
+<span class="inline-flex items-center gap-2 rounded-full px-3.5 py-1.5 text-xs font-medium text-white/90 mb-6 font-geist" style="border:1px solid rgba(200,245,66,0.35);background:rgba(200,245,66,0.06);">
+<iconify-icon icon="solar:chat-round-like-linear" style="stroke-width:1.5;color:#c8f542;" width="15"></iconify-icon>
+                Отзывы
+              </span>
+<h2 class="text-white text-3xl sm:text-4xl lg:text-5xl font-geist tracking-tighter" data-reveal-words="" style="line-height:1.15;">
+                Навигаторы, которые нашли
+                <span style="color:#c8f542;">свой истинный север</span>
+</h2>
+</div>
+<div class="flex items-center gap-3" data-fade="">
+<div class="flex items-center gap-0.5">
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="14"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="14"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="14"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="14"></iconify-icon>
+<iconify-icon icon="solar:star-bold" style="color:#c8f542;" width="14"></iconify-icon>
+</div>
+<p class="text-xs text-white/60 font-geist">
+<span class="text-white font-medium">4.8/5</span>
+                по 14 600+ отзывам
+              </p>
+</div>
+</div>
+<div class="mt-12 grid md:grid-cols-3 gap-4" data-stagger="">
+<div class="rounded-2xl p-6 backdrop-blur-md flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13]" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<iconify-icon icon="solar:chat-square-like-linear" style="stroke-width:1.5;color:#c8f542;" width="22"></iconify-icon>
+<p class="mt-4 text-sm text-white/70 leading-relaxed font-geist flex-1">
+                «Я перешла от скриншотов цен в групповом чате к настоящему пониманию своего портфеля. Гайды окупились уже в первый месяц — только на сэкономленных комиссиях за газ».
+              </p>
+<div class="mt-6 flex items-center gap-3">
+<img alt="Портрет Прии Шармы" class="w-10 h-10 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&amp;w=200&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<div>
+<p class="text-xs font-medium text-white font-geist">
+                    Прия Шарма
+                  </p>
+<p class="text-xs text-white/50 font-geist">
+                    Частный инвестор, Лондон
+                  </p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13]" style="background:rgba(255,255,255,0.09);border:1px solid rgba(200,245,66,0.3);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<iconify-icon icon="solar:chat-square-like-linear" style="stroke-width:1.5;color:#c8f542;" width="22"></iconify-icon>
+<p class="mt-4 text-sm text-white/70 leading-relaxed font-geist flex-1">
+                «Мы управляем казначействами в пяти сетях. CoinCompass — единственное представление, которому доверяет вся команда: предпросмотр транзакций буквально остановил две плохие подписи».
+              </p>
+<div class="mt-6 flex items-center gap-3">
+<img alt="Портрет Маркуса Чена" class="w-10 h-10 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&amp;w=200&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<div>
+<p class="text-xs font-medium text-white font-geist">
+                    Маркус Чен
+                  </p>
+<p class="text-xs text-white/50 font-geist">
+                    Руководитель казначейства DAO, Сингапур
+                  </p>
+</div>
+</div>
+</div>
+<div class="rounded-2xl p-6 backdrop-blur-md flex flex-col transition-all duration-300 hover:-translate-y-1.5 hover:bg-white/[0.13]" style="background:rgba(255,255,255,0.09);border:1px solid rgba(255,255,255,0.14);box-shadow:0 20px 40px -12px rgba(0,0,0,0.3);">
+<iconify-icon icon="solar:chat-square-like-linear" style="stroke-width:1.5;color:#c8f542;" width="22"></iconify-icon>
+<p class="mt-4 text-sm text-white/70 leading-relaxed font-geist flex-1">
+                «После десяти лет в акциях крипта казалась иностранным языком. Это — Розеттский камень. Одни только оповещения лучше моего старого процесса в Bloomberg».
+              </p>
+<div class="mt-6 flex items-center gap-3">
+<img alt="Портрет Софии Линдквист" class="w-10 h-10 rounded-full object-cover" loading="lazy" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&amp;w=200&amp;auto=format&amp;fit=crop" style="border:2px solid rgba(200,245,66,0.4);"/>
+<div>
+<p class="text-xs font-medium text-white font-geist">
+                    София Линдквист
+                  </p>
+<p class="text-xs text-white/50 font-geist">
+                    Портфельный менеджер, Стокгольм
+                  </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA -->
+<section class="relative z-10 px-5 sm:px-8 lg:px-12 py-16 lg:py-20" id="cta">
+<div class="rounded-[28px] p-8 sm:p-12 lg:p-16 text-center relative overflow-hidden" style="background:rgba(200,245,66,0.08);border:1px solid rgba(200,245,66,0.3);">
+<div aria-hidden="true" class="absolute inset-0 pointer-events-none" style="background:radial-gradient(ellipse at 50% 0%,rgba(200,245,66,0.15) 0%,transparent 60%);"></div>
+<h2 class="relative text-white text-3xl sm:text-4xl lg:text-5xl font-geist tracking-tighter max-w-2xl mx-auto" data-reveal-words="" style="line-height:1.15;">
+              Готовы найти свой
+              <span style="color:#c8f542;">курс</span>
+              ?
+            </h2>
+<p class="relative mt-5 text-sm text-white/60 leading-relaxed max-w-md mx-auto font-geist" data-fade="">
+              Присоединяйтесь к 1,2 млн+ навигаторов. Бесплатно навсегда для первого кошелька — без карты, кастоди и шума.
+            </p>
+<div class="relative mt-8 flex flex-col sm:flex-row items-center justify-center gap-3" data-fade="">
+<a class="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-[#12300f] hover:brightness-105 transition-all duration-150 hover:scale-[1.03] active:scale-[0.98] font-geist" href="#" style="background-color:#c8f542;box-shadow:0 8px 24px -6px rgba(200,245,66,0.4);">
+<iconify-icon icon="solar:arrow-right-up-linear" style="stroke-width:1.5;" width="15"></iconify-icon>
+                Начать бесплатно
+              </a>
+<a class="inline-flex items-center gap-2 rounded-full px-6 py-3 text-sm font-medium text-white/85 hover:text-white hover:bg-white/5 transition-colors duration-150 font-geist" href="#" style="border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="solar:play-circle-linear" style="stroke-width:1.5;" width="15"></iconify-icon>
+                Смотреть тур
+              </a>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="relative z-10 px-5 sm:px-8 lg:px-12 pt-14 pb-8" style="border-top:1px solid rgba(255,255,255,0.08);background:rgba(0,0,0,0.15);">
+<div class="grid md:grid-cols-2 lg:grid-cols-5 gap-10">
+<div class="lg:col-span-2">
+<a aria-label="CoinCompass — на главную" class="flex items-center gap-2.5" href="#">
+<svg aria-hidden="true" fill="none" height="30" viewbox="0 0 30 30" width="30" xmlns="http://www.w3.org/2000/svg">
+<path d="M25 10.5C23.3 7.2 19.9 5 16 5C10.5 5 6 9.5 6 15C6 20.5 10.5 25 16 25C19.9 25 23.3 22.8 25 19.5" stroke="#c8f542" stroke-linecap="round" stroke-width="3.2"></path>
+<circle cx="16" cy="15" fill="#c8f542" r="3.4"></circle>
+</svg>
+<span class="text-white font-medium text-base font-geist tracking-tight">
+                  CoinCompass
+                </span>
+</a>
+<p class="mt-4 text-sm text-white/50 leading-relaxed max-w-xs font-geist">
+                Ваш надёжный компас в эпоху цифровых активов. Ясность вместо хайпа — с 2019 года.
+              </p>
+<div class="mt-6 flex items-center gap-2">
+<a aria-label="Мы в X" class="flex items-center justify-center rounded-full transition-all duration-150 hover:bg-white/10 hover:scale-110" href="#" style="width:34px;height:34px;border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="simple-icons:x" style="color:rgba(255,255,255,0.7);" width="13"></iconify-icon>
+</a>
+<a aria-label="Наш Discord" class="flex items-center justify-center rounded-full transition-all duration-150 hover:bg-white/10 hover:scale-110" href="#" style="width:34px;height:34px;border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="simple-icons:discord" style="color:rgba(255,255,255,0.7);" width="14"></iconify-icon>
+</a>
+<a aria-label="Наш GitHub" class="flex items-center justify-center rounded-full transition-all duration-150 hover:bg-white/10 hover:scale-110" href="#" style="width:34px;height:34px;border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="simple-icons:github" style="color:rgba(255,255,255,0.7);" width="14"></iconify-icon>
+</a>
+<a aria-label="Мы на YouTube" class="flex items-center justify-center rounded-full transition-all duration-150 hover:bg-white/10 hover:scale-110" href="#" style="width:34px;height:34px;border:1px solid rgba(255,255,255,0.18);">
+<iconify-icon icon="simple-icons:youtube" style="color:rgba(255,255,255,0.7);" width="14"></iconify-icon>
+</a>
+</div>
+</div>
+<nav aria-label="Продукт">
+<p class="text-xs font-medium uppercase tracking-widest text-white/40 font-geist">
+                Продукт
+              </p>
+<ul class="mt-4 space-y-2.5 text-sm font-geist">
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Рынки
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Портфель
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Оповещения
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Подключение кошелька
+                  </a>
+</li>
+</ul>
+</nav>
+<nav aria-label="Обучение">
+<p class="text-xs font-medium uppercase tracking-widest text-white/40 font-geist">
+                Обучение
+              </p>
+<ul class="mt-4 space-y-2.5 text-sm font-geist">
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Гайды для новичков
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Академия DeFi
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Основы безопасности
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Глоссарий
+                  </a>
+</li>
+</ul>
+</nav>
+<nav aria-label="Компания">
+<p class="text-xs font-medium uppercase tracking-widest text-white/40 font-geist">
+                Компания
+              </p>
+<ul class="mt-4 space-y-2.5 text-sm font-geist">
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#about">
+                    О нас
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#story">
+                    Наша история
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="#">
+                    Карьера
+                  </a>
+</li>
+<li>
+<a class="text-white/60 hover:text-white transition-colors duration-150" href="mailto:hello@coincompass.io">
+                    hello@coincompass.io
+                  </a>
+</li>
+</ul>
+</nav>
+</div>
+<div class="mt-12 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4" style="border-top:1px solid rgba(255,255,255,0.08);">
+<p class="text-xs text-white/40 font-geist">
+              © 2025 CoinCompass Labs. Не финансовый совет — просто карта получше.
+            </p>
+<div class="flex items-center gap-5 text-xs font-geist">
+<a class="text-white/40 hover:text-white/80 transition-colors duration-150" href="#">
+                Конфиденциальность
+              </a>
+<a class="text-white/40 hover:text-white/80 transition-colors duration-150" href="#">
+                Условия
+              </a>
+<a class="text-white/40 hover:text-white/80 transition-colors duration-150" href="#">
+                Файлы cookie
+              </a>
+</div>
+</div>
+</footer>
+</main>
+</div>
+<script>
+      // ---------- Smooth scroll (Lenis) ----------
+      (function(){
+        if (typeof Lenis === 'undefined') return;
+        const lenis = new Lenis({ lerp: 0.1, smoothWheel: true });
+        function raf(time){ lenis.raf(time); requestAnimationFrame(raf); }
+        requestAnimationFrame(raf);
+        if (typeof ScrollTrigger !== 'undefined'){ lenis.on('scroll', ScrollTrigger.update); }
+        document.querySelectorAll('a[href^="#"]').forEach(function(a){
+          a.addEventListener('click', function(e){
+            const id = a.getAttribute('href');
+            if (id.length > 1 && document.querySelector(id)){
+              e.preventDefault();
+              lenis.scrollTo(id, { offset: -20 });
+            }
+          });
+        });
+      })();
+
+      // ---------- WebGL aurora light rays ----------
+      (function(){
+        const canvas = document.getElementById('glCanvas');
+        const gl = canvas.getContext('webgl');
+        if(!gl){ canvas.style.display='none'; return; }
+        const vsSrc = 'attribute vec2 p;void main(){gl_Position=vec4(p,0.,1.);}';
+        const fsSrc = `
+        precision mediump float;
+        uniform vec2 u_res;
+        uniform float u_time;
+        float band(float x,float c,float w){float d=(x-c)/w;return exp(-d*d);}
+        void main(){
+          vec2 uv = gl_FragCoord.xy / u_res;
+          float t = u_time*0.12;
+          vec3 base = mix(vec3(0.035,0.16,0.065), vec3(0.05,0.22,0.09), uv.y);
+          float x = uv.x + (1.0-uv.y)*(-0.35);
+          float topFade = pow(uv.y,1.8);
+          vec3 lime = vec3(0.70,0.92,0.30);
+          vec3 glow = vec3(0.30,0.62,0.22);
+          float r = 0.0;
+          r += 0.85*band(x, 0.30 + 0.06*sin(t*1.3), 0.055 + 0.015*sin(t*0.7));
+          r += 0.55*band(x, 0.44 + 0.05*sin(t*0.9+2.0), 0.10);
+          r += 0.40*band(x, 0.62 + 0.07*sin(t*1.1+4.0), 0.16);
+          r += 0.30*band(x, 0.16 + 0.04*sin(t*0.8+1.0), 0.09);
+          r += 0.25*band(x, 0.85 + 0.05*sin(t*1.4+3.0), 0.14);
+          float shimmer = 0.5+0.5*sin(u_time*0.4 + uv.x*6.0);
+          vec3 col = base + glow*r*topFade*1.2 + lime*r*r*topFade*0.55*(0.7+0.3*shimmer);
+          col += lime*0.08*pow(max(0.0,uv.y-0.75)*4.0,2.0)*band(x,0.35+0.05*sin(t),0.25);
+          float vg = smoothstep(1.35,0.35,distance(uv,vec2(0.5,0.55)));
+          col *= mix(0.75,1.0,vg);
+          gl_FragColor = vec4(col,1.0);
+        }`;
+        function sh(type,src){const s=gl.createShader(type);gl.shaderSource(s,src);gl.compileShader(s);return s;}
+        const prog = gl.createProgram();
+        gl.attachShader(prog, sh(gl.VERTEX_SHADER,vsSrc));
+        gl.attachShader(prog, sh(gl.FRAGMENT_SHADER,fsSrc));
+        gl.linkProgram(prog); gl.useProgram(prog);
+        const buf = gl.createBuffer();
+        gl.bindBuffer(gl.ARRAY_BUFFER, buf);
+        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1,3,-1,-1,3]), gl.STATIC_DRAW);
+        const loc = gl.getAttribLocation(prog,'p');
+        gl.enableVertexAttribArray(loc);
+        gl.vertexAttribPointer(loc,2,gl.FLOAT,false,0,0);
+        const uRes = gl.getUniformLocation(prog,'u_res');
+        const uTime = gl.getUniformLocation(prog,'u_time');
+        function resize(){
+          const dpr = Math.min(window.devicePixelRatio||1, 2);
+          canvas.width = canvas.clientWidth*dpr;
+          canvas.height = canvas.clientHeight*dpr;
+          gl.viewport(0,0,canvas.width,canvas.height);
+        }
+        window.addEventListener('resize', resize); resize();
+        function frame(t){
+          gl.uniform2f(uRes, canvas.width, canvas.height);
+          gl.uniform1f(uTime, t*0.001);
+          gl.drawArrays(gl.TRIANGLES,0,3);
+          requestAnimationFrame(frame);
+        }
+        requestAnimationFrame(frame);
+      })();
+
+      // ---------- Floating card animations ----------
+      document.querySelectorAll('[data-float]').forEach(function(el){
+        const i = parseInt(el.getAttribute('data-float'),10);
+        el.animate(
+          [{transform:'translateY(0px)'},{transform:'translateY(-'+(6+(i%3)*3)+'px)'},{transform:'translateY(0px)'}],
+          {duration:4200+i*600, iterations:Infinity, easing:'ease-in-out', delay:i*350}
+        );
+      });
+
+      // ---------- Slider knob subtle motion ----------
+      (function(){
+        const knob = document.getElementById('sliderKnob');
+        const fill = document.getElementById('sliderFill');
+        let t = 0;
+        setInterval(function(){
+          t += 0.03;
+          const p = 62 + Math.sin(t)*5;
+          knob.style.left = p+'%';
+          fill.style.width = p+'%';
+        }, 50);
+      })();
+
+      // ---------- ETH bars ----------
+      (function(){
+        const wrap = document.getElementById('ethBars');
+        const heights = [30,55,40,70,45,85,60,95,50,75,65,90,42,68];
+        heights.forEach(function(h,i){
+          const b = document.createElement('div');
+          b.style.width = '4px';
+          b.style.borderRadius = '2px';
+          b.style.background = i%2===0 ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.35)';
+          b.style.height = h+'%';
+          wrap.appendChild(b);
+          b.animate(
+            [{height:h+'%'},{height:Math.min(100,h+14)+'%'},{height:h+'%'}],
+            {duration:1800+i*140, iterations:Infinity, easing:'ease-in-out', delay:i*120}
+          );
+        });
+      })();
+
+      // ---------- GSAP masked word reveals, blur-fade-slide reveals, parallax ----------
+      (function(){
+        if (typeof gsap === 'undefined') return;
+        gsap.registerPlugin(ScrollTrigger);
+
+        const mainEl = document.querySelector('main');
+
+        // Parallax on background canvas + hatch overlay
+        gsap.to('#glCanvas', {
+          yPercent: 22, ease: 'none',
+          scrollTrigger: { trigger: mainEl, start: 'top top', end: 'bottom top', scrub: 0.6 }
+        });
+
+        // Header entrance
+        gsap.fromTo('header', { opacity: 0, y: -18, filter: 'blur(8px)' },
+          { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.1, ease: 'power3.out', delay: 0.15 });
+
+        // Split headings into masked words with blur-in
+        document.querySelectorAll('[data-reveal-words]').forEach(function(h){
+          function wrapWords(node){
+            const kids = Array.from(node.childNodes);
+            kids.forEach(function(child){
+              if (child.nodeType === 3){
+                const frag = document.createDocumentFragment();
+                child.textContent.split(/(\s+)/).forEach(function(part){
+                  if (/^\s+$/.test(part) || part === ''){ frag.appendChild(document.createTextNode(' ')); return; }
+                  const mask = document.createElement('span');
+                  mask.style.display = 'inline-block';
+                  mask.style.overflow = 'hidden';
+                  mask.style.verticalAlign = 'bottom';
+                  const w = document.createElement('span');
+                  w.style.display = 'inline-block';
+                  w.className = 'reveal-word';
+                  w.textContent = part;
+                  mask.appendChild(w);
+                  frag.appendChild(mask);
+                });
+                node.replaceChild(frag, child);
+              } else if (child.nodeType === 1 && child.tagName !== 'BR'){
+                wrapWords(child);
+              }
+            });
+          }
+          wrapWords(h);
+          gsap.fromTo(h.querySelectorAll('.reveal-word'),
+            { yPercent: 115, opacity: 0, filter: 'blur(10px)' },
+            { yPercent: 0, opacity: 1, filter: 'blur(0px)', duration: 1, ease: 'power4.out', stagger: 0.045,
+              scrollTrigger: { trigger: h, start: 'top 88%', once: true } }
+          );
+        });
+
+        // Simple fades: slide + blur in
+        document.querySelectorAll('[data-fade]').forEach(function(el){
+          gsap.fromTo(el, { opacity: 0, y: 30, filter: 'blur(7px)' },
+            { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1, ease: 'power3.out',
+              scrollTrigger: { trigger: el, start: 'top 90%', once: true } });
+        });
+
+        // Staggered groups: element by element, blur + scale + slide
+        document.querySelectorAll('[data-stagger]').forEach(function(group){
+          gsap.fromTo(group.children, { opacity: 0, y: 34, scale: 0.94, filter: 'blur(9px)' },
+            { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 0.9, ease: 'power3.out', stagger: 0.09,
+              scrollTrigger: { trigger: group, start: 'top 88%', once: true } });
+        });
+      })();
+
+      // ---------- Rich micro-interactions ----------
+      (function(){
+        if (typeof gsap === 'undefined') return;
+
+        // Magnetic pull on nav links + CTA buttons
+        const magnets = document.querySelectorAll('header nav a, header > a, #cta a, a[href="#cta"]');
+        magnets.forEach(function(el){
+          el.addEventListener('mousemove', function(e){
+            const r = el.getBoundingClientRect();
+            const x = e.clientX - r.left - r.width/2;
+            const y = e.clientY - r.top - r.height/2;
+            gsap.to(el, { x: x*0.25, y: y*0.35, duration: 0.4, ease: 'power2.out' });
+          });
+          el.addEventListener('mouseleave', function(){
+            gsap.to(el, { x: 0, y: 0, duration: 0.6, ease: 'elastic.out(1,0.4)' });
+          });
+        });
+
+        // 3D tilt on feature / team / testimonial cards
+        document.querySelectorAll('[data-stagger] > div').forEach(function(card){
+          card.style.transformStyle = 'preserve-3d';
+          card.style.willChange = 'transform';
+          card.addEventListener('mousemove', function(e){
+            const r = card.getBoundingClientRect();
+            const px = (e.clientX - r.left)/r.width - 0.5;
+            const py = (e.clientY - r.top)/r.height - 0.5;
+            gsap.to(card, { rotateY: px*7, rotateX: -py*7, transformPerspective: 700, duration: 0.5, ease: 'power2.out' });
+          });
+          card.addEventListener('mouseleave', function(){
+            gsap.to(card, { rotateY: 0, rotateX: 0, duration: 0.7, ease: 'power3.out' });
+          });
+        });
+
+        // Icon nudge on nav icons
+        document.querySelectorAll('header nav a iconify-icon, header > a iconify-icon').forEach(function(ic){
+          ic.addEventListener('mouseenter', function(){ gsap.to(ic, { scale: 1.25, duration: 0.3, ease: 'back.out(3)' }); });
+          ic.addEventListener('mouseleave', function(){ gsap.to(ic, { scale: 1, duration: 0.3, ease: 'power2.out' }); });
+        });
+
+        // Press feedback on CTA buttons
+        document.querySelectorAll('#cta a, a[href="#cta"], header > a').forEach(function(btn){
+          btn.addEventListener('mousedown', function(){ gsap.to(btn, { scale: 0.95, duration: 0.15, ease:'power2.out' }); });
+          ['mouseup','mouseleave'].forEach(function(ev){
+            btn.addEventListener(ev, function(){ gsap.to(btn, { scale: 1, duration: 0.35, ease:'back.out(2.5)' }); });
+          });
+        });
+      })();
+    </script>
+</body></html>

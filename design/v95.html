@@ -1,0 +1,3229 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>AEON — Темпоральная обсерватория</title>
+<meta content="Пройдите 13,8 млрд лет в одном непрерывном зале. AEON v2 — футуристическая темпоральная обсерватория: анимация, интерактив, образы." name="description"/>
+<!-- ============================================================
+CREATIVE DIRECTION v2 (the contract this build obeys)
+Concept : AEON — a temporal observatory. Same 8-section walk
+through 13.8 billion years; the particle entity is
+the instrument's projection.
+Mood    : futuristic, precise, luminous, vast
+Palette : void #04060a · ice #eef2f7 · pulse cyan #5be9ff
+(+ rare magenta #ff3d8a sparks)
+Type    : Space Grotesk (display) · Inter (body) · IBM Plex Mono (HUD)
+Motion  : ONE ease — expo.out. Heavy Lenis (1.35). Inertial
+morph scrub (scrub: 1.2) for smoother condensation.
+Signature moments:
+1. Morphing particle entity w/ UnrealBloom glow — gyroscope→
+star→planet→ocean→helix→butterfly→city→"AEON".
+2. Deep-time chronometer HUD + live telemetry readout.
+3. Click anywhere in the sky: the entity bursts and reforms.
+4. Scroll-velocity RGB glitch on display type.
+============================================================ -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&amp;family=Inter:wght@400;500;600&amp;family=IBM+Plex+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+/* ============================================================
+AEON v2 — Temporal Observatory
+Futuristic reskin: Space Grotesk / Inter / IBM Plex Mono.
+Palette: void / ice / pulse-cyan (+ rare magenta sparks).
+One ease everywhere: expo.out.
+============================================================ */
+:root {
+color-scheme: dark;
+/* --- palette (adjust here) --- */
+--void: #04060a;
+--ice: #eef2f7;
+--pulse: #5be9ff;
+--magenta: #ff3d8a;
+--text: var(--ice);
+--muted: rgba(238, 242, 247, 0.62);
+--faint: rgba(238, 242, 247, 0.36);
+--line: rgba(238, 242, 247, 0.12);
+--surface: rgba(14, 18, 26, 0.55);
+/* per-section glow tint — tweened from JS via data-glow */
+--glow: #5be9ff;
+/* --- type --- */
+--display: "Space Grotesk", system-ui, sans-serif;
+--body: "Inter", system-ui, sans-serif;
+--mono: "IBM Plex Mono", ui-monospace, monospace;
+/* --- ONE motion personality: expo.out (mirrored in main.js) --- */
+--ease: cubic-bezier(0.16, 1, 0.3, 1);
+--pad: clamp(24px, 5vw, 72px);
+--radius: 10px;
+}
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+}
+html {
+-webkit-text-size-adjust: 100%;
+}
+/* Lenis rules */
+html.lenis,
+html.lenis body {
+height: auto;
+}
+.lenis.lenis-smooth {
+scroll-behavior: auto !important;
+}
+.lenis.lenis-stopped {
+overflow: hidden;
+}
+body {
+background: var(--void);
+color: var(--text);
+font-family: var(--body);
+font-weight: 400;
+line-height: 1.6;
+overflow-x: hidden;
+-webkit-font-smoothing: antialiased;
+}
+a {
+color: inherit;
+text-decoration: none;
+}
+::selection {
+background: rgba(91, 233, 255, 0.3);
+color: var(--ice);
+}
+.wrap {
+width: min(1280px, 100% - 2 * var(--pad));
+margin-inline: auto;
+}
+/* ============ FIXED LAYERS ============ */
+#entity {
+position: fixed;
+inset: 0;
+z-index: 0;
+width: 100vw;
+height: 100vh;
+display: block;
+pointer-events: none;
+/* clicks are caught on window (burst interaction) */
+}
+/* vignette so type always sits on dark; slight cyan cast at edges */
+#scrim {
+position: fixed;
+inset: 0;
+z-index: 2;
+pointer-events: none;
+background:
+linear-gradient(to bottom, rgba(4, 6, 10, 0.42), rgba(4, 6, 10, 0.05) 38%, rgba(4, 6, 10, 0.55)),
+radial-gradient(120% 95% at 50% 50%, transparent 44%, rgba(0, 0, 0, 0.6));
+}
+#grain {
+position: fixed;
+inset: -50%;
+z-index: 3;
+pointer-events: none;
+opacity: 0.045;
+/* grain intensity */
+mix-blend-mode: overlay;
+background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+animation: grainMove 0.8s steps(2) infinite;
+}
+@keyframes grainMove {
+0% {
+transform: translate(0, 0);
+}
+50% {
+transform: translate(-3%, 2%);
+}
+100% {
+transform: translate(2%, -3%);
+}
+}
+main {
+position: relative;
+z-index: 4;
+}
+/* ============ GLITCH (scroll-velocity RGB split) ============ */
+.glitch {
+will-change: transform;
+backface-visibility: hidden;
+}
+.glitch-active {
+animation: glitchAnim 0.24s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes glitchAnim {
+0% {
+transform: translate(0);
+text-shadow: none;
+}
+20% {
+transform: translate(-2px, 1px) skewX(-1.5deg);
+text-shadow: 2px 0 rgba(91, 233, 255, 0.45), -2px 0 rgba(255, 61, 138, 0.35);
+}
+45% {
+transform: translate(2px, -1px) skewX(1.5deg);
+text-shadow: -2px 0 rgba(91, 233, 255, 0.45), 2px 0 rgba(255, 61, 138, 0.35);
+}
+70% {
+transform: translate(-1px, 1px);
+}
+100% {
+transform: translate(0);
+text-shadow: none;
+}
+}
+/* ============ PRELOADER ============ */
+#preloader {
+position: fixed;
+inset: 0;
+z-index: 100;
+background: var(--void);
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+padding: var(--pad);
+}
+.pre-count {
+font-family: var(--display);
+font-weight: 300;
+font-size: clamp(72px, 17vw, 220px);
+letter-spacing: -0.05em;
+line-height: 0.8;
+font-variant-numeric: tabular-nums;
+}
+.pre-count em {
+font-family: var(--mono);
+font-style: normal;
+font-size: clamp(11px, 1.3vw, 15px);
+letter-spacing: 0.18em;
+color: var(--muted);
+margin-left: 0.5em;
+}
+.pre-label {
+font-family: var(--mono);
+font-size: 11px;
+line-height: 1.9;
+letter-spacing: 0.28em;
+text-transform: uppercase;
+color: var(--muted);
+text-align: right;
+}
+.pre-bar {
+position: absolute;
+left: var(--pad);
+right: var(--pad);
+bottom: 0;
+height: 1px;
+background: var(--line);
+}
+.pre-bar span {
+display: block;
+width: 0%;
+height: 100%;
+background: linear-gradient(90deg, var(--ice), var(--pulse));
+box-shadow: 0 0 12px rgba(91, 233, 255, 0.5);
+}
+/* ============ HUD: CHRONOMETER + TELEMETRY ============ */
+#chrono,
+#telemetry {
+position: fixed;
+bottom: 28px;
+z-index: 3;
+/* behind content (main is z-4) so passing text always wins */
+display: flex;
+flex-direction: column;
+gap: 4px;
+font-family: var(--mono);
+pointer-events: none;
+opacity: 0;
+}
+#chrono {
+left: var(--pad);
+}
+#telemetry {
+right: var(--pad);
+align-items: flex-end;
+}
+.chrono-label {
+font-size: 10px;
+letter-spacing: 0.32em;
+text-transform: uppercase;
+color: var(--pulse);
+}
+.chrono-year {
+font-size: 13px;
+letter-spacing: 0.08em;
+color: var(--muted);
+font-variant-numeric: tabular-nums;
+}
+#telemCoords {
+font-size: 11px;
+letter-spacing: 0.1em;
+color: var(--faint);
+font-variant-numeric: tabular-nums;
+}
+.telem-status {
+display: flex;
+align-items: center;
+gap: 7px;
+font-size: 10px;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(--muted);
+}
+.telem-status em {
+font-style: normal;
+}
+.telem-status i,
+.pulse-dot {
+display: inline-block;
+width: 6px;
+height: 6px;
+border-radius: 50%;
+background: var(--pulse);
+box-shadow: 0 0 10px rgba(91, 233, 255, 0.7);
+animation: pulse 2.4s ease-in-out infinite;
+}
+.telem-status i.is-critical,
+.pulse-dot.is-critical {
+background: var(--magenta);
+box-shadow: 0 0 10px rgba(255, 61, 138, 0.7);
+}
+@keyframes pulse {
+0%,
+100% {
+opacity: 1;
+}
+50% {
+opacity: 0.35;
+}
+}
+/* ============ NAV ============ */
+.nav {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 60;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 22px var(--pad);
+}
+.logo {
+font-family: var(--display);
+font-weight: 600;
+font-size: 19px;
+letter-spacing: 0.08em;
+}
+.logo span {
+font-family: var(--mono);
+font-weight: 400;
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--faint);
+margin-left: 8px;
+}
+.nav-links {
+display: flex;
+align-items: center;
+gap: clamp(18px, 3vw, 36px);
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+}
+.nav-links a {
+color: var(--muted);
+transition: color 0.5s var(--ease);
+}
+.nav-links a:hover {
+color: var(--pulse);
+}
+.snd-toggle {
+display: inline-flex;
+align-items: center;
+gap: 8px;
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--faint);
+background: none;
+border: 1px solid var(--line);
+border-radius: 8px;
+padding: 9px 14px;
+transition: color 0.5s var(--ease), border-color 0.5s var(--ease);
+}
+.snd-toggle i {
+display: inline-block;
+width: 5px;
+height: 5px;
+border-radius: 50%;
+background: var(--faint);
+transition: background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.snd-toggle em {
+font-style: normal;
+color: var(--muted);
+}
+.snd-toggle:hover {
+color: var(--muted);
+border-color: rgba(91, 233, 255, 0.35);
+}
+.snd-toggle.is-on {
+color: var(--pulse);
+border-color: rgba(91, 233, 255, 0.5);
+}
+.snd-toggle.is-on i {
+background: var(--pulse);
+box-shadow: 0 0 8px rgba(91, 233, 255, 0.7);
+animation: pulse 2.4s ease-in-out infinite;
+}
+.snd-toggle.is-on em {
+color: var(--pulse);
+}
+.nav-ticket {
+display: inline-block;
+border: 1px solid var(--line);
+border-radius: 8px;
+padding: 10px 20px;
+color: var(--ice) !important;
+background: var(--surface);
+backdrop-filter: blur(10px);
+transition: border-color 0.5s var(--ease), background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.nav-ticket:hover {
+border-color: rgba(91, 233, 255, 0.5);
+background: rgba(91, 233, 255, 0.08);
+box-shadow: 0 0 20px rgba(91, 233, 255, 0.15);
+}
+/* ============ EPOCH RAIL ============ */
+#rail {
+position: fixed;
+right: var(--pad);
+top: 50%;
+transform: translateY(-50%);
+z-index: 50;
+display: flex;
+flex-direction: column;
+gap: 14px;
+align-items: flex-end;
+}
+.rail-item {
+display: flex;
+align-items: center;
+gap: 10px;
+cursor: pointer;
+}
+.rail-item span {
+font-family: var(--mono);
+font-size: 9px;
+letter-spacing: 0.26em;
+text-transform: uppercase;
+color: var(--faint);
+opacity: 0;
+transform: translateX(6px);
+transition: opacity 0.5s var(--ease), transform 0.5s var(--ease), color 0.5s var(--ease);
+}
+.rail-item i {
+display: block;
+width: 18px;
+height: 1px;
+background: var(--faint);
+transition: width 0.5s var(--ease), background 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.rail-item:hover span {
+opacity: 1;
+transform: none;
+}
+.rail-item.is-active span {
+opacity: 1;
+transform: none;
+color: var(--pulse);
+}
+.rail-item.is-active i {
+width: 34px;
+background: var(--pulse);
+box-shadow: 0 0 8px rgba(91, 233, 255, 0.6);
+}
+/* ============ CURSOR ============ */
+.cursor {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 90;
+width: 8px;
+height: 8px;
+margin: -4px 0 0 -4px;
+border-radius: 50%;
+background: var(--pulse);
+box-shadow: 0 0 10px rgba(91, 233, 255, 0.6);
+pointer-events: none;
+opacity: 0;
+transition: width 0.4s var(--ease), height 0.4s var(--ease), margin 0.4s var(--ease),
+opacity 0.4s var(--ease), background 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.cursor.is-on {
+opacity: 0.9;
+}
+.cursor.is-hover {
+width: 44px;
+height: 44px;
+margin: -22px 0 0 -22px;
+background: rgba(91, 233, 255, 0.1);
+border: 1px solid rgba(91, 233, 255, 0.5);
+box-shadow: none;
+}
+/* burst affordance: mono label trailing the cursor over empty sky,
+retired permanently after the first click-burst */
+.cursor-hint {
+position: fixed;
+top: 0;
+left: 0;
+z-index: 90;
+font-family: var(--mono);
+font-size: 9px;
+letter-spacing: 0.24em;
+text-transform: uppercase;
+white-space: nowrap;
+color: var(--pulse);
+text-shadow: 0 0 12px rgba(91, 233, 255, 0.5);
+pointer-events: none;
+opacity: 0;
+transition: opacity 0.5s var(--ease);
+}
+.cursor-hint.is-on {
+opacity: 0.8;
+}
+@media (pointer: coarse) {
+.cursor-hint {
+display: none;
+}
+}
+@media (pointer: fine) {
+body {
+cursor: none;
+}
+a,
+button {
+cursor: none;
+}
+}
+/* ============ SHARED TYPE ============ */
+.eyebrow,
+.kicker {
+display: flex;
+align-items: center;
+gap: 10px;
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 0.3em;
+text-transform: uppercase;
+color: var(--pulse);
+margin-bottom: 22px;
+}
+.kicker {
+color: var(--muted);
+}
+.kicker::before {
+content: "—";
+color: var(--pulse);
+}
+.h2 {
+font-family: var(--display);
+font-weight: 400;
+font-size: clamp(42px, 6vw, 88px);
+line-height: 1.02;
+letter-spacing: -0.035em;
+}
+/* futuristic accent: em is not italic — it's the pulse color, lighter weight */
+.h2 em,
+.final-title em,
+.s-line em,
+.m-line em {
+font-style: normal;
+font-weight: 300;
+color: var(--pulse);
+}
+.split .split-line {
+overflow: hidden;
+}
+[data-reveal] {
+opacity: 0;
+transform: translateY(28px);
+}
+.no-motion [data-reveal] {
+opacity: 1;
+transform: none;
+}
+/* ============ IMAGES (duotone + clip reveal) ============ */
+figure[data-img-reveal] {
+position: relative;
+overflow: hidden;
+border-radius: var(--radius);
+border: 1px solid var(--line);
+clip-path: inset(0 0 100% 0);
+/* revealed by JS wipe */
+}
+.no-motion figure[data-img-reveal] {
+clip-path: none;
+}
+figure[data-img-reveal] img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+filter: grayscale(0.35) contrast(1.06) brightness(0.82);
+transform: scale(1.25);
+/* settles to 1 on reveal */
+}
+.no-motion figure[data-img-reveal] img {
+transform: none;
+}
+/* cool duotone cast */
+figure[data-img-reveal]::after {
+content: "";
+position: absolute;
+inset: 0;
+background:
+linear-gradient(160deg, rgba(91, 233, 255, 0.12), transparent 45%, rgba(4, 6, 10, 0.55)),
+linear-gradient(to top, rgba(4, 6, 10, 0.5), transparent 40%);
+pointer-events: none;
+}
+figure figcaption {
+position: absolute;
+left: 14px;
+bottom: 12px;
+z-index: 1;
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--muted);
+}
+figure figcaption span {
+color: var(--pulse);
+margin-right: 10px;
+}
+/* ============ SECTIONS ============ */
+.section {
+position: relative;
+}
+/* ---- hero ---- */
+.hero {
+min-height: 100vh;
+min-height: 100svh;
+display: flex;
+align-items: center;
+padding: 120px 0 40px;
+}
+.hero-grid {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+min-height: calc(100svh - 160px);
+}
+.hero-center {
+text-align: center;
+margin: auto 0;
+}
+.hero-center .eyebrow {
+justify-content: center;
+}
+.hero-title {
+font-family: var(--display);
+font-weight: 500;
+font-size: clamp(88px, 20vw, 260px);
+line-height: 0.88;
+letter-spacing: 0.06em;
+}
+.hero-sub {
+font-family: var(--mono);
+font-size: clamp(12px, 1.4vw, 15px);
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--muted);
+margin-top: 20px;
+}
+.hero-copy {
+max-width: 540px;
+margin: 32px auto 0;
+color: var(--muted);
+font-size: clamp(15px, 1.4vw, 17px);
+}
+.hero-copy strong {
+color: var(--ice);
+font-weight: 600;
+}
+.hero-actions {
+display: flex;
+gap: 16px;
+justify-content: center;
+margin-top: 38px;
+flex-wrap: wrap;
+}
+.hero-meta {
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+gap: 24px;
+}
+.meta-label {
+display: block;
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.26em;
+text-transform: uppercase;
+color: var(--faint);
+margin-bottom: 8px;
+}
+.meta-value {
+font-size: 13px;
+color: var(--muted);
+line-height: 1.7;
+}
+.meta-block.right {
+text-align: right;
+}
+.scroll-cue {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.26em;
+text-transform: uppercase;
+color: var(--faint);
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 12px;
+}
+.scroll-cue i {
+display: block;
+width: 1px;
+height: 44px;
+background: linear-gradient(to bottom, transparent, var(--pulse));
+animation: cueDrop 2.4s var(--ease) infinite;
+}
+@keyframes cueDrop {
+0% {
+transform: scaleY(0);
+transform-origin: top;
+}
+45% {
+transform: scaleY(1);
+transform-origin: top;
+}
+55% {
+transform: scaleY(1);
+transform-origin: bottom;
+}
+100% {
+transform: scaleY(0);
+transform-origin: bottom;
+}
+}
+/* ---- buttons ---- */
+.btn {
+position: relative;
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+padding: 17px 34px;
+border-radius: 8px;
+overflow: hidden;
+transition: color 0.5s var(--ease), border-color 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.btn span {
+position: relative;
+z-index: 1;
+}
+.btn-primary {
+background: var(--pulse);
+color: #031218;
+}
+.btn-primary::after {
+content: "";
+position: absolute;
+inset: 0;
+background: var(--ice);
+transform: translateY(102%);
+transition: transform 0.6s var(--ease);
+}
+.btn-primary:hover::after {
+transform: translateY(0);
+}
+.btn-primary:hover {
+box-shadow: 0 0 28px rgba(91, 233, 255, 0.35);
+}
+.btn-secondary {
+border: 1px solid var(--line);
+color: var(--ice);
+background: var(--surface);
+backdrop-filter: blur(10px);
+}
+.btn-secondary:hover {
+border-color: rgba(91, 233, 255, 0.5);
+box-shadow: 0 0 20px rgba(91, 233, 255, 0.12);
+}
+.btn-wide {
+width: 100%;
+margin-top: 26px;
+}
+/* ---- statement (pinned) ---- */
+.statement {
+height: 100vh;
+display: flex;
+align-items: center;
+}
+.statement-inner {
+width: min(1000px, 100% - 2 * var(--pad));
+margin-inline: auto;
+text-align: center;
+}
+.statement-inner .kicker {
+justify-content: center;
+}
+.statement-lines {
+display: flex;
+flex-direction: column;
+gap: 10px;
+}
+.s-line {
+font-family: var(--display);
+font-weight: 300;
+font-size: clamp(32px, 5vw, 72px);
+line-height: 1.12;
+letter-spacing: -0.03em;
+color: var(--faint);
+}
+/* ---- epochs (pinned horizontal) ---- */
+.epochs-pin {
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+overflow: hidden;
+gap: clamp(24px, 4.5vh, 48px);
+padding: 90px 0 40px;
+}
+.epochs-head {
+display: flex;
+align-items: flex-end;
+justify-content: space-between;
+gap: 40px;
+}
+.epochs-note {
+max-width: 340px;
+color: var(--muted);
+font-size: 14px;
+}
+.epochs-track {
+display: flex;
+gap: clamp(18px, 2.4vw, 32px);
+padding-left: var(--pad);
+width: max-content;
+will-change: transform;
+}
+.epoch-card {
+width: clamp(300px, 32vw, 420px);
+flex-shrink: 0;
+border: 1px solid var(--line);
+border-radius: var(--radius);
+background: var(--surface);
+backdrop-filter: blur(10px);
+overflow: hidden;
+display: flex;
+flex-direction: column;
+transition: border-color 0.5s var(--ease), transform 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.epoch-card:hover {
+border-color: rgba(91, 233, 255, 0.4);
+box-shadow: 0 0 30px rgba(91, 233, 255, 0.08);
+transform: translateY(-6px);
+}
+.epoch-img {
+aspect-ratio: 16 / 9;
+border: 0;
+border-radius: 0;
+border-bottom: 1px solid var(--line);
+}
+.epoch-card:hover .epoch-img img {
+filter: grayscale(0) contrast(1.06) brightness(0.9);
+}
+.epoch-img img {
+transition: filter 0.7s var(--ease);
+}
+.epoch-body {
+padding: clamp(18px, 2vw, 26px);
+display: flex;
+flex-direction: column;
+gap: 8px;
+}
+.epoch-no {
+font-family: var(--mono);
+font-size: 12px;
+color: var(--pulse);
+letter-spacing: 0.1em;
+}
+.epoch-when {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+color: var(--faint);
+}
+.epoch-card h3 {
+font-family: var(--display);
+font-weight: 500;
+font-size: clamp(22px, 2.2vw, 28px);
+letter-spacing: -0.02em;
+margin-top: 4px;
+}
+.epoch-card p {
+color: var(--muted);
+font-size: 13.5px;
+}
+.epochs-progress {
+width: min(1280px, 100% - 2 * var(--pad));
+margin-inline: auto;
+height: 1px;
+background: var(--line);
+}
+.epochs-progress span {
+display: block;
+width: 0%;
+height: 100%;
+background: var(--pulse);
+box-shadow: 0 0 10px rgba(91, 233, 255, 0.6);
+}
+/* ---- featured hall ---- */
+/* content sections run ~130vh so the entity gets dwell time
+between morphs — shrinking these squeezes the resting shape */
+.featured {
+min-height: 130vh;
+display: flex;
+align-items: center;
+padding: 16vh 0;
+}
+.featured-grid {
+display: grid;
+grid-template-columns: 1.05fr 1fr;
+gap: clamp(40px, 6vw, 90px);
+align-items: center;
+}
+.featured-copy {
+margin-top: 30px;
+color: var(--muted);
+font-size: clamp(15px, 1.5vw, 17px);
+max-width: 520px;
+}
+.featured-stats {
+display: flex;
+gap: clamp(24px, 4vw, 56px);
+margin-top: 44px;
+flex-wrap: wrap;
+}
+.featured-stats span,
+.visit-row span {
+display: block;
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.24em;
+text-transform: uppercase;
+color: var(--faint);
+margin-bottom: 8px;
+}
+.featured-stats strong {
+font-weight: 500;
+font-size: 14px;
+color: var(--ice);
+}
+.featured-img {
+aspect-ratio: 4 / 5;
+}
+/* over-scan: the photo is 15% taller than its frame so the scroll
+scrub can pan it top-to-bottom without exposing gaps */
+.featured-img img {
+height: 115%;
+}
+/* ---- visit ---- */
+.visit {
+min-height: 130vh;
+display: flex;
+align-items: center;
+padding: 16vh 0;
+}
+.visit-grid {
+display: grid;
+grid-template-columns: 1.15fr 1fr;
+gap: clamp(40px, 6vw, 100px);
+align-items: center;
+}
+.visit-copy {
+margin-top: 26px;
+color: var(--muted);
+max-width: 440px;
+}
+/* keep "Thirteen billion years," on ONE line: the phrase is 10.35em
+wide, so cap the font at 9.4% of the column's width (cqw) */
+.visit-lead {
+container-type: inline-size;
+}
+.visit-lead .h2 {
+font-size: min(clamp(42px, 6vw, 88px), 9.4cqw);
+}
+.visit-img {
+aspect-ratio: 16 / 9;
+margin-top: 34px;
+max-width: 520px;
+}
+.visit-card {
+border: 1px solid var(--line);
+border-radius: var(--radius);
+background: var(--surface);
+backdrop-filter: blur(12px);
+padding: clamp(26px, 3vw, 40px);
+}
+.visit-card h3 {
+font-family: var(--display);
+font-weight: 500;
+font-size: 22px;
+letter-spacing: -0.02em;
+margin-bottom: 22px;
+}
+.visit-rows {
+display: flex;
+flex-direction: column;
+}
+.visit-row {
+display: flex;
+align-items: baseline;
+justify-content: space-between;
+gap: 20px;
+padding: 13px 0;
+border-top: 1px solid var(--line);
+}
+.visit-row span {
+margin-bottom: 0;
+}
+.visit-row strong {
+font-weight: 500;
+font-size: 14px;
+text-align: right;
+}
+/* ---- program ---- */
+.program {
+min-height: 130vh;
+padding: 18vh 0;
+}
+.program-list {
+margin-top: clamp(40px, 6vh, 70px);
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+/* subtle glass rows — the visit card's material at half strength */
+.program-row {
+display: grid;
+grid-template-columns: 150px 1fr 1.4fr 40px;
+align-items: baseline;
+gap: clamp(16px, 3vw, 40px);
+padding: 24px clamp(16px, 2vw, 28px);
+border: 1px solid rgba(238, 242, 247, 0.07);
+border-radius: var(--radius);
+background: rgba(14, 18, 26, 0.3);
+backdrop-filter: blur(6px);
+transition: background 0.5s var(--ease), border-color 0.5s var(--ease),
+padding-left 0.5s var(--ease), box-shadow 0.5s var(--ease);
+}
+.program-row:hover {
+background: rgba(91, 233, 255, 0.05);
+border-color: rgba(91, 233, 255, 0.28);
+box-shadow: 0 0 24px rgba(91, 233, 255, 0.06);
+padding-left: clamp(26px, 2.6vw, 40px);
+}
+.p-when {
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 0.14em;
+text-transform: uppercase;
+color: var(--faint);
+}
+.p-name {
+font-family: var(--display);
+font-weight: 500;
+font-size: clamp(20px, 2.2vw, 27px);
+letter-spacing: -0.02em;
+}
+.p-desc {
+color: var(--muted);
+font-size: 14px;
+}
+.p-arrow {
+color: var(--pulse);
+font-size: 18px;
+transition: transform 0.5s var(--ease);
+}
+.program-row:hover .p-arrow {
+transform: translateX(8px);
+}
+/* ---- manifesto ---- */
+.manifesto {
+min-height: 130vh;
+display: flex;
+align-items: center;
+padding: 18vh 0;
+}
+.manifesto-wrap {
+text-align: center;
+max-width: 920px;
+margin-inline: auto;
+}
+.manifesto-wrap .kicker {
+justify-content: center;
+}
+.manifesto-lines {
+display: flex;
+flex-direction: column;
+gap: 20px;
+margin-top: 20px;
+}
+.m-line {
+font-family: var(--display);
+font-weight: 300;
+font-size: clamp(25px, 3.4vw, 46px);
+line-height: 1.22;
+letter-spacing: -0.025em;
+text-wrap: balance;
+/* no orphaned one-word wrap lines */
+}
+.manifesto-credit {
+margin-top: 60px;
+font-family: var(--mono);
+font-size: 11px;
+letter-spacing: 0.22em;
+text-transform: uppercase;
+}
+.manifesto-credit span {
+color: var(--faint);
+margin-right: 14px;
+}
+/* ---- final ---- */
+.final {
+min-height: 100vh;
+display: flex;
+align-items: center;
+text-align: center;
+padding: 22vh 0 14vh;
+}
+.final-wrap {
+max-width: 880px;
+margin-inline: auto;
+}
+.final-wrap .kicker {
+justify-content: center;
+}
+.final-title {
+font-family: var(--display);
+font-weight: 400;
+font-size: clamp(50px, 8vw, 118px);
+line-height: 0.98;
+letter-spacing: -0.035em;
+}
+.final-copy {
+margin: 30px auto 0;
+max-width: 460px;
+color: var(--muted);
+}
+.final-actions {
+display: flex;
+gap: 16px;
+justify-content: center;
+margin-top: 44px;
+flex-wrap: wrap;
+}
+/* ---- footer ---- */
+.footer {
+border-top: 1px solid var(--line);
+padding: 70px 0 34px;
+position: relative;
+z-index: 4;
+}
+.footer-top {
+display: flex;
+justify-content: space-between;
+gap: 48px;
+flex-wrap: wrap;
+}
+.footer-brand {
+font-family: var(--display);
+font-size: 32px;
+font-weight: 500;
+line-height: 1.1;
+letter-spacing: 0.04em;
+}
+.footer-brand em {
+display: block;
+font-family: var(--mono);
+font-style: normal;
+font-size: 11px;
+letter-spacing: 0.2em;
+text-transform: uppercase;
+color: var(--faint);
+margin-top: 8px;
+}
+.footer-cols {
+display: flex;
+gap: clamp(40px, 7vw, 110px);
+flex-wrap: wrap;
+}
+.footer-col {
+display: flex;
+flex-direction: column;
+gap: 12px;
+}
+.footer-col h4 {
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.26em;
+text-transform: uppercase;
+color: var(--faint);
+font-weight: 500;
+margin-bottom: 6px;
+}
+.footer-col a {
+color: var(--muted);
+font-size: 14px;
+transition: color 0.5s var(--ease);
+}
+.footer-col a:hover {
+color: var(--pulse);
+}
+.footer-bottom {
+display: flex;
+justify-content: space-between;
+gap: 20px;
+margin-top: 70px;
+font-family: var(--mono);
+font-size: 10px;
+letter-spacing: 0.18em;
+text-transform: uppercase;
+color: var(--faint);
+flex-wrap: wrap;
+}
+/* ============ RESPONSIVE ============ */
+@media (max-width: 900px) {
+#rail {
+display: none;
+}
+#telemetry {
+display: none;
+}
+.nav-links a:not(.nav-ticket) {
+display: none;
+}
+.logo span {
+display: none;
+}
+.featured-grid,
+.visit-grid {
+grid-template-columns: 1fr;
+}
+.featured-img {
+aspect-ratio: 16 / 10;
+}
+.program-row {
+grid-template-columns: 1fr 40px;
+grid-template-areas: "when arrow" "name arrow" "desc arrow";
+}
+.p-when {
+grid-area: when;
+}
+.p-name {
+grid-area: name;
+}
+.p-desc {
+grid-area: desc;
+}
+.p-arrow {
+grid-area: arrow;
+align-self: center;
+}
+.epochs-head {
+flex-direction: column;
+align-items: flex-start;
+gap: 18px;
+}
+.hero-meta .meta-block.right {
+display: none;
+}
+#chrono {
+bottom: 18px;
+}
+}
+/* ============ REDUCED MOTION ============ */
+@media (prefers-reduced-motion: reduce) {
+#grain {
+animation: none;
+}
+.scroll-cue i {
+animation: none;
+transform: none;
+}
+.telem-status i,
+.pulse-dot {
+animation: none;
+}
+.glitch-active {
+animation: none;
+}
+[data-reveal] {
+opacity: 1;
+transform: none;
+}
+figure[data-img-reveal] {
+clip-path: none;
+}
+figure[data-img-reveal] img {
+transform: none;
+}
+.s-line {
+color: var(--ice);
+}
+html {
+scroll-behavior: auto;
+}
+}
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/SplitText.min.js"></script>
+<script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
+<script type="importmap">
+{ "imports": {
+"three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+"three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+/* ============================================================
+AEON v2.5 — Temporal Observatory
+------------------------------------------------------------
+Architecture:
+1. Lenis ↔ ScrollTrigger sync (single loop via gsap.ticker)
+2. AUDIO — synthesized ambient layer (Web Audio, no assets):
+detuned hum that re-tunes per epoch, chronometer ticks,
+a burst whoosh, and a scroll-velocity filter. Opt-in via
+the SND toggle (user gesture unlocks the AudioContext).
+3. THE ENTITY — one particle system (custom ShaderMaterial)
+with 8 precomputed shape targets, rendered through
+RenderPass → Afterimage (motion trails, damped by morph
+intensity) → UnrealBloom. Scroll scrubs a "shape float"
+0..7 with inertia; the vertex shader mixes target pairs
+with a long-wavelength flow field. New in v2.5:
+· cursor repulsion — the cloud bends away from the
+pointer (raycast to the entity's plane, local space)
+· constellation lines — nearest-neighbour segments per
+shape, fading in only when a form is at rest
+· camera fly-through intro — the preloader releases you
+from INSIDE the cloud, pulling back to the gyroscope
+Click empty sky → burst + elastic reform (+ whoosh).
+4. Scroll choreography — preloader, SplitText reveals,
+scramble-decode on HUD/mono type, pinned statement,
+pinned horizontal epochs, image clip reveals + parallax,
+per-section scene-color crossfades, epoch rail,
+chronometer + telemetry HUD, scroll-velocity RGB glitch.
+Tuning knobs are gathered in CONFIG below.
+============================================================ */
+import * as THREE from 'three';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { AfterimagePass } from 'three/addons/postprocessing/AfterimagePass.js';
+gsap.registerPlugin(ScrollTrigger, SplitText);
+/* ---------------- CONFIG (the knobs) ---------------- */
+const CONFIG = {
+ease: 'expo.out',          // ONE motion personality (mirror --ease in CSS)
+revealDur: 1.2,
+scrollWeight: 1.35,        // Lenis duration — higher = heavier, driftier
+counts: { desktop: 15000, mobile: 5000 },
+pointSize: 3.0,
+idleJitter: 0.05,          // constant breathing (keep small — blurs fine shapes)
+stormAmp: 1.05,            // scatter at the middle of a morph
+flowFreq: 0.2,             // noise wavelength — LOWER = smoother, more liquid
+velocityTurb: 0.3,
+morphScrub: 1.2,           // inertia on the morph scrub
+bloom: { strength: 0.85, radius: 0.55, threshold: 0.12 },
+glitchVelocity: 55,        // |lenis velocity| that triggers the RGB glitch
+mouse: { radius: 2.6, force: 1.0 }, // cursor repulsion field
+lines: { max: 300, opacity: 0.13 }, // constellation segments per shape
+trailDamp: { base: 0.35, storm: 0.45, burst: 0.5 }, // afterimage strength
+intro: { z: -11, spin: 1.2, duration: 2.8 },        // fly-through
+};
+const EASE = CONFIG.ease;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = matchMedia('(max-width: 768px)').matches;
+const finePointer = matchMedia('(pointer: fine)').matches;
+if (reduced) document.documentElement.classList.add('no-motion');
+/* ============================================================
+1) LENIS ↔ SCROLLTRIGGER — one shared scroll position.
+============================================================ */
+let lenis = null;
+let scrollVelocity = 0;
+let glitchCooldown = 0;
+if (!reduced) {
+lenis = new Lenis({
+duration: CONFIG.scrollWeight,
+easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // expo-out feel
+smoothWheel: true,
+});
+lenis.on('scroll', (e) => {
+ScrollTrigger.update();
+scrollVelocity = Math.abs(e.velocity || 0);
+audio.velocity(scrollVelocity);
+// scroll-velocity RGB glitch
+const now = performance.now();
+if (scrollVelocity > CONFIG.glitchVelocity && now > glitchCooldown) {
+glitchCooldown = now + 600;
+document.querySelectorAll('.glitch').forEach((el) => {
+const r = el.getBoundingClientRect();
+if (r.bottom < 0 || r.top > innerHeight) return;
+el.classList.add('glitch-active');
+setTimeout(() => el.classList.remove('glitch-active'), 260);
+});
+}
+});
+gsap.ticker.add((time) => lenis.raf(time * 1000)); // single loop
+gsap.ticker.lagSmoothing(0);
+lenis.stop(); // locked until the preloader finishes
+document.querySelectorAll('a[href^="#"]').forEach((a) => {
+a.addEventListener('click', (e) => {
+const target = document.querySelector(a.getAttribute('href'));
+if (target) { e.preventDefault(); lenis.scrollTo(target, { offset: 0 }); }
+});
+});
+}
+/* ============================================================
+2) AUDIO — synthesized ambience, opt-in.
+Hum = two detuned sines + a quiet octave triangle through a
+lowpass; the epoch re-tunes the root, scroll opens the filter.
+============================================================ */
+const audio = (() => {
+let ctx = null, master = null, filter = null, humGain = null;
+const oscs = [];
+let enabled = false, ready = false;
+function setup() {
+const AC = window.AudioContext || window.webkitAudioContext;
+if (!AC) return false;
+ctx = new AC();
+master = ctx.createGain();
+master.gain.value = 0;
+master.connect(ctx.destination);
+filter = ctx.createBiquadFilter();
+filter.type = 'lowpass';
+filter.frequency.value = 420;
+filter.Q.value = 0.8;
+filter.connect(master);
+humGain = ctx.createGain();
+humGain.gain.value = 0.055;
+humGain.connect(filter);
+[[46, 'sine', 1], [46.55, 'sine', 1], [92.6, 'triangle', 0.14]].forEach(([f, type, g]) => {
+const o = ctx.createOscillator();
+o.type = type;
+o.frequency.value = f;
+const og = ctx.createGain();
+og.gain.value = g;
+o.connect(og);
+og.connect(humGain);
+o.start();
+oscs.push(o);
+});
+// slow swell so the hum never feels static
+const lfo = ctx.createOscillator();
+lfo.frequency.value = 0.08;
+const lfoGain = ctx.createGain();
+lfoGain.gain.value = 0.02;
+lfo.connect(lfoGain);
+lfoGain.connect(humGain.gain);
+lfo.start();
+ready = true;
+return true;
+}
+function toggle() {
+if (!ready && !setup()) return false;
+ctx.resume();
+enabled = !enabled;
+master.gain.setTargetAtTime(enabled ? 0.55 : 0, ctx.currentTime, 0.4);
+return enabled;
+}
+/* the hum re-tunes per epoch — deeper past, brighter present */
+function setEpoch(i) {
+if (!ready || !enabled || isNaN(i)) return;
+const base = 42 + i * 6;
+oscs[0].frequency.setTargetAtTime(base, ctx.currentTime, 1.4);
+oscs[1].frequency.setTargetAtTime(base * 1.012, ctx.currentTime, 1.4);
+oscs[2].frequency.setTargetAtTime(base * 2.01, ctx.currentTime, 1.4);
+}
+/* soft chronometer blip on epoch change */
+function tick() {
+if (!ready || !enabled) return;
+const t = ctx.currentTime;
+const o = ctx.createOscillator();
+o.type = 'sine';
+o.frequency.setValueAtTime(1150, t);
+o.frequency.exponentialRampToValueAtTime(520, t + 0.12);
+const g = ctx.createGain();
+g.gain.setValueAtTime(0.0001, t);
+g.gain.exponentialRampToValueAtTime(0.05, t + 0.012);
+g.gain.exponentialRampToValueAtTime(0.0001, t + 0.18);
+o.connect(g);
+g.connect(master);
+o.start(t);
+o.stop(t + 0.2);
+}
+/* filtered-noise whoosh for the burst */
+function whoosh() {
+if (!ready || !enabled) return;
+const t = ctx.currentTime, dur = 1.4;
+const buf = ctx.createBuffer(1, ctx.sampleRate * dur, ctx.sampleRate);
+const d = buf.getChannelData(0);
+for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
+const src = ctx.createBufferSource();
+src.buffer = buf;
+const bp = ctx.createBiquadFilter();
+bp.type = 'bandpass';
+bp.Q.value = 1.1;
+bp.frequency.setValueAtTime(280, t);
+bp.frequency.exponentialRampToValueAtTime(1800, t + 0.25);
+bp.frequency.exponentialRampToValueAtTime(120, t + dur);
+const g = ctx.createGain();
+g.gain.setValueAtTime(0.001, t);
+g.gain.exponentialRampToValueAtTime(0.2, t + 0.15);
+g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+src.connect(bp);
+bp.connect(g);
+g.connect(master);
+src.start(t);
+}
+/* scroll speed opens the lowpass — the world "rushes" as you move */
+function velocity(v) {
+if (!ready || !enabled) return;
+filter.frequency.setTargetAtTime(Math.min(2400, 420 + v * 22), ctx.currentTime, 0.25);
+}
+return { toggle, setEpoch, tick, whoosh, velocity };
+})();
+function initSoundToggle() {
+const btn = document.getElementById('sndToggle');
+if (!btn) return;
+btn.addEventListener('click', () => {
+const on = audio.toggle();
+btn.classList.toggle('is-on', on);
+btn.setAttribute('aria-pressed', String(on));
+btn.querySelector('em').textContent = on ? 'ON' : 'OFF';
+});
+}
+/* ============================================================
+3) THE ENTITY — shape targets
+============================================================ */
+const COUNT = isMobile ? CONFIG.counts.mobile : CONFIG.counts.desktop;
+const rand = Math.random;
+const gauss = () => (rand() + rand() + rand() - 1.5) * 0.8;
+function rotX(arr, a) {
+const c = Math.cos(a), s = Math.sin(a);
+for (let i = 0; i < arr.length; i += 3) {
+const y = arr[i + 1], z = arr[i + 2];
+arr[i + 1] = y * c - z * s;
+arr[i + 2] = y * s + z * c;
+}
+return arr;
+}
+function rotY(arr, a) {
+const c = Math.cos(a), s = Math.sin(a);
+for (let i = 0; i < arr.length; i += 3) {
+const x = arr[i], z = arr[i + 2];
+arr[i] = x * c + z * s;
+arr[i + 2] = -x * s + z * c;
+}
+return arr;
+}
+function rotZ(arr, a) {
+const c = Math.cos(a), s = Math.sin(a);
+for (let i = 0; i < arr.length; i += 3) {
+const x = arr[i], y = arr[i + 1];
+arr[i] = x * c - y * s;
+arr[i + 1] = x * s + y * c;
+}
+return arr;
+}
+/* random point on a sphere shell between rMin..rMax — ambient halos
+that carry each form into the corners of the viewport */
+function haloPoint(a, i3, rMin, rMax) {
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+const r = rMin + rand() * (rMax - rMin);
+a[i3] = (x / n) * r; a[i3 + 1] = (y / n) * r; a[i3 + 2] = (z / n) * r;
+}
+/* 0 · DUST — orbital gyroscope: three nested rings + core + dust halo.
+ringId records each particle's role (0/1/2 = ring, 3 = core, 4 = halo)
+so the shader can tumble and tint the rings independently. */
+const ringId = new Float32Array(COUNT);
+function shapeGyroscope() {
+const a = new Float32Array(COUNT * 3);
+const rings = [
+{ r: 6.4, tx: -0.5, tz: 0.0 },
+{ r: 5.3, tx: 0.9, tz: 0.7 },
+{ r: 4.2, tx: 0.25, tz: -1.1 },
+];
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+const pick = rand();
+if (pick < 0.12) { ringId[i] = 4; haloPoint(a, i3, 7.5, 13); continue; } // far dust
+if (pick < 0.24) { // dense core
+ringId[i] = 3;
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+const r = 1.7 * Math.cbrt(rand());
+a[i3] = (x / n) * r; a[i3 + 1] = (y / n) * r; a[i3 + 2] = (z / n) * r;
+continue;
+}
+ringId[i] = i % 3;
+const ring = rings[i % 3];
+const ang = rand() * Math.PI * 2;
+const x = Math.cos(ang) * ring.r + gauss() * 0.07;
+const y = gauss() * 0.07;
+const z = Math.sin(ang) * ring.r + gauss() * 0.07;
+let y2 = y * Math.cos(ring.tx) - z * Math.sin(ring.tx);
+const z2 = y * Math.sin(ring.tx) + z * Math.cos(ring.tx);
+const x2 = x * Math.cos(ring.tz) - y2 * Math.sin(ring.tz);
+y2 = x * Math.sin(ring.tz) + y2 * Math.cos(ring.tz);
+a[i3] = x2; a[i3 + 1] = y2; a[i3 + 2] = z2;
+}
+return a;
+}
+/* 1 · IGNITION — a dense star with a thin corona */
+function shapeStar() {
+const a = new Float32Array(COUNT * 3);
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+x /= n; y /= n; z /= n;
+const r = rand() < 0.85
+? 3.4 * Math.cbrt(rand())
+: 3.4 + Math.pow(rand(), 2.4) * 5.6;
+a[i3] = x * r; a[i3 + 1] = y * r; a[i3 + 2] = z * r;
+}
+return a;
+}
+/* 2 · WORLDS — a ringed planet */
+function shapePlanet() {
+const a = new Float32Array(COUNT * 3);
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+if (rand() < 0.76) {
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+const r = 3.1 + (rand() - 0.5) * 0.08;
+a[i3] = (x / n) * r; a[i3 + 1] = (y / n) * r; a[i3 + 2] = (z / n) * r;
+} else {
+const rr = 4.4 + rand() * 2.1;
+const ang = rand() * Math.PI * 2;
+a[i3] = Math.cos(ang) * rr;
+a[i3 + 1] = (rand() - 0.5) * 0.1;
+a[i3 + 2] = Math.sin(ang) * rr;
+}
+}
+return rotZ(rotX(a, -0.4), 0.16);
+}
+/* 3 · WATER — an ocean of interfering waves, tipped toward the viewer */
+function shapeWaves() {
+const a = new Float32Array(COUNT * 3);
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+const x = (rand() - 0.5) * 17;
+const z = (rand() - 0.5) * 11;
+a[i3] = x;
+a[i3 + 1] = Math.sin(x * 0.55 + z * 0.35) * 0.9
++ Math.sin(x * 1.15 - z * 0.6) * 0.45
++ Math.sin(z * 1.7) * 0.25;
+a[i3 + 2] = z;
+}
+return rotX(a, -0.5);
+}
+/* 4 · LIFE — a wider DNA double helix, wrapped in nucleotide dust */
+function shapeHelix() {
+const a = new Float32Array(COUNT * 3);
+const R = 2.7, TURNS = 4.2, H = 11.5;
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+const pick = rand();
+if (pick < 0.12) { // ambient dust cylinder around the molecule
+const ang = rand() * Math.PI * 2;
+const rr = 3.8 + rand() * 3.2;
+a[i3] = Math.cos(ang) * rr;
+a[i3 + 1] = (rand() - 0.5) * (H + 3);
+a[i3 + 2] = Math.sin(ang) * rr;
+continue;
+}
+const u = rand();
+const ang = u * Math.PI * 2 * TURNS;
+const y = (u - 0.5) * H;
+if (pick < 0.9) { // the two strands
+const ph = (i % 2) * Math.PI;
+a[i3] = Math.cos(ang + ph) * R + (rand() - 0.5) * 0.09;
+a[i3 + 1] = y;
+a[i3 + 2] = Math.sin(ang + ph) * R + (rand() - 0.5) * 0.09;
+} else { // rungs bridging the strands
+const s = rand();
+const x1 = Math.cos(ang) * R, z1 = Math.sin(ang) * R;
+const x2 = Math.cos(ang + Math.PI) * R, z2 = Math.sin(ang + Math.PI) * R;
+a[i3] = x1 + (x2 - x1) * s;
+a[i3 + 1] = y;
+a[i3 + 2] = z1 + (z2 - z1) * s;
+}
+}
+// kept vertical: the spin turns it about its own axis, and the
+// aesthetic tilt is applied per-frame (rotation.z, weighted)
+return a;
+}
+/* 5 · FLIGHT — a comet: dense head streaking across the night,
+with a curved widening tail (replaced the ambiguous butterfly) */
+function shapeComet() {
+const a = new Float32Array(COUNT * 3);
+// quadratic bezier spine: head → arc → tail end
+const P0 = [4.4, 2.2, 0], P1 = [0.4, 3.0, 0.9], P2 = [-8.2, -3.0, -0.6];
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+const pick = rand();
+if (pick < 0.2) { // the head — hot and dense
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+const r = 1.0 * Math.cbrt(rand());
+a[i3] = P0[0] + (x / n) * r;
+a[i3 + 1] = P0[1] + (y / n) * r;
+a[i3 + 2] = P0[2] + (z / n) * r;
+continue;
+}
+if (pick < 0.28) { haloPoint(a, i3, 8, 13); continue; } // night dust
+// the tail — density and spread grow along the arc
+const t = Math.pow(rand(), 1.35);
+const it = 1 - t;
+const spread = 0.12 + t * 2.3;
+a[i3] = it * it * P0[0] + 2 * it * t * P1[0] + t * t * P2[0] + gauss() * spread;
+a[i3 + 1] = it * it * P0[1] + 2 * it * t * P1[1] + t * t * P2[1] + gauss() * spread;
+a[i3 + 2] = it * it * P0[2] + 2 * it * t * P1[2] + t * t * P2[2] + gauss() * spread * 0.5;
+}
+return a;
+}
+/* 6 · SIGNAL — the transmission: a hot core inside concentric shells
+that the shader radiates outward in a loop (replaced the gold city).
+Shell spacing here must match SIGNAL_GAP used in the shader. */
+function shapeSignal() {
+const a = new Float32Array(COUNT * 3);
+const R0 = 1.8, GAP = 1.35, SHELLS = 5;
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+const pick = rand();
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+x /= n; y /= n; z /= n;
+if (pick < 0.12) { // the emitting core
+const r = 1.2 * Math.cbrt(rand());
+a[i3] = x * r; a[i3 + 1] = y * r; a[i3 + 2] = z * r;
+} else if (pick < 0.84) { // discrete wavefront shells
+const k = Math.floor(rand() * SHELLS);
+const r = R0 + k * GAP + (rand() - 0.5) * 0.07;
+a[i3] = x * r; a[i3 + 1] = y * r; a[i3 + 2] = z * r;
+} else { // faint listening field beyond the wavefronts
+haloPoint(a, i3, 9, 13);
+}
+}
+return a;
+}
+/* 7 · RETURN — Earth: an ocean-blue sphere with round continents
+(per-point land tint via aTint), a thin atmosphere shell, and
+day/night shading + slow rotation applied in the shader/frame */
+const earthTint = new Float32Array(COUNT); // 1 = land, 0 = ocean/atmosphere
+function shapeEarth() {
+const a = new Float32Array(COUNT * 3);
+const R = 4.6;
+// continents: a handful of circular caps on the sphere, ragged edges
+const caps = [];
+for (let k = 0; k < 8; k++) {
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+caps.push({ x: x / n, y: y / n, z: z / n, t: 0.74 + rand() * 0.12 });
+}
+const jitter = (x, y, z) => {
+const s = Math.sin(x * 12.9898 + y * 78.233 + z * 37.719) * 43758.5453;
+return (s - Math.floor(s)) * 0.08;
+};
+for (let i = 0; i < COUNT; i++) {
+const i3 = i * 3;
+let x = gauss(), y = gauss(), z = gauss();
+const n = Math.hypot(x, y, z) || 1;
+x /= n; y /= n; z /= n;
+if (rand() < 0.1) { // atmosphere shell
+const r = R + 0.35 + Math.pow(rand(), 2) * 1.3;
+a[i3] = x * r; a[i3 + 1] = y * r; a[i3 + 2] = z * r;
+earthTint[i] = 0;
+continue;
+}
+const r = R + (rand() - 0.5) * 0.08;
+a[i3] = x * r; a[i3 + 1] = y * r; a[i3 + 2] = z * r;
+let land = 0;
+for (const c of caps) {
+if (x * c.x + y * c.y + z * c.z > c.t + jitter(x, y, z)) { land = 1; break; }
+}
+earthTint[i] = land;
+}
+return a;
+}
+const shapes = [
+shapeGyroscope(), shapeStar(), shapePlanet(), shapeWaves(),
+shapeHelix(), shapeComet(), shapeSignal(), shapeEarth(),
+];
+/* per-shape entity color, camera distance, x-drift */
+const SHAPE_STYLE = [
+{ color: '#7fd4ff', camZ: 14.5, offX: 0 },    // dust — icy cyan
+{ color: '#ff8a5b', camZ: 13.5, offX: 0 },    // ignition
+{ color: '#c9a06a', camZ: 14.5, offX: 2.0 },  // worlds
+{ color: '#4fb6e0', camZ: 13.0, offX: 2.4 },  // water
+{ color: '#5bf0d8', camZ: 12.5, offX: 1.8 },  // life
+{ color: '#e08ab8', camZ: 13.5, offX: -0.8 }, // flight — comet
+{ color: '#a78bfa', camZ: 14.5, offX: 0 },    // signal — transmission violet
+{ color: '#3d7fd6', camZ: 16.0, offX: 0 },    // return — ocean blue
+];
+const EARTH_LAND = new THREE.Color('#66e0b8'); // continent tint
+const shapeColors = SHAPE_STYLE.map((s) => new THREE.Color(s.color));
+/* ---- constellation pairs: shortest neighbour links per shape ----
+sampled subset → pairwise distances → keep the N shortest */
+function buildLinePairs(shape) {
+const M = Math.min(420, COUNT);
+const step = Math.max(1, Math.floor(COUNT / M));
+const idx = [];
+for (let i = 0; i < COUNT; i += step) idx.push(i);
+const cands = [];
+const maxD2 = 1.7 * 1.7;
+for (let i = 0; i < idx.length; i++) {
+const a3 = idx[i] * 3;
+for (let j = i + 1; j < idx.length; j++) {
+const b3 = idx[j] * 3;
+const dx = shape[a3] - shape[b3];
+const dy = shape[a3 + 1] - shape[b3 + 1];
+const dz = shape[a3 + 2] - shape[b3 + 2];
+const d2 = dx * dx + dy * dy + dz * dz;
+if (d2 < maxD2 && d2 > 0.01) cands.push([d2, idx[i], idx[j]]);
+}
+}
+cands.sort((a, b) => a[0] - b[0]);
+return cands.slice(0, CONFIG.lines.max);
+}
+const linePairs = isMobile ? null : shapes.map(buildLinePairs);
+/* ============================================================
+3b) THE ENTITY — renderer, post pipeline, shader, controller
+============================================================ */
+/* GLSL: ashima 3D simplex noise (standard implementation) */
+const SNOISE = /* glsl */`
+vec3 mod289(vec3 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+vec4 mod289(vec4 x){ return x - floor(x * (1.0/289.0)) * 289.0; }
+vec4 permute(vec4 x){ return mod289(((x*34.0)+1.0)*x); }
+vec4 taylorInvSqrt(vec4 r){ return 1.79284291400159 - 0.85373472095314 * r; }
+float snoise(vec3 v){
+const vec2 C = vec2(1.0/6.0, 1.0/3.0);
+const vec4 D = vec4(0.0, 0.5, 1.0, 2.0);
+vec3 i = floor(v + dot(v, C.yyy));
+vec3 x0 = v - i + dot(i, C.xxx);
+vec3 g = step(x0.yzx, x0.xyz);
+vec3 l = 1.0 - g;
+vec3 i1 = min(g.xyz, l.zxy);
+vec3 i2 = max(g.xyz, l.zxy);
+vec3 x1 = x0 - i1 + C.xxx;
+vec3 x2 = x0 - i2 + C.yyy;
+vec3 x3 = x0 - D.yyy;
+i = mod289(i);
+vec4 p = permute(permute(permute(
+i.z + vec4(0.0, i1.z, i2.z, 1.0))
++ i.y + vec4(0.0, i1.y, i2.y, 1.0))
++ i.x + vec4(0.0, i1.x, i2.x, 1.0));
+float n_ = 0.142857142857;
+vec3 ns = n_ * D.wyz - D.xzx;
+vec4 j = p - 49.0 * floor(p * ns.z * ns.z);
+vec4 x_ = floor(j * ns.z);
+vec4 y_ = floor(j - 7.0 * x_);
+vec4 x = x_ * ns.x + ns.yyyy;
+vec4 y = y_ * ns.x + ns.yyyy;
+vec4 h = 1.0 - abs(x) - abs(y);
+vec4 b0 = vec4(x.xy, y.xy);
+vec4 b1 = vec4(x.zw, y.zw);
+vec4 s0 = floor(b0)*2.0 + 1.0;
+vec4 s1 = floor(b1)*2.0 + 1.0;
+vec4 sh = -step(h, vec4(0.0));
+vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy;
+vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww;
+vec3 p0 = vec3(a0.xy, h.x);
+vec3 p1 = vec3(a0.zw, h.y);
+vec3 p2 = vec3(a1.xy, h.z);
+vec3 p3 = vec3(a1.zw, h.w);
+vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2,p2), dot(p3,p3)));
+p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w;
+vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);
+m = m * m;
+return 42.0 * dot(m*m, vec4(dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3)));
+}`;
+const VERT = /* glsl */`
+attribute vec3 aPosA;     // current shape
+attribute vec3 aPosB;     // next shape
+attribute float aSeed;    // per-point random 0..1
+attribute float aScale;   // per-point size
+attribute float aTint;    // Earth finale: 1 = continent, 0 = ocean
+attribute float aRing;    // gyroscope role: 0/1/2 = ring, 3 = core, 4 = halo
+uniform float uMorph;     // 0..1 between A and B
+uniform float uTime;
+uniform float uTime2;     // variable-speed clock: idle motion runs faster in the hero
+uniform float uDrift;     // extra idle amplitude (hero liveliness)
+uniform float uTurb;      // scroll-velocity agitation
+uniform float uHeat;      // statement charge: corona simmer + glow
+uniform float uWave;      // ocean weight: rolling swell on/off
+uniform float uTide;      // featured-hall scroll progress pushes the swell
+uniform float uComet;     // comet weight: tail slipstream on/off
+uniform float uSignal;    // transmission weight: shells radiate outward
+uniform float uEarth;     // Earth finale weight: land tint + day/night shading
+uniform vec3 uLand;       // continent color
+uniform float uHero;      // gyroscope weight: warm core tint
+uniform vec3 uCore;       // the ember heart inside the rings
+uniform float uRingT;     // gimbal clock — each ring tumbles on its own axis
+uniform vec3 uRing0;      // outer ring tone (deep, slow)
+uniform vec3 uRing1;      // middle ring tone (anchor cyan, counter-rotating)
+uniform vec3 uRing2;      // inner ring tone (palest, fastest)
+uniform float uBurst;     // 0..1 click disintegration
+uniform float uIdle;
+uniform float uStormAmp;
+uniform float uFlowFreq;
+uniform float uSize;
+uniform float uPixelRatio;
+uniform vec3 uMouse;      // cursor in the entity's local space
+uniform float uMouseR;    // repulsion radius
+uniform float uMouseF;    // repulsion force
+uniform vec3 uColorFrom;
+uniform vec3 uColorTo;
+varying vec3 vColor;
+varying float vTwinkle;
+${SNOISE}
+void main(){
+float m = clamp(uMorph, 0.0, 1.0);
+/* staggered departure, smoothed twice for a liquid feel */
+float tt = smoothstep(0.0, 1.0, clamp((m - aSeed * 0.3) / 0.7, 0.0, 1.0));
+tt = tt * tt * (3.0 - 2.0 * tt);
+vec3 pos = mix(aPosA, aPosB, tt);
+/* gyroscope gimbals: each ring tumbles about its own axis at its own
+rate (outer slow, middle counter, inner fast). Rodrigues rotation,
+blended by uHero so the motion settles out through the first morph */
+if (uHero > 0.001 && aRing < 2.5) {
+vec3 ax = aRing < 0.5 ? normalize(vec3(1.0, 0.18, 0.0))
+: aRing < 1.5 ? normalize(vec3(0.0, 1.0, 0.22))
+: normalize(vec3(0.25, 0.0, 1.0));
+float ang = uRingT * (aRing < 0.5 ? 0.24 : aRing < 1.5 ? -0.38 : 0.55);
+float c = cos(ang), s = sin(ang);
+vec3 rp = pos * c + cross(ax, pos) * s + ax * dot(ax, pos) * (1.0 - c);
+pos = mix(pos, rp, uHero);
+}
+/* the flow: long-wavelength noise that peaks mid-morph.
+uTime2 is a variable-speed clock — the idle motion visibly
+speeds up in the hero (uDrift also widens its amplitude) */
+float storm = sin(m * 3.14159265);
+vec3 np = pos * uFlowFreq + vec3(uTime2 * 0.18) + aSeed * 6.28;
+vec3 disp = vec3(snoise(np), snoise(np + 31.7), snoise(np + 74.3));
+pos += disp * (uIdle * (1.0 + uDrift * 1.6) + storm * uStormAmp * (0.8 + aSeed) + uTurb);
+/* statement heat: a boiling corona — outer particles simmer
+radially on slow noise, swelling continuously with the charge.
+Scroll-locked and noise-driven: no discrete pulses, no lag */
+if (uHeat > 0.001) {
+float lick = snoise(pos * 0.5 + vec3(uTime2 * 0.35) + aSeed * 9.4) * 0.5 + 0.5;
+pos += normalize(pos + vec3(0.0001)) * lick * uHeat * (0.25 + aSeed * 0.85);
+}
+/* the living sea: rolling swells travel through the basin on the
+idle clock, and uTide (featured-hall scroll) pushes them forward —
+scrub back and the water pulls back with you. Displacement runs
+along the baked tilt of the waves plane (rotX -0.5) */
+if (uWave > 0.001) {
+const vec3 WN = vec3(0.0, 0.8776, -0.4794); // plane normal
+const vec3 WZ = vec3(0.0, 0.4794, 0.8776);  // plane depth axis
+float wx = pos.x;
+float wz = dot(pos, WZ);
+float ph = uTide * 6.0;
+float swell = sin(wx * 0.5 - uTime2 * 0.9 - ph) * 0.55
++ sin(wx * 1.1 + wz * 0.6 - uTime2 * 0.6 - ph * 0.7) * 0.3
++ snoise(vec3(wx * 0.25, wz * 0.3, uTime2 * 0.18)) * 0.45;
+pos += WN * swell * uWave;
+}
+/* comet slipstream: the tail flutters and surges backward, the
+turbulence growing with distance from the head — the head stays
+hot and tight while the wake streams like a shooting star */
+if (uComet > 0.001) {
+float dh = distance(pos.xy, vec2(4.4, 2.2));      // head position
+float amp = smoothstep(1.2, 9.0, dh);             // tail-only
+float ph = dot(pos.xy, vec2(-0.92, -0.4));        // along-tail phase
+float s1 = snoise(vec3(ph * 0.7 + uTime2 * 1.5, aSeed * 6.0, 2.3));
+float s2 = snoise(vec3(ph * 1.4 + uTime2 * 2.2, aSeed * 3.0, 7.9));
+pos += vec3(-0.4, 0.92, 0.15) * (s1 * 0.45 + s2 * 0.2) * amp * uComet;
+pos += vec3(-0.92, -0.4, 0.0) * s2 * 0.3 * amp * uComet;
+}
+/* the transmission: wavefront shells glide outward and wrap back
+to the core, looping seamlessly. Rings dim as they travel — the
+broadcast fades into the dark. Constants match shapeSignal(). */
+float signalFade = 1.0;
+if (uSignal > 0.001) {
+float r0 = length(pos);
+if (r0 > 1.6 && r0 < 8.8) { // shells only — core and far field stay
+vec3 dir = pos / r0;
+float span = 6.75; // SHELLS * GAP
+float r1 = mod(r0 - 1.8 + uTime2 * 0.9, span) + 1.8;
+pos = mix(pos, dir * r1, uSignal);
+signalFade = mix(1.0, clamp(1.7 - r1 / 7.0, 0.2, 1.0), uSignal);
+}
+}
+/* cursor repulsion — the cloud bends away from the pointer,
+lighter points (higher seed) give way more easily */
+float md = distance(pos, uMouse);
+pos += (pos - uMouse) / max(md, 0.001)
+* smoothstep(uMouseR, 0.0, md) * uMouseF * (0.6 + aSeed * 0.8);
+/* click burst: radial disintegration with a twist */
+if (uBurst > 0.001) {
+vec3 dir = normalize(pos + vec3(0.0001));
+pos += dir * (uBurst * (1.5 + aSeed * 4.0));
+float ang = uBurst * (0.6 + aSeed * 0.4);
+float cx = cos(ang), sx = sin(ang);
+pos = vec3(pos.x * cx - pos.z * sx, pos.y, pos.x * sx + pos.z * cx);
+}
+/* breathing so the entity never freezes — rides the variable clock,
+and swings wider wherever uDrift is high */
+float breathe = 0.04 * (1.0 + uDrift * 1.2);
+pos.x += sin(uTime2 * 0.9 + aSeed * 40.0) * breathe;
+pos.y += cos(uTime2 * 0.7 + aSeed * 30.0) * breathe;
+vColor = mix(uColorFrom, uColorTo, tt);
+/* rare white-hot + magenta sparks */
+vColor = mix(vColor, vec3(1.0), step(0.985, aSeed) * 0.9);
+vColor = mix(vColor, vec3(1.0, 0.24, 0.54), step(0.9982, aSeed) * 0.85);
+/* the charge SATURATES the star toward deep ember-red rather than
+whitening it — the white text above must keep its contrast */
+vColor = mix(vColor, vec3(1.0, 0.32, 0.12), uHeat * 0.6);
+/* Earth: continents tint toward land color, and a fixed sun gives
+the sphere a lit day side and a dim night side — subtle, planetary */
+vColor = mix(vColor, uLand, aTint * uEarth);
+/* gyroscope: tonally stepped rings (deep → ice → glacial, outside in)
+and an ember core — the seed of the star it's about to become */
+if (uHero > 0.001) {
+if (aRing < 2.5) {
+vec3 rc = aRing < 0.5 ? uRing0 : aRing < 1.5 ? uRing1 : uRing2;
+vColor = mix(vColor, rc, uHero);
+}
+vColor = mix(vColor, uCore, smoothstep(2.5, 1.4, length(pos)) * uHero);
+}
+vTwinkle = 0.6 + 0.4 * sin(uTime * (0.6 + aSeed * 1.8) + aSeed * 20.0);
+vTwinkle *= 1.0 + uHeat * 0.35;
+vTwinkle *= signalFade; // expanding rings dim with distance
+if (uEarth > 0.001) {
+float shade = 0.3 + 0.7 * clamp(dot(normalize(pos + vec3(0.0001)),
+normalize(vec3(-0.55, 0.35, 0.75))), 0.0, 1.0);
+vTwinkle *= mix(1.0, shade, uEarth);
+}
+vec4 mv = modelViewMatrix * vec4(pos, 1.0);
+gl_PointSize = uSize * aScale * uPixelRatio * (12.0 / -mv.z);
+gl_Position = projectionMatrix * mv;
+}`;
+const FRAG = /* glsl */`
+precision mediump float;
+uniform float uOpacity;
+varying vec3 vColor;
+varying float vTwinkle;
+void main(){
+float d = length(gl_PointCoord - 0.5);
+float alpha = smoothstep(0.5, 0.12, d);
+alpha += smoothstep(0.12, 0.0, d) * 0.5;
+gl_FragColor = vec4(vColor, alpha * vTwinkle * uOpacity);
+}`;
+const entity = (() => {
+const canvas = document.getElementById('entity');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: false, powerPreference: 'high-performance' });
+const pr = Math.min(devicePixelRatio, isMobile ? 1.25 : 1.75);
+renderer.setPixelRatio(pr);
+renderer.setSize(innerWidth, innerHeight);
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.1;
+const scene = new THREE.Scene();
+const bgColor = new THREE.Color('#04060a');
+scene.background = bgColor;
+const camera = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 100);
+camera.position.z = SHAPE_STYLE[0].camZ;
+const geo = new THREE.BufferGeometry();
+const seeds = new Float32Array(COUNT);
+const scales = new Float32Array(COUNT);
+for (let i = 0; i < COUNT; i++) {
+seeds[i] = rand();
+scales[i] = seeds[i] > 0.985 ? 2.4 : 0.5 + rand() * 0.9;
+}
+geo.setAttribute('position', new THREE.BufferAttribute(shapes[0].slice(), 3));
+geo.setAttribute('aPosA', new THREE.BufferAttribute(shapes[0].slice(), 3));
+geo.setAttribute('aPosB', new THREE.BufferAttribute(shapes[1].slice(), 3));
+geo.setAttribute('aSeed', new THREE.BufferAttribute(seeds, 1));
+geo.setAttribute('aScale', new THREE.BufferAttribute(scales, 1));
+geo.setAttribute('aTint', new THREE.BufferAttribute(earthTint, 1)); // land/sea
+geo.setAttribute('aRing', new THREE.BufferAttribute(ringId, 1));    // gimbal role
+const uniforms = {
+uMorph: { value: 0 },
+uTime: { value: 0 },
+uTime2: { value: 0 },
+uDrift: { value: 0 },
+uHeat: { value: 0 },
+uWave: { value: 0 },
+uTide: { value: 0 },
+uComet: { value: 0 },
+uSignal: { value: 0 },
+uEarth: { value: 0 },
+uLand: { value: EARTH_LAND.clone() },
+uHero: { value: 1 },
+uCore: { value: new THREE.Color('#ff8a5b') }, // = the ignition star color
+uRingT: { value: 0 },
+uRing0: { value: new THREE.Color('#ff4b4b') }, // outer — signal red
+uRing1: { value: new THREE.Color('#7fd4ff') }, // middle — ice cyan anchor
+uRing2: { value: new THREE.Color('#b9f0e4') }, // inner — glacial mint
+uTurb: { value: 0 },
+uBurst: { value: 0 },
+uIdle: { value: CONFIG.idleJitter },
+uStormAmp: { value: CONFIG.stormAmp },
+uFlowFreq: { value: CONFIG.flowFreq },
+uSize: { value: CONFIG.pointSize },
+uPixelRatio: { value: pr },
+uOpacity: { value: 0.8 },
+uMouse: { value: new THREE.Vector3(999, 999, 999) }, // far away until moved
+uMouseR: { value: CONFIG.mouse.radius },
+uMouseF: { value: 0 },
+uColorFrom: { value: shapeColors[0].clone() },
+uColorTo: { value: shapeColors[1].clone() },
+};
+const mat = new THREE.ShaderMaterial({
+uniforms,
+vertexShader: VERT,
+fragmentShader: FRAG,
+transparent: true,
+depthWrite: false,
+blending: THREE.AdditiveBlending,
+});
+const points = new THREE.Points(geo, mat);
+/* group carries the shared drift/rotation so lines follow the points.
+'ZYX' order so rotation.z (the helix tilt) wraps AROUND rotation.y —
+the molecule spins about its own axis, then tilts as one piece */
+const group = new THREE.Group();
+group.rotation.order = 'ZYX';
+group.add(points);
+scene.add(group);
+/* --- constellation lines: visible only when a form is at rest --- */
+let lineSeg = null, lineMat = null, lineShape = -1;
+if (linePairs) {
+const lineGeo = new THREE.BufferGeometry();
+lineGeo.setAttribute('position',
+new THREE.BufferAttribute(new Float32Array(CONFIG.lines.max * 2 * 3), 3));
+lineMat = new THREE.LineBasicMaterial({
+color: shapeColors[0].clone(),
+transparent: true,
+opacity: 0,
+blending: THREE.AdditiveBlending,
+depthWrite: false,
+});
+lineSeg = new THREE.LineSegments(lineGeo, lineMat);
+group.add(lineSeg);
+}
+function updateLines(s) {
+const pairs = linePairs[s];
+const arr = lineSeg.geometry.attributes.position.array;
+for (let k = 0; k < pairs.length; k++) {
+const [, i, j] = pairs[k];
+arr.set(shapes[s].subarray(i * 3, i * 3 + 3), k * 6);
+arr.set(shapes[s].subarray(j * 3, j * 3 + 3), k * 6 + 3);
+}
+lineSeg.geometry.setDrawRange(0, pairs.length * 2);
+lineSeg.geometry.attributes.position.needsUpdate = true;
+lineMat.color.copy(shapeColors[s]);
+}
+/* --- post pipeline: render → afterimage trails → bloom --- */
+let composer = null, afterimage = null;
+if (!isMobile && !reduced) {
+composer = new EffectComposer(renderer);
+composer.addPass(new RenderPass(scene, camera));
+afterimage = new AfterimagePass(CONFIG.trailDamp.base);
+composer.addPass(afterimage);
+composer.addPass(new UnrealBloomPass(
+new THREE.Vector2(innerWidth, innerHeight),
+CONFIG.bloom.strength, CONFIG.bloom.radius, CONFIG.bloom.threshold
+));
+}
+/* --- morph controller --- */
+let segment = 0;
+let shapeFloat = 0;
+function bindSegment(seg) {
+if (seg === segment) return;
+segment = seg;
+geo.attributes.aPosA.array.set(shapes[seg]);
+geo.attributes.aPosB.array.set(shapes[Math.min(seg + 1, 7)]);
+geo.attributes.aPosA.needsUpdate = true;
+geo.attributes.aPosB.needsUpdate = true;
+uniforms.uColorFrom.value.copy(shapeColors[seg]);
+uniforms.uColorTo.value.copy(shapeColors[Math.min(seg + 1, 7)]);
+}
+function setShapeFloat(f) {
+shapeFloat = Math.max(0, Math.min(7, f));
+const seg = Math.min(Math.floor(shapeFloat), 6);
+bindSegment(seg);
+uniforms.uMorph.value = shapeFloat - seg;
+}
+function setBackground(hex) {
+const target = new THREE.Color(hex);
+gsap.to(bgColor, { r: target.r, g: target.g, b: target.b, duration: 1.1, ease: EASE });
+}
+/* --- click burst --- */
+let bursting = false;
+function burst() {
+if (bursting || reduced) return;
+bursting = true;
+dispatchEvent(new Event('aeon:burst')); // retires the cursor hint
+audio.whoosh();
+const dot = document.getElementById('telemDot');
+const state = document.getElementById('telemState');
+dot && dot.classList.add('is-critical');
+if (state) state.textContent = 'Решётка потревожена';
+gsap.timeline({
+onComplete: () => {
+bursting = false;
+dot && dot.classList.remove('is-critical');
+if (state) state.textContent = 'Решётка стабильна';
+},
+})
+.to(uniforms.uBurst, { value: 1, duration: 1.0, ease: 'power4.out', overwrite: 'auto' })
+.to(uniforms.uBurst, { value: 0, duration: 1.7, ease: 'elastic.out(1, 0.45)' }, '>-0.1');
+}
+/* --- arrival pulse: a small breath of the same burst mechanic,
+fired as each section settles — it punctuates the walk AND
+teaches that the entity is expandable --- */
+function pulse(amp = 0.12) {
+if (bursting || reduced) return;
+gsap.timeline()
+.to(uniforms.uBurst, { value: amp, duration: 0.5, ease: 'power2.out', overwrite: 'auto' })
+.to(uniforms.uBurst, { value: 0, duration: 1.2, ease: EASE }); // soft exhale, no spring
+}
+/* --- orbit: the horizontal epochs scrub turns the planet ---
+weighted by proximity to shape 2 so it never skews other forms */
+let orbit = 0;
+function setOrbit(p) { orbit = p; }
+/* --- charge: the statement scrub feeds the star ---
+everything downstream is continuous (swell, corona simmer,
+heat glow) — scroll-locked, no discrete pulses */
+let charge = 0;
+function setCharge(p) { charge = p; }
+/* --- tide: featured-hall scroll progress drives the swell phase --- */
+function setTide(p) { uniforms.uTide.value = p; }
+/* --- flight: program-section scroll carries the comet along its
+trajectory — a shooting star you drive with the scrollbar --- */
+let flight = 0.5;
+function setFlight(p) { flight = p; }
+addEventListener('click', (e) => {
+if (e.target.closest('a, button, .rail-item, input, [data-magnetic]')) return;
+burst();
+});
+/* --- cursor: parallax + repulsion field --- */
+let mx = 0, my = 0, tmx = 0, tmy = 0;
+const ndc = new THREE.Vector2(9, 9); // offscreen until the pointer moves
+const raycaster = new THREE.Raycaster();
+const entityPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+const mouseWorld = new THREE.Vector3();
+let mouseBoost = 0, lastPX = 0, lastPY = 0, lastPT = 0;
+addEventListener('pointermove', (e) => {
+tmx = e.clientX / innerWidth - 0.5;
+tmy = e.clientY / innerHeight - 0.5;
+ndc.set(tmx * 2, -tmy * 2);
+// pointer speed → temporary extra push
+const now = performance.now(), dt = Math.max(now - lastPT, 8);
+const d = Math.hypot(e.clientX - lastPX, e.clientY - lastPY) / dt;
+mouseBoost = Math.min(mouseBoost + d * 0.35, 1.4);
+lastPX = e.clientX; lastPY = e.clientY; lastPT = now;
+});
+document.documentElement.addEventListener('pointerleave', () => ndc.set(9, 9));
+/* --- camera fly-through intro: released from inside the cloud --- */
+const intro = { z: reduced ? 0 : CONFIG.intro.z, spin: reduced ? 0 : CONFIG.intro.spin };
+function playIntro() {
+if (reduced) return;
+uniforms.uTurb.value = 0.9; // dispersed at first breath, settles naturally
+gsap.to(intro, { z: 0, spin: 0, duration: CONFIG.intro.duration, ease: EASE });
+}
+const lerp = (a, b, t) => a + (b - a) * t;
+const clock = new THREE.Clock();
+let lastT = 0, time2 = 0, heroSpin = 0, helixSpin = 0, earthSpin = 0;
+function frame() {
+const t = clock.getElapsedTime();
+const dt = Math.min(t - lastT, 0.05);
+lastT = t;
+uniforms.uTime.value = t;
+/* hero liveliness: near shape 0 the idle clock runs ~3× faster
+and the drift amplitude widens — dust visibly streams */
+const heroW = Math.max(0, 1 - shapeFloat);
+uniforms.uHero.value = heroW;
+uniforms.uDrift.value = lerp(uniforms.uDrift.value, heroW, 0.05);
+time2 += dt * (0.5 + uniforms.uDrift.value * 1.6);
+uniforms.uTime2.value = time2;
+heroSpin += dt * 0.06;  // whole-form drift only — the gimbals carry the motion
+if (heroW > 0.001) uniforms.uRingT.value += dt; // gimbal clock, hero only
+helixSpin += dt * 0.14; // helix slow turn — the molecule quietly winds
+earthSpin += dt * 0.08; // Earth: one quiet, patient rotation
+const targetTurb = Math.min(scrollVelocity / 80, 1.2) * CONFIG.velocityTurb;
+uniforms.uTurb.value = lerp(uniforms.uTurb.value, targetTurb, 0.06);
+scrollVelocity *= 0.92;
+const seg = Math.min(Math.floor(shapeFloat), 6);
+const f = shapeFloat - seg;
+const storm = Math.sin(f * Math.PI);
+// the epochs scrub turns the planet and dollies in at mid-traverse
+const orbitW = Math.max(0, 1 - Math.abs(shapeFloat - 2));
+camera.position.z = lerp(SHAPE_STYLE[seg].camZ, SHAPE_STYLE[Math.min(seg + 1, 7)].camZ, f)
++ storm * 1.3 + uniforms.uBurst.value * 1.6 + intro.z
+- Math.sin(orbit * Math.PI) * orbitW * 1.6;
+group.position.x = lerp(SHAPE_STYLE[seg].offX, SHAPE_STYLE[Math.min(seg + 1, 7)].offX, f);
+mx = lerp(mx, tmx, 0.04);
+my = lerp(my, tmy, 0.04);
+const helixW = Math.max(0, 1 - Math.abs(shapeFloat - 4));
+const earthW = Math.max(0, shapeFloat - 6);
+group.rotation.y = mx * 0.35 + Math.sin(t * 0.07) * 0.06 + intro.spin
++ orbit * 2.2 * orbitW
++ heroSpin * heroW              // gyroscope keeps turning
++ helixSpin * helixW            // helix slowly rotates
++ earthSpin * earthW;           // Earth turns, patiently
+group.rotation.x = my * 0.22
++ Math.sin(t * 0.23) * 0.1 * heroW; // slow precession wobble
+group.rotation.z = 0.28 * helixW; // helix tilt, applied over its own spin
+/* the star charges with the statement: a smooth swell that tracks
+the scrub 1:1, plus heat (corona simmer + glow, in the shader).
+A soft slow breath keeps it alive; no spikes, no lag */
+const starW = Math.max(0, 1 - Math.abs(shapeFloat - 1));
+const chargeW = charge * starW;
+uniforms.uHeat.value = lerp(uniforms.uHeat.value, chargeW, 0.09);
+/* the sea only rolls while the ocean form is present */
+uniforms.uWave.value = Math.max(0, 1 - Math.abs(shapeFloat - 3));
+/* comet: slipstream on, and the whole body glides along its flight
+line as the program section scrolls — plus a soft airborne bob */
+const cometW = Math.max(0, 1 - Math.abs(shapeFloat - 5));
+uniforms.uComet.value = cometW;
+const glide = (flight - 0.5) * 9 * cometW;
+group.position.x += 0.92 * glide;
+group.position.y = 0.38 * glide + Math.sin(t * 0.45) * 0.18 * cometW;
+/* the transmission radiates while its section is present, then the
+wavefronts collapse into the Earth through the final morph */
+uniforms.uSignal.value = Math.max(0, 1 - Math.abs(shapeFloat - 6));
+uniforms.uEarth.value = earthW;
+const breath = Math.sin(t * 1.1) * 0.012 * starW * (1 + chargeW);
+group.scale.setScalar(1 + chargeW * 0.07 + breath);
+group.updateMatrixWorld();
+/* cursor world position → entity local space for the repulsion field */
+if (finePointer && ndc.x < 5) {
+raycaster.setFromCamera(ndc, camera);
+if (raycaster.ray.intersectPlane(entityPlane, mouseWorld)) {
+group.worldToLocal(mouseWorld);
+uniforms.uMouse.value.copy(mouseWorld);
+}
+mouseBoost *= 0.94;
+uniforms.uMouseF.value = lerp(uniforms.uMouseF.value,
+CONFIG.mouse.force * 0.55 + mouseBoost, 0.08);
+} else {
+uniforms.uMouseF.value = lerp(uniforms.uMouseF.value, 0, 0.08);
+}
+/* constellation lines fade in at rest, hide during morphs/bursts */
+if (lineSeg) {
+let restShape = -1;
+if (f < 0.04) restShape = seg;
+else if (f > 0.96) restShape = Math.min(seg + 1, 7);
+if (restShape >= 0 && restShape !== lineShape) {
+lineShape = restShape;
+updateLines(restShape);
+}
+// no lines on the gimbals (0) or the transmission (6) — those
+// geometries are in constant motion, anchored lines would detach
+const show = restShape >= 0 && restShape !== 0 && restShape !== 6
+&& uniforms.uBurst.value < 0.05 && intro.z > -1;
+lineMat.opacity = lerp(lineMat.opacity, show ? CONFIG.lines.opacity : 0, 0.05);
+}
+/* motion trails: barely-there at rest, long during morphs and bursts */
+if (afterimage) {
+afterimage.uniforms['damp'].value = Math.min(0.92,
+CONFIG.trailDamp.base
++ storm * CONFIG.trailDamp.storm
++ uniforms.uBurst.value * CONFIG.trailDamp.burst
++ uniforms.uTurb.value * 0.4);
+}
+composer ? composer.render() : renderer.render(scene, camera);
+}
+if (reduced) {
+renderer.render(scene, camera);
+} else {
+gsap.ticker.add(frame);
+}
+addEventListener('resize', () => {
+camera.aspect = innerWidth / innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize(innerWidth, innerHeight);
+composer && composer.setSize(innerWidth, innerHeight);
+});
+const debug = () => ({
+shapeFloat, segment,
+morph: uniforms.uMorph.value,
+turb: uniforms.uTurb.value,
+burst: uniforms.uBurst.value,
+mouseF: uniforms.uMouseF.value,
+lineShape, lineOpacity: lineMat ? lineMat.opacity : null,
+introZ: intro.z,
+});
+return { setShapeFloat, setBackground, burst, pulse, setOrbit, setCharge, setTide, setFlight, playIntro, debug };
+})();
+window.__aeon = entity; // debug handle
+/* ============================================================
+4) SCRAMBLE DECODE — mono/HUD type resolves left-to-right
+============================================================ */
+const DECODE_CHARS = '█▓▒░<>/\\|=+*#01';
+function decode(el, dur = 1.0) {
+if (reduced || !el) return;
+// operate on the last text node so icons/dots inside survive
+const node = [...el.childNodes].filter((n) => n.nodeType === 3).pop();
+if (!node || !node.nodeValue.trim()) return;
+const orig = node.nodeValue;
+const len = orig.length;
+const obj = { p: 0 };
+gsap.to(obj, {
+p: 1, duration: dur, ease: 'power2.out',
+onUpdate: () => {
+const k = Math.floor(obj.p * len);
+let s = orig.slice(0, k);
+for (let i = k; i < len; i++) {
+s += orig[i] === ' ' ? ' ' : DECODE_CHARS[(Math.random() * DECODE_CHARS.length) | 0];
+}
+node.nodeValue = s;
+},
+});
+}
+function initDecode() {
+if (reduced) return;
+gsap.utils.toArray('.kicker, .eyebrow, .hero-sub, .epoch-when').forEach((el) => {
+if (el.closest('.hero')) return; // hero copies decode with the intro
+const inEpochs = !!el.closest('.epochs'); // pinned: use the pin as trigger
+ScrollTrigger.create({
+trigger: inEpochs ? '#worlds' : el,
+start: inEpochs ? 'top 60%' : 'top 90%',
+once: true,
+onEnter: () => decode(el, 1.0),
+});
+});
+}
+/* ============================================================
+5) SCROLL CHOREOGRAPHY
+============================================================ */
+const sections = gsap.utils.toArray('.section');
+const railItems = gsap.utils.toArray('.rail-item');
+const chronoEpoch = document.getElementById('chronoEpoch');
+const chronoYear = document.getElementById('chronoYear');
+/* ---- morph scrub: section N arriving = morph (N-1 → N) ----
+All triggers feed one progress table; the entity reads the
+furthest active morph. */
+function initMorphTriggers() {
+if (reduced) return;
+const progs = new Array(8).fill(0);
+const applyShape = () => {
+let f = 0;
+for (let i = 1; i < 8; i++) {
+if (progs[i] > 0) f = Math.max(f, i - 1 + progs[i]);
+}
+entity.setShapeFloat(f);
+};
+sections.forEach((sec) => {
+const idx = parseInt(sec.dataset.shape, 10);
+if (!idx) return; // hero stays shape 0
+ScrollTrigger.create({
+trigger: sec,
+start: 'top 94%',
+end: 'top 34%',
+scrub: CONFIG.morphScrub,
+onUpdate: (self) => { progs[idx] = self.progress; applyShape(); },
+});
+});
+}
+/* ---- per-section: scene bg + glow tint + rail + epoch label ---- */
+function initSectionStates() {
+const applySection = (sec) => {
+entity.setBackground(sec.dataset.bg);
+gsap.to('body', { backgroundColor: sec.dataset.bg, duration: 1.1, ease: EASE });
+gsap.to('html', { '--glow': sec.dataset.glow, duration: 1.1, ease: EASE });
+chronoEpoch.textContent = sec.dataset.epoch;
+decode(chronoEpoch, 0.6);
+entity.pulse(); // the entity breathes as each epoch settles
+audio.setEpoch(parseInt(sec.dataset.shape, 10));
+audio.tick();
+railItems.forEach((it) =>
+it.classList.toggle('is-active', it.dataset.target === sec.id));
+};
+// the hero is the default; every later section top is a boundary POINT:
+// crossing down applies that section, crossing back up applies the one
+// before. (Range triggers broke here — measuring a pinned endTrigger
+// element returns its pinned position, collapsing the range.)
+applySection(sections[0]);
+sections.forEach((sec, i) => {
+if (!i) return;
+ScrollTrigger.create({
+trigger: sec,
+start: 'top 52%',
+end: 'top 48%', // a thin band, not a point — zero-length triggers
+onEnter: () => applySection(sec),            // don't fire onEnter on
+onLeaveBack: () => applySection(sections[i - 1]), // fast forward jumps
+});
+});
+railItems.forEach((it) => {
+it.addEventListener('click', () => {
+const target = document.getElementById(it.dataset.target);
+if (!target) return;
+lenis ? lenis.scrollTo(target) : target.scrollIntoView();
+});
+});
+}
+/* ---- chronometer + telemetry HUD ---- */
+function initChrono() {
+const fmt = (y) => {
+if (y >= 1e9) return 'T − ' + (y / 1e9).toFixed(2) + ' Gyr';
+if (y >= 1e6) return 'T − ' + (y / 1e6).toFixed(1) + ' Myr';
+if (y >= 1e3) return 'T − ' + (y / 1e3).toFixed(0) + ' kyr';
+if (y >= 1) return 'T − ' + Math.round(y) + ' yr';
+return 'T − 0 · now';
+};
+if (reduced) {
+chronoYear.textContent = fmt(13.8e9);
+gsap.set('#chrono, #telemetry', { opacity: 1 });
+return;
+}
+ScrollTrigger.create({
+trigger: document.body,
+start: 'top top',
+end: 'bottom bottom',
+scrub: true,
+onUpdate: (self) => {
+// power curve ≈ deep-time compression: the present arrives fast
+const years = 13.8e9 * Math.pow(1 - self.progress, 7);
+chronoYear.textContent = fmt(years);
+},
+});
+// visible only during the walk
+ScrollTrigger.create({
+trigger: '#ignition',
+start: 'top 75%',
+onEnter: () => gsap.to('#chrono, #telemetry', { opacity: 1, duration: 0.8, ease: EASE }),
+onLeaveBack: () => gsap.to('#chrono, #telemetry', { opacity: 0, duration: 0.5, ease: EASE }),
+});
+ScrollTrigger.create({
+trigger: '.footer',
+start: 'top 92%',
+onEnter: () => gsap.to('#chrono, #telemetry', { opacity: 0, duration: 0.5, ease: EASE }),
+onLeaveBack: () => gsap.to('#chrono, #telemetry', { opacity: 1, duration: 0.5, ease: EASE }),
+});
+// live mouse-coordinate readout
+const coords = document.getElementById('telemCoords');
+if (coords && finePointer) {
+addEventListener('pointermove', (e) => {
+coords.textContent =
+(e.clientX / innerWidth).toFixed(2) + ' · ' + (e.clientY / innerHeight).toFixed(2);
+});
+}
+}
+/* ---- SplitText reveals ---- */
+let heroSplit;
+function prepHero() {
+heroSplit = new SplitText('#heroTitle', { type: 'chars' });
+if (!reduced) {
+gsap.set(heroSplit.chars, { yPercent: 115, opacity: 0 });
+gsap.set('#heroSub', { opacity: 0, y: 18 });
+}
+}
+function startHeroReveal() {
+if (reduced) return;
+gsap.timeline()
+.to(heroSplit.chars, {
+yPercent: 0, opacity: 1, duration: 1.6, ease: EASE,
+stagger: { each: 0.07, from: 'center' },
+})
+.to('#heroSub', { opacity: 1, y: 0, duration: 1.2, ease: EASE }, '-=1.0')
+.call(() => {
+decode(document.querySelector('.hero .eyebrow'), 1.2);
+decode(document.getElementById('heroSub'), 1.4);
+}, null, '<');
+}
+function initSplitHeadings() {
+if (reduced) return;
+gsap.utils.toArray('.split').forEach((el) => {
+const split = new SplitText(el, { type: 'lines', mask: 'lines' });
+gsap.set(split.lines, { yPercent: 112 });
+ScrollTrigger.create({
+trigger: el,
+start: 'top 82%',
+once: true,
+onEnter: () => gsap.to(split.lines, {
+yPercent: 0, duration: CONFIG.revealDur, ease: EASE, stagger: 0.09,
+}),
+});
+});
+}
+function initReveals() {
+if (reduced) return;
+ScrollTrigger.batch('[data-reveal]', {
+start: 'top 96%',
+once: true,
+onEnter: (els) => gsap.to(els, {
+y: 0, opacity: 1, duration: CONFIG.revealDur, ease: EASE, stagger: 0.09, overwrite: true,
+}),
+});
+}
+/* ---- image clip reveals + gentle parallax ---- */
+function initImages() {
+if (reduced) return;
+gsap.utils.toArray('figure[data-img-reveal]').forEach((fig) => {
+const img = fig.querySelector('img');
+const inEpochs = !!fig.closest('.epochs');
+ScrollTrigger.create({
+trigger: inEpochs ? '#worlds' : fig,
+start: inEpochs ? 'top 60%' : 'top 85%',
+once: true,
+onEnter: () => {
+gsap.to(fig, { clipPath: 'inset(0% 0 0% 0)', duration: 1.5, ease: EASE });
+gsap.to(img, { scale: 1, duration: 1.9, ease: EASE });
+},
+});
+});
+gsap.utils.toArray('[data-speed]').forEach((el) => {
+const speed = parseFloat(el.dataset.speed);
+gsap.to(el, {
+yPercent: (1 - speed) * 26, ease: 'none',
+scrollTrigger: { trigger: el.closest('section'), start: 'top bottom', end: 'bottom top', scrub: true },
+});
+});
+// featured hall: the photo pans top-to-bottom inside its frame as the
+// section scrolls (the img is 115% tall, so -12% stays gap-free)
+const featImg = document.querySelector('.featured-img img');
+if (featImg) {
+gsap.fromTo(featImg, { yPercent: 0 }, {
+yPercent: -12, ease: 'none',
+scrollTrigger: { trigger: '#water', start: 'top bottom', end: 'bottom top', scrub: true },
+});
+}
+}
+/* ---- pinned statement: lines ignite one by one ---- */
+function initStatement() {
+if (reduced) return;
+const lines = gsap.utils.toArray('#statementLines .s-line');
+gsap.set(lines, { opacity: 0.14, y: 24 });
+gsap.timeline({
+scrollTrigger: {
+trigger: '#ignition',
+start: 'top top',
+end: '+=130%',
+pin: true,
+scrub: 0.6,
+// the star charges with the text: heartbeat quickens, and each
+// igniting line fires a flare (the final one the biggest)
+onUpdate: (self) => entity.setCharge(self.progress),
+},
+}).to(lines, {
+opacity: 1, y: 0, color: '#eef2f7', stagger: 0.45, ease: 'none',
+});
+}
+/* ---- curatorial note: lines ignite one by one, scrubbed by scroll ---- */
+function initManifesto() {
+if (reduced) return;
+const lines = gsap.utils.toArray('#manifestoLines .m-line');
+gsap.set(lines, { opacity: 0.1, y: 26 });
+gsap.to(lines, {
+opacity: 1, y: 0, stagger: 0.5, ease: 'none',
+scrollTrigger: {
+trigger: '#manifestoLines',
+start: 'top 82%',
+end: 'center 42%',
+scrub: 0.6,
+},
+});
+}
+/* ---- featured hall: scrolling drives the tide through the basin ---- */
+function initTide() {
+if (reduced) return;
+ScrollTrigger.create({
+trigger: '#water',
+start: 'top bottom',
+end: 'bottom top',
+scrub: true,
+onUpdate: (self) => entity.setTide(self.progress),
+});
+}
+/* ---- season program: scrolling flies the comet across the sky ---- */
+function initFlight() {
+if (reduced) return;
+ScrollTrigger.create({
+trigger: '#flight',
+start: 'top bottom',
+end: 'bottom top',
+scrub: true,
+onUpdate: (self) => entity.setFlight(self.progress),
+});
+}
+/* ---- pinned horizontal epochs ---- */
+function initEpochs() {
+const track = document.getElementById('epochsTrack');
+const bar = document.getElementById('epochsBar');
+if (reduced) { track.style.overflowX = 'auto'; return; }
+const dist = () => track.scrollWidth - innerWidth + 80;
+gsap.to(track, {
+x: () => -dist(),
+ease: 'none',
+scrollTrigger: {
+trigger: '#worlds',
+start: 'top top',
+end: () => '+=' + (dist() + innerHeight * 0.4),
+pin: true,
+scrub: 0.6,
+invalidateOnRefresh: true,
+onUpdate: (self) => {
+bar.style.width = (self.progress * 100) + '%';
+entity.setOrbit(self.progress); // the planet turns as ages pass
+},
+},
+});
+}
+/* ---- preloader: 0 → 13.8 billion years, then the fly-through ---- */
+function runPreloader() {
+const num = document.getElementById('preNum');
+const bar = document.getElementById('preBar');
+const loader = document.getElementById('preloader');
+if (reduced) { loader.remove(); return; }
+const obj = { n: 0 };
+gsap.to(obj, {
+n: 13.8, duration: 2.2, ease: 'power1.inOut',
+onUpdate: () => {
+num.textContent = obj.n.toFixed(1).padStart(4, '0');
+bar.style.width = (obj.n / 13.8 * 100) + '%';
+},
+onComplete: () => gsap.to(loader, {
+autoAlpha: 0, duration: 1.0, ease: EASE,
+onComplete: () => {
+loader.remove();
+lenis && lenis.start();
+entity.playIntro(); // camera pulls back out of the cloud…
+startHeroReveal();  // …while the title rises through it
+},
+}),
+});
+}
+/* ---- cursor + magnetic buttons ---- */
+function initCursor() {
+if (reduced || !finePointer) return;
+const cursor = document.getElementById('cursor');
+const hint = document.getElementById('cursorHint');
+let cx = innerWidth / 2, cy = innerHeight / 2, dx = cx, dy = cy;
+let overInteractive = false, hintRetired = false, pointerOn = false;
+// once the visitor bursts the entity themselves, the lesson is learned
+addEventListener('aeon:burst', () => {
+hintRetired = true;
+hint && hint.classList.remove('is-on');
+}, { once: true });
+addEventListener('pointermove', (e) => {
+cx = e.clientX; cy = e.clientY;
+pointerOn = true;
+cursor.classList.add('is-on');
+overInteractive = !!e.target.closest('a, button, [data-magnetic], .rail-item, input');
+});
+gsap.ticker.add(() => {
+dx += (cx - dx) * 0.18;
+dy += (cy - dy) * 0.18;
+cursor.style.transform = `translate(${dx}px, ${dy}px)`;
+if (hint) {
+hint.style.transform = `translate(${dx + 18}px, ${dy + 22}px)`;
+hint.classList.toggle('is-on', pointerOn && !hintRetired && !overInteractive);
+}
+});
+document.querySelectorAll('a, button, .rail-item').forEach((el) => {
+el.addEventListener('pointerenter', () => cursor.classList.add('is-hover'));
+el.addEventListener('pointerleave', () => cursor.classList.remove('is-hover'));
+});
+}
+function initMagnetic() {
+if (reduced || !finePointer) return;
+document.querySelectorAll('[data-magnetic]').forEach((btn) => {
+btn.addEventListener('pointermove', (e) => {
+const r = btn.getBoundingClientRect();
+gsap.to(btn, {
+x: (e.clientX - (r.left + r.width / 2)) * 0.35,
+y: (e.clientY - (r.top + r.height / 2)) * 0.35,
+duration: 0.5, ease: EASE,
+});
+});
+btn.addEventListener('pointerleave', () =>
+gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.4)' }));
+});
+}
+/* ============================================================
+BOOT — pins first (they change layout), then everything else
+============================================================ */
+function init() {
+prepHero();
+initStatement();
+initEpochs();
+initTide();
+initFlight();
+initManifesto();
+initMorphTriggers();
+initSectionStates();
+initChrono();
+initSplitHeadings();
+initReveals();
+initImages();
+initDecode();
+initCursor();
+initMagnetic();
+initSoundToggle();
+runPreloader();
+ScrollTrigger.refresh();
+}
+/* wait for both window load AND fonts, so SplitText measures real glyphs */
+const winLoaded = new Promise((res) => {
+if (document.readyState === 'complete') res();
+else addEventListener('load', res, { once: true });
+});
+const fontsLoaded = (document.fonts && document.fonts.ready) || Promise.resolve();
+Promise.all([winLoaded, fontsLoaded]).then(init);
+</script>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style id="mobile-adapt">
+/* v95 AEON — мобильная доводка (в исходнике 4 медиазапроса) */
+html, body { overflow-x: clip; }
+
+@media (max-width: 640px) {
+  h1, h2, h3 { overflow-wrap: break-word; hyphens: auto; }
+  input, select, textarea, button { font-size: 16px !important; }
+  a, button { min-height: 44px; }
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+
+</style>
+</head>
+<body class="">
+<canvas aria-hidden="true" id="entity"></canvas>
+<div aria-hidden="true" id="scrim"></div>
+<div aria-hidden="true" id="grain"></div>
+<div aria-hidden="true" class="cursor" id="cursor"></div>
+<div aria-hidden="true" class="cursor-hint" id="cursorHint">Клик — потревожить решётку</div>
+<!-- Preloader -->
+<div id="preloader">
+<div class="pre-count"><span id="preNum">00.0</span><em>×10⁹ лет</em></div>
+<div class="pre-label">Калибровка<br/>темпоральной решётки</div>
+<div class="pre-bar"><span id="preBar"></span></div>
+</div>
+<!-- Deep-time chronometer (bottom-left) -->
+<div aria-hidden="true" id="chrono">
+<span class="chrono-label" id="chronoEpoch">Пыль</span>
+<span class="chrono-year" id="chronoYear">T − 13,8 млрд лет</span>
+</div>
+<!-- Live telemetry (bottom-right) -->
+<div aria-hidden="true" id="telemetry">
+<span id="telemCoords">0.50 · 0.50</span>
+<span class="telem-status"><i id="telemDot"></i><em id="telemState">Решётка стабильна</em></span>
+</div>
+<nav class="nav">
+<a class="logo glitch" href="#dust">AEON<span>/ темпоральная обсерватория</span></a>
+<div class="nav-links">
+<a href="#worlds">Эпохи</a>
+<a href="#flight">Программа</a>
+<a href="#life">Визит</a>
+<button aria-pressed="false" class="snd-toggle" id="sndToggle" title="Включить/выключить фоновый звук">
+<i></i>SND <em>ВЫКЛ</em>
+</button>
+<a class="nav-ticket" data-magnetic="" href="#life"><span>Забронировать вход</span></a>
+</div>
+</nav>
+<div aria-hidden="true" id="rail">
+<div class="rail-item is-active" data-target="dust"><span>Пыль</span><i></i></div>
+<div class="rail-item" data-target="ignition"><span>Вспышка</span><i></i></div>
+<div class="rail-item" data-target="worlds"><span>Миры</span><i></i></div>
+<div class="rail-item" data-target="water"><span>Вода</span><i></i></div>
+<div class="rail-item" data-target="life"><span>Жизнь</span><i></i></div>
+<div class="rail-item" data-target="flight"><span>Полёт</span><i></i></div>
+<div class="rail-item" data-target="signal"><span>Сигнал</span><i></i></div>
+<div class="rail-item" data-target="return"><span>Возвращение</span><i></i></div>
+</div>
+<main>
+<!-- ========== 0 · DUST — hero (entity: orbital gyroscope) ========== -->
+<section class="section hero" data-bg="#04060a" data-epoch="Dust" data-glow="#5be9ff" data-shape="0" id="dust">
+<div class="wrap hero-grid">
+<div class="hero-center">
+<p class="eyebrow" data-reveal=""><i class="pulse-dot"></i>Темпоральная решётка 09 · В сети</p>
+<h1 class="hero-title glitch" id="heroTitle">AEON</h1>
+<p class="hero-sub" id="heroSub">Темпоральная обсерватория — пройдите 13,8 млрд лет в одном зале.</p>
+<p class="hero-copy" data-reveal="">
+            Проекция рядом с вами — это коллекция: <strong>все формы, которые когда-либо принимала материя</strong>, запомненные по порядку. Коснитесь неба, чтобы потревожить его.
+          </p>
+<div class="hero-actions" data-reveal="">
+<a class="btn btn-primary" data-magnetic="" href="#life"><span>Забронировать вход</span></a>
+<a class="btn btn-secondary" data-magnetic="" href="#ignition"><span>Начать путь</span></a>
+</div>
+</div>
+<div class="hero-meta" data-reveal="">
+<div class="meta-block">
+<span class="meta-label">Вход</span>
+<span class="meta-value">Постоянная проекция<br/>Вход по сеансам · вечером мест мало</span>
+</div>
+<div class="scroll-cue"><i></i>Начните с самого начала</div>
+<div class="meta-block right">
+<span class="meta-label">Локация</span>
+<span class="meta-value">Пирс 40 · Портовый район<br/>Обсерваторная палуба 03</span>
+</div>
+</div>
+</div>
+</section>
+<!-- ========== 1 · IGNITION — pinned statement (entity: star) ========== -->
+<section class="section statement" data-bg="#0a0710" data-epoch="Ignition" data-glow="#ff8a5b" data-shape="1" id="ignition">
+<div class="statement-inner">
+<p class="kicker">T − 13,6 млрд лет</p>
+<div class="statement-lines" id="statementLines">
+<p class="s-line">Время — не линия.</p>
+<p class="s-line">Это — <em>материал.</em></p>
+<p class="s-line">Он рассеивается, сгущается</p>
+<p class="s-line"><em>и вспыхивает.</em></p>
+</div>
+</div>
+</section>
+<!-- ========== 2 · WORLDS — horizontal epochs (entity: ringed planet) ========== -->
+<section class="section epochs" data-bg="#070910" data-epoch="Worlds" data-glow="#c9a06a" data-shape="2" id="worlds">
+<div class="epochs-pin">
+<div class="epochs-head wrap">
+<div>
+<p class="eyebrow">Шесть залов</p>
+<h2 class="h2 split glitch">Шесть залов<br/><em>сгущённого времени.</em></h2>
+</div>
+<p class="epochs-note">
+            Каждый зал хранит одну эпоху, замедленную настолько, что в неё может войти человеческий взгляд. Проходите их по порядку — решётка на этом настаивает.
+          </p>
+</div>
+<div class="epochs-track" id="epochsTrack">
+<article class="epoch-card">
+<figure class="epoch-img" data-img-reveal="">
+<img alt="Туманность — первый свет" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/121c8016-5101-41cd-a3df-d981a6ef3d0f_3840w.jpg?w=800&amp;q=80"/>
+</figure>
+<div class="epoch-body">
+<span class="epoch-no">01</span>
+<span class="epoch-when">13,8 млрд лет назад</span>
+<h3>Первый свет</h3>
+<p>Зал, освещённый лишь микроволновым небом — послесвечением начала.</p>
+</div>
+</article>
+<article class="epoch-card">
+<figure class="epoch-img" data-img-reveal="">
+<img alt="Звёздное поле — звёздные кузницы" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/afbae50f-b62d-4ec6-acc5-a7f449d0f181_3840w.webp?w=800&amp;q=80"/>
+</figure>
+<div class="epoch-body">
+<span class="epoch-no">02</span>
+<span class="epoch-when">13,2 млрд лет назад</span>
+<h3>Звёздные кузницы</h3>
+<p>Здесь был создан каждый тяжёлый атом вашего тела. В этом зале жарко.</p>
+</div>
+</article>
+<article class="epoch-card">
+<figure class="epoch-img" data-img-reveal="">
+<img alt="Планета с орбиты — миры" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/a772c813-66f7-4035-8324-8895267e7aab_3840w.jpg?w=800&amp;q=80"/>
+</figure>
+<div class="epoch-body">
+<span class="epoch-no">03</span>
+<span class="epoch-when">4,6 млрд лет назад</span>
+<h3>Миры</h3>
+<p>Пыль познаёт гравитацию, а гравитация создаёт почву под ногами посетителей.</p>
+</div>
+</article>
+<article class="epoch-card">
+<figure class="epoch-img" data-img-reveal="">
+<img alt="Океанская волна — глубокая вода" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/2ec951cf-d313-4e01-8da4-a19659e33ca8_3840w.jpg?w=800&amp;q=80"/>
+</figure>
+<div class="epoch-body">
+<span class="epoch-no">04</span>
+<span class="epoch-when">3,8 млрд лет назад</span>
+<h3>Глубокая вода</h3>
+<p>Океан, на который ещё некому смотреть. Самый тихий зал здесь.</p>
+</div>
+</article>
+<article class="epoch-card">
+<figure class="epoch-img" data-img-reveal="">
+<img alt="Органическая форма — живая линия" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/8fe9b1a9-9f6e-4836-9654-666de5316aa9_3840w.jpg?w=800&amp;q=80"/>
+</figure>
+<div class="epoch-body">
+<span class="epoch-no">05</span>
+<span class="epoch-when">540 млн лет назад</span>
+<h3>Живая линия</h3>
+<p>Химия начинает вести записи. Формы множатся без счёта.</p>
+</div>
+</article>
+<article class="epoch-card">
+<figure class="epoch-img" data-img-reveal="">
+<img alt="Огни ночного города — сигнал" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/afe4f5e3-f646-4cff-9e3d-0ddef7051177_3840w.jpg?w=800&amp;q=80"/>
+</figure>
+<div class="epoch-body">
+<span class="epoch-no">06</span>
+<span class="epoch-when">Сейчас</span>
+<h3>Сигнал</h3>
+<p>Один вид начинает всё записывать. Зал заканчивается зеркалом.</p>
+</div>
+</article>
+</div>
+<div class="epochs-progress"><span id="epochsBar"></span></div>
+</div>
+</section>
+<!-- ========== 3 · WATER — featured hall (entity: ocean wave) ========== -->
+<section class="section featured" data-bg="#04080d" data-epoch="Water" data-glow="#4fb6e0" data-shape="3" id="water">
+<div class="wrap featured-grid">
+<div class="featured-lead">
+<p class="kicker" data-reveal="">Зал сезона</p>
+<h2 class="h2 split glitch">Зал 04 —<br/><em>Беспокойная вода.</em></h2>
+<p class="featured-copy" data-reveal="">
+            Поле света, которое ведёт себя как первый океан: у него есть течения, погода и долгая память. Замрите — и оно успокоится вокруг вас. Двиньтесь — и ваш след сохранится ещё час после вашего ухода.
+          </p>
+<div class="featured-stats" data-reveal="">
+<div><span>Бассейн</span><strong>Проекционный пол 40 м</strong></div>
+<div><span>Звук</span><strong>Пространственное поле 22.1</strong></div>
+<div><span>Память</span><strong>След сохраняется · 60 мин</strong></div>
+</div>
+</div>
+<figure class="featured-img" data-img-reveal="" data-speed="1.1">
+<img alt="Тёмная водная гладь, длинная выдержка" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5a827fa9-3d6b-4d71-8af3-11dde075df1e_3840w.webp?w=800&amp;q=80"/>
+<figcaption><span>РИС. 04</span>Исследование стойкости следа · длинная выдержка</figcaption>
+</figure>
+</div>
+</section>
+<!-- ========== 4 · LIFE — visit / tickets (entity: DNA helix) ========== -->
+<section class="section visit" data-bg="#050a0a" data-epoch="Life" data-glow="#5bf0d8" data-shape="4" id="life">
+<div class="wrap visit-grid">
+<div class="visit-lead">
+<p class="kicker" data-reveal="">Спланируйте переход</p>
+<h2 class="h2 split glitch">Тринадцать миллиардов лет —<br/><em>за один вечер.</em></h2>
+<p class="visit-copy" data-reveal="">
+            Полный маршрут занимает около девяноста минут. Вечерние сеансы ограничены, чтобы сохранить адаптированные к темноте залы.
+          </p>
+<figure class="visit-img" data-img-reveal="">
+<img alt="Силуэт посетителя под звёздным небом" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/82baeb6d-80e2-461a-afff-01913595919c_3840w.jpg?w=800&amp;q=80"/>
+<figcaption><span>ПАЛУБА 03</span>Зал обсерватории после наступления темноты</figcaption>
+</figure>
+</div>
+<div class="visit-card" data-reveal="">
+<h3>AEON — Темпоральная обсерватория</h3>
+<div class="visit-rows">
+<div class="visit-row"><span>Адрес</span><strong>Пирс 40 · Портовый район</strong></div>
+<div class="visit-row"><span>Часы работы</span><strong>Ср — Вс · 10:00 — 22:00</strong></div>
+<div class="visit-row"><span>Дневной вход</span><strong>24 —</strong></div>
+<div class="visit-row"><span>Вечер (после 19:00)</span><strong>18 —</strong></div>
+<div class="visit-row"><span>До 26 лет</span><strong>12 —</strong></div>
+</div>
+<a class="btn btn-primary btn-wide" data-magnetic="" href="#"><span>Забронировать сеанс</span></a>
+</div>
+</div>
+</section>
+<!-- ========== 5 · FLIGHT — program (entity: butterfly) ========== -->
+<section class="section program" data-bg="#0a070c" data-epoch="Flight" data-glow="#e08ab8" data-shape="5" id="flight">
+<div class="wrap">
+<p class="kicker" data-reveal="">Сезонная программа</p>
+<h2 class="h2 split glitch">В этом сезоне —<br/><em>после заката.</em></h2>
+<div class="program-list">
+<a class="program-row" data-reveal="" href="#">
+<span class="p-when">12 июня · 20:00</span>
+<span class="p-name">Глубокое слушание</span>
+<span class="p-desc">Ранняя Вселенная, транспонированная для человеческого слуха.</span>
+<span class="p-arrow">→</span>
+</a>
+<a class="program-row" data-reveal="" href="#">
+<span class="p-when">По пятницам · 22:00</span>
+<span class="p-name">Ночная прогулка</span>
+<span class="p-desc">Залы в полной темноте, по двенадцать посетителей за раз.</span>
+<span class="p-arrow">→</span>
+</a>
+<a class="program-row" data-reveal="" href="#">
+<span class="p-when">По воскресеньям · 11:00</span>
+<span class="p-name">Рисуя глубокое время</span>
+<span class="p-desc">Неспешная сессия скетчинга в Зале 03.</span>
+<span class="p-arrow">→</span>
+</a>
+<a class="program-row" data-reveal="" href="#">
+<span class="p-when">3 июля · 19:00</span>
+<span class="p-name">Железо в вашей крови</span>
+<span class="p-desc">Лекция о звёздном нуклеосинтезе в зале Кузниц.</span>
+<span class="p-arrow">→</span>
+</a>
+<a class="program-row" data-reveal="" href="#">
+<span class="p-when">21 августа · 21:00</span>
+<span class="p-name">Интервал бабочки</span>
+<span class="p-desc">Перформанс, измеряемый взмахами крыльев, а не минутами.</span>
+<span class="p-arrow">→</span>
+</a>
+</div>
+</div>
+</section>
+<!-- ========== 6 · SIGNAL — manifesto (entity: city grid) ========== -->
+<section class="section manifesto" data-bg="#0a0812" data-epoch="Signal" data-glow="#a78bfa" data-shape="6" id="signal">
+<div class="wrap manifesto-wrap">
+<p class="kicker" data-reveal="">Слово куратора</p>
+<div class="manifesto-lines" id="manifestoLines">
+<p class="m-line">Вы не вне этой истории.</p>
+<p class="m-line">Железо в вашей крови было выковано <em>в умирающей звезде.</em></p>
+<p class="m-line">Кальций в ваших руках <em>помнит море.</em></p>
+<p class="m-line">Вы и есть коллекция, <em>идущая.</em></p>
+</div>
+<p class="manifesto-credit" data-reveal=""><span>Куратор —</span><strong>Фонд Aeon</strong></p>
+</div>
+</section>
+<!-- ========== 7 · RETURN — final CTA (entity: the word AEON) ========== -->
+<section class="section final" data-bg="#030408" data-epoch="Return" data-glow="#5b9fe0" data-shape="7" id="return">
+<div class="wrap final-wrap">
+<p class="kicker" data-reveal="">Открыта запись на сеансы</p>
+<h2 class="final-title split glitch">Пройдите всю<br/><em>толщу времени.</em></h2>
+<p class="final-copy" data-reveal="">
+          Путь заканчивается в настоящем — в единственном мире, сохранившем запись. Забронируйте переход и увидьте, что помнит материя.
+        </p>
+<div class="final-actions" data-reveal="">
+<a class="btn btn-primary" data-magnetic="" href="#life"><span>Забронировать вход</span></a>
+<a class="btn btn-secondary" data-magnetic="" href="#flight"><span>Смотреть программу</span></a>
+</div>
+</div>
+</section>
+<footer class="footer">
+<div class="wrap footer-wrap">
+<div class="footer-top">
+<a class="footer-brand" href="#dust">AEON<em>темпоральная обсерватория</em></a>
+<div class="footer-cols">
+<div class="footer-col">
+<h4>Обсерватория</h4>
+<a href="#worlds">Шесть залов</a>
+<a href="#water">Зал сезона</a>
+<a href="#signal">Слово куратора</a>
+</div>
+<div class="footer-col">
+<h4>Визит</h4>
+<a href="#life">Билеты</a>
+<a href="#flight">Программа</a>
+<a href="#">Доступность</a>
+</div>
+<div class="footer-col">
+<h4>Фонд</h4>
+<a href="#">Членство</a>
+<a href="#">Пресса</a>
+<a href="#">Контакты</a>
+</div>
+</div>
+</div>
+<div class="footer-bottom">
+<span>© 2026 Фонд Aeon</span>
+<span>Пирс 40 · Портовый район</span>
+</div>
+</div>
+</footer>
+</main>
+</body></html>

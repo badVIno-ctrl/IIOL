@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Substance Lab — студия цифрового дизайна</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;family=Instrument+Serif:ital@0;1&amp;display=swap" rel="stylesheet"/>
+<style>
+@keyframes drift1 { 0%,100%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(30px,-40px) rotate(8deg)} }
+@keyframes drift2 { 0%,100%{transform:translate(0,0) rotate(0deg)} 50%{transform:translate(-40px,30px) rotate(-6deg)} }
+@keyframes drift3 { 0%,100%{transform:translate(0,0) scale(1)} 50%{transform:translate(20px,50px) scale(1.05)} }
+.drift-a { animation: drift1 14s ease-in-out infinite; }
+.drift-b { animation: drift2 19s ease-in-out infinite; }
+.drift-c { animation: drift3 24s ease-in-out infinite; }
+[data-reveal] { opacity: 0; transform: translateY(48px); filter: blur(10px); transition: opacity .9s cubic-bezier(.22,1,.36,1), transform .9s cubic-bezier(.22,1,.36,1), filter .9s cubic-bezier(.22,1,.36,1); }
+[data-reveal].is-in { opacity: 1; transform: translateY(0); filter: blur(0); }
+[data-panel-img] { transform: translateY(12%) scale(1.06); transition: transform 1.2s cubic-bezier(.22,1,.36,1); }
+[data-panel-img].is-in { transform: translateY(0) scale(1); }
+.word-reveal { display: inline-block; opacity: 0; filter: blur(8px); transform: translateY(24px); transition: opacity .7s cubic-bezier(.22,1,.36,1), transform .7s cubic-bezier(.22,1,.36,1), filter .7s cubic-bezier(.22,1,.36,1); }
+.is-in .word-reveal { opacity: 1; transform: translateY(0); filter: blur(0); }
+@media (prefers-reduced-motion: reduce) {
+.drift-a, .drift-b, .drift-c { animation: none !important; }
+[data-reveal] { transition: opacity .4s ease !important; transform: none !important; filter: none !important; }
+.word-reveal { transition: opacity .3s ease !important; transform: none !important; filter: none !important; }
+}
+</style>
+<style>
+[class*="Space_Grotesk"]{font-family:'Geist','Inter',sans-serif !important;}
+</style>
+<meta content="font-geist" name="aura-font-heading-class"/>
+<meta content="font-sans" name="aura-font-body-class"/>
+<meta content="Geist" name="aura-font-heading-label"/>
+<meta content="Inter" name="aura-font-body-label"/><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style id="mobile-adapt">
+/* v91 Substance Lab — мобильная адаптация */
+html, body { overflow-x: clip; }
+
+@media (max-width: 640px) {
+  /* Герой-заголовок: длинные русские слова не должны вылезать за экран */
+  section h1 { font-size: clamp(2.25rem, 11vw, 3rem) !important; line-height: 1.12 !important; }
+  h1, h2, h3 { overflow-wrap: break-word; }
+
+  /* Капсульная навигация не шире экрана */
+  nav.fixed > div { max-width: calc(100vw - 1.5rem); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+
+  /* Формы: 16px против авто-зума iOS, удобные цели нажатия */
+  input, select, textarea, button { font-size: 16px !important; }
+  a, button { min-height: 44px; }
+
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+
+</style>
+</head>
+<body class="bg-[#FBFAF7] text-[#12281A] antialiased font-['Inter'] selection:bg-[#42A85D] selection:text-black">
+<!-- ============ FIXED CAPSULE NAV ============ -->
+<nav class="fixed left-1/2 -translate-x-1/2 top-4 sm:top-7 z-50">
+<div class="flex items-center gap-1 bg-white/90 backdrop-blur-md rounded-full pl-4 pr-1.5 py-1.5 border border-black/10 shadow-xl shadow-black/10">
+<a class="flex items-center gap-2.5 pr-3 sm:pr-4" href="#top">
+<span class="grid grid-cols-3 gap-[2.5px]">
+<span class="w-1 h-1 rounded-full bg-[#42A85D]"></span>
+<span class="w-1 h-1 rounded-full bg-black/70"></span>
+<span class="w-1 h-1 rounded-full bg-black/30"></span>
+<span class="w-1 h-1 rounded-full bg-black/70"></span>
+<span class="w-1 h-1 rounded-full bg-black/30"></span>
+<span class="w-1 h-1 rounded-full bg-black/70"></span>
+<span class="w-1 h-1 rounded-full bg-black/30"></span>
+<span class="w-1 h-1 rounded-full bg-black/70"></span>
+<span class="w-1 h-1 rounded-full bg-[#42A85D]"></span>
+</span>
+<span class="font-['Space_Grotesk'] font-semibold text-sm tracking-tight whitespace-nowrap">
+            Substance Lab
+          </span>
+</a>
+<div class="hidden md:flex items-center gap-1 text-sm text-black/60">
+<a class="px-3 py-1.5 rounded-full hover:text-black hover:bg-black/5 transition-colors duration-300" href="#studio">
+            Студия
+          </a>
+<a class="px-3 py-1.5 rounded-full hover:text-black hover:bg-black/5 transition-colors duration-300" href="#projects">
+            Проекты
+            <sup class="text-[#42A85D] ml-0.5 text-xs">07</sup>
+</a>
+<a class="px-3 py-1.5 rounded-full hover:text-black hover:bg-black/5 transition-colors duration-300" href="#notes">
+            Заметки
+          </a>
+</div>
+<a class="ml-1 sm:ml-2 bg-[#1E4D33] hover:bg-[#2A6647] active:scale-95 text-white text-sm font-medium px-4 sm:px-5 py-2 rounded-full transition-all duration-300 whitespace-nowrap shadow-lg shadow-[#1E4D33]/30" href="#contact">
+          Контакты
+        </a>
+</div>
+</nav>
+<!-- ============ HERO ============ -->
+<header class="relative min-h-screen overflow-hidden flex flex-col" id="top">
+<!-- cinematic background -->
+<div class="absolute inset-0" data-parallax="0.15">
+<video class="w-full h-full object-cover scale-110 opacity-90" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f8e75ffd-3780-45d5-a852-838b5e33ede8_3840w.webp" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1782999286314-2d8dfd1d-f5c0-4ad1-81a1-2055a64391da.mp4"></video>
+</div>
+<!-- floating translucent forms -->
+<div class="absolute inset-0 pointer-events-none" data-parallax="0.3">
+<div class="drift-a absolute top-[12%] left-[8%] w-40 h-40 sm:w-64 sm:h-64 rounded-full bg-gradient-to-br from-white/25 to-white/5 backdrop-blur-sm border border-white/20 shadow-[inset_0_0_60px_rgba(255,255,255,0.25)]"></div>
+<div class="drift-b absolute top-[28%] right-[10%] w-28 h-28 sm:w-44 sm:h-44 rounded-[40%] bg-gradient-to-tl from-[#42A85D]/25 to-white/10 backdrop-blur-md border border-white/15 shadow-[inset_0_0_40px_rgba(66,168,93,0.3)]"></div>
+<div class="drift-c absolute top-[52%] left-[38%] w-20 h-20 sm:w-32 sm:h-32 rounded-full bg-gradient-to-b from-white/20 to-transparent backdrop-blur-[2px] border border-white/25"></div>
+<div class="drift-b absolute top-[8%] left-[55%] w-14 h-14 sm:w-20 sm:h-20 rounded-[45%] bg-white/10 backdrop-blur-sm border border-white/20"></div>
+<div class="drift-a absolute bottom-[38%] right-[28%] w-16 h-16 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-[#42A85D]/20 to-transparent backdrop-blur-sm border border-white/10"></div>
+</div>
+<!-- readability gradients -->
+<div class="absolute inset-0 bg-gradient-to-t from-[#FBFAF7] via-[#FBFAF7]/55 to-[#FBFAF7]/10"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-[#FBFAF7]/60 via-transparent to-[#FBFAF7]/30"></div>
+<!-- manifesto -->
+<div class="relative z-10 flex-1 flex items-end">
+<div class="max-w-7xl mx-auto w-full px-6 sm:px-10 pb-[24vw] sm:pb-[20vw] lg:pb-[17vw] pt-40">
+<div class="max-w-2xl" data-reveal="">
+<p class="text-xs uppercase tracking-[0.25em] text-[#1E4D33] font-medium mb-8" data-reveal="">
+              Студия цифрового дизайна — с 2019 года
+            </p>
+<h1 class="font-['Space_Grotesk'] text-5xl sm:text-7xl lg:text-8xl leading-[0.95] text-[#12281A] font-light tracking-tighter" data-reveal-words="true">
+              Дизайн, у которого есть вес, память
+              <br/>
+              и
+              <em class="font-['Instrument_Serif'] italic font-normal">
+                суть.
+              </em>
+</h1>
+<p class="mt-8 text-sm text-black/50 tracking-wide" data-reveal="" style="transition-delay: 550ms;">
+              / Мы создаём цифровые бренды, которые ощущаются настоящими /
+            </p>
+<div class="mt-10 flex items-center gap-6" data-reveal="" style="transition-delay: 700ms;">
+<a class="group inline-flex items-center gap-2.5 bg-[#1E4D33] hover:bg-[#2A6647] active:scale-95 text-white font-medium text-base px-7 py-3.5 rounded-full transition-all duration-300 shadow-xl shadow-[#1E4D33]/30 hover:shadow-2xl hover:shadow-[#1E4D33]/40" href="#contact">
+                Начать проект
+                <i class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" data-lucide="arrow-up-right"></i>
+</a>
+<a class="text-sm text-black/50 hover:text-black transition-colors duration-300 border-b border-black/20 hover:border-black pb-0.5" href="#projects">
+                Смотреть проекты
+              </a>
+</div>
+</div>
+</div>
+</div>
+<!-- giant cropped wordmark -->
+<div class="absolute -bottom-[4vw] left-1/2 -translate-x-1/2 w-full z-[5] pointer-events-none overflow-hidden" data-parallax="0.5">
+<p class="font-['Space_Grotesk'] text-[19.5vw] leading-none text-center text-[#1E4D33]/10 whitespace-nowrap select-none font-light tracking-tighter" style="-webkit-text-stroke: 1px rgba(30, 77, 51, 0.12);">
+          SUBSTANCE
+        </p>
+</div>
+</header>
+<!-- ============ PROJECT REEL ============ -->
+<section class="relative pt-24 sm:pt-36 pb-8" id="projects">
+<div class="max-w-7xl mx-auto px-6 sm:px-10">
+<div class="flex items-end justify-between mb-14" data-reveal="">
+<h2 class="font-['Space_Grotesk'] text-4xl sm:text-5xl font-light tracking-tighter" data-reveal-words="true">
+            Избранные
+            <em class="font-['Instrument_Serif'] italic font-normal">работы</em>
+</h2>
+<p class="hidden sm:block text-sm text-black/40">2021 — 2025</p>
+</div>
+</div>
+<!-- panel 01 -->
+<div class="max-w-7xl mx-auto px-6 sm:px-10 mb-6 sm:mb-10">
+<div class="relative rounded-2xl overflow-hidden aspect-[16/10] sm:aspect-[21/9] shadow-2xl shadow-black/15">
+<video aria-label="Айдентика Verre Studio" class="w-full h-full object-cover" data-aura-generated-video="true" data-aura-video-preset="loop-in-view" data-panel-img="" loop="" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/variants/0686272e-5c53-4301-bce5-b1a86a762fa4/1600w.jpg" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/9109ecbb-cdc4-4815-981e-2ea83be13765/1782999930583-dfa026f6-bc70-4ea9-b421-6fd67b3eff53.mp4"></video>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 sm:p-10 flex flex-col sm:flex-row sm:items-end sm:justify-between w-full gap-4">
+<div data-reveal="">
+<p class="text-xs text-[#42A85D] font-medium mb-2">01</p>
+<h3 class="font-['Space_Grotesk'] text-2xl sm:text-3xl font-light tracking-tighter">
+                Verre Studio
+              </h3>
+<p class="text-base text-white/60 mt-2 max-w-md">
+                Айдентика, отлитая как расплавленное стекло, — дом материалов, заново собранный вокруг веса и света.
+              </p>
+</div>
+<div class="flex gap-2 text-xs text-white/60" data-reveal="" style="transition-delay: 150ms;">
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Айдентика
+              </span>
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Веб
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- panels 02 + 03, overlapping crop -->
+<div class="max-w-7xl mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-6 sm:gap-10 mb-6 sm:mb-10">
+<div class="lg:col-span-7 lg:-mt-4 relative rounded-2xl overflow-hidden aspect-[4/3] shadow-2xl shadow-black/15">
+<img alt="Запуск Analog Signal" class="w-full h-full object-cover" data-panel-img="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5f870fa0-1fa4-4845-bf04-6732d79259fa_1600w.webp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 sm:p-8" data-reveal="" style="transition-delay: 120ms;">
+<p class="text-xs text-[#42A85D] font-medium mb-2">02</p>
+<h3 class="font-['Space_Grotesk'] text-2xl font-light tracking-tighter">
+              Analog Signal
+            </h3>
+<p class="text-base text-white/60 mt-2 max-w-sm">
+              Сайт запуска, где у каждого скролла есть трение, — ностальгия по «железу», превращённая в интерфейс.
+            </p>
+<div class="flex gap-2 text-xs text-white/60 mt-4">
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Взаимодействие
+              </span>
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Моушен
+              </span>
+</div>
+</div>
+</div>
+<div class="lg:col-span-5 lg:mt-24 relative rounded-2xl overflow-hidden aspect-[4/5] lg:aspect-auto shadow-2xl shadow-black/15">
+<img alt="История продукта Soft Machine" class="w-full h-full object-cover" data-panel-img="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/750647bd-8e6a-40c8-a21a-8398b7c09a75_3840w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent"></div>
+<div class="absolute bottom-0 left-0 p-6 sm:p-8" data-reveal="" style="transition-delay: 240ms;">
+<p class="text-xs text-[#42A85D] font-medium mb-2">03</p>
+<h3 class="font-['Space_Grotesk'] text-2xl font-light tracking-tighter">
+              Soft Machine
+            </h3>
+<p class="text-base text-white/60 mt-2 max-w-sm">
+              История продукта, рассказанная через симуляцию ткани, — SaaS-онбординг с пульсом.
+            </p>
+<div class="flex gap-2 text-xs text-white/60 mt-4">
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Продукт
+              </span>
+<span class="border border-white/20 rounded-full px-3 py-1">
+                3D
+              </span>
+</div>
+</div>
+</div>
+</div>
+<!-- panel 04, full bleed -->
+<div class="relative overflow-hidden aspect-[16/12] sm:aspect-[21/9]">
+<img alt="Кампания Field Notes" class="w-full h-full object-cover" data-panel-img="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ab6e7463-ed15-4dc8-ab99-ee5d2f3257b4_3840w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+<div class="absolute bottom-0 left-0 w-full">
+<div class="max-w-7xl mx-auto px-6 sm:px-10 pb-8 sm:pb-12 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+<div data-reveal="">
+<p class="text-xs text-[#42A85D] font-medium mb-2">04</p>
+<h3 class="font-['Space_Grotesk'] text-2xl sm:text-3xl font-light tracking-tighter">
+                Field Notes
+              </h3>
+<p class="text-base text-white/60 mt-2 max-w-md">
+                Кампания, построенная на студийных натюрмортах: предметы снимали, пока они не стали брендом.
+              </p>
+</div>
+<div class="flex gap-2 text-xs text-white/60" data-reveal="" style="transition-delay: 150ms;">
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Кампания
+              </span>
+<span class="border border-white/20 rounded-full px-3 py-1">
+                Арт-дирекшен
+              </span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ STUDIO METHOD ============ -->
+<section class="bg-[#E4EFDA] text-black py-24 sm:py-36" id="studio">
+<div class="max-w-7xl mx-auto px-6 sm:px-10">
+<div class="max-w-3xl mb-20" data-reveal="">
+<p class="text-xs uppercase tracking-[0.25em] text-[#1E4D33] font-medium mb-6">
+            Метод
+          </p>
+<h2 class="font-['Space_Grotesk'] text-4xl sm:text-6xl leading-[1.05] font-light tracking-tighter" data-reveal-words="true">
+            Мы даём цифровым продуктам
+            <em class="font-['Instrument_Serif'] italic font-normal">
+              физическую память.
+            </em>
+</h2>
+<p class="text-lg text-black/60 mt-6 max-w-xl">
+            Экраны забывают. Материалы — нет. Каждый проект начинается с вопроса о весе: каким это должно ощущаться в руках, даже когда взять нельзя.
+          </p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-10 md:gap-8">
+<div data-reveal="">
+<div class="rounded-xl overflow-hidden aspect-[3/2] mb-6 shadow-xl shadow-black/10">
+<img alt="" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/789b486e-e0cb-48bc-a3d1-82ed4e4842e0_3840w.png"/>
+</div>
+<p class="text-xs text-black/40 font-medium mb-2">A</p>
+<h3 class="font-['Space_Grotesk'] text-xl mb-3 font-light tracking-tighter">
+              Системы айдентики
+            </h3>
+<p class="text-base text-black/60 leading-relaxed">
+              Нейминг, типографика, цвет и голос как единый материал — бренд ведёт себя одинаково в любом масштабе.
+            </p>
+</div>
+<div data-reveal="" style="transition-delay: 120ms">
+<div class="rounded-xl overflow-hidden aspect-[3/2] mb-6 shadow-xl shadow-black/10">
+<img alt="" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/36e2b151-c130-4148-b3db-5e736f9854bf_3840w.png"/>
+</div>
+<p class="text-xs text-black/40 font-medium mb-2">B</p>
+<h3 class="font-['Space_Grotesk'] text-xl mb-3 font-light tracking-tighter">
+              Физика взаимодействия
+            </h3>
+<p class="text-base text-black/60 leading-relaxed">
+              Перетаскивание, масса, инерция и трение, настроенные вручную. Интерфейсы, которые отзываются как предметы, а не как документы.
+            </p>
+</div>
+<div data-reveal="" style="transition-delay: 240ms">
+<div class="rounded-xl overflow-hidden aspect-[3/2] mb-6 shadow-xl shadow-black/10">
+<img alt="" class="w-full h-full object-cover hover:scale-105 transition-transform duration-700 ease-out" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/97e6ed16-8a5d-42fd-bfa6-0dbd93e0d855_3840w.png"/>
+</div>
+<p class="text-xs text-black/40 font-medium mb-2">C</p>
+<h3 class="font-['Space_Grotesk'] text-xl mb-3 font-light tracking-tighter">
+              Сайты для запусков
+            </h3>
+<p class="text-base text-black/60 leading-relaxed">
+              Боевые сайты и страницы кампаний: быстро выпускаются и созданы, чтобы их трогали, а не просто пролистывали.
+            </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ CAPABILITIES ============ -->
+<section class="bg-[#1E4D33] py-24 sm:py-36 relative" id="notes">
+<div class="max-w-7xl mx-auto px-6 sm:px-10">
+<p class="text-xs uppercase tracking-[0.25em] text-[#42A85D] font-medium mb-12" data-reveal="">
+          Компетенции
+        </p>
+<div data-reveal="">
+<a class="group flex items-baseline justify-between border-t border-white/10 py-6 sm:py-8 hover:border-[#42A85D]/50 transition-colors duration-500" data-preview="https://images.unsplash.com/photo-1557672172-298e090bd0f1?q=80&amp;w=600&amp;auto=format&amp;fit=crop" data-reveal="" href="#contact" style="transition-delay: 0ms;">
+<span class="font-['Space_Grotesk'] text-2xl sm:text-4xl text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 font-light tracking-tighter">
+              Бренд-системы
+            </span>
+<span class="text-xs text-white/30 group-hover:text-[#42A85D] transition-colors duration-500">
+              01
+            </span>
+</a>
+<a class="group flex items-baseline justify-between border-t border-white/10 py-6 sm:py-8 hover:border-[#42A85D]/50 transition-colors duration-500" data-preview="https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?q=80&amp;w=600&amp;auto=format&amp;fit=crop" data-reveal="" href="#contact" style="transition-delay: 80ms;">
+<span class="font-['Space_Grotesk'] text-2xl sm:text-4xl text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 font-light tracking-tighter">
+              Веб-арт-дирекшен
+            </span>
+<span class="text-xs text-white/30 group-hover:text-[#42A85D] transition-colors duration-500">
+              02
+            </span>
+</a>
+<a class="group flex items-baseline justify-between border-t border-white/10 py-6 sm:py-8 hover:border-[#42A85D]/50 transition-colors duration-500" data-preview="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?q=80&amp;w=600&amp;auto=format&amp;fit=crop" data-reveal="" href="#contact" style="transition-delay: 160ms;">
+<span class="font-['Space_Grotesk'] text-2xl sm:text-4xl text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 font-light tracking-tighter">
+              Сборки в Framer
+            </span>
+<span class="text-xs text-white/30 group-hover:text-[#42A85D] transition-colors duration-500">
+              03
+            </span>
+</a>
+<a class="group flex items-baseline justify-between border-t border-white/10 py-6 sm:py-8 hover:border-[#42A85D]/50 transition-colors duration-500" data-preview="https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&amp;w=600&amp;auto=format&amp;fit=crop" data-reveal="" href="#contact" style="transition-delay: 240ms;">
+<span class="font-['Space_Grotesk'] text-2xl sm:text-4xl text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 font-light tracking-tighter">
+              Страницы кампаний
+            </span>
+<span class="text-xs text-white/30 group-hover:text-[#42A85D] transition-colors duration-500">
+              04
+            </span>
+</a>
+<a class="group flex items-baseline justify-between border-t border-white/10 py-6 sm:py-8 hover:border-[#42A85D]/50 transition-colors duration-500" data-preview="https://images.unsplash.com/photo-1541701494587-cb58502866ab?q=80&amp;w=600&amp;auto=format&amp;fit=crop" data-reveal="" href="#contact" style="transition-delay: 320ms;">
+<span class="font-['Space_Grotesk'] text-2xl sm:text-4xl text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 font-light tracking-tighter">
+              Интерактивные прототипы
+            </span>
+<span class="text-xs text-white/30 group-hover:text-[#42A85D] transition-colors duration-500">
+              05
+            </span>
+</a>
+<a class="group flex items-baseline justify-between border-t border-b border-white/10 py-6 sm:py-8 hover:border-[#42A85D]/50 transition-colors duration-500" data-preview="https://images.unsplash.com/photo-1519710164239-da123dc03ef4?q=80&amp;w=600&amp;auto=format&amp;fit=crop" data-reveal="" href="#contact" style="transition-delay: 400ms;">
+<span class="font-['Space_Grotesk'] text-2xl sm:text-4xl text-white/80 group-hover:text-white group-hover:translate-x-2 transition-all duration-500 font-light tracking-tighter">
+              Моушен-системы
+            </span>
+<span class="text-xs text-white/30 group-hover:text-[#42A85D] transition-colors duration-500">
+              06
+            </span>
+</a>
+</div>
+</div>
+<!-- floating cursor preview -->
+<div class="hidden lg:block fixed z-40 pointer-events-none w-56 aspect-[4/3] rounded-lg overflow-hidden opacity-0 scale-90 transition-all duration-300 ease-out shadow-2xl shadow-black/50" id="cursor-preview">
+<img alt="" class="w-full h-full object-cover" id="cursor-preview-img" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5a8c8373-65d1-4f01-9bba-53b5eab2b1ad_3840w.png"/>
+</div>
+</section>
+<!-- ============ PROOF ============ -->
+<section class="bg-[#FBFAF7] pt-24 pb-24 sm:pb-36">
+<div class="max-w-7xl mx-auto px-6 sm:px-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+<div class="lg:col-span-5 order-2 lg:order-1" data-reveal="">
+<div class="rounded-2xl overflow-hidden aspect-[4/5] shadow-2xl shadow-black/15">
+<img alt="Элена Марш, основательница Halide Coffee" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/afde836c-8fe0-4c5b-aa0b-fe420a91d1e2_3840w.png"/>
+</div>
+</div>
+<div class="lg:col-span-7 order-1 lg:order-2" data-reveal="">
+<i class="w-8 h-8 text-[#1E4D33] mb-8" data-lucide="quote"></i>
+<blockquote class="font-['Space_Grotesk'] text-2xl sm:text-4xl leading-[1.2] text-[#12281A] font-light tracking-tighter" data-reveal-words="true">
+            «Старый сайт описывал продукт. Новый ведёт себя как он. Заявок на демо стало вдвое больше за шесть недель — а на созвонах нам цитируют наш скролл».
+          </blockquote>
+<div class="mt-8" data-reveal="" style="transition-delay: 300ms;">
+<p class="text-base font-medium">Элена Марш</p>
+<p class="text-sm text-black/40">Основательница Halide Coffee Systems</p>
+</div>
+</div>
+</div>
+</section>
+<!-- ============ CONTACT ============ -->
+<section class="relative overflow-hidden pt-12" id="contact">
+<!-- cropped heading -->
+<div class="overflow-hidden select-none pointer-events-none" data-parallax="0.35">
+<p class="font-['Space_Grotesk'] text-[13vw] leading-[0.85] text-[#1E4D33]/10 whitespace-nowrap text-center -mb-[2vw] font-light tracking-tighter">
+          ПУСТЬ ЭТО ОЩУЩАЕТСЯ НАСТОЯЩИМ
+        </p>
+</div>
+<div class="max-w-7xl mx-auto px-6 sm:px-10 py-20 sm:py-28 grid grid-cols-1 lg:grid-cols-12 gap-14">
+<div class="lg:col-span-5" data-reveal="">
+<h2 class="font-['Space_Grotesk'] text-4xl sm:text-5xl leading-[1.05] mb-6 font-light tracking-tighter" data-reveal-words="true">
+            Сделайте это
+            <br/>
+<em class="font-['Instrument_Serif'] italic font-normal">
+              настоящим.
+            </em>
+</h2>
+<p class="text-lg text-black/60 max-w-sm mb-10">
+            Приносите сырой продукт, недооформленную кампанию или бренд, которому не хватает веса. Мы честно скажем, чего ему недостаёт.
+          </p>
+<a class="group inline-flex items-center gap-2 text-base text-black border-b border-black/20 hover:border-[#1E4D33] pb-1 transition-colors duration-300" href="mailto:hello@substancelab.studio">
+            hello@substancelab.studio
+            <i class="w-4 h-4 text-[#1E4D33] transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" data-lucide="arrow-up-right"></i>
+</a>
+</div>
+<div class="lg:col-span-6 lg:col-start-7" data-reveal="">
+<form class="space-y-6" onsubmit="event.preventDefault()">
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div>
+<label class="block text-xs uppercase tracking-widest text-black/40 mb-2">
+                  Имя
+                </label>
+<input class="w-full bg-transparent border-b border-black/20 focus:border-[#1E4D33] outline-none py-3 text-base placeholder:text-black/30 transition-colors duration-300" placeholder="Ваше имя" type="text"/>
+</div>
+<div>
+<label class="block text-xs uppercase tracking-widest text-black/40 mb-2">
+                  Эл. почта
+                </label>
+<input class="w-full bg-transparent border-b border-black/20 focus:border-[#1E4D33] outline-none py-3 text-base placeholder:text-black/30 transition-colors duration-300" placeholder="you@company.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-xs uppercase tracking-widest text-black/40 mb-2">
+                Бриф
+              </label>
+<textarea class="w-full bg-transparent border-b border-black/20 focus:border-[#1E4D33] outline-none py-3 text-base placeholder:text-black/30 resize-none transition-colors duration-300" placeholder="Что вы делаете и каким это должно ощущаться?" rows="4"></textarea>
+</div>
+<button class="group inline-flex items-center gap-2.5 bg-[#1E4D33] hover:bg-[#2A6647] active:scale-95 text-white font-medium text-base px-7 py-3.5 rounded-full transition-all duration-300 shadow-xl shadow-[#1E4D33]/30" type="submit">
+              Отправить бриф
+              <i class="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" data-lucide="arrow-right"></i>
+</button>
+</form>
+</div>
+</div>
+<!-- footer -->
+<footer class="border-t border-black/10">
+<div class="max-w-7xl mx-auto px-6 sm:px-10 py-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
+<div class="flex items-center gap-2.5">
+<span class="grid grid-cols-3 gap-[2.5px]">
+<span class="w-1 h-1 rounded-full bg-[#42A85D]"></span>
+<span class="w-1 h-1 rounded-full bg-black/60"></span>
+<span class="w-1 h-1 rounded-full bg-black/30"></span>
+<span class="w-1 h-1 rounded-full bg-black/60"></span>
+<span class="w-1 h-1 rounded-full bg-black/30"></span>
+<span class="w-1 h-1 rounded-full bg-black/60"></span>
+<span class="w-1 h-1 rounded-full bg-black/30"></span>
+<span class="w-1 h-1 rounded-full bg-black/60"></span>
+<span class="w-1 h-1 rounded-full bg-[#42A85D]"></span>
+</span>
+<span class="font-['Space_Grotesk'] font-semibold text-sm tracking-tight">
+              Substance Lab
+            </span>
+</div>
+<div class="flex flex-wrap gap-x-7 gap-y-2 text-sm text-black/50">
+<a class="hover:text-black transition-colors duration-300" href="#studio">
+              Студия
+            </a>
+<a class="hover:text-black transition-colors duration-300" href="#projects">
+              Проекты
+            </a>
+<a class="hover:text-black transition-colors duration-300" href="#notes">
+              Заметки
+            </a>
+<a class="hover:text-black transition-colors duration-300" href="#contact">
+              Контакты
+            </a>
+<a class="hover:text-black transition-colors duration-300" href="#">
+              Instagram
+            </a>
+<a class="hover:text-black transition-colors duration-300" href="#">
+              X
+            </a>
+</div>
+<p class="text-xs text-black/30">© 2025 Substance Lab</p>
+</div>
+</footer>
+</section>
+<script>
+      lucide.createIcons({ attrs: { 'stroke-width': 1.5 } });
+
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      // Reveal observer
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); } });
+      }, { threshold: 0.15 });
+      document.querySelectorAll('[data-reveal], [data-panel-img]').forEach(el => io.observe(el));
+
+      // Parallax
+      if (!reduced) {
+        const layers = document.querySelectorAll('[data-parallax]');
+        let ticking = false;
+        window.addEventListener('scroll', () => {
+          if (!ticking) {
+            requestAnimationFrame(() => {
+              layers.forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.bottom > 0 && rect.top < innerHeight) {
+                  const speed = parseFloat(el.dataset.parallax);
+                  el.style.transform = 'translateY(' + (window.scrollY * speed * (el.closest('#contact') ? -0.3 : 1) % 600).toFixed(1) + 'px)';
+                }
+              });
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+
+      // Cursor image preview on capabilities
+      const preview = document.getElementById('cursor-preview');
+      const previewImg = document.getElementById('cursor-preview-img');
+      if (preview && matchMedia('(pointer: fine)').matches) {
+        document.querySelectorAll('[data-preview]').forEach(row => {
+          row.addEventListener('mouseenter', () => {
+            previewImg.src = row.dataset.preview;
+            preview.classList.remove('opacity-0', 'scale-90');
+            preview.classList.add('opacity-100', 'scale-100');
+          });
+          row.addEventListener('mouseleave', () => {
+            preview.classList.add('opacity-0', 'scale-90');
+            preview.classList.remove('opacity-100', 'scale-100');
+          });
+          row.addEventListener('mousemove', (e) => {
+            preview.style.left = (e.clientX + 28) + 'px';
+            preview.style.top = (e.clientY - 80) + 'px';
+          });
+        });
+      }
+    </script>
+<script>
+      (function(){
+        function wrapWords(root){
+          var walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, null);
+          var nodes = [];
+          var n;
+          while (n = walker.nextNode()) { if (n.textContent.trim() !== '') nodes.push(n); }
+          var i = 0;
+          nodes.forEach(function(tn){
+            var parts = tn.textContent.split(/(\s+)/);
+            var frag = document.createDocumentFragment();
+            parts.forEach(function(part){
+              if (part.trim() === '') { frag.appendChild(document.createTextNode(part)); return; }
+              var span = document.createElement('span');
+              span.className = 'word-reveal';
+              span.style.transitionDelay = (i * 45) + 'ms';
+              span.textContent = part;
+              frag.appendChild(span);
+              i++;
+            });
+            tn.parentNode.replaceChild(frag, tn);
+          });
+        }
+        document.querySelectorAll('[data-reveal-words]').forEach(function(el){ wrapWords(el); });
+      })();
+    </script>
+<script data-aura-video-controller="true">
+(function () {
+  function playVideo(video) {
+    var promise = video.play();
+    if (promise && typeof promise.catch === "function") {
+      promise.catch(function () {});
+    }
+  }
+
+  function setupVideo(video) {
+    if (video.__auraVideoReady === true) return;
+    video.__auraVideoReady = true;
+    video.removeAttribute("data-aura-video-ready");
+    video.removeAttribute("data-aura-video-played");
+    video.muted = true;
+    video.playsInline = true;
+
+    var preset = video.dataset.auraVideoPreset || "loop-in-view";
+    if (preset === "hover") {
+      video.addEventListener("mouseenter", function () {
+        playVideo(video);
+      });
+      video.addEventListener("mouseleave", function () {
+        video.pause();
+        video.currentTime = 0;
+      });
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      playVideo(video);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          if (preset === "play-once" && video.__auraVideoPlayed === true) {
+            return;
+          }
+          playVideo(video);
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    if (preset === "play-once") {
+      video.addEventListener("ended", function () {
+        video.__auraVideoPlayed = true;
+      }, { once: true });
+    }
+
+    observer.observe(video);
+  }
+
+  function setupVideos() {
+    document
+      .querySelectorAll("video[data-aura-video-preset]")
+      .forEach(setupVideo);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupVideos);
+  } else {
+    setupVideos();
+  }
+})();</script></body></html>

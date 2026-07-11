@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><head><script id="aura-preview-performance-controller">
+(function() {
+if (window.__auraPreviewPerformanceController) return;
+const nativeRequestAnimationFrame = window.requestAnimationFrame
+? window.requestAnimationFrame.bind(window)
+: function(callback) { return window.setTimeout(function() { callback(Date.now()); }, 16); };
+const nativeCancelAnimationFrame = window.cancelAnimationFrame
+? window.cancelAnimationFrame.bind(window)
+: window.clearTimeout.bind(window);
+const nativeSetInterval = window.setInterval.bind(window);
+let paused = false;
+let nextFrameId = 1;
+const frameRecords = new Map();
+const pausedFrameCallbacks = new Map();
+const style = document.createElement('style');
+style.id = 'aura-preview-performance-style';
+style.textContent = [
+'html[data-aura-preview-paused="true"] *,',
+'html[data-aura-preview-paused="true"] *::before,',
+'html[data-aura-preview-paused="true"] *::after {',
+'  animation-play-state: paused !important;',
+'  transition-duration: 0s !important;',
+'  scroll-behavior: auto !important;',
+'}'
+].join('\n');
+document.head.appendChild(style);
+window.requestAnimationFrame = function(callback) {
+const frameId = nextFrameId++;
+if (paused) {
+pausedFrameCallbacks.set(frameId, callback);
+frameRecords.set(frameId, { paused: true });
+return frameId;
+}
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+return frameId;
+};
+window.cancelAnimationFrame = function(frameId) {
+const record = frameRecords.get(frameId);
+pausedFrameCallbacks.delete(frameId);
+if (record && typeof record.nativeFrameId !== 'undefined') {
+nativeCancelAnimationFrame(record.nativeFrameId);
+}
+frameRecords.delete(frameId);
+};
+window.setInterval = function(callback, delay) {
+const args = Array.prototype.slice.call(arguments, 2);
+return nativeSetInterval(function() {
+if (paused) return;
+callback.apply(this, args);
+}, delay);
+};
+const flushPausedFrames = function() {
+const callbacks = Array.from(pausedFrameCallbacks.entries());
+pausedFrameCallbacks.clear();
+callbacks.forEach(function(entry) {
+const frameId = entry[0];
+const callback = entry[1];
+const nativeFrameId = nativeRequestAnimationFrame(function(timestamp) {
+frameRecords.delete(frameId);
+callback(timestamp);
+});
+frameRecords.set(frameId, { nativeFrameId: nativeFrameId });
+});
+};
+const setPaused = function(nextPaused) {
+const shouldPause = Boolean(nextPaused);
+if (paused === shouldPause) return;
+paused = shouldPause;
+document.documentElement.toggleAttribute('data-aura-preview-paused', paused);
+if (!paused) {
+flushPausedFrames();
+}
+};
+window.__auraPreviewPerformanceController = {
+setPaused: setPaused,
+get paused() {
+return paused;
+}
+};
+window.addEventListener('message', function(event) {
+if (event.source !== window.parent) return;
+if (!event.data || event.data.type !== 'aura-preview-performance-mode') return;
+setPaused(event.data.paused);
+});
+})();
+</script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Bloom — премиальная галерея цветов</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script><!-- aura-ga4-start -->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2M6V79H761"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2M6V79H761');
+</script>
+<!-- aura-ga4-end -->
+<style id="mobile-adapt">
+/* v92 Bloom — мобильная адаптация (в исходнике нет медиазапросов) */
+html, body { overflow-x: clip; }
+
+@media (max-width: 639px) {
+  /* Показываем навигацию в шапке (в исходнике hidden sm:flex) компактно */
+  header nav.hidden { display: flex !important; gap: 0.75rem; }
+  header nav.hidden a { font-size: 0.78rem; }
+
+  /* Гигантское герой-слово умещается в экран */
+  h1[data-hero-word] { font-size: clamp(3.5rem, 22vw, 8rem) !important; }
+
+  h2, h3, h4 { overflow-wrap: break-word; }
+
+  input, select, textarea, button { font-size: 16px !important; }
+  a, button { min-height: 44px; }
+
+  body { padding-left: env(safe-area-inset-left); padding-right: env(safe-area-inset-right); }
+}
+
+</style>
+</head>
+<body class="bg-white text-[#102725] antialiased [font-family:'Inter',sans-serif] selection:bg-lime-300 selection:text-[#102725]">
+<main class="mx-auto max-w-[90rem] overflow-hidden bg-white">
+<section class="min-h-screen overflow-hidden text-white bg-[#102725] bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e9da167a-0f8e-46f4-8663-ec221e8a842d_3840w.jpg)] bg-cover bg-center relative" style="position: relative; overflow: hidden; isolation: isolate;"><video class="" data-aura-generated-video="true" data-aura-generated-video-bg="true" data-aura-video-preset="play-once" muted="" playsinline="" poster="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/e9da167a-0f8e-46f4-8663-ec221e8a842d_3840w.jpg" preload="metadata" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/generated-videos/2e815afb-cac1-4c01-90e1-cf3810246e35/1783187786302-697e788b-c487-4a26-989b-99c7119bf8e4.mp4" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;pointer-events:none;z-index:0"></video>
+<div class="absolute inset-0 opacity-60" data-parallax="" data-speed="-0.18">
+<div class="absolute -left-24 bottom-0 h-96 w-96 rounded-full bg-lime-300 blur-3xl"></div>
+<div class="absolute right-10 top-24 h-80 w-80 rounded-full bg-emerald-800 blur-3xl"></div>
+</div>
+<div class="pointer-events-none absolute inset-x-6 top-0 bottom-0 grid grid-cols-3 border-x border-white/10 md:inset-x-14">
+<div class="border-r border-dashed border-white/10"></div>
+<div class="border-r border-dashed border-white/10"></div>
+<div></div>
+</div>
+<header class="relative z-20 flex items-center justify-between px-6 py-7 md:px-14 lg:px-16">
+<a class="flex items-center gap-3" data-reveal="" href="#" style=" filter: blur(0px);">
+<span class="text-2xl font-semibold tracking-tight">Bloom</span>
+</a>
+<nav class="hidden items-center rounded-full bg-white p-1 text-sm font-medium text-[#102725] shadow-2xl shadow-black/20 sm:flex" data-reveal="" style=" filter: blur(0px);">
+<a class="flex items-center gap-2 rounded-full px-5 py-3 transition hover:bg-neutral-100" href="#contact">
+              Связаться
+              <i class="h-4 w-4" data-lucide="phone"></i>
+</a>
+<a class="rounded-full bg-[#0d3b2f] px-5 py-3 text-white shadow-lg shadow-emerald-950/20 transition hover:bg-[#145240]" href="#collection">
+              В магазин
+            </a>
+</nav>
+</header>
+<div class="relative z-10 flex min-h-[calc(100vh-6rem)] items-center justify-center px-6 pb-20 pt-8 md:px-14">
+<h1 class="-translate-x-1/2 -translate-y-1/2 whitespace-nowrap [font-family:'Bebas_Neue',sans-serif] text-[10rem] leading-none md:text-[17rem] lg:text-[25rem] xl:text-[31rem] text-lime-300 tracking-tight text-center z-0 absolute top-1/2 left-1/2" data-hero-word="" style=" filter: blur(0px);">
+    ЦВЕТЕНИЕ
+  </h1>
+<img alt="" class="-translate-x-1/2 md:h-[48rem] md:w-[32rem] w-[25rem] h-[40rem] absolute top-10 left-1/2 object-cover" data-float="" data-reveal="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/60fd627f-278e-44cf-a97e-0dc9b2df3f6d_1600w.png" style=" filter: blur(0px);"/>
+<div class="absolute right-6 top-1/2 z-20 hidden items-center gap-3 rounded-full bg-white px-3 py-2 pr-5 text-[#102725] shadow-2xl shadow-black/20 md:flex lg:right-40" data-reveal="" style=" filter: blur(0px);">
+<span class="h-10 w-10 rounded-full bg-lime-200 bg-cover bg-center bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/5066d2cd-0449-40ed-9699-8c40a647f90c_320w.png)]"></span>
+<span class="">
+<span class="block text-xl font-semibold tracking-tight">
+                Весенний букет
+              </span>
+<span class="block text-sm text-neutral-600">
+                Свежесть и яркость
+              </span>
+</span>
+</div>
+<div class="absolute bottom-24 right-6 z-20 flex items-center gap-4 md:right-24" data-reveal="" style=" filter: blur(0px);">
+<a class="flex h-16 w-16 items-center justify-center rounded-lg bg-[#06382d] text-white shadow-2xl shadow-black/20 transition hover:scale-105" href="#values">
+<i class="h-8 w-8" data-lucide="arrow-up-right"></i>
+</a>
+<div class="text-[#102725]">
+<p class="text-3xl font-semibold tracking-tight text-white md:text-[#102725]">
+        $ 85
+      </p>
+<p class="text-sm font-medium text-white/80 md:text-[#102725]/80">
+        РОЗОВЫЙ РУМЯНЕЦ
+      </p>
+</div>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden bg-white px-6 py-20 md:px-14 lg:px-16" id="values">
+<div class="absolute -right-40 top-40 h-[36rem] w-[36rem] rounded-full bg-lime-300/40 blur-3xl" data-parallax="" data-speed="0.12"></div>
+<div class="relative grid gap-10 lg:grid-cols-12">
+<p class="max-w-sm text-2xl font-medium leading-relaxed text-[#102725] lg:col-span-4" data-reveal="" style=" filter: blur(18px);">
+            Мы создаём и курируем люксовую коллекцию цветочных композиций — исключительная свежесть, безупречное качество и вневременной дизайн.
+          </p>
+<h2 class="text-right [font-family:'Bebas_Neue',sans-serif] text-8xl leading-none tracking-tight text-[#102725] md:text-9xl lg:col-span-8 lg:text-[11rem]" data-reveal="" style=" filter: blur(18px);">
+            ФИЛОСОФИЯ
+          </h2>
+</div>
+<div class="relative mt-2 min-h-[42rem]">
+<h3 class="absolute left-0 top-28 z-10 [font-family:'Bebas_Neue',sans-serif] text-8xl leading-none tracking-tight text-[#102725] md:text-[10rem] lg:text-[13rem]" data-reveal="" style=" filter: blur(18px);">
+  РОСКОШЬ
+  <br/>
+            ЦВЕТЕНИЕ
+</h3>
+<img alt="" class="-translate-x-1/2 md:h-[48rem] md:w-[32rem] w-[25rem] h-[40rem] object-cover z-10 absolute top-10 left-1/2" data-float="" data-reveal="" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/89f0c319-6e3e-4220-979e-263a8afab46f_1600w.webp" style=" filter: blur(18px);"/>
+<div class="absolute right-0 top-72 z-20 flex flex-col gap-6">
+<span class="text-sm font-semibold bg-neutral-100 rounded-full px-8 py-4" data-reveal="" style=" filter: blur(18px);">
+              ПОД ЗАКАЗ
+            </span>
+<span class="rounded-full bg-lime-300 px-8 py-4 text-sm font-semibold" data-reveal="" style=" filter: blur(18px);">
+              ЭКОЛОГИЧНО И ЧЕСТНО
+            </span>
+<span class="rounded-full bg-neutral-100 px-8 py-4 text-sm font-semibold" data-reveal="" style=" filter: blur(18px);">
+              ДОЛГАЯ СВЕЖЕСТЬ
+            </span>
+</div>
+</div>
+</section>
+<section class="relative min-h-screen overflow-hidden bg-black px-6 py-20 text-white md:px-14 lg:px-16" id="collection">
+<div class="sticky top-0 flex min-h-screen items-center">
+<div class="relative w-full">
+<h2 class="relative z-20 [font-family:'Bebas_Neue',sans-serif] text-8xl leading-none tracking-tight text-[#f4ff4f] md:text-[11rem] lg:text-[14rem]" data-reveal="" style="filter: blur(18px);">
+              ЦВЕТОЧНЫЕ СЕРИИ
+            </h2>
+<div class="relative mx-auto mt-[-2rem] h-[38rem] max-w-4xl md:h-[48rem]" data-chair-stage="">
+<div class="-translate-x-1/2 md:h-[48rem] md:w-[36rem] w-[28rem] h-[38rem] bg-cover bg-center absolute top-4 left-1/2 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ee46530f-857e-41c3-a89a-3852573315e1_1600w.webp)]" data-stage-chair="" style="filter: blur(3.4349px);">
+</div>
+<div class="absolute bottom-8 right-0 hidden gap-6 lg:flex" data-reveal="" style="filter: blur(18px);">
+<span class="rounded-full bg-lime-300 px-8 py-4 text-base font-semibold text-[#102725]">
+                  СВАДЬБЫ
+                </span>
+<span class="rounded-full bg-lime-300 px-8 py-4 text-base font-semibold text-[#102725]">
+                  СОБЫТИЯ
+                </span>
+<span class="rounded-full bg-white px-8 py-4 text-base font-semibold text-[#102725]">
+                  ДЕКОР ДОМА
+                </span>
+</div>
+</div>
+</div>
+</div>
+</section><section class="text-white bg-[#050505] w-full h-[150vh] pt-32 pb-32 relative" id="hScrollSection-emq">
+<div class="sticky top-0 w-full h-screen overflow-hidden flex flex-col justify-center py-12 md:py-20">
+<!-- Dither / Noise overlay -->
+<div class="absolute inset-0 opacity-[0.04] pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noiseFilter\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.85\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noiseFilter)\'/%3E%3C/svg%3E'); z-index: 1;">
+</div>
+<div class="md:px-12 md:mb-16 flex flex-col md:flex-row md:items-end gap-6 z-10 shrink-0 w-full mt-16 mb-8 pr-6 pl-6 relative gap-x-6 gap-y-6 items-start justify-between">
+<div class="flex flex-col gap-4">
+<div class="text-xs font-thin tracking-widest uppercase text-white/50 flex items-center gap-3">
+<span class="w-2 h-2 rounded-full bg-[#bef264]"></span>
+      [ Цветочная галерея ]
+    </div>
+<h2 class="md:text-7xl [font-family:'Bebas_Neue',sans-serif] lg:text-8xl leading-[0.9] text-8xl text-white tracking-tight font-extralight max-w-4xl py-2">
+  Живое искусство, <br/>
+<span class="text-white/40">созданное для вас.</span>
+</h2>
+</div>
+<div class="flex items-center gap-6 text-xs font-thin uppercase tracking-widest text-white/40 bg-white/[0.03] border border-white/10 rounded-full px-6 py-3 backdrop-blur-sm">
+<div class="flex gap-2 items-center">
+<svg class="lucide lucide-mouse w-4 h-4" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<rect height="20" rx="7" width="14" x="5" y="2"></rect>
+<path d="M12 6v4"></path>
+</svg>
+<span class="mono">Листайте вниз</span>
+</div>
+<div class="w-px h-4 bg-white/20"></div>
+<span class="mono">6 композиций</span>
+</div>
+</div>
+<div class="w-full relative z-10 flex-1 flex items-center">
+<div class="w-full h-full flex items-center">
+<div class="track flex md:gap-12 md:px-12 transition-transform duration-100 ease-out will-change-transform w-max pr-6 pl-6 gap-x-6 gap-y-6" id="track-emq">
+<!-- Frame 01 -->
+<figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 clip-poly-1 cursor-pointer">
+<img alt="Красивая букетная композиция" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="eager" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/ff4c0e27-1d5a-46fb-8f04-ef84cf646904_1600w.webp"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-thin text-[#bef264] border border-[#bef264]/30 rounded-full px-4 py-2 uppercase bg-[#bef264]/10 backdrop-blur-md">
+                  Коллекция
+                </span>
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-thin text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">01</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-thin text-white max-w-sm leading-[1.1]">
+                    «Свадебная элегантность», весенняя коллекция
+                  </figcaption>
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 02 -->
+<figure class="frame w-[85vw] md:w-[50vw] lg:w-[35vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-24 clip-poly-1 cursor-pointer">
+<img alt="Экзотическая композиция с орхидеями" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/0358a114-1ab3-463b-a5c9-9236f443adf4_1600w.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-thin text-[#bef264] border border-[#bef264]/30 rounded-full px-4 py-2 uppercase bg-[#bef264]/10 backdrop-blur-md">
+                  Коллекция
+                </span>
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-thin text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">02</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-thin text-white max-w-sm leading-[1.1]">
+                    «Полуночная орхидея», экзотическая композиция
+                  </figcaption>
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 03 -->
+<figure class="frame w-[85vw] md:w-[45vw] lg:w-[30vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 clip-poly-1 cursor-pointer">
+<img alt="Серия сухоцветов" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/55d0f386-1689-4532-a92f-2692d906ddbe_1600w.jpg"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-thin text-[#bef264] border border-[#bef264]/30 rounded-full px-4 py-2 uppercase bg-[#bef264]/10 backdrop-blur-md">
+                  Коллекция
+                </span>
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-thin text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">03</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-thin text-white max-w-sm leading-[1.1]">
+                    «Рустикальный шарм», серия сухоцветов
+                  </figcaption>
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 04 -->
+<figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-16 clip-poly-1 cursor-pointer">
+<img alt="Минималистичный декор с вазой" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/eee4dd06-86ae-4436-be7a-af47059b2738_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-thin text-[#bef264] border border-[#bef264]/30 rounded-full px-4 py-2 uppercase bg-[#bef264]/10 backdrop-blur-md">
+                  Коллекция
+                </span>
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-thin text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">04</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-thin text-white max-w-sm leading-[1.1]">
+                    «Минималистичная ваза», декор для дома
+                  </figcaption>
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 05 -->
+<figure class="frame w-[85vw] md:w-[50vw] lg:w-[40vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] clip-poly-1 shrink-0 border border-white/10 cursor-pointer">
+<img alt="Цветочная композиция для события" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/f33bdda4-edcf-4ffb-87d0-b72757b63a38_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-thin text-[#bef264] border border-[#bef264]/30 rounded-full px-4 py-2 uppercase bg-[#bef264]/10 backdrop-blur-md">
+                  Коллекция
+                </span>
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-thin text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">05</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-thin text-white max-w-sm leading-[1.1]">
+                    «Грандиозное событие», центральная композиция
+                  </figcaption>
+</div>
+</div>
+</div>
+</figure>
+<!-- Frame 06 -->
+<figure class="frame w-[85vw] md:w-[60vw] lg:w-[45vw] h-[45vh] md:h-[65vh] relative group overflow-hidden rounded-none bg-[#0a0a0a] shrink-0 border border-white/10 md:mt-24 clip-poly-1 cursor-pointer">
+<img alt="Летний каскад полевых цветов" class="w-full h-full object-cover opacity-50 grayscale group-hover:grayscale-0 group-hover:opacity-90 group-hover:scale-105 transition-all duration-1000 ease-[cubic-bezier(0.25,1,0.5,1)]" loading="lazy" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/03de286c-8ba8-4777-8f32-d837f9274d41_1600w.png"/>
+<div class="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/40 to-transparent opacity-90 group-hover:opacity-70 transition-opacity duration-700">
+</div>
+<div class="absolute inset-0 p-8 md:p-12 flex flex-col justify-between pointer-events-none">
+<div class="flex justify-between items-start w-full transform -translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-700 ease-out delay-100">
+<span class="text-[10px] tracking-[0.2em] font-thin text-[#bef264] border border-[#bef264]/30 rounded-full px-4 py-2 uppercase bg-[#bef264]/10 backdrop-blur-md">
+                  Коллекция
+                </span>
+<div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center bg-white/5 backdrop-blur-md">
+<svg class="lucide lucide-arrow-up-right w-4 h-4 text-white" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M7 7h10v10"></path>
+<path d="M7 17 17 7"></path>
+</svg>
+</div>
+</div>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6 transform translate-y-8 group-hover:translate-y-0 transition-transform duration-700 ease-out">
+<div class="flex flex-col gap-3">
+<span class="num text-5xl md:text-7xl tracking-tight font-thin text-transparent group-hover:text-white transition-colors duration-700 leading-none" style="-webkit-text-stroke: 1px rgba(255,255,255,0.2);">06</span>
+<figcaption class="cap text-2xl md:text-4xl tracking-tight font-thin text-white max-w-sm leading-[1.1]">
+                    «Дикое цветение», летний каскад
+                  </figcaption>
+</div>
+</div>
+</div>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<script>
+    (function() {
+      const initScroll = () => {
+        const section = document.getElementById('hScrollSection-emq');
+        const track = document.getElementById('track-emq');
+        if (!section || !track) return;
+        
+        const updateScroll = () => {
+          const rect = section.getBoundingClientRect();
+          const sectionTop = rect.top;
+          const sectionHeight = rect.height;
+          const windowHeight = window.innerHeight;
+          
+          if (sectionTop <= 0 && sectionTop >= -(sectionHeight - windowHeight)) {
+            const scrollableDistance = sectionHeight - windowHeight;
+            let progress = -sectionTop / scrollableDistance;
+            progress = Math.max(0, Math.min(1, progress));
+            
+            const paddingRight = window.innerWidth > 768 ? 96 : 48;
+            const maxTranslate = track.scrollWidth - window.innerWidth + paddingRight;
+            
+            track.style.transform = `translate3d(-${progress * maxTranslate}px, 0, 0)`;
+          } else if (sectionTop > 0) {
+            track.style.transform = `translate3d(0px, 0, 0)`;
+          } else {
+            const paddingRight = window.innerWidth > 768 ? 96 : 48;
+            const maxTranslate = track.scrollWidth - window.innerWidth + paddingRight;
+            track.style.transform = `translate3d(-${maxTranslate}px, 0, 0)`;
+          }
+        };
+        
+        window.addEventListener('scroll', updateScroll, { passive: true });
+        window.addEventListener('resize', updateScroll, { passive: true });
+        updateScroll();
+      };
+      
+      if (document.readyState === 'complete' || document.readyState === 'interactive') {
+        initScroll();
+      } else {
+        window.addEventListener('DOMContentLoaded', initScroll);
+      }
+    })();
+  </script>
+</section><section class="relative overflow-hidden bg-white px-6 py-24 md:px-14 lg:px-16" id="artisan-craft">
+<div class="absolute -left-20 top-20 h-72 w-72 rounded-full bg-pink-100/50 blur-3xl" data-parallax="" data-speed="0.05"></div>
+<div class="absolute -right-10 bottom-20 h-96 w-96 rounded-full bg-lime-100/50 blur-3xl" data-parallax="" data-speed="-0.08"></div>
+<div class="relative z-10 mx-auto max-w-[84rem]">
+<div class="grid items-center gap-16 lg:grid-cols-12">
+<div class="order-2 flex flex-col justify-center lg:order-1 lg:col-span-5">
+<div class="" data-reveal="" style=" filter: blur(18px);">
+<span class="inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white/50 px-5 py-2.5 text-xs font-semibold uppercase tracking-widest text-[#102725] backdrop-blur-sm">
+<span class="h-2 w-2 rounded-full bg-lime-400"></span>
+            Ремесло
+          </span>
+</div>
+<h2 class="mt-10 [font-family:'Bebas_Neue',sans-serif] text-7xl leading-none tracking-tight text-[#102725] md:text-8xl lg:text-9xl" data-reveal="" style=" filter: blur(18px);">
+  ИСКУССТВО <br/> ФЛОРИСТИКИ
+</h2>
+<p class="mt-8 max-w-md text-lg font-medium leading-relaxed text-neutral-600" data-reveal="" style=" filter: blur(18px);">
+          Каждая композиция — тщательно выверенная живая скульптура. Мы находим редкие сезонные цветы на ответственных фермах и работаем с фактурой, теорией цвета и естественным движением, создавая работы, которые трогают душу.
+        </p>
+<div class="mt-12 grid grid-cols-2 gap-8 border-t border-neutral-200 pt-12" data-reveal="" style=" filter: blur(18px);">
+<div class="">
+<p class="[font-family:'Bebas_Neue',sans-serif] text-6xl text-[#102725]">15<span class="text-lime-500">+</span></p>
+<p class="mt-3 text-xs font-bold uppercase tracking-widest text-neutral-400">Лет мастерства</p>
+</div>
+<div class="">
+<p class="[font-family:'Bebas_Neue',sans-serif] text-6xl text-[#102725]">100<span class="text-lime-500">%</span></p>
+<p class="mt-3 text-xs font-bold uppercase tracking-widest text-neutral-400">Ответственные поставки</p>
+</div>
+</div>
+<div class="mt-14" data-reveal="" style=" filter: blur(18px);">
+<a class="group inline-flex items-center gap-4" href="#explore">
+<span class="flex h-16 w-16 items-center justify-center rounded-full bg-[#102725] text-white shadow-xl shadow-black/10 transition-transform duration-300 group-hover:scale-105">
+<i class="h-6 w-6" data-lucide="arrow-right"></i>
+</span>
+<span class="text-lg font-semibold tracking-tight text-[#102725]">Узнать о процессе</span>
+</a>
+</div>
+</div>
+<div class="order-1 lg:order-2 lg:col-span-7">
+<div class="relative aspect-[4/5] w-full overflow-hidden rounded-3xl bg-neutral-100 shadow-2xl shadow-black/5 md:aspect-square lg:aspect-[4/3]" data-reveal="" style=" filter: blur(18px);">
+<img alt="Цветочное мастерство" class="absolute -top-[12.5%] left-0 right-0 h-[125%] w-full object-cover object-center" data-parallax="" data-speed="0.12" src="https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/55c0afe3-a922-4178-ac18-a27bd8d64420_1600w.png"/>
+<div class="absolute inset-0 rounded-3xl ring-1 ring-inset ring-black/10"></div>
+<div class="absolute bottom-6 left-6 right-6 rounded-2xl bg-white/90 p-6 backdrop-blur-md md:bottom-8 md:left-8 md:max-w-sm">
+<p class="text-sm font-semibold text-[#102725]">Фирменный штрих</p>
+<p class="mt-1 text-sm font-medium text-neutral-600">Букет вручную перевязан лентой из чистого шёлка — непревзойдённые тактильные ощущения.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="relative min-h-screen overflow-hidden bg-neutral-100">
+<div class="absolute inset-0 bg-cover bg-center opacity-75 bg-[url(https://hoirqrkdgbmvpwutwuwj.supabase.co/storage/v1/object/public/assets/assets/b952a8f8-d0d4-4ce8-91c2-05544adcfd3a_3840w.png)]"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/45 via-black/10 to-transparent"></div>
+<div class="relative z-10 px-6 py-20 md:px-14 lg:px-16">
+<h2 class="[font-family:'Bebas_Neue',sans-serif] text-8xl leading-none tracking-tight text-white md:text-[10rem]" data-reveal="" style="filter: blur(0px);">
+            ИЗУЧИТЕ
+            <br/>
+            КАТЕГОРИИ
+          </h2>
+<div class="mt-12 max-w-4xl">
+<div class="grid grid-cols-2 gap-2 md:grid-cols-4" data-reveal="" style="filter: blur(0px);">
+<button class="bg-white px-6 py-5 text-left text-xl font-semibold leading-none text-[#102725]">
+                СВАДЕБНЫЕ
+                <br/>
+                БУКЕТЫ
+              </button>
+<button class="bg-slate-300/90 px-6 py-5 text-left text-xl font-medium leading-none text-white">
+                СОБЫТИЙНАЯ
+                <br/>
+                ФЛОРИСТИКА
+              </button>
+<button class="bg-slate-300/90 px-6 py-5 text-left text-xl font-medium leading-none text-white">
+                СУХИЕ
+                <br/>
+                ЦВЕТЫ
+              </button>
+<button class="bg-slate-300/90 px-6 py-5 text-left text-xl font-medium leading-none text-white">
+                СЕЗОННЫЙ
+                <br/>
+                ВЫБОР
+              </button>
+</div>
+<article class="grid gap-10 bg-white p-8 shadow-2xl shadow-black/20 md:grid-cols-2 md:p-10" data-reveal="" style="filter: blur(0px);">
+<div class="">
+<h3 class="[font-family:'Bebas_Neue',sans-serif] text-6xl leading-none tracking-tight text-[#102725]">
+                  СВАДЕБНЫЕ
+                  <br/>
+                  БУКЕТЫ
+                </h3>
+</div>
+<div>
+<h4 class="text-2xl font-medium leading-none tracking-tight text-[#102725]">
+                  ЭЛЕГАНТНО И
+                  <br/>
+                  СВЕЖО
+                </h4>
+</div>
+<div class="space-y-8">
+<div class="">
+<p class="text-lg font-semibold">Премиальные цветы</p>
+<p class="text-lg text-neutral-500">
+                    Местные поставки
+                    <br/>
+                    и ручной отбор
+                  </p>
+</div>
+<div class="h-px bg-neutral-200"></div>
+<div class="">
+<p class="text-lg font-semibold">Художественный дизайн</p>
+<p class="text-lg text-neutral-500">Идеальная гармония цвета</p>
+</div>
+</div>
+<div class="space-y-8">
+<div class="">
+<p class="text-lg font-semibold">Размер под заказ</p>
+<p class="text-lg text-neutral-500">
+                    С учётом ваших
+                    <br/>
+                    пожеланий
+                  </p>
+</div>
+<div class="h-px bg-neutral-200"></div>
+<div class="">
+<p class="text-lg font-semibold">Доставка в день заказа</p>
+<p class="text-lg text-neutral-500">Гарантия свежести</p>
+</div>
+</div>
+</article>
+</div>
+</div>
+</section>
+<section class="relative overflow-hidden bg-white px-6 py-20 md:px-14 lg:px-16" id="contact">
+<div class="absolute -right-32 top-0 h-96 w-96 rounded-full bg-lime-300/70 blur-3xl" data-parallax="" data-speed="0.16"></div>
+<div class="relative z-10 grid gap-16 lg:grid-cols-2">
+<h2 class="text-4xl font-semibold leading-tight tracking-tight text-[#102725] md:text-5xl" data-reveal="" style=" filter: blur(18px);">
+            Создано для лёгкости.
+            <br/>
+            Стиль для жизни.
+          </h2>
+<div class="grid gap-10 sm:grid-cols-3" data-reveal="" style=" filter: blur(18px);">
+<div>
+<p class="mb-5 text-base font-semibold">(Магазин)</p>
+<ul class="space-y-3 text-base text-neutral-700">
+<li>Весь ассортимент</li>
+<li>Лучшее</li>
+<li>Новинки</li>
+<li>Готовые наборы</li>
+</ul>
+</div>
+<div class="">
+<p class="mb-5 text-base font-semibold">(О нас)</p>
+<ul class="space-y-3 text-base text-neutral-700">
+<li>О нас</li>
+<li>Материалы</li>
+<li>Экослед</li>
+<li>Журнал</li>
+</ul>
+</div>
+<div>
+<p class="mb-5 text-base font-semibold">(Поддержка)</p>
+<ul class="space-y-3 text-base text-neutral-700">
+<li>Написать нам</li>
+<li>Доставка и возврат</li>
+<li>Центр помощи</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="relative z-10 mt-16 grid gap-12 lg:grid-cols-2">
+<div class="" data-reveal="" style=" filter: blur(18px);">
+<p class="mb-6 text-lg font-medium">Вступайте в клуб</p>
+<form class="flex max-w-md items-center rounded-full bg-neutral-100 p-2">
+<input aria-label="Адрес электронной почты" class="min-w-0 flex-1 bg-transparent px-5 py-3 text-base outline-none placeholder:text-neutral-500" placeholder="Ваш адрес эл. почты" type="email"/>
+<button class="rounded-full bg-white px-6 py-3 text-base font-semibold shadow-sm transition hover:bg-lime-300" type="submit">
+                Подписаться
+              </button>
+</form>
+</div>
+</div>
+<div class="relative z-10 mt-24 flex flex-col gap-6 text-2xl font-medium text-[#102725] md:flex-row md:items-center md:justify-between">
+<p data-reveal="" style=" filter: blur(18px);">©2025 Все права защищены</p>
+<p data-reveal="" style=" filter: blur(18px);">hello@bloom.com</p>
+<p data-reveal="" style=" filter: blur(18px);">Условия и конфиденциальность</p>
+</div>
+<h2 class="mt-14 [font-family:'Inter',sans-serif] text-8xl font-semibold leading-none tracking-tight text-neutral-200 md:text-[12rem] lg:text-[16rem]" data-reveal="" style=" filter: blur(18px);">
+          Bloom
+        </h2>
+</section>
+</main>
+<script class="" src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+<script class="" src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+      lucide.createIcons({ attrs: { "stroke-width": 1.5 } });
+
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.set("[data-reveal]", { autoAlpha: 0, y: 42, filter: "blur(18px)" });
+      gsap.set("[data-hero-word]", { autoAlpha: 0, scale: 0.92, filter: "blur(18px)" });
+      gsap.set("[data-product-hero]", { autoAlpha: 0, y: 72, scale: 0.94, filter: "blur(22px)" });
+
+      window.addEventListener("load", () => {
+        const hero = gsap.timeline({ defaults: { ease: "power4.out" } });
+        hero
+          .to("[data-hero-word]", { autoAlpha: 1, scale: 1, filter: "blur(0px)", duration: 1.3 })
+          .to("[data-product-hero]", { autoAlpha: 1, y: 0, scale: 1, filter: "blur(0px)", duration: 1.25 }, "-=0.85")
+          .to("header [data-reveal]", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9, stagger: 0.12 }, "-=0.85")
+          .to("section:first-child [data-reveal]:not(header [data-reveal])", { autoAlpha: 1, y: 0, filter: "blur(0px)", duration: 0.9, stagger: 0.16 }, "-=0.55");
+      });
+
+      document.querySelectorAll("section").forEach((section) => {
+        const items = section.querySelectorAll("[data-reveal]");
+        if (!items.length) return;
+
+        gsap.to(items, {
+          autoAlpha: 1,
+          y: 0,
+          filter: "blur(0px)",
+          duration: 0.95,
+          ease: "power3.out",
+          stagger: 0.09,
+          scrollTrigger: {
+            trigger: section,
+            start: "top 74%",
+            once: true
+          }
+        });
+      });
+
+      document.querySelectorAll("[data-parallax]").forEach((layer) => {
+        const speed = Number(layer.dataset.speed || 0.1);
+        gsap.to(layer, {
+          yPercent: speed * 100,
+          ease: "none",
+          scrollTrigger: {
+            trigger: layer.closest("section") || document.body,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: 1.2
+          }
+        });
+      });
+
+      gsap.to("[data-hero-word]", {
+        yPercent: 16,
+        scale: 1.08,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "section:first-child",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.4
+        }
+      });
+
+      gsap.to("[data-product-hero]", {
+        yPercent: -8,
+        scale: 0.98,
+        ease: "none",
+        scrollTrigger: {
+          trigger: "section:first-child",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2
+        }
+      });
+
+      gsap.to("[data-float]", {
+        y: -38,
+        rotate: 2,
+        ease: "sine.inOut",
+        repeat: -1,
+        yoyo: true,
+        duration: 3.8
+      });
+
+      const collectionTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: "#collection",
+          start: "top top",
+          end: "+=160%",
+          scrub: 1.25,
+          pin: false
+        }
+      });
+
+      collectionTimeline
+        .fromTo("[data-stage-chair]", { rotate: -6, scale: 0.9, y: 120, filter: "blur(16px)" }, { rotate: 2, scale: 1.08, y: -30, filter: "blur(0px)", ease: "power2.out" })
+        .to("#collection h2", { xPercent: -8, scale: 1.04, ease: "none" }, 0)
+        .to("#collection [data-reveal]", { y: -26, stagger: 0.02, ease: "none" }, 0.1);
+
+      gsap.utils.toArray("button, a").forEach((el) => {
+        el.addEventListener("mouseenter", () => gsap.to(el, { scale: 1.035, duration: 0.25, ease: "power2.out" }));
+        el.addEventListener("mouseleave", () => gsap.to(el, { scale: 1, duration: 0.25, ease: "power2.out" }));
+      });
+
+      ScrollTrigger.refresh();
+    </script>
+<script data-aura-video-controller="true">
+(function () {
+  function playVideo(video) {
+    var promise = video.play();
+    if (promise && typeof promise.catch === "function") {
+      promise.catch(function () {});
+    }
+  }
+
+  function setupVideo(video) {
+    if (video.__auraVideoReady === true) return;
+    video.__auraVideoReady = true;
+    video.removeAttribute("data-aura-video-ready");
+    video.removeAttribute("data-aura-video-played");
+    video.muted = true;
+    video.playsInline = true;
+
+    var preset = video.dataset.auraVideoPreset || "loop-in-view";
+    if (preset === "hover") {
+      video.addEventListener("mouseenter", function () {
+        playVideo(video);
+      });
+      video.addEventListener("mouseleave", function () {
+        video.pause();
+        video.currentTime = 0;
+      });
+      return;
+    }
+
+    if (!("IntersectionObserver" in window)) {
+      playVideo(video);
+      return;
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          if (preset === "play-once" && video.__auraVideoPlayed === true) {
+            return;
+          }
+          playVideo(video);
+        } else {
+          video.pause();
+        }
+      });
+    }, { threshold: 0.35 });
+
+    if (preset === "play-once") {
+      video.addEventListener("ended", function () {
+        video.__auraVideoPlayed = true;
+      }, { once: true });
+    }
+
+    observer.observe(video);
+  }
+
+  function setupVideos() {
+    document
+      .querySelectorAll("video[data-aura-video-preset]")
+      .forEach(setupVideo);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", setupVideos);
+  } else {
+    setupVideos();
+  }
+})();</script></body></html>

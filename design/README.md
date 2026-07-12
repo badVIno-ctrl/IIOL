@@ -4,7 +4,7 @@
 
 **Коллекция экспериментальных лендингов и UI-концептов**
 
-90+ вариаций главных экранов: типографика, тёмные темы, 3D, motion и арт-дирекшн.
+Почти 100 вариаций главных экранов: типографика, тёмные темы, 3D, motion и арт-дирекшн.
 
 <sub>Открой любой <code>vN.html</code> в браузере, чтобы посмотреть версию вживую.</sub>
 
@@ -17,10 +17,10 @@
 | Файл | Назначение |
 |------|------------|
 | `design.html` | Главная страница-витрина |
-| `v1.html … v90.html` | Отдельные версии дизайна |
+| `v1.html … v98.html` | Отдельные версии дизайна |
 | `README.md` | Этот файл — галерея превью |
 
-https://badvino-ctrl.github.io/IIOL/design/v1.html (протестировать. в адресе можете менять с v1.html на любой (v1-v90))
+https://badvino-ctrl.github.io/IIOL/design/v1.html (протестировать. в адресе можете менять с v1.html на любой (v1-v98))
 
 ---
 
@@ -473,7 +473,47 @@ https://badvino-ctrl.github.io/IIOL/design/v1.html (протестировать
 <a href="v90.html"><img src="https://github.com/user-attachments/assets/c0fff0c0-924c-400e-9b76-78d2c13d832d" alt="V90"></a>
 </td>
 <td width="50%" align="center">
-&nbsp;
+<b>V91</b><br>
+<a href="v91.html"><img src="https://github.com/user-attachments/assets/a0c713e1-c5b3-426b-8a62-895d073180f1" alt="V91"></a>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<b>V92</b><br>
+<a href="v92.html"><img src="https://github.com/user-attachments/assets/c66e2628-7918-4292-b94d-638ac154d9a8" alt="V92"></a>
+</td>
+<td width="50%" align="center">
+<b>V93</b><br>
+<a href="v93.html"><img src="https://github.com/user-attachments/assets/2ad4d51f-edad-4367-98fe-d05c80e6a2c9" alt="V93"></a>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<b>V94</b><br>
+<a href="v94.html"><img src="https://github.com/user-attachments/assets/1021fe9a-9bb4-4ca7-81a5-fa0089e81e61" alt="V94"></a>
+</td>
+<td width="50%" align="center">
+<b>V95</b><br>
+<a href="v95.html"><img src="https://github.com/user-attachments/assets/1a4980e7-4622-4fed-aa21-dc54ce3397e3" alt="V95"></a>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<b>V96</b><br>
+<a href="v96.html"><img src="https://github.com/user-attachments/assets/dc7e90be-f696-48e8-860a-c7905f1b7262" alt="V96"></a>
+</td>
+<td width="50%" align="center">
+<b>V97</b><br>
+<a href="v97.html"><img src="https://github.com/user-attachments/assets/6b61e1e0-8fa1-43f7-a9c6-98b829afa9b7" alt="V97"></a>
+</td>
+</tr>
+<tr>
+<td width="50%" align="center">
+<b>V98</b><br>
+<a href="v98.html"><img src="https://github.com/user-attachments/assets/978c48bd-e91c-4d2b-83c7-c5cc6596eb30" alt="V98"></a>
+</td>
+<td width="50%" align="center">
+ 
 </td>
 </tr>
 </table>
